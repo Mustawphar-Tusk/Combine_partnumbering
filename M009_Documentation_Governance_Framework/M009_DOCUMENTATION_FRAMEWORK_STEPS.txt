@@ -1,0 +1,22 @@
+M009 Documentation and Governance Framework
+============================================
+
+1. Extract into:
+   C:\Users\makorede\Downloads\Combine_partnumbering
+
+2. Merge folders. The docs folder belongs at project root:
+   Combine_partnumbering\docs
+
+3. Verify:
+   python -m scripts.verify_documentation_framework
+
+4. Test:
+   python -m pytest -q
+
+5. Future significant modules must update:
+   docs/modules
+   docs/milestones
+   docs/engineering-journal
+   docs/progress/Dashboard.md
+   docs/releases
+   docs/adr when architecture changes

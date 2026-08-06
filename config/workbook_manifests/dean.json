@@ -1,0 +1,19 @@
+{
+  "family_code": "DEAN",
+  "family_name": "Dean Pump",
+  "folder_name": "Dean",
+  "workbooks": [
+    {
+      "pattern": "Dean Data Sheet Rev *.xlsm",
+      "role": "configuration_and_quote",
+      "required": true,
+      "processing_order": 10
+    },
+    {
+      "pattern": "PumpConfiguration_Logic.xlsm",
+      "role": "configuration_logic",
+      "required": true,
+      "processing_order": 20
+    }
+  ]
+}

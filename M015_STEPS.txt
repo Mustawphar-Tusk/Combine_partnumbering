@@ -1,0 +1,30 @@
+M015 Allowable Configuration Navigation
+=======================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+3. Run the live navigator:
+
+   python -m scripts.test_fybroc_allowable_navigation
+
+Expected:
+
+- Start field is SERIES.
+- Series options come from active metadata.
+- Selecting the issued 1530 token returns SIZE.
+- SIZE returns 16 allowable values.
+- 1x1.5x6 is present.
+- 6x10x8 is absent.
+- Selecting the issued 1x1.5x6 token returns PUMP_MATERIAL.
+- The client submission model is:
+      state_token + option_token
+- Arbitrary engineering values accepted = false.
+
+Before exposing this through FastAPI, set a strong secret:
+
+   $env:CONFIGURATION_TOKEN_SECRET =
+       "replace-with-at-least-32-random-characters"

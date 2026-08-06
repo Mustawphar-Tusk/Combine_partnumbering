@@ -1,0 +1,42 @@
+{
+  "validated_against": [
+    "Fybroc Attributes and Constraints.xlsx",
+    "Fybroc Nomenclature_V5.xlsm",
+    "Price Estimator-Fybroc.xlsm"
+  ],
+  "dependency_candidate_count": 13178,
+  "series_size_trim_relation_count": 4693,
+  "motor_context_modification_relation_count": 8485,
+  "issue_count": 0,
+  "error_count": 0,
+  "warning_count": 0,
+  "verified_scenario": {
+    "series": "1530",
+    "size": "1x1.5x6",
+    "impeller_trim_count": 19,
+    "impeller_trims": [
+      "4.000",
+      "4.125",
+      "4.250",
+      "4.375",
+      "4.500",
+      "4.625",
+      "4.750",
+      "4.875",
+      "5.000",
+      "5.125",
+      "5.250",
+      "5.375",
+      "5.500",
+      "5.625",
+      "5.750",
+      "5.875",
+      "6.000",
+      "6.125",
+      "6.250"
+    ],
+    "no_motor_allowable_modifications": [
+      "No Modification"
+    ]
+  }
+}

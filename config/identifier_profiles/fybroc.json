@@ -1,0 +1,109 @@
+{
+  "family_code": "FYBROC",
+  "base_identifier": {
+    "base_prefix": "F",
+    "remove_model_prefix": null
+  },
+  "model_reference": {
+    "workbook_role": "attributes_and_constraints",
+    "worksheet_name": "FULL LIST",
+    "row_from": 3,
+    "columns": {
+      "series": "A",
+      "size": "C"
+    },
+    "model_identifier_source": "series"
+  },
+  "identifier_formats": [
+    {
+      "identifier_type": "PART_NUMBER",
+      "format_code": "FYBROC_PART_NUMBER_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-{segment_string}",
+      "segment_separator": "-",
+      "base_identifier_source": "MODEL_REFERENCE"
+    },
+    {
+      "identifier_type": "SKU",
+      "format_code": "FYBROC_SKU_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-V{version}-{compact_segment_string}",
+      "segment_separator": "",
+      "base_identifier_source": "MODEL_REFERENCE"
+    }
+  ],
+  "segments": [
+    {
+      "segment_code": "PUMP_MATERIAL",
+      "segment_name": "Pump Material",
+      "assembly_order": 10,
+      "expected_width": null,
+      "source_field_codes": [
+        "PUMP_MATERIAL"
+      ]
+    },
+    {
+      "segment_code": "IMPELLER_TRIM",
+      "segment_name": "Impeller Trim",
+      "assembly_order": 20,
+      "expected_width": null,
+      "source_field_codes": [
+        "IMPELLER_TRIM"
+      ]
+    },
+    {
+      "segment_code": "PUMP_OPTIONS",
+      "segment_name": "Pump Options",
+      "assembly_order": 30,
+      "expected_width": null,
+      "source_field_codes": [
+        "PUMP_OPTIONS"
+      ]
+    },
+    {
+      "segment_code": "SEAL_ASSEMBLY",
+      "segment_name": "Complete Seal Assembly",
+      "assembly_order": 40,
+      "expected_width": null,
+      "source_field_codes": [
+        "COMPLETE_SEAL_ASSEMBLY"
+      ]
+    },
+    {
+      "segment_code": "OPTIONS",
+      "segment_name": "Options",
+      "assembly_order": 50,
+      "expected_width": null,
+      "source_field_codes": [
+        "OPTIONS"
+      ]
+    },
+    {
+      "segment_code": "MOTOR_ASSEMBLY",
+      "segment_name": "Motor Assembly",
+      "assembly_order": 60,
+      "expected_width": null,
+      "source_field_codes": [
+        "MOTOR_ASSEMBLY"
+      ]
+    },
+    {
+      "segment_code": "MOTOR_MODIFICATIONS",
+      "segment_name": "Motor Modifications",
+      "assembly_order": 70,
+      "expected_width": null,
+      "source_field_codes": [
+        "MOTOR_MODIFICATIONS"
+      ]
+    },
+    {
+      "segment_code": "TEST",
+      "segment_name": "Test",
+      "assembly_order": 80,
+      "expected_width": null,
+      "source_field_codes": [
+        "TEST"
+      ]
+    }
+  ]
+}

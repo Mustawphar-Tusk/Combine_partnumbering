@@ -1,0 +1,39 @@
+Option & Constraint Compiler
+============================
+
+This package replaces the discarded Dean Smart Number compiler.
+
+Design rules:
+- Invalid combinations are prevented before Part Number generation.
+- ERR, TBD__, and ____ are diagnostics only.
+- They are never imported as valid options or segment values.
+- The Part Number engine will accept only validated configurations.
+
+1. Extract this ZIP into the project root and merge folders.
+
+2. Apply SQL staging:
+   Set-Location .\sql
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\08_Create_Option_Constraint_Staging.sql
+   Set-Location ..
+
+3. Run tests:
+   python -m pytest -q
+
+4. Refresh workbook discovery:
+   python -m scripts.discover_workbooks
+
+5. Compile option and constraint candidates:
+   python -m scripts.compile_option_constraints
+
+6. Review:
+   exports\option_constraint_candidates.json
+   exports\configuration_option_candidates.csv
+   exports\configuration_dependency_candidates.csv
+   exports\constraint_rule_candidates.csv
+   exports\legacy_invalid_marker_diagnostics.csv
+   exports\option_constraint_issues.csv
+
+The first run establishes the generic engine and staging structures.
+The Dean/Fybroc profiles will then be refined from the actual workbook
+ranges, named ranges, formulas, and validation sources.

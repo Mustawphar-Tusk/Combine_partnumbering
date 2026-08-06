@@ -1,0 +1,23 @@
+M014.1 Motor Frame Contextual Normalization
+===========================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+3. Rerun:
+
+   python -m scripts.test_fybroc_available_options_service
+
+Expected Motor Frame behavior for:
+   MOTOR_OPTION = No Motor
+   MOTOR_ORIENTATION = Hor T
+   Series = 1530
+
+The result should no longer be empty. Returned display values remain
+numeric Motor Assembly values such as 143, 145, 182, etc., while the
+comparison uses contextual keys such as 143T and 145T.
+
+T and TS frames remain separate.

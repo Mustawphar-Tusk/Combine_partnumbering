@@ -1,0 +1,46 @@
+M010 Generic Metadata Resolution Engine
+=======================================
+
+1. Extract and merge into the project root.
+
+2. Apply SQL:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\13_Create_Attribute_Publication_Procedures.sql
+
+3. Run tests:
+
+   python -m pytest -q
+
+4. Load compiled attributes:
+
+   python -m scripts.load_fybroc_attributes_to_staging `
+       --file .\exports\fybroc_attribute_candidates.csv
+
+5. Note the printed batch ID.
+
+6. Publish as Testing first:
+
+   python -m scripts.publish_fybroc_attributes `
+       --batch-id <BATCH_ID> `
+       --version 0.2.0-fybroc-attributes
+
+7. Validate:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -Q "
+   SELECT VersionCode, Status
+   FROM cfg.MetadataPublication
+   ORDER BY MetadataPublicationId;
+
+   SELECT FamilyCode, FieldCode, COUNT(*) AS ValueCount
+   FROM cfg.AttributeValue av
+   JOIN cfg.PumpFamily pf
+     ON pf.PumpFamilyId = av.PumpFamilyId
+   GROUP BY FamilyCode, FieldCode
+   ORDER BY FamilyCode, FieldCode;
+   "
+
+8. After validation, activate through a new publication version or
+   rerun publication with --activate using a new unique version code.
+
+Expected FYBROC attribute total: 266.

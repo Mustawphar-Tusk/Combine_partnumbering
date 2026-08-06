@@ -1,0 +1,64 @@
+M019.1 – Fix API Router Import Collision
+========================================
+
+Cause
+-----
+
+The project already contains this package:
+
+    src\api\routes\__init__.py
+
+That package shadows the M019 module:
+
+    src\api\routes.py
+
+Python therefore resolves:
+
+    from src.api.routes import router
+
+to the existing routes package rather than the new FastAPI router
+module.
+
+Resolution
+----------
+
+The router module is now named:
+
+    src\api\http_routes.py
+
+and app.py imports:
+
+    from src.api.http_routes import router
+
+Apply
+-----
+
+1. Extract and merge this patch into the project root.
+
+2. Confirm the new file exists:
+
+   Test-Path .\src\api\http_routes.py
+
+Expected:
+
+   True
+
+3. Verify the import without starting the server:
+
+   python -c "from src.api.app import app; print(app.title)"
+
+Expected:
+
+   Pump Configurator API
+
+4. Start the local API:
+
+   python -m uvicorn src.api.app:app `
+       --host 127.0.0.1 `
+       --port 8000
+
+5. Open:
+
+   http://127.0.0.1:8000/docs
+
+The existing src\api\routes package is left unchanged.

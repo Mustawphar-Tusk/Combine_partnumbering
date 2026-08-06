@@ -1,0 +1,2293 @@
+{
+  "model_count": 206,
+  "format_count": 4,
+  "segment_count": 20,
+  "issue_count": 0,
+  "models": [
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A779",
+      "series_code": "RA2096",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D779",
+      "source_worksheet": "Reference Data",
+      "source_row": 2,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A780",
+      "series_code": "RA2096",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D780",
+      "source_worksheet": "Reference Data",
+      "source_row": 3,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A781",
+      "series_code": "RA2096",
+      "size_code": "1x1.5x8",
+      "base_identifier": "D781",
+      "source_worksheet": "Reference Data",
+      "source_row": 4,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A782",
+      "series_code": "RA3146",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D782",
+      "source_worksheet": "Reference Data",
+      "source_row": 5,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A783",
+      "series_code": "RA3146",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D783",
+      "source_worksheet": "Reference Data",
+      "source_row": 6,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A784",
+      "series_code": "RA3146",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D784",
+      "source_worksheet": "Reference Data",
+      "source_row": 7,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A785",
+      "series_code": "RA3146",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D785",
+      "source_worksheet": "Reference Data",
+      "source_row": 8,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A786",
+      "series_code": "RA3146",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D786",
+      "source_worksheet": "Reference Data",
+      "source_row": 9,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A787",
+      "series_code": "RA3146",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D787",
+      "source_worksheet": "Reference Data",
+      "source_row": 10,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A788",
+      "series_code": "RA3146",
+      "size_code": "2x3x10",
+      "base_identifier": "D788",
+      "source_worksheet": "Reference Data",
+      "source_row": 11,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A789",
+      "series_code": "RA3146",
+      "size_code": "3x4x10",
+      "base_identifier": "D789",
+      "source_worksheet": "Reference Data",
+      "source_row": 12,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A790",
+      "series_code": "RA3146",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D790",
+      "source_worksheet": "Reference Data",
+      "source_row": 13,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A793",
+      "series_code": "RA3186",
+      "size_code": "4x6x10 #1",
+      "base_identifier": "D793",
+      "source_worksheet": "Reference Data",
+      "source_row": 14,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A775",
+      "series_code": "RA3186",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D775",
+      "source_worksheet": "Reference Data",
+      "source_row": 15,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A776",
+      "series_code": "RA3186",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D776",
+      "source_worksheet": "Reference Data",
+      "source_row": 16,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A777",
+      "series_code": "RA3186",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D777",
+      "source_worksheet": "Reference Data",
+      "source_row": 17,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A794",
+      "series_code": "RA3186",
+      "size_code": "6x8x12.5",
+      "base_identifier": "D794",
+      "source_worksheet": "Reference Data",
+      "source_row": 18,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A795",
+      "series_code": "RA3186",
+      "size_code": "2x4x15.5",
+      "base_identifier": "D795",
+      "source_worksheet": "Reference Data",
+      "source_row": 19,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A796",
+      "series_code": "RA3186",
+      "size_code": "3x4x15.5",
+      "base_identifier": "D796",
+      "source_worksheet": "Reference Data",
+      "source_row": 20,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A797",
+      "series_code": "RA3186",
+      "size_code": "4x6x15.5",
+      "base_identifier": "D797",
+      "source_worksheet": "Reference Data",
+      "source_row": 21,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A799",
+      "series_code": "RA3246",
+      "size_code": "6x8x15.5",
+      "base_identifier": "D799",
+      "source_worksheet": "Reference Data",
+      "source_row": 22,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A800",
+      "series_code": "RA3246",
+      "size_code": "8x10x15.5",
+      "base_identifier": "D800",
+      "source_worksheet": "Reference Data",
+      "source_row": 23,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A245",
+      "series_code": "RWA2096",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D245",
+      "source_worksheet": "Reference Data",
+      "source_row": 24,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A246",
+      "series_code": "RWA2096",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D246",
+      "source_worksheet": "Reference Data",
+      "source_row": 25,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A247",
+      "series_code": "RWA2096",
+      "size_code": "1x1.5x8",
+      "base_identifier": "D247",
+      "source_worksheet": "Reference Data",
+      "source_row": 26,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A272",
+      "series_code": "RWA4166",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D272",
+      "source_worksheet": "Reference Data",
+      "source_row": 27,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A273",
+      "series_code": "RWA4166",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D273",
+      "source_worksheet": "Reference Data",
+      "source_row": 28,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A274",
+      "series_code": "RWA4166",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D274",
+      "source_worksheet": "Reference Data",
+      "source_row": 29,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A275",
+      "series_code": "RWA4166",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D275",
+      "source_worksheet": "Reference Data",
+      "source_row": 30,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A276",
+      "series_code": "RWA4166",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D276",
+      "source_worksheet": "Reference Data",
+      "source_row": 31,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A277",
+      "series_code": "RWA4166",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D277",
+      "source_worksheet": "Reference Data",
+      "source_row": 32,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A278",
+      "series_code": "RWA4166",
+      "size_code": "2x3x10",
+      "base_identifier": "D278",
+      "source_worksheet": "Reference Data",
+      "source_row": 33,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A279",
+      "series_code": "RWA4166",
+      "size_code": "3x4x10",
+      "base_identifier": "D279",
+      "source_worksheet": "Reference Data",
+      "source_row": 34,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A271",
+      "series_code": "RWA4166",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D271",
+      "source_worksheet": "Reference Data",
+      "source_row": 35,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A263",
+      "series_code": "RWA4206",
+      "size_code": "4x6x10 #1",
+      "base_identifier": "D263",
+      "source_worksheet": "Reference Data",
+      "source_row": 36,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A231",
+      "series_code": "RAV3096",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D231",
+      "source_worksheet": "Reference Data",
+      "source_row": 37,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A232",
+      "series_code": "RAV3096",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D232",
+      "source_worksheet": "Reference Data",
+      "source_row": 38,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A233",
+      "series_code": "RAV3096",
+      "size_code": "1x1.5x8",
+      "base_identifier": "D233",
+      "source_worksheet": "Reference Data",
+      "source_row": 39,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A238",
+      "series_code": "RAV3146",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D238",
+      "source_worksheet": "Reference Data",
+      "source_row": 40,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A239",
+      "series_code": "RAV3146",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D239",
+      "source_worksheet": "Reference Data",
+      "source_row": 41,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A240",
+      "series_code": "RAV3146",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D240",
+      "source_worksheet": "Reference Data",
+      "source_row": 42,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A235",
+      "series_code": "RWAV4096",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D235",
+      "source_worksheet": "Reference Data",
+      "source_row": 43,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A236",
+      "series_code": "RWAV4096",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D236",
+      "source_worksheet": "Reference Data",
+      "source_row": 44,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A237",
+      "series_code": "RWAV4096",
+      "size_code": "1x1.5x8",
+      "base_identifier": "D237",
+      "source_worksheet": "Reference Data",
+      "source_row": 45,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A241",
+      "series_code": "RWAV4166",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D241",
+      "source_worksheet": "Reference Data",
+      "source_row": 46,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A242",
+      "series_code": "RWAV4166",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D242",
+      "source_worksheet": "Reference Data",
+      "source_row": 47,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A243",
+      "series_code": "RWAV4166",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D243",
+      "source_worksheet": "Reference Data",
+      "source_row": 48,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A370",
+      "series_code": "R4140",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D370",
+      "source_worksheet": "Reference Data",
+      "source_row": 49,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A371",
+      "series_code": "R4140",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D371",
+      "source_worksheet": "Reference Data",
+      "source_row": 50,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A372",
+      "series_code": "R4140",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D372",
+      "source_worksheet": "Reference Data",
+      "source_row": 51,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A373",
+      "series_code": "R4140",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D373",
+      "source_worksheet": "Reference Data",
+      "source_row": 52,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A374",
+      "series_code": "R4140",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D374",
+      "source_worksheet": "Reference Data",
+      "source_row": 53,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A375",
+      "series_code": "R4140",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D375",
+      "source_worksheet": "Reference Data",
+      "source_row": 54,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A376",
+      "series_code": "R4140",
+      "size_code": "2x3x10",
+      "base_identifier": "D376",
+      "source_worksheet": "Reference Data",
+      "source_row": 55,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A377",
+      "series_code": "R4140",
+      "size_code": "3x4x10",
+      "base_identifier": "D377",
+      "source_worksheet": "Reference Data",
+      "source_row": 56,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A378",
+      "series_code": "R4140",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D378",
+      "source_worksheet": "Reference Data",
+      "source_row": 57,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A379",
+      "series_code": "R4140",
+      "size_code": "1x2x11.5",
+      "base_identifier": "D379",
+      "source_worksheet": "Reference Data",
+      "source_row": 58,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A380",
+      "series_code": "R4140",
+      "size_code": "1.5x3x11.5",
+      "base_identifier": "D380",
+      "source_worksheet": "Reference Data",
+      "source_row": 59,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A381",
+      "series_code": "R4140",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D381",
+      "source_worksheet": "Reference Data",
+      "source_row": 60,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A382",
+      "series_code": "R4140",
+      "size_code": "3x4x11.5",
+      "base_identifier": "D382",
+      "source_worksheet": "Reference Data",
+      "source_row": 61,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A383",
+      "series_code": "R4140",
+      "size_code": "4x6x11.5",
+      "base_identifier": "D383",
+      "source_worksheet": "Reference Data",
+      "source_row": 62,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A384",
+      "series_code": "R4140",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D384",
+      "source_worksheet": "Reference Data",
+      "source_row": 63,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A385",
+      "series_code": "R4140",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D385",
+      "source_worksheet": "Reference Data",
+      "source_row": 64,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A386",
+      "series_code": "R4140",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D386",
+      "source_worksheet": "Reference Data",
+      "source_row": 65,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A476",
+      "series_code": "R4170",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D476",
+      "source_worksheet": "Reference Data",
+      "source_row": 66,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A477",
+      "series_code": "R4170",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D477",
+      "source_worksheet": "Reference Data",
+      "source_row": 67,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A478",
+      "series_code": "R4170",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D478",
+      "source_worksheet": "Reference Data",
+      "source_row": 68,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A390",
+      "series_code": "R4180",
+      "size_code": "4x6x10 #1",
+      "base_identifier": "D390",
+      "source_worksheet": "Reference Data",
+      "source_row": 69,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A392",
+      "series_code": "R4180",
+      "size_code": "6x8x12.5",
+      "base_identifier": "D392",
+      "source_worksheet": "Reference Data",
+      "source_row": 70,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A393",
+      "series_code": "R4180",
+      "size_code": "2x4x15.5",
+      "base_identifier": "D393",
+      "source_worksheet": "Reference Data",
+      "source_row": 71,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A394",
+      "series_code": "R4180",
+      "size_code": "3x4x15.5",
+      "base_identifier": "D394",
+      "source_worksheet": "Reference Data",
+      "source_row": 72,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A395",
+      "series_code": "R4180",
+      "size_code": "4x6x15.5",
+      "base_identifier": "D395",
+      "source_worksheet": "Reference Data",
+      "source_row": 73,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A399",
+      "series_code": "R4240",
+      "size_code": "6x8x15.5",
+      "base_identifier": "D399",
+      "source_worksheet": "Reference Data",
+      "source_row": 74,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A400",
+      "series_code": "R4240",
+      "size_code": "8x10x15.5",
+      "base_identifier": "D400",
+      "source_worksheet": "Reference Data",
+      "source_row": 75,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A520",
+      "series_code": "RTA3146",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D520",
+      "source_worksheet": "Reference Data",
+      "source_row": 76,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A521",
+      "series_code": "RTA3146",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D521",
+      "source_worksheet": "Reference Data",
+      "source_row": 77,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A522",
+      "series_code": "RTA3146",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D522",
+      "source_worksheet": "Reference Data",
+      "source_row": 78,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A523",
+      "series_code": "RTA3146",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D523",
+      "source_worksheet": "Reference Data",
+      "source_row": 79,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A524",
+      "series_code": "RTA3146",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D524",
+      "source_worksheet": "Reference Data",
+      "source_row": 80,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A525",
+      "series_code": "RTA3146",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D525",
+      "source_worksheet": "Reference Data",
+      "source_row": 81,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A526",
+      "series_code": "RTA3146",
+      "size_code": "2x3x10",
+      "base_identifier": "D526",
+      "source_worksheet": "Reference Data",
+      "source_row": 82,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A527",
+      "series_code": "RTA3146",
+      "size_code": "3x4x10",
+      "base_identifier": "D527",
+      "source_worksheet": "Reference Data",
+      "source_row": 83,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A528",
+      "series_code": "RTA3146",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D528",
+      "source_worksheet": "Reference Data",
+      "source_row": 84,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A650",
+      "series_code": "R5140",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D650",
+      "source_worksheet": "Reference Data",
+      "source_row": 85,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A651",
+      "series_code": "R5140",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D651",
+      "source_worksheet": "Reference Data",
+      "source_row": 86,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A652",
+      "series_code": "R5140",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D652",
+      "source_worksheet": "Reference Data",
+      "source_row": 87,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A653",
+      "series_code": "R5140",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D653",
+      "source_worksheet": "Reference Data",
+      "source_row": 88,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A654",
+      "series_code": "R5140",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D654",
+      "source_worksheet": "Reference Data",
+      "source_row": 89,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A655",
+      "series_code": "R5140",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D655",
+      "source_worksheet": "Reference Data",
+      "source_row": 90,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A656",
+      "series_code": "R5140",
+      "size_code": "2x3x10",
+      "base_identifier": "D656",
+      "source_worksheet": "Reference Data",
+      "source_row": 91,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A657",
+      "series_code": "R5140",
+      "size_code": "3x4x10",
+      "base_identifier": "D657",
+      "source_worksheet": "Reference Data",
+      "source_row": 92,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A658",
+      "series_code": "R5140",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D658",
+      "source_worksheet": "Reference Data",
+      "source_row": 93,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A659",
+      "series_code": "R5140",
+      "size_code": "1x2x11.5",
+      "base_identifier": "D659",
+      "source_worksheet": "Reference Data",
+      "source_row": 94,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A660",
+      "series_code": "R5140",
+      "size_code": "1.5x3x11.5",
+      "base_identifier": "D660",
+      "source_worksheet": "Reference Data",
+      "source_row": 95,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A661",
+      "series_code": "R5140",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D661",
+      "source_worksheet": "Reference Data",
+      "source_row": 96,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A662",
+      "series_code": "R5140",
+      "size_code": "3x4x11.5",
+      "base_identifier": "D662",
+      "source_worksheet": "Reference Data",
+      "source_row": 97,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A663",
+      "series_code": "R5140",
+      "size_code": "4x6x11.5",
+      "base_identifier": "D663",
+      "source_worksheet": "Reference Data",
+      "source_row": 98,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A664",
+      "series_code": "R5140",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D664",
+      "source_worksheet": "Reference Data",
+      "source_row": 99,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A665",
+      "series_code": "R5140",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D665",
+      "source_worksheet": "Reference Data",
+      "source_row": 100,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A666",
+      "series_code": "R5140",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D666",
+      "source_worksheet": "Reference Data",
+      "source_row": 101,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A674",
+      "series_code": "R5170",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D674",
+      "source_worksheet": "Reference Data",
+      "source_row": 102,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A675",
+      "series_code": "R5170",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D675",
+      "source_worksheet": "Reference Data",
+      "source_row": 103,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A676",
+      "series_code": "R5170",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D676",
+      "source_worksheet": "Reference Data",
+      "source_row": 104,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A680",
+      "series_code": "R5180",
+      "size_code": "4x6x10 #1",
+      "base_identifier": "D680",
+      "source_worksheet": "Reference Data",
+      "source_row": 105,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A682",
+      "series_code": "R5180",
+      "size_code": "6x8x12.5",
+      "base_identifier": "D682",
+      "source_worksheet": "Reference Data",
+      "source_row": 106,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A683",
+      "series_code": "R5180",
+      "size_code": "2x4x15.5",
+      "base_identifier": "D683",
+      "source_worksheet": "Reference Data",
+      "source_row": 107,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A684",
+      "series_code": "R5180",
+      "size_code": "3x4x15.5",
+      "base_identifier": "D684",
+      "source_worksheet": "Reference Data",
+      "source_row": 108,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A685",
+      "series_code": "R5180",
+      "size_code": "4x6x15.5",
+      "base_identifier": "D685",
+      "source_worksheet": "Reference Data",
+      "source_row": 109,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A690",
+      "series_code": "R5240",
+      "size_code": "6x8x15.5",
+      "base_identifier": "D690",
+      "source_worksheet": "Reference Data",
+      "source_row": 110,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A691",
+      "series_code": "R5240",
+      "size_code": "8x10x15.5",
+      "base_identifier": "D691",
+      "source_worksheet": "Reference Data",
+      "source_row": 111,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A610",
+      "series_code": "PH2110",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D610",
+      "source_worksheet": "Reference Data",
+      "source_row": 112,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A611",
+      "series_code": "PH2110",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D611",
+      "source_worksheet": "Reference Data",
+      "source_row": 113,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A612",
+      "series_code": "PH2110",
+      "size_code": "2x3x6",
+      "base_identifier": "D612",
+      "source_worksheet": "Reference Data",
+      "source_row": 114,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A613",
+      "series_code": "PH2110",
+      "size_code": "1x1.5x8",
+      "base_identifier": "D613",
+      "source_worksheet": "Reference Data",
+      "source_row": 115,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A614",
+      "series_code": "PH2110",
+      "size_code": "1.5x3x8",
+      "base_identifier": "D614",
+      "source_worksheet": "Reference Data",
+      "source_row": 116,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A338",
+      "series_code": "PH2140",
+      "size_code": "1x2x8.5",
+      "base_identifier": "D338",
+      "source_worksheet": "Reference Data",
+      "source_row": 117,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A339",
+      "series_code": "PH2140",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D339",
+      "source_worksheet": "Reference Data",
+      "source_row": 118,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A340",
+      "series_code": "PH2140",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D340",
+      "source_worksheet": "Reference Data",
+      "source_row": 119,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A341",
+      "series_code": "PH2140",
+      "size_code": "3x4x8.5 #1",
+      "base_identifier": "D341",
+      "source_worksheet": "Reference Data",
+      "source_row": 120,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A342",
+      "series_code": "PH2140",
+      "size_code": "3x4x8.5 #2",
+      "base_identifier": "D342",
+      "source_worksheet": "Reference Data",
+      "source_row": 121,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A359",
+      "series_code": "PH2140",
+      "size_code": "1x2x10",
+      "base_identifier": "D359",
+      "source_worksheet": "Reference Data",
+      "source_row": 122,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A351",
+      "series_code": "PH2140",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D351",
+      "source_worksheet": "Reference Data",
+      "source_row": 123,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A352",
+      "series_code": "PH2140",
+      "size_code": "2x3x10",
+      "base_identifier": "D352",
+      "source_worksheet": "Reference Data",
+      "source_row": 124,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A353",
+      "series_code": "PH2140",
+      "size_code": "3x4x10 #1",
+      "base_identifier": "D353",
+      "source_worksheet": "Reference Data",
+      "source_row": 125,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A345",
+      "series_code": "PH2140",
+      "size_code": "3x4x10 #2",
+      "base_identifier": "D345",
+      "source_worksheet": "Reference Data",
+      "source_row": 126,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A346",
+      "series_code": "PH2140",
+      "size_code": "1.5x3x11.5",
+      "base_identifier": "D346",
+      "source_worksheet": "Reference Data",
+      "source_row": 127,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A347",
+      "series_code": "PH2140",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D347",
+      "source_worksheet": "Reference Data",
+      "source_row": 128,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A348",
+      "series_code": "PH2140",
+      "size_code": "3x4x11.5",
+      "base_identifier": "D348",
+      "source_worksheet": "Reference Data",
+      "source_row": 129,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A358",
+      "series_code": "PH2140",
+      "size_code": "4x6x11.5",
+      "base_identifier": "D358",
+      "source_worksheet": "Reference Data",
+      "source_row": 130,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A354",
+      "series_code": "PH2140",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D354",
+      "source_worksheet": "Reference Data",
+      "source_row": 131,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A355",
+      "series_code": "PH2140",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D355",
+      "source_worksheet": "Reference Data",
+      "source_row": 132,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A356",
+      "series_code": "PH2140",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D356",
+      "source_worksheet": "Reference Data",
+      "source_row": 133,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A415",
+      "series_code": "PH2170",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D415",
+      "source_worksheet": "Reference Data",
+      "source_row": 134,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A416",
+      "series_code": "PH2170",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D416",
+      "source_worksheet": "Reference Data",
+      "source_row": 135,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A417",
+      "series_code": "PH3170",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D417",
+      "source_worksheet": "Reference Data",
+      "source_row": 136,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A418",
+      "series_code": "PH2170",
+      "size_code": "4x6x13.5",
+      "base_identifier": "D418",
+      "source_worksheet": "Reference Data",
+      "source_row": 137,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A422",
+      "series_code": "PH2180",
+      "size_code": "4x6x13.5",
+      "base_identifier": "D422",
+      "source_worksheet": "Reference Data",
+      "source_row": 138,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A423",
+      "series_code": "PH2180",
+      "size_code": "6x8x13.5",
+      "base_identifier": "D423",
+      "source_worksheet": "Reference Data",
+      "source_row": 139,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A614P",
+      "series_code": "PHP2110",
+      "size_code": "1.5x1.5x8",
+      "base_identifier": "D614P",
+      "source_worksheet": "Reference Data",
+      "source_row": 140,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A351P",
+      "series_code": "PHP2140",
+      "size_code": "2x2x10",
+      "base_identifier": "D351P",
+      "source_worksheet": "Reference Data",
+      "source_row": 141,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A352P",
+      "series_code": "PHP2140",
+      "size_code": "3x3x10",
+      "base_identifier": "D352P",
+      "source_worksheet": "Reference Data",
+      "source_row": 142,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A353P",
+      "series_code": "PHP2140",
+      "size_code": "4x4x10",
+      "base_identifier": "D353P",
+      "source_worksheet": "Reference Data",
+      "source_row": 143,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A356P",
+      "series_code": "PHP2140",
+      "size_code": "4x4x13.5",
+      "base_identifier": "D356P",
+      "source_worksheet": "Reference Data",
+      "source_row": 144,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A362",
+      "series_code": "DL200",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D362",
+      "source_worksheet": "Reference Data",
+      "source_row": 145,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A363",
+      "series_code": "DL200",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D363",
+      "source_worksheet": "Reference Data",
+      "source_row": 146,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A402",
+      "series_code": "DL230",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D402",
+      "source_worksheet": "Reference Data",
+      "source_row": 147,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A403",
+      "series_code": "DL230",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D403",
+      "source_worksheet": "Reference Data",
+      "source_row": 148,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A404",
+      "series_code": "DL230",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D404",
+      "source_worksheet": "Reference Data",
+      "source_row": 149,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A405",
+      "series_code": "DL230",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D405",
+      "source_worksheet": "Reference Data",
+      "source_row": 150,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A406",
+      "series_code": "DL230",
+      "size_code": "3x4x11.5",
+      "base_identifier": "D406",
+      "source_worksheet": "Reference Data",
+      "source_row": 151,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A460",
+      "series_code": "CNV206",
+      "size_code": "1x1.5x6",
+      "base_identifier": "D460",
+      "source_worksheet": "Reference Data",
+      "source_row": 152,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A461",
+      "series_code": "CNV206",
+      "size_code": "1.5x3x6",
+      "base_identifier": "D461",
+      "source_worksheet": "Reference Data",
+      "source_row": 153,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A465",
+      "series_code": "CNV236",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D465",
+      "source_worksheet": "Reference Data",
+      "source_row": 154,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A466",
+      "series_code": "CNV236",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D466",
+      "source_worksheet": "Reference Data",
+      "source_row": 155,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A467",
+      "series_code": "CNV236",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D467",
+      "source_worksheet": "Reference Data",
+      "source_row": 156,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A468",
+      "series_code": "CNV236",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D468",
+      "source_worksheet": "Reference Data",
+      "source_row": 157,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A990",
+      "series_code": "RS",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D990",
+      "source_worksheet": "Reference Data",
+      "source_row": 158,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A990WA",
+      "series_code": "RSWA",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D990WA",
+      "source_worksheet": "Reference Data",
+      "source_row": 159,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A702",
+      "series_code": "RM5140",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D702",
+      "source_worksheet": "Reference Data",
+      "source_row": 160,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A703",
+      "series_code": "RM5140",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D703",
+      "source_worksheet": "Reference Data",
+      "source_row": 161,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A704",
+      "series_code": "RM5140",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D704",
+      "source_worksheet": "Reference Data",
+      "source_row": 162,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A705",
+      "series_code": "RM5140",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D705",
+      "source_worksheet": "Reference Data",
+      "source_row": 163,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A706",
+      "series_code": "RM5140",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D706",
+      "source_worksheet": "Reference Data",
+      "source_row": 164,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A707",
+      "series_code": "RM5140",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D707",
+      "source_worksheet": "Reference Data",
+      "source_row": 165,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A708",
+      "series_code": "RM5140",
+      "size_code": "2x3x10",
+      "base_identifier": "D708",
+      "source_worksheet": "Reference Data",
+      "source_row": 166,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A709",
+      "series_code": "RM5140",
+      "size_code": "3x4x10",
+      "base_identifier": "D709",
+      "source_worksheet": "Reference Data",
+      "source_row": 167,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A710",
+      "series_code": "RM5140",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D710",
+      "source_worksheet": "Reference Data",
+      "source_row": 168,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A713",
+      "series_code": "RM5140",
+      "size_code": "1x2x11.5",
+      "base_identifier": "D713",
+      "source_worksheet": "Reference Data",
+      "source_row": 169,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A712",
+      "series_code": "RM5140",
+      "size_code": "1.5x3x11.5",
+      "base_identifier": "D712",
+      "source_worksheet": "Reference Data",
+      "source_row": 170,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A715",
+      "series_code": "RM5140",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D715",
+      "source_worksheet": "Reference Data",
+      "source_row": 171,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A714",
+      "series_code": "RM5140",
+      "size_code": "3x4x11.5",
+      "base_identifier": "D714",
+      "source_worksheet": "Reference Data",
+      "source_row": 172,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A716",
+      "series_code": "RM5140",
+      "size_code": "4x6x11.5",
+      "base_identifier": "D716",
+      "source_worksheet": "Reference Data",
+      "source_row": 173,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A717",
+      "series_code": "RM5140",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D717",
+      "source_worksheet": "Reference Data",
+      "source_row": 174,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A718",
+      "series_code": "RM5140",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D718",
+      "source_worksheet": "Reference Data",
+      "source_row": 175,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A719",
+      "series_code": "RM5140",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D719",
+      "source_worksheet": "Reference Data",
+      "source_row": 176,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A725",
+      "series_code": "RMA5140",
+      "size_code": "1x3x8.5",
+      "base_identifier": "D725",
+      "source_worksheet": "Reference Data",
+      "source_row": 177,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A726",
+      "series_code": "RMA5140",
+      "size_code": "1.5x3x8.5",
+      "base_identifier": "D726",
+      "source_worksheet": "Reference Data",
+      "source_row": 178,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A727",
+      "series_code": "RMA5140",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D727",
+      "source_worksheet": "Reference Data",
+      "source_row": 179,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A728",
+      "series_code": "RMA5140",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D728",
+      "source_worksheet": "Reference Data",
+      "source_row": 180,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A729",
+      "series_code": "RMA5140",
+      "size_code": "4x6x8.5",
+      "base_identifier": "D729",
+      "source_worksheet": "Reference Data",
+      "source_row": 181,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A730",
+      "series_code": "RMA5140",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D730",
+      "source_worksheet": "Reference Data",
+      "source_row": 182,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A731",
+      "series_code": "RMA5140",
+      "size_code": "2x3x10",
+      "base_identifier": "D731",
+      "source_worksheet": "Reference Data",
+      "source_row": 183,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A732",
+      "series_code": "RMA5140",
+      "size_code": "3x4x10",
+      "base_identifier": "D732",
+      "source_worksheet": "Reference Data",
+      "source_row": 184,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A733",
+      "series_code": "RMA5140",
+      "size_code": "4x6x10 #2",
+      "base_identifier": "D733",
+      "source_worksheet": "Reference Data",
+      "source_row": 185,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A734",
+      "series_code": "RMA5140",
+      "size_code": "1x2x11.5",
+      "base_identifier": "D734",
+      "source_worksheet": "Reference Data",
+      "source_row": 186,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A735",
+      "series_code": "RMA5140",
+      "size_code": "1.5x3x11.5",
+      "base_identifier": "D735",
+      "source_worksheet": "Reference Data",
+      "source_row": 187,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A736",
+      "series_code": "RMA5140",
+      "size_code": "2x3x11.5",
+      "base_identifier": "D736",
+      "source_worksheet": "Reference Data",
+      "source_row": 188,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A737",
+      "series_code": "RMA5140",
+      "size_code": "3x4x11.5",
+      "base_identifier": "D737",
+      "source_worksheet": "Reference Data",
+      "source_row": 189,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A738",
+      "series_code": "RMA5140",
+      "size_code": "4x6x11.5",
+      "base_identifier": "D738",
+      "source_worksheet": "Reference Data",
+      "source_row": 190,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A741",
+      "series_code": "RMA5140",
+      "size_code": "1.5x3x13.5",
+      "base_identifier": "D741",
+      "source_worksheet": "Reference Data",
+      "source_row": 191,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A742",
+      "series_code": "RMA5140",
+      "size_code": "2x3x13.5",
+      "base_identifier": "D742",
+      "source_worksheet": "Reference Data",
+      "source_row": 192,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A743",
+      "series_code": "RMA5140",
+      "size_code": "3x4x13.5",
+      "base_identifier": "D743",
+      "source_worksheet": "Reference Data",
+      "source_row": 193,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A757",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "2x3x8.5",
+      "base_identifier": "D757",
+      "source_worksheet": "Reference Data",
+      "source_row": 194,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A758",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "3x4x8.5",
+      "base_identifier": "D758",
+      "source_worksheet": "Reference Data",
+      "source_row": 195,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A759",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "1x2x10",
+      "base_identifier": "D759",
+      "source_worksheet": "Reference Data",
+      "source_row": 196,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A760",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "1.5x3x10",
+      "base_identifier": "D760",
+      "source_worksheet": "Reference Data",
+      "source_row": 197,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A761",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "2x3x10",
+      "base_identifier": "D761",
+      "source_worksheet": "Reference Data",
+      "source_row": 198,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A762",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "3x4x10",
+      "base_identifier": "D762",
+      "source_worksheet": "Reference Data",
+      "source_row": 199,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "model_identifier": "A763",
+      "series_code": "M300 (FRAME III)",
+      "size_code": "4x6x10",
+      "base_identifier": "D763",
+      "source_worksheet": "Reference Data",
+      "source_row": 200,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "1500",
+      "series_code": "1500",
+      "size_code": "1x1.5x6",
+      "base_identifier": "F1500",
+      "source_worksheet": "FULL LIST",
+      "source_row": 3,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "1530",
+      "series_code": "1530",
+      "size_code": "1x1.5x6",
+      "base_identifier": "F1530",
+      "source_worksheet": "FULL LIST",
+      "source_row": 102,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "1600",
+      "series_code": "1600",
+      "size_code": "2x3x6",
+      "base_identifier": "F1600",
+      "source_worksheet": "FULL LIST",
+      "source_row": 177,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "1630",
+      "series_code": "1630",
+      "size_code": "2x3x6",
+      "base_identifier": "F1630",
+      "source_worksheet": "FULL LIST",
+      "source_row": 252,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "2530",
+      "series_code": "2530",
+      "size_code": "1x1.5x6",
+      "base_identifier": "F2530",
+      "source_worksheet": "FULL LIST",
+      "source_row": 327,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "3000",
+      "series_code": "3000",
+      "size_code": "Alt_Size",
+      "base_identifier": "F3000",
+      "source_worksheet": "FULL LIST",
+      "source_row": 401,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "model_identifier": "5500",
+      "series_code": "5500",
+      "size_code": "1x1.5x6",
+      "base_identifier": "F5500",
+      "source_worksheet": "FULL LIST",
+      "source_row": 465,
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    }
+  ],
+  "formats": [
+    {
+      "family_code": "DEAN",
+      "identifier_type": "PART_NUMBER",
+      "format_code": "DEAN_PART_NUMBER_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-{segment_string}",
+      "segment_separator": "-",
+      "base_identifier_source": "MODEL_REFERENCE",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "identifier_type": "SKU",
+      "format_code": "DEAN_SKU_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-V{version}-{compact_segment_string}",
+      "segment_separator": "",
+      "base_identifier_source": "MODEL_REFERENCE",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "identifier_type": "PART_NUMBER",
+      "format_code": "FYBROC_PART_NUMBER_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-{segment_string}",
+      "segment_separator": "-",
+      "base_identifier_source": "MODEL_REFERENCE",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "identifier_type": "SKU",
+      "format_code": "FYBROC_SKU_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-V{version}-{compact_segment_string}",
+      "segment_separator": "",
+      "base_identifier_source": "MODEL_REFERENCE",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    }
+  ],
+  "segments": [
+    {
+      "family_code": "DEAN",
+      "segment_code": "WET_END_OPTIONS",
+      "segment_name": "Wet End Options",
+      "assembly_order": 10,
+      "expected_width": 4,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "IMPELLER_TRIM",
+      "segment_name": "Impeller Trim",
+      "assembly_order": 20,
+      "expected_width": 2,
+      "source_field_codes_json": "[\"IMPELLER_TRIM_016\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "IMPELLER_OPTIONS",
+      "segment_name": "Impeller Options",
+      "assembly_order": 30,
+      "expected_width": 2,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "POWER_FRAME_OPTIONS",
+      "segment_name": "Power Frame Options",
+      "assembly_order": 40,
+      "expected_width": 3,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "SEAL_OPTIONS",
+      "segment_name": "Seal Options",
+      "assembly_order": 50,
+      "expected_width": 5,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "FLUSH_PLAN",
+      "segment_name": "Flush Plan",
+      "assembly_order": 60,
+      "expected_width": 2,
+      "source_field_codes_json": "[\"FLUSH_PLAN_049\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "BARRIER_PLAN",
+      "segment_name": "Barrier Plan",
+      "assembly_order": 70,
+      "expected_width": 2,
+      "source_field_codes_json": "[\"BARRIER_PLAN_050\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "COOLING_PLAN",
+      "segment_name": "Cooling Plan",
+      "assembly_order": 80,
+      "expected_width": 2,
+      "source_field_codes_json": "[\"COOLING_PLAN_052\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "MOTOR",
+      "segment_name": "Motor",
+      "assembly_order": 90,
+      "expected_width": 4,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "BASEPLATE_OPTIONS",
+      "segment_name": "Baseplate Options",
+      "assembly_order": 100,
+      "expected_width": 3,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "TESTING_DOCUMENTATION",
+      "segment_name": "Testing and Documentation",
+      "assembly_order": 110,
+      "expected_width": 4,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "DEAN",
+      "segment_code": "ADDITIONAL_OPTIONS",
+      "segment_name": "Additional Options",
+      "assembly_order": 120,
+      "expected_width": 2,
+      "source_field_codes_json": "[]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\dean.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "PUMP_MATERIAL",
+      "segment_name": "Pump Material",
+      "assembly_order": 10,
+      "expected_width": null,
+      "source_field_codes_json": "[\"PUMP_MATERIAL\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "IMPELLER_TRIM",
+      "segment_name": "Impeller Trim",
+      "assembly_order": 20,
+      "expected_width": null,
+      "source_field_codes_json": "[\"IMPELLER_TRIM\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "PUMP_OPTIONS",
+      "segment_name": "Pump Options",
+      "assembly_order": 30,
+      "expected_width": null,
+      "source_field_codes_json": "[\"PUMP_OPTIONS\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "SEAL_ASSEMBLY",
+      "segment_name": "Complete Seal Assembly",
+      "assembly_order": 40,
+      "expected_width": null,
+      "source_field_codes_json": "[\"COMPLETE_SEAL_ASSEMBLY\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "OPTIONS",
+      "segment_name": "Options",
+      "assembly_order": 50,
+      "expected_width": null,
+      "source_field_codes_json": "[\"OPTIONS\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "MOTOR_ASSEMBLY",
+      "segment_name": "Motor Assembly",
+      "assembly_order": 60,
+      "expected_width": null,
+      "source_field_codes_json": "[\"MOTOR_ASSEMBLY\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "MOTOR_MODIFICATIONS",
+      "segment_name": "Motor Modifications",
+      "assembly_order": 70,
+      "expected_width": null,
+      "source_field_codes_json": "[\"MOTOR_MODIFICATIONS\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    },
+    {
+      "family_code": "FYBROC",
+      "segment_code": "TEST",
+      "segment_name": "Test",
+      "assembly_order": 80,
+      "expected_width": null,
+      "source_field_codes_json": "[\"TEST\"]",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\identifier_profiles\\fybroc.json"
+    }
+  ],
+  "issues": []
+}

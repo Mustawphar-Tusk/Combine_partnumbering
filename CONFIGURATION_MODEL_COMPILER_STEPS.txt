@@ -1,0 +1,30 @@
+Configuration Model Compiler
+============================
+
+1. Extract this ZIP into the project root and merge folders.
+
+2. Apply the new SQL staging script:
+   cd .\sql
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\07_Create_Compiler_Staging.sql
+   cd ..
+
+3. Run tests:
+   python -m pytest -q
+
+4. Refresh workbook discovery:
+   python -m scripts.discover_workbooks
+
+5. Compile configuration candidates:
+   python -m scripts.compile_configuration_model
+
+6. Review:
+   exports\configuration_model_candidates.json
+   exports\configuration_sections_candidates.csv
+   exports\configuration_fields_candidates.csv
+   exports\configuration_model_issues.csv
+
+The compiler behavior is driven by JSON profiles under:
+   config\compiler_profiles
+
+The Python engine contains no Dean or Fybroc branches.

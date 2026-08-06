@@ -1,0 +1,143 @@
+{
+  "family_code": "FYBROC",
+  "workbook_role": "configuration_and_hex_mapping",
+  "worksheet_name": "Smart Number",
+  "strategy": {
+    "type": "column_workflow",
+    "sections": [
+      {
+        "section_code": "PRIMARY_CONFIGURATION",
+        "section_name": "Primary Configuration",
+        "fields": [
+          {
+            "field_code": "SERIES",
+            "field_name": "Series",
+            "columns": [
+              "E"
+            ],
+            "display_order": 10
+          },
+          {
+            "field_code": "SIZE",
+            "field_name": "Size",
+            "columns": [
+              "F"
+            ],
+            "display_order": 20
+          },
+          {
+            "field_code": "PUMP_MATERIAL",
+            "field_name": "Pump Material",
+            "columns": [
+              "G"
+            ],
+            "display_order": 30
+          },
+          {
+            "field_code": "IMPELLER_TRIM",
+            "field_name": "Impeller Trim",
+            "columns": [
+              "H",
+              "I"
+            ],
+            "display_order": 40
+          }
+        ]
+      },
+      {
+        "section_code": "PUMP_OPTIONS",
+        "section_name": "Pump Options",
+        "fields": [
+          {
+            "field_code": "PUMP_OPTIONS",
+            "field_name": "Pump Options",
+            "columns": [
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "display_order": 50
+          }
+        ]
+      },
+      {
+        "section_code": "SEAL_ASSEMBLY",
+        "section_name": "Complete Seal Assembly",
+        "fields": [
+          {
+            "field_code": "COMPLETE_SEAL_ASSEMBLY",
+            "field_name": "Complete Seal Assembly",
+            "columns": [
+              "N",
+              "O"
+            ],
+            "display_order": 60
+          }
+        ]
+      },
+      {
+        "section_code": "OPTIONS",
+        "section_name": "Options",
+        "fields": [
+          {
+            "field_code": "OPTIONS",
+            "field_name": "Options",
+            "columns": [
+              "P",
+              "Q"
+            ],
+            "display_order": 70
+          }
+        ]
+      },
+      {
+        "section_code": "MOTOR_ASSEMBLY",
+        "section_name": "Motor Assembly",
+        "fields": [
+          {
+            "field_code": "MOTOR_ASSEMBLY",
+            "field_name": "Motor Assembly",
+            "columns": [
+              "R",
+              "S",
+              "T"
+            ],
+            "display_order": 80
+          }
+        ]
+      },
+      {
+        "section_code": "MOTOR_MODIFICATIONS",
+        "section_name": "Motor Modifications",
+        "fields": [
+          {
+            "field_code": "MOTOR_MODIFICATIONS",
+            "field_name": "Motor Modifications",
+            "columns": [
+              "U",
+              "V",
+              "W"
+            ],
+            "display_order": 90
+          }
+        ]
+      },
+      {
+        "section_code": "TEST",
+        "section_name": "Test",
+        "fields": [
+          {
+            "field_code": "TEST",
+            "field_name": "Test",
+            "columns": [
+              "X",
+              "Y"
+            ],
+            "display_order": 100
+          }
+        ]
+      }
+    ]
+  }
+}

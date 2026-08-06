@@ -1,0 +1,64 @@
+{
+  "family_code": "FYBROC",
+  "segment_order": [
+    "SERIES",
+    "SIZE",
+    "PUMP_MATERIAL",
+    "IMPELLER_TRIM",
+    "PUMP_OPTIONS",
+    "SEAL_ASSEMBLY",
+    "OPTIONS",
+    "MOTOR_ASSEMBLY",
+    "MOTOR_MODIFICATIONS",
+    "TESTING"
+  ],
+  "required_combination_segments": [
+    "PUMP_OPTIONS",
+    "SEAL_ASSEMBLY",
+    "OPTIONS",
+    "MOTOR_ASSEMBLY"
+  ],
+  "combination_segment_field_order": {
+    "PUMP_OPTIONS": [
+      "CASING_DRAINS",
+      "SUCTION_DISCHARGE",
+      "SHAFT_MATERIAL",
+      "IMPELLER_SLEEVE",
+      "CASING_HARDWARE",
+      "PUMP_ELASTOMERS",
+      "BEARING_OPTION",
+      "POWER_FRAME_HARDWARE",
+      "GLAND_HARDWARE",
+      "FLUSH",
+      "CYCLONE_SEPARATOR",
+      "DYNAMIC_IMPELLER"
+    ],
+    "SEAL_ASSEMBLY": [
+      "SEAL_OPTION",
+      "SEAL_TYPE",
+      "SEAL_MATERIALS",
+      "SEAL_ELASTOMERS",
+      "SEAL_GUARD"
+    ],
+    "OPTIONS": [
+      "COUPLING_OPTION",
+      "COUPLING_GUARD",
+      "BASEPLATE_OPTION",
+      "BASEPLATE_HARDWARE",
+      "NAMEPLATE"
+    ],
+    "MOTOR_ASSEMBLY": [
+      "MOTOR_OPTION",
+      "MOTOR_CLASS",
+      "MOTOR_ORIENTATION",
+      "MOTOR_HORSEPOWER",
+      "MOTOR_RPM",
+      "MOTOR_VOLTAGE",
+      "MOTOR_HERTZ",
+      "MOTOR_FRAME",
+      "MOTOR_ENCLOSURE",
+      "MOTOR_EFFICIENCY",
+      "MOTOR_MANUFACTURER"
+    ]
+  }
+}

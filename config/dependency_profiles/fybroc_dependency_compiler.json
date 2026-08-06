@@ -1,0 +1,106 @@
+{
+  "family_code": "FYBROC",
+  "attributes_constraints_workbook": "workbooks/Fybroc/Fybroc Attributes and Constraints.xlsx",
+  "nomenclature_workbook": "workbooks/Fybroc/Fybroc Nomenclature_V5.xlsm",
+  "price_workbook": "workbooks/Fybroc/Price Estimator-Fybroc.xlsm",
+  "series_sheets": [
+    "1500",
+    "1530",
+    "1600",
+    "1630",
+    "2530",
+    "3000",
+    "5500"
+  ],
+  "trim": {
+    "size_column": "C",
+    "series_trim_column": "Q",
+    "data_row_from": 3,
+    "size_pattern": "^\\d+(?:\\.\\d+)?x\\d+(?:\\.\\d+)?x\\d+(?:\\.\\d+)?$",
+    "minimum_matrix_size_headers": 3
+  },
+  "motor_modifications": {
+    "attributes_sheet": "Attributes",
+    "attribute_row_from": 8,
+    "attribute_row_to": 38,
+    "description_column": "R",
+    "identifier_code_column": "S",
+    "motor_sheet": " Motor Assy",
+    "motor_row_from": 27,
+    "motor_row_to": 728,
+    "motor_columns": {
+      "MOTOR_OPTION": "D",
+      "MOTOR_CLASS": "E",
+      "MOTOR_ORIENTATION": "F",
+      "MOTOR_HORSEPOWER": "G",
+      "MOTOR_RPM": "H",
+      "MOTOR_VOLTAGE": "I",
+      "MOTOR_HERTZ": "J",
+      "MOTOR_FRAME": "K",
+      "MOTOR_ENCLOSURE": "L",
+      "MOTOR_EFFICIENCY": "M",
+      "MOTOR_MANUFACTURER": "N"
+    },
+    "new_rules_sheet": "NewRules 5-2-23",
+    "new_rules_row_from": 19,
+    "new_rules_row_to": 47,
+    "new_rules_description_column": "AT",
+    "vendor_columns": {
+      "TECO": "AZ",
+      "ABB": "BA",
+      "BALDOR": "BB",
+      "TOSHIBA": "BC",
+      "WEG": "BD"
+    },
+    "manufacturer_to_vendor": {
+      "TECO": "TECO",
+      "Baldor": "BALDOR",
+      "Toshiba": "TOSHIBA"
+    },
+    "fybroc_choice_vendors": [
+      "TECO",
+      "BALDOR",
+      "TOSHIBA"
+    ],
+    "mod_master_sheet": "Mod Master List",
+    "mod_master_row_from": 4,
+    "mod_master_catalog_column": "A",
+    "mod_master_frame_column": "C",
+    "frame_stem_to_class": {
+      "143": "56-180T",
+      "145": "56-180T",
+      "182": "56-180T",
+      "184": "56-180T",
+      "213": "210T",
+      "215": "210T",
+      "254": "250T",
+      "256": "250T",
+      "284": "280T",
+      "286": "280T",
+      "324": "320T",
+      "326": "320T",
+      "364": "360T",
+      "365": "360T",
+      "404": "400T",
+      "405": "400T",
+      "444": "440T",
+      "445": "440T"
+    },
+    "description_aliases": {
+      "Oversized Main Conduit Box - Mount and Extend Leads": "Oversized Main Conduit Box - Mount & Extend Leads"
+    },
+    "all_frame_when_supported": [
+      "Class H Insulation"
+    ],
+    "special_rules": {
+      "Shorten Shaft (TS Frames)": {
+        "required_orientation": "Hor TS"
+      },
+      "215JM Shaft Extension in 254JM Frame": {
+        "required_frame": "254"
+      }
+    },
+    "no_modification_value": "No Modification",
+    "included_motor_value": "Motor Included*"
+  }
+}

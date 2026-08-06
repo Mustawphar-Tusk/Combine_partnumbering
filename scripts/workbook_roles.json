@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "families": {
+    "DEAN": {
+      "workbooks": {
+        "Dean Data Sheet Rev 2.xlsm": {
+          "roles": ["configuration_workflow", "customer_quote_template"],
+          "authoritative_sheets": {
+            "Data Sheet": "ordered_configuration_fields",
+            "Formal Quote Sheet": "dean_customer_quote_template"
+          },
+          "configuration_sections": [
+            {"name": "Pump Information", "start": 1, "end": 15},
+            {"name": "Impeller", "start": 16, "end": 19},
+            {"name": "Power Frame", "start": 20, "end": 28},
+            {"name": "Coupling", "start": 29, "end": 30},
+            {"name": "Pump Seal", "start": 31, "end": 48},
+            {"name": "Flush/Barrier/Cooling Plan", "start": 49, "end": 55},
+            {"name": "Motor", "start": 56, "end": 71},
+            {"name": "Baseplate", "start": 72, "end": 80},
+            {"name": "Testing & Documentation", "start": 81, "end": 89},
+            {"name": "Additional Options", "start": 90, "end": 93}
+          ]
+        },
+        "PumpConfiguration_Logic.xlsm": {
+          "roles": ["constraints", "matching_selections", "configuration_logic"]
+        }
+      }
+    },
+    "FYBROC": {
+      "workbooks": {
+        "Fybroc Attributes and Constraints.xlsx": {
+          "roles": ["attributes", "series_constraints", "allowed_combinations"],
+          "authoritative_sheets": {
+            "Constraints": "series_constraint_definitions",
+            "FullList": "allowed_and_disallowed_configurations"
+          }
+        },
+        "Fybroc Nomenclature_V5.xlsm": {
+          "roles": ["configuration_workflow", "hex_mapping"],
+          "authoritative_sheets": {
+            "SmartNumber": "ordered_dynamic_configuration_workflow",
+            "Attributes": "attribute_hex_mapping",
+            "Pump Options": "pump_option_hex_mapping",
+            "Seal Assembly": "seal_assembly_hex_mapping",
+            "Options": "option_hex_mapping",
+            "Motor Assy": "motor_assembly_hex_mapping"
+          },
+          "smart_number_columns": [
+            {"section": "Series", "columns": "E"},
+            {"section": "Size", "columns": "F"},
+            {"section": "Pump Material", "columns": "G"},
+            {"section": "Impeller Trim", "columns": "H:I"},
+            {"section": "Pump Options", "columns": "J:M"},
+            {"section": "Complete Seal Assy", "columns": "N:O"},
+            {"section": "Options", "columns": "P:Q"},
+            {"section": "Motor Assy", "columns": "R:T"},
+            {"section": "Motor Modifications", "columns": "U:W"},
+            {"section": "Test", "columns": "X:Y"}
+          ],
+          "hex_code_row": 13
+        },
+        "Price Estimator-Fybroc.xlsm": {
+          "roles": ["pricing", "specification_outputs", "fybroc_quote_template"],
+          "authoritative_sheets": {
+            "Price Check": "fybroc_configuration_pricing",
+            "Fybroc Horizontal": "horizontal_specification_output",
+            "Fybroc Vertical": "vertical_specification_output",
+            "FORMAL QUOTES": "fybroc_customer_quote_template",
+            "Formal Quote": "fybroc_customer_quote_template",
+            "MainTemplate": "selection_to_datasheet_mapping"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+M011 Fybroc Motor Assembly Integration
+======================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+   python -m pytest -q
+
+3. Recompile all Fybroc combination segments:
+   python -m scripts.compile_fybroc_segment_combinations
+
+4. Review counts:
+   Import-Csv .\exports\segment_combination_candidates.csv |
+       Group-Object segment_code |
+       Select-Object Count,Name |
+       Sort-Object Name |
+       Format-Table -AutoSize
+
+Expected:
+   MOTOR_ASSEMBLY       702
+   OPTIONS               96
+   PUMP_OPTIONS      138240
+   SEAL_ASSEMBLY         67
+   TOTAL             139105
+
+5. Load the new CSV:
+   python -m scripts.load_segment_combinations_to_staging `
+       --file .\exports\segment_combination_candidates.csv
+
+6. Run the active generic engine after updating the test request
+   to include MOTOR_ASSEMBLY selections.
+
+Expected first Motor Assembly combination:
+   source_id = 1
+   segment_value = 001
+   resolution_type = COMBINATION

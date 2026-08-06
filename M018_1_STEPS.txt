@@ -1,0 +1,31 @@
+M018.1 – Fix sp_getapplock Compilation
+======================================
+
+The first M018 run created the tables but failed while compiling
+cfg.usp_PersistConfiguredProduct.
+
+Cause:
+SQL Server EXEC parameters accept constants or variables, not a
+CONCAT(...) function call directly.
+
+1. Extract and merge this patch into the project root.
+
+2. Rerun the corrected idempotent migration:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\16_Create_Configured_Product_Registry.sql
+
+3. Verify the procedure and view:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -Q `
+       "SELECT
+            OBJECT_ID('cfg.usp_PersistConfiguredProduct') AS ProcedureId,
+            OBJECT_ID('cfg.vw_ConfiguredProductRegistry') AS ViewId;"
+
+Both values must be non-null.
+
+4. Continue with:
+
+   python -m pytest -q
+   python -m scripts.test_fybroc_persistence_reuse
+   python -m scripts.test_fybroc_persistence_concurrency

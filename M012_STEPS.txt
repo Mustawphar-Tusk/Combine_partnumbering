@@ -1,0 +1,42 @@
+M012 Constraint Projection Foundation
+=====================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+3. Test the working projection engine:
+
+   python -m scripts.test_fybroc_constraint_projection
+
+Expected:
+- series_count = 16
+- valid_motor_partial = true
+- invalid_motor_partial = false
+- available_flush_values contains only options compatible with
+  the submitted Pump Options selections
+
+4. Profile the cross-segment model-constraint workbook:
+
+   python -m scripts.profile_fybroc_model_constraints
+
+5. Review worksheet structure:
+
+   Import-Csv .\exports\fybroc_model_constraint_sheet_profile.csv |
+       Format-Table worksheet_name,max_row,max_column,dimensions -AutoSize
+
+6. Review selected source rows:
+
+   $profile = Get-Content `
+       .\exports\fybroc_model_constraint_profile.json `
+       -Raw | ConvertFrom-Json
+
+   $profile.row_samples |
+       Where-Object worksheet_name -in @("MAIN", "FULL LIST") |
+       Select-Object worksheet_name,row_number,cells |
+       Format-List
+
+The output from step 6 is the basis for the cross-segment
+Series/Size/Material/Trim constraint compiler.

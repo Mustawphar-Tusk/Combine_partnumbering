@@ -1,0 +1,37 @@
+Option Source Profiler
+======================
+
+This profiler discovers the real option sources before we write final
+compiler profiles. It does not publish to SQL.
+
+1. Extract this ZIP into the project root and merge folders.
+
+2. Run tests:
+   python -m pytest -q
+
+3. Refresh discovery:
+   python -m scripts.discover_workbooks
+
+4. Profile option sources:
+   python -m scripts.profile_option_sources
+
+5. Review:
+   exports\option_source_profile.json
+   exports\option_source_named_ranges.csv
+   exports\option_source_validations.csv
+   exports\option_source_table_candidates.csv
+   exports\option_source_profile_issues.csv
+
+Useful review commands:
+
+Import-Csv .\exports\option_source_table_candidates.csv |
+    Sort-Object family_code,workbook_name,worksheet_name,header_row |
+    Format-Table family_code,workbook_name,worksheet_name,header_row,
+        description_column,code_column,hex_column,confidence -AutoSize
+
+Import-Csv .\exports\option_source_validations.csv |
+    Sort-Object family_code,worksheet_name,target_range |
+    Format-Table family_code,workbook_name,worksheet_name,target_range,
+        source_kind,resolved_source -AutoSize
+
+The next compiler profile will be generated from these confirmed sources.

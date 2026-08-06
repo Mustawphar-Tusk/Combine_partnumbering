@@ -1,0 +1,21 @@
+﻿family_code,segment_code,segment_name,assembly_order,expected_width,source_field_codes_json,source_profile
+DEAN,WET_END_OPTIONS,Wet End Options,10,4,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,IMPELLER_TRIM,Impeller Trim,20,2,"[""IMPELLER_TRIM_016""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,IMPELLER_OPTIONS,Impeller Options,30,2,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,POWER_FRAME_OPTIONS,Power Frame Options,40,3,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,SEAL_OPTIONS,Seal Options,50,5,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,FLUSH_PLAN,Flush Plan,60,2,"[""FLUSH_PLAN_049""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,BARRIER_PLAN,Barrier Plan,70,2,"[""BARRIER_PLAN_050""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,COOLING_PLAN,Cooling Plan,80,2,"[""COOLING_PLAN_052""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,MOTOR,Motor,90,4,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,BASEPLATE_OPTIONS,Baseplate Options,100,3,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,TESTING_DOCUMENTATION,Testing and Documentation,110,4,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,ADDITIONAL_OPTIONS,Additional Options,120,2,[],C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+FYBROC,PUMP_MATERIAL,Pump Material,10,,"[""PUMP_MATERIAL""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,IMPELLER_TRIM,Impeller Trim,20,,"[""IMPELLER_TRIM""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,PUMP_OPTIONS,Pump Options,30,,"[""PUMP_OPTIONS""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,SEAL_ASSEMBLY,Complete Seal Assembly,40,,"[""COMPLETE_SEAL_ASSEMBLY""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,OPTIONS,Options,50,,"[""OPTIONS""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,MOTOR_ASSEMBLY,Motor Assembly,60,,"[""MOTOR_ASSEMBLY""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,MOTOR_MODIFICATIONS,Motor Modifications,70,,"[""MOTOR_MODIFICATIONS""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,TEST,Test,80,,"[""TEST""]",C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json

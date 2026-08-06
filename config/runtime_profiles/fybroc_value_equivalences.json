@@ -1,0 +1,414 @@
+{
+  "family_code": "FYBROC",
+  "schema_version": 1,
+  "description": "Field-specific equivalence groups reconcile authoritative series-applicability vocabulary with nomenclature combination vocabulary. They do not create new selectable values.",
+  "fields": {
+    "CASING_DRAINS": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "NOT_INCLUDED",
+          "values": [
+            "Not_Supplied_by_Fybroc",
+            "No Casing Drains*"
+          ]
+        },
+        {
+          "canonical_key": "INCLUDED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Casing Drains"
+          ]
+        }
+      ]
+    },
+    "SUCTION_DISCHARGE": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "NOT_INCLUDED",
+          "values": [
+            "Not_Supplied_by_Fybroc",
+            "No Suction Discharge Tap*"
+          ]
+        },
+        {
+          "canonical_key": "INCLUDED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Suction Discharge Taps"
+          ]
+        }
+      ]
+    },
+    "SHAFT_MATERIAL": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "303_SS",
+          "values": [
+            "303_SS",
+            "303 SS Shaft*"
+          ]
+        },
+        {
+          "canonical_key": "316_SS",
+          "values": [
+            "316_SS",
+            "316 SS Shaft"
+          ]
+        }
+      ]
+    },
+    "CASING_HARDWARE": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "303_SS",
+          "values": [
+            "303_SS",
+            "303 SS Casing HW*"
+          ]
+        },
+        {
+          "canonical_key": "316_SS",
+          "values": [
+            "316_SS",
+            "316 SS Casing HW"
+          ]
+        }
+      ]
+    },
+    "GLAND_HARDWARE": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "303_SS",
+          "values": [
+            "303_SS",
+            "303 SS Gland HW*"
+          ]
+        },
+        {
+          "canonical_key": "316_SS",
+          "values": [
+            "316_SS",
+            "316 SS Gland HW"
+          ]
+        },
+        {
+          "canonical_key": "CARP_20",
+          "values": [
+            "Carp-20",
+            "Carp-20 Gland HW"
+          ]
+        },
+        {
+          "canonical_key": "HASTELLOY_C",
+          "values": [
+            "Hastelloy_C",
+            "Hastelloy C Gland HW"
+          ]
+        },
+        {
+          "canonical_key": "TITANIUM",
+          "values": [
+            "Titanium",
+            "Titanium Gland HW"
+          ]
+        }
+      ]
+    },
+    "FLUSH": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "EXTERNAL_FLUSH",
+          "values": [
+            "External_Flush",
+            "External Flush*"
+          ]
+        },
+        {
+          "canonical_key": "INTERNAL_FLUSH",
+          "values": [
+            "Internal_Flush",
+            "Internal Flush*"
+          ]
+        },
+        {
+          "canonical_key": "BYPASS_TAPPED_DISCHARGE",
+          "values": [
+            "Bypass(Tapped_Discharge)",
+            "Bypass (Tapped Discharge)"
+          ]
+        },
+        {
+          "canonical_key": "BYPASS_TAPPED_SPACER",
+          "values": [
+            "Bypass(Tapped_Spacer)",
+            "Bypass (Tapped Spacer)"
+          ]
+        },
+        {
+          "canonical_key": "BYPASS_CYCLONE_SEPARATOR",
+          "values": [
+            "Bypass(Cyclone_Separator)",
+            "Bypass (Cyclone Separator)"
+          ]
+        },
+        {
+          "canonical_key": "BYPASS_CYCLONE_SEPARATOR_SPACER",
+          "values": [
+            "Bypass(Cyclone_Separator/Spacer)",
+            "Bypass (Cyclone Separator / Spacer)"
+          ]
+        }
+      ]
+    },
+    "CYCLONE_SEPARATOR": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "NOT_INCLUDED",
+          "values": [
+            "Not_Included",
+            "No Cyclone Separator*"
+          ]
+        },
+        {
+          "canonical_key": "INCLUDED",
+          "values": [
+            "By_Fybroc",
+            "Cyclone Separator"
+          ]
+        }
+      ]
+    },
+    "DYNAMIC_IMPELLER": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "NOT_INCLUDED",
+          "values": [
+            "Not_Supplied_by_Fybroc",
+            "No Dynamic Impeller*"
+          ]
+        },
+        {
+          "canonical_key": "INCLUDED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Dynamic Impeller"
+          ]
+        }
+      ]
+    },
+    "SEAL_OPTION": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "CUSTOMER_SUPPLIED_FYBROC_INSTALLED",
+          "values": [
+            "Installed_by_Fybroc",
+            "Customer Supplied"
+          ]
+        },
+        {
+          "canonical_key": "FYBROC_SUPPLIED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Mechanical Seal Included*"
+          ]
+        },
+        {
+          "canonical_key": "NO_SEAL_SINGLE_GLAND",
+          "values": [
+            "NoSeal_Single_Seal_Gland",
+            "No Seal (Single Seal Gland by Fyboc)"
+          ]
+        },
+        {
+          "canonical_key": "NO_SEAL_DOUBLE_GLAND",
+          "values": [
+            "NoSeal_Double_Seal_Gland",
+            "No Seal (Double Seal Gland by Fyboc)"
+          ]
+        },
+        {
+          "canonical_key": "NO_SEAL_NO_GLAND",
+          "values": [
+            "NoSeal_NoSealGland",
+            "No Seal (No SealGland)"
+          ]
+        }
+      ]
+    },
+    "SEAL_TYPE": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "8_1T_DOUBLE_INSIDE",
+          "values": [
+            "Crane_8-1T_Double_Inside",
+            "8-1T Double Inside*"
+          ]
+        },
+        {
+          "canonical_key": "8B2_SINGLE_OUTSIDE",
+          "values": [
+            "Crane_8B2_Single_Outside",
+            "8B2 Single Outside*"
+          ]
+        },
+        {
+          "canonical_key": "CRO_DOUBLE_INSIDE",
+          "values": [
+            "Flowserve_CRO_Double_Inside",
+            "CRO Double Inside"
+          ]
+        },
+        {
+          "canonical_key": "RAC_SINGLE_OUTSIDE",
+          "values": [
+            "Flowserve_RAC_Single_Outside",
+            "RAC Single Outside"
+          ]
+        },
+        {
+          "canonical_key": "RXO_DOUBLE_INSIDE",
+          "values": [
+            "Flowserve_RXO_Double_Inside",
+            "RXO Double Inside"
+          ]
+        }
+      ],
+      "combination_passthrough_values": [
+        "-"
+      ]
+    },
+    "SEAL_MATERIALS": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "CARBON_VS_CERAMIC",
+          "values": [
+            "Carbon_vs_Ceramic",
+            "Carbon vs. Ceramic*"
+          ]
+        },
+        {
+          "canonical_key": "SILCAR_VS_SILCAR",
+          "values": [
+            "Silcar_vs_Silcar",
+            "Silcar vs. Silcar"
+          ]
+        }
+      ],
+      "combination_passthrough_values": [
+        "-"
+      ]
+    },
+    "SEAL_ELASTOMERS": {
+      "equivalence_groups": [],
+      "combination_passthrough_values": [
+        "-"
+      ]
+    },
+    "SEAL_GUARD": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "NOT_INCLUDED",
+          "values": [
+            "Not_Supplied_by_Fybroc",
+            "No Seal Guard"
+          ]
+        },
+        {
+          "canonical_key": "INCLUDED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Seal Guard Included"
+          ]
+        }
+      ]
+    },
+    "BASEPLATE_OPTION": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "BY_OTHERS",
+          "values": [
+            "By_Others",
+            "No Baseplate"
+          ]
+        },
+        {
+          "canonical_key": "FYBROC_SUPPLIED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Baseplate Included*"
+          ]
+        }
+      ]
+    },
+    "BASEPLATE_HARDWARE": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "303_SS",
+          "values": [
+            "303_SS",
+            "303 SS Baseplate HW*"
+          ]
+        },
+        {
+          "canonical_key": "316_SS",
+          "values": [
+            "316_SS",
+            "316 SS Baseplate HW"
+          ]
+        }
+      ],
+      "combination_passthrough_values": [
+        "-"
+      ]
+    },
+    "NAMEPLATE": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "CUSTOMER_NAMEPLATE",
+          "values": [
+            "Customer",
+            "Customer Nameplate"
+          ]
+        },
+        {
+          "canonical_key": "NO_CUSTOMER_NAMEPLATE",
+          "values": [
+            "Not_Included",
+            "No Customer Nameplate"
+          ]
+        }
+      ]
+    },
+    "MOTOR_OPTION": {
+      "equivalence_groups": [
+        {
+          "canonical_key": "BY_OTHERS",
+          "values": [
+            "By_Others",
+            "No Motor"
+          ]
+        },
+        {
+          "canonical_key": "CUSTOMER_SUPPLIED_FYBROC_INSTALLED",
+          "values": [
+            "Installed_by_Fybroc",
+            "Customer Supplied"
+          ]
+        },
+        {
+          "canonical_key": "FYBROC_SUPPLIED",
+          "values": [
+            "Supplied_by_Fybroc",
+            "Motor Included*"
+          ]
+        }
+      ]
+    },
+    "MOTOR_FRAME": {
+      "equivalence_groups": [],
+      "combination_passthrough_values": [
+        "-"
+      ]
+    }
+  }
+}

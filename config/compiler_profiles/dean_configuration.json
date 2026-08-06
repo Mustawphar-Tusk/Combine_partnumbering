@@ -1,0 +1,90 @@
+{
+  "family_code": "DEAN",
+  "workbook_role": "configuration_and_quote",
+  "worksheet_name": "Data Sheet",
+  "strategy": {
+    "type": "numbered_column_pairs",
+    "minimum_sequence": 1,
+    "maximum_sequence": 93,
+    "column_pairs": [
+      {
+        "sequence_column": "B",
+        "label_column": "C",
+        "sequence_from": 1,
+        "sequence_to": 48,
+        "row_from": 1,
+        "row_to": 100
+      },
+      {
+        "sequence_column": "I",
+        "label_column": "F",
+        "sequence_from": 49,
+        "sequence_to": 93,
+        "row_from": 1,
+        "row_to": 120
+      }
+    ],
+    "sections": [
+      {
+        "section_code": "PUMP_INFORMATION",
+        "section_name": "Pump Information",
+        "sequence_from": 1,
+        "sequence_to": 15
+      },
+      {
+        "section_code": "IMPELLER",
+        "section_name": "Impeller",
+        "sequence_from": 16,
+        "sequence_to": 19
+      },
+      {
+        "section_code": "POWER_FRAME",
+        "section_name": "Power Frame",
+        "sequence_from": 20,
+        "sequence_to": 28
+      },
+      {
+        "section_code": "COUPLING",
+        "section_name": "Coupling",
+        "sequence_from": 29,
+        "sequence_to": 30
+      },
+      {
+        "section_code": "PUMP_SEAL",
+        "section_name": "Pump Seal",
+        "sequence_from": 31,
+        "sequence_to": 48
+      },
+      {
+        "section_code": "FLUSH_BARRIER_COOLING",
+        "section_name": "Flush / Barrier / Cooling Plan",
+        "sequence_from": 49,
+        "sequence_to": 55
+      },
+      {
+        "section_code": "MOTOR",
+        "section_name": "Motor",
+        "sequence_from": 56,
+        "sequence_to": 71
+      },
+      {
+        "section_code": "BASEPLATE",
+        "section_name": "Baseplate",
+        "sequence_from": 72,
+        "sequence_to": 80
+      },
+      {
+        "section_code": "TESTING_DOCUMENTATION",
+        "section_name": "Testing & Documentation",
+        "sequence_from": 81,
+        "sequence_to": 89
+      },
+      {
+        "section_code": "ADDITIONAL_OPTIONS",
+        "section_name": "Additional Options",
+        "sequence_from": 90,
+        "sequence_to": 93
+      }
+    ]
+  }
+}

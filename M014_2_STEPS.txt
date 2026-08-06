@@ -1,0 +1,24 @@
+M014.2 Motor Frame Stem Normalization
+=====================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+3. Rerun:
+
+   python -m scripts.test_fybroc_available_options_service
+
+Expected Motor Frame result:
+- count = 12
+- values include:
+  143, 145, 182, 184, 213, 215,
+  254, 256, 284, 286, 324, 326
+
+Source counts should remain:
+- SERIES = 12
+- COMBINATION = 18
+
+The intersection should now correctly return the 12 frames allowed for Series 1530.

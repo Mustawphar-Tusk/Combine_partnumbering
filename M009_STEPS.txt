@@ -1,0 +1,46 @@
+M009 Attribute Metadata Platform
+================================
+
+1. Extract and merge into:
+
+   C:\Users\makorede\Downloads\Combine_partnumbering
+
+2. Verify documentation:
+
+   python -m scripts.verify_documentation_framework
+
+3. Apply SQL:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\12_Create_Metadata_Publication_And_Attributes.sql
+
+4. Run tests:
+
+   python -m pytest -q
+
+5. Refresh workbook discovery:
+
+   python -m scripts.discover_workbooks
+
+6. Compile Fybroc attributes:
+
+   python -m scripts.compile_fybroc_attributes
+
+7. Review:
+
+   Import-Csv .\exports\fybroc_attribute_candidates.csv |
+       Group-Object field_code |
+       Select-Object Count,Name |
+       Sort-Object Name |
+       Format-Table -AutoSize
+
+   Import-Csv .\exports\fybroc_attribute_issues.csv |
+       Format-Table severity,issue_code,field_code,message,source_reference -AutoSize
+
+8. Run platform status:
+
+   python -m scripts.platform_status
+
+This package creates the compiler and SQL model.
+Publishing candidates into cfg.AttributeValue is the next controlled step
+after reviewing candidate counts and issues.

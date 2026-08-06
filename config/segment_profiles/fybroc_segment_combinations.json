@@ -1,0 +1,91 @@
+{
+  "family_code": "FYBROC",
+  "workbook_role": "configuration_and_hex_mapping",
+  "segments": [
+    {
+      "segment_code": "PUMP_OPTIONS",
+      "segment_name": "Pump Options",
+      "worksheet_name": "Pump Options",
+      "row_from": 15,
+      "row_to": 138254,
+      "max_consecutive_blank_ids": 100,
+      "combination_key_column": "C",
+      "id_column": "Q",
+      "expected_width": 4,
+      "selection_columns": {
+        "CASING_DRAINS": "D",
+        "SUCTION_DISCHARGE": "E",
+        "SHAFT_MATERIAL": "F",
+        "IMPELLER_SLEEVE": "G",
+        "CASING_HARDWARE": "H",
+        "PUMP_ELASTOMERS": "I",
+        "BEARING_OPTION": "J",
+        "POWER_FRAME_HARDWARE": "K",
+        "GLAND_HARDWARE": "L",
+        "FLUSH": "M",
+        "CYCLONE_SEPARATOR": "N",
+        "DYNAMIC_IMPELLER": "O"
+      }
+    },
+    {
+      "segment_code": "SEAL_ASSEMBLY",
+      "segment_name": "Seal Assembly",
+      "worksheet_name": "Seal Assembly",
+      "row_from": 14,
+      "row_to": 100000,
+      "max_consecutive_blank_ids": 100,
+      "combination_key_column": "C",
+      "id_column": "J",
+      "expected_width": 2,
+      "selection_columns": {
+        "SEAL_OPTION": "D",
+        "SEAL_TYPE": "E",
+        "SEAL_MATERIALS": "F",
+        "SEAL_ELASTOMERS": "G",
+        "SEAL_GUARD": "H"
+      }
+    },
+    {
+      "segment_code": "OPTIONS",
+      "segment_name": "Options",
+      "worksheet_name": "Options",
+      "row_from": 12,
+      "row_to": 100000,
+      "max_consecutive_blank_ids": 100,
+      "combination_key_column": "C",
+      "id_column": "J",
+      "expected_width": 2,
+      "selection_columns": {
+        "COUPLING_OPTION": "D",
+        "COUPLING_GUARD": "E",
+        "BASEPLATE_OPTION": "F",
+        "BASEPLATE_HARDWARE": "G",
+        "NAMEPLATE": "H"
+      }
+    },
+    {
+      "segment_code": "MOTOR_ASSEMBLY",
+      "segment_name": "Motor Assembly",
+      "worksheet_name": " Motor Assy",
+      "row_from": 27,
+      "row_to": 728,
+      "max_consecutive_blank_ids": 100,
+      "combination_key_column": "C",
+      "id_column": "P",
+      "expected_width": 3,
+      "selection_columns": {
+        "MOTOR_OPTION": "D",
+        "MOTOR_CLASS": "E",
+        "MOTOR_ORIENTATION": "F",
+        "MOTOR_HORSEPOWER": "G",
+        "MOTOR_RPM": "H",
+        "MOTOR_VOLTAGE": "I",
+        "MOTOR_HERTZ": "J",
+        "MOTOR_FRAME": "K",
+        "MOTOR_ENCLOSURE": "L",
+        "MOTOR_EFFICIENCY": "M",
+        "MOTOR_MANUFACTURER": "N"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+M018 Package Validation
+=======================
+
+- Python files syntax-checked: 7
+- New M018 isolated unit tests: 3 passed
+- Reconstructed milestone test suite after M017 profile patches: 36 passed
+- Live SQL persistence and concurrency tests require the user's local SQL Server.

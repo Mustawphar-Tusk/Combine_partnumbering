@@ -1,0 +1,26 @@
+Fybroc Segment Combination Staging Loader
+=========================================
+
+1. Extract and merge into the project root.
+
+2. Create staging tables:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\11_Create_Segment_Combination_Import_Staging.sql
+
+3. Run tests:
+
+   python -m pytest -q
+
+4. Load the CSV:
+
+   python -m scripts.load_segment_combinations_to_staging `
+       --file .\exports\segment_combination_candidates.csv
+
+5. Validate:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\11A_Validate_Segment_Combination_Import.sql
+
+Expected total: 138,403 rows.
+No data is published into cfg.SegmentCombination at this stage.

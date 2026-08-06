@@ -1,0 +1,35 @@
+M017.1 Complete Deterministic Scenario
+======================================
+
+1. Extract and merge into the project root.
+
+2. Verify the scenario profile:
+
+   python -m scripts.verify_fybroc_session_test_preferences
+
+Expected:
+
+   navigation_field_count = 41
+   preference_count = 41
+   missing_preferences = []
+   extra_preferences = []
+   incomplete_preferences = []
+   complete = true
+
+3. Run tests:
+
+   python -m pytest -q
+
+4. Run the full session:
+
+   python -m scripts.test_fybroc_complete_configuration_session
+
+Expected:
+
+- complete = true
+- selection_count = 41
+- navigation_steps = 41
+- No Motor is selected
+- all three Motor Modification selections are No Modification
+- MOTOR_MODIFICATIONS segment value = XXX
+- no silent fallback occurs

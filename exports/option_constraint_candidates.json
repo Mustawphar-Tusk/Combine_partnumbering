@@ -1,0 +1,26 @@
+{
+  "option_count": 0,
+  "dependency_count": 0,
+  "constraint_count": 1,
+  "legacy_marker_count": 0,
+  "issue_count": 0,
+  "options": [],
+  "dependencies": [],
+  "constraints": [
+    {
+      "family_code": "DEAN",
+      "rule_code": "DEAN_SEQUENCE_053_UNUSED",
+      "rule_name": "Dean sequence 53 is intentionally unused",
+      "rule_type": "visibility",
+      "condition_json": "{\"field_sequence\":53}",
+      "action_json": "{\"action\":\"hide_field\",\"target_sequence\":53}",
+      "source_workbook_role": "configuration_logic",
+      "source_worksheet": "Data Sheet",
+      "source_reference": "Sequence 53",
+      "confidence": "high",
+      "source_profile": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\config\\option_constraint_profiles\\dean.json"
+    }
+  ],
+  "legacy_markers": [],
+  "issues": []
+}

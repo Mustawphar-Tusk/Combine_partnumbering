@@ -1,0 +1,179 @@
+# Add these imports near the existing openpyxl imports:
+from openpyxl.utils import column_index_from_string
+
+
+def compile_numbered_column_pairs(
+    project_root: Path,
+    discovery: dict[str, Any],
+    profile: dict[str, Any],
+) -> tuple[list[SectionCandidate], list[FieldCandidate], list[CompilationIssue]]:
+    family_code = profile["family_code"].upper()
+    workbook_role = profile["workbook_role"]
+    worksheet_name = profile["worksheet_name"]
+    strategy = profile["strategy"]
+    profile_path = profile["_profile_path"]
+
+    workbook_path = _resolve_workbook(
+        project_root,
+        discovery,
+        family_code,
+        workbook_role,
+    )
+
+    workbook = load_workbook(
+        workbook_path,
+        read_only=True,
+        data_only=False,
+        keep_vba=workbook_path.suffix.lower() == ".xlsm",
+        keep_links=True,
+    )
+
+    sections: list[SectionCandidate] = []
+    fields: list[FieldCandidate] = []
+    issues: list[CompilationIssue] = []
+
+    try:
+        if worksheet_name not in workbook.sheetnames:
+            return [], [], [
+                CompilationIssue(
+                    family_code=family_code,
+                    severity="Error",
+                    issue_code="WORKSHEET_NOT_FOUND",
+                    message=f"Worksheet '{worksheet_name}' was not found.",
+                    worksheet_name=worksheet_name,
+                )
+            ]
+
+        worksheet = workbook[worksheet_name]
+        section_definitions = strategy["sections"]
+
+        for order, section in enumerate(section_definitions, start=1):
+            sections.append(
+                SectionCandidate(
+                    family_code=family_code,
+                    workbook_role=workbook_role,
+                    worksheet_name=worksheet_name,
+                    section_code=section["section_code"],
+                    section_name=section["section_name"],
+                    display_order=order * 10,
+                    sequence_from=int(section["sequence_from"]),
+                    sequence_to=int(section["sequence_to"]),
+                    source_profile=profile_path,
+                )
+            )
+
+        found_sequences: set[int] = set()
+
+        for pair in strategy["column_pairs"]:
+            sequence_column = column_index_from_string(pair["sequence_column"])
+            label_column = column_index_from_string(pair["label_column"])
+            sequence_from = int(pair["sequence_from"])
+            sequence_to = int(pair["sequence_to"])
+            row_from = int(pair.get("row_from", 1))
+            row_to = int(pair.get("row_to", worksheet.max_row or 500))
+
+            for row in range(row_from, row_to + 1):
+                raw_sequence = worksheet.cell(row=row, column=sequence_column).value
+
+                if isinstance(raw_sequence, bool):
+                    continue
+
+                if isinstance(raw_sequence, int):
+                    sequence = raw_sequence
+                elif isinstance(raw_sequence, float) and raw_sequence.is_integer():
+                    sequence = int(raw_sequence)
+                elif isinstance(raw_sequence, str) and raw_sequence.strip().isdigit():
+                    sequence = int(raw_sequence.strip())
+                else:
+                    continue
+
+                if not sequence_from <= sequence <= sequence_to:
+                    continue
+
+                if sequence in found_sequences:
+                    issues.append(
+                        CompilationIssue(
+                            family_code=family_code,
+                            severity="Warning",
+                            issue_code="DUPLICATE_SEQUENCE",
+                            message=f"Sequence {sequence} was found more than once.",
+                            worksheet_name=worksheet_name,
+                            source_reference=worksheet.cell(
+                                row=row,
+                                column=sequence_column,
+                            ).coordinate,
+                        )
+                    )
+                    continue
+
+                label_cell = worksheet.cell(row=row, column=label_column)
+                raw_label = label_cell.value
+
+                if raw_label is None or str(raw_label).strip() == "":
+                    label = f"Field {sequence}"
+                    confidence = "low"
+                    issues.append(
+                        CompilationIssue(
+                            family_code=family_code,
+                            severity="Warning",
+                            issue_code="FIELD_LABEL_NOT_FOUND",
+                            message=f"No label was found for sequence {sequence}.",
+                            worksheet_name=worksheet_name,
+                            source_reference=label_cell.coordinate,
+                        )
+                    )
+                else:
+                    label = str(raw_label).strip()
+                    confidence = "high"
+
+                section = _section_for_sequence(sequence, section_definitions)
+                if section is None:
+                    issues.append(
+                        CompilationIssue(
+                            family_code=family_code,
+                            severity="Error",
+                            issue_code="SECTION_NOT_RESOLVED",
+                            message=f"No section covers sequence {sequence}.",
+                            worksheet_name=worksheet_name,
+                            source_reference=label_cell.coordinate,
+                        )
+                    )
+                    continue
+
+                fields.append(
+                    FieldCandidate(
+                        family_code=family_code,
+                        workbook_role=workbook_role,
+                        worksheet_name=worksheet_name,
+                        section_code=section["section_code"],
+                        field_code=f"{normalize_code(label)}_{sequence:03d}",
+                        field_name=label,
+                        display_order=sequence,
+                        source_cell=label_cell.coordinate,
+                        source_sequence=sequence,
+                        extraction_strategy="numbered_column_pairs",
+                        confidence=confidence,
+                        source_profile=profile_path,
+                    )
+                )
+                found_sequences.add(sequence)
+
+        minimum = int(strategy["minimum_sequence"])
+        maximum = int(strategy["maximum_sequence"])
+
+        for sequence in range(minimum, maximum + 1):
+            if sequence not in found_sequences:
+                issues.append(
+                    CompilationIssue(
+                        family_code=family_code,
+                        severity="Warning",
+                        issue_code="SEQUENCE_NOT_FOUND",
+                        message=f"Sequence {sequence} was not located.",
+                        worksheet_name=worksheet_name,
+                    )
+                )
+
+    finally:
+        workbook.close()
+
+    return sections, fields, issues

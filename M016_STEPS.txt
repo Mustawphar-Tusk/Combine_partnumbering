@@ -1,0 +1,41 @@
+M016 Complete Allowable Configuration Session
+==============================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+Expected:
+- Existing tests remain green.
+- New sorted-state regression test passes.
+- Incomplete state cannot generate identifiers.
+
+3. Run the complete live session:
+
+   python -m scripts.test_fybroc_complete_configuration_session
+
+The script:
+- starts with server-issued Series options
+- selects only options returned for the current signed state
+- advances through every configured Fybroc field
+- finalizes only after the state is complete
+- resolves all 10 identifier segments from SQL metadata
+- returns Part Number, SKU, signature, segment trace, and navigation trace
+
+Expected top-level output:
+- complete = true
+- selection_count = 39
+- navigation_steps = 39
+- part_number begins with F1530-
+- sku begins with F1530-V1-
+- validation_messages = []
+- arbitrary_engineering_values_accepted = false
+- identifier_input = completed signed state only
+
+A development token secret is used when the environment variable is
+missing. Before API deployment set:
+
+   $env:CONFIGURATION_TOKEN_SECRET = `
+       "replace-with-a-secure-random-secret-of-at-least-32-characters"

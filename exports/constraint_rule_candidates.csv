@@ -1,0 +1,2 @@
+﻿family_code,rule_code,rule_name,rule_type,condition_json,action_json,source_workbook_role,source_worksheet,source_reference,confidence,source_profile
+DEAN,DEAN_SEQUENCE_053_UNUSED,Dean sequence 53 is intentionally unused,visibility,"{""field_sequence"":53}","{""action"":""hide_field"",""target_sequence"":53}",configuration_logic,Data Sheet,Sequence 53,high,C:\Users\makorede\Downloads\Combine_partnumbering\config\option_constraint_profiles\dean.json

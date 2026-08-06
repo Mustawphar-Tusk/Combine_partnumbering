@@ -1,0 +1,14 @@
+/mnt/data/M018_Identifier_Persistence_and_Reuse/M018_MANIFEST.txt
+/mnt/data/M018_Identifier_Persistence_and_Reuse/M018_STEPS.txt
+/mnt/data/M018_Identifier_Persistence_and_Reuse/docs/adr/ADR-0016-Database-Owned-Identifier-Reuse.md
+/mnt/data/M018_Identifier_Persistence_and_Reuse/docs/engineering-journal/2026-08-M018.md
+/mnt/data/M018_Identifier_Persistence_and_Reuse/docs/milestones/M018-Identifier-Persistence-and-Reuse.md
+/mnt/data/M018_Identifier_Persistence_and_Reuse/docs/validation/M018-package-validation.txt
+/mnt/data/M018_Identifier_Persistence_and_Reuse/scripts/test_fybroc_persistence_concurrency.py
+/mnt/data/M018_Identifier_Persistence_and_Reuse/scripts/test_fybroc_persistence_reuse.py
+/mnt/data/M018_Identifier_Persistence_and_Reuse/sql/16_Create_Configured_Product_Registry.sql
+/mnt/data/M018_Identifier_Persistence_and_Reuse/src/configuration_engine/fybroc_persistence_runtime.py
+/mnt/data/M018_Identifier_Persistence_and_Reuse/src/configuration_engine/persistence.py
+/mnt/data/M018_Identifier_Persistence_and_Reuse/src/configuration_engine/persistent_session.py
+/mnt/data/M018_Identifier_Persistence_and_Reuse/tests/test_persistence_payload.py
+/mnt/data/M018_Identifier_Persistence_and_Reuse/tests/test_persistent_session.py

@@ -1,0 +1,72 @@
+M017 Constraint Dependency Closure
+==================================
+
+1. Extract and merge into the project root.
+
+2. Create SQL metadata:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\15_Create_Field_Option_Dependency_Metadata.sql
+
+3. Patch runtime profiles and local integration points:
+
+   python -m scripts.patch_m017_runtime_profiles
+   python -m scripts.patch_m017_navigation_context
+   python -m scripts.patch_m017_strict_session_test
+
+4. Compile authoritative dependencies:
+
+   python -m scripts.compile_fybroc_dependencies
+
+Review issues:
+
+   Import-Csv .\exports\fybroc_dependency_issues.csv |
+       Format-Table severity,issue_code,message,source_reference -AutoSize
+
+There must be no Error rows before publication. Warning rows record
+source descriptions that could not be linked and are not published as
+allowable options.
+
+5. Publish dependencies:
+
+   python -m scripts.load_and_publish_fybroc_dependencies `
+       --file .\exports\fybroc_dependency_candidates.csv `
+       --publication-id 1
+
+6. Run tests:
+
+   python -m pytest -q
+
+7. Verify field coverage:
+
+   python -m scripts.test_fybroc_dependency_coverage
+
+Expected:
+
+   field_count = 41
+   coverage_complete = true
+   unresolved_fields = []
+
+8. Verify live dependency projection:
+
+   python -m scripts.test_fybroc_dependency_projection
+
+Expected:
+
+- Trim values are limited to Series 1530 / Size 1x1.5x6.
+- No Motor returns only No Modification.
+
+9. Run the full closed session:
+
+   python -m scripts.test_fybroc_complete_configuration_session
+
+Expected changes:
+
+- selection_count = 41
+- navigation_steps = 41
+- Impeller Trim is selected from its Size-specific trim set
+- No Motor returns No Modification for all three modification slots
+- MOTOR_MODIFICATIONS segment value = XXX
+- runtime revision contains dependency-batch:<latest>
+- silent test fallback is disabled
+- arbitrary_engineering_values_accepted = false

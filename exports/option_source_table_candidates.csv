@@ -1,0 +1,900 @@
+﻿family_code,workbook_role,workbook_name,worksheet_name,header_row,first_data_row,last_data_row,description_column,code_column,hex_column,confidence,reason
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,14,15,66,C,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,15,16,66,C,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,16,17,66,C,,,medium,Description-like header 'pump material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,17,18,66,C,,,medium,Description-like header 'casing material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,29,31,70,F,,,medium,Description-like header 'motor options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,33,34,66,C,,,medium,Description-like header 'impeller material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,36,58,58,K,,,medium,"Description-like header 'select frame size for motor, coupling, and/or baseplate here'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,37,38,66,C,,,medium,Description-like header 'shaft material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,37,52,67,L,,,medium,"Description-like header 'if motor is not supplied by dean, filling in any information you have about it will be beneficial but is not necessary. if pump has coupling and/or baseplate, you will need to select frame size.'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,38,39,66,C,,,medium,Description-like header 'lubrication options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,39,40,70,F,,,medium,Description-like header 'c face adapter option'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,40,41,66,C,,,medium,Description-like header 'oiler options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,11,12,98,B,,,medium,Description-like header 'fluid description:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,18,20,68,C,,,medium,Description-like header 'dean® component description'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,20,21,98,B,,,medium,Description-like header 'pump series:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,21,22,98,B,,,medium,Description-like header 'size:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,26,28,28,D,,,medium,Description-like header 'sleeve material:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,27,28,98,B,,,medium,Description-like header 'seal options:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,30,31,98,B,,,medium,Description-like header 'baseplate options:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,38,39,98,B,,,medium,Description-like header 'included option 1:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,39,40,98,B,,,medium,Description-like header 'included option 2:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote,40,41,98,B,,,medium,Description-like header 'included option 3:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,7,8,43,B,,,medium,Description-like header 'description:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,25,D,,,medium,Description-like header 'wet end options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,16,I,,,medium,Description-like header 'impeller options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,23,K,,,medium,Description-like header 'power frame options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,12,O,,,medium,Description-like header 'seal options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,13,W,,,medium,Description-like header 'frame size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,21,X,,,medium,Description-like header 'baseplate options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,17,AB,,,medium,Description-like header 'motor options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,17,AD,,,medium,Description-like header 'additional options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,17,AH,,,medium,Description-like header 'testing options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,11,12,16,AJ,,,medium,Description-like header 'documentation options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,12,13,13,W,S,S,high,"Description-like header '=if((y13<>""none"")+(m23<>""none"")+(w13<>0), iferror(_xlfn.base(match(w13,table2486[motor frame size],0),36,2),""err""), ""00"")'. Code-like header at S12. Hex/code-like header at S12."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,13,14,25,D,,,medium,Description-like header 'pump material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,13,14,22,Z,,,medium,Description-like header 'motor options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,13,14,17,AB,,,medium,Description-like header 'custom option 1'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,14,15,25,D,,,medium,Description-like header 'casing material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,14,15,16,I,,,medium,Description-like header 'impeller material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,14,15,23,K,,,medium,Description-like header 'shaft material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,14,15,17,AB,,,medium,Description-like header 'custom option 2'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,15,16,16,I,,,medium,Description-like header 'imp. wear rings material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,15,16,23,K,,,medium,Description-like header 'lubrication options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,15,16,17,AB,,,medium,Description-like header 'custom option 3'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,16,17,23,K,,,medium,Description-like header 'oiler options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Smart Number,21,22,22,Z,,,medium,Description-like header 'c-face adapter option'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,2,3,502,C,,,medium,Description-like header 'pump material class'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,2,3,502,D,,,medium,Description-like header 'casing material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,2,3,502,G,,,medium,Description-like header 'drain options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,2,3,502,K,,,medium,Description-like header 'wear ring material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,2,3,54,AF,,,medium,Description-like header 'impeller material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,15,16,515,C,P,P,high,Description-like header 'pump material class'. Code-like header at P15. Hex/code-like header at P15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,15,16,515,D,P,P,high,Description-like header 'casing material'. Code-like header at P15. Hex/code-like header at P15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,15,16,515,G,P,P,high,Description-like header 'drain options'. Code-like header at P15. Hex/code-like header at P15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,15,16,54,AF,P,P,high,Description-like header 'impeller material'. Code-like header at P15. Hex/code-like header at P15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Wet End Numbering,15,16,54,AH,P,P,high,Description-like header 'imp. wear ring material'. Code-like header at P15. Hex/code-like header at P15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Power End Numbering,2,3,475,D,,,medium,Description-like header 'shaft material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Power End Numbering,2,3,475,E,,,medium,Description-like header 'lubrication options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Power End Numbering,2,3,475,F,,,medium,Description-like header 'oiler options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Power End Numbering,15,16,475,D,O,O,high,Description-like header 'shaft material'. Code-like header at O15. Hex/code-like header at O15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Power End Numbering,15,16,475,E,O,O,high,Description-like header 'lubrication options'. Code-like header at O15. Hex/code-like header at O15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Power End Numbering,15,16,475,F,O,O,high,Description-like header 'oiler options'. Code-like header at O15. Hex/code-like header at O15.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Constraints,2,3,4,C,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Constraints,2,3,4,AX,,,medium,Description-like header 'pump (backhead) material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Constraints,2,3,39,BH,,,medium,Description-like header 'casing material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Constraints,3,4,40,B,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,40,B,,,medium,Description-like header 'pump series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,50,D,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,15,F,,,medium,Description-like header 'pump material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,14,J,,,medium,Description-like header 'shaft material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,13,L,,,medium,Description-like header 'casing material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,12,V,,,medium,Description-like header 'shaft sleeve material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,12,AL,,,medium,Description-like header 'impeller material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,9,AN,,,medium,Description-like header 'cradle material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,10,AP,,,medium,Description-like header 'impeller wear ring material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,7,AZ,,,medium,Description-like header 'baseplate material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,9,BV,,,medium,Description-like header 'paint options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,8,CB,,,medium,Description-like header 'lubrication options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,10,CD,,,medium,Description-like header 'oiler options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,8,CT,,,medium,Description-like header 'seal options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,9,DD,,,medium,Description-like header 'seal hardware material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,8,DF,,,medium,Description-like header 'inboard rotating face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,9,DH,,,medium,Description-like header 'inboard stationary face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,8,DL,,,medium,Description-like header 'outboard rotating face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Config Info,4,5,9,DN,,,medium,Description-like header 'outboard stationary face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,8,B,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,6,C,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,45,D,,,medium,Description-like header 'pump material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,6,F,,,medium,Description-like header 'shaft material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,19,G,,,medium,Description-like header 'casing material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,20,R,,,medium,Description-like header 'impeller material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,4,U,,,medium,Description-like header 'seal option'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,3,X,,,medium,Description-like header 'inboard rotating face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,5,Y,,,medium,Description-like header 'inboard stationary face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,2,AA,,,medium,Description-like header 'outboard rotating face material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,6,AN,,,medium,Description-like header 'sleeve material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,5,AR,,,medium,Description-like header 'frame size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,4,BB,,,medium,Description-like header 'seal options (raw)'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,2,BC,,,medium,Description-like header 'seal options (filtered)'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,1,2,19,BE,,,medium,Description-like header 'trim options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,35,36,45,D,E,E,high,Description-like header 'material'. Code-like header at E35. Hex/code-like header at E35.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Logic,35,36,45,E,E,E,high,Description-like header 'material code'. Code-like header at E35. Hex/code-like header at E35.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Numbering,4,5,33,AS,,,medium,Description-like header 'nameplate change (per item description)'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Numbering,20,21,520,E,N,N,high,Description-like header 'frame size'. Code-like header at N20. Hex/code-like header at N20.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Numbering,20,21,21,U,N,N,high,Description-like header 'filtered table (for driving datasheet options)'. Code-like header at N20. Hex/code-like header at N20.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Numbering,20,21,21,AD,N,N,high,Description-like header 'data sheet options'. Code-like header at N20. Hex/code-like header at N20.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Numbering,24,25,33,AS,,,medium,Description-like header 'oversized main conduit box - mount and extend leads'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,5,6,100,C,,,medium,Description-like header 'selection'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,E,BC,BC,high,Description-like header 'series'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,F,BC,BC,high,Description-like header 'size'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,G,BC,BC,high,Description-like header 'pump material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,H,BC,BC,high,Description-like header 'casing material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,W,BC,BC,high,Description-like header 'impeller material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,Z,BC,BC,high,Description-like header 'shaft material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AA,BC,BC,high,Description-like header 'lubrication options'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AC,BC,BC,high,Description-like header 'oiler options'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AJ,BC,BC,high,Description-like header 'seal option'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AP,BC,BC,high,Description-like header 'shaft sleeve material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AQ,BC,BC,high,Description-like header 'inboard rotating face material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AR,BC,BC,high,Description-like header 'inboard stationary face material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AT,BC,BC,high,Description-like header 'outboard rotating face material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,AU,BC,BC,high,Description-like header 'outboard stationary face material'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,BJ,BC,BC,high,Description-like header 'motor options'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,BS,BC,BC,high,Description-like header 'c-face adapter option'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,BU,BC,BC,high,Description-like header 'custom option 1'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,BV,BC,BC,high,Description-like header 'custom option 2'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,User Selections,6,7,7,BW,BC,BC,high,Description-like header 'custom option 3'. Code-like header at BC6. Hex/code-like header at BC6.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Constraints,2,3,48,B,,,medium,Description-like header 'frame size table'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Constraints,27,28,86,O,,,medium,Description-like header 'frame size/speed'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motor Constraints,29,30,48,B,,,medium,Description-like header 'size/style'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,External References,1,2,200,F,AD,AD,high,Description-like header 'series'. Code-like header at AD1. Hex/code-like header at AD1.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,External References,1,2,200,G,AD,AD,high,Description-like header 'size'. Code-like header at AD1. Hex/code-like header at AD1.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,External References,1,2,501,AC,AD,AD,high,Description-like header 'sleeve material'. Code-like header at AD1. Hex/code-like header at AD1.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,External References,1,2,168,AG,AD,AD,high,Description-like header 'series'. Code-like header at AD1. Hex/code-like header at AD1.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,External References,1,2,168,AH,AD,AD,high,Description-like header 'size'. Code-like header at AD1. Hex/code-like header at AD1.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Reference Data,1,2,200,B,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Reference Data,1,2,200,C,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Seal Descriptions,2,3,11,G,,,medium,Description-like header 'material key'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Misc Numbering,19,20,179,M,F,F,high,Description-like header 'paint options'. Code-like header at F19. Hex/code-like header at F19.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motors,2,4,7,B,,,medium,Description-like header 'motor options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Motors,4,5,95,N,,,medium,Description-like header 'motor frame size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),11,12,98,B,,,medium,Description-like header 'fluid description:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),18,20,68,C,,,medium,Description-like header 'dean® component description'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),20,21,98,B,,,medium,Description-like header 'pump series:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),21,22,98,B,,,medium,Description-like header 'size:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),26,28,28,E,,,medium,Description-like header 'sleeve material:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),27,28,98,B,,,medium,Description-like header 'seal options:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),30,31,98,B,,,medium,Description-like header 'baseplate options:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),38,39,98,B,,,medium,Description-like header 'included option 1:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),39,40,98,B,,,medium,Description-like header 'included option 2:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Formal Quote (OEM),40,41,98,B,,,medium,Description-like header 'included option 3:'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Seal Pricing,9,10,45,B,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,1,2,50,BP,,,medium,Description-like header 'pricing is not pump series or size dependent'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,163,D,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,163,E,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,502,O,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,502,S,,,medium,Description-like header 'baseplate material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,502,W,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,82,AC,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,82,AD,,,medium,Description-like header 'size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,82,AF,,,medium,Description-like header 'casing size'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,2,3,50,BQ,,,medium,Description-like header 'material'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,3,4,148,AI,,,medium,Description-like header 'pump options'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,3,4,33,BC,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,3,4,26,BV,,,medium,Description-like header 'series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,8,9,50,BQ,,,medium,Description-like header 'steel tubing - cooling to stuffing box/seal chamber jacket and bearing housing in series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,9,10,50,BQ,,,medium,Description-like header 'steel tubing - cooling to stuffing box/seal chamber jacket and bearing housing in series with parallel flow gland quench'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,10,11,50,BQ,,,medium,"Description-like header 'steel tubing - cooling to pedestals, stuffing box/seal chamber jacket, and bearing housing in series*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,11,12,50,BQ,,,medium,"Description-like header 'steel tubing - cooling to pedestals, stuffing box/seal chamber jacket, and bearing housing in series with parallel flow gland quench*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,13,14,50,BQ,,,medium,Description-like header 'steel tubing - cooling to stuffing box/seal chamber jacket and bearing housing in series with parallel flow to heat exchanger*'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,14,15,50,BQ,,,medium,"Description-like header 'steel tubing - cooling to pedestals, stuffing box/seal chamber jacket and bearing housing in series with parallel flow to heat exchanger*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,20,21,50,BQ,,,medium,Description-like header 'steel piping - cooling to stuffing box/seal chamber jacket and bearing housing in series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,21,22,50,BQ,,,medium,Description-like header 'steel piping - cooling to stuffing box/seal chamber jacket and bearing housing in series with parallel flow gland quench'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,22,23,50,BQ,,,medium,"Description-like header 'steel piping - cooling to pedestals, stuffing box/seal chamber jacket, and bearing housing in series*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,23,24,50,BQ,,,medium,"Description-like header 'steel piping - cooling to pedestals, stuffing box/seal chamber jacket, and bearing housing in series with parallel flow gland quench*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,25,26,50,BQ,,,medium,Description-like header 'steel piping - cooling to stuffing box/seal chamber jacket and bearing housing in series with parallel flow to heat exchanger*'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,26,27,50,BQ,,,medium,"Description-like header 'steel piping - cooling to pedestals, stuffing box/seal chamber jacket and bearing housing in series with parallel flow to heat exchanger*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,32,33,50,BQ,,,medium,Description-like header 'stainless steel tubing - cooling to stuffing box/seal chamber jacket and bearing housing in series'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,33,34,50,BQ,,,medium,Description-like header 'stainless steel tubing - cooling to stuffing box/seal chamber jacket and bearing housing in series with parallel flow gland quench'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,34,35,50,BQ,,,medium,"Description-like header 'stainless steel tubing - cooling to pedestals, stuffing box/seal chamber jacket, and bearing housing in series*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,35,36,50,BQ,,,medium,"Description-like header 'stainless steel tubing - cooling to pedestals, stuffing box/seal chamber jacket, and bearing housing in series with parallel flow gland quench*'."
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,37,38,50,BQ,,,medium,Description-like header 'stainless steel tubing - cooling to stuffing box/seal chamber jacket and bearing housing in series with parallel flow to heat exchanger*'.
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Pricing,38,39,50,BQ,,,medium,"Description-like header 'stainless steel tubing - cooling to pedestals, stuffing box/seal chamber jacket and bearing housing in series with parallel flow to heat exchanger*'."
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Pump Options,2,3,211,N,,,medium,"Description-like header '=table88[[#headers],[pump material]]'."
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Pump Options,2,3,211,X,,,medium,"Description-like header '=table6[[#headers],[casing material]]'."
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Pump Options,3,4,209,B,,,medium,Description-like header 'series'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Pump Options,3,4,209,C,,,medium,Description-like header 'size'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Price Options,2,3,211,N,,,medium,"Description-like header '=table88[[#headers],[pump material]]'."
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Price Options,2,3,211,X,,,medium,"Description-like header '=table6[[#headers],[casing material]]'."
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Price Options,3,4,209,B,,,medium,Description-like header 'series'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Price Options,3,4,209,C,,,medium,Description-like header 'size'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,53,B,,,medium,Description-like header 'casing material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,7,H,,,medium,Description-like header 'series'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,7,I,,,medium,Description-like header 'casing material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,115,L,,,medium,Description-like header 'impeller material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,10,R,,,medium,Description-like header 'series'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,10,T,,,medium,Description-like header 'shaft material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,7,AD,,,medium,Description-like header 'seal option'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,171,AI,,,medium,Description-like header 'seal option'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,6,7,160,AO,,,medium,Description-like header 'shaft sleeve material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,10,11,25,W,,,medium,Description-like header 'oiler options'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,14,15,160,AO,,,medium,Description-like header 'inboard rotating face material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,15,16,22,P,,,medium,Description-like header 'shaft sleeve material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,16,17,53,B,,,medium,Description-like header 'casing material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,20,21,160,AO,,,medium,Description-like header 'inboard stationary face material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,22,23,53,B,,,medium,Description-like header 'casing material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,29,30,53,B,,,medium,Description-like header 'casing material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,33,34,53,B,,,medium,Description-like header 'casing material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Codependencies,39,40,160,AO,,,medium,Description-like header 'inboard hardware material'.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,12,D,CY,CY,high,Description-like header 'pump material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,12,F,CY,CY,high,Description-like header 'casing material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,11,AH,CY,CY,high,Description-like header 'impeller material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,9,AJ,CY,CY,high,Description-like header 'impeller wear ring material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,10,AN,CY,CY,high,Description-like header 'shaft material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,9,AT,CY,CY,high,Description-like header 'oiler options'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,6,BH,CY,CY,high,Description-like header 'seal option'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,11,BU,CY,CY,high,Description-like header 'shaft sleeve material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,7,BW,CY,CY,high,Description-like header 'inboard rotating face material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,8,BY,CY,CY,high,Description-like header 'inboard stationary face material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,9,CC,CY,CY,high,Description-like header 'inboard hardware material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,7,CE,CY,CY,high,Description-like header 'outboard rotating face material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,8,CG,CY,CY,high,Description-like header 'outboard stationary face material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,9,CK,CY,CY,high,Description-like header 'outboard hardware material'. Code-like header at CY3. Hex/code-like header at CY3.
+DEAN,configuration_logic,PumpConfiguration_Logic.xlsm,Config Options,3,4,87,DM,CY,CY,high,Description-like header 'frame size'. Code-like header at CY3. Hex/code-like header at CY3.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,3,4,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,3,28,359,Q,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,4,5,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,5,6,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,6,7,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,7,8,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,8,9,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,9,10,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,10,11,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,11,12,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,12,13,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,13,14,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,14,15,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,15,16,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,16,17,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,17,18,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,18,19,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,19,20,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,20,21,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,21,22,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,22,23,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,23,24,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,24,25,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,25,26,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,26,27,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,27,28,360,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,28,29,360,B,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,28,30,359,Q,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,29,30,360,B,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,32,33,360,B,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,32,35,359,Q,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,33,34,360,B,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,34,35,360,B,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,75,B,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,75,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,37,D,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,37,E,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,37,F,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,54,G,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,4,54,H,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,3,10,54,I,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,75,B,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,75,C,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,37,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,37,E,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,37,F,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,54,G,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,4,5,54,H,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,6,7,75,B,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,6,7,75,C,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,6,7,37,E,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,10,11,75,B,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,10,11,75,C,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,10,12,37,E,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,10,11,54,H,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,10,12,54,I,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,16,75,B,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,16,75,C,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,16,37,D,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,16,37,E,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,16,37,F,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,17,54,G,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,16,54,H,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,15,17,54,I,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,75,B,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,75,C,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,37,D,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,37,E,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,37,F,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,54,G,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,54,H,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,19,20,54,I,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,27,75,B,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,27,75,C,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,27,37,D,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,27,37,E,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,27,37,F,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,33,54,G,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,27,54,H,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,26,32,54,I,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,29,30,75,B,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,29,30,75,C,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,29,30,37,D,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,29,30,37,E,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,29,30,37,F,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,29,30,54,H,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,30,31,75,B,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,30,31,75,C,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,30,31,37,D,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,30,31,37,E,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,30,31,37,F,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,30,31,54,H,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,35,75,B,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,35,75,C,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,37,37,D,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,35,37,E,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,37,37,F,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,35,54,H,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,Constraints,34,35,54,I,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,483,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,403,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,179,F,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,466,J,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,489,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,467,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,469,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,403,AC,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,406,AD,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,2,3,470,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,21,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,4,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,5,F,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,4,J,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,27,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,8,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,4,AC,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,7,AD,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,4,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,2,3,21,AP,,,medium,Description-like header 'size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,18,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,4,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,14,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,8,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,4,AC,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,7,AD,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1530,2,3,4,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,8,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,4,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,5,F,,,medium,Description-like header 'f_bearing_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,4,J,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,22,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,6,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,4,AC,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,7,AD,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1600,2,3,4,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,8,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,4,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,14,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,6,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,4,AC,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,7,AD,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1630,2,3,4,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,2530,2,3,12,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,2530,2,3,4,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,2530,2,3,22,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,2530,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,2530,2,3,5,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,7,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,4,D,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,4,J,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,22,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,4,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,4,AC,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,7,AD,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,4,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,2,3,34,AL,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,3,4,34,AL,,,medium,Description-like header 'f_baseplate_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,9,10,34,AL,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,14,15,34,AL,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,18,19,34,AL,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,25,26,34,AL,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,28,29,34,AL,,,medium,Description-like header 'f_seal_materials'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,29,30,34,AL,,,medium,Description-like header 'f_seal_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,3000,33,34,34,AL,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,2,3,21,C,,,medium,Description-like header 'alt_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,2,3,4,J,,,medium,Description-like header 'f_coupling_option'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,2,3,27,O,,,medium,Description-like header 'f_frame_size'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,2,3,5,S,,,medium,Description-like header 'f_motoroption'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,2,3,7,Z,,,medium,Description-like header 'f_pump_material'.
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,2,3,8,AH,,,medium,Description-like header 'f_shaft_material'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,5,7,28,J,,,medium,Description-like header 'make selection by changing the cells in blue.'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,7,11,14,D,,,medium,Description-like header 'description:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,7,12,28,J,,,medium,"Description-like header 'as of right now, there are no constraints to limit all selection.'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,12,13,14,E,,,medium,Description-like header 'series'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,12,13,14,F,,,medium,Description-like header 'size'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,12,13,14,G,,,medium,Description-like header 'pump material'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,12,13,28,J,,,medium,Description-like header 'pump options'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,12,13,18,P,,,medium,Description-like header 'options'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,14,D,,,medium,"Description-like header '=vlookup(d14,attributes!$c$8:$d$9,2,false)'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,14,E,,,medium,"Description-like header '=vlookup(e14,attributes!$f$8:$g$21,2,false)'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,14,F,,,medium,"Description-like header '=vlookup(f14,attributes!$i$8:$j$24,2,false)'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,14,G,,,medium,"Description-like header '=vlookup(g14,attributes!$l$8:$m$13,2,false)'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,14,H,,,medium,"Description-like header '=vlookup(h14,attributes!$o$8:$p$104,2,false)'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,28,J,,,medium,"Description-like header '=iferror(vlookup(l14&l15&l16&l17&l18&l19&l20&l21&l22&l23&l24&l25,'pump options'!$c$15:$p$138254,14,false),""not valid"")'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,18,P,,,medium,"Description-like header '=iferror(vlookup(q14&q15&q16&q17&q18,options!$c$12:$i$107,7,false),""not valid"")'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,16,U,,,medium,"Description-like header '=iferror(vlookup(v14,attributes!$r$8:$s$38,2,false)&vlookup(v15,attributes!$r$8:$s$38,2,false)&vlookup(v16,attributes!$r$8:$s$38,2,false),""not valid"")'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,13,14,14,X,,,medium,"Description-like header '=iferror(vlookup(y14,attributes!$u$8:$v$98,2,false),""not valid"")'."
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,14,15,18,N,,,medium,Description-like header 'seal option:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,14,15,18,P,,,medium,Description-like header 'coupling option:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,14,15,24,R,,,medium,Description-like header 'motor option:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,16,17,28,J,,,medium,Description-like header 'shaft material:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,16,17,18,N,,,medium,Description-like header 'seal materials:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,16,17,18,P,,,medium,Description-like header 'baseplate option:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,20,21,28,J,,,medium,Description-like header 'bearing option:'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Attributes,6,7,506,AT,,,medium,Description-like header 'size'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Attributes,7,8,23,F,D,D,high,Description-like header 'series'. Code-like header at D7. Hex/code-like header at D7.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Attributes,7,8,32,I,D,D,high,Description-like header 'size'. Code-like header at D7. Hex/code-like header at D7.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Attributes,7,8,13,L,D,D,high,Description-like header 'pump_material'. Code-like header at D7. Hex/code-like header at D7.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Attributes,9,10,38,R,,,medium,Description-like header 'nameplate change (per item description)'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Attributes,29,30,38,R,,,medium,Description-like header 'oversized main conduit box - mount & extend leads'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Pump Options,2,3,502,F,,,medium,Description-like header 'shaft_material'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Pump Options,2,3,502,J,,,medium,Description-like header 'bearing_option'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Pump Options,14,15,514,F,P,P,high,Description-like header 'shaft_material'. Code-like header at P14. Hex/code-like header at P14.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Pump Options,14,15,514,J,P,P,high,Description-like header 'bearing_option'. Code-like header at P14. Hex/code-like header at P14.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Pump Options,14,15,514,S,P,P,high,Description-like header 'shaft_material'. Code-like header at P14. Hex/code-like header at P14.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Seal Assembly,2,3,80,D,,,medium,Description-like header 'seal_option'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Seal Assembly,2,3,80,F,,,medium,Description-like header 'seal_materials'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Seal Assembly,13,14,80,D,I,I,high,Description-like header 'seal_option'. Code-like header at I13. Hex/code-like header at I13.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Seal Assembly,13,14,80,F,I,I,high,Description-like header 'seal_materials'. Code-like header at I13. Hex/code-like header at I13.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Seal Assembly,13,14,80,N,I,I,high,Description-like header 'seal_materials'. Code-like header at I13. Hex/code-like header at I13.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Options,2,3,107,D,,,medium,Description-like header 'coupling_option'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Options,2,3,107,F,,,medium,Description-like header 'baseplate_option'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Options,11,12,107,D,I,I,high,Description-like header 'coupling_option'. Code-like header at I11. Hex/code-like header at I11.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Options,11,12,107,F,I,I,high,Description-like header 'baseplate_option'. Code-like header at I11. Hex/code-like header at I11.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm, Motor Assy,2,3,502,D,,,medium,Description-like header 'motor_option'.
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm, Motor Assy,26,27,526,D,O,O,high,Description-like header 'motor_option'. Code-like header at O26. Hex/code-like header at O26.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Nameplate,8,10,17,C,,,medium,Description-like header 'model & size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Nameplate,12,13,23,N,,,medium,Description-like header 'series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Nameplate,13,14,23,N,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Nameplate,16,17,23,N,,,medium,Description-like header 'material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,3,4,150,J,,,medium,Description-like header 'bom description:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,5,6,137,V,,,medium,Description-like header 'item size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,13,14,244,C,,,medium,"Description-like header '=if(and(b13<>"""",d51<>""c/f""),b13+7*value(left(d51,find("" "",d51)-1)),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,13,14,152,F,,,medium,Description-like header 'total options:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,15,17,137,S,,,medium,Description-like header 'selection by others'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,19,20,242,A,A,A,high,"Description-like header '=concatenate(if(or(isnumber(match(""c-face adapter"",'price check'!b92:'price check'!b101,0)),isnumber(search(""c-face adapter"",'price check'!b91))), concatenate(""paul,"",char(10),""please provide delivery to kevin for this c-face adapter:"",char(10),"" fybroc p/n: "",if(adders!c198=""071ydc02a"",""071ydc01a"",adders!c198),char(10),"" dean p/n: "",adders!c199,char(10),"" dean part code: "",adders!c200,char(10),char(10),""kevin,"",char(10),char(10)),""""), if(and(b54=""vertical"",or(b29=tables!b125,b29=tables!b126,b25=7500,b25=7530)),concatenate(""paul,"",char(10),""please provide "",if(or(b25=7500,and(b25=5500,b27=3)),""machined shaft "",""bar stock ""),""price/delivery for a quantity of ("",b24,"") "",b25,"" series, group "",b27,"" ["",left(b26,search(""("",b26)-2),""] "",b29,"" pump shaft"",if(or(b25=7500,b25=7530),"""","" for setting #""&b38),"". part number: "",l48,char(10),char(10),""kevin,"",char(10),char(10)),""""), if(b8=tables!b3,concatenate(if(e50=""delivery/weights/dims"",concatenate(""please also provide weight & dims estimate for ocean freight."",char(10),char(10)),""""),b4,"" - rfq# "",b9),""""), if(b8=tables!b4,concatenate(b4,"" - po# "",b14),""""))'. Code-like header at A19. Hex/code-like header at A19."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,19,21,137,S,A,A,high,"Description-like header '=""curve/selection by fybroc - ""&o2'. Code-like header at A19. Hex/code-like header at A19."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,26,27,242,A,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,27,38,228,B,,,medium,"Description-like header '=index(table4[],match(b26,table4[ansi size],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,27,28,141,K,,,medium,Description-like header 'frame size:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,28,29,242,A,,,medium,Description-like header 'pump material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,29,30,242,A,,,medium,Description-like header 'shaft material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,36,37,242,A,,,medium,Description-like header 'impeller size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,40,43,228,B,,,medium,"Description-like header '=if(b39=""no"",0,if(b39=""flat screen strainer"",1,if(b39=""yes"",index(table84[],match(if(or(b25=8500,b44="""",b44=b37+hlookup(b26,tables!d376:ac381,2,false)),""strainer length"",""strainer length (tailpipe)""),table84[size],0),match(b26,table84[#headers],0)),if(b39=""tbd"","""",if(b54=""vertical"",0,"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,11,12,509,B,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,12,13,511,C,,,medium,"Description-like header '=index(table4[],match(c11,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,12,13,353,D,,,medium,"Description-like header '=index(table4[],match(d11,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,12,13,512,E,,,medium,"Description-like header '=index(table4[],match(e11,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,12,13,511,F,,,medium,"Description-like header '=index(table4[],match(f11,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,13,14,513,B,,,medium,Description-like header 'pump material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,14,15,513,B,,,medium,Description-like header 'shaft material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,21,22,518,B,,,medium,Description-like header 'impeller size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,26,31,526,C,,,medium,"Description-like header '=if(c25=""no"",0,if(c25=""flat screen strainer"",1,if(c25=""yes"",index(table84[],match(if(or(c10=8500,c30="""",c30=c22+hlookup(c11,tables!e361:ad366,2,false)),""strainer length"",""strainer length (tailpipe)""),table84[size],0),match(c11,table84[#headers],0)),if(c25=""tbd"","""",if(c40=""vertical"",0,"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,26,31,526,D,,,medium,"Description-like header '=if(d25=""no"",0,if(d25=""flat screen strainer"",1,if(d25=""yes"",index(table84[],match(if(or(d10=8500,d30="""",d30=d22+hlookup(d11,tables!f361:ae366,2,false)),""strainer length"",""strainer length (tailpipe)""),table84[size],0),match(d11,table84[#headers],0)),if(d25=""tbd"","""",if(d40=""vertical"",0,"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,26,31,526,E,,,medium,"Description-like header '=if(e25=""no"",0,if(e25=""flat screen strainer"",1,if(e25=""yes"",index(table84[],match(if(or(e10=8500,e30="""",e30=e22+hlookup(e11,tables!g361:af366,2,false)),""strainer length"",""strainer length (tailpipe)""),table84[size],0),match(e11,table84[#headers],0)),if(e25=""tbd"","""",if(e40=""vertical"",0,"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,26,31,519,F,,,medium,"Description-like header '=if(f25=""no"",0,if(f25=""flat screen strainer"",1,if(f25=""yes"",index(table84[],match(if(or(f10=8500,f30="""",f30=f22+hlookup(f11,tables!h361:ag366,2,false)),""strainer length"",""strainer length (tailpipe)""),table84[size],0),match(f11,table84[#headers],0)),if(f25=""tbd"","""",if(f40=""vertical"",0,"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,31,32,531,C,,,medium,"Description-like header '=if(and(c22<>"""",c25<>"""",c30<>""""), if(and(c10=8500,d12<>"""",d12<>""stages"",c30<>""""), c30-(index(table147[],match(c11&"" ""&d12,table147[8500 series],0),match(""total stage length"",table147[#headers],0))+ index(table147[],match(c11&"" ""&d12,table147[8500 series],0),match(""bell length"",table147[#headers],0))+ index(table147[],match(c11&"" ""&d12,table147[8500 series],0),match(""spool length"",table147[#headers],0))+c22+c26)- if(left(c11,1)=""6"",4.25,if(left(c11,1)=""8"",5.75,0)), c30-(c22+c26)),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,31,32,531,D,,,medium,"Description-like header '=if(and(d22<>"""",d25<>"""",d30<>""""), if(and(d10=8500,e12<>"""",e12<>""stages"",d30<>""""), d30-(index(table147[],match(d11&"" ""&e12,table147[8500 series],0),match(""total stage length"",table147[#headers],0))+ index(table147[],match(d11&"" ""&e12,table147[8500 series],0),match(""bell length"",table147[#headers],0))+ index(table147[],match(d11&"" ""&e12,table147[8500 series],0),match(""spool length"",table147[#headers],0))+d22+d26)- if(left(d11,1)=""6"",4.25,if(left(d11,1)=""8"",5.75,0)), d30-(d22+d26)),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,31,32,531,E,,,medium,"Description-like header '=if(and(e22<>"""",e25<>"""",e30<>""""), if(and(e10=8500,f12<>"""",f12<>""stages"",e30<>""""), e30-(index(table147[],match(e11&"" ""&f12,table147[8500 series],0),match(""total stage length"",table147[#headers],0))+ index(table147[],match(e11&"" ""&f12,table147[8500 series],0),match(""bell length"",table147[#headers],0))+ index(table147[],match(e11&"" ""&f12,table147[8500 series],0),match(""spool length"",table147[#headers],0))+e22+e26)- if(left(e11,1)=""6"",4.25,if(left(e11,1)=""8"",5.75,0)), e30-(e22+e26)),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,31,32,519,F,,,medium,"Description-like header '=if(and(f22<>"""",f25<>"""",f30<>""""), if(and(f10=8500,g12<>"""",g12<>""stages"",f30<>""""), f30-(index(table147[],match(f11&"" ""&g12,table147[8500 series],0),match(""total stage length"",table147[#headers],0))+ index(table147[],match(f11&"" ""&g12,table147[8500 series],0),match(""bell length"",table147[#headers],0))+ index(table147[],match(f11&"" ""&g12,table147[8500 series],0),match(""spool length"",table147[#headers],0))+f22+f26)- if(left(f11,1)=""6"",4.25,if(left(f11,1)=""8"",5.75,0)), f30-(f22+f26)),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,35,39,535,C,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,35,36,535,D,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,35,39,535,E,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,35,39,519,F,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,H,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,AE,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,AG,,,medium,Description-like header 'pump material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,AH,,,medium,Description-like header 'shaft material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,AO,,,medium,Description-like header 'impeller size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,BH,,,medium,Description-like header 'fluid description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,4,5,37,BM,,,medium,Description-like header 'included option 1:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,5,6,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad5,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,5,6,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a5,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae5,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,5,6,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,6,7,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad6,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,6,7,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a6,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae6,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,6,7,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,7,8,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad7,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,7,8,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a7,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae7,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,7,8,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,8,9,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad8,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,8,9,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a8,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae8,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,8,9,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,9,10,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad9,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,9,10,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a9,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae9,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,9,10,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,10,11,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad10,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,10,11,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a10,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae10,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,10,11,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,11,12,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad11,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,11,12,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a11,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae11,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,11,12,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,12,13,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad12,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,12,13,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a12,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae12,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,12,13,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,13,14,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad13,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,13,14,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a13,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae13,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,13,14,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,14,15,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad14,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,14,15,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a14,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae14,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,14,15,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,15,16,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad15,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,15,16,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a15,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae15,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,15,16,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,16,17,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad16,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,16,17,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a16,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae16,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,16,17,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,17,18,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad17,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,17,18,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a17,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae17,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,17,18,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,18,19,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad18,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,18,19,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a18,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae18,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,18,19,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,19,20,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad19,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,19,20,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a19,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae19,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,19,20,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,20,21,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad20,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,20,21,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a20,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae20,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,20,21,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,21,22,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad21,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,21,22,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a21,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae21,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,21,22,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,22,23,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad22,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,22,23,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a22,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae22,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,22,23,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,23,24,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad23,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,23,24,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a23,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae23,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,23,24,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,24,25,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad24,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,24,25,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a24,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae24,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,24,25,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,25,26,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad25,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,25,26,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a25,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae25,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,25,26,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,26,27,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad26,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,26,27,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a26,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae26,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,26,27,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,27,28,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad27,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,27,28,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a27,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae27,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,27,28,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,28,29,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad28,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,28,29,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a28,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae28,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,28,29,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,29,30,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad29,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,29,30,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a29,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae29,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,29,30,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,30,31,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad30,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,30,31,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a30,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae30,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,30,31,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,31,32,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad31,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,31,32,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a31,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae31,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,31,32,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,32,33,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad32,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,32,33,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a32,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae32,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,32,33,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,33,34,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad33,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,33,34,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a33,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae33,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,33,34,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,34,35,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad34,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,34,35,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a34,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae34,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,34,35,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,35,36,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad35,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,35,36,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a35,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae35,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,35,36,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,36,37,37,G,,,medium,"Description-like header '=concatenate(""fybroc "",ad36,"" series"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,36,37,37,AF,,,medium,"Description-like header '=iferror(if($ah$1=""yes"",index(maintemplate!$d$7:$iv$82,match($af$4,maintemplate!$b$7:$b$82,0),match(a36,maintemplate!$d$6:$iv$6,0)),index(table4[],match(ae36,table4[ansi size],0),match(""group"",table4[#headers],0))),"""")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,36,37,37,AT,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,2,3,502,BR,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,2,3,502,BV,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,2,3,502,BW,,,medium,Description-like header 'frame size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,2,3,58,BZ,,,medium,Description-like header 'frame size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,26,73,119,C,,,medium,Description-like header 'not sized for full trim'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,31,32,69,B,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,D,,,medium,"Description-like header '=index(table4[],match(d31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,E,,,medium,"Description-like header '=index(table4[],match(e31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,F,,,medium,"Description-like header '=index(table4[],match(f31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,G,,,medium,"Description-like header '=index(table4[],match(g31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,H,,,medium,"Description-like header '=index(table4[],match(h31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,I,,,medium,"Description-like header '=index(table4[],match(i31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,J,,,medium,"Description-like header '=index(table4[],match(j31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,K,,,medium,"Description-like header '=index(table4[],match(k31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,L,,,medium,"Description-like header '=index(table4[],match(l31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,M,,,medium,"Description-like header '=index(table4[],match(m31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,N,,,medium,"Description-like header '=index(table4[],match(n31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,O,,,medium,"Description-like header '=index(table4[],match(o31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,P,,,medium,"Description-like header '=index(table4[],match(p31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,Q,,,medium,"Description-like header '=index(table4[],match(q31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,R,,,medium,"Description-like header '=index(table4[],match(r31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,S,,,medium,"Description-like header '=index(table4[],match(s31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,T,,,medium,"Description-like header '=index(table4[],match(t31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,U,,,medium,"Description-like header '=index(table4[],match(u31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,V,,,medium,"Description-like header '=index(table4[],match(v31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,119,W,,,medium,"Description-like header '=index(table4[],match(w31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,X,,,medium,"Description-like header '=index(table4[],match(x31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,Y,,,medium,"Description-like header '=index(table4[],match(y31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,Z,,,medium,"Description-like header '=index(table4[],match(z31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AA,,,medium,"Description-like header '=index(table4[],match(aa31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AB,,,medium,"Description-like header '=index(table4[],match(ab31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AC,,,medium,"Description-like header '=index(table4[],match(ac31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AD,,,medium,"Description-like header '=index(table4[],match(ad31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AE,,,medium,"Description-like header '=index(table4[],match(ae31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AF,,,medium,"Description-like header '=index(table4[],match(af31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AG,,,medium,"Description-like header '=index(table4[],match(ag31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AH,,,medium,"Description-like header '=index(table4[],match(ah31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AI,,,medium,"Description-like header '=index(table4[],match(ai31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AJ,,,medium,"Description-like header '=index(table4[],match(aj31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AK,,,medium,"Description-like header '=index(table4[],match(ak31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AL,,,medium,"Description-like header '=index(table4[],match(al31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AM,,,medium,"Description-like header '=index(table4[],match(am31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AN,,,medium,"Description-like header '=index(table4[],match(an31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AO,,,medium,"Description-like header '=index(table4[],match(ao31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AP,,,medium,"Description-like header '=index(table4[],match(ap31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AQ,,,medium,"Description-like header '=index(table4[],match(aq31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AR,,,medium,"Description-like header '=index(table4[],match(ar31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AS,,,medium,"Description-like header '=index(table4[],match(as31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AT,,,medium,"Description-like header '=index(table4[],match(at31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AU,,,medium,"Description-like header '=index(table4[],match(au31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AV,,,medium,"Description-like header '=index(table4[],match(av31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AW,,,medium,"Description-like header '=index(table4[],match(aw31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AX,,,medium,"Description-like header '=index(table4[],match(ax31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AY,,,medium,"Description-like header '=index(table4[],match(ay31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,AZ,,,medium,"Description-like header '=index(table4[],match(az31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BA,,,medium,"Description-like header '=index(table4[],match(ba31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BB,,,medium,"Description-like header '=index(table4[],match(bb31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BC,,,medium,"Description-like header '=index(table4[],match(bc31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BD,,,medium,"Description-like header '=index(table4[],match(bd31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BE,,,medium,"Description-like header '=index(table4[],match(be31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BF,,,medium,"Description-like header '=index(table4[],match(bf31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BG,,,medium,"Description-like header '=index(table4[],match(bg31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BH,,,medium,"Description-like header '=index(table4[],match(bh31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BI,,,medium,"Description-like header '=index(table4[],match(bi31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BJ,,,medium,"Description-like header '=index(table4[],match(bj31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BK,,,medium,"Description-like header '=index(table4[],match(bk31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BL,,,medium,"Description-like header '=index(table4[],match(bl31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BM,,,medium,"Description-like header '=index(table4[],match(bm31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BN,,,medium,"Description-like header '=index(table4[],match(bn31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BO,,,medium,"Description-like header '=index(table4[],match(bo31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,32,33,78,BP,,,medium,"Description-like header '=index(table4[],match(bp31,table4[[ansi size]:[ansi size]],0),match(""group"",table4[#headers],0))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,33,34,69,B,,,medium,Description-like header 'pump material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ROM_Data,34,35,69,B,,,medium,Description-like header 'shaft material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,15,16,161,B,,,medium,Description-like header 'fluid description:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,20,23,67,D,,,medium,"Description-like header '=if('price check'!b74=""no"",""no solids present"",if(or('price check'!b74="""",'price check'!b74=""enter name, misc., or unknown""),""no solids information provided; assumed to be negligible"", concatenate(if(isnumber('price check'!c74),concatenate('price check'!c74*100,""%""),'price check'!c74),"" "",'price check'!b74,"" - "",if(or('price check'!b75="""",'price check'!c75=""""),""unknown size"",concatenate('price check'!b75,"" "",'price check'!c75)))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,22,23,131,C,,,medium,Description-like header 'fybroc® component description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,22,23,128,M,,,medium,Description-like header 'fybroc® component description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,22,23,84,X,,,medium,Description-like header 'fybroc® component description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,22,23,84,AI,,,medium,Description-like header 'fybroc® component description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,23,24,161,B,,,medium,Description-like header 'pump series:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,23,24,131,E,,,medium,"Description-like header '=concatenate(if(and(or('price check'!b25=5500,'price check'!b25=7500),index(table4[],match('price check'!b26,table4[ansi size],0),match(""discharge"",table4[#headers],0))<2),""2in 150# "",concatenate(index(table4[],match('price check'!b26,table4[ansi size],0),match(""discharge"",table4[#headers],0)),""in 150# "")),if(isnumber(match(""din/iso flanges"",'price check'!b92:b101,0)),""din/iso flange"",if(isnumber(match(""jis flanges"",'price check'!b92:b101,0)),""jis flange"",""ansi flange"")))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,24,25,161,B,,,medium,Description-like header 'size:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,24,25,131,E,,,medium,"Description-like header '=concatenate(index(table4[],match('price check'!b26,table4[ansi size],0),match(""suction"",table4[#headers],0)),""in 150# "",if(isnumber(match(""din/iso flanges"",'price check'!b92:b101,0)),""din/iso flange"",if(isnumber(match(""jis flanges"",'price check'!b92:b101,0)),""jis flange"",""ansi flange"")))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,38,39,131,C,,,medium,"Description-like header '=substitute(substitute(if('price check'!b92<>"""",if('price check'!b92=adders!b$53,'price check'!b92&"" (for controlled materials only)"",'price check'!b92),""""),""casing drains"",iferror(if('price check'!b$27=1,""1/4in npt casing drains"",""1/2in npt casing drains""),""casing drains"")),""suction & discharge gauge taps"",""1/4in npt suction & discharge gauge taps"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,39,40,131,C,,,medium,"Description-like header '=substitute(substitute(if('price check'!b93<>"""",if('price check'!b93=adders!b$53,'price check'!b93&"" (for controlled materials only)"",'price check'!b93),""""),""casing drains"",iferror(if('price check'!b$27=1,""1/4in npt casing drains"",""1/2in npt casing drains""),""casing drains"")),""suction & discharge gauge taps"",""1/4in npt suction & discharge gauge taps"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Formal Quote,40,41,131,C,,,medium,"Description-like header '=substitute(substitute(if('price check'!b94<>"""",if('price check'!b94=adders!b$53,'price check'!b94&"" (for controlled materials only)"",'price check'!b94),""""),""casing drains"",iferror(if('price check'!b$27=1,""1/4in npt casing drains"",""1/2in npt casing drains""),""casing drains"")),""suction & discharge gauge taps"",""1/4in npt suction & discharge gauge taps"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,7,8,52,D,,,medium,Description-like header 'pump description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,8,11,52,D,,,medium,"Description-like header '=if(d11 = """", """",if(or('price check'!b25=5500, 'price check'!b25=5530, 'price check'!b25=7530, 'price check'!b25=7500, 'price check'!b25=6000, 'price check'!b25=8500),""this sheet is for horizontal pumps only"", _xlfn.concat(if(_xlfn.floor.math(d11/100) = 15, ""ansi horizontal centrifugal pump"", if(_xlfn.floor.math(d11/100) =16, ""self-priming centrifugal pump"", if(_xlfn.floor.math(d11/100) =25, ""mag-drive centrifugal pump"", if(_xlfn.floor.math(d11/100) =26, ""self-priming mag-drive centrifugal pump"", if(_xlfn.floor.math(d11/100) =30, ""recessed impeller centrifugal pump"", ""did you pick a 500 series? why on earth would you do that?""))))),if(_xlfn.floor.math((d11-50)/100)=_xlfn.floor.math(d11/100), "" (isometric flanges and shaft)"",if(_xlfn.floor.math((d11-30)/100)=_xlfn.floor.math(d11/100), "" (close coupled)"", """")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,10,16,41,O,,,medium,"Description-like header '=if(and('price check'!b25<>"""", 'price check'!b26<>""""), iferror(index('spec. tbls.'!e2:am14, match('price check'!b25, 'spec. tbls.'!e2:e14, 0), match('price check'!b26, 'spec. tbls.'!e2:am2, 0)), if(_xlfn.floor.math('price check'!b25/100) = _xlfn.floor.math(('price check'!b25-50)/100),iferror(index('spec. tbls.'!e2:am14, match('price check'!b25 - 50, 'spec. tbls.'!e2:e14, 0), match('price check'!b26, 'spec. tbls.'!e2:am2, 0)), ""not a viable iec size""), if('price check'!b25 = 6000,iferror(index('spec. tbls.'!e2:am14, 9, match('price check'!b26, 'spec. tbls.'!e2:am2, 0)), ""not a viable size""), if('price check'!b25= 500, ""no, do not, you should not configure a 500 series"", ""i don't even know how you got here"")))), ""enter series and size"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,11,12,50,C,,,medium,Description-like header 'series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,12,13,50,C,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,13,14,50,C,,,medium,Description-like header 'pump material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,14,15,50,C,,,medium,Description-like header 'shaft material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,17,18,52,F,,,medium,Description-like header 'motor option'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,23,24,50,C,,,medium,Description-like header 'seal option'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,25,26,50,C,,,medium,Description-like header 'seal materials'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,25,26,49,L,,,medium,"Description-like header 'elaborate on baseplate options: #1 bare baseplate only; no hardware, risers or guard; drilled for pump only. #2 hardware and riser kit only; no coupling guard. #3 standard coupling guard only – powder coated steel. add $243 list to above option #3 or #5 prices for 316ss guard if required. #4 baseplate with hardware and risers only; no coupling guard. #5 complete baseplate assembly: includes all hardware, risers and guard. option #5 prices are only applicable when fybroc supplies the complete package (pump, seal, coupling, guard, baseplate & motor)'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,28,29,50,C,,,medium,Description-like header 'options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,28,52,52,F,,,medium,Description-like header 'motor options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,30,31,50,C,,,medium,Description-like header 'coupling options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,30,31,49,L,,,medium,"Description-like header 'if a shaft grounding ring is being used, it drives the ""motor control"" option (initially stated as a question for the applications datasheet, kept in to show if the pump is vfd compatible)'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,32,33,49,L,,L,high,"Description-like header 'how to handle motor options (3 options shown in the smart number, 5 options listed in spec sheet, 7 options listen in m-$)'. Hex/code-like header at L32."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,33,34,49,L,,,medium,"Description-like header 'note at the end of options section saying ""baseplate and coupling to be used with provided motor spec"" + what else to apply this to within this sheet'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,35,45,49,L,,,medium,"Description-like header 'instead of wet end kit as a cell option, add logic to specify in the not included specced options of what it is'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Horizontal,37,38,38,B,,,medium,Description-like header 'additional pump options/adders:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,7,8,33,D,,,medium,Description-like header 'pump description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,11,12,46,C,,,medium,Description-like header 'series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,12,13,46,C,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,13,14,46,C,,,medium,Description-like header 'pump material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,13,14,43,F,,,medium,Description-like header 'motor options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,14,15,46,C,,,medium,Description-like header 'shaft material'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,23,40,43,F,,,medium,Description-like header 'motor options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,24,25,46,C,,,medium,Description-like header 'options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,25,26,46,C,,,medium,Description-like header 'coupling options'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,26,27,33,D,,,medium,"Description-like header '=if('price check'!b39 = """", """",if('price check'!b39 = ""yes"", ""bowl strainer"", if('price check'!b39 = ""no"", ""no strainer"", if('price check'!b39 = ""flat screen strainer"",if('price check'!c39 = ""mat'l?"", ""select material"", _xlfn.concat('price check'!c39, "" flat screen strainer"")),""tbd""))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Fybroc Vertical,34,35,35,B,,,medium,Description-like header 'additional pump options/adders:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,2,3,37,B,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,2,3,24,E,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,18,19,23,G,,,medium,Description-like header 'option #1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,19,20,23,G,,,medium,Description-like header 'option #2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,20,21,23,G,,,medium,Description-like header 'option #3'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,21,22,23,G,,,medium,Description-like header 'option #4'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Spec. Tbls.,22,23,23,G,,,medium,Description-like header 'option #5'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,489,B,,,medium,Description-like header 'ansi size selector'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,G,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,H,,,medium,Description-like header '8500 series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,N,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,496,O,,,medium,Description-like header '1500-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,P,,,medium,Description-like header '1530-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,Q,,,medium,Description-like header '1550-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,502,R,,,medium,Description-like header '1600-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,S,,,medium,Description-like header '1630-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,T,,,medium,Description-like header '1650-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,490,U,,,medium,Description-like header '2530-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,V,,,medium,Description-like header '2630-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,W,,,medium,Description-like header '3000-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,490,X,,,medium,Description-like header '5500-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,Y,,,medium,Description-like header '5530-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,Z,,,medium,Description-like header '6000-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,490,AA,,,medium,Description-like header '7500-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,AB,,,medium,Description-like header '7530-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,26,27,512,AC,,,medium,Description-like header '2580-size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,27,28,489,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g27,if('price check'!$b$25="""",$n27,index(table156[],1,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,27,28,527,F,,,medium,"Description-like header '=if(or('price check'!b25=1500,'price check'!b25=1550), vlookup('price check'!b26,table19[[size (ansi)]:[1500]],2,false), if('price check'!b25=1530, vlookup('price check'!b26,table19[[size (ansi)]:[1530]],3,false), if(or('price check'!b25=1600,'price check'!b25=1650), vlookup('price check'!b26,table19[[size (ansi)]:[1600]],4,false), if('price check'!b25=1630, vlookup('price check'!b26,table19[[size (ansi)]:[1630]],5,false),""*""))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,28,29,489,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g28,if('price check'!$b$25="""",$n28,index(table156[],2,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,29,30,489,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g29,if('price check'!$b$25="""",$n29,index(table156[],3,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,30,31,489,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g30,if('price check'!$b$25="""",$n30,index(table156[],4,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,31,32,489,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g31,if('price check'!$b$25="""",$n31,index(table156[],5,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,32,33,532,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g32,if('price check'!$b$25="""",$n32,index(table156[],6,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,33,34,533,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g33,if('price check'!$b$25="""",$n33,index(table156[],7,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,34,35,534,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g34,if('price check'!$b$25="""",$n34,index(table156[],8,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,35,36,535,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g35,if('price check'!$b$25="""",$n35,index(table156[],9,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,36,37,536,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g36,if('price check'!$b$25="""",$n36,index(table156[],10,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,37,38,537,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g37,if('price check'!$b$25="""",$n37,index(table156[],11,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,37,38,531,F,,,medium,"Description-like header '=if('price check'!b25=2500, vlookup('price check'!b26,table41[[size (ansi)]:[2500]],2,false),if('price check'!b25=2530, vlookup('price check'!b26,table41[[size (ansi)]:[2530]],3,false),""*""))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,38,39,538,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g38,if('price check'!$b$25="""",$n38,index(table156[],12,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,39,40,539,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g39,if('price check'!$b$25="""",$n39,index(table156[],13,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Tables,40,41,540,B,,,medium,"Description-like header '=if('price check'!$b$25=8500,$g40,if('price check'!$b$25="""",$n40,index(table156[],14,match(concatenate('price check'!$b$25,""-size""),table156[#headers],0))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,6,7,366,A,,,medium,Description-like header '$ - option #1:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,7,8,366,A,,,medium,Description-like header 'option #1:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,8,9,366,A,,,medium,Description-like header '$ - option #1(drilled for motor):group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,9,10,366,A,,,medium,Description-like header 'option #1(drilled for motor):group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,10,11,366,A,,,medium,Description-like header '$ - option #1(w/ 303ss h/w):group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,11,12,366,A,,,medium,Description-like header 'option #1(w/ 303ss h/w):group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,12,13,366,A,,,medium,Description-like header '$ - option #2:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,13,14,366,A,,,medium,Description-like header 'option #2:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,14,15,366,A,,,medium,Description-like header '$ - option #3:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,15,16,366,A,,,medium,Description-like header 'option #3:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,16,17,366,A,,,medium,Description-like header '$ - option #4:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,17,18,366,A,,,medium,Description-like header 'option #4:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,18,19,366,A,,,medium,Description-like header 'option #4:group 1-all 316ss'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,19,20,366,A,,,medium,Description-like header '$ - option #5:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,20,21,366,A,,,medium,Description-like header 'option #5:group 1'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,21,22,366,A,,,medium,Description-like header 'option #5:group 1-316ss h/w only'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,22,23,366,A,,,medium,Description-like header 'option #5:group 1-all 316ss'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,23,24,366,A,,,medium,Description-like header '$ - option #1:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,24,25,366,A,,,medium,Description-like header 'option #1:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,25,26,366,A,,,medium,Description-like header '$ - option #1(drilled for motor):group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,26,27,366,A,,,medium,Description-like header 'option #1(drilled for motor):group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,27,28,366,A,,,medium,Description-like header '$ - option #1(w/ 303ss h/w):group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,28,29,366,A,,,medium,Description-like header 'option #1(w/ 303ss h/w):group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,29,30,366,A,,,medium,Description-like header '$ - option #2:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,30,31,366,A,,,medium,Description-like header 'option #2:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,31,32,366,A,,,medium,Description-like header '$ - option #3:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,32,33,366,A,,,medium,Description-like header 'option #3:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,33,34,366,A,,,medium,Description-like header '$ - option #4:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,34,35,366,A,,,medium,Description-like header 'option #4:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,35,36,366,A,,,medium,Description-like header 'option #4:group 2-all 316ss'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,36,37,366,A,,,medium,Description-like header '$ - option #5:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,37,38,366,A,,,medium,Description-like header 'option #5:group 2'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,38,39,366,A,,,medium,Description-like header 'option #5:group 2-316ss h/w only'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,39,40,366,A,,,medium,Description-like header 'option #5:group 2-all 316ss'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Baseplate,40,41,366,A,,,medium,Description-like header '$ - option #1:4x6x10 - group 2:13'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,18,20,65,H,,,medium,Description-like header 'complete description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,25,26,81,M,,,medium,"Description-like header '=if(s25<>"""",s25,if(or('m-$'!e167=""ok"",if('m-$'!k168=""yes"",1,0)+if('m-$'!k180=""yes"",1,0)+if('m-$'!k192=""yes"",1,0)=1), if('price check'!d83=if('price check'!b25=7530,""included"", round(if(or('price check'!b47="""",'price check'!b47=tables!b184,'price check'!b47=tables!b182),0, if(and('price check'!b47=tables!b183,isnumber(value(left('price check'!b46,3))),'price check'!b54<>""vertical""), index(table158[],if(value(left('price check'!b46,3))<=215,1,if(and(value(left('price check'!b46,3))>215,value(left('price check'!b46,3))<=286),2,if(value(left('price check'!b46,3))>=324,3,0))),match(concatenate(""group-"",'price check'!b27),adders!b127:b130,0)), if(and('price check'!b47=tables!b183,'price check'!b54=""vertical""),""c/f"", if('m-$'!e167=""ok"",'m-#'!av11,if('m-$'!e168=""yes"",'m-$'!i178, if('m-$'!e180=""yes"",'m-$'!i190, if('m-$'!e192=""yes"",'m-$'!i202,""""))))))) /if('price check'!d78=2016,if('price check'!b47=tables!b183,1,0.945),1),0)), if(and('price check'!b53=tables!b337,or(and('price check'!b57=tables!b165,'price check'!b58=tables!b174),and('price check'!b57=tables!b164,'price check'!b58=tables!b174),and('price check'!b57=tables!b164,'price check'!b58=tables!b173)),'price check'!b59=tables!b307,'price check'!b60=tables!b333,isnumber(search(""jm"",'price check'!b46)),'price check'!c63='m-#'!af25,or('price check'!c64="""",'price check'!c64=tables!b414)), if(and('price check'!b57=tables!b165,'price check'!b58=tables!b174), index(table119[],match(concatenate('price check'!b55,""-"",'price check'!b56,""-"",'price check'!b46),'m-$'!d70:d106,0),match(""cost"",table119[#headers],0)), index(table120[],match(concatenate('price check'!b55,""-"",'price check'!b56,""-"",'price check'!b46),'m-$'!i70:i106,0),if('price check'!b58=tables!b174,match(""prem cost"",table120[#headers],0),match(""std cost"",table120[#headers],0)))), if(and('price check'!c63=""teco"",h25<>""part# unknown""),iferror(vlookup(h25,'m-$'!gu:gv,2,false),iferror(vlookup(h25,'m-$'!gw:gx,2,false),iferror(vlookup(h25,'m-$'!gy:gz,2,false),iferror(vlookup(h25,'m-$'!ha:hb,2,false),iferror(vlookup(h25,'m-$'!hc:hd,2,false),iferror(vlookup(h25,'m-$'!he:hf,2,false),iferror(vlookup(h25,'m-$'!hg:hh,2,false),iferror(vlookup(h25,'m-$'!hi:hj,2,false),iferror(vlookup(h25,'m-$'!hk:hl,2,false),iferror(vlookup(h25,'m-$'!hm:hn,2,false),iferror(vlookup(h25,'m-$'!ho:hp,2,false),iferror(vlookup(h25,'m-$'!hq:hr,2,false),iferror(vlookup(h25,'m-$'!hs:ht,2,false),iferror(vlookup(h25,'m-$'!hu:hv,2,false),iferror(vlookup(h25,'m-$'!hw:hx,2),""""))))))))))))))),"""")), """"),""""))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,27,28,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p26)),left(p26,find(char(10),p26)-1),if(p26="""","""",p26)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l171=""no"",'m-$'!e171=""paint""),"""",'m-$'!e171), if('m-$'!e$180=""yes"",if(or('m-$'!l183=""no"",'m-$'!e183=""paint""),"""",'m-$'!e183), if('m-$'!e$192=""yes"",if(or('m-$'!l195=""no"",'m-$'!e195=""paint""),"""",'m-$'!e195),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,27,28,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l171=""no"","""",'m-$'!f171), if('m-$'!e180=""yes"",if('m-$'!l183=""no"","""",'m-$'!f183), if('m-$'!e192=""yes"",if('m-$'!l195=""no"","""",'m-$'!f195),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,28,29,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p27)),left(p27,find(char(10),p27)-1),if(p27="""","""",p27)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l172=""no"",'m-$'!e172=""paint""),"""",'m-$'!e172), if('m-$'!e$180=""yes"",if(or('m-$'!l184=""no"",'m-$'!e184=""paint""),"""",'m-$'!e184), if('m-$'!e$192=""yes"",if(or('m-$'!l196=""no"",'m-$'!e196=""paint""),"""",'m-$'!e196),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,28,29,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l172=""no"","""",'m-$'!f172), if('m-$'!e180=""yes"",if('m-$'!l184=""no"","""",'m-$'!f184), if('m-$'!e192=""yes"",if('m-$'!l196=""no"","""",'m-$'!f196),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,29,30,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p28)),left(p28,find(char(10),p28)-1),if(p28="""","""",p28)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l173=""no"",'m-$'!e173=""paint""),"""",'m-$'!e173), if('m-$'!e$180=""yes"",if(or('m-$'!l185=""no"",'m-$'!e185=""paint""),"""",'m-$'!e185), if('m-$'!e$192=""yes"",if(or('m-$'!l197=""no"",'m-$'!e197=""paint""),"""",'m-$'!e197),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,29,30,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l173=""no"","""",'m-$'!f173), if('m-$'!e180=""yes"",if('m-$'!l185=""no"","""",'m-$'!f185), if('m-$'!e192=""yes"",if('m-$'!l197=""no"","""",'m-$'!f197),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,30,31,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p29)),left(p29,find(char(10),p29)-1),if(p29="""","""",p29)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l174=""no"",'m-$'!e174=""paint""),"""",'m-$'!e174), if('m-$'!e$180=""yes"",if(or('m-$'!l186=""no"",'m-$'!e186=""paint""),"""",'m-$'!e186), if('m-$'!e$192=""yes"",if(or('m-$'!l198=""no"",'m-$'!e198=""paint""),"""",'m-$'!e198),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,30,31,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l174=""no"","""",'m-$'!f174), if('m-$'!e180=""yes"",if('m-$'!l186=""no"","""",'m-$'!f186), if('m-$'!e192=""yes"",if('m-$'!l198=""no"","""",'m-$'!f198),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,31,32,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p30)),left(p30,find(char(10),p30)-1),if(p30="""","""",p30)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l175=""no"",'m-$'!e175=""paint""),"""",'m-$'!e175), if('m-$'!e$180=""yes"",if(or('m-$'!l187=""no"",'m-$'!e187=""paint""),"""",'m-$'!e187), if('m-$'!e$192=""yes"",if(or('m-$'!l199=""no"",'m-$'!e199=""paint""),"""",'m-$'!e199),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,31,32,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l175=""no"","""",'m-$'!f175), if('m-$'!e180=""yes"",if('m-$'!l187=""no"","""",'m-$'!f187), if('m-$'!e192=""yes"",if('m-$'!l199=""no"","""",'m-$'!f199),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,32,33,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p31)),left(p31,find(char(10),p31)-1),if(p31="""","""",p31)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l176=""no"",'m-$'!e176=""paint""),"""",'m-$'!e176), if('m-$'!e$180=""yes"",if(or('m-$'!l188=""no"",'m-$'!e188=""paint""),"""",'m-$'!e188), if('m-$'!e$192=""yes"",if(or('m-$'!l200=""no"",'m-$'!e200=""paint""),"""",'m-$'!e200),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,32,33,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l176=""no"","""",'m-$'!f176), if('m-$'!e180=""yes"",if('m-$'!l188=""no"","""",'m-$'!f188), if('m-$'!e192=""yes"",if('m-$'!l200=""no"","""",'m-$'!f200),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,33,34,65,H,,,medium,"Description-like header '=substitute(if('m-$'!e$167=""ok"",iferror(if(isnumber(search(char(10),p32)),left(p32,find(char(10),p32)-1),if(p32="""","""",p32)),""""), if('m-$'!e$167=""not ok"",""conflicting selection"", if('m-$'!e$168=""yes"",if(or('m-$'!l177=""no"",'m-$'!e177=""paint""),"""",'m-$'!e177), if('m-$'!e$180=""yes"",if(or('m-$'!l189=""no"",'m-$'!e189=""paint""),"""",'m-$'!e189), if('m-$'!e$192=""yes"",if(or('m-$'!l201=""no"",'m-$'!e201=""paint""),"""",'m-$'!e201),""""))))),""shaft grounding ring"",""shaft grounding ring (aegis sticker)"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,33,40,81,M,,,medium,"Description-like header '=if('m-$'!e167=""ok"","""", if('m-$'!e167=""not ok"",""conflicting selection"", if('m-$'!e168=""yes"",if('m-$'!l177=""no"","""",'m-$'!f177), if('m-$'!e180=""yes"",if('m-$'!l189=""no"","""",'m-$'!f189), if('m-$'!e192=""yes"",if('m-$'!l201=""no"","""",'m-$'!f201),"""")))))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,35,36,51,F,,,medium,Description-like header '=batch_descriptions!au7'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,36,37,51,F,,,medium,Description-like header '=batch_descriptions!av7'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,37,38,51,F,,,medium,Description-like header '=batch_descriptions!au8'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-Req,38,45,51,F,,,medium,Description-like header '=batch_descriptions!av8'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Mod Master List,3,4,503,B,,,medium,Description-like header 'mod description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Mod Master List,3,4,503,C,,,medium,Description-like header 'frame size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Mod Master List,11,12,511,B,,,medium,Description-like header 'nameplate change--all frame sizes'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,5,6,30,G,,,medium,Description-like header 'description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,6,7,30,G,,,medium,"Description-like header '=concatenate(""motor, "",vlookup(d9,standard_table,2,false),"", "",vlookup(g9,orientation_table,2,false),"", "",vlookup(j9,horsepower_table,2,false),""/"",if(value(s9)=6,vlookup(m9,poles_table,2,false),if(value(s9)=5,vlookup(m9,poles_table,3,false),vlookup(m9,poles_table,4,false))),""/"",vlookup(p9,voltage_table,2,false),""/3/"",vlookup(value(s9),frequency_table,2,false),""/"",if(d9=""n"",vlookup(v9,frame_table,2,false),vlookup(v9,frame_table,3,false)),""/"",vlookup(y9,enclosure_table,2,false),""/"",vlookup(ab9,efficiency_table,2,false),if(g9=""p"",""-ht"",""""), if(al11="""","""",""/""&vlookup(al11,modlist[],3,false)), if(al12="""","""",""/""&vlookup(al12,modlist[],3,false)), if(al13="""","""",""/""&vlookup(al13,modlist[],3,false)), if(al14="""","""",""/""&vlookup(al14,modlist[],3,false)), if(al15="""","""",""/""&vlookup(al15,modlist[],3,false)), if(al16="""","""",""/""&vlookup(al16,modlist[],3,false)), if(al17="""","""",""/""&vlookup(al17,modlist[],3,false)))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,7,8,30,G,,,medium,"Description-like header '=concatenate(""motor, "",vlookup(d10,standard_table,2,false),"", "",vlookup(g10,orientation_table,2,false),"", "",vlookup(j10,horsepower_table,2,false),""/"",if(value(m10)=6,vlookup(p10,poles_table,2,false),if(value(m10)=5,vlookup(p10,poles_table,3,false),vlookup(p10,poles_table,4,false))),""/"",vlookup(y10,voltage_table,2,false),""/3/"",vlookup(value(m10),frequency_table,2,false),""/"",if(d10=""n"",vlookup(ab10,frame_table,2,false),vlookup(ab10,frame_table,3,false)),""/"",vlookup(s10,enclosure_table,2,false),""/"",vlookup(v10,efficiency_table,2,false),if(ak10="""","""",""/spl""),if(g10=""p"",""-ht"",""""))'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,12,13,48,AV,,,medium,"Description-like header '=iferror(if(as9=tables!b337,vlookup(as13,indirect(concatenate(av10,""[[hp-rpm]:[weight (lbs)]]"")),3,false),if(as9=tables!b338,iferror(index(ab23:ac58,match(value(left(vlookup(as13,indirect(concatenate(av10,""[[hp-rpm]:[weight (lbs)]]"")),3,false),if(as11=0.75,2,3))),ab23:ab58,0),2),""determine iec frame size""),""n/a"")),""n/a"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,19,20,62,AP,,,medium,Description-like header 'c-face option'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,21,23,58,AB,,,medium,Description-like header 'frame size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,21,22,62,AP,,,medium,Description-like header 'pump series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,30,31,59,AK,,,medium,Description-like header 'mod description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,30,31,63,AL,,,medium,Description-like header 'description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-#,31,32,59,AK,,,medium,Description-like header 'nameplate change (per configured motor description)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Motor Master List,3,4,503,B,,,medium,Description-like header 'material group'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Motor Master List,3,4,503,C,,,medium,Description-like header 'product description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$$,1,2,501,A,,,medium,Description-like header 'pump series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Toshiba,2,3,42,AM,,,medium,Description-like header 'discount description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MODS,2,3,51,C,,,medium,Description-like header 'description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MODS,2,3,121,O,,,medium,Description-like header 'description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MODS,2,3,51,BB,,,medium,Description-like header 'description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MODS,28,29,121,O,,,medium,Description-like header 'oversized main conduit box'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MODS,28,29,51,BB,,,medium,Description-like header 'oversized main conduit box'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MODS,29,30,51,C,,,medium,Description-like header 'oversized main conduit box'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,21,C,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,21,D,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,21,K,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,21,L,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,20,Q,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,20,R,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,4,W,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,4,X,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,25,AC,,,medium,Description-like header 'designation & size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,20,25,AE,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,20,25,AF,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,25,AH,,,medium,Description-like header '3300 series hybrid'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,21,AL,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,21,AM,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,18,AQ,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,18,AR,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,20,AV,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,20,AW,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,18,BC,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,18,BD,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,7,BH,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,7,BI,,,medium,Description-like header 'size (ansi)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Top Level,2,3,7,BJ,,,medium,Description-like header '6000 series hybrid'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,30,C,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,66,E,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,26,R,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,63,T,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,11,AC,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,53,AE,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,11,AO,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,53,AQ,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,23,AY,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,57,BA,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,7,BI,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,7,BK,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,236,CI,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,81,CK,,,medium,Description-like header 'ansi size : setting number'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Pricebook,5,6,38,DH,,,medium,Description-like header 'suction pipe size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Coupling,32,33,215,A,,,medium,Description-like header '1500/1600 series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Adders,1,2,501,F,,,medium,Description-like header 'value'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Adders,13,14,513,F,,,medium,Description-like header 'value'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Adders,16,17,516,G,,,medium,Description-like header 'value'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Adders,20,22,520,F,,,medium,Description-like header 'value'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Adders,30,31,530,C,,,medium,"Description-like header '=if(or('price check'!b25=1500,'price check'!b25=1600,'price check'!b25=3000,'price check'!b25=1550,'price check'!b25=1650),if(and('price check'!b62=""yes"",isnumber(search(""c-face adapter"",adders!e107))),0,iferror(index(table155[],match(concatenate(left('price check'!b26,find("" "",'price check'!b26)-1),"" $""),b137:b196,0),if(value(left('price check'!b46,3))<=215,2,if(and(value(left('price check'!b46,3))>215,value(left('price check'!b46,3))<=256),3,if(and(value(left('price check'!b46,3))>256,value(left('price check'!b46,3))<=365),4,0)))),""frame size?"")),""n/a"")'."
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ACC,3,4,18,B,,,medium,Description-like header 'size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,ACC,20,21,31,F,,,medium,Description-like header 'option:'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Vert. Spares,4,5,69,B,,,medium,Description-like header 'series'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Vert. Spares,4,5,69,C,,,medium,Description-like header 'ansi size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Vert. Spares,4,5,69,D,,,medium,Description-like header 'series - size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,CC-Old,1,2,500,A,,,medium,Description-like header 'material of construction'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,CC-Old,2,3,502,K,,,medium,Description-like header 'seal face materials'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,CC-New,2,4,502,D,,,medium,Description-like header 'material of pump construction (°f/°c)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,CC-New,2,4,481,Q,,,medium,Description-like header 'seal face materials'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,6,7,30,I,,,medium,Description-like header 'product description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,19,C,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,20,F,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,30,J,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,41,M,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,48,V,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,24,Y,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,43,AA,AM,AM,high,Description-like header 'frame size'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,25,AF,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,21,AI,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,28,AL,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,17,19,51,AR,AM,AM,high,Description-like header 'description'. Code-like header at AM17. Hex/code-like header at AM17.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,19,20,47,AT,,,medium,Description-like header 'nameplate change (per item description)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,19,20,43,BC,,,medium,Description-like header 'nameplate change (per item description)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,19,20,47,BD,,,medium,Description-like header 'nameplate change (per item description)'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,39,40,47,AT,,,medium,Description-like header 'oversized main conduit box - mount and extend leads'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,39,40,43,BA,,,medium,Description-like header 'oversized main conduit box - mount and extend leads'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,39,40,43,BB,,,medium,Description-like header 'oversized main conduit box - mount and extend leads'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,39,40,43,BC,,,medium,Description-like header 'oversized main conduit box - mount and extend leads'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,NewRules 5-2-23,39,40,47,BD,,,medium,Description-like header 'oversized main conduit box - mount and extend leads'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Batch_Descriptions,5,6,61,AO,,,medium,Description-like header 'ext description'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Batch_Descriptions,6,7,61,M,,,medium,Description-like header 'frame size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Batch_Descriptions,6,7,61,AE,,,medium,Description-like header 'frame size'.
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Batch_Descriptions,6,7,61,AV,,,medium,Description-like header 'ext. descriptions'.

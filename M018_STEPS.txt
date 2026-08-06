@@ -1,0 +1,50 @@
+M018 Identifier Persistence and Reuse
+=====================================
+
+1. Extract and merge into the project root.
+
+2. Create the registry tables, view, and persistence procedure:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\sql\16_Create_Configured_Product_Registry.sql
+
+3. Run tests:
+
+   python -m pytest -q
+
+4. Run create-and-reuse verification:
+
+   python -m scripts.test_fybroc_persistence_reuse
+
+Expected:
+
+- same_registry_id = true
+- second_call_was_created = false
+- registry_count = 1
+- selection_count = 41
+- segment_count = 10
+- reuse_verified = true
+
+The first call may show was_created = true on the first run and false on later
+runs because the configured product is intentionally reused.
+
+5. Run concurrent reuse verification:
+
+   python -m scripts.test_fybroc_persistence_concurrency
+
+Expected:
+
+- worker_count = 8
+- unique_registry_ids = 1
+- registry_count = 1
+- selection_count = 41
+- segment_count = 10
+- concurrency_reuse_verified = true
+
+6. Inspect the registry:
+
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -Q `
+       "SELECT * FROM cfg.vw_ConfiguredProductRegistry ORDER BY ConfiguredProductRegistryId;"
+
+Persistence remains behind the completed signed-state boundary. No direct
+field/value persistence endpoint is introduced.

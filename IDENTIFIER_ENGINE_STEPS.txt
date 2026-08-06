@@ -1,0 +1,47 @@
+Identifier Engine Foundation
+============================
+
+This package replaces the earlier standalone Model Reference & SKU compiler.
+
+One validated configuration produces one canonical ordered segment string.
+That same segment string feeds both identifiers:
+
+Part Number:
+    D779-00CA-AB-...
+
+SKU:
+    D779-V1-00CAAB...
+
+Fybroc follows the same pattern:
+    F1530-...
+    F1530-V1-...
+
+1. Extract and merge into the project root.
+
+2. Apply SQL metadata:
+   Set-Location .\sql
+   sqlcmd -S localhost -d PumpConfiguratorDB -E -C -b `
+       -i .\09_Create_Identifier_Engine_Metadata.sql
+   Set-Location ..
+
+3. Run tests:
+   python -m pytest -q
+
+4. Refresh discovery:
+   python -m scripts.discover_workbooks
+
+5. Compile identifier metadata:
+   python -m scripts.compile_identifier_metadata
+
+6. Review:
+   exports\identifier_metadata_candidates.json
+   exports\identifier_model_candidates.csv
+   exports\identifier_format_candidates.csv
+   exports\identifier_segment_candidates.csv
+   exports\identifier_metadata_issues.csv
+
+No identifiers are generated until:
+- model reference resolves,
+- configuration is valid,
+- every required segment resolves,
+- segment widths are valid.

@@ -1,0 +1,10 @@
+1. Extract this ZIP into the project root and merge folders.
+2. Run: python -m pytest -q
+3. Run: python -m scripts.discover_workbooks
+4. Run: python -m scripts.extract_workbook_metadata
+5. Review:
+   exports\workbook_metadata.json
+   exports\worksheet_metadata.csv
+   exports\defined_names.csv
+
+The extractor streams worksheet XML and does not modify source workbooks.

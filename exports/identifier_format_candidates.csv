@@ -1,0 +1,5 @@
+﻿family_code,identifier_type,format_code,version_number,template,segment_separator,base_identifier_source,source_profile
+DEAN,PART_NUMBER,DEAN_PART_NUMBER_V1,1,{base_identifier}-{segment_string},-,MODEL_REFERENCE,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,SKU,DEAN_SKU_V1,1,{base_identifier}-V{version}-{compact_segment_string},,MODEL_REFERENCE,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+FYBROC,PART_NUMBER,FYBROC_PART_NUMBER_V1,1,{base_identifier}-{segment_string},-,MODEL_REFERENCE,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,SKU,FYBROC_SKU_V1,1,{base_identifier}-V{version}-{compact_segment_string},,MODEL_REFERENCE,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json

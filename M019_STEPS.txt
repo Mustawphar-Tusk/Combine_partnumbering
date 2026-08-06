@@ -1,0 +1,84 @@
+M019 Closed FastAPI Configuration Service
+=========================================
+
+1. Extract and merge into the project root.
+
+2. Install API dependencies:
+
+   python -m pip install -r .\requirements-m019.txt
+
+3. Set a secure local token secret for this PowerShell session:
+
+   $env:CONFIGURATION_TOKEN_SECRET = `
+       "replace-with-a-secure-random-secret-of-at-least-32-characters"
+
+4. Run all tests:
+
+   python -m pytest -q
+
+5. Verify the OpenAPI request contract:
+
+   python -m scripts.verify_m019_api_contract
+
+Expected configuration operations:
+
+   /api/v1/families/{family_code}/configurations/start
+   /api/v1/families/{family_code}/configurations/advance
+   /api/v1/families/{family_code}/configurations/finalize
+
+Expected request fields:
+
+   Start:    []
+   Advance:  [optionToken, stateToken]
+   Finalize: [stateToken]
+
+6. Run the real database-backed API smoke workflow:
+
+   python -m scripts.test_closed_fastapi_service
+
+Expected:
+
+   navigation_steps = 41
+   selection_count = 41
+   segment_count = 10
+   same_registry_id = true
+   second_call_was_created = false
+   arbitrary_engineering_values_accepted = false
+   closed_api_verified = true
+
+7. Start the local API:
+
+   python -m uvicorn src.api.app:app `
+       --host 127.0.0.1 `
+       --port 8000
+
+8. Open the interactive API documentation locally:
+
+   http://127.0.0.1:8000/docs
+
+9. Health checks:
+
+   Invoke-RestMethod `
+       http://127.0.0.1:8000/health/live
+
+   Invoke-RestMethod `
+       http://127.0.0.1:8000/health/ready
+
+10. Start a Fybroc configuration:
+
+   Invoke-RestMethod `
+       -Method Post `
+       -Uri (
+           "http://127.0.0.1:8000/" +
+           "api/v1/families/FYBROC/" +
+           "configurations/start"
+       ) `
+       -ContentType "application/json" `
+       -Body "{}"
+
+Security notes:
+
+- Bind to 127.0.0.1 for the current local Phase 1 service.
+- Do not commit the real CONFIGURATION_TOKEN_SECRET.
+- The state token is an integrity control, not client authentication.
+- Network authentication and remote deployment are separate work.

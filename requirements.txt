@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pyodbc
+pydantic
+pydantic-settings
+orjson
+python-dotenv
+pytest
+httpx
+openpyxl
+pandas
+lxml
+pywin32
+oletools
+networkx

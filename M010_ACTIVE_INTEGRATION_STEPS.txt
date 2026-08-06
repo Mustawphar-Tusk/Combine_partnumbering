@@ -1,0 +1,19 @@
+M010 Active Publication Integration
+===================================
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+3. Run:
+
+   python -m scripts.test_fybroc_generic_engine_active
+
+Expected:
+- active_publication_id = 1
+- valid = true
+- six ATTRIBUTE segments
+- three COMBINATION segments
+- no validation messages

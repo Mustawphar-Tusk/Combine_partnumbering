@@ -1,0 +1,32 @@
+
+{
+  "family_code": "DEAN",
+  "workbook_role": "configuration_logic",
+  "option_sources": [],
+  "dependency_sources": [
+    {
+      "worksheet_name": "Codependencies",
+      "child_field_code": "DEAN_CONFIGURATION",
+      "parent_field_codes": [],
+      "formula_cells": [],
+      "dependency_type": "filters_options"
+    }
+  ],
+  "explicit_constraints": [
+    {
+      "rule_code": "DEAN_SEQUENCE_053_UNUSED",
+      "rule_name": "Dean sequence 53 is intentionally unused",
+      "rule_type": "visibility",
+      "condition": {
+        "field_sequence": 53
+      },
+      "action": {
+        "action": "hide_field",
+        "target_sequence": 53
+      },
+      "source_worksheet": "Data Sheet",
+      "source_reference": "Sequence 53",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "family_code": "FYBROC",
+  "segments": [
+    {
+      "segment_code": "SERIES",
+      "resolution_type": "ATTRIBUTE"
+    },
+    {
+      "segment_code": "SIZE",
+      "resolution_type": "ATTRIBUTE"
+    },
+    {
+      "segment_code": "PUMP_MATERIAL",
+      "resolution_type": "ATTRIBUTE"
+    },
+    {
+      "segment_code": "IMPELLER_TRIM",
+      "resolution_type": "ATTRIBUTE"
+    },
+    {
+      "segment_code": "PUMP_OPTIONS",
+      "resolution_type": "COMBINATION"
+    },
+    {
+      "segment_code": "SEAL_ASSEMBLY",
+      "resolution_type": "COMBINATION"
+    },
+    {
+      "segment_code": "OPTIONS",
+      "resolution_type": "COMBINATION"
+    },
+    {
+      "segment_code": "MOTOR_ASSEMBLY",
+      "resolution_type": "COMBINATION"
+    },
+    {
+      "segment_code": "MOTOR_MODIFICATIONS",
+      "resolution_type": "ATTRIBUTE"
+    },
+    {
+      "segment_code": "TESTING",
+      "resolution_type": "ATTRIBUTE"
+    }
+  ]
+}

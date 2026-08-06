@@ -1,0 +1,15 @@
+{
+  "family_code": "FYBROC",
+  "workbook_role": "attributes_and_constraints",
+  "option_sources": [],
+  "dependency_sources": [
+    {
+      "worksheet_name": "Constraints",
+      "child_field_code": "FYBROC_CONFIGURATION",
+      "parent_field_codes": [],
+      "formula_cells": [],
+      "dependency_type": "filters_options"
+    }
+  ],
+  "explicit_constraints": []
+}

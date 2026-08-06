@@ -1,0 +1,478 @@
+{
+  "generated_utc": "2026-08-04T18:10:33.995004+00:00",
+  "workbook_root": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\workbooks",
+  "workbook_count": 5,
+  "family_count": 2,
+  "records": [
+    {
+      "family_code": "DEAN",
+      "family_name": "Dean Pump",
+      "role": "configuration_and_quote",
+      "processing_order": 10,
+      "required": true,
+      "file_name": "Dean Data Sheet Rev 2.xlsm",
+      "relative_path": "workbooks\\Dean\\Dean Data Sheet Rev 2.xlsm",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 84018589,
+      "modified_utc": "2026-07-15T19:33:05.777577+00:00",
+      "sha256": "29773bac5164ccfb246846bc276d4d699370bc1ca3b8e3992b664e89b41b5170",
+      "worksheets": [
+        {
+          "name": "Data Sheet",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Formal Quote",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Smart Number",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "Wet End Numbering",
+          "state": "hidden",
+          "index": 4
+        },
+        {
+          "name": "Power End Numbering",
+          "state": "hidden",
+          "index": 5
+        },
+        {
+          "name": "Constraints",
+          "state": "visible",
+          "index": 6
+        },
+        {
+          "name": "Config Info",
+          "state": "visible",
+          "index": 7
+        },
+        {
+          "name": "Logic",
+          "state": "visible",
+          "index": 8
+        },
+        {
+          "name": "Baseplate Numbering",
+          "state": "hidden",
+          "index": 9
+        },
+        {
+          "name": "Motor Numbering",
+          "state": "hidden",
+          "index": 10
+        },
+        {
+          "name": "User Selections",
+          "state": "hidden",
+          "index": 11
+        },
+        {
+          "name": "Test and Doc Numbering",
+          "state": "hidden",
+          "index": 12
+        },
+        {
+          "name": "Motor Constraints",
+          "state": "hidden",
+          "index": 13
+        },
+        {
+          "name": "External References",
+          "state": "hidden",
+          "index": 14
+        },
+        {
+          "name": "Reference Data",
+          "state": "visible",
+          "index": 15
+        },
+        {
+          "name": "Seal Descriptions",
+          "state": "hidden",
+          "index": 16
+        },
+        {
+          "name": "Misc Numbering",
+          "state": "hidden",
+          "index": 17
+        },
+        {
+          "name": "Motors",
+          "state": "hidden",
+          "index": 18
+        },
+        {
+          "name": "Formal Quote (OEM)",
+          "state": "hidden",
+          "index": 19
+        },
+        {
+          "name": "Seal Options",
+          "state": "hidden",
+          "index": 20
+        },
+        {
+          "name": "Seal Pricing",
+          "state": "hidden",
+          "index": 21
+        },
+        {
+          "name": "Pricing",
+          "state": "visible",
+          "index": 22
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "DEAN",
+      "family_name": "Dean Pump",
+      "role": "configuration_logic",
+      "processing_order": 20,
+      "required": true,
+      "file_name": "PumpConfiguration_Logic.xlsm",
+      "relative_path": "workbooks\\Dean\\PumpConfiguration_Logic.xlsm",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 488506,
+      "modified_utc": "2026-07-13T18:48:43.987474+00:00",
+      "sha256": "5b1b8ca10599a962ff88c95950c64afe239cfc3a912a828d7e910167ee166153",
+      "worksheets": [
+        {
+          "name": "Pump Options",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Price Options",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Codependencies",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "Config Options",
+          "state": "visible",
+          "index": 4
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "FYBROC",
+      "family_name": "Fybroc Pump",
+      "role": "attributes_and_constraints",
+      "processing_order": 10,
+      "required": true,
+      "file_name": "Fybroc Attributes and Constraints.xlsx",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Attributes and Constraints.xlsx",
+      "extension": ".xlsx",
+      "macro_enabled": false,
+      "size_bytes": 93062,
+      "modified_utc": "2026-06-09T13:30:27.593359+00:00",
+      "sha256": "61a2c26b47db30792b9970748884ecb6d57cc4431c826b9099d63ccc35ead8f3",
+      "worksheets": [
+        {
+          "name": "MAIN",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Constraints",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "FULL LIST",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "1500",
+          "state": "visible",
+          "index": 4
+        },
+        {
+          "name": "1530",
+          "state": "visible",
+          "index": 5
+        },
+        {
+          "name": "1600",
+          "state": "visible",
+          "index": 6
+        },
+        {
+          "name": "1630",
+          "state": "visible",
+          "index": 7
+        },
+        {
+          "name": "2530",
+          "state": "visible",
+          "index": 8
+        },
+        {
+          "name": "3000",
+          "state": "visible",
+          "index": 9
+        },
+        {
+          "name": "5500",
+          "state": "visible",
+          "index": 10
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "FYBROC",
+      "family_name": "Fybroc Pump",
+      "role": "configuration_and_hex_mapping",
+      "processing_order": 20,
+      "required": true,
+      "file_name": "Fybroc Nomenclature_V5.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Nomenclature_V5.xlsm",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 12971090,
+      "modified_utc": "2026-06-21T23:23:59.202104+00:00",
+      "sha256": "5c41be2223b72747eb7e14970c64db94aaa13299be9211072ec145dac27b419c",
+      "worksheets": [
+        {
+          "name": "Smart Number",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Attributes",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Pump Options",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "Seal Assembly",
+          "state": "visible",
+          "index": 4
+        },
+        {
+          "name": "Options",
+          "state": "visible",
+          "index": 5
+        },
+        {
+          "name": " Motor Assy",
+          "state": "visible",
+          "index": 6
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "FYBROC",
+      "family_name": "Fybroc Pump",
+      "role": "pricing_and_quote",
+      "processing_order": 30,
+      "required": true,
+      "file_name": "Price Estimator-Fybroc.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Price Estimator-Fybroc.xlsm",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 3983199,
+      "modified_utc": "2026-06-21T23:28:18.667109+00:00",
+      "sha256": "472e9f6c916b9b5b8dd025281eae668a82e766d3a159be5ffc2122ba92cc06e8",
+      "worksheets": [
+        {
+          "name": "Plaintag",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Nameplate",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Price Check",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "MainTemplate",
+          "state": "visible",
+          "index": 4
+        },
+        {
+          "name": "Aquarium",
+          "state": "visible",
+          "index": 5
+        },
+        {
+          "name": "ROM_Data",
+          "state": "visible",
+          "index": 6
+        },
+        {
+          "name": "Formal Quote",
+          "state": "visible",
+          "index": 7
+        },
+        {
+          "name": "Fybroc Horizontal",
+          "state": "visible",
+          "index": 8
+        },
+        {
+          "name": "Fybroc Vertical",
+          "state": "visible",
+          "index": 9
+        },
+        {
+          "name": "Spec. Tbls.",
+          "state": "visible",
+          "index": 10
+        },
+        {
+          "name": "Tables",
+          "state": "visible",
+          "index": 11
+        },
+        {
+          "name": "Baseplate",
+          "state": "visible",
+          "index": 12
+        },
+        {
+          "name": "M-Req",
+          "state": "visible",
+          "index": 13
+        },
+        {
+          "name": "Mod Master List",
+          "state": "visible",
+          "index": 14
+        },
+        {
+          "name": "M-#",
+          "state": "visible",
+          "index": 15
+        },
+        {
+          "name": "M-$",
+          "state": "visible",
+          "index": 16
+        },
+        {
+          "name": "Motor Master List",
+          "state": "hidden",
+          "index": 17
+        },
+        {
+          "name": "M-$$",
+          "state": "visible",
+          "index": 18
+        },
+        {
+          "name": "TECO",
+          "state": "hidden",
+          "index": 19
+        },
+        {
+          "name": "Baldor",
+          "state": "visible",
+          "index": 20
+        },
+        {
+          "name": "Toshiba",
+          "state": "hidden",
+          "index": 21
+        },
+        {
+          "name": "MODS",
+          "state": "visible",
+          "index": 22
+        },
+        {
+          "name": "Rep",
+          "state": "visible",
+          "index": 23
+        },
+        {
+          "name": "Top Level",
+          "state": "visible",
+          "index": 24
+        },
+        {
+          "name": "Pricebook",
+          "state": "visible",
+          "index": 25
+        },
+        {
+          "name": "Coupling",
+          "state": "visible",
+          "index": 26
+        },
+        {
+          "name": "Adders",
+          "state": "visible",
+          "index": 27
+        },
+        {
+          "name": "ACC",
+          "state": "hidden",
+          "index": 28
+        },
+        {
+          "name": "Vert. Spares",
+          "state": "hidden",
+          "index": 29
+        },
+        {
+          "name": "CC-Old",
+          "state": "visible",
+          "index": 30
+        },
+        {
+          "name": "CC-New",
+          "state": "visible",
+          "index": 31
+        },
+        {
+          "name": "NewRules 5-2-23",
+          "state": "visible",
+          "index": 32
+        },
+        {
+          "name": "Batch_Descriptions",
+          "state": "visible",
+          "index": 33
+        },
+        {
+          "name": "Sheet1",
+          "state": "hidden",
+          "index": 34
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    }
+  ]
+}

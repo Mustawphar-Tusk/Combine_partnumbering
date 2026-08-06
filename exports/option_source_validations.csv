@@ -1,0 +1,107 @@
+﻿family_code,workbook_role,workbook_name,worksheet_name,target_range,validation_type,formula1,formula2,allow_blank,source_kind,resolved_source
+DEAN,configuration_and_quote,Dean Data Sheet Rev 2.xlsm,Data Sheet,G24:H24 G41:H41 G42:H42 G43:H43,,,,True,none,
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,MAIN,P1,list,$E$2:$O$2,,True,formula_or_expression,$E$2:$O$2
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,S465:S467 T465:T470,list,"INDEX(INDIRECT(Q$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(Q$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,W465:W467,list,"INDEX(INDIRECT(T$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(T$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,AG465:AG467,list,"INDEX(INDIRECT(S$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(S$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,FULL LIST,V465:V467,list,"INDEX(INDIRECT(P$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(P$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,1500,AN3:AN5,list,"INDEX(INDIRECT(AN$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(AN$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,V3:V5,list,"INDEX(INDIRECT(P$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(P$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,AG3:AG5,list,"INDEX(INDIRECT(S$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(S$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,W3:W5,list,"INDEX(INDIRECT(T$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(T$2),0,2)"
+FYBROC,attributes_and_constraints,Fybroc Attributes and Constraints.xlsx,5500,S3:S5 T3:T8,list,"INDEX(INDIRECT(Q$2),0,2)",,True,formula_driven,"INDEX(INDIRECT(Q$2),0,2)"
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L14:M14,list,Casing_Drains,,True,defined_name,Casing_Drains
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L15:M15,list,Suction_Discharge,,True,defined_name,Suction_Discharge
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L17:M17,list,Impeller_Sleeve,,True,defined_name,Impeller_Sleeve
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L18:M18,list,Casing_Hardware,,True,defined_name,Casing_Hardware
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L19:M19,list,Pump_Elastomers,,True,defined_name,Pump_Elastomers
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L20:M20,list,Bearing_Option,,True,defined_name,Bearing_Option
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L21:M21,list,Power_Frame_Hardware,,True,defined_name,Power_Frame_Hardware
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L22:M22,list,Gland_Hardware,,True,defined_name,Gland_Hardware
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L23:M23,list,Flush,,True,defined_name,Flush
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L24:M24,list,CycloneSep,,True,defined_name,CycloneSep
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L25:M25,list,Dynamic_Impeller,,True,defined_name,Dynamic_Impeller
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,O14,list,Seal_Option,,True,defined_name,Seal_Option
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,O15,list,Seal_Type,,True,defined_name,Seal_Type
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,O16,list,Seal_Materials,,True,defined_name,Seal_Materials
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,O17,list,Seal_Elastomers,,True,defined_name,Seal_Elastomers
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,V14:W16,list,Motor_Modifications,,True,defined_name,Motor_Modifications
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,Y14,list,Testing,,True,defined_name,Testing
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,L16:M16,list,Shaft_Material,,True,defined_name,Shaft_Material
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,Q14,list,Coupling_Option,,True,defined_name,Coupling_Option
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,Q15,list,Coupling_Guard,,True,defined_name,Coupling_Guard
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,Q16,list,Baseplate_Option,,True,defined_name,Baseplate_Option
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,Q17,list,BaseplateHardware,,True,defined_name,BaseplateHardware
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,Q18,list,NamePlate2,,True,defined_name,NamePlate2
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S14:T14,list,Motor_Option,,True,defined_name,Motor_Option
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S15:T15,list,Motor_Class,,True,defined_name,Motor_Class
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S16:T16,list,Motor_Orientation,,True,defined_name,Motor_Orientation
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S17:T17,list,Horsepower_Mtr,,True,defined_name,Horsepower_Mtr
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S18:T18,list,RPM,,True,defined_name,RPM
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S19:T19,list,Voltage,,True,defined_name,Voltage
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S20:T20,list,Hertz,,True,defined_name,Hertz
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S21:T21,list,Frame_Code_Mtr,,True,defined_name,Frame_Code_Mtr
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S22:T22,list,Enclosure,,True,defined_name,Enclosure
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S23:T23,list,Efficiency,,True,defined_name,Efficiency
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,S24:T24,list,Motor_Manufacturer,,True,defined_name,Motor_Manufacturer
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,O18,list,Seal_Guard,,True,defined_name,Seal_Guard
+FYBROC,configuration_and_hex_mapping,Fybroc Nomenclature_V5.xlsm,Smart Number,H14:I14,list,ValidTrim,,True,defined_name,ValidTrim
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Nameplate,L11,list,$R$11:$FO$11,,True,formula_or_expression,$R$11:$FO$11
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,O64,list,$H$102:$H$103,,True,formula_or_expression,$H$102:$H$103
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,L145 L147 L149,list,$B$689:$B$690,,True,formula_or_expression,$B$689:$B$690
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,D53,list,"""Include, Don't Include""",,True,inline_list,"""Include, Don't Include"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,P2,list,"""JGF, NF, JHO, CB, JS, JH, RC""",,True,inline_list,"""JGF, NF, JHO, CB, JS, JH, RC"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,C64,list,"""Yes, No, Paint, SP""",,True,inline_list,"""Yes, No, Paint, SP"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Price Check,A118:A128,list,$A$228:$A$242,,True,formula_or_expression,$A$228:$A$242
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C35:AJ35,list,C$324:C$330,,True,formula_or_expression,C$324:C$330
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,H2,,,,True,none,
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C36:IV36,list,C$316:C$321,,True,formula_or_expression,C$316:C$321
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,AK35:IV35,list,AK$324:AK$328,,True,formula_or_expression,AK$324:AK$328
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C34:IV34,list,C$310:C$313,,True,formula_or_expression,C$310:C$313
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C33:IV33,list,C$304:C$307,,True,formula_or_expression,C$304:C$307
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,AK32:IV32,list,AK$301,,True,formula_or_expression,AK$301
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C8:AJ8,list,$C$702:$C$706,,True,formula_or_expression,$C$702:$C$706
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C71:IV71,list,$H$459:$H$468,,True,formula_or_expression,$H$459:$H$468
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C70:IV70,list,$C$523:$C$524,,True,formula_or_expression,$C$523:$C$524
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C69:IV69,list,$H$540:$H$541,,True,formula_or_expression,$H$540:$H$541
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C68:IV68,list,$C$540:$C$546,,True,formula_or_expression,$C$540:$C$546
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C67:IV67,list,$C$527:$C$537,,True,formula_or_expression,$C$527:$C$537
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C25:IV25,list,C$261:C$264,,True,formula_or_expression,C$261:C$264
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C37:XFD37,list,$B$780:$B$792,,True,formula_or_expression,$B$780:$B$792
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C19:IV19,list,C$250:C$258,,True,formula_or_expression,C$250:C$258
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C27:IV27,list,$B$796,,True,formula_or_expression,$B$796
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C49:IV49,list,$C$510:$C$511,,True,formula_or_expression,$C$510:$C$511
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C48:IV48,list,$C$548:$C$549,,True,formula_or_expression,$C$548:$C$549
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C46:IV46,list,$C$514:$C$516,,True,formula_or_expression,$C$514:$C$516
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C45:IV45,list,$C$489:$C$503,,True,formula_or_expression,$C$489:$C$503
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C44:IV44,list,$C$374:$C$375,,True,formula_or_expression,$C$374:$C$375
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C43:IV43,list,$C$365:$C$371,,True,formula_or_expression,$C$365:$C$371
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C42:AJ42 BX42:IV42,list,$C$355:$C$362,,True,formula_or_expression,$C$355:$C$362
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,CD41:IV41,list,$C$267:$C$286,,True,formula_or_expression,$C$267:$C$286
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C39:IV39,list,$C$519:$C$520,,True,formula_or_expression,$C$519:$C$520
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C10:IV10,list,$C$118:$C$135,,True,formula_or_expression,$C$118:$C$135
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C18:IV18 C20:IV20,list,C$242:C$247,,True,formula_or_expression,C$242:C$247
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C16:IV16,list,C$218:C$226,,True,formula_or_expression,C$218:C$226
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,AK17:IV17,list,AK$202:AK$215,,True,formula_or_expression,AK$202:AK$215
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C15:IV15,list,C$195:C$199,,True,formula_or_expression,C$195:C$199
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C14:IV14,list,C$229:C$237,,True,formula_or_expression,C$229:C$237
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C11:IV11,list,H$162:H$183,,True,formula_or_expression,H$162:H$183
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C13:IV13,list,C$186:C$192,,True,formula_or_expression,C$186:C$192
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,J2,list,$O$2:$O$3,,True,formula_or_expression,$O$2:$O$3
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C52:AJ52,list,"""Yes, No""",,True,inline_list,"""Yes, No"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C41:CC41,list,C$267:C$286,,True,formula_or_expression,C$267:C$286
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,AK42:BW42,list,AK$355:AK$362,,True,formula_or_expression,AK$355:AK$362
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C17:AJ17,list,C$202:C$215,,True,formula_or_expression,C$202:C$215
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,MainTemplate,C74:M78 N74:AJ76,list,$B$26:$B$54,,True,formula_or_expression,$B$26:$B$54
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,Q6:Q37,list,"""Constant Speed, VFD""",,True,inline_list,"""Constant Speed, VFD"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,AW5:AW37,list,"""NEMA, IEC""",,True,inline_list,"""NEMA, IEC"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,AH1,list,"""Yes,No""",,True,inline_list,"""Yes,No"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,Aquarium,Q5,list,"""Constant Speed, VFD""",,True,inline_list,"""Constant Speed, VFD"""
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,L170,list,I162:I163,,True,formula_or_expression,I162:I163
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,L182,list,I162:I163,,True,formula_or_expression,I162:I163
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,L194,list,I162:I163,,True,formula_or_expression,I162:I163
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,B177 B189 B201 C171:C176 C183:C188 C195:C200 N168 N180 N192,list,$J$161:$J$163,,True,formula_or_expression,$J$161:$J$163
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,E168 E180 E192,list,$I$161:$I$163,,True,formula_or_expression,$I$161:$I$163
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,P170 P182 P194,,,,True,none,
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,K168 K180 K192,list,$K$161:$K$163,,True,formula_or_expression,$K$161:$K$163
+FYBROC,pricing_and_quote,Price Estimator-Fybroc.xlsm,M-$,L171:L177 L183:L189 L195:L201 M168 M180 M192,list,$L$161:$L$163,,True,formula_or_expression,$L$161:$L$163

@@ -1,0 +1,207 @@
+﻿family_code,model_identifier,series_code,size_code,base_identifier,source_worksheet,source_row,source_profile
+DEAN,A779,RA2096,1x1.5x6,D779,Reference Data,2,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A780,RA2096,1.5x3x6,D780,Reference Data,3,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A781,RA2096,1x1.5x8,D781,Reference Data,4,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A782,RA3146,1x3x8.5,D782,Reference Data,5,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A783,RA3146,1.5x3x8.5,D783,Reference Data,6,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A784,RA3146,2x3x8.5,D784,Reference Data,7,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A785,RA3146,3x4x8.5,D785,Reference Data,8,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A786,RA3146,4x6x8.5,D786,Reference Data,9,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A787,RA3146,1.5x3x10,D787,Reference Data,10,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A788,RA3146,2x3x10,D788,Reference Data,11,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A789,RA3146,3x4x10,D789,Reference Data,12,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A790,RA3146,4x6x10 #2,D790,Reference Data,13,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A793,RA3186,4x6x10 #1,D793,Reference Data,14,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A775,RA3186,1.5x3x13.5,D775,Reference Data,15,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A776,RA3186,2x3x13.5,D776,Reference Data,16,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A777,RA3186,3x4x13.5,D777,Reference Data,17,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A794,RA3186,6x8x12.5,D794,Reference Data,18,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A795,RA3186,2x4x15.5,D795,Reference Data,19,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A796,RA3186,3x4x15.5,D796,Reference Data,20,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A797,RA3186,4x6x15.5,D797,Reference Data,21,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A799,RA3246,6x8x15.5,D799,Reference Data,22,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A800,RA3246,8x10x15.5,D800,Reference Data,23,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A245,RWA2096,1x1.5x6,D245,Reference Data,24,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A246,RWA2096,1.5x3x6,D246,Reference Data,25,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A247,RWA2096,1x1.5x8,D247,Reference Data,26,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A272,RWA4166,1x3x8.5,D272,Reference Data,27,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A273,RWA4166,1.5x3x8.5,D273,Reference Data,28,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A274,RWA4166,2x3x8.5,D274,Reference Data,29,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A275,RWA4166,3x4x8.5,D275,Reference Data,30,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A276,RWA4166,4x6x8.5,D276,Reference Data,31,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A277,RWA4166,1.5x3x10,D277,Reference Data,32,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A278,RWA4166,2x3x10,D278,Reference Data,33,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A279,RWA4166,3x4x10,D279,Reference Data,34,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A271,RWA4166,4x6x10 #2,D271,Reference Data,35,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A263,RWA4206,4x6x10 #1,D263,Reference Data,36,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A231,RAV3096,1x1.5x6,D231,Reference Data,37,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A232,RAV3096,1.5x3x6,D232,Reference Data,38,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A233,RAV3096,1x1.5x8,D233,Reference Data,39,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A238,RAV3146,1x3x8.5,D238,Reference Data,40,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A239,RAV3146,1.5x3x8.5,D239,Reference Data,41,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A240,RAV3146,2x3x8.5,D240,Reference Data,42,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A235,RWAV4096,1x1.5x6,D235,Reference Data,43,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A236,RWAV4096,1.5x3x6,D236,Reference Data,44,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A237,RWAV4096,1x1.5x8,D237,Reference Data,45,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A241,RWAV4166,1x3x8.5,D241,Reference Data,46,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A242,RWAV4166,1.5x3x8.5,D242,Reference Data,47,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A243,RWAV4166,2x3x8.5,D243,Reference Data,48,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A370,R4140,1x3x8.5,D370,Reference Data,49,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A371,R4140,1.5x3x8.5,D371,Reference Data,50,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A372,R4140,2x3x8.5,D372,Reference Data,51,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A373,R4140,3x4x8.5,D373,Reference Data,52,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A374,R4140,4x6x8.5,D374,Reference Data,53,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A375,R4140,1.5x3x10,D375,Reference Data,54,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A376,R4140,2x3x10,D376,Reference Data,55,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A377,R4140,3x4x10,D377,Reference Data,56,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A378,R4140,4x6x10 #2,D378,Reference Data,57,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A379,R4140,1x2x11.5,D379,Reference Data,58,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A380,R4140,1.5x3x11.5,D380,Reference Data,59,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A381,R4140,2x3x11.5,D381,Reference Data,60,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A382,R4140,3x4x11.5,D382,Reference Data,61,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A383,R4140,4x6x11.5,D383,Reference Data,62,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A384,R4140,1.5x3x13.5,D384,Reference Data,63,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A385,R4140,2x3x13.5,D385,Reference Data,64,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A386,R4140,3x4x13.5,D386,Reference Data,65,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A476,R4170,1.5x3x13.5,D476,Reference Data,66,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A477,R4170,2x3x13.5,D477,Reference Data,67,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A478,R4170,3x4x13.5,D478,Reference Data,68,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A390,R4180,4x6x10 #1,D390,Reference Data,69,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A392,R4180,6x8x12.5,D392,Reference Data,70,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A393,R4180,2x4x15.5,D393,Reference Data,71,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A394,R4180,3x4x15.5,D394,Reference Data,72,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A395,R4180,4x6x15.5,D395,Reference Data,73,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A399,R4240,6x8x15.5,D399,Reference Data,74,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A400,R4240,8x10x15.5,D400,Reference Data,75,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A520,RTA3146,1x3x8.5,D520,Reference Data,76,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A521,RTA3146,1.5x3x8.5,D521,Reference Data,77,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A522,RTA3146,2x3x8.5,D522,Reference Data,78,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A523,RTA3146,3x4x8.5,D523,Reference Data,79,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A524,RTA3146,4x6x8.5,D524,Reference Data,80,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A525,RTA3146,1.5x3x10,D525,Reference Data,81,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A526,RTA3146,2x3x10,D526,Reference Data,82,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A527,RTA3146,3x4x10,D527,Reference Data,83,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A528,RTA3146,4x6x10 #2,D528,Reference Data,84,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A650,R5140,1x3x8.5,D650,Reference Data,85,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A651,R5140,1.5x3x8.5,D651,Reference Data,86,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A652,R5140,2x3x8.5,D652,Reference Data,87,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A653,R5140,3x4x8.5,D653,Reference Data,88,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A654,R5140,4x6x8.5,D654,Reference Data,89,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A655,R5140,1.5x3x10,D655,Reference Data,90,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A656,R5140,2x3x10,D656,Reference Data,91,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A657,R5140,3x4x10,D657,Reference Data,92,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A658,R5140,4x6x10 #2,D658,Reference Data,93,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A659,R5140,1x2x11.5,D659,Reference Data,94,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A660,R5140,1.5x3x11.5,D660,Reference Data,95,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A661,R5140,2x3x11.5,D661,Reference Data,96,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A662,R5140,3x4x11.5,D662,Reference Data,97,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A663,R5140,4x6x11.5,D663,Reference Data,98,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A664,R5140,1.5x3x13.5,D664,Reference Data,99,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A665,R5140,2x3x13.5,D665,Reference Data,100,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A666,R5140,3x4x13.5,D666,Reference Data,101,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A674,R5170,1.5x3x13.5,D674,Reference Data,102,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A675,R5170,2x3x13.5,D675,Reference Data,103,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A676,R5170,3x4x13.5,D676,Reference Data,104,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A680,R5180,4x6x10 #1,D680,Reference Data,105,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A682,R5180,6x8x12.5,D682,Reference Data,106,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A683,R5180,2x4x15.5,D683,Reference Data,107,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A684,R5180,3x4x15.5,D684,Reference Data,108,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A685,R5180,4x6x15.5,D685,Reference Data,109,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A690,R5240,6x8x15.5,D690,Reference Data,110,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A691,R5240,8x10x15.5,D691,Reference Data,111,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A610,PH2110,1x1.5x6,D610,Reference Data,112,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A611,PH2110,1.5x3x6,D611,Reference Data,113,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A612,PH2110,2x3x6,D612,Reference Data,114,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A613,PH2110,1x1.5x8,D613,Reference Data,115,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A614,PH2110,1.5x3x8,D614,Reference Data,116,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A338,PH2140,1x2x8.5,D338,Reference Data,117,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A339,PH2140,1.5x3x8.5,D339,Reference Data,118,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A340,PH2140,2x3x8.5,D340,Reference Data,119,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A341,PH2140,3x4x8.5 #1,D341,Reference Data,120,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A342,PH2140,3x4x8.5 #2,D342,Reference Data,121,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A359,PH2140,1x2x10,D359,Reference Data,122,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A351,PH2140,1.5x3x10,D351,Reference Data,123,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A352,PH2140,2x3x10,D352,Reference Data,124,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A353,PH2140,3x4x10 #1,D353,Reference Data,125,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A345,PH2140,3x4x10 #2,D345,Reference Data,126,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A346,PH2140,1.5x3x11.5,D346,Reference Data,127,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A347,PH2140,2x3x11.5,D347,Reference Data,128,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A348,PH2140,3x4x11.5,D348,Reference Data,129,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A358,PH2140,4x6x11.5,D358,Reference Data,130,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A354,PH2140,1.5x3x13.5,D354,Reference Data,131,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A355,PH2140,2x3x13.5,D355,Reference Data,132,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A356,PH2140,3x4x13.5,D356,Reference Data,133,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A415,PH2170,1.5x3x13.5,D415,Reference Data,134,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A416,PH2170,2x3x13.5,D416,Reference Data,135,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A417,PH3170,3x4x13.5,D417,Reference Data,136,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A418,PH2170,4x6x13.5,D418,Reference Data,137,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A422,PH2180,4x6x13.5,D422,Reference Data,138,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A423,PH2180,6x8x13.5,D423,Reference Data,139,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A614P,PHP2110,1.5x1.5x8,D614P,Reference Data,140,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A351P,PHP2140,2x2x10,D351P,Reference Data,141,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A352P,PHP2140,3x3x10,D352P,Reference Data,142,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A353P,PHP2140,4x4x10,D353P,Reference Data,143,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A356P,PHP2140,4x4x13.5,D356P,Reference Data,144,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A362,DL200,1x1.5x6,D362,Reference Data,145,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A363,DL200,1.5x3x6,D363,Reference Data,146,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A402,DL230,1.5x3x8.5,D402,Reference Data,147,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A403,DL230,2x3x8.5,D403,Reference Data,148,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A404,DL230,3x4x8.5,D404,Reference Data,149,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A405,DL230,2x3x11.5,D405,Reference Data,150,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A406,DL230,3x4x11.5,D406,Reference Data,151,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A460,CNV206,1x1.5x6,D460,Reference Data,152,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A461,CNV206,1.5x3x6,D461,Reference Data,153,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A465,CNV236,1.5x3x8.5,D465,Reference Data,154,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A466,CNV236,2x3x8.5,D466,Reference Data,155,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A467,CNV236,3x4x8.5,D467,Reference Data,156,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A468,CNV236,2x3x11.5,D468,Reference Data,157,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A990,RS,1.5x3x8.5,D990,Reference Data,158,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A990WA,RSWA,1.5x3x8.5,D990WA,Reference Data,159,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A702,RM5140,1x3x8.5,D702,Reference Data,160,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A703,RM5140,1.5x3x8.5,D703,Reference Data,161,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A704,RM5140,2x3x8.5,D704,Reference Data,162,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A705,RM5140,3x4x8.5,D705,Reference Data,163,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A706,RM5140,4x6x8.5,D706,Reference Data,164,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A707,RM5140,1.5x3x10,D707,Reference Data,165,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A708,RM5140,2x3x10,D708,Reference Data,166,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A709,RM5140,3x4x10,D709,Reference Data,167,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A710,RM5140,4x6x10 #2,D710,Reference Data,168,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A713,RM5140,1x2x11.5,D713,Reference Data,169,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A712,RM5140,1.5x3x11.5,D712,Reference Data,170,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A715,RM5140,2x3x11.5,D715,Reference Data,171,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A714,RM5140,3x4x11.5,D714,Reference Data,172,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A716,RM5140,4x6x11.5,D716,Reference Data,173,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A717,RM5140,1.5x3x13.5,D717,Reference Data,174,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A718,RM5140,2x3x13.5,D718,Reference Data,175,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A719,RM5140,3x4x13.5,D719,Reference Data,176,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A725,RMA5140,1x3x8.5,D725,Reference Data,177,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A726,RMA5140,1.5x3x8.5,D726,Reference Data,178,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A727,RMA5140,2x3x8.5,D727,Reference Data,179,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A728,RMA5140,3x4x8.5,D728,Reference Data,180,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A729,RMA5140,4x6x8.5,D729,Reference Data,181,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A730,RMA5140,1.5x3x10,D730,Reference Data,182,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A731,RMA5140,2x3x10,D731,Reference Data,183,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A732,RMA5140,3x4x10,D732,Reference Data,184,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A733,RMA5140,4x6x10 #2,D733,Reference Data,185,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A734,RMA5140,1x2x11.5,D734,Reference Data,186,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A735,RMA5140,1.5x3x11.5,D735,Reference Data,187,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A736,RMA5140,2x3x11.5,D736,Reference Data,188,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A737,RMA5140,3x4x11.5,D737,Reference Data,189,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A738,RMA5140,4x6x11.5,D738,Reference Data,190,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A741,RMA5140,1.5x3x13.5,D741,Reference Data,191,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A742,RMA5140,2x3x13.5,D742,Reference Data,192,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A743,RMA5140,3x4x13.5,D743,Reference Data,193,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A757,M300 (FRAME III),2x3x8.5,D757,Reference Data,194,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A758,M300 (FRAME III),3x4x8.5,D758,Reference Data,195,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A759,M300 (FRAME III),1x2x10,D759,Reference Data,196,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A760,M300 (FRAME III),1.5x3x10,D760,Reference Data,197,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A761,M300 (FRAME III),2x3x10,D761,Reference Data,198,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A762,M300 (FRAME III),3x4x10,D762,Reference Data,199,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+DEAN,A763,M300 (FRAME III),4x6x10,D763,Reference Data,200,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\dean.json
+FYBROC,1500,1500,1x1.5x6,F1500,FULL LIST,3,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,1530,1530,1x1.5x6,F1530,FULL LIST,102,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,1600,1600,2x3x6,F1600,FULL LIST,177,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,1630,1630,2x3x6,F1630,FULL LIST,252,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,2530,2530,1x1.5x6,F2530,FULL LIST,327,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,3000,3000,Alt_Size,F3000,FULL LIST,401,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json
+FYBROC,5500,5500,1x1.5x6,F5500,FULL LIST,465,C:\Users\makorede\Downloads\Combine_partnumbering\config\identifier_profiles\fybroc.json

@@ -1,0 +1,38 @@
+Dean Compiler Layout Fix
+========================
+
+1. Replace:
+   config\compiler_profiles\dean_configuration.json
+
+   with the file in this package.
+
+2. Open:
+   src\compiler\configuration_model.py
+
+3. Add the function from:
+   compiler_function_patch.txt
+
+   before compile_configuration_model().
+
+4. Ensure this import exists:
+   from openpyxl.utils import column_index_from_string
+
+5. Replace the strategy_handlers dictionary using:
+   strategy_handler_patch.txt
+
+6. Run:
+   python -m pytest -q
+
+7. Recompile:
+   python -m scripts.compile_configuration_model
+
+8. Review Dean fields:
+   Import-Csv .\exports\configuration_fields_candidates.csv |
+       Where-Object family_code -eq "DEAN" |
+       Sort-Object {[int]$_.display_order} |
+       Format-Table display_order,section_code,field_name,source_cell,confidence -AutoSize
+
+Expected Dean results:
+- Fields 1-48 read sequence from B and label from C.
+- Fields 49-93 read sequence from I and label from F.
+- Notes in K/L and formulas in C/L will no longer be mistaken for later fields.

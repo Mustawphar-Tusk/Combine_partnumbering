@@ -1,0 +1,45 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*secret*
+
+# Signed configuration sessions
+fybroc-session.json
+fybroc-complete-session.json
+*session*.json
+
+# Excel source and generated workbooks
+workbooks/
+output/
+artifacts/
+*.xlsm
+*.xlsx
+*.xlsb
+~$*
+
+# Generated packages and backups
+*.zip
+*.bak
+*.bak-*
+*_before_*
+
+# Runtime logs
+*.log
+uvicorn-finalize-debug.log
+
+# IDE and operating system
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+exports/fybroc_segment_combinations.json
+exports/segment_combination_candidates.csv

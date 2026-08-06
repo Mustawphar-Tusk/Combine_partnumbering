@@ -1,0 +1,27 @@
+1. Back up your current project folder.
+
+2. Extract this ZIP into:
+   C:\Users\makorede\Downloads\Combine_partnumbering
+
+3. Allow folders to merge and files to overwrite.
+
+4. From the project root, activate the environment:
+   .\.venv\Scripts\Activate.ps1
+
+5. Install dependencies:
+   pip install -r requirements.txt
+
+6. Create .env:
+   Copy-Item .env.example .env -Force
+
+7. Verify the project:
+   python .\scripts\verify_project.py
+
+8. Test SQL connectivity:
+   python -c "from src.database.connection import check_database_connection; print(check_database_connection())"
+
+9. Run tests:
+   python -m pytest -q
+
+10. Start the API:
+    python -m uvicorn src.api.main:app --reload

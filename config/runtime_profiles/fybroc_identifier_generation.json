@@ -1,0 +1,104 @@
+{
+  "family_code": "FYBROC",
+  "base_identifier": {
+    "prefix": "F",
+    "series_field_code": "SERIES",
+    "series_code_pattern": "(\\d{4})"
+  },
+  "sku_version": 1,
+  "part_separator": "-",
+  "segments": [
+    {
+      "segment_code": "SERIES",
+      "resolution_type": "ATTRIBUTE",
+      "field_code": "SERIES"
+    },
+    {
+      "segment_code": "SIZE",
+      "resolution_type": "ATTRIBUTE",
+      "field_code": "SIZE"
+    },
+    {
+      "segment_code": "PUMP_MATERIAL",
+      "resolution_type": "ATTRIBUTE",
+      "field_code": "PUMP_MATERIAL"
+    },
+    {
+      "segment_code": "IMPELLER_TRIM",
+      "resolution_type": "ATTRIBUTE",
+      "field_code": "IMPELLER_TRIM"
+    },
+    {
+      "segment_code": "PUMP_OPTIONS",
+      "resolution_type": "COMBINATION",
+      "selection_fields": [
+        "CASING_DRAINS",
+        "SUCTION_DISCHARGE",
+        "SHAFT_MATERIAL",
+        "IMPELLER_SLEEVE",
+        "CASING_HARDWARE",
+        "PUMP_ELASTOMERS",
+        "BEARING_OPTION",
+        "POWER_FRAME_HARDWARE",
+        "GLAND_HARDWARE",
+        "FLUSH",
+        "CYCLONE_SEPARATOR",
+        "DYNAMIC_IMPELLER"
+      ]
+    },
+    {
+      "segment_code": "SEAL_ASSEMBLY",
+      "resolution_type": "COMBINATION",
+      "selection_fields": [
+        "SEAL_OPTION",
+        "SEAL_TYPE",
+        "SEAL_MATERIALS",
+        "SEAL_ELASTOMERS",
+        "SEAL_GUARD"
+      ]
+    },
+    {
+      "segment_code": "OPTIONS",
+      "resolution_type": "COMBINATION",
+      "selection_fields": [
+        "COUPLING_OPTION",
+        "COUPLING_GUARD",
+        "BASEPLATE_OPTION",
+        "BASEPLATE_HARDWARE",
+        "NAMEPLATE"
+      ]
+    },
+    {
+      "segment_code": "MOTOR_ASSEMBLY",
+      "resolution_type": "COMBINATION",
+      "selection_fields": [
+        "MOTOR_OPTION",
+        "MOTOR_CLASS",
+        "MOTOR_ORIENTATION",
+        "MOTOR_HORSEPOWER",
+        "MOTOR_RPM",
+        "MOTOR_VOLTAGE",
+        "MOTOR_HERTZ",
+        "MOTOR_FRAME",
+        "MOTOR_ENCLOSURE",
+        "MOTOR_EFFICIENCY",
+        "MOTOR_MANUFACTURER"
+      ]
+    },
+    {
+      "segment_code": "MOTOR_MODIFICATIONS",
+      "resolution_type": "ATTRIBUTE_SEQUENCE",
+      "source_field_code": "MOTOR_MODIFICATIONS",
+      "field_codes": [
+        "MOTOR_MODIFICATION_1",
+        "MOTOR_MODIFICATION_2",
+        "MOTOR_MODIFICATION_3"
+      ]
+    },
+    {
+      "segment_code": "TESTING",
+      "resolution_type": "ATTRIBUTE",
+      "field_code": "TESTING"
+    }
+  ]
+}

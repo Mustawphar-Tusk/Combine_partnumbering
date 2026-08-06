@@ -1,0 +1,130 @@
+{
+  "family_code": "DEAN",
+  "base_identifier": {
+    "base_prefix": "D",
+    "remove_model_prefix": "A"
+  },
+  "model_reference": {
+    "workbook_role": "configuration_and_quote",
+    "worksheet_name": "Reference Data",
+    "row_from": 2,
+    "columns": {
+      "model_identifier": "A",
+      "series": "B",
+      "size": "C"
+    },
+    "model_identifier_source": "column"
+  },
+  "identifier_formats": [
+    {
+      "identifier_type": "PART_NUMBER",
+      "format_code": "DEAN_PART_NUMBER_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-{segment_string}",
+      "segment_separator": "-",
+      "base_identifier_source": "MODEL_REFERENCE"
+    },
+    {
+      "identifier_type": "SKU",
+      "format_code": "DEAN_SKU_V1",
+      "version_number": 1,
+      "template": "{base_identifier}-V{version}-{compact_segment_string}",
+      "segment_separator": "",
+      "base_identifier_source": "MODEL_REFERENCE"
+    }
+  ],
+  "segments": [
+    {
+      "segment_code": "WET_END_OPTIONS",
+      "segment_name": "Wet End Options",
+      "assembly_order": 10,
+      "expected_width": 4,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "IMPELLER_TRIM",
+      "segment_name": "Impeller Trim",
+      "assembly_order": 20,
+      "expected_width": 2,
+      "source_field_codes": [
+        "IMPELLER_TRIM_016"
+      ]
+    },
+    {
+      "segment_code": "IMPELLER_OPTIONS",
+      "segment_name": "Impeller Options",
+      "assembly_order": 30,
+      "expected_width": 2,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "POWER_FRAME_OPTIONS",
+      "segment_name": "Power Frame Options",
+      "assembly_order": 40,
+      "expected_width": 3,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "SEAL_OPTIONS",
+      "segment_name": "Seal Options",
+      "assembly_order": 50,
+      "expected_width": 5,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "FLUSH_PLAN",
+      "segment_name": "Flush Plan",
+      "assembly_order": 60,
+      "expected_width": 2,
+      "source_field_codes": [
+        "FLUSH_PLAN_049"
+      ]
+    },
+    {
+      "segment_code": "BARRIER_PLAN",
+      "segment_name": "Barrier Plan",
+      "assembly_order": 70,
+      "expected_width": 2,
+      "source_field_codes": [
+        "BARRIER_PLAN_050"
+      ]
+    },
+    {
+      "segment_code": "COOLING_PLAN",
+      "segment_name": "Cooling Plan",
+      "assembly_order": 80,
+      "expected_width": 2,
+      "source_field_codes": [
+        "COOLING_PLAN_052"
+      ]
+    },
+    {
+      "segment_code": "MOTOR",
+      "segment_name": "Motor",
+      "assembly_order": 90,
+      "expected_width": 4,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "BASEPLATE_OPTIONS",
+      "segment_name": "Baseplate Options",
+      "assembly_order": 100,
+      "expected_width": 3,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "TESTING_DOCUMENTATION",
+      "segment_name": "Testing and Documentation",
+      "assembly_order": 110,
+      "expected_width": 4,
+      "source_field_codes": []
+    },
+    {
+      "segment_code": "ADDITIONAL_OPTIONS",
+      "segment_name": "Additional Options",
+      "assembly_order": 120,
+      "expected_width": 2,
+      "source_field_codes": []
+    }
+  ]
+}

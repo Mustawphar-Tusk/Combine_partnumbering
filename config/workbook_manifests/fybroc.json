@@ -1,0 +1,25 @@
+{
+  "family_code": "FYBROC",
+  "family_name": "Fybroc Pump",
+  "folder_name": "Fybroc",
+  "workbooks": [
+    {
+      "pattern": "Fybroc Attributes and Constraints.xlsx",
+      "role": "attributes_and_constraints",
+      "required": true,
+      "processing_order": 10
+    },
+    {
+      "pattern": "Fybroc Nomenclature_V*.xlsm",
+      "role": "configuration_and_hex_mapping",
+      "required": true,
+      "processing_order": 20
+    },
+    {
+      "pattern": "Price Estimator-Fybroc.xlsm",
+      "role": "pricing_and_quote",
+      "required": true,
+      "processing_order": 30
+    }
+  ]
+}

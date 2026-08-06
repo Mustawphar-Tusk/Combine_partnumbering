@@ -1,0 +1,6 @@
+# In compile_configuration_model(), update strategy_handlers to:
+strategy_handlers = {
+    "numbered_rows": compile_numbered_rows,
+    "numbered_column_pairs": compile_numbered_column_pairs,
+    "column_workflow": compile_column_workflow,
+}

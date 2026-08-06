@@ -1,0 +1,26 @@
+{
+  "table_scan_rows": 40,
+  "table_scan_columns": 120,
+  "workbooks": [
+    {
+      "family_code": "DEAN",
+      "workbook_role": "configuration_and_quote"
+    },
+    {
+      "family_code": "DEAN",
+      "workbook_role": "configuration_logic"
+    },
+    {
+      "family_code": "FYBROC",
+      "workbook_role": "attributes_and_constraints"
+    },
+    {
+      "family_code": "FYBROC",
+      "workbook_role": "configuration_and_hex_mapping"
+    },
+    {
+      "family_code": "FYBROC",
+      "workbook_role": "pricing_and_quote"
+    }
+  ]
+}

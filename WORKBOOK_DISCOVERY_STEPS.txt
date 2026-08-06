@@ -1,0 +1,5 @@
+1. Extract this ZIP into the project root and merge folders.
+2. Activate the environment.
+3. Run: python -m pytest -q
+4. Run: python .\scripts\discover_workbooks.py
+5. Open: exports\workbook_discovery.json

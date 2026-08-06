@@ -1,0 +1,46 @@
+{
+  "family_code": "FYBROC",
+  "workbook_role": "configuration_and_hex_mapping",
+  "worksheet_name": "Attributes",
+  "row_from": 8,
+  "row_to": 100000,
+  "max_consecutive_blank_rows": 100,
+  "attributes": [
+    {
+      "field_code": "SERIES",
+      "field_name": "Series",
+      "display_column": "F",
+      "code_column": "G"
+    },
+    {
+      "field_code": "SIZE",
+      "field_name": "Size",
+      "display_column": "I",
+      "code_column": "J"
+    },
+    {
+      "field_code": "PUMP_MATERIAL",
+      "field_name": "Pump Material",
+      "display_column": "L",
+      "code_column": "M"
+    },
+    {
+      "field_code": "IMPELLER_TRIM",
+      "field_name": "Impeller Trim",
+      "display_column": "O",
+      "code_column": "P"
+    },
+    {
+      "field_code": "MOTOR_MODIFICATIONS",
+      "field_name": "Motor Modifications",
+      "display_column": "R",
+      "code_column": "S"
+    },
+    {
+      "field_code": "TESTING",
+      "field_name": "Testing",
+      "display_column": "U",
+      "code_column": "V"
+    }
+  ]
+}

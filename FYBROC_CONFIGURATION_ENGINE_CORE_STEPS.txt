@@ -1,0 +1,36 @@
+Fybroc Configuration Engine Core
+================================
+
+This is the first runtime configuration engine.
+
+It currently resolves these SQL-backed combination segments:
+- PUMP_OPTIONS
+- SEAL_ASSEMBLY
+- OPTIONS
+
+It accepts direct codes for:
+- SERIES
+- SIZE
+- PUMP_MATERIAL
+- IMPELLER_TRIM
+- MOTOR_ASSEMBLY
+- MOTOR_MODIFICATIONS
+- TESTING
+
+The next compiler will replace those supplied direct codes with
+database lookups from authoritative Fybroc attribute mappings.
+
+1. Extract and merge into the project root.
+
+2. Run tests:
+
+   python -m pytest -q
+
+3. Run the SQL-backed example:
+
+   python -m scripts.test_fybroc_configuration_engine
+
+Expected behavior:
+- Valid selections return exact segment IDs and values.
+- Invalid selections return valid=false.
+- No Part Number or SKU is generated when any required segment fails.

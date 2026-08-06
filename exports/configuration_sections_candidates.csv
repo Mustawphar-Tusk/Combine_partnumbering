@@ -1,0 +1,18 @@
+﻿family_code,workbook_role,worksheet_name,section_code,section_name,display_order,sequence_from,sequence_to,source_profile
+DEAN,configuration_and_quote,Data Sheet,PUMP_INFORMATION,Pump Information,10,1,15,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,IMPELLER,Impeller,20,16,19,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,POWER_FRAME,Power Frame,30,20,28,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,COUPLING,Coupling,40,29,30,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,PUMP_SEAL,Pump Seal,50,31,48,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,FLUSH_BARRIER_COOLING,Flush / Barrier / Cooling Plan,60,49,55,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,MOTOR,Motor,70,56,71,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,BASEPLATE,Baseplate,80,72,80,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,TESTING_DOCUMENTATION,Testing & Documentation,90,81,89,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+DEAN,configuration_and_quote,Data Sheet,ADDITIONAL_OPTIONS,Additional Options,100,90,93,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\dean_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,PRIMARY_CONFIGURATION,Primary Configuration,10,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,PUMP_OPTIONS,Pump Options,20,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,SEAL_ASSEMBLY,Complete Seal Assembly,30,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,OPTIONS,Options,40,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,MOTOR_ASSEMBLY,Motor Assembly,50,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,MOTOR_MODIFICATIONS,Motor Modifications,60,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json
+FYBROC,configuration_and_hex_mapping,Smart Number,TEST,Test,70,,,C:\Users\makorede\Downloads\Combine_partnumbering\config\compiler_profiles\fybroc_configuration.json

@@ -1,0 +1,76 @@
+M016.1 Fybroc Vocabulary Reconciliation
+=======================================
+
+1. Extract and merge into the project root.
+
+2. In this file:
+
+   config\constraint_profiles\fybroc_series_field_options.json
+
+   ensure field_code_map contains:
+
+       "F_NamePlate": "NAMEPLATE_STANDARD",
+       "F_NamePlate2": "NAMEPLATE"
+
+   The package includes a PowerShell-safe patch script below if the
+   first entry is not already present.
+
+3. Apply the Nameplate mapping automatically:
+
+   @'
+   import json
+   from pathlib import Path
+
+   path = Path(
+       "config/constraint_profiles/"
+       "fybroc_series_field_options.json"
+   )
+   data = json.loads(path.read_text(encoding="utf-8"))
+   mapping = data.setdefault("field_code_map", {})
+   mapping["F_NamePlate"] = "NAMEPLATE_STANDARD"
+   mapping["F_NamePlate2"] = "NAMEPLATE"
+   path.write_text(
+       json.dumps(data, indent=2),
+       encoding="utf-8",
+   )
+   print(path)
+   '@ | python
+
+4. Recompile the corrected series matrix:
+
+   python -m scripts.compile_fybroc_series_constraints
+
+5. Republish it into the active publication:
+
+   python -m scripts.load_and_publish_fybroc_series_constraints `
+       --file .\exports\fybroc_series_constraint_candidates.csv `
+       --publication-id 1
+
+6. Run all tests:
+
+   python -m pytest -q
+
+7. Verify every Series 1530 vocabulary intersection:
+
+   python -m scripts.test_fybroc_vocabulary_intersections
+
+Expected:
+
+   "zero_intersection_fields": []
+
+8. Run the full closed session again:
+
+   python -m scripts.test_fybroc_complete_configuration_session
+
+The runtime revision will now include:
+
+   publication:1;series-batch:<latest>;combination-batch:2
+
+Expected final behavior:
+
+- complete = true
+- selection_count = 39
+- navigation_steps = 39
+- Part Number and SKU are generated
+- arbitrary_engineering_values_accepted = false
+- identifier_input = completed signed state only

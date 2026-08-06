@@ -1,0 +1,299 @@
+﻿workbook,family_code,name,refers_to,local_sheet_id,hidden
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.ARRAYTOTEXT,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.BASE,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.CHOOSECOLS,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.CHOOSEROWS,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.CODE,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.COLUMN,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.FIND,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.FREQUENCY,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.IF,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.IFERROR,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.ISBLANK,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.ISNUMBER,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.LEN,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.MATCH,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.MIN,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.NOT,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.SEARCH,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.SHEET,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.SUBSTITUTE,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.T,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.TEXTJOIN,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xleta.TYPE,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlpm.ar,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlpm.arr,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlpm.arrr,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlpm.r,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlpm.x,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlpm.y,#NAME?,,True
+Dean Data Sheet Rev 2.xlsm,DEAN,BasePlate_Type,Pricing!$R$3:$R$1070,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,BaseplateType_Table,Constraints!$GX$3:$HC$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Bearing_Frame_Cooling_Table,Constraints!$GS$3:$GV$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Casing_Heat_Jacket,Pricing!$M$3:$M$163,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CasingDrain_Table,Constraints!$BR$3:$BY$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CasingGasket_Table,Constraints!$CG$3:$CJ$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CasingMaterial_Table,Constraints!$BH$3:$BP$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CasingMounting_Table,Constraints!$DD$3:$DH$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CasingRings_Table,Constraints!$CW$3:$DB$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CasingTaps_Table,Constraints!$CA$3:$CE$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CouplingGuard_Table,Constraints!$HE$3:$HH$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CouplingType_Table,Constraints!$HJ$3:$HM$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,CradleMaterial_Table,Constraints!$DX$3:$EB$39,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ExpansionChamber_Table,Constraints!$GP$3:$GQ$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_1,'External References'!$A$1:$A$5,13,True
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_1,'Motor Numbering'!$AL$23:$AQ$28075,9,True
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_1,'User Selections'!$BB$17,10,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_2,'External References'!$C$1:$C$3,13,True
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_2,'Test and Doc Numbering'!$O$15:$U$315061,11,True
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_3,'External References'!$A$1:$A$60,13,True
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_4,'External References'!$C$1:$C$4,13,True
+Dean Data Sheet Rev 2.xlsm,DEAN,ExternalData_5,'External References'!$I$1:$AD$663757,13,True
+Dean Data Sheet Rev 2.xlsm,DEAN,FlangeConfig_Table,Constraints!$CL$3:$CR$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Frame,Pricing!$Q$3:$Q$1070,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Frame_Group,Pricing!$P$3:$P$1070,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Frame_Style_Table,'Motor Constraints'!$B$29:$I$47,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,FromArray_1,_xlfn.ANCHORARRAY('Wet End Numbering'!$C$3),,False
+Dean Data Sheet Rev 2.xlsm,DEAN,FromArray_2,_xlfn.ANCHORARRAY('Wet End Numbering'!$D$3),,False
+Dean Data Sheet Rev 2.xlsm,DEAN,FromArray_3,_xlfn.ANCHORARRAY('Wet End Numbering'!$E$3),,False
+Dean Data Sheet Rev 2.xlsm,DEAN,FromArray_4,_xlfn.ANCHORARRAY('Wet End Numbering'!#REF!),,False
+Dean Data Sheet Rev 2.xlsm,DEAN,FromArray_5,_xlfn.ANCHORARRAY('Wet End Numbering'!$F$3),,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Group,Pricing!$B$3:$B$163,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Hardware_Table,Constraints!#REF!,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ImpellerBalance_Table,Constraints!$ED$3:$EE$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ImpellerMaterial_Table,Constraints!$EG$3:$EN$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ImpellerRing_Table,Constraints!$EP$3:$ET$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,List,Pricing!$U$3:$U$1070,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Lubrication_Table,Constraints!$FS$3:$FV$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,MagDrain_Table,Constraints!$GM$3:$GN$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Motor_Frame_Ratings_Table,'Motor Constraints'!$B$3:$J$26,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,N_A,Logic!$AY$2,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,NONE,'Config Info'!$L$6:$L$13,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Oiler_Table,Constraints!$FX$3:$GA$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,OilSeal_Table,Constraints!$GE$3:$GH$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlnm.Print_Area,'Data Sheet'!$B$2:$I$70,0,False
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlnm.Print_Area,'Formal Quote'!$B$2:$J$98,1,False
+Dean Data Sheet Rev 2.xlsm,DEAN,_xlnm.Print_Area,'Formal Quote (OEM)'!$B$2:$J$98,17,False
+Dean Data Sheet Rev 2.xlsm,DEAN,PumpMaterial_Table,Constraints!$AX$3:$BF$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Seal_Table,'Seal Pricing'!$D$2:$GJ$45,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,SealChamberConfig_Table,Constraints!$DK$3:$DS$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,SealOption_Table,Constraints!$EZ$3:$FC$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Series,Pricing!$D$3:$D$163,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,SeriesOptions,Constraints!$B$4:$B$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ShaftConfig_Table,Constraints!$FE$3:$FJ$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ShaftMaterial_Table,Constraints!$FL$3:$FP$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,ShippingGasket_Table,Constraints!$DU$3:$DV$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,SightGlass_Table,Constraints!$GJ$3:$GK$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Size,Pricing!$E$3:$E$163,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Size_Table,Constraints!$C$3:$AV$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,SpotFacing_Table,Constraints!$CT$3:$CU$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Style,Pricing!$C$3:$C$163,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,TackWeldRings_Table,Constraints!$EW$3:$EX$40,,False
+Dean Data Sheet Rev 2.xlsm,DEAN,Weight__lbs,Pricing!$T$3:$T$1070,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,_xlnm._FilterDatabase,' Motor Assy'!$C$26:$P$728,5,True
+Fybroc Nomenclature_V5.xlsm,FYBROC,_xlnm._FilterDatabase,Options!$C$11:$J$107,4,True
+Fybroc Nomenclature_V5.xlsm,FYBROC,_xlnm._FilterDatabase,'Pump Options'!$C$14:$Q$138254,2,True
+Fybroc Nomenclature_V5.xlsm,FYBROC,_xlnm._FilterDatabase,'Seal Assembly'!$C$13:$J$80,3,True
+Fybroc Nomenclature_V5.xlsm,FYBROC,_xlnm._FilterDatabase,'Smart Number'!$D$11:$Y$25,0,True
+Fybroc Nomenclature_V5.xlsm,FYBROC,_xleta.VLOOKUP,#NAME?,,True
+Fybroc Nomenclature_V5.xlsm,FYBROC,Baseplate_Option,Options!$F$3:$F$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,BaseplateHardware,Options!$G$3:$G$5,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Bearing_Option,'Pump Options'!$J$3:$J$5,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Casing_Drains,'Pump Options'!$D$3:$D$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Casing_Hardware,'Pump Options'!$H$3:$H$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Coupling_Guard,Options!$E$3:$E$6,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Coupling_Option,Options!$D$3:$D$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,CycloneSep,'Pump Options'!$N$3:$N$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Dynamic_Impeller,'Pump Options'!$O$3:$O$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Efficiency,' Motor Assy'!$M$3:$M$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Enclosure,' Motor Assy'!$L$3:$L$6,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Flush,'Pump Options'!$M$3:$M$8,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Frame_Code_Mtr,' Motor Assy'!$K$3:$K$21,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Gland_Hardware,'Pump Options'!$L$3:$L$7,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Hertz,' Motor Assy'!$J$3:$J$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Horsepower_Mtr,' Motor Assy'!$G$3:$G$21,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Impeller_Sleeve,'Pump Options'!$G$3:$G$8,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Motor_Class,' Motor Assy'!$E$3:$E$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Motor_Manufacturer,' Motor Assy'!$N$3:$N$7,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Motor_Modifications,Attributes!$R$8:$R$38,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Motor_Option,' Motor Assy'!$D$3:$D$5,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Motor_Orientation,' Motor Assy'!$F$3:$F$5,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,NamePlate2,Options!$H$3:$H$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Power_Frame_Hardware,'Pump Options'!$K$3:$K$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Pump_Elastomers,'Pump Options'!$I$3:$I$5,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,RPM,' Motor Assy'!$H$3:$H$6,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Seal_Elastomers,'Seal Assembly'!$G$3:$G$6,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Seal_Guard,'Seal Assembly'!$H$3:$H$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Seal_Materials,'Seal Assembly'!$F$3:$F$5,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Seal_Option,'Seal Assembly'!$D$3:$D$7,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Seal_Type,'Seal Assembly'!$E$3:$E$8,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Shaft_Material,'Pump Options'!$F$3:$F$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Suction_Discharge,'Pump Options'!$E$3:$E$4,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Testing,Attributes!$U$8:$U$98,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,ValidTrim,Attributes!$AW$7:$AW$46,,False
+Fybroc Nomenclature_V5.xlsm,FYBROC,Voltage,' Motor Assy'!$I$3:$I$5,,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm._FilterDatabase,Batch_Descriptions!#REF!,32,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm._FilterDatabase,'Mod Master List'!$A$3:$E$527,13,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm._FilterDatabase,'Mod Master List'!$A$3:$E$3,16,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.AND,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.CHAR,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.IF,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.IFERROR,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.ISERROR,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.LEFT,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.N,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.NOT,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.PRICE,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.REPLACE,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.RIGHT,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.SERIES,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.SHEET,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.SINGLE,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.T,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.TIME,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,_xleta.VALUE,#NAME?,,True
+Price Estimator-Fybroc.xlsm,FYBROC,ANSISize,"[1]!Table4[[#Headers],[ANSI Size]]",7,False
+Price Estimator-Fybroc.xlsm,FYBROC,ANSISize,"[1]!Table4[[#Headers],[ANSI Size]]",8,False
+Price Estimator-Fybroc.xlsm,FYBROC,ANSISize,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,ANSISize,"Table4[[#Headers],[ANSI Size]]",28,False
+Price Estimator-Fybroc.xlsm,FYBROC,ANSISize,"Table4[[#Headers],[ANSI Size]]",,False
+Price Estimator-Fybroc.xlsm,FYBROC,Ansisze,"[1]!Table4[[#Headers],[ANSI Size]]",,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate1,"INDEX(#REF!,0,MATCH(CONCATENATE('[2]Price Check'!$B$25,"":Group "",'[2]Price Check'!$B$27),#REF!,0))",7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate1,"INDEX(#REF!,0,MATCH(CONCATENATE('[2]Price Check'!$B$25,"":Group "",'[2]Price Check'!$B$27),#REF!,0))",8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate1,"""'=INDEX(#REF!#REF!,0,MATCH(CONCATENATE('Price Check'!$B$27),#REF!#REF!,0))""",3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate1,"INDEX(#REF!,0,MATCH(CONCATENATE(#REF!,"":Group "",#REF!),#REF!,0))",9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate1,"INDEX(Table153[],0,MATCH(CONCATENATE('Price Check'!$B$25,"":Group "",'Price Check'!$B$27),Table153[#Headers],0))",28,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate1,"INDEX(Table153[],0,MATCH(CONCATENATE('Price Check'!$B$25,"":Group "",'Price Check'!$B$27),Table153[#Headers],0))",,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate2,"INDEX(#REF!,0,MATCH(CONCATENATE([2]MainTemplate!$B$26,"":Group "",[2]MainTemplate!$B$28),#REF!,0))",7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate2,"INDEX(#REF!,0,MATCH(CONCATENATE([2]MainTemplate!$B$26,"":Group "",[2]MainTemplate!$B$28),#REF!,0))",8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate2,"INDEX(#REF!,0,MATCH(CONCATENATE(#REF!,"":Group "",#REF!),#REF!,0))",9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate2,"INDEX(Table153[],0,MATCH(CONCATENATE(MainTemplate!$B$26,"":Group "",MainTemplate!$B$28),Table153[#Headers],0))",,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate21,"INDEX(#REF!,0,MATCH(CONCATENATE('[2]Price Check'!$B$25,"":Group "",'[2]Price Check'!$B$27),#REF!,0))",7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate21,"INDEX(#REF!,0,MATCH(CONCATENATE('[2]Price Check'!$B$25,"":Group "",'[2]Price Check'!$B$27),#REF!,0))",8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate21,"INDEX(#REF!,0,MATCH(CONCATENATE(#REF!,"":Group "",#REF!),#REF!,0))",9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Baseplate21,"INDEX(Table153[],0,MATCH(CONCATENATE('Price Check'!$B$25,"":Group "",'Price Check'!$B$27),Table153[#Headers],0))",,False
+Price Estimator-Fybroc.xlsm,FYBROC,Dean_Pump_Series_List,"[1]!Dean_Pump_Series[[#All],[Pump Series]]",,False
+Price Estimator-Fybroc.xlsm,FYBROC,Efficiency_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Efficiency_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Efficiency_Table,Tables!$E$196:$F$198,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Efficiency_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Efficiency_Table,Tables!$E$200:$F$202,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclosure,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclosure_Table,#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclosure_Table,#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclosure_Table,Tables!$E$188:$F$193,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclosure_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclosure_Table,Tables!$E$192:$F$197,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Enclousure_Selected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Flush,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frame_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frame_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frame_Table,Tables!$E$220:$G$251,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frame_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frame_Table,Tables!$E$224:$G$255,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frequency_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frequency_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frequency_Table,Tables!$E$175:$F$177,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frequency_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Frequency_Table,Tables!$E$179:$F$181,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Horsepower_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Horsepower_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Horsepower_Table,Tables!$E$141:$F$163,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Horsepower_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Horsepower_Table,Tables!$E$145:$F$167,,False
+Price Estimator-Fybroc.xlsm,FYBROC,HP_Selected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,list1,'CC-New'!$A$5:$C$1428,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Manf_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Manf_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Manf_Table,Tables!$E$258:$F$267,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Mods,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Motor_Option,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Motor_Option_Selected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,MultiplierList,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Orientation_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Orientation_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Orientation_Table,Tables!$E$127:$F$139,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Orientation_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Orientation_Table,Tables!$E$131:$F$143,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Poles_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Poles_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Poles_Table,Tables!$E$182:$H$185,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Poles_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Poles_Table,Tables!$E$186:$H$189,,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,Aquarium!$B$3:$T$67,4,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,'CC-New'!$A$1:$T$1428,30,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,"'CC-Old'!$A$1:$T$218,'CC-Old'!#REF!",29,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,"'Formal Quote'!$B$2:$J$56,'Formal Quote'!$B$60:$J$103,'Formal Quote'!$L$2:$T$56,'Formal Quote'!$L$60:$T$103,'Formal Quote'!$W$2:$AE$56,'Formal Quote'!$W$60:$AE$103,'Formal Quote'!$AH$2:$AP$56,'Formal Quote'!$AH$60:$AP$103,'Formal Quote'!$B$106:$J$136",6,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,'Fybroc Horizontal'!$B$2:$I$39,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,'Fybroc Vertical'!$B$2:$I$36,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,'M-$'!$C$168:$Q$202,15,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,'M-Req'!$A$1:$N$53,12,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,Nameplate!$C$1:$J$17,1,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,'Price Check'!$A$3:$H$103,2,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,"Pricebook!$E$5:$H$24,Pricebook!$T$5:$W$21,Pricebook!$AE$5:$AH$11,Pricebook!$AQ$5:$AT$11,Pricebook!$BA$5:$BD$15,Pricebook!$BK$5:$BN$7,Pricebook!$BR$5:$CA$12,Pricebook!$CK$5:$DA$81,Pricebook!$DH$5:$DT$21,Pricebook!$DV$5:$DX$21,Pricebook!$EF$5:$EU$81,Pricebook!$FC$5:$FG$26,Pricebook!$FM$5:$FO$11,Pricebook!$FT$4:$GD$30",24,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Area,Rep!$A$1:$O$48,22,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Titles,'CC-New'!$A$1:$IV$4,30,False
+Price Estimator-Fybroc.xlsm,FYBROC,_xlnm.Print_Titles,Pricebook!$4:$5,24,False
+Price Estimator-Fybroc.xlsm,FYBROC,RPM_Selected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,rrrrrrrrrr,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Seal_Materials,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Seal_Type,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Shaft_Material,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Shaft_Selected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Size,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,SizeSelected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Standard_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Standard_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Standard_Table,Tables!$E$122:$F$123,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Standard_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Standard_Table,Tables!$E$126:$F$127,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Tab1500PP,Pricebook!$B$6:$M$24,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table1500Pump,Pricebook!$B$6:$M$24,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table33,'[2]M-#'!$G$16:$H$28,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table33,'[2]M-#'!$G$16:$H$28,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table33,'M-#'!$G$16:$H$28,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table33,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table33,'M-#'!$G$16:$H$28,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table34,'[2]M-#'!$J$17:$K$39,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table34,'[2]M-#'!$J$17:$K$39,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table34,'M-#'!$J$17:$K$39,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table34,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table34,'M-#'!$J$17:$K$39,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table35,'[2]M-#'!$P$24:$Q$27,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table35,'[2]M-#'!$P$24:$Q$27,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table35,'M-#'!$P$24:$Q$27,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table35,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table35,'M-#'!$P$24:$Q$27,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table36,'[2]M-#'!$S$20:$T$26,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table36,'[2]M-#'!$S$20:$T$26,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table36,'M-#'!$S$20:$T$26,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table36,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table36,'M-#'!$S$20:$T$26,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table37,'[2]M-#'!$V$21:$W$23,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table37,'[2]M-#'!$V$21:$W$23,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table37,'M-#'!$V$21:$W$23,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table37,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table37,'M-#'!$V$21:$W$23,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table38,'[2]M-#'!$Y$22:$Z$37,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table38,'[2]M-#'!$Y$22:$Z$37,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table38,'M-#'!$Y$22:$Z$37,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table38,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table38,'M-#'!$Y$22:$Z$37,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table39,'[2]M-#'!$AB$23:$AD$58,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table39,'[2]M-#'!$AB$23:$AD$58,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table39,'M-#'!$AB$23:$AD$58,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table39,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table39,'M-#'!$AB$23:$AD$58,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table40,'[2]M-#'!$AF$24:$AG$34,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table40,'[2]M-#'!$AF$24:$AG$34,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table40,'M-#'!$AF$24:$AG$34,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table40,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Table40,'M-#'!$AF$24:$AG$34,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Trim,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Trim_Selected,#REF!,,False
+Price Estimator-Fybroc.xlsm,FYBROC,Voltage_Table,'[1]Horizontal Data'!#REF!,7,False
+Price Estimator-Fybroc.xlsm,FYBROC,Voltage_Table,'[1]Horizontal Data'!#REF!,8,False
+Price Estimator-Fybroc.xlsm,FYBROC,Voltage_Table,Tables!$E$201:$F$216,3,False
+Price Estimator-Fybroc.xlsm,FYBROC,Voltage_Table,#REF!,9,False
+Price Estimator-Fybroc.xlsm,FYBROC,Voltage_Table,Tables!$E$205:$F$220,,False
+Price Estimator-Fybroc.xlsm,FYBROC,xxxxxxxx,#REF!,,False
