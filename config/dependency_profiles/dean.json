@@ -1,0 +1,22 @@
+{
+  "family_code": "DEAN",
+  "version": "M023.3",
+  "reconciliation_json": "exports/m023_dean_source_reconciliation.json",
+  "applicability_ready_csv": "exports/m023_dean_applicability_ready.csv",
+  "rule_type": "ALLOWED_TUPLES",
+  "identity_fields": [
+    "SERIES",
+    "SIZE"
+  ],
+  "normalization": {
+    "trim_text": true,
+    "casefold_for_validation": true
+  },
+  "safety": {
+    "do_not_infer_direction": true,
+    "do_not_infer_blank_as_wildcard": true,
+    "unknown_field_blocks_rule": true,
+    "unknown_option_blocks_tuple": true,
+    "duplicate_tuples_are_deduplicated": true
+  }
+}

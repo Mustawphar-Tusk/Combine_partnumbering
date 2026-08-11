@@ -1,0 +1,87 @@
+{
+  "family_code": "DEAN",
+  "reconciliation_version": "M023.1.1",
+  "rev2": {
+    "workbook": "workbooks/Dean/Dean Data Sheet Rev 2.xlsm",
+    "configuration_compiler_profile": "config/compiler_profiles/dean_configuration.json",
+    "identifier_profile": "config/identifier_profiles/dean.json"
+  },
+  "logic": {
+    "workbook": "workbooks/Dean/PumpConfiguration_Logic.xlsm",
+    "config_options_sheet": "Config Options",
+    "codependencies_sheet": "Codependencies",
+    "pump_options_sheet": "Pump Options",
+    "price_options_sheet": "Price Options"
+  },
+  "base_identifier": {
+    "source": "A_NUMBER",
+    "from_prefix": "A",
+    "to_prefix": "D",
+    "nonmatching_identifier_action": "review"
+  },
+  "expected_sequence_gaps": [53],
+  "field_aliases": {
+    "Auxillary Nameplate": "Auxiliary Nameplate",
+    "Casing Wear Ring": "Casing Wear Rings",
+    "Frame Size": "Frame",
+    "Impeller Wear Ring Material": "Imp. Wear Ring Mat.",
+    "Paint Options": "Paint"
+  },
+  "model_reference_reconciliation": {
+    "a_number_prefix": "A",
+    "allow_logic_only_a_prefix_models": true,
+    "logic_identifier_aliases": {
+      "A614-PHP": "A614P",
+      "A351-PHP": "A351P",
+      "A352-PHP": "A352P",
+      "A353-PHP": "A353P",
+      "A356-PHP": "A356P"
+    },
+    "logic_key_aliases": [
+      {
+        "logic_model_identifier": "A415",
+        "logic_series": "PH3170",
+        "logic_size": "1.5x3x13.5",
+        "rev2_series": "PH2170",
+        "rev2_size": "1.5x3x13.5",
+        "reason": "Both Rev2 Reference Data and External References map A415 / 1.5x3x13.5 to PH2170; PumpConfiguration_Logic uses PH3170 for the same A-number and size. Reconcile the Logic row to the authoritative Rev2 series."
+      },
+      {
+        "logic_model_identifier": "A416",
+        "logic_series": "PH3170",
+        "logic_size": "2x3x13.5",
+        "rev2_series": "PH2170",
+        "rev2_size": "2x3x13.5",
+        "reason": "Both Rev2 Reference Data and External References map A416 / 2x3x13.5 to PH2170; PumpConfiguration_Logic uses PH3170 for the same A-number and size. Reconcile the Logic row to the authoritative Rev2 series."
+      }
+    ],
+    "approved_rev2_overrides": [
+      {
+        "series": "RA3246",
+        "size": "6x8x15.5",
+        "rev2_model_identifier": "A799",
+        "logic_model_identifier": "A798",
+        "reason": "Both Rev2 Reference Data and External References independently map RA3246 / 6x8x15.5 to A799. Preserve Rev2 A799 and treat the PumpConfiguration_Logic A798 value as stale source metadata."
+      },
+      {
+        "series": "RA3246",
+        "size": "8x10x15.5",
+        "rev2_model_identifier": "A800",
+        "logic_model_identifier": "A799",
+        "reason": "Both Rev2 Reference Data and External References independently map RA3246 / 8x10x15.5 to A800. Preserve Rev2 A800 and treat the PumpConfiguration_Logic A799 value as stale source metadata."
+      }
+    ]
+  },
+  "matrix_markers": {
+    "preserve_raw": true,
+    "do_not_infer_semantics": true
+  },
+  "publication_policy": {
+    "rev2_model_reference_is_authoritative": true,
+    "logic_workbook_fills_configuration_gaps": true,
+    "logic_workbook_does_not_silently_override_rev2": true,
+    "logic_only_a_number_models_may_be_supplemental": true,
+    "non_a_number_models_require_review": true,
+    "require_lineage": true
+  }
+}

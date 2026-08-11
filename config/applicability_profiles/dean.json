@@ -1,0 +1,52 @@
+{
+  "family_code": "DEAN",
+  "version": "M023.2",
+  "reconciliation_json": "exports/m023_dean_source_reconciliation.json",
+  "workbook": "workbooks/Dean/PumpConfiguration_Logic.xlsm",
+  "worksheet": "Pump Options",
+  "accepted_model_classifications": [
+    "SHARED_MATCH",
+    "SHARED_ALIAS_MATCH",
+    "SHARED_REV2_OVERRIDE",
+    "LOGIC_ONLY_SUPPLEMENTAL_READY"
+  ],
+  "blocked_model_classifications": [
+    "LOGIC_ONLY_REVIEW"
+  ],
+  "marker_semantics": {
+    "STD": {
+      "status": "STANDARD",
+      "is_allowed": true,
+      "is_standard": true,
+      "publication_status": "READY"
+    },
+    "X": {
+      "status": "AVAILABLE",
+      "is_allowed": true,
+      "is_standard": false,
+      "publication_status": "READY"
+    },
+    "O": {
+      "status": "REVIEW",
+      "is_allowed": false,
+      "is_standard": false,
+      "publication_status": "BLOCKED_REVIEW"
+    }
+  },
+  "unknown_marker_policy": {
+    "status": "REVIEW",
+    "is_allowed": false,
+    "is_standard": false,
+    "publication_status": "BLOCKED_REVIEW"
+  },
+  "normalization": {
+    "trim_text": true,
+    "uppercase_marker": true
+  },
+  "safety": {
+    "blank_means_not_available": true,
+    "unknown_marker_never_allowed": true,
+    "blocked_model_never_published": true,
+    "require_reconciled_base_identifier": true
+  }
+}
