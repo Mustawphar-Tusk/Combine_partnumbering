@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "family_code": "FYBROC",
+  "component_code": "SEAL",
+  "currency_code": "USD",
+  "price_workbook": "workbooks/Fybroc/Price Estimator-Fybroc.xlsm",
+  "nomenclature_workbook": "workbooks/Fybroc/Fybroc Nomenclature_V5.xlsm",
+  "base_pump_compilation": "exports/fybroc_base_pump_pricing.json",
+  "supported_source_series": [
+    "1500",
+    "1530",
+    "1550",
+    "1600",
+    "1630",
+    "1650",
+    "3000"
+  ],
+  "table4": {
+    "worksheet_name": "Tables",
+    "table_name": "Table4",
+    "size_header": "ANSI Size",
+    "group_header": "Group"
+  },
+  "seal_assembly": {
+    "worksheet_name": "Seal Assembly",
+    "first_data_row": 14,
+    "last_data_row": 80,
+    "columns": {
+      "SEAL_OPTION": "D",
+      "SEAL_TYPE": "E",
+      "SEAL_MATERIALS": "F",
+      "SEAL_ELASTOMERS": "G"
+    },
+    "mechanical_seal_option": "Mechanical Seal Included*"
+  },
+  "price_tables": {
+    "standard": {
+      "worksheet_name": "Pricebook",
+      "table_name": "Table79"
+    },
+    "ptfe": {
+      "worksheet_name": "Pricebook",
+      "table_name": "Table137"
+    }
+  },
+  "price_value_status_map": {
+    "C/F": "call_for_price"
+  },
+  "runtime_elastomer_to_legacy": {
+    "FKM*": {
+      "legacy_elastomer": "Viton (Standard)",
+      "price_table": "standard",
+      "seal_key_suffix": ""
+    },
+    "EPR": {
+      "legacy_elastomer": "EPR",
+      "price_table": "standard",
+      "seal_key_suffix": ""
+    },
+    "PTFE": {
+      "legacy_elastomer": "Teflon",
+      "price_table": "ptfe",
+      "seal_key_suffix": "-Teflon"
+    }
+  },
+  "seal_type_material_mappings": [
+    {
+      "seal_type": "8B2 Single Outside*",
+      "seal_materials": "Carbon vs. Ceramic*",
+      "legacy_seal_key": "8B2 (Single Outside) (Std)"
+    },
+    {
+      "seal_type": "RAC Single Outside",
+      "seal_materials": "Carbon vs. Ceramic*",
+      "legacy_seal_key": "Flowserve RAC (Single Outside)"
+    },
+    {
+      "seal_type": "8-1T Double Inside*",
+      "seal_materials": "Carbon vs. Ceramic*",
+      "legacy_seal_key": "8-1T (Double Inside)"
+    },
+    {
+      "seal_type": "RXO Double Inside",
+      "seal_materials": "Carbon vs. Ceramic*",
+      "legacy_seal_key": "Flowserve RXO (Double Inside)"
+    },
+    {
+      "seal_type": "CRO Double Inside",
+      "seal_materials": "Carbon vs. Ceramic*",
+      "legacy_seal_key": "Flowserve CRO (Double Inside)"
+    },
+    {
+      "seal_type": "8B2 Single Outside*",
+      "seal_materials": "Silcar vs. Silcar",
+      "legacy_seal_key": "8B2 (Silcar/Silcar)"
+    },
+    {
+      "seal_type": "RAC Single Outside",
+      "seal_materials": "Silcar vs. Silcar",
+      "legacy_seal_key": "Flowserve RAC (Single Outside)"
+    },
+    {
+      "seal_type": "8-1T Double Inside*",
+      "seal_materials": "Silcar vs. Silcar",
+      "legacy_seal_key": "8-1T (Silcar/Silcar)"
+    },
+    {
+      "seal_type": "RXO Double Inside",
+      "seal_materials": "Silcar vs. Silcar",
+      "legacy_seal_key": "Flowserve RXO (Double Inside)"
+    },
+    {
+      "seal_type": "CRO Double Inside",
+      "seal_materials": "Silcar vs. Silcar",
+      "legacy_seal_key": "Flowserve CRO (Double Inside)"
+    }
+  ],
+  "non_mechanical_option_mappings": {
+    "Customer Supplied": {
+      "source_configuration_value": "Installed_by_Fybroc",
+      "legacy_seal_key": "Supplied by others; Installed by Fybroc",
+      "price_table": "standard"
+    },
+    "No Seal (Single Seal Gland by Fyboc)": {
+      "source_configuration_value": "NoSeal_Single_Seal_Gland",
+      "legacy_seal_key": "No Seal",
+      "price_table": "standard"
+    },
+    "No Seal (Double Seal Gland by Fyboc)": {
+      "source_configuration_value": "NoSeal_Double_Seal_Gland",
+      "legacy_seal_key": "No Seal",
+      "price_table": "standard"
+    },
+    "No Seal (No Seal Gland)": {
+      "source_configuration_value": "NoSeal_NoSealGland",
+      "legacy_seal_key": "No Seal",
+      "price_table": "standard"
+    }
+  }
+}

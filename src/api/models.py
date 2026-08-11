@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from decimal import Decimal
+
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
@@ -60,12 +62,47 @@ class NavigationResponse(ApiModel):
     options: list[AllowableOptionResponse]
 
 
+class PricingComponentResponse(ApiModel):
+    component_code: str
+    amount: Decimal
+    status: str
+    currency_code: str | None = None
+    price_book_code: str | None = None
+    price_book_version_id: int | None = None
+    version_code: str | None = None
+    price_rule_id: int | None = None
+    source_worksheet: str | None = None
+    source_table: str | None = None
+    source_cell: str | None = None
+
+
+class ConfigurationPricingResponse(ApiModel):
+    total_amount: Decimal
+    known_amount: Decimal
+    status: str
+    currency_code: str | None = None
+    price_book_code: str | None = None
+    price_book_version_id: int | None = None
+    version_code: str | None = None
+    components: list[
+        PricingComponentResponse
+    ]
+
+
 class FinalizeConfigurationResponse(ApiModel):
     configured_product_registry_id: int
     was_created: bool
     configuration_signature: str
     part_number: str
     sku: str
+
+    price: Decimal = Decimal("0")
+    pricing_status: str = "not_found"
+    currency_code: str | None = None
+    pricing_version: str | None = None
+    price_book_version_id: int | None = None
+    price_rule_id: int | None = None
+
     request_count: int
     runtime_revision: str
     metadata_publication_id: int
@@ -76,6 +113,7 @@ class FinalizeConfigurationResponse(ApiModel):
     segment_count: int
     created_at: datetime
     last_requested_at: datetime
+    pricing: ConfigurationPricingResponse | None = None
 
 
 class HealthResponse(ApiModel):

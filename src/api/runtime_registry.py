@@ -15,6 +15,7 @@ class ConfigurationFamilyGateway:
     family_code: str
     navigation_session: Any
     persistent_session: Any
+    pricing_service: Any | None = None
 
 
 class ConfigurationRuntimeRegistry:
@@ -57,11 +58,61 @@ def build_runtime_registry(
     from src.configuration_engine.fybroc_persistence_runtime import (
         build_fybroc_persistence_runtime,
     )
+    from src.pricing_engine import (
+        PricingService,
+        SqlPricingRepository,
+    )
+    from src.pricing_engine.non_blocking import (
+        NonBlockingPricingService,
+    )
+    from src.pricing_engine.aggregate import (
+        ConfigurationPricingService,
+    )
+    from src.pricing_engine.runtime_profile import (
+        load_pricing_runtime_profile,
+    )
 
     fybroc = build_fybroc_persistence_runtime(
         project_root=settings.project_root,
         connection_string=settings.connection_string,
         token_secret=settings.token_secret,
+    )
+
+    pricing_profile = (
+        load_pricing_runtime_profile(
+            settings.project_root,
+            "FYBROC",
+        )
+    )
+
+    component_pricing_service = (
+        NonBlockingPricingService(
+            PricingService(
+                SqlPricingRepository(
+                    connection_string=(
+                        settings.connection_string
+                    )
+                )
+            )
+        )
+    )
+
+    pricing_service = (
+        ConfigurationPricingService(
+            component_pricing_service,
+            component_codes=(
+                pricing_profile
+                .component_codes
+            ),
+            legacy_component_code=(
+                pricing_profile
+                .legacy_component_code
+            ),
+            default_price_book_code=(
+                pricing_profile
+                .price_book_code
+            ),
+        )
     )
 
     return ConfigurationRuntimeRegistry(
@@ -74,6 +125,7 @@ def build_runtime_registry(
                 persistent_session=(
                     fybroc.persistent_session
                 ),
+                pricing_service=pricing_service,
             )
         }
     )

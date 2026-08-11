@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "family_code": "FYBROC",
+  "workbook_role": "pricing",
+  "component_code": "BASE_PUMP",
+  "worksheet_name": "Pricebook",
+  "series_tables": {
+    "1500": "Table81",
+    "1550": "Table346",
+    "1530": "Table49",
+    "1600": "Table50",
+    "1650": "Table347",
+    "1630": "Table91",
+    "2530": "Table92",
+    "2580": "Table92",
+    "2630": "Table93",
+    "3000": "Table152",
+    "5500": "Table96",
+    "5530": "Table128",
+    "7500": "Table143",
+    "7530": "Table144",
+    "8500": "Table201"
+  },
+  "simple_matrix_series": [
+    "1500",
+    "1550",
+    "1530",
+    "1600",
+    "1650",
+    "1630",
+    "2530",
+    "2580",
+    "2630",
+    "3000"
+  ],
+  "row_key": "SIZE",
+  "ignored_columns": [
+    "Group",
+    "SIZE",
+    "ANSI DESIG.",
+    "ANSI Size",
+    "VR-1 Wght",
+    "W.E.K.",
+    "VR-1 W.E.K."
+  ],
+  "value_equivalences": {
+    "PUMP_MATERIAL": {
+      "VR-1 (Standard)": "VR-1*"
+    }
+  },
+  "unresolved_values": {
+    "PUMP_MATERIAL": [
+      "VR-1A BPO/DMA"
+    ]
+  },
+  "row_key_by_series": {
+    "3000": "ANSI Size"
+  },
+  "row_value_transform_by_series": {
+    "3000": "STRIP_PAREN_SUFFIX"
+  },
+  "price_value_status_map": {
+    "C/F": "call_for_price"
+  },
+  "series_value_equivalences": {
+    "1530": "1530 (ANSI)"
+  }
+}

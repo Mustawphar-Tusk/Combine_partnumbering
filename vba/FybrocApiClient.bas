@@ -49,6 +49,7 @@ Public Sub Fybroc_StartConfiguration()
     End If
 
     ClearApiResultValues
+    ClearApiPricingBridge
     ClearOptionTable
     RemoveOptionValidation
 
@@ -199,6 +200,9 @@ Public Sub Fybroc_FinalizeConfiguration()
         JsonObjectValue(responseObject, "requestCount")
     WriteNamedValue "API_RuntimeRevision", _
         JsonObjectText(responseObject, "runtimeRevision")
+
+    WritePricingResponse responseObject
+
     WriteNamedValue "API_Status", "finalized"
     WriteNamedValue "API_LastUpdatedUtc", Format$(Now, "yyyy-mm-dd\Thh:nn:ss")
 
@@ -219,7 +223,7 @@ Public Sub Fybroc_FinalizeConfiguration()
 
     ' Calculate only the API bridge cell. Do not run a full workbook rebuild,
     ' because this legacy workbook contains existing VBA/UDF logic.
-    ThisWorkbook.Worksheets("Price Check").Range("F5").Calculate
+    CalculateApiBridge
 
     ThisWorkbook.Save
 
@@ -248,6 +252,7 @@ Public Sub Fybroc_ClearApiResult()
     End If
 
     ClearApiResultValues
+    ClearApiPricingBridge
     ClearOptionTable
     RemoveOptionValidation
 
@@ -262,7 +267,7 @@ Public Sub Fybroc_ClearApiResult()
     ui.Range(CELL_SKU).ClearContents
     ui.Range(CELL_REGISTRY_ID).ClearContents
 
-    ThisWorkbook.Worksheets("Price Check").Range("F5").Calculate
+    CalculateApiBridge
     ThisWorkbook.Save
     Exit Sub
 
@@ -422,6 +427,126 @@ Private Sub ClearOptionTable()
         OPTION_TOKEN_COLUMN & OPTION_LAST_ROW _
     ).ClearContents
 End Sub
+
+
+' M022.7 - Fybroc API component pricing bridge.
+'
+' Pricing remains server-authored. The workbook receives only the component
+' amounts returned by the finalize response:
+'   BASE_PUMP -> Price Check!Q80
+'   SEAL      -> Price Check!Q81
+'
+' Q80/Q81 are the workbook's existing list-price override inputs. D80/D81,
+' F80/F81, D102/F102, and Formal Quote formulas are intentionally preserved.
+Private Sub WritePricingResponse(ByVal responseObject As Object)
+    Dim pricingObject As Object
+    Set pricingObject = JsonObjectChildObject(responseObject, "pricing")
+
+    If pricingObject Is Nothing Then
+        Err.Raise vbObjectError + 2060, , _
+            "The API finalize response did not include the pricing object."
+    End If
+
+    Dim pricingStatus As String
+    pricingStatus = LCase$(Trim$(JsonObjectText(pricingObject, "status")))
+
+    WriteNamedValue "API_PricingStatus", pricingStatus
+    WriteNamedValue "API_TotalAmount", _
+        JsonObjectValue(pricingObject, "totalAmount")
+    WriteNamedValue "API_KnownAmount", _
+        JsonObjectValue(pricingObject, "knownAmount")
+    WriteNamedValue "API_CurrencyCode", _
+        JsonObjectText(pricingObject, "currencyCode")
+
+    WriteNamedValue "API_BasePumpAmount", 0
+    WriteNamedValue "API_SealAmount", 0
+
+    Dim priceSheet As Worksheet
+    Set priceSheet = ThisWorkbook.Worksheets("Price Check")
+
+    priceSheet.Range("Q80").Value2 = 0
+    priceSheet.Range("Q81").Value2 = 0
+
+    Dim components As Collection
+    Set components = pricingObject("components")
+
+    Dim item As Variant
+    Dim componentCode As String
+    Dim componentStatus As String
+    Dim amountValue As Variant
+
+    For Each item In components
+        componentCode = UCase$(Trim$( _
+            JsonObjectText(item, "componentCode") _
+        ))
+        componentStatus = LCase$(Trim$( _
+            JsonObjectText(item, "status") _
+        ))
+
+        If componentStatus = "found" Then
+            amountValue = JsonObjectValue(item, "amount")
+        Else
+            amountValue = 0
+        End If
+
+        Select Case componentCode
+            Case "BASE_PUMP"
+                WriteNamedValue "API_BasePumpAmount", amountValue
+                priceSheet.Range("Q80").Value2 = amountValue
+
+            Case "SEAL"
+                WriteNamedValue "API_SealAmount", amountValue
+                priceSheet.Range("Q81").Value2 = amountValue
+        End Select
+    Next item
+End Sub
+
+Private Sub ClearApiPricingBridge()
+    On Error Resume Next
+
+    WriteNamedValue "API_PricingStatus", vbNullString
+    WriteNamedValue "API_TotalAmount", vbNullString
+    WriteNamedValue "API_KnownAmount", vbNullString
+    WriteNamedValue "API_CurrencyCode", vbNullString
+    WriteNamedValue "API_BasePumpAmount", vbNullString
+    WriteNamedValue "API_SealAmount", vbNullString
+
+    With ThisWorkbook.Worksheets("Price Check")
+        .Range("Q80:Q81").ClearContents
+    End With
+
+    On Error GoTo 0
+End Sub
+
+Private Sub CalculateApiBridge()
+    ' Keep calculation targeted. A full workbook rebuild is intentionally
+    ' avoided because this legacy workbook contains existing VBA/UDF logic.
+    With ThisWorkbook.Worksheets("Price Check")
+        .Range("F5").Calculate
+        .Range("D80:G81").Calculate
+        .Range("D102:G102").Calculate
+    End With
+
+    With ThisWorkbook.Worksheets("Formal Quote")
+        .Range("I23").Calculate
+        .Range("AB23").Calculate
+        .Range("AM48").Calculate
+        .Range("Q44:Q47").Calculate
+    End With
+End Sub
+
+Private Function JsonObjectChildObject( _
+    ByVal obj As Object, _
+    ByVal keyText As String _
+) As Object
+    On Error GoTo MissingObject
+
+    Set JsonObjectChildObject = obj(keyText)
+    Exit Function
+
+MissingObject:
+    Set JsonObjectChildObject = Nothing
+End Function
 
 Private Sub ClearApiResultValues()
     WriteNamedValue "API_PartNumber", vbNullString

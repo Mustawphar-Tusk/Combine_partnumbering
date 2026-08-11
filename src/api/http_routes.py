@@ -180,6 +180,23 @@ def finalize_configuration(
         )
     )
 
+    pricing = None
+
+    if gateway.pricing_service is not None:
+        pricing = gateway.pricing_service.resolve(
+            family_code=(
+                result
+                .completed_configuration
+                .family_code
+            ),
+            configuration=(
+                result
+                .completed_configuration
+                .selections
+            ),
+        )
+
     return present_persisted_configuration(
-        result
+        result,
+        pricing=pricing,
     )

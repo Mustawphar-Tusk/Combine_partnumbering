@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "family_code": "FYBROC",
+  "price_book_code": "FYBROC_STANDARD",
+  "component_codes": [
+    "BASE_PUMP",
+    "SEAL"
+  ],
+  "legacy_component_code": "BASE_PUMP"
+}
