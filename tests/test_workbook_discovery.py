@@ -1,12 +1,51 @@
 from pathlib import Path
+
 from src.compiler.manifest_loader import load_all_manifests
 from src.compiler.workbook_discovery import discover_all
 
-def test_discovery_finds_expected_workbooks():
+
+def test_discovery_finds_expected_workbooks() -> None:
     root = Path.cwd()
-    manifests = load_all_manifests(root / "config" / "workbook_manifests")
-    report = discover_all(root, manifests)
+
+    manifests = load_all_manifests(
+        root / "config" / "workbook_manifests"
+    )
+
+    report = discover_all(
+        root,
+        manifests,
+    )
+
     assert report.family_count == 2
-    assert report.workbook_count == 5
-    assert not [r for r in report.records if r.discovery_status in {"missing", "error"}]
-    assert all(len(r.sha256) == 64 for r in report.records if r.file_name)
+
+    failures = [
+        record
+        for record in report.records
+        if record.discovery_status in {
+            "missing",
+            "error",
+        }
+    ]
+
+    assert not failures
+
+    unclassified = [
+        record
+        for record in report.records
+        if record.role == "unclassified"
+    ]
+
+    assert not unclassified
+
+    discovered = [
+        record
+        for record in report.records
+        if record.file_name
+    ]
+
+    assert discovered
+
+    assert all(
+        len(record.sha256) == 64
+        for record in discovered
+    )

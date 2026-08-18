@@ -10,7 +10,7 @@
       "processing_order": 10
     },
     {
-      "pattern": "Fybroc Nomenclature_V*.xlsm",
+      "pattern": "Fybroc Nomenclature_V5.xlsm",
       "role": "configuration_and_hex_mapping",
       "required": true,
       "processing_order": 20
@@ -20,6 +20,18 @@
       "role": "pricing_and_quote",
       "required": true,
       "processing_order": 30
+    },
+    {
+      "pattern": "Fybroc Configuration Rev0.3.xlsx",
+      "role": "configuration_constraints_pricing_candidate",
+      "required": false,
+      "processing_order": 40
+    },
+    {
+      "pattern": "Nomenclature_V6.xlsm",
+      "role": "configuration_and_hex_mapping_candidate",
+      "required": false,
+      "processing_order": 50
     }
   ]
 }

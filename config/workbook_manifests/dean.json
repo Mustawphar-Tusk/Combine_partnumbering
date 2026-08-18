@@ -14,6 +14,18 @@
       "role": "configuration_logic",
       "required": true,
       "processing_order": 20
+    },
+    {
+      "pattern": "Copy of Motor Numbering.xlsm",
+      "role": "motor_numbering_and_pricing_candidate",
+      "required": false,
+      "processing_order": 30
+    },
+    {
+      "pattern": "Dean Pricing Matrix.xlsx",
+      "role": "pricing_matrix_candidate",
+      "required": false,
+      "processing_order": 40
     }
   ]
 }
