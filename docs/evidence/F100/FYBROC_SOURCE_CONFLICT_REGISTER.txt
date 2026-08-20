@@ -1,0 +1,136 @@
+============================================================================================================================================
+F100.5 - FYBROC SOURCE CONFLICT REGISTER (flagged, not resolved)
+============================================================================================================================================
+
+Conflict candidates : 13
+
+[TAG] configuration_fields
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: FULL LIST
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1500
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1530
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1600
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1630
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 2530
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 3000
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 5500
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Smart Number
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Attributes
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Pump Options
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Seal Assembly
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: MainTemplate
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Tables
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Baseplate
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Mod Master List
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: M-#
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: MODS
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Coupling
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Items
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Attributes
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Pump Options - Horizontal
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Pump Options - Vertical
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Seal Assembly - Horizontal
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Setting-Length-Vertical
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Options - Horizontal
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Options - Vertical
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] option_domains
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: FULL LIST
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Pump Options
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Options
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Selections
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Attributes
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Pump Options - Horizontal
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Pump Options - Vertical
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Options - Horizontal
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Options - Vertical
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] constraints
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: MAIN
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: Constraints
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1500
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1530
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1600
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 1630
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 2530
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 3000
+    LEGACY_ACTIVE  : Fybroc Attributes and Constraints.xlsx :: 5500
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Constraints
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Constraint Index
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Feasible Constraints
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Motor Constraints
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] hierarchy
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Smart Number
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Hierarchy
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] motor_constraints
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm ::  Motor Assy
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Motor Master List
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: TECO
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Baldor
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Toshiba
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: MODS
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Coupling
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Motor Constraints
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm ::  Motor Assy
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] nomenclature_rules
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Attributes
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Pump Options
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Seal Assembly
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Options
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm ::  Motor Assy
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Smart Number
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] identifier_mappings
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Attributes
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Pump Options
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Seal Assembly
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm :: Options
+    LEGACY_ACTIVE  : Fybroc Nomenclature_V5.xlsm ::  Motor Assy
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Smart Number
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] pricing_tables
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Price Check
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: ROM_Data
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: M-$
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: M-$$
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Pricebook
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: Pricing Index
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: 1500 Pricing
+    NEW_CANDIDATE  : Fybroc Configuration Rev0.3.xlsx :: 5500 Pricing
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[TAG] testing_rules
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Tables
+    LEGACY_ACTIVE  : Price Estimator-Fybroc.xlsm :: Adders
+    NEW_CANDIDATE  : Nomenclature_V6.xlsm :: Testing
+    note: Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100.
+
+[SHEET NAME] constraints
+    Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: Constraints  (formulas=0, tables=0)
+    Fybroc Configuration Rev0.3.xlsx [NEW_CANDIDATE] :: Constraints  (formulas=19569, tables=0)
+    note: The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100.
+
+[SHEET NAME] smart number
+    Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Smart Number  (formulas=13, tables=0)
+    Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Smart Number  (formulas=35, tables=0)
+    note: The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100.
+
+[SHEET NAME] attributes
+    Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Attributes  (formulas=53, tables=1)
+    Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Attributes  (formulas=54, tables=1)
+    note: The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100.
+
+[SHEET NAME] motor assy
+    Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] ::  Motor Assy  (formulas=1404, tables=0)
+    Nomenclature_V6.xlsm [NEW_CANDIDATE] ::  Motor Assy  (formulas=1454, tables=1)
+    note: The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100.
+

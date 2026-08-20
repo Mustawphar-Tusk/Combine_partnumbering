@@ -1,0 +1,214 @@
+============================================================================================================================================
+F100.5 - FYBROC SOURCE INVENTORY (business-object classification)
+============================================================================================================================================
+
+Git commit               : 98e4aa0041590b0445c22a6f1ff4477374826c08
+Git clean                : False
+Workbooks                : 5
+Total sheets             : 74
+Classified sheets        : 60
+Needs engineering review : 14
+
+============================================================================================================================================
+Fybroc Attributes and Constraints.xlsx
+============================================================================================================================================
+
+Generation : LEGACY_ACTIVE
+Role       : configuration_constraints
+Sheets     : 10   Classified : 10   Needs review : 0
+
+SHEET                       STATE     CONFIDENCE   TAGS
+--------------------------------------------------------------------------------------------------------------------------------------------
+MAIN                        visible   ESTABLISHED  constraints
+                                                   basis: docs/milestones/M013-Fybroc-Series-Constraint-Matrix.md ("MAIN is the authoritative applicability matrix")
+Constraints                 visible   ESTABLISHED  constraints
+                                                   basis: scripts/workbook_roles.json (role: series_constraint_definitions)
+FULL LIST                   visible   ESTABLISHED  configuration_fields, option_domains
+                                                   basis: docs/milestones/M013-Fybroc-Series-Constraint-Matrix.md ("FULL LIST is a collection of per-field allowed-value columns")
+1500                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+1530                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+1600                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+1630                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+2530                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+3000                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+5500                        visible   ESTABLISHED  configuration_fields, constraints
+                                                   basis: docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+
+============================================================================================================================================
+Fybroc Nomenclature_V5.xlsm
+============================================================================================================================================
+
+Generation : LEGACY_ACTIVE
+Role       : nomenclature_identifier
+Sheets     : 6   Classified : 6   Needs review : 0
+
+SHEET                       STATE     CONFIDENCE   TAGS
+--------------------------------------------------------------------------------------------------------------------------------------------
+Smart Number                visible   ESTABLISHED  configuration_fields, hierarchy
+                                                   basis: scripts/workbook_roles.json (role: ordered_dynamic_configuration_workflow)
+Attributes                  visible   ESTABLISHED  configuration_fields, identifier_mappings, nomenclature_rules
+                                                   basis: scripts/workbook_roles.json (role: attribute_hex_mapping)
+Pump Options                visible   ESTABLISHED  configuration_fields, identifier_mappings, nomenclature_rules, option_domains
+                                                   basis: scripts/workbook_roles.json (role: pump_option_hex_mapping)
+Seal Assembly               visible   ESTABLISHED  configuration_fields, identifier_mappings, nomenclature_rules
+                                                   basis: scripts/workbook_roles.json (role: seal_assembly_hex_mapping)
+Options                     visible   ESTABLISHED  identifier_mappings, nomenclature_rules, option_domains
+                                                   basis: scripts/workbook_roles.json (role: option_hex_mapping)
+ Motor Assy                 visible   ESTABLISHED  identifier_mappings, motor_constraints, nomenclature_rules
+                                                   basis: scripts/workbook_roles.json (role: motor_assembly_hex_mapping)
+
+============================================================================================================================================
+Price Estimator-Fybroc.xlsm
+============================================================================================================================================
+
+Generation : LEGACY_ACTIVE
+Role       : pricing_quote_specification
+Sheets     : 34   Classified : 23   Needs review : 11
+
+SHEET                       STATE     CONFIDENCE   TAGS
+--------------------------------------------------------------------------------------------------------------------------------------------
+Plaintag                    visible   HEURISTIC    quote_specification_mappings
+                                                   basis: keyword match: plaintag
+Nameplate                   visible   HEURISTIC    quote_specification_mappings
+                                                   basis: keyword match: nameplate
+Price Check                 visible   ESTABLISHED  pricing_formulas, pricing_tables
+                                                   basis: scripts/workbook_roles.json (role: fybroc_configuration_pricing)
+MainTemplate                visible   ESTABLISHED  configuration_fields, quote_specification_mappings
+                                                   basis: scripts/workbook_roles.json (role: selection_to_datasheet_mapping)
+Aquarium                    visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+ROM_Data                    visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: rom data
+Formal Quote                visible   ESTABLISHED  quote_specification_mappings
+                                                   basis: scripts/workbook_roles.json (role: fybroc_customer_quote_template)
+Fybroc Horizontal           visible   ESTABLISHED  quote_specification_mappings
+                                                   basis: scripts/workbook_roles.json (role: horizontal_specification_output)
+Fybroc Vertical             visible   ESTABLISHED  quote_specification_mappings
+                                                   basis: scripts/workbook_roles.json (role: vertical_specification_output)
+Spec. Tbls.                 visible   HEURISTIC    quote_specification_mappings
+                                                   basis: keyword match: spec
+Tables                      visible   HEURISTIC    adders, configuration_fields, quote_specification_mappings, testing_rules
+                                                   basis: keyword match: adder, material, quote, test
+Baseplate                   visible   HEURISTIC    configuration_fields
+                                                   basis: keyword match: baseplate
+M-Req                       visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Mod Master List             visible   HEURISTIC    configuration_fields
+                                                   basis: keyword match: mod
+M-#                         visible   HEURISTIC    configuration_fields
+                                                   basis: keyword match: mod
+M-$                         visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: $ in sheet name
+Motor Master List           hidden    HEURISTIC    motor_constraints
+                                                   basis: keyword match: motor, teco
+M-$$                        visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: $ in sheet name
+TECO                        hidden    HEURISTIC    motor_constraints
+                                                   basis: keyword match: teco
+Baldor                      visible   HEURISTIC    motor_constraints
+                                                   basis: keyword match: baldor
+Toshiba                     hidden    HEURISTIC    motor_constraints
+                                                   basis: keyword match: baldor, teco, toshiba
+MODS                        visible   HEURISTIC    configuration_fields, motor_constraints
+                                                   basis: keyword match: mod, teco
+Rep                         visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Top Level                   visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Pricebook                   visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: price, pricebook
+Coupling                    visible   HEURISTIC    configuration_fields, motor_constraints
+                                                   basis: keyword match: coupling, motor
+Adders                      visible   HEURISTIC    adders, testing_rules
+                                                   basis: keyword match: adder, test
+ACC                         hidden    NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Vert. Spares                hidden    NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+CC-Old                      visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+CC-New                      visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+NewRules 5-2-23             visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Batch_Descriptions          visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Sheet1                      hidden    NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+
+============================================================================================================================================
+Fybroc Configuration Rev0.3.xlsx
+============================================================================================================================================
+
+Generation : NEW_CANDIDATE
+Role       : configuration_constraints_pricing
+Sheets     : 14   Classified : 11   Needs review : 3
+
+SHEET                       STATE     CONFIDENCE   TAGS
+--------------------------------------------------------------------------------------------------------------------------------------------
+To do                       visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Main Page                   visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+Items                       hidden    HEURISTIC    configuration_fields
+                                                   basis: keyword match: item
+Constraints                 hidden    HEURISTIC    constraints
+                                                   basis: keyword match: constraint
+Hierarchy                   visible   HEURISTIC    hierarchy
+                                                   basis: keyword match: hierarchy
+Combine Variables           visible   HEURISTIC    combination_logic
+                                                   basis: keyword match: combine
+Selections                  visible   HEURISTIC    option_domains
+                                                   basis: keyword match: selection
+Constraint Index            visible   HEURISTIC    constraints
+                                                   basis: keyword match: constraint
+Pricing Index               visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: pricing
+Feasible Constraints        visible   HEURISTIC    constraints, feasible_constraints
+                                                   basis: keyword match: constraint, feasible
+Motor Constraints           visible   HEURISTIC    constraints, motor_constraints
+                                                   basis: keyword match: constraint, motor
+1500 Pricing                visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: pricing
+5500 Pricing                visible   HEURISTIC    pricing_tables
+                                                   basis: keyword match: pricing
+Sheet3                      visible   NONE         (NEEDS_ENGINEERING_REVIEW)
+                                                   basis: no established mapping or keyword match
+
+============================================================================================================================================
+Nomenclature_V6.xlsm
+============================================================================================================================================
+
+Generation : NEW_CANDIDATE
+Role       : nomenclature_identifier
+Sheets     : 10   Classified : 10   Needs review : 0
+
+SHEET                       STATE     CONFIDENCE   TAGS
+--------------------------------------------------------------------------------------------------------------------------------------------
+Smart Number                visible   HEURISTIC    identifier_mappings, nomenclature_rules
+                                                   basis: keyword match: smart number
+Attributes                  visible   HEURISTIC    configuration_fields, option_domains
+                                                   basis: keyword match: attribute, trim
+Pump Options - Horizontal   visible   HEURISTIC    configuration_fields, option_domains
+                                                   basis: keyword match: option
+Pump Options - Vertical     visible   HEURISTIC    configuration_fields, option_domains
+                                                   basis: keyword match: option
+Seal Assembly - Horizontal  visible   HEURISTIC    configuration_fields
+                                                   basis: keyword match: seal
+Setting-Length-Vertical     visible   HEURISTIC    configuration_fields
+                                                   basis: keyword match: setting
+Options - Horizontal        visible   HEURISTIC    configuration_fields, option_domains
+                                                   basis: keyword match: option
+Options - Vertical          visible   HEURISTIC    configuration_fields, option_domains
+                                                   basis: keyword match: option
+ Motor Assy                 visible   HEURISTIC    motor_constraints
+                                                   basis: keyword match: motor
+Testing                     visible   HEURISTIC    testing_rules
+                                                   basis: keyword match: test
+

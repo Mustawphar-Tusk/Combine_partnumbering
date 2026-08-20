@@ -1,0 +1,591 @@
+{
+  "artifact": "FYBROC_SOURCE_CONFLICT_REGISTER",
+  "roadmap_version": "1.0",
+  "milestone": "F100",
+  "step": "F100.5",
+  "generated_utc": "2026-08-20T16:53:10.508045+00:00",
+  "git_commit": "98e4aa0041590b0445c22a6f1ff4477374826c08",
+  "conflict_count": 13,
+  "conflicts": [
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "configuration_fields",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "FULL LIST"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1500"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1530"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1600"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1630"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "2530"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "3000"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "5500"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Smart Number"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Attributes"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Pump Options"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Seal Assembly"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "MainTemplate"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Tables"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Baseplate"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Mod Master List"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "M-#"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "MODS"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Coupling"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Items"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Attributes"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Pump Options - Horizontal"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Pump Options - Vertical"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Seal Assembly - Horizontal"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Setting-Length-Vertical"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Options - Horizontal"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Options - Vertical"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "option_domains",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "FULL LIST"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Pump Options"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Options"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Selections"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Attributes"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Pump Options - Horizontal"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Pump Options - Vertical"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Options - Horizontal"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Options - Vertical"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "constraints",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "MAIN"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Constraints"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1500"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1530"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1600"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "1630"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "2530"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "3000"
+        },
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "5500"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Constraints"
+        },
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Constraint Index"
+        },
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Feasible Constraints"
+        },
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Motor Constraints"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "hierarchy",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Smart Number"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Hierarchy"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "motor_constraints",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": " Motor Assy"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Motor Master List"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "TECO"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Baldor"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Toshiba"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "MODS"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Coupling"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Motor Constraints"
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": " Motor Assy"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "nomenclature_rules",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Attributes"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Pump Options"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Seal Assembly"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Options"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": " Motor Assy"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Smart Number"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "identifier_mappings",
+      "legacy_active": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Attributes"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Pump Options"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Seal Assembly"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Options"
+        },
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": " Motor Assy"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Smart Number"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "pricing_tables",
+      "legacy_active": [
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Price Check"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "ROM_Data"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "M-$"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "M-$$"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Pricebook"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Pricing Index"
+        },
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "1500 Pricing"
+        },
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "5500 Pricing"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "TAG_PRESENT_IN_LEGACY_AND_CANDIDATE",
+      "tag": "testing_rules",
+      "legacy_active": [
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Tables"
+        },
+        {
+          "workbook": "Price Estimator-Fybroc.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Adders"
+        }
+      ],
+      "new_candidate": [
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Testing"
+        }
+      ],
+      "note": "Same business-object category exists in both a LEGACY_ACTIVE and a NEW_CANDIDATE workbook. Reconcile in F110/F120/F130 - not resolved by F100."
+    },
+    {
+      "conflict_type": "SAME_SHEET_NAME_ACROSS_WORKBOOKS",
+      "normalized_sheet_name": "constraints",
+      "occurrences": [
+        {
+          "workbook": "Fybroc Attributes and Constraints.xlsx",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Constraints",
+          "formula_count": 0,
+          "table_count": 0
+        },
+        {
+          "workbook": "Fybroc Configuration Rev0.3.xlsx",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Constraints",
+          "formula_count": 19569,
+          "table_count": 0
+        }
+      ],
+      "note": "The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100."
+    },
+    {
+      "conflict_type": "SAME_SHEET_NAME_ACROSS_WORKBOOKS",
+      "normalized_sheet_name": "smart number",
+      "occurrences": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Smart Number",
+          "formula_count": 13,
+          "table_count": 0
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Smart Number",
+          "formula_count": 35,
+          "table_count": 0
+        }
+      ],
+      "note": "The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100."
+    },
+    {
+      "conflict_type": "SAME_SHEET_NAME_ACROSS_WORKBOOKS",
+      "normalized_sheet_name": "attributes",
+      "occurrences": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": "Attributes",
+          "formula_count": 53,
+          "table_count": 1
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": "Attributes",
+          "formula_count": 54,
+          "table_count": 1
+        }
+      ],
+      "note": "The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100."
+    },
+    {
+      "conflict_type": "SAME_SHEET_NAME_ACROSS_WORKBOOKS",
+      "normalized_sheet_name": "motor assy",
+      "occurrences": [
+        {
+          "workbook": "Fybroc Nomenclature_V5.xlsm",
+          "source_generation": "LEGACY_ACTIVE",
+          "sheet_name": " Motor Assy",
+          "formula_count": 1404,
+          "table_count": 0
+        },
+        {
+          "workbook": "Nomenclature_V6.xlsm",
+          "source_generation": "NEW_CANDIDATE",
+          "sheet_name": " Motor Assy",
+          "formula_count": 1454,
+          "table_count": 1
+        }
+      ],
+      "note": "The same sheet name appears in more than one workbook. Structural shape (formula/table counts) may differ - reconcile in F110/F120, not resolved by F100."
+    }
+  ]
+}

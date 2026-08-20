@@ -1,0 +1,46 @@
+============================================================================================================================================
+F100.5 - FYBROC PRICING SOURCE INVENTORY (pricing_tables / pricing_formulas / adders)
+============================================================================================================================================
+
+Rows : 10
+
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Price Check
+    tags     : pricing_formulas, pricing_tables
+    formulas : 1294
+    basis    : scripts/workbook_roles.json (role: fybroc_configuration_pricing)
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: ROM_Data
+    tags     : pricing_tables
+    formulas : 1286
+    basis    : keyword match: rom data
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Tables
+    tags     : adders, configuration_fields, quote_specification_mappings, testing_rules
+    formulas : 1249
+    basis    : keyword match: adder, material, quote, test
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: M-$
+    tags     : pricing_tables
+    formulas : 520
+    basis    : keyword match: $ in sheet name
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: M-$$
+    tags     : pricing_tables
+    formulas : 21525
+    basis    : keyword match: $ in sheet name
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Pricebook
+    tags     : pricing_tables
+    formulas : 7830
+    basis    : keyword match: price, pricebook
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Adders
+    tags     : adders, testing_rules
+    formulas : 2097
+    basis    : keyword match: adder, test
+Fybroc Configuration Rev0.3.xlsx [NEW_CANDIDATE] :: Pricing Index
+    tags     : pricing_tables
+    formulas : 0
+    basis    : keyword match: pricing
+Fybroc Configuration Rev0.3.xlsx [NEW_CANDIDATE] :: 1500 Pricing
+    tags     : pricing_tables
+    formulas : 114
+    basis    : keyword match: pricing
+Fybroc Configuration Rev0.3.xlsx [NEW_CANDIDATE] :: 5500 Pricing
+    tags     : pricing_tables
+    formulas : 262561
+    basis    : keyword match: pricing

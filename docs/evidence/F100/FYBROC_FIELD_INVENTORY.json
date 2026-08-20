@@ -1,0 +1,597 @@
+{
+  "artifact": "FYBROC_FIELD_INVENTORY",
+  "roadmap_version": "1.0",
+  "milestone": "F100",
+  "step": "F100.5",
+  "generated_utc": "2026-08-20T16:53:10.508045+00:00",
+  "git_commit": "98e4aa0041590b0445c22a6f1ff4477374826c08",
+  "row_count": 29,
+  "rows": [
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "FULL LIST",
+      "tags": [
+        "configuration_fields",
+        "option_domains"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/M013-Fybroc-Series-Constraint-Matrix.md (\"FULL LIST is a collection of per-field allowed-value columns\")",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "1500",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "1530",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "1600",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "1630",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "2530",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "3000",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "5500",
+      "tags": [
+        "configuration_fields",
+        "constraints"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Smart Number",
+      "tags": [
+        "configuration_fields",
+        "hierarchy"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "scripts/workbook_roles.json (role: ordered_dynamic_configuration_workflow)",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Attributes",
+      "tags": [
+        "configuration_fields",
+        "identifier_mappings",
+        "nomenclature_rules"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "scripts/workbook_roles.json (role: attribute_hex_mapping)",
+      "table_names": [
+        "Trim"
+      ]
+    },
+    {
+      "workbook": "Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Pump Options",
+      "tags": [
+        "configuration_fields",
+        "identifier_mappings",
+        "nomenclature_rules",
+        "option_domains"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "scripts/workbook_roles.json (role: pump_option_hex_mapping)",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Seal Assembly",
+      "tags": [
+        "configuration_fields",
+        "identifier_mappings",
+        "nomenclature_rules"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "scripts/workbook_roles.json (role: seal_assembly_hex_mapping)",
+      "table_names": []
+    },
+    {
+      "workbook": "Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Options",
+      "tags": [
+        "identifier_mappings",
+        "nomenclature_rules",
+        "option_domains"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "scripts/workbook_roles.json (role: option_hex_mapping)",
+      "table_names": []
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "MainTemplate",
+      "tags": [
+        "configuration_fields",
+        "quote_specification_mappings"
+      ],
+      "confidence": "ESTABLISHED",
+      "basis": "scripts/workbook_roles.json (role: selection_to_datasheet_mapping)",
+      "table_names": [
+        "Table3233",
+        "Table4234",
+        "Table5235",
+        "Table6236",
+        "Table7237",
+        "Table9238",
+        "Table10239",
+        "Table13240",
+        "Table8241",
+        "Table11242",
+        "Table14243",
+        "Table15244",
+        "Table16245",
+        "Table17246",
+        "Table18247",
+        "Table20248",
+        "Table21249",
+        "Table22250",
+        "Table23251",
+        "Table24252",
+        "Table25253",
+        "Table26254",
+        "Table27255",
+        "Table28256",
+        "Table29257",
+        "Table30258",
+        "Table32259",
+        "Table51260",
+        "Table52261",
+        "Table53262",
+        "Table54263",
+        "Table5447264",
+        "Table78265",
+        "Table84266",
+        "Table85267",
+        "Table94268",
+        "Table95269",
+        "Table97270",
+        "Table111271",
+        "Table112272",
+        "Table115273",
+        "Table117274",
+        "Table118275",
+        "Table122276",
+        "Table136277",
+        "Table145278",
+        "Table147279",
+        "Table148280",
+        "Table149281",
+        "Table156282",
+        "Table165283",
+        "Table166284",
+        "Table183285",
+        "Table186286",
+        "Table193287",
+        "Table194288",
+        "Table108289",
+        "Table109290",
+        "Table110291",
+        "Table185292",
+        "Table129293",
+        "Table90294",
+        "Table141295",
+        "Table142296",
+        "Table153297",
+        "Table154298",
+        "Table163299",
+        "Table164300",
+        "Table176301",
+        "Table177302",
+        "Table184303",
+        "Table188304",
+        "Table189305",
+        "Table76306",
+        "Table167307",
+        "Table171308",
+        "Table175309",
+        "Table196310",
+        "Table197311",
+        "Table5143",
+        "Table6144",
+        "Table95145",
+        "Table146315",
+        "Table146148",
+        "Table95145149",
+        "Table118150",
+        "Table7856",
+        "Table194107",
+        "Table1899",
+        "Table22100",
+        "Table23101",
+        "Table25102",
+        "Table103325",
+        "Table111338"
+      ]
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Tables",
+      "tags": [
+        "adders",
+        "configuration_fields",
+        "quote_specification_mappings",
+        "testing_rules"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: adder, material, quote, test",
+      "table_names": [
+        "Table3",
+        "Table4",
+        "Table5",
+        "Table6",
+        "Table7",
+        "Table9",
+        "Table10",
+        "Table13",
+        "Table8",
+        "Table11",
+        "Table14",
+        "Table15",
+        "Table16",
+        "Table17",
+        "Table18",
+        "Table20",
+        "Table21",
+        "Table22",
+        "Table23",
+        "Table24",
+        "Table25",
+        "Table26",
+        "Table27",
+        "Table28",
+        "Table29",
+        "Table30",
+        "Table32",
+        "Table51",
+        "Table52",
+        "Table53",
+        "Table54",
+        "Table5447",
+        "Table78",
+        "Table84",
+        "Table85",
+        "Table90",
+        "Table94",
+        "Table95",
+        "Table97",
+        "Table111",
+        "Table112",
+        "Table115",
+        "Table117",
+        "Table118",
+        "Table122",
+        "Table129",
+        "Table136",
+        "Table141",
+        "Table142",
+        "Table145",
+        "Table147",
+        "Table148",
+        "Table149",
+        "Table153",
+        "Table154",
+        "Table156",
+        "Table163",
+        "Table164",
+        "Table165",
+        "Table166",
+        "Table176",
+        "Table177",
+        "Table183",
+        "Table184",
+        "Table186",
+        "Table187",
+        "Table188",
+        "Table189",
+        "Table191",
+        "Table193",
+        "Table194",
+        "Table76",
+        "Table108",
+        "Table109",
+        "Table110",
+        "Table185",
+        "Table167",
+        "Table171",
+        "Table175",
+        "Table196",
+        "Table197",
+        "Table200",
+        "Table203",
+        "QuoteLead",
+        "OrderLead",
+        "QuoteShaftLeadAdder",
+        "QuoteMaterialLeadAdder",
+        "LeadTime",
+        "QuoteTestingLeadAdder",
+        "OrderShaftLeadAdder",
+        "OrderMaterialLeadAdder",
+        "OrderTestingLeadAdder",
+        "Table216",
+        "LeadDelay",
+        "Table364"
+      ]
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Baseplate",
+      "tags": [
+        "configuration_fields"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: baseplate",
+      "table_names": [
+        "Table86",
+        "Table98",
+        "Table113",
+        "Table124",
+        "Table127",
+        "Table146",
+        "Table161",
+        "Table195",
+        "Table1461"
+      ]
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Mod Master List",
+      "tags": [
+        "configuration_fields"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: mod",
+      "table_names": []
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "M-#",
+      "tags": [
+        "configuration_fields"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: mod",
+      "table_names": [
+        "Table73",
+        "Table74",
+        "Table75",
+        "ModList"
+      ]
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "MODS",
+      "tags": [
+        "configuration_fields",
+        "motor_constraints"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: mod, teco",
+      "table_names": [
+        "ToshMods",
+        "TECOMod",
+        "BaldMod",
+        "MOD"
+      ]
+    },
+    {
+      "workbook": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "sheet_name": "Coupling",
+      "tags": [
+        "configuration_fields",
+        "motor_constraints"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: coupling, motor",
+      "table_names": [
+        "Table77",
+        "Table87",
+        "Table99",
+        "Table131",
+        "CouplingEPDM",
+        "CouplingHYTREL",
+        "CoupFlangPump",
+        "CoupFlangMotor",
+        "CoupBore",
+        "CoupSleeve"
+      ]
+    },
+    {
+      "workbook": "Fybroc Configuration Rev0.3.xlsx",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Items",
+      "tags": [
+        "configuration_fields"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: item",
+      "table_names": [
+        "Table1"
+      ]
+    },
+    {
+      "workbook": "Fybroc Configuration Rev0.3.xlsx",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Selections",
+      "tags": [
+        "option_domains"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: selection",
+      "table_names": [
+        "QATable"
+      ]
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Attributes",
+      "tags": [
+        "configuration_fields",
+        "option_domains"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: attribute, trim",
+      "table_names": [
+        "Trim"
+      ]
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Pump Options - Horizontal",
+      "tags": [
+        "configuration_fields",
+        "option_domains"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: option",
+      "table_names": [
+        "PumpOptionsH"
+      ]
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Pump Options - Vertical",
+      "tags": [
+        "configuration_fields",
+        "option_domains"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: option",
+      "table_names": [
+        "V_Pump_Options"
+      ]
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Seal Assembly - Horizontal",
+      "tags": [
+        "configuration_fields"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: seal",
+      "table_names": [
+        "SealAssembly"
+      ]
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Setting-Length-Vertical",
+      "tags": [
+        "configuration_fields"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: setting",
+      "table_names": []
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Options - Horizontal",
+      "tags": [
+        "configuration_fields",
+        "option_domains"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: option",
+      "table_names": [
+        "OptionsH"
+      ]
+    },
+    {
+      "workbook": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "sheet_name": "Options - Vertical",
+      "tags": [
+        "configuration_fields",
+        "option_domains"
+      ],
+      "confidence": "HEURISTIC",
+      "basis": "keyword match: option",
+      "table_names": []
+    }
+  ]
+}

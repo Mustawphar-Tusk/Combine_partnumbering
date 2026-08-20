@@ -1,0 +1,84 @@
+============================================================================================================================================
+F100.5 - FYBROC SOURCE LINEAGE
+============================================================================================================================================
+
+============================================================================================================================================
+Fybroc Attributes and Constraints.xlsx
+============================================================================================================================================
+
+Generation      : LEGACY_ACTIVE
+Role            : configuration_constraints
+F100.1 hash     : MATCH
+Sheets          : 10  Classified: 10  Needs review: 0
+Tag counts      :
+    configuration_fields        : 8
+    option_domains              : 1
+    constraints                 : 9
+
+============================================================================================================================================
+Fybroc Nomenclature_V5.xlsm
+============================================================================================================================================
+
+Generation      : LEGACY_ACTIVE
+Role            : nomenclature_identifier
+F100.1 hash     : MATCH
+Sheets          : 6  Classified: 6  Needs review: 0
+Tag counts      :
+    configuration_fields        : 4
+    option_domains              : 2
+    hierarchy                   : 1
+    motor_constraints           : 1
+    nomenclature_rules          : 5
+    identifier_mappings         : 5
+
+============================================================================================================================================
+Price Estimator-Fybroc.xlsm
+============================================================================================================================================
+
+Generation      : LEGACY_ACTIVE
+Role            : pricing_quote_specification
+F100.1 hash     : MATCH
+Sheets          : 34  Classified: 23  Needs review: 11
+Tag counts      :
+    configuration_fields        : 7
+    motor_constraints           : 6
+    pricing_tables              : 5
+    pricing_formulas            : 1
+    adders                      : 2
+    testing_rules               : 2
+    quote_specification_mappings: 8
+
+============================================================================================================================================
+Fybroc Configuration Rev0.3.xlsx
+============================================================================================================================================
+
+Generation      : NEW_CANDIDATE
+Role            : configuration_constraints_pricing
+F100.1 hash     : MATCH
+Sheets          : 14  Classified: 11  Needs review: 3
+Tag counts      :
+    configuration_fields        : 1
+    option_domains              : 1
+    constraints                 : 4
+    hierarchy                   : 1
+    combination_logic           : 1
+    feasible_constraints        : 1
+    motor_constraints           : 1
+    pricing_tables              : 3
+
+============================================================================================================================================
+Nomenclature_V6.xlsm
+============================================================================================================================================
+
+Generation      : NEW_CANDIDATE
+Role            : nomenclature_identifier
+F100.1 hash     : MATCH
+Sheets          : 10  Classified: 10  Needs review: 0
+Tag counts      :
+    configuration_fields        : 7
+    option_domains              : 5
+    motor_constraints           : 1
+    nomenclature_rules          : 1
+    identifier_mappings         : 1
+    testing_rules               : 1
+

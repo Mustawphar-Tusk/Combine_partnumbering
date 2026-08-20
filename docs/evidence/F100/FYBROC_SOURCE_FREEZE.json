@@ -1,0 +1,72 @@
+{
+  "artifact": "FYBROC_SOURCE_FREEZE",
+  "roadmap_version": "1.0",
+  "milestone": "F100",
+  "step": "F100.1",
+  "generated_utc": "2026-08-19T14:54:26.390773+00:00",
+  "git_commit": "98e4aa0041590b0445c22a6f1ff4477374826c08",
+  "git_working_tree_clean": true,
+  "source_count": 5,
+  "sources": [
+    {
+      "family_code": "FYBROC",
+      "file_name": "Fybroc Attributes and Constraints.xlsx",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "role": "configuration_constraints",
+      "extension": ".xlsx",
+      "macro_enabled": false,
+      "size_bytes": 93062,
+      "modified_utc": "2026-06-09T13:30:27.593359+00:00",
+      "sha256": "61a2c26b47db30792b9970748884ecb6d57cc4431c826b9099d63ccc35ead8f3"
+    },
+    {
+      "family_code": "FYBROC",
+      "file_name": "Fybroc Nomenclature_V5.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "role": "nomenclature_identifier",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 12971090,
+      "modified_utc": "2026-06-21T23:23:59.202104+00:00",
+      "sha256": "5c41be2223b72747eb7e14970c64db94aaa13299be9211072ec145dac27b419c"
+    },
+    {
+      "family_code": "FYBROC",
+      "file_name": "Price Estimator-Fybroc.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "role": "pricing_quote_specification",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 3983199,
+      "modified_utc": "2026-06-21T23:28:18.667109+00:00",
+      "sha256": "472e9f6c916b9b5b8dd025281eae668a82e766d3a159be5ffc2122ba92cc06e8"
+    },
+    {
+      "family_code": "FYBROC",
+      "file_name": "Fybroc Configuration Rev0.3.xlsx",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Configuration Rev0.3.xlsx",
+      "source_generation": "NEW_CANDIDATE",
+      "role": "configuration_constraints_pricing",
+      "extension": ".xlsx",
+      "macro_enabled": false,
+      "size_bytes": 6820637,
+      "modified_utc": "2026-08-13T19:57:19.483257+00:00",
+      "sha256": "9eaa9e25ef9533a7425368e1ce646980388f01b675fc4d06429ca21842a88edb"
+    },
+    {
+      "family_code": "FYBROC",
+      "file_name": "Nomenclature_V6.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "role": "nomenclature_identifier",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 14577747,
+      "modified_utc": "2026-08-13T19:55:30.947354+00:00",
+      "sha256": "fb06512ec977d27ec733f1c34c3670c0c60b834ae5b5200a19efdf0b469f4507"
+    }
+  ]
+}

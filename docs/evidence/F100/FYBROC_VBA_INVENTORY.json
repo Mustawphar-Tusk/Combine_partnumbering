@@ -1,0 +1,722 @@
+{
+  "artifact": "FYBROC_VBA_INVENTORY",
+  "roadmap_version": "1.0",
+  "milestone": "F100",
+  "step": "F100.4",
+  "generated_utc": "2026-08-19T20:00:17.908610+00:00",
+  "workbook_count": 5,
+  "failure_count": 0,
+  "failures": [],
+  "workbooks": [
+    {
+      "file_name": "Fybroc Attributes and Constraints.xlsx",
+      "source_generation": "LEGACY_ACTIVE",
+      "role": "configuration_constraints",
+      "extension": ".xlsx",
+      "sha256": "61a2c26b47db30792b9970748884ecb6d57cc4431c826b9099d63ccc35ead8f3",
+      "zip_has_vba_project": false,
+      "vba_project_members": [],
+      "macro_sheet_members": [],
+      "activex_members": [],
+      "olevba_detected_vba": false,
+      "olevba_error": null,
+      "module_count": 0,
+      "procedure_count": 0,
+      "event_procedure_count": 0,
+      "event_procedures": [],
+      "modules": []
+    },
+    {
+      "file_name": "Fybroc Nomenclature_V5.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "role": "nomenclature_identifier",
+      "extension": ".xlsm",
+      "sha256": "5c41be2223b72747eb7e14970c64db94aaa13299be9211072ec145dac27b419c",
+      "zip_has_vba_project": false,
+      "vba_project_members": [],
+      "macro_sheet_members": [],
+      "activex_members": [],
+      "olevba_detected_vba": false,
+      "olevba_error": null,
+      "module_count": 0,
+      "procedure_count": 0,
+      "event_procedure_count": 0,
+      "event_procedures": [],
+      "modules": []
+    },
+    {
+      "file_name": "Price Estimator-Fybroc.xlsm",
+      "source_generation": "LEGACY_ACTIVE",
+      "role": "pricing_quote_specification",
+      "extension": ".xlsm",
+      "sha256": "472e9f6c916b9b5b8dd025281eae668a82e766d3a159be5ffc2122ba92cc06e8",
+      "zip_has_vba_project": true,
+      "vba_project_members": [
+        "xl/vbaProject.bin"
+      ],
+      "macro_sheet_members": [],
+      "activex_members": [
+        "xl/ctrlProps/ctrlProp1.xml",
+        "xl/ctrlProps/ctrlProp10.xml",
+        "xl/ctrlProps/ctrlProp11.xml",
+        "xl/ctrlProps/ctrlProp12.xml",
+        "xl/ctrlProps/ctrlProp13.xml",
+        "xl/ctrlProps/ctrlProp14.xml",
+        "xl/ctrlProps/ctrlProp15.xml",
+        "xl/ctrlProps/ctrlProp2.xml",
+        "xl/ctrlProps/ctrlProp3.xml",
+        "xl/ctrlProps/ctrlProp4.xml",
+        "xl/ctrlProps/ctrlProp5.xml",
+        "xl/ctrlProps/ctrlProp6.xml",
+        "xl/ctrlProps/ctrlProp7.xml",
+        "xl/ctrlProps/ctrlProp8.xml",
+        "xl/ctrlProps/ctrlProp9.xml"
+      ],
+      "olevba_detected_vba": true,
+      "olevba_error": null,
+      "module_count": 44,
+      "procedure_count": 15,
+      "event_procedure_count": 2,
+      "event_procedures": [
+        {
+          "module": "Sheet1.cls",
+          "procedure": "Worksheet_Change"
+        },
+        {
+          "module": "Sheet28.cls",
+          "procedure": "Worksheet_Change"
+        }
+      ],
+      "modules": [
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/ThisWorkbook",
+          "module_name": "ThisWorkbook.cls",
+          "line_count": 8,
+          "character_count": 305,
+          "sha256": "14de0425a62586687c3d59b7d3d7dc60268f989ab7e07a61403525064d98502a",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet41",
+          "module_name": "Sheet41.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "bc587c22a2fd53778f378f6bd8d98ebf87cd151dd972f704f4f3bfe8b6b6e5e7",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet32",
+          "module_name": "Sheet32.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "6a8d285dcbc6ab7afc123aebef9736131d6bd04a8eea21b2e0b2e4ae6b486173",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet43",
+          "module_name": "Sheet43.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "e9c59c84b565edb8b8810391938531d21a18dc93a216c58f2315b04b54e91854",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet1",
+          "module_name": "Sheet1.cls",
+          "line_count": 59,
+          "character_count": 1615,
+          "sha256": "7c4a506b25e90b3b230eb8790e8da69666c6329b46b76ed399018b7b255068f9",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Worksheet_Change",
+              "is_event": true
+            }
+          ],
+          "keyword_hits": {
+            "Worksheet_Change": 1
+          }
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet28",
+          "module_name": "Sheet28.cls",
+          "line_count": 61,
+          "character_count": 1606,
+          "sha256": "ed1b49746ed4b17fe0a302dd01133b5fba337a07ee847e5d85acdd2b4ee61edf",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Worksheet_Change",
+              "is_event": true
+            }
+          ],
+          "keyword_hits": {
+            "Worksheet_Change": 1
+          }
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet22",
+          "module_name": "Sheet22.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "234545a3061aeee6f7e4ee1097d57dd44fc1732967c11f7a0873d982078900c0",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet40",
+          "module_name": "Sheet40.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "57309f8d36c58b320659997814593f264417a60a72b17c88e8093607b30f2030",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet37",
+          "module_name": "Sheet37.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "4bbcffd038e2a10cba0baea4243f1ec56363d578d27b8b54ff394fdf5a64c84e",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet11",
+          "module_name": "Sheet11.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "731bc2f578d09232950a7b8f3cb16669ecad6bdf6db1a46962e76f3cc0251f5f",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet44",
+          "module_name": "Sheet44.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "a198aac60a933fda26fea1cd0dfdd26a024666c8c5ca6e989ef8df9c0c10bd9a",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet45",
+          "module_name": "Sheet45.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "499d471afa3a8c1a1ee6d21275a26e43d8b3d46fe09e91335aebe0326108b237",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet4",
+          "module_name": "Sheet4.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "12a0f7735c6438a01176ea862764077f158f4cf3ceec0025bc7bea6477a8f5e1",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet12",
+          "module_name": "Sheet12.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "0b962a5081fce6d3397986f12b15775f642ef052a53bd0fc2251d66d6de100ce",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet5",
+          "module_name": "Sheet5.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "7343b50dd86c466939cb6943c57d3ddf2308ddff4c459c9b0c60f622081b838c",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet6",
+          "module_name": "Sheet6.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "d08325720114782b612eeef5b26309fbc76488594e24246b3748b4803911094f",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet9",
+          "module_name": "Sheet9.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "36bf323cf69c5f7d5099c0b800e39271315d874d23d9b1347fc0893f15dbef95",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet23",
+          "module_name": "Sheet23.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "4db76305c7ae6c17ac9ec311e818e196e47c8cd678b1ca228ab6dbf3660c2c2f",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet25",
+          "module_name": "Sheet25.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "c096f849a51a0520a678d9e60777892ce926134ccb2a00f668642246462b7897",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet26",
+          "module_name": "Sheet26.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "990158bee80da45e36d0bc549f3d9bde39b6c894fd0fe85dab403e0d10243316",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet27",
+          "module_name": "Sheet27.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "18c6fa90bceed8a323deea66cdb108a9c00e8590ed92ab5bff1c57fd90002ac1",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet24",
+          "module_name": "Sheet24.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "c31dea4138264e588e81e11f5f0d0a1daf64d4a1e7edf5b61b8368205930c91c",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet7",
+          "module_name": "Sheet7.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "e47ac1d2c9fcc82778126b3d5f6b99f5fa7a1db5813045373f7fca4231868066",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet8",
+          "module_name": "Sheet8.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "02d44a969798c9c0e2048d4465e333ebac7de686c27eb11d9b588578687b2a34",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet10",
+          "module_name": "Sheet10.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "a1200a70ba4f488d8e4151449dc8939cdae014885c24d8307e1ac1a26c6bfa8b",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet3",
+          "module_name": "Sheet3.cls",
+          "line_count": 8,
+          "character_count": 299,
+          "sha256": "ee5611644b7c99994a401685fb60391337dcd245a8cd9ceab2da0b3afd82bde0",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet14",
+          "module_name": "Sheet14.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "fd18e9007e8b5bfc409a34906dddb0fc95838aa75b033efa65d871a7640b31fc",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_PrintQuote",
+          "module_name": "Mod_PrintQuote.bas",
+          "line_count": 755,
+          "character_count": 21666,
+          "sha256": "a67d8dc32cacf23734da5960306369511e9d0dc4b7989cb1c4fcc3bba542d222",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Print_to_PDF_all",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {
+            "Save": 20,
+            "Kill": 8,
+            "Shell": 4,
+            "CreateObject": 21,
+            "Scripting.FileSystemObject": 5
+          }
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet15",
+          "module_name": "Sheet15.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "3f5b6c08565ffd9addde53513a73a065e6b3e271b46d965b1c2646a4cc2cb214",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet42",
+          "module_name": "Sheet42.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "c2e5a4dbac096e65e8b2a2738808ee55026738c98913211ad80c41d9c59e1fe3",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet20",
+          "module_name": "Sheet20.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "bb71e899215968e36b4e757746ad4ea4887eead02c6a214fa348adae9a017541",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet17",
+          "module_name": "Sheet17.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "7700add68a14fe8d56bf1729fea79ec77ae2ce1c8355a3f9278a5d8cf69b4928",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet16",
+          "module_name": "Sheet16.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "065c19a2b35d3115ba9425c5b2e28112596a3baa15a50c7cc510143283cc4d3f",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet18",
+          "module_name": "Sheet18.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "a9b980e92f731090d0c7346876a1a16cd18924fd920b5ef8fb8c6488967eef4d",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_CopyLines",
+          "module_name": "Mod_CopyLines.bas",
+          "line_count": 52,
+          "character_count": 1056,
+          "sha256": "ced9c8c3050d61e7d574c63dfe4ce09716d9cde7987e7b15126a2762c0adaa6b",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "CopyStandards",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_Data",
+          "module_name": "Mod_Data.bas",
+          "line_count": 195,
+          "character_count": 8242,
+          "sha256": "9b43b6b094a895023d000a07e709cce9a8c29d05b5807e19abf229557f942921",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Data_Entry_all",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_FormatPC",
+          "module_name": "Mod_FormatPC.bas",
+          "line_count": 98,
+          "character_count": 3354,
+          "sha256": "4633620ce197ecfa39cb5427d7ca6710b8f15eaadcc0a402d5c0fa31465eb95c",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "FormatPriceCheck_all",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_FormatQuote",
+          "module_name": "Mod_FormatQuote.bas",
+          "line_count": 222,
+          "character_count": 10138,
+          "sha256": "501b51f9c71606ab96518c3fbd7a88a3294042215c63a8ec9e02dac5335ef528",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Format_quote_all",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_QuoteLog",
+          "module_name": "Mod_QuoteLog.bas",
+          "line_count": 538,
+          "character_count": 19644,
+          "sha256": "57de6f0f7494bdc3a3c197da1a59c8c2d6a0275e7960ac2463ff23667ca8f235",
+          "procedure_count": 3,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "QuoteLog_all",
+              "is_event": false
+            },
+            {
+              "type": "Function",
+              "name": "IsFileOpen",
+              "is_event": false
+            },
+            {
+              "type": "Function",
+              "name": "FixRegion",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {
+            "Save": 11,
+            "Open ": 22
+          }
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_Save",
+          "module_name": "Mod_Save.bas",
+          "line_count": 124,
+          "character_count": 3671,
+          "sha256": "133a0d790dd1933466f4d9c5c2fd3c2d7e66032d518e6bee0dd8344c71f8e849",
+          "procedure_count": 1,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Save_all",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {
+            "Save": 15,
+            "SaveAs": 4,
+            "CreateObject": 4,
+            "Scripting.FileSystemObject": 4
+          }
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_User",
+          "module_name": "Mod_User.bas",
+          "line_count": 10,
+          "character_count": 216,
+          "sha256": "0bbb21c2ca1ed7b769f228e5767c7b83ae9db994654369631d10cb7ac6c6fdba",
+          "procedure_count": 2,
+          "procedures": [
+            {
+              "type": "Function",
+              "name": "UserName",
+              "is_event": false
+            },
+            {
+              "type": "Function",
+              "name": "MagicPath",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Mod_WFPDFs",
+          "module_name": "Mod_WFPDFs.bas",
+          "line_count": 594,
+          "character_count": 27210,
+          "sha256": "9543c641c63cb3a8edf47d371946349d6921faa0edd5016637aa8a56eefa4be4",
+          "procedure_count": 2,
+          "procedures": [
+            {
+              "type": "Sub",
+              "name": "Workflow",
+              "is_event": false
+            },
+            {
+              "type": "Function",
+              "name": "CheckFolder",
+              "is_event": false
+            }
+          ],
+          "keyword_hits": {
+            "Save": 15,
+            "CreateObject": 1,
+            "Scripting.FileSystemObject": 1
+          }
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet34",
+          "module_name": "Sheet34.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "fb3f969b92dbb6e601f81cf9ac4c3bac6a422d306a837ed234235f3a0285587b",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        },
+        {
+          "container_name": "xl/vbaProject.bin",
+          "stream_path": "VBA/Sheet35",
+          "module_name": "Sheet35.cls",
+          "line_count": 8,
+          "character_count": 300,
+          "sha256": "c9fbed1d9f5d947dbd7bcf0d466dfae57ad7771384534692d9b7f23828ce176c",
+          "procedure_count": 0,
+          "procedures": [],
+          "keyword_hits": {}
+        }
+      ]
+    },
+    {
+      "file_name": "Fybroc Configuration Rev0.3.xlsx",
+      "source_generation": "NEW_CANDIDATE",
+      "role": "configuration_constraints_pricing",
+      "extension": ".xlsx",
+      "sha256": "9eaa9e25ef9533a7425368e1ce646980388f01b675fc4d06429ca21842a88edb",
+      "zip_has_vba_project": false,
+      "vba_project_members": [],
+      "macro_sheet_members": [],
+      "activex_members": [],
+      "olevba_detected_vba": false,
+      "olevba_error": null,
+      "module_count": 0,
+      "procedure_count": 0,
+      "event_procedure_count": 0,
+      "event_procedures": [],
+      "modules": []
+    },
+    {
+      "file_name": "Nomenclature_V6.xlsm",
+      "source_generation": "NEW_CANDIDATE",
+      "role": "nomenclature_identifier",
+      "extension": ".xlsm",
+      "sha256": "fb06512ec977d27ec733f1c34c3670c0c60b834ae5b5200a19efdf0b469f4507",
+      "zip_has_vba_project": false,
+      "vba_project_members": [],
+      "macro_sheet_members": [],
+      "activex_members": [],
+      "olevba_detected_vba": false,
+      "olevba_error": null,
+      "module_count": 0,
+      "procedure_count": 0,
+      "event_procedure_count": 0,
+      "event_procedures": [],
+      "modules": []
+    }
+  ]
+}

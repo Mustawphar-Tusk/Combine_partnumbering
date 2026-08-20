@@ -1,0 +1,1436 @@
+======================================================================================================================================================
+F100.3 - FYBROC FORMULA / NAME / VALIDATION / LINK PROFILE
+======================================================================================================================================================
+
+Workbooks : 5
+Failures  : 0
+
+======================================================================================================================================================
+Fybroc Attributes and Constraints.xlsx
+======================================================================================================================================================
+Defined names         : 0
+External link targets : 1
+External formulas     : 0
+
+EXTERNAL LINK TARGETS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+7500
+
+TOP WORKBOOK FUNCTIONS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+CONCAT                    360
+INDIRECT                  140
+INDEX                     70
+MATCH                     70
+TAKE                      35
+COUNTA                    35
+
+SHEET: MAIN
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 395
+External refs   : 0
+Tables          : 0
+Validations     : 1
+Top formula patterns:
+  [    358] D3         =_xlfn.CONCAT(E3,",",F3,",",G3,",",H3,",",I3,",",J3,",",K3,",",L3,",",N3,",",O3,",")
+  [     35] P3         =_xlfn.TAKE(INDEX(INDIRECT($Q$1),0,MATCH(Q3,INDIRECT($Q$2),0)),COUNTA(INDEX(INDIRECT($Q$1),0,MATCH(Q3,INDIRECT($Q$2),0))))
+  [      2] Q1         =_xlfn.CONCAT("'",P1,"'!$C$3:$AK$100")
+
+SHEET: Constraints
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: FULL LIST
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 4
+Top formula patterns:
+
+SHEET: 1500
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 1
+Top formula patterns:
+
+SHEET: 1530
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: 1600
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: 1630
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: 2530
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: 3000
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: 5500
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 4
+Top formula patterns:
+
+======================================================================================================================================================
+Fybroc Nomenclature_V5.xlsm
+======================================================================================================================================================
+Defined names         : 37
+External link targets : 0
+External formulas     : 1
+
+DEFINED NAMES
+------------------------------------------------------------------------------------------------------------------------------------------------------
+_xleta.VLOOKUP -> #NAME?
+Baseplate_Option -> Options!$F$3:$F$4
+BaseplateHardware -> Options!$G$3:$G$5
+Bearing_Option -> 'Pump Options'!$J$3:$J$5
+Casing_Drains -> 'Pump Options'!$D$3:$D$4
+Casing_Hardware -> 'Pump Options'!$H$3:$H$4
+Coupling_Guard -> Options!$E$3:$E$6
+Coupling_Option -> Options!$D$3:$D$4
+CycloneSep -> 'Pump Options'!$N$3:$N$4
+Dynamic_Impeller -> 'Pump Options'!$O$3:$O$4
+Efficiency -> ' Motor Assy'!$M$3:$M$4
+Enclosure -> ' Motor Assy'!$L$3:$L$6
+Flush -> 'Pump Options'!$M$3:$M$8
+Frame_Code_Mtr -> ' Motor Assy'!$K$3:$K$21
+Gland_Hardware -> 'Pump Options'!$L$3:$L$7
+Hertz -> ' Motor Assy'!$J$3:$J$4
+Horsepower_Mtr -> ' Motor Assy'!$G$3:$G$21
+Impeller_Sleeve -> 'Pump Options'!$G$3:$G$8
+Motor_Class -> ' Motor Assy'!$E$3:$E$4
+Motor_Manufacturer -> ' Motor Assy'!$N$3:$N$7
+Motor_Modifications -> Attributes!$R$8:$R$38
+Motor_Option -> ' Motor Assy'!$D$3:$D$5
+Motor_Orientation -> ' Motor Assy'!$F$3:$F$5
+NamePlate2 -> Options!$H$3:$H$4
+Power_Frame_Hardware -> 'Pump Options'!$K$3:$K$4
+Pump_Elastomers -> 'Pump Options'!$I$3:$I$5
+RPM -> ' Motor Assy'!$H$3:$H$6
+Seal_Elastomers -> 'Seal Assembly'!$G$3:$G$6
+Seal_Guard -> 'Seal Assembly'!$H$3:$H$4
+Seal_Materials -> 'Seal Assembly'!$F$3:$F$5
+Seal_Option -> 'Seal Assembly'!$D$3:$D$7
+Seal_Type -> 'Seal Assembly'!$E$3:$E$8
+Shaft_Material -> 'Pump Options'!$F$3:$F$4
+Suction_Discharge -> 'Pump Options'!$E$3:$E$4
+Testing -> Attributes!$U$8:$U$98
+ValidTrim -> Attributes!$AW$7:$AW$46
+Voltage -> ' Motor Assy'!$I$3:$I$5
+
+TOP WORKBOOK FUNCTIONS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+BASE                      1110788
+LEN                       555397
+IF                        555394
+VLOOKUP                   14
+IFERROR                   7
+UNIQUE                    1
+FILTER                    1
+
+SHEET: Smart Number
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 13
+External refs   : 0
+Tables          : 0
+Validations     : 36
+Top formula patterns:
+  [      2] C5         =LEN(D5)
+  [      1] D13        =VLOOKUP(D14,Attributes!$C$8:$D$9,2,FALSE)
+  [      1] E13        =VLOOKUP(E14,Attributes!$F$8:$G$21,2,FALSE)
+  [      1] F13        =VLOOKUP(F14,Attributes!$I$8:$J$24,2,FALSE)
+  [      1] G13        =VLOOKUP(G14,Attributes!$L$8:$M$13,2,FALSE)
+  [      1] H13        =VLOOKUP(H14,Attributes!$O$8:$P$104,2,FALSE)
+  [      1] J13        =IFERROR(VLOOKUP(L14&L15&L16&L17&L18&L19&L20&L21&L22&L23&L24&L25,'Pump Options'!$C$15:$P$138254,14,FALSE),"Not Valid")
+  [      1] N13        =IFERROR(VLOOKUP(O14&O15&O16&O17&O18,'Seal Assembly'!$C$14:$I$80,7,FALSE),"Not Valid")
+  [      1] P13        =IFERROR(VLOOKUP(Q14&Q15&Q16&Q17&Q18,Options!$C$12:$I$107,7,FALSE),"Not Valid")
+  [      1] R13        =IFERROR(VLOOKUP(S14&S15&S16&S17&S18&S19&S20&S21&S22&S23&S24,' Motor Assy'!$C$27:$O$728,13,FALSE),"Not Valid")
+
+SHEET: Attributes
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 53
+External refs   : 1
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [     51] AK7        =AL7&AM7
+  [      1] AW4        =IFERROR(VLOOKUP('Smart Number'!H14,ValidTrim,1,FALSE),"Error")
+  [      1] AW7        =_xlfn.UNIQUE(_xlfn._xlws.FILTER(Trim[SF1_ImpellerTrim],Trim[Size]='Smart Number'!$F$14))
+
+SHEET: Pump Options
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 276481
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [ 138240] C15        =D15&E15&F15&G15&H15&I15&J15&K15&L15&M15&N15&O15
+  [ 138240] P15        =IF(LEN(_xlfn.BASE(Q15,36))=1,"000"&_xlfn.BASE(Q15,36),IF(LEN(_xlfn.BASE(Q15,36))=2,"00"&_xlfn.BASE(Q15,36),IF(LEN(_xlfn.BASE(Q15,36))=3,"0"&_xlfn.BASE(Q15,36),IF(LEN(_xlfn.BASE(Q15,36))=4,_xlfn.BASE(Q15,36),FALSE))))
+  [      1] C12        =LEN(C15)
+
+SHEET: Seal Assembly
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 134
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     67] C14        =D14&E14&F14&G14&H14
+  [     67] I14        =IF(LEN(_xlfn.BASE(J14,36))=1,"0"&_xlfn.BASE(J14,36),IF(LEN(_xlfn.BASE(J14,36))=2,""&_xlfn.BASE(J14,36)))
+
+SHEET: Options
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 193
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     97] I9         =IF(LEN(_xlfn.BASE(J9,36))=1,"0"&_xlfn.BASE(J9,36),IF(LEN(_xlfn.BASE(J9,36))=2,""&_xlfn.BASE(J9,36)))
+  [     96] C12        =D12&E12&F12&G12&H12
+
+SHEET:  Motor Assy
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1404
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [    702] C27        =D27&E27&F27&G27&H27&I27&J27&K27&L27&M27&N27
+  [    702] O27        =IF(LEN(_xlfn.BASE(P27,36))=1,"00"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=2,"0"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=3,""&_xlfn.BASE(P27,36))))
+
+======================================================================================================================================================
+Price Estimator-Fybroc.xlsm
+======================================================================================================================================================
+Defined names         : 63
+External link targets : 5
+External formulas     : 20697
+
+EXTERNAL LINK TARGETS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+https://tuskind.sharepoint.com/sites/DFMS/fhf/Engineering/Fybroc/Applications/Fybroc%20Pump%20Data%20Sheet%20.xlsx
+https://tuskind.sharepoint.com/sites/DFMS/fhf/Engineering/Fybroc/Applications/Fybroc%20Pump%20Data%20Sheet%20.xlsx
+../../pnelson/Downloads/Price%20Estimator%20091625.xlsm
+file:///C:\Users\pnelson\Downloads\Price%20Estimator%20091625.xlsm
+/Users/pnelson/Downloads/Price%20Estimator%20091625.xlsm
+
+DEFINED NAMES
+------------------------------------------------------------------------------------------------------------------------------------------------------
+_xleta.AND -> #NAME?
+_xleta.CHAR -> #NAME?
+_xleta.IF -> #NAME?
+_xleta.IFERROR -> #NAME?
+_xleta.ISERROR -> #NAME?
+_xleta.LEFT -> #NAME?
+_xleta.N -> #NAME?
+_xleta.NOT -> #NAME?
+_xleta.PRICE -> #NAME?
+_xleta.REPLACE -> #NAME?
+_xleta.RIGHT -> #NAME?
+_xleta.SERIES -> #NAME?
+_xleta.SHEET -> #NAME?
+_xleta.SINGLE -> #NAME?
+_xleta.T -> #NAME?
+_xleta.TIME -> #NAME?
+_xleta.VALUE -> #NAME?
+ANSISize -> Table4[[#Headers],[ANSI Size]]
+Ansisze -> [1]!Table4[[#Headers],[ANSI Size]]
+Baseplate1 -> INDEX(Table153[],0,MATCH(CONCATENATE('Price Check'!$B$25,":Group ",'Price Check'!$B$27),Table153[#Headers],0))
+Baseplate2 -> INDEX(Table153[],0,MATCH(CONCATENATE(MainTemplate!$B$26,":Group ",MainTemplate!$B$28),Table153[#Headers],0))
+Baseplate21 -> INDEX(Table153[],0,MATCH(CONCATENATE('Price Check'!$B$25,":Group ",'Price Check'!$B$27),Table153[#Headers],0))
+Dean_Pump_Series_List -> [1]!Dean_Pump_Series[[#All],[Pump Series]]
+Efficiency_Table -> Tables!$E$200:$F$202
+Enclosure -> #REF!
+Enclosure_Table -> Tables!$E$192:$F$197
+Enclousure_Selected -> #REF!
+Flush -> #REF!
+Frame_Table -> Tables!$E$224:$G$255
+Frequency_Table -> Tables!$E$179:$F$181
+Horsepower_Table -> Tables!$E$145:$F$167
+HP_Selected -> #REF!
+list1 -> 'CC-New'!$A$5:$C$1428
+Manf_Table -> Tables!$E$258:$F$267
+Mods -> #REF!
+Motor_Option -> #REF!
+Motor_Option_Selected -> #REF!
+MultiplierList -> #REF!
+Orientation_Table -> Tables!$E$131:$F$143
+Poles_Table -> Tables!$E$186:$H$189
+RPM_Selected -> #REF!
+rrrrrrrrrr -> #REF!
+Seal_Materials -> #REF!
+Seal_Type -> #REF!
+Shaft_Material -> #REF!
+Shaft_Selected -> #REF!
+Size -> #REF!
+SizeSelected -> #REF!
+Standard_Table -> Tables!$E$126:$F$127
+Tab1500PP -> Pricebook!$B$6:$M$24
+Table1500Pump -> Pricebook!$B$6:$M$24
+Table33 -> 'M-#'!$G$16:$H$28
+Table34 -> 'M-#'!$J$17:$K$39
+Table35 -> 'M-#'!$P$24:$Q$27
+Table36 -> 'M-#'!$S$20:$T$26
+Table37 -> 'M-#'!$V$21:$W$23
+Table38 -> 'M-#'!$Y$22:$Z$37
+Table39 -> 'M-#'!$AB$23:$AD$58
+Table40 -> 'M-#'!$AF$24:$AG$34
+Trim -> #REF!
+Trim_Selected -> #REF!
+Voltage_Table -> Tables!$E$205:$F$220
+xxxxxxxx -> #REF!
+
+TOP WORKBOOK FUNCTIONS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+IF                        162150
+MATCH                     84730
+INDEX                     51444
+IFERROR                   33419
+CONCATENATE               29792
+AND                       28902
+OR                        28077
+ISNUMBER                  19736
+ROUND                     18569
+LEFT                      12701
+INDIRECT                  6470
+SEARCH                    5565
+VLOOKUP                   5386
+VALUE                     3777
+WEIGHT                    3211
+FIND                      2719
+SUBSTITUTE                2629
+RIGHT                     2493
+NOT                       1694
+HLOOKUP                   1555
+LEN                       1480
+SHAFT                     1113
+SUMPRODUCT                995
+ISERR                     995
+TIME                      618
+FLUSH                     475
+NOW                       414
+SUM                       387
+SLEEVE                    361
+SIZE                      340
+
+SHEET: Plaintag
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 3
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [      1] F3         ='Price Check'!AB41
+  [      1] I3         ='Price Check'!B22
+  [      1] I4         =Nameplate!I4
+
+SHEET: Nameplate
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1574
+External refs   : 1
+Tables          : 0
+Validations     : 1
+Top formula patterns:
+  [     11] L12        =IFERROR(INDEX($R$11:$AA$22,ROW()-10,MATCH(L$11,$R$11:$AA$11,0)),R12)
+  [     10] R12        =O12
+  [     10] S12        =SUBSTITUTE($Q12,"D",S$11)
+  [     10] T12        =SUBSTITUTE($Q12,"D",T$11)
+  [     10] U12        =SUBSTITUTE($Q12,"D",U$11)
+  [     10] V12        =SUBSTITUTE($Q12,"D",V$11)
+  [     10] W12        =SUBSTITUTE($Q12,"D",W$11)
+  [     10] X12        =SUBSTITUTE($Q12,"D",X$11)
+  [     10] Y12        =SUBSTITUTE($Q12,"D",Y$11)
+  [     10] Z12        =SUBSTITUTE($Q12,"D",Z$11)
+
+SHEET: Price Check
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1294
+External refs   : 556
+Tables          : 6
+Validations     : 6
+Top formula patterns:
+  [     22] C80        =IF(N80<>"",N80,B$24)
+  [     22] E80        =C80*D80
+  [     22] G80        =C80*F80
+  [     22] L80        =IF($L$78<>"",ROUND(D80*VLOOKUP($L$78,Table129[],3,FALSE),0),"")
+  [     22] M80        =IF($L$78<>"",L80*(1-$B$7),"")
+  [     22] AP80       =IF(OR(J80="Y",J80="Y-Note"),D80,0)
+  [     22] AR80       =C80*AQ80
+  [     22] AT80       =C80*AS80
+  [     21] K80        =IF($D$103="","",D80+$D$103)
+  [     21] AQ81       =D81-AP81
+
+SHEET: MainTemplate
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 27146
+External refs   : 2900
+Tables          : 94
+Validations     : 40
+Top formula patterns:
+  [    153] P138       =O138
+  [    145] C306       ="Supplied by others; Installed by Fybroc"
+  [    145] E923       =IF(0=0,0,IF('Price Check'!$B$50=Tables!$B$198,IF('Price Check'!$B$27=1,Baseplate!$B$94,IF('Price Check'!$B$27=2,Baseplate!$B$95,IF('Price Check'!$B$27=3,Baseplate!$B$96,0))),0))
+  [    145] E924       =IF(0=0,0,IF('Price Check'!$B$50=Tables!$B$199,IF('Price Check'!$B$27=1,Baseplate!$E$94,IF('Price Check'!$B$27=2,Baseplate!$E$95,IF('Price Check'!$B$27=3,Baseplate!$E$96,0))),0))
+  [     26] F800       ="FYBROC TEMPLATE JF-"&D800
+  [     26] P800       =IF(LEFT(E800,3)<>"STQ","",
+CONCATENATE(
+IF(H800="Y","P","X"),
+IF(I800="Y","S","X"),
+IF(J800="Y","C",IF(J800="VC","VC","X")),
+IF(K800="Y","M","X"),
+IF(L800="Y","B","X"),
+IF(M800="Y","G","X")))
+  [     22] O138       =$E138
+  [     22] H162       =IF($C$10=8500,$I138,IF($C$10="",$O138,INDEX(MainTemplate!$O$138:$AD$159,$H124,MATCH(CONCATENATE($C$10,"-Size"),MainTemplate!$O$137:$AD$137,0))))
+  [     22] I162       =IF(D$10=8500,$I162,IF(D$10="",$I138,INDEX(MainTemplate!$O$138:$AD$159,$H124,MATCH(CONCATENATE(D$10,"-Size"),MainTemplate!$O$137:$AD$137,0))))
+  [     22] J162       =IF(E$10=8500,$I162,IF(E$10="",$I138,INDEX(MainTemplate!$O$138:$AD$159,$H124,MATCH(CONCATENATE(E$10,"-Size"),MainTemplate!$O$137:$AD$137,0))))
+
+SHEET: Aquarium
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1614
+External refs   : 33
+Tables          : 1
+Validations     : 4
+Top formula patterns:
+  [     99] Y5         ='Price Check'!$B$9
+  [     33] B5         =IFERROR(IF($AH$1="Yes",INDEX(MainTemplate!$D$7:$IV$82,MATCH($B$4,MainTemplate!$B$7:$B$82,0),MATCH(A5,MainTemplate!$D$6:$IV$6,0)),""),"")
+  [     33] C5         =IFERROR(IF($AH$1="Yes",INDEX(MainTemplate!$D$7:$IV$82,MATCH($C$4,MainTemplate!$B$7:$B$82,0),MATCH(A5,MainTemplate!$D$6:$IV$6,0)),""),"")
+  [     33] D5         =AC5
+  [     33] E5         =CONCATENATE(BF5," ",BR5)
+  [     33] F5         =CONCATENATE(BG5," ",BS5)
+  [     33] G5         =CONCATENATE("Fybroc ",AD5," Series")
+  [     33] H5         =LEFT(AE5,FIND(" ",AE5)-1)
+  [     33] I5         =AO5
+  [     33] J5         =IFERROR(IF($AH$1="Yes",INDEX(MainTemplate!$D$7:$IV$82,MATCH($J$4,MainTemplate!$B$7:$B$82,0),MATCH(A5,MainTemplate!$D$6:$IV$6,0)),""),"")
+
+SHEET: ROM_Data
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1286
+External refs   : 570
+Tables          : 5
+Validations     : 0
+Top formula patterns:
+  [     22] D3         =_xlfn.XLOOKUP(C3,$CA$3:$CA$58,$BZ$3:$BZ$58,"???",0)
+  [     22] H3         =IF(G3="","",SUBSTITUTE(D3,"T","JM"))
+  [     22] T3         =IF(S3="","",SUBSTITUTE(D3,"T","TC"))
+  [      5] D113       =ROUND(IF(D94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",D$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(D94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(D94,Adders!$B$26:$B$53,0),MATCH(D$40,Adders!$B$25:$E$25,0))))
+  [      5] E113       =ROUND(IF(E94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",E$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(E94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(E94,Adders!$B$26:$B$53,0),MATCH(E$40,Adders!$B$25:$E$25,0))))
+  [      5] F113       =ROUND(IF(F94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",F$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(F94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(F94,Adders!$B$26:$B$53,0),MATCH(F$40,Adders!$B$25:$E$25,0))))
+  [      5] G113       =ROUND(IF(G94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",G$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(G94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(G94,Adders!$B$26:$B$53,0),MATCH(G$40,Adders!$B$25:$E$25,0))))
+  [      5] H113       =ROUND(IF(H94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",H$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(H94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(H94,Adders!$B$26:$B$53,0),MATCH(H$40,Adders!$B$25:$E$25,0))))
+  [      5] I113       =ROUND(IF(I94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",I$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(I94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(I94,Adders!$B$26:$B$53,0),MATCH(I$40,Adders!$B$25:$E$25,0))))
+  [      5] J113       =ROUND(IF(J94=Adders!$B$23,HLOOKUP(CONCATENATE("Group-",J$12),Adders!$B$20:$E$23,2),IF(IFERROR(MATCH(J94,Adders!$B$26:$B$53,0),"Not listed")="Not listed",0,INDEX(Table104[],MATCH(J94,Adders!$B$26:$B$53,0),MATCH(J$40,Adders!$B$25:$E$25,0))))
+
+SHEET: Formal Quote
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 910
+External refs   : 34
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [    186] L4         =B4
+  [     59] N15        =D15
+  [     56] M23        =C23
+  [     48] O16        =E16
+  [     42] M71        =$C71
+  [     20] F23        ='Price Check'!C80
+  [     19] AL23       =P23
+  [     19] AM23       =IF('Price Check'!$B$4=Rep!$A$72,Q23,S23)
+  [     19] AO23       =IF('Price Check'!$B$4=Rep!$A$72,R23,T23)
+  [     18] M30        =C30&IF('Price Check'!J81="Y-Note"," (included in pump price)","")
+
+SHEET: Fybroc Horizontal
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 94
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     27] I10        =B36+1
+  [     17] I11        =I10+1
+  [      8] D11        =IF(NOT('Price Check'!B25 = ""), 'Price Check'!B25, "")
+  [      2] G28        =_xlfn.CONCAT(IF('M-$'!E171 <> "", "- "&'M-$'!E171, ""),
+IF('M-$'!E171 <> "", CHAR(10), ""),
+IF('M-$'!E172 <> "", "- "&'M-$'!E172, ""),
+IF('M-$'!E172 <> "", CHAR(10), ""),
+IF('M-$'!E173 <> "", "- "&'M-$'!E173, ""),
+IF('M-$'!E173 <> "", CHAR
+  [      2] B38        = IF(FALSE, "TMNF", _xlfn.CONCAT(
+IF(NOT('Price Check'!B92 =""), IF(ISERROR(VLOOKUP('Price Check'!B92,'Spec. Tbls.'!E17:E24,1, FALSE)), 'Price Check'!B92, ""),""),
+IF(NOT('Price Check'!B93 =""), IF(ISERROR(VLOOKUP('Price Check'!B93,'Spec. T
+  [      1] B8         =IF('Price Check'!B9 = "", "", IF(ISERROR(FIND("F", 'Price Check'!B9)),'Price Check'!B9, REPLACE('Price Check'!B9, 1, 1, "PS")))
+  [      1] D8         =IF(D11 = "", "",IF(OR('Price Check'!B25=5500, 'Price Check'!B25=5530, 'Price Check'!B25=7530, 'Price Check'!B25=7500, 'Price Check'!B25=6000, 'Price Check'!B25=8500),"This sheet is for horizontal pumps only",
+_xlfn.CONCAT(IF(_xlfn.FLOOR.MA
+  [      1] O9         =IF(LEFT(INDEX(Tables!D438:AL438,1,MATCH('Price Check'!B26,Tables!D438:AL438,0)),10)<>LEFT(INDEX(Tables!D438:AL438,1,MATCH('Price Check'!B26,Tables!D438:AL438,0)+IF('Price Check'!B26=Tables!B48,0,1)),10),INDEX(Tables!D438:AL450,MATCH(IF('Pr
+  [      1] O10        =IF(AND('Price Check'!B25<>"", 'Price Check'!B26<>""), IFERROR(INDEX('Spec. Tbls.'!E2:AM14, MATCH('Price Check'!B25, 'Spec. Tbls.'!E2:E14, 0), MATCH('Price Check'!B26, 'Spec. Tbls.'!E2:AM2, 0)), IF(_xlfn.FLOOR.MATH('Price Check'!B25/100) = 
+  [      1] F11        = IF('Price Check'!B51 = "", "", IF('Price Check'!B51 = "No Testing", "No Added Testing", 'Price Check'!B51))
+
+SHEET: Fybroc Vertical
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 74
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     24] I10        =B33+1
+  [     12] I11        =I10+1
+  [      7] D11        =IF(NOT('Price Check'!B25 = ""), 'Price Check'!B25, "")
+  [      1] B8         =IF('Price Check'!B9 = "", "", IF(ISERROR(FIND("F", 'Price Check'!B9)),'Price Check'!B9, REPLACE('Price Check'!B9, 1, 1, "PS")))
+  [      1] D8         =IF(NOT(OR('Price Check'!B25=5500, 'Price Check'!B25=5530, 'Price Check'!B25=7530, 'Price Check'!B25=7500, 'Price Check'!B25=6000, 'Price Check'!B25=8500)),"This sheet is for vertical pumps only",
+IF(D11 = 5500, "Vertical Centrifugal Sump P
+  [      1] H8         =TODAY()
+  [      1] I8         ='Price Check'!O2
+  [      1] F11        = IF('Price Check'!B51 = "", "", IF('Price Check'!B51 = "No Testing", "No Added Testing", 'Price Check'!B51))
+  [      1] D12        =IF(NOT('Price Check'!B26 = ""), _xlfn.XLOOKUP('Price Check'!B26,'Spec. Tbls.'!B3:B24, 'Spec. Tbls.'!C3:C24,"",0,1), "")
+  [      1] F12        =IF(G13 = "","Motor", IF(AND('Fybroc Vertical'!G13 = "Not Included", 'Price Check'!B53 <> ""), "Motor (Minimum Motor Requirement)","Motor"))
+
+SHEET: Spec. Tbls.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 5
+Validations     : 0
+Top formula patterns:
+
+SHEET: Tables
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1249
+External refs   : 384
+Tables          : 95
+Validations     : 0
+Top formula patterns:
+  [    152] O27        =N27
+  [     34] B775       =B7
+  [     26] F618       ="FYBROC TEMPLATE JF-"&D618
+  [     26] P618       =IF(LEFT(E618,3)<>"STQ","",
+CONCATENATE(
+IF(H618="Y","P","X"),
+IF(I618="Y","S","X"),
+IF(J618="Y","C",IF(J618="VC","VC","X")),
+IF(K618="Y","M","X"),
+IF(L618="Y","B","X"),
+IF(M618="Y","G","X")))
+  [     22] N27        =$D27
+  [     22] O52        =IFERROR(INDEX(Table19[],MATCH($N52,Table19[SIZE (ANSI)],0),MATCH(O$51,Table19[#Headers],0)),"")
+  [     22] P52        =IFERROR(INDEX(Table19[],MATCH($N52,Table19[SIZE (ANSI)],0),MATCH(P$51,Table19[#Headers],0)),"")
+  [     22] Q52        =IFERROR(INDEX(Table19[],MATCH($N52,Table19[SIZE (ANSI)],0),MATCH(Q$51,Table19[#Headers],0)),"")
+  [     22] R52        =IFERROR(INDEX(Table19[],MATCH($N52,Table19[SIZE (ANSI)],0),MATCH(R$51,Table19[#Headers],0)),"")
+  [     22] S52        =IFERROR(INDEX(Table19[],MATCH($N52,Table19[SIZE (ANSI)],0),MATCH(S$51,Table19[#Headers],0)),"")
+
+SHEET: Baseplate
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 8448
+External refs   : 5
+Tables          : 9
+Validations     : 0
+Top formula patterns:
+  [    261] AU6        =IF(ISNUMBER(B6),ROUND(B6*1.118,0),B6)
+  [    261] AV6        =IF(ISNUMBER(C6),ROUND(C6*1.118,0),C6)
+  [    261] AW6        =IF(ISNUMBER(D6),ROUND(D6*1.118,0),D6)
+  [    261] AX6        =IF(ISNUMBER(E6),ROUND(E6*1.118,0),E6)
+  [    261] AY6        =IF(ISNUMBER(F6),ROUND(F6*1.118,0),F6)
+  [    261] AZ6        =IF(ISNUMBER(G6),ROUND(G6*1.118,0),G6)
+  [    261] BA6        =IF(ISNUMBER(H6),ROUND(H6*1.118,0),H6)
+  [    261] BB6        =IF(ISNUMBER(I6),ROUND(I6*1.118,0),I6)
+  [    261] BC6        =IF(ISNUMBER(J6),ROUND(J6*1.118,0),J6)
+  [    261] BD6        =IF(ISNUMBER(K6),ROUND(K6*1.118,0),K6)
+
+SHEET: M-Req
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 73
+External refs   : 1
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [      8] N26        =IFERROR(C26*M26,"")
+  [      8] H56        =IF('M-$'!$M$167="OK",'Price Check'!B53,
+IF('M-$'!$M$167="Not OK","Conflicting Selection",
+IF('M-$'!$M$168="Yes",'M-$'!O169,
+IF('M-$'!$M$180="Yes",'M-$'!O181,
+IF('M-$'!$M$192="Yes",'M-$'!O193,"")))))
+  [      7] H27        =SUBSTITUTE(IF('M-$'!E$167="OK",IFERROR(IF(ISNUMBER(SEARCH(CHAR(10),P26)),LEFT(P26,FIND(CHAR(10),P26)-1),IF(P26="","",P26)),""),
+IF('M-$'!E$167="Not OK","Conflicting Selection",
+IF('M-$'!E$168="Yes",IF(OR('M-$'!L171="No",'M-$'!E171="Paint")
+  [      7] M27        =IF('M-$'!E167="OK","",
+IF('M-$'!E167="Not OK","Conflicting Selection",
+IF('M-$'!E168="Yes",IF('M-$'!L171="No","",'M-$'!F171),
+IF('M-$'!E180="Yes",IF('M-$'!L183="No","",'M-$'!F183),
+IF('M-$'!E192="Yes",IF('M-$'!L195="No","",'M-$'!F195),""))
+  [      7] P27        =RIGHT(P26,(LEN(P26)-LEN(H27))-1)
+  [      2] A11        ='Price Check'!B13
+  [      2] A15        ='Price Check'!C63
+  [      2] F35        =Batch_Descriptions!AU7
+  [      2] F36        =Batch_Descriptions!AV7
+  [      1] D11        = IF('Price Check'!$O$2="JHO", "John Opiola", IF('Price Check'!$O$2="JGF", "Justin G. Foulke",IF('Price Check'!$O$2="VN", "Victor Nassar",IF('Price Check'!$O$2="NF", "Nick Fecondo",IF('Price Check'!$O$2="CB", "Craig Baker",IF('Price Check'!
+
+SHEET: Mod Master List
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: M-#
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 157
+External refs   : 39
+Tables          : 4
+Validations     : 0
+Top formula patterns:
+  [     40] AP25       =Tables!B336
+  [     32] AZ17       =CONCATENATE(Table73[[#This Row],[Orientation]],Table73[[#This Row],[Frame]],Table73[[#This Row],[Enclosure]],Table73[[#This Row],[Efficiency]],Table73[[#This Row],[C-Face]])
+  [     19] AP34       =Tables!C133
+  [     10] AS60       =AF24
+  [      8] AS9        ='Price Check'!B53
+  [      4] R24        =5/6*P24
+  [      2] B6         =IF(OR(B9="",D9="",G9="",J9="",M9="",P9="",S9="",V9="",Y9="",AB9="",AF9=""),"*",CONCATENATE(B9,D9,G9,J9,M9,P9,S9,V9,Y9,AB9,AF9,IF(AK9<>"",CONCATENATE(AI9,AK9),"")))
+  [      1] G6         =CONCATENATE("MOTOR, ",VLOOKUP(D9,Standard_Table,2,FALSE),", ",VLOOKUP(G9,Orientation_Table,2,FALSE),", ",VLOOKUP(J9,Horsepower_Table,2,FALSE),"/",IF(VALUE(S9)=6,VLOOKUP(M9,Poles_Table,2,FALSE),IF(VALUE(S9)=5,VLOOKUP(M9,Poles_Table,3,FALSE)
+  [      1] G7         =CONCATENATE("MOTOR, ",VLOOKUP(D10,Standard_Table,2,FALSE),", ",VLOOKUP(G10,Orientation_Table,2,FALSE),", ",VLOOKUP(J10,Horsepower_Table,2,FALSE),"/",IF(VALUE(M10)=6,VLOOKUP(P10,Poles_Table,2,FALSE),IF(VALUE(M10)=5,VLOOKUP(P10,Poles_Table,3
+  [      1] B9         =B10
+
+SHEET: M-$
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 520
+External refs   : 79
+Tables          : 35
+Validations     : 8
+Top formula patterns:
+  [     73] D70        =CONCATENATE(B70,"-",C70)
+  [     37] G70        =CONCATENATE('M-#'!$B$14,'M-#'!$E$15,'M-#'!$H$23,VLOOKUP(VALUE(LEFT(B70,FIND("-",B70)-1)),Table34,2),'M-#'!$N$19,(3600*2)/VALUE(RIGHT(B70,4)),'M-#'!$T$24,'M-#'!$W$22,'M-#'!$Z$31,INDEX('M-#'!$AB$23:$AD$58,MATCH(VALUE(LEFT(C70,3)),'M-#'!$AB$2
+  [     36] R70        =IF(S70="","",IF('Price Check'!$B$54="Vertical",CONCATENATE("V",S70),S70))
+  [     36] W70        =IF(X70="","",IF('Price Check'!$B$54="Vertical",CONCATENATE("V",X70),CONCATENATE("C",X70)))
+  [     24] Q169       =IF(N168="Yes",O169,'Price Check'!$B$53)
+  [     24] H170       =G170*0.7
+  [     24] K170       =IF(ISNUMBER(I170),I170*(1-'Price Check'!$B$7),"")
+  [     21] A171       =INDEX(ModList[],MATCH(E171,ModList[Mod Description],0),MATCH("Special",ModList[#Headers],0))
+  [     21] F171       =IF(M171<>"",M171,"")
+  [     21] I171       =IF(E171<>"",IF(E171=E$111,IF(AND(VALUE(LEFT(Q177,3))>=143,VALUE(LEFT(Q177,3))<=215),126,IF(AND(VALUE(LEFT(Q177,3))>=254,VALUE(LEFT(Q177,3))<=286),205,IF(VALUE(LEFT(Q177,3))>=324,263,"C/F"))),IF(F171="Enter Cost","Enter Cost",ROUND(F171/H17
+
+SHEET: Motor Master List
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+
+SHEET: M-$$
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 21525
+External refs   : 9521
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [    834] F2         =IFERROR(ROUND(G2/0.945,0)*0.314,"---")
+  [    834] H2         =IFERROR(F2*0.7,"---")
+  [    834] I2         =IFERROR(IF(AE2="TECO",O2,IF(AE2="Baldor",R2,"")),"---")
+  [    834] J2         =IFERROR(IF(AND(H2<>"",H2<>0,I2<>"",I2<>0),1-I2/H2,""),"---")
+  [    834] K2         =IFERROR(IF(AE2="TECO",INDEX(TECO[#Data],MATCH(AF2,TECO[TECO_PN],0),MATCH("List2",TECO[#Headers],0)),""),"---")
+  [    834] L2         =IFERROR(IF(AE2="TECO",INDEX(TECO[#Data],MATCH(AF2,TECO[TECO_PN],0),MATCH("List3",TECO[#Headers],0)),""),"---")
+  [    834] M2         =IFERROR((Table1218[[#This Row],[TECO List Adjusted]]-Table1218[[#This Row],[TECO List]])/Table1218[[#This Row],[TECO List]],"---")
+  [    834] O2         =IFERROR(IF(AE2="TECO",INDEX(TECO[#Data],MATCH(AF2,TECO[TECO_PN],0),MATCH("Cost",TECO[#Headers],0)),""),"---")
+  [    834] P2         =IFERROR((Table1218[[#This Row],[TECO Cost Adjusted]]-Table1218[[#This Row],[Teco Cost]])/Table1218[[#This Row],[Teco Cost]],"---")
+  [    834] Q2         =IFERROR(IF(AE2="Baldor",INDEX(Baldor[#Data],MATCH(CONCATENATE(B2,"-",C2,"-",D2,"-",E2),Baldor[Code],0),MATCH("List",Baldor[#Headers],0)),""),"---")
+
+SHEET: TECO
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 4160
+External refs   : 2518
+Tables          : 6
+Validations     : 0
+Top formula patterns:
+  [    996] S81        =IF(ISNUMBER(SEARCH("(",TECO235[[#This Row],[Column1]])),LEFT(TECO235[[#This Row],[Column1]],FIND("(",TECO235[[#This Row],[Column1]])-1),TECO235[[#This Row],[Column1]])
+  [    821] O81        =IF(ISNUMBER(SEARCH("(",M81)),LEFT(M81,FIND("(",M81)-1),M81)
+  [    821] P81        =VALUE(SUBSTITUTE(N81,",",""))
+  [    761] F3         =IFERROR(INDEX(TECO_List[],MATCH(C3,TECO_List[PN],0),MATCH("List",TECO_List[#Headers],0)),"")
+  [    761] G3         =IFERROR(INDEX(TECO235[],MATCH(C3,TECO235[PN],0),MATCH("List Price",TECO235[#Headers],0)),"")
+
+SHEET: Baldor
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 182
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [     73] F4         =IFERROR(ROUND(E4/0.351,0),"---")
+  [     37] C4         =$B$3&"-"&B4
+  [     36] I4         =$H$3&"-"&H4
+  [     36] C41        =$H$3&"-"&B41
+
+SHEET: Toshiba
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 2808
+External refs   : 2172
+Tables          : 3
+Validations     : 0
+Top formula patterns:
+  [   2028] Q5         =IFERROR(IF(AND(OR(D5="230/460",D5=460),INDEX(Table1218[#Data],MATCH(CONCATENATE(O5,
+INDEX(HP[#Data],MATCH(B5,HP[HP],0),1),
+INDEX(RPM[#Data],MATCH(C5,RPM[RPM],0),1),P5),Table1218[TECO PN],0),MATCH("FRAME",Table1218[#Headers],0))=E5),
+CONCAT
+  [    490] N5         =L5*M5
+  [    144] AH5        =IF(V5="230/460",CONCATENATE(AG5,"-",T5,"-",U5,"-",W5),"---")
+  [    144] AI5        =IFERROR(INDEX(Baldor[],MATCH(AH5,Baldor[Code],0),MATCH("PN",Baldor[#Headers],0)),"")
+  [      1] AC2        =VLOOKUP(AC5,'C:\Users\jfoulke\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\586PZGFZ\[CECO Toshiba Motor Net Pricing dated 10-31-2017.xlsx]Multipliers'!$C$5:$D$38,2,FALSE)
+  [      1] AH3        =AH5=Baldor!C4
+
+SHEET: MODS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1189
+External refs   : 1079
+Tables          : 4
+Validations     : 0
+Top formula patterns:
+  [     98] Q3         =IFERROR(INDEX(MOD[#Data],MATCH(N3,MOD[mod1],0),MATCH("140",MOD[#Headers],0)),"")
+  [     64] O57        =IF(ISNUMBER(SEARCH("(",MOD[[#This Row],[mod]])),LEFT(MOD[[#This Row],[mod]],FIND("(",MOD[[#This Row],[mod]])-1),MOD[[#This Row],[mod]])
+  [     49] S3         =IFERROR((TECOMod[[#This Row],[143/145 Modified]]-TECOMod[[#This Row],[143/145]])/TECOMod[[#This Row],[143/145 Modified]],"N/A")
+  [     49] W3         =IFERROR((TECOMod[[#This Row],[182/184 Modified]]-TECOMod[[#This Row],[182/184]])/TECOMod[[#This Row],[182/184]],"N/A")
+  [     49] Y3         =IFERROR(INDEX(MOD[#Data],MATCH(N3,MOD[mod1],0),MATCH("210",MOD[#Headers],0)),"")
+  [     49] AA3        =IFERROR((TECOMod[[#This Row],[213/215 Modified]]-TECOMod[[#This Row],[213/215]])/TECOMod[[#This Row],[213/215]],"N/A")
+  [     49] AC3        =IFERROR(INDEX(MOD[#Data],MATCH(N3,MOD[mod1],0),MATCH("250",MOD[#Headers],0)),"")
+  [     49] AE3        =IFERROR((TECOMod[[#This Row],[182/184 Modified]]-TECOMod[[#This Row],[254/256]])/TECOMod[[#This Row],[254/256]],"N/A")
+  [     49] AG3        =IFERROR(INDEX(MOD[#Data],MATCH(N3,MOD[mod1],0),MATCH("280",MOD[#Headers],0)),"")
+  [     49] AI3        =IFERROR((TECOMod[[#This Row],[284/286 Modified]]-TECOMod[[#This Row],[284/286]])/TECOMod[[#This Row],[284/286]],"N/A")
+
+SHEET: Rep
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 672
+External refs   : 133
+Tables          : 3
+Validations     : 0
+Top formula patterns:
+  [    103] C3         =IFERROR(IF(OR(A3="",B3=""),"",
+IF(ISNUMBER(SEARCH("INTL",G3)),TIME(HOUR(NOW()+IF(B3<0,-TIME(ABS(B3),0,0),TIME(B3,0,0))),MINUTE(NOW()),0),
+TIME(HOUR(NOW()+IF(B3<0,-TIME(ABS(B3),0,0),TIME(B3,0,0))),MINUTE(NOW()),0))),"")
+  [     85] CD3        =IF(CC3=Z3,"X","Uh-oh")
+  [     82] Z3         =IFERROR(INDEX(CSR[],MATCH(J3,CSR[Territory],0),MATCH("CSR",CSR[#Headers],0)),"")
+  [     62] S3         =IF(AND(D3="Distributor",OR(R3="",R3>=0.3)),
+IF(OR('Price Check'!$B$25=1500,'Price Check'!$B$25=1600,'Price Check'!$B$25=1530,'Price Check'!$B$25=1630,'Price Check'!$B$25=2530,'Price Check'!$B$25=2630,'Price Check'!$B$25=5500,'Price Check'!
+  [     55] AA6        =$AA$5
+  [     46] A50        =CONCATENATE("INT -- ",W50)
+  [     31] T3         =IF(D3="OEM","NO","YES")
+  [     30] G3         =LEFT(F3,FIND(" ",F3)-1)
+  [     25] S4         =IF(AND(D4="Distributor",OR(R4="",R4=0.3)),
+IF(OR('Price Check'!$B$25=1500,'Price Check'!$B$25=1600,'Price Check'!$B$25=1530,'Price Check'!$B$25=1630,'Price Check'!$B$25=2530,'Price Check'!$B$25=2630,'Price Check'!$B$25=5500,'Price Check'!$
+  [     18] G4         =LEFT(F4,FIND(" ",F4))
+
+SHEET: Top Level
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 133
+External refs   : 0
+Tables          : 10
+Validations     : 0
+Top formula patterns:
+  [     19] D3         =CONCATENATE(C3," (",B3,")")
+  [     19] L3         =CONCATENATE(K3," (",J3,")")
+  [     19] AM3        =CONCATENATE(AL3," (",AK3,")")
+  [     18] R3         =CONCATENATE(Q3," (",P3,")")
+  [     18] AW3        =CONCATENATE(AV3," (",AU3,")")
+  [     16] AR3        =CONCATENATE(AQ3," (",AP3,")")
+  [     16] BD3        =CONCATENATE(BC3," (",BB3,")")
+  [      6] AF20       =CONCATENATE(AE20," (",AD20,")")
+  [      2] X3         =CONCATENATE(W3," (",V3,")")
+
+SHEET: Pricebook
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 7830
+External refs   : 481
+Tables          : 21
+Validations     : 0
+Top formula patterns:
+  [    152] CP239      =CO239
+  [    152] CR239      =CQ239
+  [    152] CT239      =CS239
+  [    152] DB239      =CZ239
+  [    152] DC239      =DA239
+  [    146] GE86       =LEFT(FU86,FIND(" ",FU86)-1)
+  [    114] EF6        =CONCATENATE(EC6,":",EE6)
+  [     76] CK6        =CONCATENATE(CI6,":",CJ6)
+  [     76] CE84       =IF(CF84=CI84,"--")
+  [     76] CM84       =IF(ISNUMBER(CM6),ROUND(CM6*1.118,0),CM6)
+
+SHEET: Coupling
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 492
+External refs   : 11
+Tables          : 10
+Validations     : 0
+Top formula patterns:
+  [      7] BI67       =C67
+  [      6] C81        =IF(ISNUMBER(C67),ROUND(C67*1.118,0),IF(OR(C67="*",C67=""),"*",C67))
+  [      6] D81        =IF(ISNUMBER(D67),ROUND(D67*1.118,0),IF(OR(D67="*",D67=""),"*",D67))
+  [      6] E81        =IF(ISNUMBER(E67),ROUND(E67*1.118,0),IF(OR(E67="*",E67=""),"*",E67))
+  [      6] F81        =IF(ISNUMBER(F67),ROUND(F67*1.118,0),IF(OR(F67="*",F67=""),"*",F67))
+  [      6] G81        =IF(ISNUMBER(G67),ROUND(G67*1.118,0),IF(OR(G67="*",G67=""),"*",G67))
+  [      6] H81        =IF(ISNUMBER(H67),ROUND(H67*1.118,0),IF(OR(H67="*",H67=""),"*",H67))
+  [      6] I81        =IF(ISNUMBER(I67),ROUND(I67*1.118,0),IF(OR(I67="*",I67=""),"*",I67))
+  [      6] J81        =IF(ISNUMBER(J67),ROUND(J67*1.118,0),IF(OR(J67="*",J67=""),"*",J67))
+  [      6] K81        =IF(ISNUMBER(K67),ROUND(K67*1.118,0),IF(OR(K67="*",K67=""),"*",K67))
+
+SHEET: Adders
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 2097
+External refs   : 8
+Tables          : 27
+Validations     : 0
+Top formula patterns:
+  [    162] I462       =_xlfn.TEXTJOIN(" -- ",FALSE,C462:G462)
+  [    158] L7         =IF(ISNUMBER(C7),ROUND(C7*1.118,0),IF(C7="","",C7))
+  [    158] M7         =IF(ISNUMBER(D7),ROUND(D7*1.118,0),IF(D7="","",D7))
+  [    128] N7         =IF(ISNUMBER(E7),ROUND(E7*1.118,0),IF(E7="","",E7))
+  [     59] I77        =E77
+  [     58] O15        =IF(ISNUMBER(F15),ROUND(F15*1.118,0),IF(F15="","",F15))
+  [     57] L3         =IF(ISNUMBER(H3),ROUND(H3*1.118,0),IF(H3="","",H3))
+  [     56] K107       =IF(ISNUMBER(G107),ROUND(G107*1.118,0),IF(G107="","",G107))
+  [     45] B2         =Tables!B403
+  [     33] H77        =D77
+
+SHEET: ACC
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 24
+External refs   : 0
+Tables          : 2
+Validations     : 0
+Top formula patterns:
+  [     10] G21        =IF(ISNUMBER(SEARCH(C$21,'Price Check'!B92)),CONCATENATE(D$21,", "),IF(ISNUMBER(SEARCH(C$22,'Price Check'!B92)),CONCATENATE(D$22,", "),IF(ISNUMBER(SEARCH(C$23,'Price Check'!B92)),CONCATENATE(D$23,", "),IF(ISNUMBER(SEARCH(C$24,'Price Check'!
+  [      7] C21        =Adders!B28
+  [      2] J22        =ROUND(L22/1.15,0)
+  [      2] L22        =8*K22
+  [      1] J21        =Adders!C28
+  [      1] D28        =IF(AND(OR('Price Check'!B25=1500,'Price Check'!B25=1600),OR('Price Check'!B62="Yes",ISNUMBER(MATCH("C-Face Adapter",'Price Check'!B92:'Price Check'!B101,0)))),
+IFERROR(SUBSTITUTE(INDEX(Table155[],MATCH(CONCATENATE(LEFT('Price Check'!B26,FI
+  [      1] G31        =CONCATENATE(G21,G22,G23,G24,G25,G26,G27,G28,G29,G30,IF(AND(ISNUMBER(MATCH("C-Face Adapter",'Price Check'!B92:'Price Check'!B101,0)),ISNUMBER(SEARCH("C-Face Adapter",'Price Check'!B91))),"",IF(ISNUMBER(SEARCH("C-Face Adapter",'Price Check'!
+
+SHEET: Vert. Spares
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 618
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [     65] D5         =B5&" - "&C5
+  [     65] K5         =ROUNDUP(E5*1.1,0)
+  [     19] B5         =IF('Price Check'!B25=1550,1550,5500)
+  [     19] E72        =ROUND(E5/0.945,0)
+  [     19] K72        =ROUND(K5/0.945,0)
+  [     19] M72        =ROUND(M5/0.945,0)
+  [     19] Q72        =ROUND(Q5/0.945,0)
+  [     19] S72        =ROUND(S5/0.945,0)
+  [     19] U72        =ROUND(U5/0.945,0)
+  [     19] W72        =ROUND(W5/0.945,0)
+
+SHEET: CC-Old
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 85
+External refs   : 85
+Tables          : 7
+Validations     : 0
+Top formula patterns:
+  [     17] AA4        =IF(INDEX(Table134[],MATCH('Price Check'!$B$69,Table134[Chemical Environment],0)+Z4,1)='Price Check'!$B$69,INDEX(Table134[],MATCH('Price Check'!$B$69,Table134[Chemical Environment],0)+Z4,MATCH("% Conc",Table134[#Headers],0)),"--")
+  [     17] AD4        =IF(INDEX(Table134[],MATCH('Price Check'!$G$116,Table134[Chemical Environment],0)+AC4,1)='Price Check'!$G$116,INDEX(Table134[],MATCH('Price Check'!$G$116,Table134[Chemical Environment],0)+AC4,MATCH("% Conc",Table134[#Headers],0)),"--")
+  [     17] AF4        =IF(INDEX(Table134[],MATCH('Price Check'!$G$122,Table134[Chemical Environment],0)+AE4,1)='Price Check'!$G$122,INDEX(Table134[],MATCH('Price Check'!$G$122,Table134[Chemical Environment],0)+AE4,MATCH("% Conc",Table134[#Headers],0)),"--")
+  [     17] AH4        =IF(INDEX(Table134[],MATCH('Price Check'!$G$128,Table134[Chemical Environment],0)+AG4,1)='Price Check'!$G$128,INDEX(Table134[],MATCH('Price Check'!$G$128,Table134[Chemical Environment],0)+AG4,MATCH("% Conc",Table134[#Headers],0)),"--")
+  [     17] AJ4        =IF(INDEX(Table134[],MATCH('Price Check'!$G$134,Table134[Chemical Environment],0)+AI4,1)='Price Check'!$G$134,INDEX(Table134[],MATCH('Price Check'!$G$134,Table134[Chemical Environment],0)+AI4,MATCH("% Conc",Table134[#Headers],0)),"--")
+
+SHEET: CC-New
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 85
+External refs   : 85
+Tables          : 7
+Validations     : 0
+Top formula patterns:
+  [     17] AD5        =IF(INDEX(Table140[],MATCH('Price Check'!$B$69,Table140[Chemical Environment],0)+AC5,1)='Price Check'!$B$69,INDEX(Table140[],MATCH('Price Check'!$B$69,Table140[Chemical Environment],0)+AC5,MATCH("% Conc",Table140[#Headers],0)),"--")
+  [     17] AG5        =IF(INDEX(Table140[],MATCH('Price Check'!$G$116,Table140[Chemical Environment],0)+AF5,1)='Price Check'!$G$116,INDEX(Table140[],MATCH('Price Check'!$G$116,Table140[Chemical Environment],0)+AF5,MATCH("% Conc",Table140[#Headers],0)),"--")
+  [     17] AI5        =IF(INDEX(Table140[],MATCH('Price Check'!$G$122,Table140[Chemical Environment],0)+AH5,1)='Price Check'!$G$122,INDEX(Table140[],MATCH('Price Check'!$G$122,Table140[Chemical Environment],0)+AH5,MATCH("% Conc",Table140[#Headers],0)),"--")
+  [     17] AK5        =IF(INDEX(Table140[],MATCH('Price Check'!$G$128,Table140[Chemical Environment],0)+AJ5,1)='Price Check'!$G$128,INDEX(Table140[],MATCH('Price Check'!$G$128,Table140[Chemical Environment],0)+AJ5,MATCH("% Conc",Table140[#Headers],0)),"--")
+  [     17] AM5        =IF(INDEX(Table140[],MATCH('Price Check'!$G$134,Table140[Chemical Environment],0)+AL5,1)='Price Check'!$G$134,INDEX(Table140[],MATCH('Price Check'!$G$134,Table140[Chemical Environment],0)+AL5,MATCH("% Conc",Table140[#Headers],0)),"--")
+
+SHEET: NewRules 5-2-23
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 50
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     24] P19        =Q19&"-"&S19
+  [      1] J4         =UPPER(IF(AQ13="",$B$13&$E$13&$I$13&$L$13&$Q$13&$U$13&$X$13&$AA$13&$AE$13&$AH$13&$AK$13,$B$13&$E$13&$I$13&$L$13&$Q$13&$U$13&$X$13&$AA$13&$AE$13&$AH$13&$AK$13&AO13&AQ13&AS13&AU13&AW13&AY13))
+  [      1] J5         =TRIM(LEFT(IF($AQ$14="",$B$14&", "&$E$14&", "&$I$14&", "&$L$14&"/"&$Q$14&"/"&$U$14&$X$14&"/"&$AA$14&"/"&$AE$14&"/"&$AH$14&"/"&$AK$14,$B$14&", "&$E$14&", "&$I$14&", "&$L$14&"/"&$Q$14&"/"&$U$14&$X$14&"/"&$AA$14&"/"&$AE$14&"/"&$AH$14&"/"&$AK$1
+  [      1] J6         =IF($AQ$14="",$B$14&", "&$E$14&", "&$I$14&", "&$L$14&"/"&$Q$14&"/"&$U$14&$X$14&"/"&$AA$14&"/"&$AE$14&"/"&$AH$14&"/"&$AK$14,$B$14&", "&$E$14&", "&$I$14&", "&$L$14&"/"&$Q$14&"/"&$U$14&$X$14&"/"&$AA$14&"/"&$AE$14&"/"&$AH$14&"/"&$AK$14&AO14&AQ1
+  [      1] J7         =VLOOKUP($AK$13,$AK$19:$AM$28,3,FALSE)
+  [      1] B14        =VLOOKUP(B13,$B$19:$C$20,2,FALSE)
+  [      1] E14        =VLOOKUP(E13,$E$19:$F$21,2,FALSE)
+  [      1] I14        =VLOOKUP(I13,$I$19:$J$31,2,FALSE)
+  [      1] L14        =VLOOKUP(L13,$L$19:$N$42,IF($E$13="n",2,3),FALSE)
+  [      1] Q14        =VLOOKUP(Q13&"-"&$X$14,$P$19:$S$43,3,FALSE)
+
+SHEET: Batch_Descriptions
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 2202
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     55] F7         =LEFT(E7,1)
+  [     55] G7         =RIGHT(LEFT($E7,2),1)
+  [     55] H7         =RIGHT(LEFT($E7,3),1)
+  [     55] I7         =RIGHT(LEFT($E7,6),3)
+  [     55] J7         =RIGHT(LEFT($E7,7),1)
+  [     55] K7         =RIGHT(LEFT($E7,9),2)
+  [     55] L7         =RIGHT(LEFT($E7,10),1)
+  [     55] M7         =RIGHT(LEFT($E7,11),1)
+  [     55] N7         =RIGHT(LEFT($E7,12),1)
+  [     55] O7         =RIGHT(LEFT($E7,13),1)
+
+SHEET: Sheet1
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [      1] C2         =IF(AND(OR(B48=Tables!B194,B48=Tables!B195,B48=Tables!B191,B48=Tables!B192),B25=1600,ISNUMBER(SEARCH("316SS Baseplate H/W",B34)),ISNUMBER(SEARCH("316SS Coupling Guard for ",B49))),IF(OR(B26=Tables!B37,AND(ISNUMBER(SEARCH(13,B26)),B27=2)),IN
+
+======================================================================================================================================================
+Fybroc Configuration Rev0.3.xlsx
+======================================================================================================================================================
+Defined names         : 36
+External link targets : 0
+External formulas     : 1049
+
+DEFINED NAMES
+------------------------------------------------------------------------------------------------------------------------------------------------------
+DUPLICATES -> _xlfn.LAMBDA(_xlpm.array,_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.array,COUNTIF(_xlpm.array,_xlpm.array)>1)))
+fourfilter -> _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.list3,_xlpm.value3,_xlpm.list4,_xlpm.value4,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list2=_xlpm.value2)*(_xlpm.list3=_xlpm.value3)*(_xlpm.list4=_xlpm.value4)),1,_xlpm.col))
+ItemQuestions -> _xlfn.ANCHORARRAY(Items!$M$474)
+ItemQuestions1500 -> _xlfn.ANCHORARRAY(Items!$Q$474)
+ItemQuestions1530 -> _xlfn.ANCHORARRAY(Items!$T$474)
+ItemQuestions1600 -> _xlfn.ANCHORARRAY(Items!$W$474)
+ItemQuestions1630 -> _xlfn.ANCHORARRAY(Items!$Z$474)
+ItemQuestions2530 -> _xlfn.ANCHORARRAY(Items!$AC$474)
+ItemQuestions3000 -> _xlfn.ANCHORARRAY(Items!$AF$474)
+ItemQuestions5500 -> _xlfn.ANCHORARRAY(Items!$AI$474)
+ItemQuestions5530 -> _xlfn.ANCHORARRAY(Items!$AL$474)
+Items1500 -> _xlfn.ANCHORARRAY(Items!$CA$4)
+Items1530 -> _xlfn.ANCHORARRAY(Items!$CB$4)
+Items1600 -> _xlfn.ANCHORARRAY(Items!$CC$4)
+Items1630 -> _xlfn.ANCHORARRAY(Items!$CD$4)
+Items2530 -> _xlfn.ANCHORARRAY(Items!$CE$4)
+Items3000 -> _xlfn.ANCHORARRAY(Items!$CF$4)
+Items5500 -> _xlfn.ANCHORARRAY(Items!$CG$4)
+Items5530 -> _xlfn.ANCHORARRAY(Items!$CH$4)
+Items7500 -> _xlfn.ANCHORARRAY(Items!$CI$4)
+Items8500 -> _xlfn.ANCHORARRAY(Items!$CJ$4)
+onefilter -> _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,_xlpm.list1=_xlpm.value1),1,_xlpm.col))
+Questions -> _xlfn.ANCHORARRAY(Selections!$Q$2)
+Questions1500 -> _xlfn.ANCHORARRAY(Selections!$R$2)
+Questions1530 -> _xlfn.ANCHORARRAY(Selections!$S$2)
+Questions1600 -> _xlfn.ANCHORARRAY(Selections!$T$2)
+Questions1630 -> _xlfn.ANCHORARRAY(Selections!$U$2)
+Questions2530 -> _xlfn.ANCHORARRAY(Selections!$V$2)
+Questions3000 -> _xlfn.ANCHORARRAY(Selections!$W$2)
+Questions5500 -> _xlfn.ANCHORARRAY(Selections!$X$2)
+Questions5530 -> _xlfn.ANCHORARRAY(Selections!$Y$2)
+Questions7500 -> _xlfn.ANCHORARRAY(Selections!$Z$2)
+Questions8500 -> _xlfn.ANCHORARRAY(Selections!$AA$2)
+threefilter -> _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.list3,_xlpm.value3,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list2=_xlpm.value2)*(_xlpm.list3=_xlpm.value3)),1,_xlpm.col))
+twofilter -> _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list2=_xlpm.value2)),1,_xlpm.col))
+twolists -> _xlfn.LAMBDA(_xlpm.list1,_xlpm.list2,_xlfn.LET(_xlpm.x,COUNTA(_xlpm.list1),_xlpm.y,COUNTA(_xlpm.list2),_xlpm.total,_xlpm.x*_xlpm.y,_xlpm.seq,_xlfn.SEQUENCE(_xlpm.total),_xlfn.HSTACK(_xlfn.XLOOKUP(_xlpm.seq,_xlfn.SCAN(0,IF(_xlfn.SEQUENCE(_xlpm.x,,1,0),_xlpm.y),_xlfn.LAMBDA(_xlpm.a,_xlpm.v,_xlpm.a+_xlpm.v)),_xlpm.list1,,1),INDEX(_xlpm.list2,MOD(_xlpm.seq-1,_xlpm.y)+1))))
+
+TOP WORKBOOK FUNCTIONS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+XLOOKUP                   104994
+THREEFILTER               52440
+TWOFILTER                 52440
+IF                        5428
+CHOOSECOLS                4805
+INDIRECT                  3685
+OR                        2450
+FILTER                    1819
+IFERROR                   1731
+MATCH                     1538
+ANCHORARRAY               1271
+UNIQUE                    1239
+TRANSPOSE                 1230
+AND                       1225
+COUNTIF                   1225
+DUPLICATES                1225
+CONCAT                    852
+TEXTBEFORE                56
+TEXTAFTER                 56
+COUNTIFS                  10
+SEQUENCE                  3
+COLUMNS                   2
+ROWS                      2
+CHOOSEROWS                2
+SORT                      1
+LET                       1
+MOD                       1
+QUOTIENT                  1
+INDEX                     1
+HSTACK                    1
+
+SHEET: To do
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: Main Page
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 35
+External refs   : 2
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [      1] B13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(B16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(C16)),"Match","Lists do not match")
+  [      1] D13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(D16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(C16)),"Match","Lists do not match")
+  [      1] G13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(G16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(H16)),"Match","Lists do not match")
+  [      1] I13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(I16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(J16)),"Match","Lists do not match")
+  [      1] K13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(K16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(L16)),"Match","Lists do not match")
+  [      1] M13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(M16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(N16)),"Match","Lists do not match")
+  [      1] O13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(O16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(P16)),"Match","Lists do not match")
+  [      1] Q13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(Q16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(R16)),"Match","Lists do not match")
+  [      1] S13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(S16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(T16)),"Match","Lists do not match")
+  [      1] U13        =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(U16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(V16)),"Match","Lists do not match")
+
+SHEET: Items
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 2786
+External refs   : 987
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [   1770] BN4        =
+  [    467] A3         =_xlfn.CONCAT(Table1[[#This Row],[Series]],"_",Table1[[#This Row],[Item]])
+  [     46] AQ4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AQ$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AR4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AR$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AS4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AS$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AT4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AT$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AU4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AU$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AV4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AV$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AW4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AW$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+  [     46] AX4        =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))="X")*(Table1[Series]=AX$3)),MATCH($AO4,Table1[#Headers],0)))>0,"X",""),"")
+
+SHEET: Constraints
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 19569
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [  12218] AV6        =
+  [   1225] N6         =IF(OR(F6="Yes",G6="Yes",H6="Yes",I6="Yes",J6="Yes",K6="Yes",L6="Yes",M6="Yes"),"Yes","No")
+  [   1225] O6         =IF(AND(F6="No Combination",G6="No Combination",H6="No Combination",I6="No Combination",J6="No Combination",K6="No Combination",L6="No Combination",M6="No Combination"),"Yes","No")
+  [   1225] P6         =IF(OR(COUNTIF(D6:D1094,E6)=0,D6=E6),"Ignore","")
+  [   1225] Q6         =IF(R6="","No Combination","Combination exists")
+  [   1225] R6         =IFERROR(_xlfn.UNIQUE(DUPLICATES(_xlfn.ANCHORARRAY(AU6)),1),"")
+  [   1225] AU6        =TRANSPOSE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(INDIRECT($Q$2),(_xlfn.CHOOSECOLS(INDIRECT($Q$2),2)=D6)+(_xlfn.CHOOSECOLS(INDIRECT($Q$2),2)=E6)),1))
+  [      1] D6         =twolists(B5:B39,B5:B39)
+
+SHEET: Hierarchy
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: Combine Variables
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 116
+External refs   : 4
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     56] F4         =_xlfn.TEXTBEFORE(E4,"-")
+  [     56] G4         =_xlfn.TEXTAFTER(E4,"-")
+  [      1] S4         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],QATable[Question]=S3),2)
+  [      1] T4         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],QATable[Question]=T3),2)
+  [      1] X4         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],QATable[Question]=X3),2)
+  [      1] Y4         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],QATable[Question]=Y3),2)
+
+SHEET: Selections
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 11
+External refs   : 11
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [      1] Q2         =_xlfn.UNIQUE(QATable[Question])
+  [      1] R2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(R1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(R1,QATable[#Headers],0))="STD")),1))
+  [      1] S2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(S1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(S1,QATable[#Headers],0))="STD")),1))
+  [      1] T2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(T1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(T1,QATable[#Headers],0))="STD")),1))
+  [      1] U2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(U1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(U1,QATable[#Headers],0))="STD")),1))
+  [      1] V2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(V1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(V1,QATable[#Headers],0))="STD")),1))
+  [      1] W2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(W1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(W1,QATable[#Headers],0))="STD")),1))
+  [      1] X2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(X1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(X1,QATable[#Headers],0))="STD")),1))
+  [      1] Y2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(Y1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(Y1,QATable[#Headers],0))="STD")),1))
+  [      1] Z2         =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(Z1,QATable[#Headers],0))="X")+(_xlfn.CHOOSECOLS(QATable[],MATCH(Z1,QATable[#Headers],0))="STD")),1))
+
+SHEET: Constraint Index
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: Pricing Index
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: Feasible Constraints
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 29
+Validations     : 0
+Top formula patterns:
+
+SHEET: Motor Constraints
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 0
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+
+SHEET: 1500 Pricing
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 114
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [    114] N6         =E6-_xlfn.XLOOKUP(L6,$H$6:$H$24,$I$6:$I$24)
+
+SHEET: 5500 Pricing
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 262561
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [  52440] AU6        =_xlfn.XLOOKUP(AQ6,$BG$6:$BG$11,$BH$6:$BH$11)
+  [  52440] AV6        =_xlfn.XLOOKUP(AS6,$BC$6:$BC$120,$BD$6:$BD$120)
+  [  52440] AW6        =threefilter($BG$20:$BJ$171,$BG$20:$BG$171,AP6,$BH$20:$BH$171,AR6,$BI$20:$BI$171,AU6,4)
+  [  52440] AX6        =twofilter($BL$20:$BN$57,$BL$20:$BL$57,AP6,$BM$20:$BM$57,AU6,3)
+  [  52440] AY6        =(AX6*AV6)+AW6
+  [    361] D6         =_xlfn.CONCAT(B6,"+",C6)
+
+SHEET: Sheet3
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 46
+External refs   : 45
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [      1] B2         =TRANSPOSE(Questions1500)
+  [      1] B3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=B2)),2)
+  [      1] C3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=C2)),2)
+  [      1] D3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=D2)),2)
+  [      1] E3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=E2)),2)
+  [      1] F3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=F2)),2)
+  [      1] G3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=G2)),2)
+  [      1] H3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=H2)),2)
+  [      1] I3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=I2)),2)
+  [      1] J3         =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=J2)),2)
+
+======================================================================================================================================================
+Nomenclature_V6.xlsm
+======================================================================================================================================================
+Defined names         : 105
+External link targets : 2
+External formulas     : 1
+
+EXTERNAL LINK TARGETS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+https://tuskind.sharepoint.com/sites/DFMS/fhf/Shared%20Documents/SFE/MoorsTransition/ConfigModels/Fybroc/Quickship/Nomenclature_V5.xlsm
+Quickship/Nomenclature_V5.xlsm
+
+DEFINED NAMES
+------------------------------------------------------------------------------------------------------------------------------------------------------
+_xleta.IF -> #NAME?
+_xleta.INDEX -> #NAME?
+_xleta.NA -> #NAME?
+_xleta.VLOOKUP -> #NAME?
+_xlpm.A -> #NAME?
+_xlpm.B -> #NAME?
+_xlpm.C -> #NAME?
+_xlpm.chars -> #NAME?
+_xlpm.colA -> #NAME?
+_xlpm.colB -> #NAME?
+_xlpm.colC -> #NAME?
+_xlpm.colD -> #NAME?
+_xlpm.colE -> #NAME?
+_xlpm.colF -> #NAME?
+_xlpm.colG -> #NAME?
+_xlpm.colH -> #NAME?
+_xlpm.colI -> #NAME?
+_xlpm.colJ -> #NAME?
+_xlpm.colK -> #NAME?
+_xlpm.colL -> #NAME?
+_xlpm.D -> #NAME?
+_xlpm.E -> #NAME?
+_xlpm.F -> #NAME?
+_xlpm.first -> #NAME?
+_xlpm.G -> #NAME?
+_xlpm.H -> #NAME?
+_xlpm.I -> #NAME?
+_xlpm.J -> #NAME?
+_xlpm.K -> #NAME?
+_xlpm.L -> #NAME?
+_xlpm.n -> #NAME?
+_xlpm.nA -> #NAME?
+_xlpm.nB -> #NAME?
+_xlpm.nC -> #NAME?
+_xlpm.nD -> #NAME?
+_xlpm.nE -> #NAME?
+_xlpm.nF -> #NAME?
+_xlpm.nG -> #NAME?
+_xlpm.nH -> #NAME?
+_xlpm.nI -> #NAME?
+_xlpm.nJ -> #NAME?
+_xlpm.nK -> #NAME?
+_xlpm.nL -> #NAME?
+_xlpm.second -> #NAME?
+_xlpm.seq -> #NAME?
+_xlpm.total -> #NAME?
+Baseplate_Option -> 'Options - Horizontal'!$F$3:$F$4
+BaseplateHardware -> 'Options - Horizontal'!$G$3:$G$5
+Bearing_Option -> 'Pump Options - Horizontal'!$J$3:$J$5
+Casing_Drains -> 'Pump Options - Horizontal'!$D$3:$D$4
+Casing_Hardware -> 'Pump Options - Horizontal'!$H$3:$H$4
+CFace_Adapter -> 'Options - Horizontal'!$I$3:$I$4
+Coupling_Guard -> 'Options - Horizontal'!$E$3:$E$6
+Coupling_Option -> 'Options - Horizontal'!$D$3:$D$4
+CycloneSep -> 'Pump Options - Horizontal'!$N$3:$N$4
+Dynamic_Impeller -> 'Pump Options - Horizontal'!$O$3:$O$4
+Efficiency -> ' Motor Assy'!$M$3:$M$4
+Enclosure -> ' Motor Assy'!$L$3:$L$6
+Flush -> 'Pump Options - Horizontal'!$M$3:$M$8
+Frame_Code_Mtr -> ' Motor Assy'!$K$3:$K$21
+Gland_Hardware -> 'Pump Options - Horizontal'!$L$3:$L$7
+Hertz -> ' Motor Assy'!$J$3:$J$4
+Horsepower_Mtr -> ' Motor Assy'!$G$3:$G$21
+Hydrotest -> Testing!$I$3:$I$5
+Impeller_Sleeve -> 'Pump Options - Horizontal'!$G$3:$G$8
+Length -> 'Setting-Length-Vertical'!$K$5:$K$187
+Motor_Class -> ' Motor Assy'!$E$3:$E$5
+Motor_Frame -> ' Motor Assy'!$Z$3:$Z$52
+Motor_Manufacturer -> ' Motor Assy'!$N$3:$N$7
+Motor_Modifications -> Attributes!$S$8:$S$38
+Motor_Option -> ' Motor Assy'!$D$3:$D$5
+Motor_Orientation -> ' Motor Assy'!$F$3:$F$5
+NamePlate2 -> 'Options - Horizontal'!$H$3:$H$4
+Performance_Testing -> Testing!$H$3:$H$7
+Power_Frame_Hardware -> 'Pump Options - Horizontal'!$K$3:$K$4
+Pump_Elastomers -> 'Pump Options - Horizontal'!$I$3:$I$5
+RPM -> ' Motor Assy'!$H$3:$H$6
+Seal_Elastomers -> 'Seal Assembly - Horizontal'!$G$3:$G$6
+Seal_Guard -> 'Seal Assembly - Horizontal'!$H$3:$H$4
+Seal_Materials -> 'Seal Assembly - Horizontal'!$F$3:$F$5
+Seal_Option -> 'Seal Assembly - Horizontal'!$D$3:$D$7
+Seal_Type -> 'Seal Assembly - Horizontal'!$E$3:$E$8
+Series_Horizontal -> Attributes!$F$8:$F$13
+Series_Vertical -> Attributes!$F$15:$F$20
+Setting -> 'Setting-Length-Vertical'!$J$5:$J$23
+Shaft_Material -> 'Pump Options - Horizontal'!$F$3:$F$4
+Sound_Test -> Testing!$K$3:$K$4
+Suction_Discharge -> 'Pump Options - Horizontal'!$E$3:$E$4
+ValidTrim -> Attributes!$AR$7:$AR$46
+Vapor_Protection -> 'Pump Options - Vertical'!$K$3:$K$4
+Vertical_Coupling_Guard -> 'Options - Vertical'!$E$3:$E$6
+Vertical_Coupling_Option -> 'Options - Vertical'!$D$3:$D$4
+Vertical_Customer_Nameplate -> 'Options - Vertical'!$G$3:$G$4
+Vertical_Flush -> 'Pump Options - Vertical'!$H$3:$H$6
+Vertical_Flush_Options -> 'Pump Options - Vertical'!$I$3:$I$4
+Vertical_Impeller_Balance -> 'Pump Options - Vertical'!$J$3:$J$4
+Vertical_Mounting_Plate -> 'Options - Vertical'!$F$3:$F$4
+Vertical_Pump_Elastomers -> 'Pump Options - Vertical'!$G$3:$G$5
+Vertical_Setting_L_Dimension -> 'Setting-Length-Vertical'!$E$5:$E$206
+Vertical_Shaft_Material -> 'Pump Options - Vertical'!$D$3:$D$9
+Vertical_Sleeve -> 'Pump Options - Vertical'!$E$3:$E$6
+Vertical_Strainer -> 'Pump Options - Vertical'!$L$3:$L$5
+Vertical_Wetted_Hardware -> 'Pump Options - Vertical'!$F$3:$F$7
+Vibration_Test -> Testing!$J$3:$J$4
+Voltage -> ' Motor Assy'!$I$3:$I$5
+
+TOP WORKBOOK FUNCTIONS
+------------------------------------------------------------------------------------------------------------------------------------------------------
+BASE                      1296106
+LEN                       648056
+IF                        648054
+MID                       366
+LET                       183
+INT                       183
+MOD                       183
+VLOOKUP                   34
+TEXT                      19
+IFERROR                   14
+XLOOKUP                   2
+UNIQUE                    1
+FILTER                    1
+
+SHEET: Smart Number
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 35
+External refs   : 0
+Tables          : 0
+Validations     : 57
+Top formula patterns:
+  [      2] C5         =LEN(D5)
+  [      2] D13        =VLOOKUP(D14,Attributes!$C$8:$D$9,2,FALSE)
+  [      2] E13        =_xlfn.XLOOKUP(1,(Attributes!F23:F42=F14)*(Attributes!G23:G42=F15),Attributes!H23:H42)
+  [      2] G13        =VLOOKUP(G14,Attributes!$J$8:$K$24,2,FALSE)
+  [      2] H13        =VLOOKUP(H14,Attributes!$M$8:$N$13,2,FALSE)
+  [      2] I13        =VLOOKUP(I14,Attributes!$P$8:$Q$104,2,FALSE)
+  [      2] V13        =VLOOKUP(V14,Table_Motor_Frame[],5,FALSE)
+  [      2] W13        =IFERROR(VLOOKUP(X14&X15&X16&X17&X18&X19&X20&X21&X22&X23&X24,' Motor Assy'!$C$27:$O$728,13,FALSE),"Not Valid")
+  [      2] Z13        =IFERROR(VLOOKUP(AA14,Attributes!$S$8:$T$38,2,FALSE)&VLOOKUP(AA15,Attributes!$S$8:$T$38,2,FALSE)&VLOOKUP(AA16,Attributes!$S$8:$T$38,2,FALSE),"Not Valid")
+  [      2] AC13       =IFERROR(VLOOKUP(AD14&AD15&AD16&AD17,Testing_Table[],6,FALSE),"Not Valid")
+
+SHEET: Attributes
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 54
+External refs   : 1
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [     51] AF7        =AG7&AH7
+  [      1] AR4        =IFERROR(VLOOKUP('Smart Number'!I14,ValidTrim,1,FALSE),"Error")
+  [      1] AV4        =VLOOKUP('Smart Number'!$F$14,AU7:AV18,2,FALSE)
+  [      1] AR7        =_xlfn.UNIQUE(_xlfn._xlws.FILTER(Trim[SF1_ImpellerTrim],Trim[Size]='Smart Number'!$G$14))
+
+SHEET: Pump Options - Horizontal
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 276481
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [ 138240] C12        =D12&E12&F12&G12&H12&I12&J12&K12&L12&M12&N12&O12
+  [ 138240] P12        =IF(LEN(_xlfn.BASE(Q12,36))=1,"000"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=2,"00"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=3,"0"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=4,_xlfn.BASE(Q12,36),FALSE))))
+  [      1] C10        =LEN(C12)
+
+SHEET: Pump Options - Vertical
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 46080
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [  23040] C14        =D14&E14&F14&G14&H14&I14&J14&K14&L14
+  [  23040] M14        =IF(LEN(_xlfn.BASE(N14,36))=1,"000"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=2,"00"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=3,"0"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=4,_xlfn.BASE(N14,36),FALSE))))
+
+SHEET: Seal Assembly - Horizontal
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 134
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [     67] C14        =D14&E14&F14&G14&H14
+  [     67] I14        =IF(LEN(_xlfn.BASE(J14,36))=1,"0"&_xlfn.BASE(J14,36),IF(LEN(_xlfn.BASE(J14,36))=2,""&_xlfn.BASE(J14,36)))
+
+SHEET: Setting-Length-Vertical
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 525
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [    202] C5         =D5&"*"&'Setting-Length-Vertical'!$E5
+  [    183] G24        =_xlfn.LET(
+_xlpm.n,F24-20,
+_xlpm.chars,"0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ",
+MID("ABCDEFGHIJKLMNPQRSTUVWXYZ",INT(_xlpm.n/35)+1,1) &
+MID(_xlpm.chars,MOD(_xlpm.n,35)+1,1)
+)
+  [    116] O5         =P5&Q5
+  [     19] G5         =TEXT(F5,"00")
+  [      5] S5         =IF(LEN(_xlfn.BASE(R5,36))=1,"0"&_xlfn.BASE(R5,36),IF(LEN(_xlfn.BASE(R5,36))=2,""&_xlfn.BASE(R5,36)))
+
+SHEET: Options - Horizontal
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 385
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [    193] J9         =IF(LEN(_xlfn.BASE(K9,36))=1,"0"&_xlfn.BASE(K9,36),IF(LEN(_xlfn.BASE(K9,36))=2,""&_xlfn.BASE(K9,36)))
+  [    192] C12        =D12&E12&F12&G12&H12&I12
+
+SHEET: Options - Vertical
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 193
+External refs   : 0
+Tables          : 0
+Validations     : 0
+Top formula patterns:
+  [     97] H9         =IF(LEN(_xlfn.BASE(I9,36))=1,"0"&_xlfn.BASE(I9,36),IF(LEN(_xlfn.BASE(I9,36))=2,""&_xlfn.BASE(I9,36)))
+  [     96] C12        =D12&E12&F12&G12
+
+SHEET:  Motor Assy
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 1454
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [    702] C27        =D27&E27&F27&G27&H27&I27&J27&K27&L27&M27&N27
+  [    702] O27        =IF(LEN(_xlfn.BASE(P27,36))=1,"00"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=2,"0"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=3,""&_xlfn.BASE(P27,36))))
+  [     50] AD3        =IF(LEN(_xlfn.BASE(AC3,36))=1,"0"&_xlfn.BASE(AC3,36),IF(LEN(_xlfn.BASE(AC3,36))=2,""&_xlfn.BASE(AC3,36)))
+
+SHEET: Testing
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Formulas        : 60
+External refs   : 0
+Tables          : 1
+Validations     : 0
+Top formula patterns:
+  [     60] G10        =H10&I10&J10&K10
+

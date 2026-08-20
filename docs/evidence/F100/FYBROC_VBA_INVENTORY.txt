@@ -1,0 +1,194 @@
+============================================================================================================================================
+F100.4 - FYBROC VBA / MACRO / EXECUTABLE LOGIC INVENTORY
+============================================================================================================================================
+
+Workbooks : 5
+Failures  : 0
+
+============================================================================================================================================
+Fybroc Attributes and Constraints.xlsx
+============================================================================================================================================
+ZIP VBA project : False
+olevba detected : False
+Modules         : 0
+Procedures      : 0
+Event handlers  : 0
+Macro sheets    : 0
+ActiveX parts   : 0
+
+============================================================================================================================================
+Fybroc Nomenclature_V5.xlsm
+============================================================================================================================================
+ZIP VBA project : False
+olevba detected : False
+Modules         : 0
+Procedures      : 0
+Event handlers  : 0
+Macro sheets    : 0
+ActiveX parts   : 0
+
+============================================================================================================================================
+Price Estimator-Fybroc.xlsm
+============================================================================================================================================
+ZIP VBA project : True
+olevba detected : True
+Modules         : 44
+Procedures      : 15
+Event handlers  : 2
+Macro sheets    : 0
+ActiveX parts   : 15
+
+EVENT PROCEDURES
+--------------------------------------------------------------------------------------------------------------------------------------------
+Sheet1.cls -> Worksheet_Change
+Sheet28.cls -> Worksheet_Change
+
+MODULES / PROCEDURES
+--------------------------------------------------------------------------------------------------------------------------------------------
+ThisWorkbook.cls (lines=8, procedures=0)
+
+Sheet41.cls (lines=8, procedures=0)
+
+Sheet32.cls (lines=8, procedures=0)
+
+Sheet43.cls (lines=8, procedures=0)
+
+Sheet1.cls (lines=59, procedures=1)
+    Sub Worksheet_Change [EVENT]
+    Operational keyword hits:
+        Worksheet_Change: 1
+
+Sheet28.cls (lines=61, procedures=1)
+    Sub Worksheet_Change [EVENT]
+    Operational keyword hits:
+        Worksheet_Change: 1
+
+Sheet22.cls (lines=8, procedures=0)
+
+Sheet40.cls (lines=8, procedures=0)
+
+Sheet37.cls (lines=8, procedures=0)
+
+Sheet11.cls (lines=8, procedures=0)
+
+Sheet44.cls (lines=8, procedures=0)
+
+Sheet45.cls (lines=8, procedures=0)
+
+Sheet4.cls (lines=8, procedures=0)
+
+Sheet12.cls (lines=8, procedures=0)
+
+Sheet5.cls (lines=8, procedures=0)
+
+Sheet6.cls (lines=8, procedures=0)
+
+Sheet9.cls (lines=8, procedures=0)
+
+Sheet23.cls (lines=8, procedures=0)
+
+Sheet25.cls (lines=8, procedures=0)
+
+Sheet26.cls (lines=8, procedures=0)
+
+Sheet27.cls (lines=8, procedures=0)
+
+Sheet24.cls (lines=8, procedures=0)
+
+Sheet7.cls (lines=8, procedures=0)
+
+Sheet8.cls (lines=8, procedures=0)
+
+Sheet10.cls (lines=8, procedures=0)
+
+Sheet3.cls (lines=8, procedures=0)
+
+Sheet14.cls (lines=8, procedures=0)
+
+Mod_PrintQuote.bas (lines=755, procedures=1)
+    Sub Print_to_PDF_all
+    Operational keyword hits:
+        Save: 20
+        Kill: 8
+        Shell: 4
+        CreateObject: 21
+        Scripting.FileSystemObject: 5
+
+Sheet15.cls (lines=8, procedures=0)
+
+Sheet42.cls (lines=8, procedures=0)
+
+Sheet20.cls (lines=8, procedures=0)
+
+Sheet17.cls (lines=8, procedures=0)
+
+Sheet16.cls (lines=8, procedures=0)
+
+Sheet18.cls (lines=8, procedures=0)
+
+Mod_CopyLines.bas (lines=52, procedures=1)
+    Sub CopyStandards
+
+Mod_Data.bas (lines=195, procedures=1)
+    Sub Data_Entry_all
+
+Mod_FormatPC.bas (lines=98, procedures=1)
+    Sub FormatPriceCheck_all
+
+Mod_FormatQuote.bas (lines=222, procedures=1)
+    Sub Format_quote_all
+
+Mod_QuoteLog.bas (lines=538, procedures=3)
+    Sub QuoteLog_all
+    Function IsFileOpen
+    Function FixRegion
+    Operational keyword hits:
+        Save: 11
+        Open : 22
+
+Mod_Save.bas (lines=124, procedures=1)
+    Sub Save_all
+    Operational keyword hits:
+        Save: 15
+        SaveAs: 4
+        CreateObject: 4
+        Scripting.FileSystemObject: 4
+
+Mod_User.bas (lines=10, procedures=2)
+    Function UserName
+    Function MagicPath
+
+Mod_WFPDFs.bas (lines=594, procedures=2)
+    Sub Workflow
+    Function CheckFolder
+    Operational keyword hits:
+        Save: 15
+        CreateObject: 1
+        Scripting.FileSystemObject: 1
+
+Sheet34.cls (lines=8, procedures=0)
+
+Sheet35.cls (lines=8, procedures=0)
+
+============================================================================================================================================
+Fybroc Configuration Rev0.3.xlsx
+============================================================================================================================================
+ZIP VBA project : False
+olevba detected : False
+Modules         : 0
+Procedures      : 0
+Event handlers  : 0
+Macro sheets    : 0
+ActiveX parts   : 0
+
+============================================================================================================================================
+Nomenclature_V6.xlsm
+============================================================================================================================================
+ZIP VBA project : False
+olevba detected : False
+Modules         : 0
+Procedures      : 0
+Event handlers  : 0
+Macro sheets    : 0
+ActiveX parts   : 0
+

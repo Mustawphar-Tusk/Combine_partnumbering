@@ -1,0 +1,93 @@
+============================================================================================================================================
+F100.5 - FYBROC FIELD INVENTORY (configuration_fields / option_domains)
+============================================================================================================================================
+
+Rows : 29
+
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: FULL LIST
+    tags  : configuration_fields, option_domains
+    basis : docs/milestones/M013-Fybroc-Series-Constraint-Matrix.md ("FULL LIST is a collection of per-field allowed-value columns")
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 1500
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 1530
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 1600
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 1630
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 2530
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 3000
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Attributes and Constraints.xlsx [LEGACY_ACTIVE] :: 5500
+    tags  : configuration_fields, constraints
+    basis : docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md
+Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Smart Number
+    tags  : configuration_fields, hierarchy
+    basis : scripts/workbook_roles.json (role: ordered_dynamic_configuration_workflow)
+Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Attributes
+    tags  : configuration_fields, identifier_mappings, nomenclature_rules
+    basis : scripts/workbook_roles.json (role: attribute_hex_mapping)
+Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Pump Options
+    tags  : configuration_fields, identifier_mappings, nomenclature_rules, option_domains
+    basis : scripts/workbook_roles.json (role: pump_option_hex_mapping)
+Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Seal Assembly
+    tags  : configuration_fields, identifier_mappings, nomenclature_rules
+    basis : scripts/workbook_roles.json (role: seal_assembly_hex_mapping)
+Fybroc Nomenclature_V5.xlsm [LEGACY_ACTIVE] :: Options
+    tags  : identifier_mappings, nomenclature_rules, option_domains
+    basis : scripts/workbook_roles.json (role: option_hex_mapping)
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: MainTemplate
+    tags  : configuration_fields, quote_specification_mappings
+    basis : scripts/workbook_roles.json (role: selection_to_datasheet_mapping)
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Tables
+    tags  : adders, configuration_fields, quote_specification_mappings, testing_rules
+    basis : keyword match: adder, material, quote, test
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Baseplate
+    tags  : configuration_fields
+    basis : keyword match: baseplate
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Mod Master List
+    tags  : configuration_fields
+    basis : keyword match: mod
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: M-#
+    tags  : configuration_fields
+    basis : keyword match: mod
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: MODS
+    tags  : configuration_fields, motor_constraints
+    basis : keyword match: mod, teco
+Price Estimator-Fybroc.xlsm [LEGACY_ACTIVE] :: Coupling
+    tags  : configuration_fields, motor_constraints
+    basis : keyword match: coupling, motor
+Fybroc Configuration Rev0.3.xlsx [NEW_CANDIDATE] :: Items
+    tags  : configuration_fields
+    basis : keyword match: item
+Fybroc Configuration Rev0.3.xlsx [NEW_CANDIDATE] :: Selections
+    tags  : option_domains
+    basis : keyword match: selection
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Attributes
+    tags  : configuration_fields, option_domains
+    basis : keyword match: attribute, trim
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Pump Options - Horizontal
+    tags  : configuration_fields, option_domains
+    basis : keyword match: option
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Pump Options - Vertical
+    tags  : configuration_fields, option_domains
+    basis : keyword match: option
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Seal Assembly - Horizontal
+    tags  : configuration_fields
+    basis : keyword match: seal
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Setting-Length-Vertical
+    tags  : configuration_fields
+    basis : keyword match: setting
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Options - Horizontal
+    tags  : configuration_fields, option_domains
+    basis : keyword match: option
+Nomenclature_V6.xlsm [NEW_CANDIDATE] :: Options - Vertical
+    tags  : configuration_fields, option_domains
+    basis : keyword match: option

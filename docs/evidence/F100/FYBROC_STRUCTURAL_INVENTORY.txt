@@ -1,0 +1,177 @@
+============================================================================================================================================
+F100.2 - FYBROC DEEP STRUCTURAL INVENTORY
+============================================================================================================================================
+
+Git commit    : 98e4aa0041590b0445c22a6f1ff4477374826c08
+Workbooks     : 5
+Failures      : 0
+
+============================================================================================================================================
+Fybroc Attributes and Constraints.xlsx
+============================================================================================================================================
+Generation          : LEGACY_ACTIVE
+Role                : configuration_constraints
+SHA256              : 61a2c26b47db30792b9970748884ecb6d57cc4431c826b9099d63ccc35ead8f3
+Sheets              : 10
+Visible sheets      : 10
+Hidden sheets       : 0
+Defined names       : 0
+Formulas            : 395
+Tables              : 0
+Data validations    : 10
+VBA project         : False
+External link parts : 2
+
+SHEETS
+--------------------------------------------------------------------------------------------------------------------------------------------
+MAIN                                visible    rows=360     cols=17    cells=2705     formulas=395     tables=0    dv=1    
+Constraints                         visible    rows=75      cols=23    cells=462      formulas=0       tables=0    dv=0    
+FULL LIST                           visible    rows=649     cols=37    cells=1742     formulas=0       tables=0    dv=4    
+1500                                visible    rows=101     cols=63    cells=944      formulas=0       tables=0    dv=1    
+1530                                visible    rows=76      cols=58    cells=799      formulas=0       tables=0    dv=0    
+1600                                visible    rows=76      cols=37    cells=284      formulas=0       tables=0    dv=0    
+1630                                visible    rows=101     cols=37    cells=243      formulas=0       tables=0    dv=0    
+2530                                visible    rows=76      cols=37    cells=211      formulas=0       tables=0    dv=0    
+3000                                visible    rows=64      cols=38    cells=253      formulas=0       tables=0    dv=0    
+5500                                visible    rows=101     cols=36    cells=295      formulas=0       tables=0    dv=4    
+
+============================================================================================================================================
+Fybroc Nomenclature_V5.xlsm
+============================================================================================================================================
+Generation          : LEGACY_ACTIVE
+Role                : nomenclature_identifier
+SHA256              : 5c41be2223b72747eb7e14970c64db94aaa13299be9211072ec145dac27b419c
+Sheets              : 6
+Visible sheets      : 6
+Hidden sheets       : 0
+Defined names       : 37
+Formulas            : 278278
+Tables              : 1
+Data validations    : 36
+VBA project         : False
+External link parts : 0
+
+SHEETS
+--------------------------------------------------------------------------------------------------------------------------------------------
+Smart Number                        visible    rows=28      cols=25    cells=111      formulas=13      tables=0    dv=36   
+Attributes                          visible    rows=523     cols=49    cells=1964     formulas=53      tables=1    dv=0    
+Pump Options                        visible    rows=138254  cols=20    cells=2350147  formulas=276481  tables=0    dv=0    
+Seal Assembly                       visible    rows=80      cols=14    cells=705      formulas=134     tables=0    dv=0    
+Options                             visible    rows=107     cols=10    cells=796      formulas=193     tables=0    dv=0    
+ Motor Assy                         visible    rows=728     cols=16    cells=9919     formulas=1404    tables=0    dv=0    
+
+============================================================================================================================================
+Price Estimator-Fybroc.xlsm
+============================================================================================================================================
+Generation          : LEGACY_ACTIVE
+Role                : pricing_quote_specification
+SHA256              : 472e9f6c916b9b5b8dd025281eae668a82e766d3a159be5ffc2122ba92cc06e8
+Sheets              : 34
+Visible sheets      : 28
+Hidden sheets       : 6
+Defined names       : 63
+Formulas            : 88595
+Tables              : 358
+Data validations    : 59
+VBA project         : True
+External link parts : 4
+
+SHEETS
+--------------------------------------------------------------------------------------------------------------------------------------------
+Plaintag                            visible    rows=14      cols=9     cells=11       formulas=3       tables=0    dv=0    
+Nameplate                           visible    rows=23      cols=171   cells=1967     formulas=1574    tables=0    dv=1    
+Price Check                         visible    rows=259     cols=47    cells=1931     formulas=1294    tables=6    dv=6    
+MainTemplate                        visible    rows=969     cols=256   cells=38745    formulas=27146   tables=94   dv=40   
+Aquarium                            visible    rows=87      cols=115   cells=2859     formulas=1614    tables=1    dv=4    
+ROM_Data                            visible    rows=1066    cols=80    cells=7717     formulas=1286    tables=5    dv=0    
+Formal Quote                        visible    rows=161     cols=46    cells=1090     formulas=910     tables=0    dv=0    
+Fybroc Horizontal                   visible    rows=55      cols=23    cells=197      formulas=94      tables=0    dv=0    
+Fybroc Vertical                     visible    rows=46      cols=24    cells=131      formulas=74      tables=0    dv=0    
+Spec. Tbls.                         visible    rows=37      cols=39    cells=559      formulas=0       tables=5    dv=0    
+Tables                              visible    rows=978     cols=38    cells=7423     formulas=1249    tables=95   dv=0    
+Baseplate                           visible    rows=367     cols=76    cells=18285    formulas=8448    tables=9    dv=0    
+M-Req                               visible    rows=81      cols=22    cells=168      formulas=73      tables=0    dv=0    
+Mod Master List                     visible    rows=537     cols=6     cells=2665     formulas=0       tables=0    dv=0    
+M-#                                 visible    rows=69      cols=57    cells=973      formulas=157     tables=4    dv=0    
+M-$                                 visible    rows=266     cols=235   cells=16086    formulas=520     tables=35   dv=8    
+Motor Master List                   hidden     rows=2934    cols=12    cells=35057    formulas=0       tables=1    dv=0    
+M-$$                                visible    rows=835     cols=50    cells=31471    formulas=21525   tables=1    dv=0    
+TECO                                hidden     rows=1076    cols=27    cells=13733    formulas=4160    tables=6    dv=0    
+Baldor                              visible    rows=76      cols=13    cells=439      formulas=182     tables=1    dv=0    
+Toshiba                             hidden     rows=2033    cols=41    cells=37265    formulas=2808    tables=3    dv=0    
+MODS                                visible    rows=121     cols=72    cells=3778     formulas=1189    tables=4    dv=0    
+Rep                                 visible    rows=180     cols=82    cells=3655     formulas=672     tables=3    dv=0    
+Top Level                           visible    rows=25      cols=62    cells=790      formulas=133     tables=10   dv=0    
+Pricebook                           visible    rows=397     cols=271   cells=18173    formulas=7830    tables=21   dv=0    
+Coupling                            visible    rows=248     cols=80    cells=2967     formulas=492     tables=10   dv=0    
+Adders                              visible    rows=623     cols=33    cells=4698     formulas=2097    tables=27   dv=0    
+ACC                                 hidden     rows=31      cols=12    cells=115      formulas=24      tables=2    dv=0    
+Vert. Spares                        hidden     rows=90      cols=74    cells=840      formulas=618     tables=1    dv=0    
+CC-Old                              visible    rows=677     cols=36    cells=12888    formulas=85      tables=7    dv=0    
+CC-New                              visible    rows=1428    cols=39    cells=16984    formulas=85      tables=7    dv=0    
+NewRules 5-2-23                     visible    rows=52      cols=56    cells=713      formulas=50      tables=0    dv=0    
+Batch_Descriptions                  visible    rows=61      cols=48    cells=2244     formulas=2202    tables=0    dv=0    
+Sheet1                              hidden     rows=2       cols=3     cells=1        formulas=1       tables=0    dv=0    
+
+============================================================================================================================================
+Fybroc Configuration Rev0.3.xlsx
+============================================================================================================================================
+Generation          : NEW_CANDIDATE
+Role                : configuration_constraints_pricing
+SHA256              : 9eaa9e25ef9533a7425368e1ce646980388f01b675fc4d06429ca21842a88edb
+Sheets              : 14
+Visible sheets      : 12
+Hidden sheets       : 2
+Defined names       : 36
+Formulas            : 285238
+Tables              : 31
+Data validations    : 0
+VBA project         : False
+External link parts : 0
+
+SHEETS
+--------------------------------------------------------------------------------------------------------------------------------------------
+To do                               visible    rows=63      cols=11    cells=223      formulas=0       tables=0    dv=0    
+Main Page                           visible    rows=71      cols=39    cells=716      formulas=35      tables=0    dv=0    
+Items                               hidden     rows=17285   cols=92    cells=77338    formulas=2786    tables=1    dv=0    
+Constraints                         hidden     rows=1230    cols=153   cells=31870    formulas=19569   tables=0    dv=0    
+Hierarchy                           visible    rows=14      cols=23    cells=56       formulas=0       tables=0    dv=0    
+Combine Variables                   visible    rows=120     cols=36    cells=793      formulas=116     tables=0    dv=0    
+Selections                          visible    rows=678     cols=28    cells=3846     formulas=11      tables=1    dv=0    
+Constraint Index                    visible    rows=49      cols=19    cells=155      formulas=0       tables=0    dv=0    
+Pricing Index                       visible    rows=60      cols=7     cells=131      formulas=0       tables=0    dv=0    
+Feasible Constraints                visible    rows=3482    cols=81    cells=17044    formulas=0       tables=29   dv=0    
+Motor Constraints                   visible    rows=955     cols=86    cells=9897     formulas=0       tables=0    dv=0    
+1500 Pricing                        visible    rows=2854    cols=127   cells=44121    formulas=114     tables=0    dv=0    
+5500 Pricing                        visible    rows=52445   cols=71    cells=637323   formulas=262561  tables=0    dv=0    
+Sheet3                              visible    rows=99      cols=47    cells=333      formulas=46      tables=0    dv=0    
+
+============================================================================================================================================
+Nomenclature_V6.xlsm
+============================================================================================================================================
+Generation          : NEW_CANDIDATE
+Role                : nomenclature_identifier
+SHA256              : fb06512ec977d27ec733f1c34c3670c0c60b834ae5b5200a19efdf0b469f4507
+Sheets              : 10
+Visible sheets      : 10
+Hidden sheets       : 0
+Defined names       : 105
+Formulas            : 325401
+Tables              : 7
+Data validations    : 57
+VBA project         : False
+External link parts : 2
+
+SHEETS
+--------------------------------------------------------------------------------------------------------------------------------------------
+Smart Number                        visible    rows=55      cols=31    cells=256      formulas=35      tables=0    dv=57   
+Attributes                          visible    rows=523     cols=48    cells=1866     formulas=54      tables=1    dv=0    
+Pump Options - Horizontal           visible    rows=138251  cols=20    cells=2350148  formulas=276481  tables=1    dv=0    
+Pump Options - Vertical             visible    rows=23053   cols=17    cells=276536   formulas=46080   tables=1    dv=0    
+Seal Assembly - Horizontal          visible    rows=80      cols=14    cells=714      formulas=134     tables=1    dv=0    
+Setting-Length-Vertical             visible    rows=684     cols=22    cells=1930     formulas=525     tables=0    dv=0    
+Options - Horizontal                visible    rows=203     cols=11    cells=1760     formulas=385     tables=1    dv=0    
+Options - Vertical                  visible    rows=107     cols=9     cells=695      formulas=193     tables=0    dv=0    
+ Motor Assy                         visible    rows=728     cols=30    cells=10251    formulas=1454    tables=1    dv=0    
+Testing                             visible    rows=70      cols=14    cells=444      formulas=60      tables=1    dv=0    
+
