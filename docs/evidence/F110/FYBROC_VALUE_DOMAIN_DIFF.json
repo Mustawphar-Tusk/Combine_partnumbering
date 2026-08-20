@@ -1,0 +1,1608 @@
+{
+  "artifact": "FYBROC_VALUE_DOMAIN_DIFF",
+  "step": "F110.2b",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "generated_utc": "2026-08-20T20:49:51.547233+00:00",
+  "git_commit": "175fe816937b2b815b63465f6a39f0fe8d4ac1f5",
+  "git_working_tree_clean": false,
+  "total_classification_counts": {
+    "UNCHANGED": 112,
+    "NEW": 69,
+    "DEPRECATED": 26
+  },
+  "sheet_pairs": [
+    {
+      "label": "Seal Assembly",
+      "v5_sheet": "Seal Assembly",
+      "v6_sheet": "Seal Assembly - Horizontal",
+      "fields": [
+        {
+          "v5_field": "Seal_Option",
+          "v6_field": "Seal Option",
+          "note": null,
+          "value_count": 10,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 4,
+            "DEPRECATED": 4
+          },
+          "values": [
+            {
+              "value": "Customer Supplied",
+              "v5_raw": "Customer Supplied",
+              "v6_raw": "Customer Supplied",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Mechanical Seal Included*",
+              "v5_raw": "Mechanical Seal Included*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "No Seal (Double Seal Gland by Fyboc)",
+              "v5_raw": "No Seal (Double Seal Gland by Fyboc)",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "No Seal (No Seal Gland)",
+              "v5_raw": "No Seal (No Seal Gland)",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "No Seal (Single Seal Gland by Fyboc)",
+              "v5_raw": "No Seal (Single Seal Gland by Fyboc)",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "NoSeal Double Seal Gland",
+              "v5_raw": null,
+              "v6_raw": "NoSeal Double Seal Gland",
+              "classification": "NEW"
+            },
+            {
+              "value": "NoSeal No Seal Gland",
+              "v5_raw": null,
+              "v6_raw": "NoSeal No Seal Gland",
+              "classification": "NEW"
+            },
+            {
+              "value": "NoSeal Single Seal Gland",
+              "v5_raw": null,
+              "v6_raw": "NoSeal Single Seal Gland",
+              "classification": "NEW"
+            },
+            {
+              "value": "Seal_Option",
+              "v5_raw": "Seal_Option",
+              "v6_raw": "Seal Option",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Supplied by Fybroc",
+              "v5_raw": null,
+              "v6_raw": "Supplied by Fybroc",
+              "classification": "NEW"
+            }
+          ]
+        },
+        {
+          "v5_field": "Seal_Type",
+          "v6_field": "Seal Type",
+          "note": null,
+          "value_count": 7,
+          "classification_counts": {
+            "UNCHANGED": 7,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "8-1T Double Inside*",
+              "v5_raw": "8-1T Double Inside*",
+              "v6_raw": "8-1T Double Inside",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "8B2 Single Outside*",
+              "v5_raw": "8B2 Single Outside*",
+              "v6_raw": "8B2 Single Outside",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "CRO Double Inside",
+              "v5_raw": "CRO Double Inside",
+              "v6_raw": "CRO Double Inside",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "RAC Single Outside",
+              "v5_raw": "RAC Single Outside",
+              "v6_raw": "RAC Single Outside",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "RXO Double Inside",
+              "v5_raw": "RXO Double Inside",
+              "v6_raw": "RXO Double Inside",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Seal_Type",
+              "v5_raw": "Seal_Type",
+              "v6_raw": "Seal Type",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Seal_Materials",
+          "v6_field": "Seal Materials",
+          "note": null,
+          "value_count": 6,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 2,
+            "DEPRECATED": 2
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Carbon vs Ceramic",
+              "v5_raw": null,
+              "v6_raw": "Carbon vs Ceramic",
+              "classification": "NEW"
+            },
+            {
+              "value": "Carbon vs. Ceramic*",
+              "v5_raw": "Carbon vs. Ceramic*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Seal_Materials",
+              "v5_raw": "Seal_Materials",
+              "v6_raw": "Seal Materials",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Silcar vs Silcar",
+              "v5_raw": null,
+              "v6_raw": "Silcar vs Silcar",
+              "classification": "NEW"
+            },
+            {
+              "value": "Silcar vs. Silcar",
+              "v5_raw": "Silcar vs. Silcar",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Seal_Elastomers",
+          "v6_field": "Seal Elastomers",
+          "note": null,
+          "value_count": 5,
+          "classification_counts": {
+            "UNCHANGED": 5,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "EPR",
+              "v5_raw": "EPR",
+              "v6_raw": "EPR",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "FKM*",
+              "v5_raw": "FKM*",
+              "v6_raw": "FKM",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "PTFE",
+              "v5_raw": "PTFE",
+              "v6_raw": "PTFE",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Seal_Elastomers",
+              "v5_raw": "Seal_Elastomers",
+              "v6_raw": "Seal Elastomers",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Seal_Guard",
+          "v6_field": "Seal Guard",
+          "note": null,
+          "value_count": 5,
+          "classification_counts": {
+            "UNCHANGED": 1,
+            "NEW": 2,
+            "DEPRECATED": 2
+          },
+          "values": [
+            {
+              "value": "No Seal Guard",
+              "v5_raw": "No Seal Guard",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Not Supplied by Fybroc",
+              "v5_raw": null,
+              "v6_raw": "Not Supplied by Fybroc",
+              "classification": "NEW"
+            },
+            {
+              "value": "Seal_Guard",
+              "v5_raw": "Seal_Guard",
+              "v6_raw": "Seal Guard",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Seal Guard Included",
+              "v5_raw": "Seal Guard Included",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Supplied by Fybroc",
+              "v5_raw": null,
+              "v6_raw": "Supplied by Fybroc",
+              "classification": "NEW"
+            }
+          ]
+        },
+        {
+          "v5_field": null,
+          "v6_field": "Seal Manufacturer",
+          "note": "No V5 equivalent - new field in V6.",
+          "value_count": 11,
+          "classification_counts": {
+            "NEW": 11
+          },
+          "values": [
+            {
+              "value": "Standard Offering",
+              "classification": "NEW"
+            },
+            {
+              "value": "Flexaseal",
+              "classification": "NEW"
+            },
+            {
+              "value": "John Crane",
+              "classification": "NEW"
+            },
+            {
+              "value": "Custom",
+              "classification": "NEW"
+            },
+            {
+              "value": "Seal Type",
+              "classification": "NEW"
+            },
+            {
+              "value": "8B2",
+              "classification": "NEW"
+            },
+            {
+              "value": "RAC",
+              "classification": "NEW"
+            },
+            {
+              "value": "8-1T",
+              "classification": "NEW"
+            },
+            {
+              "value": "RXO",
+              "classification": "NEW"
+            },
+            {
+              "value": "CRO",
+              "classification": "NEW"
+            },
+            {
+              "value": "NMS",
+              "classification": "NEW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Options (vs Horizontal)",
+      "v5_sheet": "Options",
+      "v6_sheet": "Options - Horizontal",
+      "fields": [
+        {
+          "v5_field": "Coupling_Option",
+          "v6_field": "Coupling Option",
+          "note": null,
+          "value_count": 3,
+          "classification_counts": {
+            "UNCHANGED": 3,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "Coupling Included*",
+              "v5_raw": "Coupling Included*",
+              "v6_raw": "Coupling Included",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Coupling_Option",
+              "v5_raw": "Coupling_Option",
+              "v6_raw": "Coupling Option",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Coupling",
+              "v5_raw": "No Coupling",
+              "v6_raw": "No Coupling",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Coupling_Guard",
+          "v6_field": "Coupling Guard",
+          "note": null,
+          "value_count": 8,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 3,
+            "DEPRECATED": 3
+          },
+          "values": [
+            {
+              "value": "316 SS",
+              "v5_raw": null,
+              "v6_raw": "316 SS",
+              "classification": "NEW"
+            },
+            {
+              "value": "316 SS Coupling Guard",
+              "v5_raw": "316 SS Coupling Guard",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Coupling_Guard",
+              "v5_raw": "Coupling_Guard",
+              "v6_raw": "Coupling Guard",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Coupling Guard",
+              "v5_raw": "No Coupling Guard",
+              "v6_raw": "No Coupling Guard",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Non Sparking",
+              "v5_raw": null,
+              "v6_raw": "Non Sparking",
+              "classification": "NEW"
+            },
+            {
+              "value": "Non Sparking Coupling Guard",
+              "v5_raw": "Non Sparking Coupling Guard",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Steel",
+              "v5_raw": null,
+              "v6_raw": "Steel",
+              "classification": "NEW"
+            },
+            {
+              "value": "Steel Coupling Guard*",
+              "v5_raw": "Steel Coupling Guard*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Baseplate_Option",
+          "v6_field": "Baseplate Option",
+          "note": null,
+          "value_count": 3,
+          "classification_counts": {
+            "UNCHANGED": 3,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "Baseplate Included*",
+              "v5_raw": "Baseplate Included*",
+              "v6_raw": "Baseplate Included",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Baseplate_Option",
+              "v5_raw": "Baseplate_Option",
+              "v6_raw": "Baseplate Option",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Baseplate",
+              "v5_raw": "No Baseplate",
+              "v6_raw": "No Baseplate",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Baseplate_Hardware",
+          "v6_field": "Baseplate Hardware",
+          "note": null,
+          "value_count": 6,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 2,
+            "DEPRECATED": 2
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "303 SS",
+              "v5_raw": null,
+              "v6_raw": "303 SS",
+              "classification": "NEW"
+            },
+            {
+              "value": "303 SS Baseplate HW*",
+              "v5_raw": "303 SS Baseplate HW*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "316 SS",
+              "v5_raw": null,
+              "v6_raw": "316 SS",
+              "classification": "NEW"
+            },
+            {
+              "value": "316 SS Baseplate HW",
+              "v5_raw": "316 SS Baseplate HW",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Baseplate_Hardware",
+              "v5_raw": "Baseplate_Hardware",
+              "v6_raw": "Baseplate Hardware",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Custom_Nameplate",
+          "v6_field": "Customer Nameplate",
+          "note": null,
+          "value_count": 4,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 1,
+            "DEPRECATED": 1
+          },
+          "values": [
+            {
+              "value": "Custom_Nameplate",
+              "v5_raw": "Custom_Nameplate",
+              "v6_raw": "Custom Nameplate",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Customer Nameplate",
+              "v5_raw": "Customer Nameplate",
+              "v6_raw": "Customer Nameplate",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Customer Nameplate",
+              "v5_raw": "No Customer Nameplate",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Not Included",
+              "v5_raw": null,
+              "v6_raw": "Not Included",
+              "classification": "NEW"
+            }
+          ]
+        },
+        {
+          "v5_field": null,
+          "v6_field": "C-Face Adapter",
+          "note": "No V5 equivalent - new field in V6.",
+          "value_count": 3,
+          "classification_counts": {
+            "NEW": 3
+          },
+          "values": [
+            {
+              "value": "Not Included",
+              "classification": "NEW"
+            },
+            {
+              "value": "Supplied by Fybroc",
+              "classification": "NEW"
+            },
+            {
+              "value": "C Face Adapter",
+              "classification": "NEW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Options (vs Vertical)",
+      "v5_sheet": "Options",
+      "v6_sheet": "Options - Vertical",
+      "fields": [
+        {
+          "v5_field": "Coupling_Option",
+          "v6_field": "Coupling Option",
+          "note": null,
+          "value_count": 3,
+          "classification_counts": {
+            "UNCHANGED": 3,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "Coupling Included*",
+              "v5_raw": "Coupling Included*",
+              "v6_raw": "Coupling Included",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Coupling_Option",
+              "v5_raw": "Coupling_Option",
+              "v6_raw": "Coupling Option",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Coupling",
+              "v5_raw": "No Coupling",
+              "v6_raw": "No Coupling",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Coupling_Guard",
+          "v6_field": "Coupling Guard",
+          "note": null,
+          "value_count": 8,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 3,
+            "DEPRECATED": 3
+          },
+          "values": [
+            {
+              "value": "316 SS",
+              "v5_raw": null,
+              "v6_raw": "316 SS",
+              "classification": "NEW"
+            },
+            {
+              "value": "316 SS Coupling Guard",
+              "v5_raw": "316 SS Coupling Guard",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Coupling_Guard",
+              "v5_raw": "Coupling_Guard",
+              "v6_raw": "Coupling Guard",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Coupling Guard",
+              "v5_raw": "No Coupling Guard",
+              "v6_raw": "No Coupling Guard",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Non Sparking",
+              "v5_raw": null,
+              "v6_raw": "Non Sparking",
+              "classification": "NEW"
+            },
+            {
+              "value": "Non Sparking Coupling Guard",
+              "v5_raw": "Non Sparking Coupling Guard",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Steel",
+              "v5_raw": null,
+              "v6_raw": "Steel",
+              "classification": "NEW"
+            },
+            {
+              "value": "Steel Coupling Guard*",
+              "v5_raw": "Steel Coupling Guard*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Baseplate_Option",
+          "v6_field": "Mounting Plate Option",
+          "note": null,
+          "value_count": 5,
+          "classification_counts": {
+            "UNCHANGED": 1,
+            "NEW": 2,
+            "DEPRECATED": 2
+          },
+          "values": [
+            {
+              "value": "Baseplate Included*",
+              "v5_raw": "Baseplate Included*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Baseplate_Option",
+              "v5_raw": "Baseplate_Option",
+              "v6_raw": "Baseplate Option",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Mounting Plate Included",
+              "v5_raw": null,
+              "v6_raw": "Mounting Plate Included",
+              "classification": "NEW"
+            },
+            {
+              "value": "No Baseplate",
+              "v5_raw": "No Baseplate",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "No Mounting Plate",
+              "v5_raw": null,
+              "v6_raw": "No Mounting Plate",
+              "classification": "NEW"
+            }
+          ]
+        },
+        {
+          "v5_field": "Baseplate_Hardware",
+          "v6_field": null,
+          "note": "No V6 equivalent found - verified absent, not just unmatched by name.",
+          "value_count": 4,
+          "classification_counts": {
+            "DEPRECATED": 4
+          },
+          "values": [
+            {
+              "value": "303 SS Baseplate HW*",
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "316 SS Baseplate HW",
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "-",
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Baseplate_Hardware",
+              "classification": "DEPRECATED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Custom_Nameplate",
+          "v6_field": "Customer Nameplate",
+          "note": null,
+          "value_count": 4,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 1,
+            "DEPRECATED": 1
+          },
+          "values": [
+            {
+              "value": "Custom_Nameplate",
+              "v5_raw": "Custom_Nameplate",
+              "v6_raw": "Custom Nameplate",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Customer Nameplate",
+              "v5_raw": "Customer Nameplate",
+              "v6_raw": "Customer Nameplate",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Customer Nameplate",
+              "v5_raw": "No Customer Nameplate",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Not Included",
+              "v5_raw": null,
+              "v6_raw": "Not Included",
+              "classification": "NEW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Motor Assy",
+      "v5_sheet": " Motor Assy",
+      "v6_sheet": " Motor Assy",
+      "fields": [
+        {
+          "v5_field": "Motor_Option",
+          "v6_field": "Motor Option",
+          "note": null,
+          "value_count": 4,
+          "classification_counts": {
+            "UNCHANGED": 4,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "Customer Supplied",
+              "v5_raw": "Customer Supplied",
+              "v6_raw": "Customer Supplied",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor Included*",
+              "v5_raw": "Motor Included*",
+              "v6_raw": "Motor Included*",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor_Option",
+              "v5_raw": "Motor_Option",
+              "v6_raw": "Motor Option",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "No Motor",
+              "v5_raw": "No Motor",
+              "v6_raw": "No Motor",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Class",
+          "v6_field": "Motor Class",
+          "note": null,
+          "value_count": 4,
+          "classification_counts": {
+            "UNCHANGED": 3,
+            "NEW": 1,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "IEC",
+              "v5_raw": null,
+              "v6_raw": "IEC",
+              "classification": "NEW"
+            },
+            {
+              "value": "Imperial",
+              "v5_raw": "Imperial",
+              "v6_raw": "Imperial",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor_Class",
+              "v5_raw": "Motor_Class",
+              "v6_raw": "Motor Class",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Orientation",
+          "v6_field": "Motor Orientation",
+          "note": null,
+          "value_count": 14,
+          "classification_counts": {
+            "UNCHANGED": 4,
+            "NEW": 10,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Hor JM",
+              "v5_raw": null,
+              "v6_raw": "Hor JM",
+              "classification": "NEW"
+            },
+            {
+              "value": "Hor T",
+              "v5_raw": "Hor T",
+              "v6_raw": "Hor T",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Hor TC",
+              "v5_raw": null,
+              "v6_raw": "Hor TC",
+              "classification": "NEW"
+            },
+            {
+              "value": "Hor TS",
+              "v5_raw": "Hor TS",
+              "v6_raw": "Hor TS",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Hor TSC",
+              "v5_raw": null,
+              "v6_raw": "Hor TSC",
+              "classification": "NEW"
+            },
+            {
+              "value": "Motor_Orientation",
+              "v5_raw": "Motor_Orientation",
+              "v6_raw": "Motor Orientation",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Vrt JMV",
+              "v5_raw": null,
+              "v6_raw": "Vrt JMV",
+              "classification": "NEW"
+            },
+            {
+              "value": "Vrt TC",
+              "v5_raw": null,
+              "v6_raw": "Vrt TC",
+              "classification": "NEW"
+            },
+            {
+              "value": "Vrt TCV",
+              "v5_raw": null,
+              "v6_raw": "Vrt TCV",
+              "classification": "NEW"
+            },
+            {
+              "value": "Vrt TCZ",
+              "v5_raw": null,
+              "v6_raw": "Vrt TCZ",
+              "classification": "NEW"
+            },
+            {
+              "value": "Vrt TSC",
+              "v5_raw": null,
+              "v6_raw": "Vrt TSC",
+              "classification": "NEW"
+            },
+            {
+              "value": "Vrt VH",
+              "v5_raw": null,
+              "v6_raw": "Vrt VH",
+              "classification": "NEW"
+            },
+            {
+              "value": "Vrt VP",
+              "v5_raw": null,
+              "v6_raw": "Vrt VP",
+              "classification": "NEW"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Horsepower",
+          "v6_field": "Motor Horsepower",
+          "note": null,
+          "value_count": 20,
+          "classification_counts": {
+            "UNCHANGED": 20,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "1 HP",
+              "v5_raw": "1 HP",
+              "v6_raw": "1 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "1.5 HP",
+              "v5_raw": "1.5 HP",
+              "v6_raw": "1.5 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "10 HP",
+              "v5_raw": "10 HP",
+              "v6_raw": "10 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "100 HP",
+              "v5_raw": "100 HP",
+              "v6_raw": "100 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "125 HP",
+              "v5_raw": "125 HP",
+              "v6_raw": "125 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "15 HP",
+              "v5_raw": "15 HP",
+              "v6_raw": "15 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "150 HP",
+              "v5_raw": "150 HP",
+              "v6_raw": "150 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "2  HP",
+              "v5_raw": "2  HP",
+              "v6_raw": "2  HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "20 HP",
+              "v5_raw": "20 HP",
+              "v6_raw": "20 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "25 HP",
+              "v5_raw": "25 HP",
+              "v6_raw": "25 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "3 HP",
+              "v5_raw": "3 HP",
+              "v6_raw": "3 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "30 HP",
+              "v5_raw": "30 HP",
+              "v6_raw": "30 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "40 HP",
+              "v5_raw": "40 HP",
+              "v6_raw": "40 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "5 HP",
+              "v5_raw": "5 HP",
+              "v6_raw": "5 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "50 HP",
+              "v5_raw": "50 HP",
+              "v6_raw": "50 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "60 HP",
+              "v5_raw": "60 HP",
+              "v6_raw": "60 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "7.5 HP",
+              "v5_raw": "7.5 HP",
+              "v6_raw": "7.5 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "75 HP",
+              "v5_raw": "75 HP",
+              "v6_raw": "75 HP",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor_Horsepower",
+              "v5_raw": "Motor_Horsepower",
+              "v6_raw": "Motor Horsepower",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_RPM",
+          "v6_field": "Motor RPM",
+          "note": null,
+          "value_count": 9,
+          "classification_counts": {
+            "UNCHANGED": 5,
+            "NEW": 4,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "1000",
+              "v5_raw": null,
+              "v6_raw": "1000",
+              "classification": "NEW"
+            },
+            {
+              "value": "1200",
+              "v5_raw": "1200",
+              "v6_raw": "1200",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "1500",
+              "v5_raw": null,
+              "v6_raw": "1500",
+              "classification": "NEW"
+            },
+            {
+              "value": "1800",
+              "v5_raw": "1800",
+              "v6_raw": "1800",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "3000",
+              "v5_raw": null,
+              "v6_raw": "3000",
+              "classification": "NEW"
+            },
+            {
+              "value": "3600",
+              "v5_raw": "3600",
+              "v6_raw": "3600",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "900",
+              "v5_raw": null,
+              "v6_raw": "900",
+              "classification": "NEW"
+            },
+            {
+              "value": "Motor_RPM",
+              "v5_raw": "Motor_RPM",
+              "v6_raw": "Motor RPM",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Voltage",
+          "v6_field": "Motor Voltage",
+          "note": null,
+          "value_count": 17,
+          "classification_counts": {
+            "UNCHANGED": 4,
+            "NEW": 13,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "190/380",
+              "v5_raw": null,
+              "v6_raw": "190/380",
+              "classification": "NEW"
+            },
+            {
+              "value": "200",
+              "v5_raw": null,
+              "v6_raw": "200",
+              "classification": "NEW"
+            },
+            {
+              "value": "208-230/460",
+              "v5_raw": null,
+              "v6_raw": "208-230/460",
+              "classification": "NEW"
+            },
+            {
+              "value": "208-230/460 - 190/380",
+              "v5_raw": null,
+              "v6_raw": "208-230/460 - 190/380",
+              "classification": "NEW"
+            },
+            {
+              "value": "220",
+              "v5_raw": null,
+              "v6_raw": "220",
+              "classification": "NEW"
+            },
+            {
+              "value": "230",
+              "v5_raw": null,
+              "v6_raw": "230",
+              "classification": "NEW"
+            },
+            {
+              "value": "230/400",
+              "v5_raw": null,
+              "v6_raw": "230/400",
+              "classification": "NEW"
+            },
+            {
+              "value": "230/460",
+              "v5_raw": "230/460",
+              "v6_raw": "230/460",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "230/460 - 190/380",
+              "v5_raw": null,
+              "v6_raw": "230/460 - 190/380",
+              "classification": "NEW"
+            },
+            {
+              "value": "240/380-415",
+              "v5_raw": null,
+              "v6_raw": "240/380-415",
+              "classification": "NEW"
+            },
+            {
+              "value": "380",
+              "v5_raw": null,
+              "v6_raw": "380",
+              "classification": "NEW"
+            },
+            {
+              "value": "400",
+              "v5_raw": null,
+              "v6_raw": "400",
+              "classification": "NEW"
+            },
+            {
+              "value": "415",
+              "v5_raw": null,
+              "v6_raw": "415",
+              "classification": "NEW"
+            },
+            {
+              "value": "460",
+              "v5_raw": "460",
+              "v6_raw": "460",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "575",
+              "v5_raw": null,
+              "v6_raw": "575",
+              "classification": "NEW"
+            },
+            {
+              "value": "Motor_Voltage",
+              "v5_raw": "Motor_Voltage",
+              "v6_raw": "Motor Voltage",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Hertz",
+          "v6_field": "Motor Hertz",
+          "note": null,
+          "value_count": 6,
+          "classification_counts": {
+            "UNCHANGED": 2,
+            "NEW": 3,
+            "DEPRECATED": 1
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "/3/60",
+              "v5_raw": "/3/60",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "3/(50/60)",
+              "v5_raw": null,
+              "v6_raw": "3/(50/60)",
+              "classification": "NEW"
+            },
+            {
+              "value": "3/50",
+              "v5_raw": null,
+              "v6_raw": "3/50",
+              "classification": "NEW"
+            },
+            {
+              "value": "3/60",
+              "v5_raw": null,
+              "v6_raw": "3/60",
+              "classification": "NEW"
+            },
+            {
+              "value": "Motor_Hertz",
+              "v5_raw": "Motor_Hertz",
+              "v6_raw": "Motor Hertz",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Frame",
+          "v6_field": "Motor Frame",
+          "note": null,
+          "value_count": 20,
+          "classification_counts": {
+            "UNCHANGED": 20,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "143",
+              "v5_raw": "143",
+              "v6_raw": "143",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "145",
+              "v5_raw": "145",
+              "v6_raw": "145",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "182",
+              "v5_raw": "182",
+              "v6_raw": "182",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "184",
+              "v5_raw": "184",
+              "v6_raw": "184",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "213",
+              "v5_raw": "213",
+              "v6_raw": "213",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "215",
+              "v5_raw": "215",
+              "v6_raw": "215",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "254",
+              "v5_raw": "254",
+              "v6_raw": "254",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "256",
+              "v5_raw": "256",
+              "v6_raw": "256",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "284",
+              "v5_raw": "284",
+              "v6_raw": "284",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "286",
+              "v5_raw": "286",
+              "v6_raw": "286",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "324",
+              "v5_raw": "324",
+              "v6_raw": "324",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "326",
+              "v5_raw": "326",
+              "v6_raw": "326",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "364",
+              "v5_raw": "364",
+              "v6_raw": "364",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "365",
+              "v5_raw": "365",
+              "v6_raw": "365",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "404",
+              "v5_raw": "404",
+              "v6_raw": "404",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "405",
+              "v5_raw": "405",
+              "v6_raw": "405",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "444",
+              "v5_raw": "444",
+              "v6_raw": "444",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "445",
+              "v5_raw": "445",
+              "v6_raw": "445",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor_Frame",
+              "v5_raw": "Motor_Frame",
+              "v6_raw": "Motor Frame",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Enclosure",
+          "v6_field": "Motor Enclosure",
+          "note": null,
+          "value_count": 7,
+          "classification_counts": {
+            "UNCHANGED": 5,
+            "NEW": 2,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "IEEE-841",
+              "v5_raw": "IEEE-841",
+              "v6_raw": "IEEE-841",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor_Enclosure",
+              "v5_raw": "Motor_Enclosure",
+              "v6_raw": "Motor Enclosure",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "SD",
+              "v5_raw": "SD",
+              "v6_raw": "SD",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "TEFC",
+              "v5_raw": "TEFC",
+              "v6_raw": "TEFC",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "WD",
+              "v5_raw": null,
+              "v6_raw": "WD",
+              "classification": "NEW"
+            },
+            {
+              "value": "XP",
+              "v5_raw": null,
+              "v6_raw": "XP",
+              "classification": "NEW"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Efficiency",
+          "v6_field": "Motor Efficiency",
+          "note": null,
+          "value_count": 3,
+          "classification_counts": {
+            "UNCHANGED": 3,
+            "NEW": 0,
+            "DEPRECATED": 0
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Motor_Efficiency",
+              "v5_raw": "Motor_Efficiency",
+              "v6_raw": "Motor Efficiency",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "PE",
+              "v5_raw": "PE",
+              "v6_raw": "PE",
+              "classification": "UNCHANGED"
+            }
+          ]
+        },
+        {
+          "v5_field": "Motor_Manufacturer",
+          "v6_field": "Motor Manufacturer",
+          "note": null,
+          "value_count": 8,
+          "classification_counts": {
+            "UNCHANGED": 5,
+            "NEW": 2,
+            "DEPRECATED": 1
+          },
+          "values": [
+            {
+              "value": "-",
+              "v5_raw": "-",
+              "v6_raw": "-",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Baldor",
+              "v5_raw": "Baldor",
+              "v6_raw": "Baldor",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Custom",
+              "v5_raw": null,
+              "v6_raw": "Custom",
+              "classification": "NEW"
+            },
+            {
+              "value": "Fybroc Choice*",
+              "v5_raw": "Fybroc Choice*",
+              "v6_raw": null,
+              "classification": "DEPRECATED"
+            },
+            {
+              "value": "Motor_Manufacturer",
+              "v5_raw": "Motor_Manufacturer",
+              "v6_raw": "Motor Manufacturer",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Standard Offering",
+              "v5_raw": null,
+              "v6_raw": "Standard Offering",
+              "classification": "NEW"
+            },
+            {
+              "value": "TECO",
+              "v5_raw": "TECO",
+              "v6_raw": "TECO",
+              "classification": "UNCHANGED"
+            },
+            {
+              "value": "Toshiba",
+              "v5_raw": "Toshiba",
+              "v6_raw": "Toshiba",
+              "classification": "UNCHANGED"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
