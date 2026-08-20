@@ -1,0 +1,1541 @@
+{
+  "artifact": "FYBROC_ATTRIBUTES_HEX_DIFF",
+  "step": "F110.2a",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "generated_utc": "2026-08-20T18:40:47.967168+00:00",
+  "git_commit": "614836e478f23e31997117cc6dfb48b03e4f7e6f",
+  "git_working_tree_clean": false,
+  "sheet": "Attributes",
+  "comparable_field_count": 6,
+  "total_classification_counts": {
+    "UNCHANGED": 180,
+    "CHANGED": 0,
+    "NEW": 0,
+    "DEPRECATED": 0
+  },
+  "fields": [
+    {
+      "field": "Size",
+      "row_count": 25,
+      "classification_counts": {
+        "UNCHANGED": 25,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "1.5x3x10",
+          "v5_name_raw": "1.5x3x10",
+          "v5_hex_code": 4,
+          "v6_name_raw": "1.5x3x10",
+          "v6_hex_code": 4,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1.5x3x6",
+          "v5_name_raw": "1.5x3x6",
+          "v5_hex_code": 5,
+          "v6_name_raw": "1.5x3x6",
+          "v6_hex_code": 5,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1.5x3x8",
+          "v5_name_raw": "1.5x3x8",
+          "v5_hex_code": 6,
+          "v6_name_raw": "1.5x3x8",
+          "v6_hex_code": 6,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10x12x16",
+          "v5_name_raw": "10x12x16",
+          "v5_hex_code": "O",
+          "v6_name_raw": "10x12x16",
+          "v6_hex_code": "O",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x1.5x6",
+          "v5_name_raw": "1x1.5x6",
+          "v5_hex_code": 1,
+          "v6_name_raw": "1x1.5x6",
+          "v6_hex_code": 1,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x1.5x8",
+          "v5_name_raw": "1x1.5x8",
+          "v5_hex_code": 2,
+          "v6_name_raw": "1x1.5x8",
+          "v6_hex_code": 2,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x2x10",
+          "v5_name_raw": "1x2x10",
+          "v5_hex_code": 3,
+          "v6_name_raw": "1x2x10",
+          "v6_hex_code": 3,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x10",
+          "v5_name_raw": "2x3x10",
+          "v5_hex_code": 9,
+          "v6_name_raw": "2x3x10",
+          "v6_hex_code": 9,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x13",
+          "v5_name_raw": "2x3x13",
+          "v5_hex_code": "A",
+          "v6_name_raw": "2x3x13",
+          "v6_hex_code": "A",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x6",
+          "v5_name_raw": "2x3x6",
+          "v5_hex_code": 7,
+          "v6_name_raw": "2x3x6",
+          "v6_hex_code": 7,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x8",
+          "v5_name_raw": "2x3x8",
+          "v5_hex_code": 8,
+          "v6_name_raw": "2x3x8",
+          "v6_hex_code": 8,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x10",
+          "v5_name_raw": "3x4x10",
+          "v5_hex_code": "D",
+          "v6_name_raw": "3x4x10",
+          "v6_hex_code": "D",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x13",
+          "v5_name_raw": "3x4x13",
+          "v5_hex_code": "E",
+          "v6_name_raw": "3x4x13",
+          "v6_hex_code": "E",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x6",
+          "v5_name_raw": "3x4x6",
+          "v5_hex_code": "B",
+          "v6_name_raw": "3x4x6",
+          "v6_hex_code": "B",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x8",
+          "v5_name_raw": "3x4x8",
+          "v5_hex_code": "C",
+          "v6_name_raw": "3x4x8",
+          "v6_hex_code": "C",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x4x10",
+          "v5_name_raw": "4x4x10",
+          "v5_hex_code": "F",
+          "v6_name_raw": "4x4x10",
+          "v6_hex_code": "F",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x10",
+          "v5_name_raw": "4x6x10",
+          "v5_hex_code": "G",
+          "v6_name_raw": "4x6x10",
+          "v6_hex_code": "G",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x11",
+          "v5_name_raw": "4x6x11",
+          "v5_hex_code": "H",
+          "v6_name_raw": "4x6x11",
+          "v6_hex_code": "H",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x13",
+          "v5_name_raw": "4x6x13",
+          "v5_hex_code": "I",
+          "v6_name_raw": "4x6x13",
+          "v6_hex_code": "I",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x10x8",
+          "v5_name_raw": "6x10x8",
+          "v5_hex_code": "K",
+          "v6_name_raw": "6x10x8",
+          "v6_hex_code": "K",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x12x9",
+          "v5_name_raw": "6x12x9",
+          "v5_hex_code": "L",
+          "v6_name_raw": "6x12x9",
+          "v6_hex_code": "L",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x8x13",
+          "v5_name_raw": "6x8x13",
+          "v5_hex_code": "J",
+          "v6_name_raw": "6x8x13",
+          "v6_hex_code": "J",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x10x15",
+          "v5_name_raw": "8x10x15",
+          "v5_hex_code": "M",
+          "v6_name_raw": "8x10x15",
+          "v6_hex_code": "M",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x14x10",
+          "v5_name_raw": "8x14x10",
+          "v5_hex_code": "N",
+          "v6_name_raw": "8x14x10",
+          "v6_hex_code": "N",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x15x11",
+          "v5_name_raw": "8x15x11",
+          "v5_hex_code": "P",
+          "v6_name_raw": "8x15x11",
+          "v6_hex_code": "P",
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field": "Pump_Material",
+      "row_count": 6,
+      "classification_counts": {
+        "UNCHANGED": 6,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "EY-2",
+          "v5_name_raw": "EY-2",
+          "v5_hex_code": 2,
+          "v6_name_raw": "EY-2",
+          "v6_hex_code": 2,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1*",
+          "v5_name_raw": "VR-1*",
+          "v5_hex_code": 1,
+          "v6_name_raw": "VR-1",
+          "v6_hex_code": 1,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1 BPO/DMA",
+          "v5_name_raw": "VR-1 BPO/DMA",
+          "v5_hex_code": 7,
+          "v6_name_raw": "VR-1 BPO/DMA",
+          "v6_hex_code": 7,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1A",
+          "v5_name_raw": "VR-1A",
+          "v5_hex_code": 5,
+          "v6_name_raw": "VR-1A",
+          "v6_hex_code": 5,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1A BPO/DMA",
+          "v5_name_raw": "VR-1A BPO/DMA",
+          "v5_hex_code": "V",
+          "v6_name_raw": "VR-1A BPO/DMA",
+          "v6_hex_code": "V",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1V",
+          "v5_name_raw": "VR-1V",
+          "v5_hex_code": 3,
+          "v6_name_raw": "VR-1V",
+          "v6_hex_code": 3,
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field": "Impeller_Trim",
+      "row_count": 97,
+      "classification_counts": {
+        "UNCHANGED": 97,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "10.000",
+          "v5_name_raw": "10.000",
+          "v5_hex_code": "GA",
+          "v6_name_raw": "10.000",
+          "v6_hex_code": "GA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.125",
+          "v5_name_raw": "10.125",
+          "v5_hex_code": "GB",
+          "v6_name_raw": "10.125",
+          "v6_hex_code": "GB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.250",
+          "v5_name_raw": "10.250",
+          "v5_hex_code": "GC",
+          "v6_name_raw": "10.250",
+          "v6_hex_code": "GC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.375",
+          "v5_name_raw": "10.375",
+          "v5_hex_code": "GD",
+          "v6_name_raw": "10.375",
+          "v6_hex_code": "GD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.500",
+          "v5_name_raw": "10.500",
+          "v5_hex_code": "GE",
+          "v6_name_raw": "10.500",
+          "v6_hex_code": "GE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.625",
+          "v5_name_raw": "10.625",
+          "v5_hex_code": "GF",
+          "v6_name_raw": "10.625",
+          "v6_hex_code": "GF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.750",
+          "v5_name_raw": "10.750",
+          "v5_hex_code": "GG",
+          "v6_name_raw": "10.750",
+          "v6_hex_code": "GG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.875",
+          "v5_name_raw": "10.875",
+          "v5_hex_code": "GH",
+          "v6_name_raw": "10.875",
+          "v6_hex_code": "GH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.000",
+          "v5_name_raw": "11.000",
+          "v5_hex_code": "HA",
+          "v6_name_raw": "11.000",
+          "v6_hex_code": "HA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.125",
+          "v5_name_raw": "11.125",
+          "v5_hex_code": "HB",
+          "v6_name_raw": "11.125",
+          "v6_hex_code": "HB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.250",
+          "v5_name_raw": "11.250",
+          "v5_hex_code": "HC",
+          "v6_name_raw": "11.250",
+          "v6_hex_code": "HC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.375",
+          "v5_name_raw": "11.375",
+          "v5_hex_code": "HD",
+          "v6_name_raw": "11.375",
+          "v6_hex_code": "HD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.500",
+          "v5_name_raw": "11.500",
+          "v5_hex_code": "HE",
+          "v6_name_raw": "11.500",
+          "v6_hex_code": "HE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.625",
+          "v5_name_raw": "11.625",
+          "v5_hex_code": "HF",
+          "v6_name_raw": "11.625",
+          "v6_hex_code": "HF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.750",
+          "v5_name_raw": "11.750",
+          "v5_hex_code": "HG",
+          "v6_name_raw": "11.750",
+          "v6_hex_code": "HG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.875",
+          "v5_name_raw": "11.875",
+          "v5_hex_code": "HH",
+          "v6_name_raw": "11.875",
+          "v6_hex_code": "HH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.000",
+          "v5_name_raw": "12.000",
+          "v5_hex_code": "IA",
+          "v6_name_raw": "12.000",
+          "v6_hex_code": "IA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.125",
+          "v5_name_raw": "12.125",
+          "v5_hex_code": "IB",
+          "v6_name_raw": "12.125",
+          "v6_hex_code": "IB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.250",
+          "v5_name_raw": "12.250",
+          "v5_hex_code": "IC",
+          "v6_name_raw": "12.250",
+          "v6_hex_code": "IC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.375",
+          "v5_name_raw": "12.375",
+          "v5_hex_code": "ID",
+          "v6_name_raw": "12.375",
+          "v6_hex_code": "ID",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.500",
+          "v5_name_raw": "12.500",
+          "v5_hex_code": "IE",
+          "v6_name_raw": "12.500",
+          "v6_hex_code": "IE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.625",
+          "v5_name_raw": "12.625",
+          "v5_hex_code": "IF",
+          "v6_name_raw": "12.625",
+          "v6_hex_code": "IF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.750",
+          "v5_name_raw": "12.750",
+          "v5_hex_code": "IG",
+          "v6_name_raw": "12.750",
+          "v6_hex_code": "IG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.875",
+          "v5_name_raw": "12.875",
+          "v5_hex_code": "IH",
+          "v6_name_raw": "12.875",
+          "v6_hex_code": "IH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.000",
+          "v5_name_raw": "13.000",
+          "v5_hex_code": "JA",
+          "v6_name_raw": "13.000",
+          "v6_hex_code": "JA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.125",
+          "v5_name_raw": "13.125",
+          "v5_hex_code": "JB",
+          "v6_name_raw": "13.125",
+          "v6_hex_code": "JB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.250",
+          "v5_name_raw": "13.250",
+          "v5_hex_code": "JC",
+          "v6_name_raw": "13.250",
+          "v6_hex_code": "JC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.375",
+          "v5_name_raw": "13.375",
+          "v5_hex_code": "JD",
+          "v6_name_raw": "13.375",
+          "v6_hex_code": "JD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.500",
+          "v5_name_raw": "13.500",
+          "v5_hex_code": "JE",
+          "v6_name_raw": "13.500",
+          "v6_hex_code": "JE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.625",
+          "v5_name_raw": "13.625",
+          "v5_hex_code": "JF",
+          "v6_name_raw": "13.625",
+          "v6_hex_code": "JF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.750",
+          "v5_name_raw": "13.750",
+          "v5_hex_code": "JG",
+          "v6_name_raw": "13.750",
+          "v6_hex_code": "JG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.875",
+          "v5_name_raw": "13.875",
+          "v5_hex_code": "JH",
+          "v6_name_raw": "13.875",
+          "v6_hex_code": "JH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.000",
+          "v5_name_raw": "14.000",
+          "v5_hex_code": "KA",
+          "v6_name_raw": "14.000",
+          "v6_hex_code": "KA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.125",
+          "v5_name_raw": "14.125",
+          "v5_hex_code": "KB",
+          "v6_name_raw": "14.125",
+          "v6_hex_code": "KB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.250",
+          "v5_name_raw": "14.250",
+          "v5_hex_code": "KC",
+          "v6_name_raw": "14.250",
+          "v6_hex_code": "KC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.375",
+          "v5_name_raw": "14.375",
+          "v5_hex_code": "KD",
+          "v6_name_raw": "14.375",
+          "v6_hex_code": "KD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.500",
+          "v5_name_raw": "14.500",
+          "v5_hex_code": "KE",
+          "v6_name_raw": "14.500",
+          "v6_hex_code": "KE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.625",
+          "v5_name_raw": "14.625",
+          "v5_hex_code": "KF",
+          "v6_name_raw": "14.625",
+          "v6_hex_code": "KF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.750",
+          "v5_name_raw": "14.750",
+          "v5_hex_code": "KG",
+          "v6_name_raw": "14.750",
+          "v6_hex_code": "KG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.875",
+          "v5_name_raw": "14.875",
+          "v5_hex_code": "KH",
+          "v6_name_raw": "14.875",
+          "v6_hex_code": "KH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.000",
+          "v5_name_raw": "15.000",
+          "v5_hex_code": "LA",
+          "v6_name_raw": "15.000",
+          "v6_hex_code": "LA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.125",
+          "v5_name_raw": "15.125",
+          "v5_hex_code": "LB",
+          "v6_name_raw": "15.125",
+          "v6_hex_code": "LB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.250",
+          "v5_name_raw": "15.250",
+          "v5_hex_code": "LC",
+          "v6_name_raw": "15.250",
+          "v6_hex_code": "LC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.375",
+          "v5_name_raw": "15.375",
+          "v5_hex_code": "LD",
+          "v6_name_raw": "15.375",
+          "v6_hex_code": "LD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.500",
+          "v5_name_raw": "15.500",
+          "v5_hex_code": "LE",
+          "v6_name_raw": "15.500",
+          "v6_hex_code": "LE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.625",
+          "v5_name_raw": "15.625",
+          "v5_hex_code": "LF",
+          "v6_name_raw": "15.625",
+          "v6_hex_code": "LF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.750",
+          "v5_name_raw": "15.750",
+          "v5_hex_code": "LG",
+          "v6_name_raw": "15.750",
+          "v6_hex_code": "LG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.875",
+          "v5_name_raw": "15.875",
+          "v5_hex_code": "LH",
+          "v6_name_raw": "15.875",
+          "v6_hex_code": "LH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "16.000",
+          "v5_name_raw": "16.000",
+          "v5_hex_code": "MA",
+          "v6_name_raw": "16.000",
+          "v6_hex_code": "MA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.000",
+          "v5_name_raw": "4.000",
+          "v5_hex_code": "AA",
+          "v6_name_raw": "4.000",
+          "v6_hex_code": "AA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.125",
+          "v5_name_raw": "4.125",
+          "v5_hex_code": "AB",
+          "v6_name_raw": "4.125",
+          "v6_hex_code": "AB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.250",
+          "v5_name_raw": "4.250",
+          "v5_hex_code": "AC",
+          "v6_name_raw": "4.250",
+          "v6_hex_code": "AC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.375",
+          "v5_name_raw": "4.375",
+          "v5_hex_code": "AD",
+          "v6_name_raw": "4.375",
+          "v6_hex_code": "AD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.500",
+          "v5_name_raw": "4.500",
+          "v5_hex_code": "AE",
+          "v6_name_raw": "4.500",
+          "v6_hex_code": "AE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.625",
+          "v5_name_raw": "4.625",
+          "v5_hex_code": "AF",
+          "v6_name_raw": "4.625",
+          "v6_hex_code": "AF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.750",
+          "v5_name_raw": "4.750",
+          "v5_hex_code": "AG",
+          "v6_name_raw": "4.750",
+          "v6_hex_code": "AG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.875",
+          "v5_name_raw": "4.875",
+          "v5_hex_code": "AH",
+          "v6_name_raw": "4.875",
+          "v6_hex_code": "AH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.000",
+          "v5_name_raw": "5.000",
+          "v5_hex_code": "BA",
+          "v6_name_raw": "5.000",
+          "v6_hex_code": "BA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.125",
+          "v5_name_raw": "5.125",
+          "v5_hex_code": "BB",
+          "v6_name_raw": "5.125",
+          "v6_hex_code": "BB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.250",
+          "v5_name_raw": "5.250",
+          "v5_hex_code": "BC",
+          "v6_name_raw": "5.250",
+          "v6_hex_code": "BC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.375",
+          "v5_name_raw": "5.375",
+          "v5_hex_code": "BD",
+          "v6_name_raw": "5.375",
+          "v6_hex_code": "BD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.500",
+          "v5_name_raw": "5.500",
+          "v5_hex_code": "BE",
+          "v6_name_raw": "5.500",
+          "v6_hex_code": "BE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.625",
+          "v5_name_raw": "5.625",
+          "v5_hex_code": "BF",
+          "v6_name_raw": "5.625",
+          "v6_hex_code": "BF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.750",
+          "v5_name_raw": "5.750",
+          "v5_hex_code": "BG",
+          "v6_name_raw": "5.750",
+          "v6_hex_code": "BG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.875",
+          "v5_name_raw": "5.875",
+          "v5_hex_code": "BH",
+          "v6_name_raw": "5.875",
+          "v6_hex_code": "BH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.000",
+          "v5_name_raw": "6.000",
+          "v5_hex_code": "CA",
+          "v6_name_raw": "6.000",
+          "v6_hex_code": "CA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.125",
+          "v5_name_raw": "6.125",
+          "v5_hex_code": "CB",
+          "v6_name_raw": "6.125",
+          "v6_hex_code": "CB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.250",
+          "v5_name_raw": "6.250",
+          "v5_hex_code": "CC",
+          "v6_name_raw": "6.250",
+          "v6_hex_code": "CC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.375",
+          "v5_name_raw": "6.375",
+          "v5_hex_code": "CD",
+          "v6_name_raw": "6.375",
+          "v6_hex_code": "CD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.500",
+          "v5_name_raw": "6.500",
+          "v5_hex_code": "CE",
+          "v6_name_raw": "6.500",
+          "v6_hex_code": "CE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.625",
+          "v5_name_raw": "6.625",
+          "v5_hex_code": "CF",
+          "v6_name_raw": "6.625",
+          "v6_hex_code": "CF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.750",
+          "v5_name_raw": "6.750",
+          "v5_hex_code": "CG",
+          "v6_name_raw": "6.750",
+          "v6_hex_code": "CG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.875",
+          "v5_name_raw": "6.875",
+          "v5_hex_code": "CH",
+          "v6_name_raw": "6.875",
+          "v6_hex_code": "CH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.000",
+          "v5_name_raw": "7.000",
+          "v5_hex_code": "DA",
+          "v6_name_raw": "7.000",
+          "v6_hex_code": "DA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.125",
+          "v5_name_raw": "7.125",
+          "v5_hex_code": "DB",
+          "v6_name_raw": "7.125",
+          "v6_hex_code": "DB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.250",
+          "v5_name_raw": "7.250",
+          "v5_hex_code": "DC",
+          "v6_name_raw": "7.250",
+          "v6_hex_code": "DC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.375",
+          "v5_name_raw": "7.375",
+          "v5_hex_code": "DD",
+          "v6_name_raw": "7.375",
+          "v6_hex_code": "DD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.500",
+          "v5_name_raw": "7.500",
+          "v5_hex_code": "DE",
+          "v6_name_raw": "7.500",
+          "v6_hex_code": "DE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.625",
+          "v5_name_raw": "7.625",
+          "v5_hex_code": "DF",
+          "v6_name_raw": "7.625",
+          "v6_hex_code": "DF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.750",
+          "v5_name_raw": "7.750",
+          "v5_hex_code": "DG",
+          "v6_name_raw": "7.750",
+          "v6_hex_code": "DG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.875",
+          "v5_name_raw": "7.875",
+          "v5_hex_code": "DH",
+          "v6_name_raw": "7.875",
+          "v6_hex_code": "DH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.000",
+          "v5_name_raw": "8.000",
+          "v5_hex_code": "EA",
+          "v6_name_raw": "8.000",
+          "v6_hex_code": "EA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.125",
+          "v5_name_raw": "8.125",
+          "v5_hex_code": "EB",
+          "v6_name_raw": "8.125",
+          "v6_hex_code": "EB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.250",
+          "v5_name_raw": "8.250",
+          "v5_hex_code": "EC",
+          "v6_name_raw": "8.250",
+          "v6_hex_code": "EC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.375",
+          "v5_name_raw": "8.375",
+          "v5_hex_code": "ED",
+          "v6_name_raw": "8.375",
+          "v6_hex_code": "ED",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.500",
+          "v5_name_raw": "8.500",
+          "v5_hex_code": "EE",
+          "v6_name_raw": "8.500",
+          "v6_hex_code": "EE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.625",
+          "v5_name_raw": "8.625",
+          "v5_hex_code": "EF",
+          "v6_name_raw": "8.625",
+          "v6_hex_code": "EF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.750",
+          "v5_name_raw": "8.750",
+          "v5_hex_code": "EG",
+          "v6_name_raw": "8.750",
+          "v6_hex_code": "EG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.875",
+          "v5_name_raw": "8.875",
+          "v5_hex_code": "EH",
+          "v6_name_raw": "8.875",
+          "v6_hex_code": "EH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.000",
+          "v5_name_raw": "9.000",
+          "v5_hex_code": "FA",
+          "v6_name_raw": "9.000",
+          "v6_hex_code": "FA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.125",
+          "v5_name_raw": "9.125",
+          "v5_hex_code": "FB",
+          "v6_name_raw": "9.125",
+          "v6_hex_code": "FB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.250",
+          "v5_name_raw": "9.250",
+          "v5_hex_code": "FC",
+          "v6_name_raw": "9.250",
+          "v6_hex_code": "FC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.375",
+          "v5_name_raw": "9.375",
+          "v5_hex_code": "FD",
+          "v6_name_raw": "9.375",
+          "v6_hex_code": "FD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.500",
+          "v5_name_raw": "9.500",
+          "v5_hex_code": "FE",
+          "v6_name_raw": "9.500",
+          "v6_hex_code": "FE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.625",
+          "v5_name_raw": "9.625",
+          "v5_hex_code": "FF",
+          "v6_name_raw": "9.625",
+          "v6_hex_code": "FF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.750",
+          "v5_name_raw": "9.750",
+          "v5_hex_code": "FG",
+          "v6_name_raw": "9.750",
+          "v6_hex_code": "FG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.875",
+          "v5_name_raw": "9.875",
+          "v5_hex_code": "FH",
+          "v6_name_raw": "9.875",
+          "v6_hex_code": "FH",
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field": "Motor_Modifications",
+      "row_count": 31,
+      "classification_counts": {
+        "UNCHANGED": 31,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "215JM Shaft Extension in 254JM Frame",
+          "v5_name_raw": "215JM Shaft Extension in 254JM Frame",
+          "v5_hex_code": "8",
+          "v6_name_raw": "215JM Shaft Extension in 254JM Frame",
+          "v6_hex_code": "8",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Alternate Grease",
+          "v5_name_raw": "Alternate Grease",
+          "v5_hex_code": "Q",
+          "v6_name_raw": "Alternate Grease",
+          "v6_hex_code": "Q",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Class H Insulation",
+          "v5_name_raw": "Class H Insulation",
+          "v5_hex_code": "9",
+          "v6_name_raw": "Class H Insulation",
+          "v6_hex_code": "9",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Convert to IP56",
+          "v5_name_raw": "Convert to IP56",
+          "v5_hex_code": "M",
+          "v6_name_raw": "Convert to IP56",
+          "v6_hex_code": "M",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Convert to IP65",
+          "v5_name_raw": "Convert to IP65",
+          "v5_hex_code": "N",
+          "v6_name_raw": "Convert to IP65",
+          "v6_hex_code": "N",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Convert to IP66",
+          "v5_name_raw": "Convert to IP66",
+          "v5_hex_code": "V",
+          "v6_name_raw": "Convert to IP66",
+          "v6_hex_code": "V",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Double Row Thrust Bearing",
+          "v5_name_raw": "Double Row Thrust Bearing",
+          "v5_hex_code": "S",
+          "v6_name_raw": "Double Row Thrust Bearing",
+          "v6_hex_code": "S",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Drip Cover",
+          "v5_name_raw": "Drip Cover",
+          "v5_hex_code": "A",
+          "v6_name_raw": "Drip Cover",
+          "v6_hex_code": "A",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "F1 to F2 Mounting Conversion",
+          "v5_name_raw": "F1 to F2 Mounting Conversion",
+          "v5_hex_code": "K",
+          "v6_name_raw": "F1 to F2 Mounting Conversion",
+          "v6_hex_code": "K",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "IEEE-45 Marine Duty Below Deck",
+          "v5_name_raw": "IEEE-45 Marine Duty Below Deck",
+          "v5_hex_code": "T",
+          "v6_name_raw": "IEEE-45 Marine Duty Below Deck",
+          "v6_hex_code": "T",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Installation of C-Face",
+          "v5_name_raw": "Installation of C-Face",
+          "v5_hex_code": "6",
+          "v6_name_raw": "Installation of C-Face",
+          "v6_hex_code": "6",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Insulated Bearing (ODE)",
+          "v5_name_raw": "Insulated Bearing (ODE)",
+          "v5_hex_code": "4",
+          "v6_name_raw": "Insulated Bearing (ODE)",
+          "v6_hex_code": "4",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Nameplate Change (Custom)",
+          "v5_name_raw": "Nameplate Change (Custom)",
+          "v5_hex_code": "1",
+          "v6_name_raw": "Nameplate Change (Custom)",
+          "v6_hex_code": "1",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Nameplate Change (per Item Description)",
+          "v5_name_raw": "Nameplate Change (per Item Description)",
+          "v5_hex_code": "0",
+          "v6_name_raw": "Nameplate Change (per Item Description)",
+          "v6_hex_code": "0",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "No Modification",
+          "v5_name_raw": "No Modification",
+          "v5_hex_code": "X",
+          "v6_name_raw": "No Modification",
+          "v6_hex_code": "X",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Oversized Main Conduit Box - Mount & Extend Leads",
+          "v5_name_raw": "Oversized Main Conduit Box - Mount & Extend Leads",
+          "v5_hex_code": "L",
+          "v6_name_raw": "Oversized Main Conduit Box - Mount & Extend Leads",
+          "v6_hex_code": "L",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Paint",
+          "v5_name_raw": "Paint",
+          "v5_hex_code": "P",
+          "v6_name_raw": "Paint",
+          "v6_hex_code": "P",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Shaft Grounding Ring (External)",
+          "v5_name_raw": "Shaft Grounding Ring (External)",
+          "v5_hex_code": "2",
+          "v6_name_raw": "Shaft Grounding Ring (External)",
+          "v6_hex_code": "2",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Shaft Grounding Ring (Internal)",
+          "v5_name_raw": "Shaft Grounding Ring (Internal)",
+          "v5_hex_code": "3",
+          "v6_name_raw": "Shaft Grounding Ring (Internal)",
+          "v6_hex_code": "3",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Shorten Shaft (TS Frames)",
+          "v5_name_raw": "Shorten Shaft (TS Frames)",
+          "v5_hex_code": "7",
+          "v6_name_raw": "Shorten Shaft (TS Frames)",
+          "v6_hex_code": "7",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Single Row Thrust Bearing",
+          "v5_name_raw": "Single Row Thrust Bearing",
+          "v5_hex_code": "R",
+          "v6_name_raw": "Single Row Thrust Bearing",
+          "v6_hex_code": "R",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater (120V)",
+          "v5_name_raw": "Space Heater (120V)",
+          "v5_hex_code": "B",
+          "v6_name_raw": "Space Heater (120V)",
+          "v6_hex_code": "B",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater (240V)",
+          "v5_name_raw": "Space Heater (240V)",
+          "v5_hex_code": "C",
+          "v6_name_raw": "Space Heater (240V)",
+          "v6_hex_code": "C",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater with Aux Box (120V)",
+          "v5_name_raw": "Space Heater with Aux Box (120V)",
+          "v5_hex_code": "D",
+          "v6_name_raw": "Space Heater with Aux Box (120V)",
+          "v6_hex_code": "D",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater with Aux Box (240V)",
+          "v5_name_raw": "Space Heater with Aux Box (240V)",
+          "v5_hex_code": "E",
+          "v6_name_raw": "Space Heater with Aux Box (240V)",
+          "v6_hex_code": "E",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Stator Winding RTD's (1/ Phase)",
+          "v5_name_raw": "Stator Winding RTD's (1/ Phase)",
+          "v5_hex_code": "U",
+          "v6_name_raw": "Stator Winding RTD's (1/ Phase)",
+          "v6_hex_code": "U",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermistors (1/Phase)",
+          "v5_name_raw": "Thermistors (1/Phase)",
+          "v5_hex_code": "F",
+          "v6_name_raw": "Thermistors (1/Phase)",
+          "v6_hex_code": "F",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermistors (1/Phase) with Auxilliary Box",
+          "v5_name_raw": "Thermistors (1/Phase) with Auxilliary Box",
+          "v5_hex_code": "G",
+          "v6_name_raw": "Thermistors (1/Phase) with Auxilliary Box",
+          "v6_hex_code": "G",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermostats (1/Phase)",
+          "v5_name_raw": "Thermostats (1/Phase)",
+          "v5_hex_code": "H",
+          "v6_name_raw": "Thermostats (1/Phase)",
+          "v6_hex_code": "H",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermostats (1/Phase) with Auxilliary Box",
+          "v5_name_raw": "Thermostats (1/Phase) with Auxilliary Box",
+          "v5_hex_code": "J",
+          "v6_name_raw": "Thermostats (1/Phase) with Auxilliary Box",
+          "v6_hex_code": "J",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Tropicalization",
+          "v5_name_raw": "Tropicalization",
+          "v5_hex_code": "5",
+          "v6_name_raw": "Tropicalization",
+          "v6_hex_code": "5",
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field": "Inch",
+      "row_count": 13,
+      "classification_counts": {
+        "UNCHANGED": 13,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "10\"",
+          "v5_name_raw": "10\"",
+          "v5_hex_code": "G",
+          "v6_name_raw": "10\"",
+          "v6_hex_code": "G",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11\"",
+          "v5_name_raw": "11\"",
+          "v5_hex_code": "H",
+          "v6_name_raw": "11\"",
+          "v6_hex_code": "H",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12\"",
+          "v5_name_raw": "12\"",
+          "v5_hex_code": "I",
+          "v6_name_raw": "12\"",
+          "v6_hex_code": "I",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13\"",
+          "v5_name_raw": "13\"",
+          "v5_hex_code": "J",
+          "v6_name_raw": "13\"",
+          "v6_hex_code": "J",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14\"",
+          "v5_name_raw": "14\"",
+          "v5_hex_code": "K",
+          "v6_name_raw": "14\"",
+          "v6_hex_code": "K",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15\"",
+          "v5_name_raw": "15\"",
+          "v5_hex_code": "L",
+          "v6_name_raw": "15\"",
+          "v6_hex_code": "L",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "16\"",
+          "v5_name_raw": "16\"",
+          "v5_hex_code": "M",
+          "v6_name_raw": "16\"",
+          "v6_hex_code": "M",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4\"",
+          "v5_name_raw": "4\"",
+          "v5_hex_code": "A",
+          "v6_name_raw": "4\"",
+          "v6_hex_code": "A",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5\"",
+          "v5_name_raw": "5\"",
+          "v5_hex_code": "B",
+          "v6_name_raw": "5\"",
+          "v6_hex_code": "B",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6\"",
+          "v5_name_raw": "6\"",
+          "v5_hex_code": "C",
+          "v6_name_raw": "6\"",
+          "v6_hex_code": "C",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7\"",
+          "v5_name_raw": "7\"",
+          "v5_hex_code": "D",
+          "v6_name_raw": "7\"",
+          "v6_hex_code": "D",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8\"",
+          "v5_name_raw": "8\"",
+          "v5_hex_code": "E",
+          "v6_name_raw": "8\"",
+          "v6_hex_code": "E",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9\"",
+          "v5_name_raw": "9\"",
+          "v5_hex_code": "F",
+          "v6_name_raw": "9\"",
+          "v6_hex_code": "F",
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field": "Decimal",
+      "row_count": 8,
+      "classification_counts": {
+        "UNCHANGED": 8,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": ".000\"",
+          "v5_name_raw": ".000\"",
+          "v5_hex_code": "A",
+          "v6_name_raw": ".000\"",
+          "v6_hex_code": "A",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".125\"",
+          "v5_name_raw": ".125\"",
+          "v5_hex_code": "B",
+          "v6_name_raw": ".125\"",
+          "v6_hex_code": "B",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".250\"",
+          "v5_name_raw": ".250\"",
+          "v5_hex_code": "C",
+          "v6_name_raw": ".250\"",
+          "v6_hex_code": "C",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".375\"",
+          "v5_name_raw": ".375\"",
+          "v5_hex_code": "D",
+          "v6_name_raw": ".375\"",
+          "v6_hex_code": "D",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".500\"",
+          "v5_name_raw": ".500\"",
+          "v5_hex_code": "E",
+          "v6_name_raw": ".500\"",
+          "v6_hex_code": "E",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".625\"",
+          "v5_name_raw": ".625\"",
+          "v5_hex_code": "F",
+          "v6_name_raw": ".625\"",
+          "v6_hex_code": "F",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".750\"",
+          "v5_name_raw": ".750\"",
+          "v5_hex_code": "G",
+          "v6_name_raw": ".750\"",
+          "v6_hex_code": "G",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": ".875\"",
+          "v5_name_raw": ".875\"",
+          "v5_hex_code": "H",
+          "v6_name_raw": ".875\"",
+          "v6_hex_code": "H",
+          "classification": "UNCHANGED"
+        }
+      ]
+    }
+  ],
+  "flagged_not_compared": [
+    {
+      "field": "Series",
+      "reason": "V5 encodes series+flange combination as a single hex letter (e.g. '1500 (ANSI)' -> 'A'). V6 splits this into a bare series number and a separate, non-hex 'Flange Type' descriptor. Not a like-for-like hex comparison - needs its own dedicated look at where (if anywhere) V6 now derives a series+flange hex code."
+    },
+    {
+      "field": "Testing",
+      "reason": "Present in V5's Attributes hex table (columns 21/22). Absent from V6's Attributes sheet entirely. Consistent with F110.1's finding that V6 has a new, dedicated Testing sheet - see F110.4, not compared here."
+    }
+  ]
+}
