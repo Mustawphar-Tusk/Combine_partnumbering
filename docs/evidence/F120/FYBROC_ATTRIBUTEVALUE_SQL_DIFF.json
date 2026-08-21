@@ -1,0 +1,1024 @@
+{
+  "artifact": "FYBROC_ATTRIBUTEVALUE_SQL_DIFF",
+  "step": "F120.5b",
+  "roadmap_version": "1.0",
+  "milestone": "F120",
+  "generated_utc": "2026-08-21T17:57:53.213917+00:00",
+  "git_commit": "ccd207b44d07db161ce6fa60d3d5d9e0be15f5b6",
+  "git_working_tree_clean": false,
+  "comparable_field_count": 4,
+  "not_comparable_fields": {
+    "SERIES": "V6 has no single hex code for series+flange - it splits into a bare series number and a separate, non-hex Flange Type descriptor. Comparing against 'nothing' would produce a meaningless 100%-DEPRECATED result. See F110_pending_engineering_decisions.md item 1.",
+    "TESTING": "V6 uses a 4-axis Base-36 permutation encoding, not a single hex code - a different paradigm, not a value remap. See F110_pending_engineering_decisions.md item 2."
+  },
+  "total_classification_counts": {
+    "UNCHANGED": 159,
+    "CHANGED": 0,
+    "NEW": 0,
+    "DEPRECATED": 0
+  },
+  "fields": [
+    {
+      "field_code": "SIZE",
+      "row_count": 25,
+      "counts": {
+        "UNCHANGED": 25,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "1.5x3x10",
+          "sql_identifier_code": "4",
+          "v6_identifier_code": 4,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1.5x3x6",
+          "sql_identifier_code": "5",
+          "v6_identifier_code": 5,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1.5x3x8",
+          "sql_identifier_code": "6",
+          "v6_identifier_code": 6,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10x12x16",
+          "sql_identifier_code": "O",
+          "v6_identifier_code": "O",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x1.5x6",
+          "sql_identifier_code": "1",
+          "v6_identifier_code": 1,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x1.5x8",
+          "sql_identifier_code": "2",
+          "v6_identifier_code": 2,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x2x10",
+          "sql_identifier_code": "3",
+          "v6_identifier_code": 3,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x10",
+          "sql_identifier_code": "9",
+          "v6_identifier_code": 9,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x13",
+          "sql_identifier_code": "A",
+          "v6_identifier_code": "A",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x6",
+          "sql_identifier_code": "7",
+          "v6_identifier_code": 7,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x8",
+          "sql_identifier_code": "8",
+          "v6_identifier_code": 8,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x10",
+          "sql_identifier_code": "D",
+          "v6_identifier_code": "D",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x13",
+          "sql_identifier_code": "E",
+          "v6_identifier_code": "E",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x6",
+          "sql_identifier_code": "B",
+          "v6_identifier_code": "B",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x8",
+          "sql_identifier_code": "C",
+          "v6_identifier_code": "C",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x4x10",
+          "sql_identifier_code": "F",
+          "v6_identifier_code": "F",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x10",
+          "sql_identifier_code": "G",
+          "v6_identifier_code": "G",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x11",
+          "sql_identifier_code": "H",
+          "v6_identifier_code": "H",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x13",
+          "sql_identifier_code": "I",
+          "v6_identifier_code": "I",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x10x8",
+          "sql_identifier_code": "K",
+          "v6_identifier_code": "K",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x12x9",
+          "sql_identifier_code": "L",
+          "v6_identifier_code": "L",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x8x13",
+          "sql_identifier_code": "J",
+          "v6_identifier_code": "J",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x10x15",
+          "sql_identifier_code": "M",
+          "v6_identifier_code": "M",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x14x10",
+          "sql_identifier_code": "N",
+          "v6_identifier_code": "N",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x15x11",
+          "sql_identifier_code": "P",
+          "v6_identifier_code": "P",
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field_code": "PUMP_MATERIAL",
+      "row_count": 6,
+      "counts": {
+        "UNCHANGED": 6,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "EY-2",
+          "sql_identifier_code": "2",
+          "v6_identifier_code": 2,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1",
+          "sql_identifier_code": "1",
+          "v6_identifier_code": 1,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1 BPO/DMA",
+          "sql_identifier_code": "7",
+          "v6_identifier_code": 7,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1A",
+          "sql_identifier_code": "5",
+          "v6_identifier_code": 5,
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1A BPO/DMA",
+          "sql_identifier_code": "V",
+          "v6_identifier_code": "V",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "VR-1V",
+          "sql_identifier_code": "3",
+          "v6_identifier_code": 3,
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field_code": "IMPELLER_TRIM",
+      "row_count": 97,
+      "counts": {
+        "UNCHANGED": 97,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "10.000",
+          "sql_identifier_code": "GA",
+          "v6_identifier_code": "GA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.125",
+          "sql_identifier_code": "GB",
+          "v6_identifier_code": "GB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.250",
+          "sql_identifier_code": "GC",
+          "v6_identifier_code": "GC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.375",
+          "sql_identifier_code": "GD",
+          "v6_identifier_code": "GD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.500",
+          "sql_identifier_code": "GE",
+          "v6_identifier_code": "GE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.625",
+          "sql_identifier_code": "GF",
+          "v6_identifier_code": "GF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.750",
+          "sql_identifier_code": "GG",
+          "v6_identifier_code": "GG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10.875",
+          "sql_identifier_code": "GH",
+          "v6_identifier_code": "GH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.000",
+          "sql_identifier_code": "HA",
+          "v6_identifier_code": "HA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.125",
+          "sql_identifier_code": "HB",
+          "v6_identifier_code": "HB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.250",
+          "sql_identifier_code": "HC",
+          "v6_identifier_code": "HC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.375",
+          "sql_identifier_code": "HD",
+          "v6_identifier_code": "HD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.500",
+          "sql_identifier_code": "HE",
+          "v6_identifier_code": "HE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.625",
+          "sql_identifier_code": "HF",
+          "v6_identifier_code": "HF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.750",
+          "sql_identifier_code": "HG",
+          "v6_identifier_code": "HG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11.875",
+          "sql_identifier_code": "HH",
+          "v6_identifier_code": "HH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.000",
+          "sql_identifier_code": "IA",
+          "v6_identifier_code": "IA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.125",
+          "sql_identifier_code": "IB",
+          "v6_identifier_code": "IB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.250",
+          "sql_identifier_code": "IC",
+          "v6_identifier_code": "IC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.375",
+          "sql_identifier_code": "ID",
+          "v6_identifier_code": "ID",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.500",
+          "sql_identifier_code": "IE",
+          "v6_identifier_code": "IE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.625",
+          "sql_identifier_code": "IF",
+          "v6_identifier_code": "IF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.750",
+          "sql_identifier_code": "IG",
+          "v6_identifier_code": "IG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12.875",
+          "sql_identifier_code": "IH",
+          "v6_identifier_code": "IH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.000",
+          "sql_identifier_code": "JA",
+          "v6_identifier_code": "JA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.125",
+          "sql_identifier_code": "JB",
+          "v6_identifier_code": "JB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.250",
+          "sql_identifier_code": "JC",
+          "v6_identifier_code": "JC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.375",
+          "sql_identifier_code": "JD",
+          "v6_identifier_code": "JD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.500",
+          "sql_identifier_code": "JE",
+          "v6_identifier_code": "JE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.625",
+          "sql_identifier_code": "JF",
+          "v6_identifier_code": "JF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.750",
+          "sql_identifier_code": "JG",
+          "v6_identifier_code": "JG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13.875",
+          "sql_identifier_code": "JH",
+          "v6_identifier_code": "JH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.000",
+          "sql_identifier_code": "KA",
+          "v6_identifier_code": "KA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.125",
+          "sql_identifier_code": "KB",
+          "v6_identifier_code": "KB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.250",
+          "sql_identifier_code": "KC",
+          "v6_identifier_code": "KC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.375",
+          "sql_identifier_code": "KD",
+          "v6_identifier_code": "KD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.500",
+          "sql_identifier_code": "KE",
+          "v6_identifier_code": "KE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.625",
+          "sql_identifier_code": "KF",
+          "v6_identifier_code": "KF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.750",
+          "sql_identifier_code": "KG",
+          "v6_identifier_code": "KG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14.875",
+          "sql_identifier_code": "KH",
+          "v6_identifier_code": "KH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.000",
+          "sql_identifier_code": "LA",
+          "v6_identifier_code": "LA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.125",
+          "sql_identifier_code": "LB",
+          "v6_identifier_code": "LB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.250",
+          "sql_identifier_code": "LC",
+          "v6_identifier_code": "LC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.375",
+          "sql_identifier_code": "LD",
+          "v6_identifier_code": "LD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.500",
+          "sql_identifier_code": "LE",
+          "v6_identifier_code": "LE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.625",
+          "sql_identifier_code": "LF",
+          "v6_identifier_code": "LF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.750",
+          "sql_identifier_code": "LG",
+          "v6_identifier_code": "LG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15.875",
+          "sql_identifier_code": "LH",
+          "v6_identifier_code": "LH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "16.000",
+          "sql_identifier_code": "MA",
+          "v6_identifier_code": "MA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.000",
+          "sql_identifier_code": "AA",
+          "v6_identifier_code": "AA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.125",
+          "sql_identifier_code": "AB",
+          "v6_identifier_code": "AB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.250",
+          "sql_identifier_code": "AC",
+          "v6_identifier_code": "AC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.375",
+          "sql_identifier_code": "AD",
+          "v6_identifier_code": "AD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.500",
+          "sql_identifier_code": "AE",
+          "v6_identifier_code": "AE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.625",
+          "sql_identifier_code": "AF",
+          "v6_identifier_code": "AF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.750",
+          "sql_identifier_code": "AG",
+          "v6_identifier_code": "AG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4.875",
+          "sql_identifier_code": "AH",
+          "v6_identifier_code": "AH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.000",
+          "sql_identifier_code": "BA",
+          "v6_identifier_code": "BA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.125",
+          "sql_identifier_code": "BB",
+          "v6_identifier_code": "BB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.250",
+          "sql_identifier_code": "BC",
+          "v6_identifier_code": "BC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.375",
+          "sql_identifier_code": "BD",
+          "v6_identifier_code": "BD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.500",
+          "sql_identifier_code": "BE",
+          "v6_identifier_code": "BE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.625",
+          "sql_identifier_code": "BF",
+          "v6_identifier_code": "BF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.750",
+          "sql_identifier_code": "BG",
+          "v6_identifier_code": "BG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5.875",
+          "sql_identifier_code": "BH",
+          "v6_identifier_code": "BH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.000",
+          "sql_identifier_code": "CA",
+          "v6_identifier_code": "CA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.125",
+          "sql_identifier_code": "CB",
+          "v6_identifier_code": "CB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.250",
+          "sql_identifier_code": "CC",
+          "v6_identifier_code": "CC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.375",
+          "sql_identifier_code": "CD",
+          "v6_identifier_code": "CD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.500",
+          "sql_identifier_code": "CE",
+          "v6_identifier_code": "CE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.625",
+          "sql_identifier_code": "CF",
+          "v6_identifier_code": "CF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.750",
+          "sql_identifier_code": "CG",
+          "v6_identifier_code": "CG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6.875",
+          "sql_identifier_code": "CH",
+          "v6_identifier_code": "CH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.000",
+          "sql_identifier_code": "DA",
+          "v6_identifier_code": "DA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.125",
+          "sql_identifier_code": "DB",
+          "v6_identifier_code": "DB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.250",
+          "sql_identifier_code": "DC",
+          "v6_identifier_code": "DC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.375",
+          "sql_identifier_code": "DD",
+          "v6_identifier_code": "DD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.500",
+          "sql_identifier_code": "DE",
+          "v6_identifier_code": "DE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.625",
+          "sql_identifier_code": "DF",
+          "v6_identifier_code": "DF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.750",
+          "sql_identifier_code": "DG",
+          "v6_identifier_code": "DG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7.875",
+          "sql_identifier_code": "DH",
+          "v6_identifier_code": "DH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.000",
+          "sql_identifier_code": "EA",
+          "v6_identifier_code": "EA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.125",
+          "sql_identifier_code": "EB",
+          "v6_identifier_code": "EB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.250",
+          "sql_identifier_code": "EC",
+          "v6_identifier_code": "EC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.375",
+          "sql_identifier_code": "ED",
+          "v6_identifier_code": "ED",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.500",
+          "sql_identifier_code": "EE",
+          "v6_identifier_code": "EE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.625",
+          "sql_identifier_code": "EF",
+          "v6_identifier_code": "EF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.750",
+          "sql_identifier_code": "EG",
+          "v6_identifier_code": "EG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8.875",
+          "sql_identifier_code": "EH",
+          "v6_identifier_code": "EH",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.000",
+          "sql_identifier_code": "FA",
+          "v6_identifier_code": "FA",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.125",
+          "sql_identifier_code": "FB",
+          "v6_identifier_code": "FB",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.250",
+          "sql_identifier_code": "FC",
+          "v6_identifier_code": "FC",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.375",
+          "sql_identifier_code": "FD",
+          "v6_identifier_code": "FD",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.500",
+          "sql_identifier_code": "FE",
+          "v6_identifier_code": "FE",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.625",
+          "sql_identifier_code": "FF",
+          "v6_identifier_code": "FF",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.750",
+          "sql_identifier_code": "FG",
+          "v6_identifier_code": "FG",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9.875",
+          "sql_identifier_code": "FH",
+          "v6_identifier_code": "FH",
+          "classification": "UNCHANGED"
+        }
+      ]
+    },
+    {
+      "field_code": "MOTOR_MODIFICATIONS",
+      "row_count": 31,
+      "counts": {
+        "UNCHANGED": 31,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      },
+      "rows": [
+        {
+          "value": "215JM Shaft Extension in 254JM Frame",
+          "sql_identifier_code": "8",
+          "v6_identifier_code": "8",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Alternate Grease",
+          "sql_identifier_code": "Q",
+          "v6_identifier_code": "Q",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Class H Insulation",
+          "sql_identifier_code": "9",
+          "v6_identifier_code": "9",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Convert to IP56",
+          "sql_identifier_code": "M",
+          "v6_identifier_code": "M",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Convert to IP65",
+          "sql_identifier_code": "N",
+          "v6_identifier_code": "N",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Convert to IP66",
+          "sql_identifier_code": "V",
+          "v6_identifier_code": "V",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Double Row Thrust Bearing",
+          "sql_identifier_code": "S",
+          "v6_identifier_code": "S",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Drip Cover",
+          "sql_identifier_code": "A",
+          "v6_identifier_code": "A",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "F1 to F2 Mounting Conversion",
+          "sql_identifier_code": "K",
+          "v6_identifier_code": "K",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "IEEE-45 Marine Duty Below Deck",
+          "sql_identifier_code": "T",
+          "v6_identifier_code": "T",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Installation of C-Face",
+          "sql_identifier_code": "6",
+          "v6_identifier_code": "6",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Insulated Bearing (ODE)",
+          "sql_identifier_code": "4",
+          "v6_identifier_code": "4",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Nameplate Change (Custom)",
+          "sql_identifier_code": "1",
+          "v6_identifier_code": "1",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Nameplate Change (per Item Description)",
+          "sql_identifier_code": "0",
+          "v6_identifier_code": "0",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "No Modification",
+          "sql_identifier_code": "X",
+          "v6_identifier_code": "X",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Oversized Main Conduit Box - Mount & Extend Leads",
+          "sql_identifier_code": "L",
+          "v6_identifier_code": "L",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Paint",
+          "sql_identifier_code": "P",
+          "v6_identifier_code": "P",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Shaft Grounding Ring (External)",
+          "sql_identifier_code": "2",
+          "v6_identifier_code": "2",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Shaft Grounding Ring (Internal)",
+          "sql_identifier_code": "3",
+          "v6_identifier_code": "3",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Shorten Shaft (TS Frames)",
+          "sql_identifier_code": "7",
+          "v6_identifier_code": "7",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Single Row Thrust Bearing",
+          "sql_identifier_code": "R",
+          "v6_identifier_code": "R",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater (120V)",
+          "sql_identifier_code": "B",
+          "v6_identifier_code": "B",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater (240V)",
+          "sql_identifier_code": "C",
+          "v6_identifier_code": "C",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater with Aux Box (120V)",
+          "sql_identifier_code": "D",
+          "v6_identifier_code": "D",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Space Heater with Aux Box (240V)",
+          "sql_identifier_code": "E",
+          "v6_identifier_code": "E",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Stator Winding RTD's (1/ Phase)",
+          "sql_identifier_code": "U",
+          "v6_identifier_code": "U",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermistors (1/Phase)",
+          "sql_identifier_code": "F",
+          "v6_identifier_code": "F",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermistors (1/Phase) with Auxilliary Box",
+          "sql_identifier_code": "G",
+          "v6_identifier_code": "G",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermostats (1/Phase)",
+          "sql_identifier_code": "H",
+          "v6_identifier_code": "H",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Thermostats (1/Phase) with Auxilliary Box",
+          "sql_identifier_code": "J",
+          "v6_identifier_code": "J",
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "Tropicalization",
+          "sql_identifier_code": "5",
+          "v6_identifier_code": "5",
+          "classification": "UNCHANGED"
+        }
+      ]
+    }
+  ]
+}

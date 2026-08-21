@@ -1,0 +1,5321 @@
+{
+  "artifact": "FYBROC_SELECTIONS_SQL_DIFF",
+  "step": "F120.5a",
+  "roadmap_version": "1.0",
+  "milestone": "F120",
+  "generated_utc": "2026-08-21T17:41:40.265377+00:00",
+  "git_commit": "ccd207b44d07db161ce6fa60d3d5d9e0be15f5b6",
+  "git_working_tree_clean": false,
+  "mapped_field_count": 31,
+  "excluded_sql_fields": {
+    "MOTOR_HP_RPM": "Combined value built from Combine Variables (Motor Hp + Motor RPM), not a direct Selections question.",
+    "MOTOR_TYPE": "Combined value built from Combine Variables (6 decomposed motor spec fields), not a direct Selections question.",
+    "DYNAMIC_IMPELLER": "Recognized as a field in Hierarchy/Items, but has no entry in Selections at all - a genuine gap, not a mapping problem.",
+    "NAMEPLATE_STANDARD": "No confident Rev0.3 Selections counterpart identified."
+  },
+  "total_classification_counts": {
+    "UNCHANGED": 146,
+    "CHANGED": 130,
+    "NEW": 18,
+    "DEPRECATED": 16
+  },
+  "fields": [
+    {
+      "sql_field": "BASEPLATE_HARDWARE",
+      "rev03_question": "BaseplateHardware",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "303 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "316 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 2,
+        "CHANGED": 0,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "BASEPLATE_OPTION",
+      "rev03_question": "Baseplate Option",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "baseplate included",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "by others",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "no baseplate",
+          "sql_series": [],
+          "rev03_series": [],
+          "classification": "NEW"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 0,
+        "NEW": 2,
+        "DEPRECATED": 2
+      }
+    },
+    {
+      "sql_field": "BEARING_OPTION",
+      "rev03_question": "Bearing Option",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "greased for life bearings",
+          "sql_series": [
+            "1500",
+            "1600"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "oil bath lubrication",
+          "sql_series": [
+            "1500",
+            "1600"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "re greaseable bearings",
+          "sql_series": [
+            "1500",
+            "1600"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 2,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "CASING_DRAINS",
+      "rev03_question": "Casing Drains",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "not supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "CASING_HARDWARE",
+      "rev03_question": "Casing Hardware",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "303 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "316 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "COUPLING_GUARD",
+      "rev03_question": "Coupling Guard",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "316 ss",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "by others",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "no coupling guard",
+          "sql_series": [],
+          "rev03_series": [],
+          "classification": "NEW"
+        },
+        {
+          "value": "non sparking",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "steel",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 3,
+        "CHANGED": 0,
+        "NEW": 1,
+        "DEPRECATED": 1
+      }
+    },
+    {
+      "sql_field": "COUPLING_OPTION",
+      "rev03_question": "Coupling Option",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "by others",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "coupling included",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "no coupling",
+          "sql_series": [],
+          "rev03_series": [],
+          "classification": "NEW"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 0,
+        "NEW": 2,
+        "DEPRECATED": 2
+      }
+    },
+    {
+      "sql_field": "FLANGE_TYPE",
+      "rev03_question": "Flange Type",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "ansi flange",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "din iso flange",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "jis flange",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 3,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "FLUSH",
+      "rev03_question": "Flush",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "bypass cyclone separator",
+          "sql_series": [
+            "1500",
+            "1530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "3000",
+            "5500"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "bypass cyclone separator spacer",
+          "sql_series": [
+            "1500",
+            "1530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "bypass tapped discharge",
+          "sql_series": [
+            "1500",
+            "1530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "3000",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "bypass tapped spacer",
+          "sql_series": [
+            "1500",
+            "1530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "external flush",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "internal flush",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 5,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "GLAND_HARDWARE",
+      "rev03_question": "Gland Hardware",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "303 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "316 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "carp 20",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "hastelloy c",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "titanium",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 4,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "IMPELLER_TRIM",
+      "rev03_question": "Impeller Trim",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "10 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "11 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "12 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "13 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "13 125",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13 250",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13 375",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13 500",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13 625",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13 750",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13 875",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 000",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 125",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 250",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 375",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 500",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 625",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 750",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14 875",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 000",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 125",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 250",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 375",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 500",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 625",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 750",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15 875",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "16 000",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "5 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "6 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "7 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "8 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 000",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 125",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 250",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 375",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 500",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 625",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 750",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "9 875",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "full",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 24,
+        "CHANGED": 73,
+        "NEW": 0,
+        "DEPRECATED": 1
+      }
+    },
+    {
+      "sql_field": "MOTOR_OPTION",
+      "rev03_question": "Motor Option",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "by others",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "installed by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 3,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "NAMEPLATE",
+      "rev03_question": "NamePlate",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "ansi",
+          "sql_series": [],
+          "rev03_series": [],
+          "classification": "NEW"
+        },
+        {
+          "value": "customer",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "metric",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "7500",
+            "8500"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "no units",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "7500",
+            "8500"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "not included",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 0,
+        "NEW": 3,
+        "DEPRECATED": 2
+      }
+    },
+    {
+      "sql_field": "PAINT_UPGRADE",
+      "rev03_question": "Paint Upgrade",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "not included",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 2,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "POWER_FRAME_HARDWARE",
+      "rev03_question": "Power Frame Hardware",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "303 ss",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "316 ss",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "PUMP_ELASTOMERS",
+      "rev03_question": "Pump Elastomers",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "epr",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "fkm",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "ptfe",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 3,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "PUMP_MATERIAL",
+      "rev03_question": "Pump Material",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "ey 2",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "vr 1",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "vr 1 bpo dma",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "vr 1a",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "vr 1a bpo dma",
+          "sql_series": [
+            "1500",
+            "1530",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "vr 1v",
+          "sql_series": [
+            "1500",
+            "1530"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 2,
+        "CHANGED": 4,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SEAL_ELASTOMERS",
+      "rev03_question": "Seal Elastomers",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "epr",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "fkm",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "ptfe",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 2,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SEAL_GUARD",
+      "rev03_question": "Seal Guard",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "not supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SEAL_MATERIALS",
+      "rev03_question": "Seal Materials",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "carbon vs ceramic",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "silcar vs silcar",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SEAL_OPTION",
+      "rev03_question": "Seal Option",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "installed by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "noseal double seal gland",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "noseal nosealgland",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "noseal single seal gland",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 4,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SEAL_TYPE",
+      "rev03_question": "Seal Type",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "8 1t double inside",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "8b2 single outside",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "crane 8 1t double inside",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "crane 8b2 single outside",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "cro double inside",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "custom seal type",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "flowserve cro double inside",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "flowserve rac single outside",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "flowserve rxo double inside",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "rac single outside",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "rxo double inside",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "NEW"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 0,
+        "NEW": 6,
+        "DEPRECATED": 5
+      }
+    },
+    {
+      "sql_field": "SETTING",
+      "rev03_question": "Setting",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "1",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "10",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "11",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "12",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "13",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "14",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "15",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "16",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "17",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "18",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "19",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "3",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "5",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "7",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "9",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 17,
+        "CHANGED": 2,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SHAFT_GROUNDING",
+      "rev03_question": "Shaft Grounding",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "not included",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 2,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SHAFT_MATERIAL",
+      "rev03_question": "Shaft Material",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "303 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "316 ss",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "carp 20",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "frp wrapped shaft 303ss core",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "frp wrapped shaft 316ss core",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "hastelloy c",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "titanium",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 4,
+        "CHANGED": 3,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "STRAINER",
+      "rev03_question": "Strainer",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "flat screen strainer",
+          "sql_series": [],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "not included",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "standard strainer",
+          "sql_series": [],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 1,
+        "NEW": 2,
+        "DEPRECATED": 1
+      }
+    },
+    {
+      "sql_field": "SIZE",
+      "rev03_question": "Alt Size",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "1 5x3x10",
+          "sql_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1 5x3x6",
+          "sql_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1 5x3x8",
+          "sql_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "10x12x16",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x1 5x6",
+          "sql_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x1 5x8",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "1x2x10",
+          "sql_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x10",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500",
+            "5530",
+            "6000",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "3000",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "2x3x13",
+          "sql_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "2x3x6",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "6000",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "2x3x8",
+          "sql_series": [
+            "1500",
+            "1530",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "6000",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "3x4x10",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x13",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x6",
+          "sql_series": [
+            "2530"
+          ],
+          "rev03_series": [
+            "2530"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "3x4x8",
+          "sql_series": [
+            "1500",
+            "1530",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "2530",
+            "3000",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x4x10",
+          "sql_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x10",
+          "sql_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "4x6x11",
+          "sql_series": [
+            "3000",
+            "6000"
+          ],
+          "rev03_series": [
+            "3000"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "4x6x13",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530",
+            "5500",
+            "5530",
+            "7500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x10x8",
+          "sql_series": [
+            "8500"
+          ],
+          "rev03_series": [
+            "8500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x12x9",
+          "sql_series": [
+            "8500"
+          ],
+          "rev03_series": [
+            "8500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "6x8x13",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x10x15",
+          "sql_series": [
+            "1500",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x14x10",
+          "sql_series": [
+            "8500"
+          ],
+          "rev03_series": [
+            "8500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "8x15x11",
+          "sql_series": [
+            "8500"
+          ],
+          "rev03_series": [
+            "8500"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 21,
+        "CHANGED": 4,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "MOTOR_FRAME",
+      "rev03_question": "Frame Size",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "143jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "143t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "143tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "145jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "145t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "145tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "182jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "182t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "182tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "184jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "184t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "184tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "213jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "213t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "213tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "215jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "215t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "215tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "254jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "254t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "254tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "256jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "256t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "256tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "284jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "284t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "284tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "284ts",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "284tsc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "286jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "286t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "286tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "286ts",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "286tsc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "324jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "324t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "324tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "324ts",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "324tsc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "326jm",
+          "sql_series": [
+            "1530",
+            "1630"
+          ],
+          "rev03_series": [
+            "1530",
+            "1630"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "326t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "326tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "326ts",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "326tsc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500",
+            "5530"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "364t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "364tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "364ts",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "364tsc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "365t",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "365tc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "365ts",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "365tsc",
+          "sql_series": [
+            "2530",
+            "5500"
+          ],
+          "rev03_series": [
+            "2530",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "404t",
+          "sql_series": [
+            "1500"
+          ],
+          "rev03_series": [
+            "1500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "404tc",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "405t",
+          "sql_series": [
+            "1500"
+          ],
+          "rev03_series": [
+            "1500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "405tc",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "405ts",
+          "sql_series": [
+            "1500"
+          ],
+          "rev03_series": [
+            "1500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "444t",
+          "sql_series": [
+            "1500"
+          ],
+          "rev03_series": [
+            "1500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "444tc",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "445t",
+          "sql_series": [
+            "1500"
+          ],
+          "rev03_series": [
+            "1500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "445tc",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "447tc",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 50,
+        "CHANGED": 12,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "SUCTION_DISCHARGE",
+      "rev03_question": "Suction Discharge Taps",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "no suction discharge taps",
+          "sql_series": [],
+          "rev03_series": [],
+          "classification": "NEW"
+        },
+        {
+          "value": "not supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        },
+        {
+          "value": "suction discharge taps",
+          "sql_series": [],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530"
+          ],
+          "classification": "NEW"
+        },
+        {
+          "value": "supplied by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "1600",
+            "1630",
+            "2530"
+          ],
+          "rev03_series": [],
+          "classification": "DEPRECATED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 0,
+        "CHANGED": 0,
+        "NEW": 2,
+        "DEPRECATED": 2
+      }
+    },
+    {
+      "sql_field": "CYCLONE_SEPARATOR",
+      "rev03_question": "Cyclone Seperator",
+      "confidence": "VERIFIED",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "by fybroc",
+          "sql_series": [
+            "1500",
+            "1530",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1530",
+            "3000"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "not included",
+          "sql_series": [
+            "1500",
+            "1530",
+            "3000"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 1,
+        "CHANGED": 1,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    },
+    {
+      "sql_field": "IMPELLER_SLEEVE",
+      "rev03_question": "Sleeve",
+      "confidence": "LOW",
+      "note": null,
+      "value_diffs": [
+        {
+          "value": "316ss",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "carp 20",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "hast c",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        },
+        {
+          "value": "integral",
+          "sql_series": [
+            "1500",
+            "1600"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "no sleeve",
+          "sql_series": [
+            "5500"
+          ],
+          "rev03_series": [],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "separate frp",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600"
+          ],
+          "classification": "CHANGED"
+        },
+        {
+          "value": "titanium",
+          "sql_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "rev03_series": [
+            "1500",
+            "1600",
+            "3000",
+            "5500"
+          ],
+          "classification": "UNCHANGED"
+        }
+      ],
+      "counts": {
+        "UNCHANGED": 4,
+        "CHANGED": 3,
+        "NEW": 0,
+        "DEPRECATED": 0
+      }
+    }
+  ]
+}

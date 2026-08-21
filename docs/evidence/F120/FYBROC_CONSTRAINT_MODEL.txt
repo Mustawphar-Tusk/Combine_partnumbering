@@ -1,0 +1,179 @@
+============================================================================================================================================
+F120.3 - FYBROC CONSTRAINT MODEL (Combination Matrix + Constraint Index + Feasible Tables)
+============================================================================================================================================
+
+Git commit  : ccd207b44d07db161ce6fa60d3d5d9e0be15f5b6
+Git clean   : False
+
+Series codes       : 1500, 1530, 1600, 1630, 2530, 3000, 5500, 5530
+Distinct sizes     : 80
+Combination fields : 34
+Constraint index   : 33 entries
+Feasible tables    : 20 tables
+
+============================================================================================================================================
+COMBINATION MATRIX
+============================================================================================================================================
+
+  F_Baseplate_Option                  list1=Alt_Size                       list2=Alt_Size                       combination=No Combination
+  F_BaseplateHardware                 list1=Alt_Size                       list2=F_Baseplate_Option             combination=No Combination
+  F_Bearing_Option                    list1=Alt_Size                       list2=F_BaseplateHardware            combination=No Combination
+  F_Casing_Drains                     list1=Alt_Size                       list2=F_Bearing_Option               combination=No Combination
+  F_Casing_Hardware                   list1=Alt_Size                       list2=F_Casing_Drains                combination=No Combination
+  F_CouplingGuard                     list1=Alt_Size                       list2=F_Casing_Hardware              combination=No Combination
+  F_Coupling_Option                   list1=Alt_Size                       list2=F_CouplingGuard                combination=No Combination
+  F_CycloneSep                        list1=Alt_Size                       list2=F_Coupling_Option              combination=Combination exists  -> 44
+  F_Dynamic_Impeller                  list1=Alt_Size                       list2=F_CycloneSep                   combination=No Combination
+  F_Flange_Type                       list1=Alt_Size                       list2=F_Dynamic_Impeller             combination=Combination exists  -> 2
+  F_Flush                             list1=Alt_Size                       list2=F_Flange_Type                  combination=No Combination
+  F_Frame_Size                        list1=Alt_Size                       list2=F_Flush                        combination=Combination exists  -> 11
+  F_Gland_Hardware                    list1=Alt_Size                       list2=F_Frame_Size                   combination=Combination exists  -> 44
+  F_ImpellerTrim                      list1=Alt_Size                       list2=F_Gland_Hardware               combination=No Combination
+  F_MotorHpRpm                        list1=Alt_Size                       list2=F_ImpellerTrim                 combination=Combination exists  -> 2
+  F_MotorOption                       list1=Alt_Size                       list2=F_MotorHpRpm                   combination=Combination exists  -> 44
+  F_Motor_Type                        list1=Alt_Size                       list2=F_MotorOption                  combination=Combination exists  -> MT
+  F_NamePlate                         list1=Alt_Size                       list2=F_Motor_Type                   combination=Combination exists  -> MT
+  F_NamePlate2                        list1=Alt_Size                       list2=F_NamePlate                    combination=No Combination
+  F_Paint_Upgrade                     list1=Alt_Size                       list2=F_NamePlate2                   combination=No Combination
+  F_Power_Frame_Hardware              list1=Alt_Size                       list2=F_Paint_Upgrade                combination=Combination exists  -> MT
+  F_Pump_Elastomers                   list1=Alt_Size                       list2=F_Power_Frame_Hardware         combination=No Combination
+  F_Pump_Material                     list1=Alt_Size                       list2=F_Pump_Elastomers              combination=Combination exists  -> 2B
+  F_Seal_Elastomers                   list1=Alt_Size                       list2=F_Pump_Material                combination=Combination exists  -> 2
+  F_Seal_Guard                        list1=Alt_Size                       list2=F_Seal_Elastomers              combination=No Combination
+  F_Seal_Materials                    list1=Alt_Size                       list2=F_Seal_Guard                   combination=No Combination
+  F_Seal_Option                       list1=Alt_Size                       list2=F_Seal_Materials               combination=No Combination
+  F_Seal_Type                         list1=Alt_Size                       list2=F_Seal_Option                  combination=No Combination
+  F_Setting                           list1=Alt_Size                       list2=F_Seal_Type                    combination=No Combination
+  F_Shaft_Grounding                   list1=Alt_Size                       list2=F_Setting                      combination=Combination exists  -> 6
+  F_Shaft_Material                    list1=Alt_Size                       list2=F_Shaft_Grounding              combination=Combination exists  -> MT
+  F_Sleeve                            list1=Alt_Size                       list2=F_Shaft_Material               combination=Combination exists  -> 1
+  F_Strainer                          list1=Alt_Size                       list2=F_Sleeve                       combination=Combination exists  -> 1B
+  F_Suction_Discharge                 list1=Alt_Size                       list2=F_Strainer                     combination=Combination exists  -> 87
+
+============================================================================================================================================
+CONSTRAINT INDEX
+============================================================================================================================================
+
+  ConstraintTable1          Alt Size x CouplingGuard  [3 rows]
+    Group 3 couplings guards in Aluminum (Non-Sparking) are Not Allowed.
+
+  ConstraintTable2          Alt Size x Flange Type  [NOT RESOLVED]
+    Cannot make a 2x3x13 1500 or 1530 in ISO nor JIS
+
+  ConstraintTable3          Alt Size x Flush  [NOT RESOLVED]
+    5500 ONLY, Group 3 Internal flush not allowed
+
+  NO TABLE (series-derived) Alt Size x Frame Size  [NOT RESOLVED]
+    Series Depedent. Derrived from Alt_Size X F_MotorHpRpm.
+
+  ConstraintTable4          Alt Size x ImpellerTrim  [517 rows]
+    Impeller Trims
+
+  NO TABLE (series-derived) Alt Size x MotorHpRpm  [NOT RESOLVED]
+    Series Depedent. From pump curves, only certain Horsepower and RPM combinations are available for each size.
+
+  ConstraintTable5          Alt Size x Pump Material  [16 rows]
+    We cannot make pumps in some materials. This can change on a case by case basis, some parts can be made in certain materials where as some parts can't be made in certain materials.
+
+  ConstraintTable6          Alt Size x Shaft Material  [NOT RESOLVED]
+    5500 ONLY, Group 3 pumps with a wrapped shaft not allowed.
+
+  ConstraintTable7          Casing Drains x Pump Material  [1 rows]
+    Casings in VR-1V are not permitted to have Casing Drains. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.
+
+  ConstraintTable8          CycloneSep x Flush  [6 rows]
+    If you don't choose Cyclone Separator Flush, you can't just get Cyclone Separator.
+
+  ConstraintTable9          Flush x Pump Material  [3 rows]
+    Casings in VR-1V are not permitted to have taps for some flush options. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.
+
+  NO TABLE (series-derived) Frame Size x MotorHpRpm  [NOT RESOLVED]
+    Motor frames are only available in certain Horsepower and RPM combinations.
+
+  NO TABLE (series-derived) MotorHpRpm x Motor Type  [NOT RESOLVED]
+    Motor Horsepower and RPMs are only available in certain Motor Types.
+
+  ConstraintTable10         MotorOption x Paint Upgrade  [2 rows]
+    We can not supply Paint Upgrade if the motor is being supplied by the customer.
+
+  ConstraintTable11         MotorOption x Shaft Grounding  [NOT RESOLVED]
+    We can not supply Shaft Grounding Rings if the motor is being supplied by the customer.
+
+  ConstraintTable12         Pump Material x Setting  [15 rows]
+    Verticals, No intermediate bearing material for EY-2, therefore only settings 1-4 are allowed.
+
+  ConstraintTable13         Pump Material x Shaft Material  [NOT RESOLVED]
+    5500 ONLY, EY-2 and Wrapped Shafts are Now Allowed.
+
+  ConstraintTable14         Pump Material x Sleeve  [NOT RESOLVED]
+    We do not make Separate Sleeve in EY-2, not VR-1V. Those are two materials that require the all FRP parts match due to chemical compatability.
+
+  ConstraintTable15         Pump Material x Suction Discharge Taps  [NOT RESOLVED]
+    Casings in VR-1V are not permitted to have taps. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.
+
+  ConstraintTable16         Seal Guard x Seal Option  [1 rows]
+    If there is no gland, then we cannot supply a seal guard.
+
+  ConstraintTable17         Seal Option x Seal Type  [NOT RESOLVED]
+    Must get a matching gland with seal.
+
+  ConstraintTable18         Setting x Shaft Material  [8 rows]
+    Wrapped shafts only come in Settings 1-4. Can't have intermediate bearings.
+
+  ConstraintTable19         Shaft Material x Sleeve  [12 rows]
+    For normal shafts, sleeve must be in the same material. For wrapped shaft, only allowed Hast-C or Titanium shaft sleeve. Shaft sleeve is not a separate Position number, it is included in Shaft part number.
+
+  ConstraintTable20         Motor Control x Shaft Grounding  [1 rows]
+    VFDs must get Shaft Grounding ring.
+
+  ConstraintTable21         Pump Material x Length x Alt Size  [3477 rows]
+    Verticals, No intermediate bearing material for EY-2, therefore only lengths up to Setting 4 for a size are allowed.
+
+  ConstraintTable22         Setting/Length x Length  [183 rows]
+    If Custom Length is selected, Length can be selected.
+
+  ConstraintTable23         Setting/Length x Setting  [19 rows]
+    If Standard Setting is selected, Setting can be selected.
+
+  ConstraintTable24         Tailpipe Option x Tailpipe Length  [115 rows]
+    If Tailpipe is Supplied, Tailpipe Length can be selected.
+
+  ConstraintTable25         Seal Mfg x Seal Type  [30 rows]
+    Seal Type must match Seal Manufacturer selected.
+
+  ConstraintTable26         Seal Option x Seal Mfg  [NOT RESOLVED]
+    Seal Manufacturer depends on if Supplied by Fybroc or Installed by Fybroc is selected.
+
+  ConstraintTable27         Wetted Hardware x Wetted Hardware Selection  [10 rows]
+    Wetted Hardware Selection can only be selected if Custom Wetted Hardware is selected.
+
+  ConstraintTable28         Flush Material x Flush  [18 rows]
+    No flush material required if Internal Flush or External Flush are selected.
+
+  ConstraintTable29         Alt Size x C-Face Adapter  [3 rows]
+    C-Face adapter is not allowed on Group 3 pumps.
+
+============================================================================================================================================
+FEASIBLE CONSTRAINT TABLES
+============================================================================================================================================
+
+  ConstraintTable1          headers=['Alt Size', 'CouplingGuard', 'Allowed?']  rows=3
+  ConstraintTable4          headers=['Alt Size', 'ImpellerTrim', 'Allowed?']  rows=517
+  ConstraintTable5          headers=['Alt Size', 'Pump Material', 'Allowed?']  rows=16
+  ConstraintTable7          headers=['Casing Drains', 'Pump Material', 'Allowed?']  rows=1
+  ConstraintTable8          headers=['CycloneSep', 'Flush', 'Allowed?']  rows=6
+  ConstraintTable9          headers=['Flush', 'Pump Material', 'Allowed?']  rows=3
+  ConstraintTable10         headers=['MotorOption', 'Paint Upgrade', 'Allowed?']  rows=2
+  ConstraintTable12         headers=['Pump Material', 'Setting', 'Allowed?']  rows=15
+  ConstraintTable16         headers=['Seal Guard', 'Seal Option', 'Allowed?']  rows=1
+  ConstraintTable18         headers=['Setting', 'Shaft Material', 'Allowed?']  rows=8
+  ConstraintTable19         headers=['Shaft Material', 'Sleeve', 'Allowed?']  rows=12
+  ConstraintTable20         headers=['Motor Control', 'Shaft Grounding', 'Allowed']  rows=1
+  ConstraintTable21         headers=['Alt Size', 'Pump Material', 'Length', 'Allowed?']  rows=3477
+  ConstraintTable22         headers=['Setting/Length', 'Length', 'Allowed?']  rows=183
+  ConstraintTable23         headers=['Setting/Length', 'Setting', 'Allowed?']  rows=19
+  ConstraintTable24         headers=['Tailpipe Option', 'Tailpipe Length', 'Allowed?']  rows=115
+  ConstraintTable25         headers=['Seal Mfg', 'Seal Type', 'Allowed?']  rows=30
+  ConstraintTable27         headers=['Wetted Hardware', 'Wetted Hardware Selection', 'Allowed?']  rows=10
+  ConstraintTable28         headers=['Flush Material', 'Flush', 'Allowed?']  rows=18
+  ConstraintTable29         headers=['Alt Size', 'C-Face Adapter', 'Allowed?']  rows=3
