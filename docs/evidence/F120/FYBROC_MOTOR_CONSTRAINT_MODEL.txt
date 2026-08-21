@@ -1,0 +1,255 @@
+============================================================================================================================================
+F120.4 - FYBROC MOTOR CONSTRAINT + COMBINE VARIABLES MODEL
+============================================================================================================================================
+
+Git commit  : 33cbacf5162365c98feb512f2cac492704f23c5b
+Git clean   : False
+
+Motor constraint blocks : 19
+Combine variable tables : 4
+
+============================================================================================================================================
+MOTOR CONSTRAINTS
+============================================================================================================================================
+
+[1500 and 1600] Alt_Size x F_Frame_Size (205 rows)
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '143T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '145T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '182T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '184T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '213T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '215T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '254T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '256T', 'Allowed?': 'Allowed'}
+    ... (197 more rows, see JSON)
+
+[1500 and 1600] Alt_Size x F_MotorHpRpm (205 rows)
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-1800', 'Allowed?': 'Allowed'}
+    ... (197 more rows, see JSON)
+
+[1500 and 1600] F_Frame_Size x F_MotorHpRpm (55 rows)
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143T', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182T', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143T', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '184T', 'F_MotorHpRpm': '2-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    ... (47 more rows, see JSON)
+
+[1500 and 1600] F_MotorHpRpm x F_Motor Type (170 rows)
+    {'F_MotorHpRpm': '1-1800', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '1-1200', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '1.5-3600', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '1.5-1800', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '1.5-1200', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '2-3600', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '2-1800', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    {'F_MotorHpRpm': '2-1200', 'F_Motor Type': 'TEFC_PE_230/460-3-60', 'Allowed?': 'Allowed'}
+    ... (162 more rows, see JSON)
+
+[1530 and 1630] Alt_Size x F_Frame_Size (152 rows)
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '143JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '145JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '182JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '184JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '213JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '215JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1.5x3x6', 'F_Frame_Size': '143JM', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1.5x3x6', 'F_Frame_Size': '145JM', 'Allowed?': 'Allowed'}
+    ... (144 more rows, see JSON)
+
+[1530 and 1630] Alt_Size x F_MotorHpRpm (205 rows)
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-1800', 'Allowed?': 'Allowed'}
+    ... (197 more rows, see JSON)
+
+[1530 and 1630] F_Frame_Size x F_MotorHpRpm (38 rows)
+    {'F_Frame_Size': '143JM', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145JM', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143JM', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145JM', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182JM', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145JM', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145JM', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '184JM', 'F_MotorHpRpm': '2-1200', 'Allowed?': 'Allowed'}
+    ... (30 more rows, see JSON)
+
+[2530] Alt_Size x F_Frame_Size (96 rows)
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '143TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '145TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '182TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '184TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '213TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '215TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1.5x3x6', 'F_Frame_Size': '143TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1.5x3x6', 'F_Frame_Size': '145TC', 'Allowed?': 'X'}
+    ... (88 more rows, see JSON)
+
+[2530] Alt_Size x F_MotorHpRpm (200 rows)
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-1200', 'Allowed?': 'Allowed'}
+    ... (192 more rows, see JSON)
+
+[2530] F_Frame_Size x F_MotorHpRpm (40 rows)
+    {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182TC', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182TC', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
+    ... (32 more rows, see JSON)
+
+[3000] Alt_Size x F_Frame_Size (76 rows)
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '143T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '145T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '182T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '184T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '213T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '215T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '254T', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_Frame_Size': '256T', 'Allowed?': 'Allowed'}
+    ... (68 more rows, see JSON)
+
+[3000] Alt_Size x F_MotorHpRpm (78 rows)
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '7.5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '10-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '2x3x6', 'F_MotorHpRpm': '15-1800', 'Allowed?': 'Allowed'}
+    ... (70 more rows, see JSON)
+
+[3000] F_Frame_Size x F_MotorHpRpm (56 rows)
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143T', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182T', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143T', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '184T', 'F_MotorHpRpm': '2-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145T', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    ... (48 more rows, see JSON)
+
+[5500] Alt_Size x F_Frame_Size (201 rows)
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '143TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '145TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '182TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '184TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '213TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '215TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '254TC', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '256TC', 'Allowed?': 'Allowed'}
+    ... (193 more rows, see JSON)
+
+[5500] Alt_Size x F_MotorHpRpm (205 rows)
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-3600', 'Allowed?': 'Allowed'}
+    ... (197 more rows, see JSON)
+
+[5500] F_Frame_Size x F_MotorHpRpm (50 rows)
+    {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182TC', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '184TC', 'F_MotorHpRpm': '2-1200', 'Allowed?': 'Allowed'}
+    ... (42 more rows, see JSON)
+
+[5530] Alt_Size x F_Frame_Size (134 rows)
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '143TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '145TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '182TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '184TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '213TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '215TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '254TC', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '256TC', 'Allowed?': 'X'}
+    ... (126 more rows, see JSON)
+
+[5530] Alt_Size x F_MotorHpRpm (205 rows)
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'X'}
+    {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-3600', 'Allowed?': 'X'}
+    ... (197 more rows, see JSON)
+
+[5530] F_Frame_Size x F_MotorHpRpm (30 rows)
+    {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '182TC', 'F_MotorHpRpm': '1.5-1200', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '2-3600', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '145TC', 'F_MotorHpRpm': '2-1800', 'Allowed?': 'Allowed'}
+    {'F_Frame_Size': '184TC', 'F_MotorHpRpm': '2-1200', 'Allowed?': 'Allowed'}
+    ... (22 more rows, see JSON)
+
+============================================================================================================================================
+COMBINE VARIABLES (reference lookups, not authoritative constraints)
+============================================================================================================================================
+
+[MotorHpRpm_to_HpAndRpm] F_MotorHpRPM -> ['MotorHp', 'MotorRPM'] (56 rows)
+    {'key': '1-1200', 'MotorHp': '1', 'MotorRPM': '1200'}
+    {'key': '1-1800', 'MotorHp': '1', 'MotorRPM': '1800'}
+    {'key': '1.5-1200', 'MotorHp': '1.5', 'MotorRPM': '1200'}
+    {'key': '1.5-1800', 'MotorHp': '1.5', 'MotorRPM': '1800'}
+    {'key': '1.5-3600', 'MotorHp': '1.5', 'MotorRPM': '3600'}
+    {'key': '2-1200', 'MotorHp': '2', 'MotorRPM': '1200'}
+    {'key': '2-1800', 'MotorHp': '2', 'MotorRPM': '1800'}
+    {'key': '2-3600', 'MotorHp': '2', 'MotorRPM': '3600'}
+    ... (48 more rows, see JSON)
+
+[MotorType_decomposition] MotorType -> ['F_MotorEnclosure', 'F_MotorEfficiency', 'F_MotorVoltage', 'F_MotorHertz', 'F_MotorHp', 'F_MotorRPM'] (5 rows)
+    {'key': 'TEFC_PE_230/460-3-60', 'F_MotorEnclosure': 'TEFC', 'F_MotorEfficiency': 'PE', 'F_MotorVoltage': '230', 'F_MotorHertz': '3ph - 50 hz', 'F_MotorHp': '1', 'F_MotorRPM': '900'}
+    {'key': 'TEFC_PE_SD_230/460-3-60', 'F_MotorEnclosure': 'TEFC_SD', 'F_MotorEfficiency': None, 'F_MotorVoltage': '230/460', 'F_MotorHertz': '3ph - 60 hz', 'F_MotorHp': '1.5', 'F_MotorRPM': '1200'}
+    {'key': 'TEFC_PE_460-3-60', 'F_MotorEnclosure': 'IEEE_841', 'F_MotorEfficiency': None, 'F_MotorVoltage': '460', 'F_MotorHertz': None, 'F_MotorHp': '2', 'F_MotorRPM': '1800'}
+    {'key': 'TEFC_PE_SD_460-3-60', 'F_MotorEnclosure': None, 'F_MotorEfficiency': None, 'F_MotorVoltage': None, 'F_MotorHertz': None, 'F_MotorHp': '3', 'F_MotorRPM': '3600'}
+    {'key': 'TEFC_PE_IEEE_841_460-3-60', 'F_MotorEnclosure': None, 'F_MotorEfficiency': None, 'F_MotorVoltage': None, 'F_MotorHertz': None, 'F_MotorHp': '5', 'F_MotorRPM': None}
+
+[MotorMfg_to_MotorOption] Motor Mfg -> ['Motor Option'] (4 rows)
+    {'key': 'Standard Offering', 'Motor Option': 'Supplied by Fybroc'}
+    {'key': 'Baldor', 'Motor Option': 'Installed by Fybroc'}
+    {'key': 'TECO', 'Motor Option': 'By Others'}
+    {'key': 'Toshiba', 'Motor Option': None}
+
+[WettedHardware_to_ShaftMaterial] Wetted Hardware -> ['Shaft Material'] (2 rows)
+    {'key': 'Match Shaft Material', 'Shaft Material': '303 SS'}
+    {'key': 'Select Material', 'Shaft Material': '316 SS'}
+
