@@ -1,0 +1,1310 @@
+{
+  "artifact": "FYBROC_REV03_CONFIGURATION_STRUCTURE",
+  "step": "F120.6",
+  "roadmap_version": "1.0",
+  "milestone": "F120",
+  "source_workbook": "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx",
+  "generated_utc": "2026-08-21T22:08:21.846035+00:00",
+  "git_commit": "a4476218daf6259c6349e2c6be5fb4fda32da66b",
+  "git_working_tree_clean": false,
+  "todo": {
+    "completed_items": [
+      {
+        "date": "Completed",
+        "item": "To do:"
+      },
+      {
+        "date": "2026-07-09",
+        "item": "Mark Standard selections on Selections sheet"
+      },
+      {
+        "date": "2026-07-09",
+        "item": "Make sure spec sheets questions match the questions in this file"
+      }
+    ],
+    "pending_items": [
+      "Add in Flush Assembly Selection",
+      "Make conversion for Motor options",
+      "Remove Underscores",
+      "What is the Max Length of Tailpipe that can be supplied?",
+      "Convert the price pages to better tables",
+      "Add Wetted hardware question (Match Shaft material, Custom Material), make constraint table for Wetted hardware and Shaft material.",
+      "Constraint Tables for new Questions",
+      "VFD needs Shaft Grounding Ring"
+    ],
+    "horizontal_questions": [
+      {
+        "seq": 2,
+        "question": "Series",
+        "field_code": null
+      },
+      {
+        "seq": 3,
+        "question": "Size",
+        "field_code": "Alt_Size"
+      },
+      {
+        "seq": 4,
+        "question": "Pump Material",
+        "field_code": "F_Pump_Material"
+      },
+      {
+        "seq": 5,
+        "question": "Shaft Material",
+        "field_code": "F_Shaft_Material"
+      },
+      {
+        "seq": 6,
+        "question": "Casing drain",
+        "field_code": "F_Casing_Drains"
+      },
+      {
+        "seq": 7,
+        "question": "Gauge Taps",
+        "field_code": "F_Suction_Discharge"
+      },
+      {
+        "seq": 8,
+        "question": "Impeller Sleeve",
+        "field_code": "F_Sleeve"
+      },
+      {
+        "seq": 9,
+        "question": "Pump elastomers",
+        "field_code": "F_Pump_Elastomers"
+      },
+      {
+        "seq": 10,
+        "question": "Gland Hardware",
+        "field_code": "F_Gland_Hardware"
+      },
+      {
+        "seq": 11,
+        "question": "Flush",
+        "field_code": "F_Flush"
+      },
+      {
+        "seq": 12,
+        "question": "Cyclone Separator",
+        "field_code": "F_CycloneSep"
+      },
+      {
+        "seq": 14,
+        "question": "Seal Option",
+        "field_code": "F_Seal_Option"
+      },
+      {
+        "seq": 15,
+        "question": "Seal Type",
+        "field_code": "F_Seal_Type"
+      },
+      {
+        "seq": 16,
+        "question": "Seal materials",
+        "field_code": "F_Seal_Materials"
+      },
+      {
+        "seq": 17,
+        "question": "Seal Elastomers",
+        "field_code": "F_Seal_Elastomers"
+      },
+      {
+        "seq": 18,
+        "question": "Seal Guard",
+        "field_code": "F_Seal_Guard"
+      },
+      {
+        "seq": 20,
+        "question": "Power Frame Bearings",
+        "field_code": "F_Bearing_Option"
+      },
+      {
+        "seq": 21,
+        "question": "Coupling Options",
+        "field_code": "F_Coupling_Option"
+      },
+      {
+        "seq": 22,
+        "question": "Coupling Guard",
+        "field_code": "F_CouplingGuard"
+      },
+      {
+        "seq": 23,
+        "question": "Baseplate",
+        "field_code": "F_Baseplate_Option"
+      },
+      {
+        "seq": 24,
+        "question": "Casing Hardware",
+        "field_code": "F_Casing_Hardware"
+      },
+      {
+        "seq": 25,
+        "question": "Baseplate Hardware",
+        "field_code": "F_BaseplateHardware"
+      },
+      {
+        "seq": 26,
+        "question": "Power Frame Hardware",
+        "field_code": "F_Power_Frame_Hardware"
+      },
+      {
+        "seq": 28,
+        "question": "Testing",
+        "field_code": null
+      },
+      {
+        "seq": 31,
+        "question": "Impeller Trim",
+        "field_code": "F_ImpellerTrim"
+      },
+      {
+        "seq": 32,
+        "question": "Impeller Range",
+        "field_code": null
+      },
+      {
+        "seq": 33,
+        "question": "Dynamic Impeller",
+        "field_code": "F_Dynamic_Impeller"
+      },
+      {
+        "seq": 35,
+        "question": "Motor Option",
+        "field_code": "F_MotorOption"
+      },
+      {
+        "seq": 36,
+        "question": "Motor Control",
+        "field_code": null
+      },
+      {
+        "seq": 37,
+        "question": "Power [HP]",
+        "field_code": "F_MotorHp"
+      },
+      {
+        "seq": 38,
+        "question": "Speed",
+        "field_code": "F_MotorRPM"
+      },
+      {
+        "seq": 39,
+        "question": "Voltage",
+        "field_code": "F_MotorVoltage"
+      },
+      {
+        "seq": 40,
+        "question": "Phase/Hertz",
+        "field_code": "F_MotorHertz"
+      },
+      {
+        "seq": 41,
+        "question": "Frame",
+        "field_code": "F_Frame_Size"
+      },
+      {
+        "seq": 42,
+        "question": "Enclosure",
+        "field_code": "F_MotorEnclosure"
+      },
+      {
+        "seq": 43,
+        "question": "Efficiency",
+        "field_code": "F_MotorEfficiency"
+      },
+      {
+        "seq": 44,
+        "question": "C-Face Adaptor",
+        "field_code": null
+      },
+      {
+        "seq": 45,
+        "question": "Manufacturer",
+        "field_code": "F_MotorMfg"
+      }
+    ],
+    "vertical_questions": [
+      {
+        "seq": 2,
+        "question": "Series",
+        "field_code": null
+      },
+      {
+        "seq": 3,
+        "question": "Size",
+        "field_code": "Alt_Size"
+      },
+      {
+        "seq": 4,
+        "question": "Pump Material",
+        "field_code": "F_Pump_Material"
+      },
+      {
+        "seq": 5,
+        "question": "Shaft Material",
+        "field_code": "F_Shaft_Material"
+      },
+      {
+        "seq": 6,
+        "question": "Shaft Sleeve",
+        "field_code": "F_Sleeve"
+      },
+      {
+        "seq": 7,
+        "question": "Pump elastomers",
+        "field_code": "F_Pump_Elastomers"
+      },
+      {
+        "seq": 8,
+        "question": "Wetted Hardware",
+        "field_code": null
+      },
+      {
+        "seq": 9,
+        "question": "Flush",
+        "field_code": "F_Flush"
+      },
+      {
+        "seq": 10,
+        "question": "Mounting Plate",
+        "field_code": "F_Mounting_Plate_Option"
+      },
+      {
+        "seq": 12,
+        "question": "Impeller Trim",
+        "field_code": "F_ImpellerTrim"
+      },
+      {
+        "seq": 13,
+        "question": "Impeller Range",
+        "field_code": null
+      },
+      {
+        "seq": 14,
+        "question": "Dynamic Impeller",
+        "field_code": "F_Dynamic_Impeller"
+      },
+      {
+        "seq": 16,
+        "question": "Coupling Options",
+        "field_code": "F_Coupling_Option"
+      },
+      {
+        "seq": 17,
+        "question": "Strainer",
+        "field_code": "F_Strainer"
+      },
+      {
+        "seq": 18,
+        "question": "Tailpipe",
+        "field_code": "F_Tailpipe_Option"
+      },
+      {
+        "seq": 20,
+        "question": "Setting Number",
+        "field_code": "F_Setting"
+      },
+      {
+        "seq": 21,
+        "question": "L-Dimension",
+        "field_code": null
+      },
+      {
+        "seq": 22,
+        "question": "Tailpipe",
+        "field_code": "F_Tailpipe_Length"
+      },
+      {
+        "seq": 23,
+        "question": "Strainer",
+        "field_code": null
+      },
+      {
+        "seq": 24,
+        "question": "Total Pump Length",
+        "field_code": "(Not a question)"
+      },
+      {
+        "seq": 25,
+        "question": "Testing",
+        "field_code": null
+      },
+      {
+        "seq": 28,
+        "question": "Motor Options",
+        "field_code": "F_MotorOption"
+      },
+      {
+        "seq": 29,
+        "question": "Motor Control",
+        "field_code": null
+      },
+      {
+        "seq": 30,
+        "question": "Power [HP]",
+        "field_code": "F_MotorHp"
+      },
+      {
+        "seq": 31,
+        "question": "Speed",
+        "field_code": "F_MotorRPM"
+      },
+      {
+        "seq": 32,
+        "question": "Voltage",
+        "field_code": "F_MotorVoltage"
+      },
+      {
+        "seq": 33,
+        "question": "Phase/Hertz",
+        "field_code": "F_MotorHertz"
+      },
+      {
+        "seq": 34,
+        "question": "Frame",
+        "field_code": "F_Frame_Size"
+      },
+      {
+        "seq": 35,
+        "question": "Enclosure",
+        "field_code": "F_MotorEnclosure"
+      },
+      {
+        "seq": 36,
+        "question": "Efficiency",
+        "field_code": "F_MotorEfficiency"
+      },
+      {
+        "seq": 37,
+        "question": "Manufacturer",
+        "field_code": "F_MotorMfg"
+      }
+    ],
+    "horizontal_question_count": 38,
+    "vertical_question_count": 31
+  },
+  "main_page": {
+    "descriptions": {
+      "Items": "What questions are asked on each item for every series? Each Item page is mapped to show what questions are asked.",
+      "Selections": "What selections are available for each question and which selections are allowed for each series? The selections available for each question are listed and then mapped to what is allowed for each series.",
+      "Constraints": "What combination of selections are not allowed? The constraints on the combination of two selections are identified."
+    },
+    "all_selections_fields": [
+      "Alt Size",
+      "Baseplate Option",
+      "BaseplateHardware",
+      "Bearing Option",
+      "C-Face Adaptor",
+      "Casing Drains",
+      "Casing Hardware",
+      "Coupling Guard",
+      "Coupling Option",
+      "Cyclone Seperator",
+      "Impeller Balance",
+      "Flange Type",
+      "Flush",
+      "Flush Material",
+      "Frame Size",
+      "Gland Hardware",
+      "Hydrotest Certificate",
+      "Impeller Trim",
+      "Length",
+      "Motor Control",
+      "Motor Efficiency",
+      "Motor Enclosure",
+      "Motor Hertz",
+      "Motor Hp",
+      "Motor Mfg",
+      "Motor Option",
+      "Motor RPM",
+      "Motor Voltage",
+      "Mounting Plate Option",
+      "NamePlate",
+      "Customer Nameplate",
+      "Paint Upgrade",
+      "Performance Testing",
+      "Power Frame Hardware",
+      "Pump Elastomers",
+      "Pump Material",
+      "Seal Elastomers",
+      "Seal Guard",
+      "Seal Materials",
+      "Seal Mfg",
+      "Seal Option",
+      "Seal Type",
+      "Setting/Length",
+      "Setting",
+      "Shaft Grounding",
+      "Shaft Material",
+      "Sleeve",
+      "Sound Level Testing",
+      "Strainer",
+      "Suction Discharge Taps",
+      "Tailpipe Option",
+      "Tailpipe Length",
+      "Vapor Seal",
+      "Vibration Testing",
+      "Wetted Hardware",
+      "Wetted Hardware Selection"
+    ],
+    "all_items_fields": [
+      "Alt_Size",
+      "F_Baseplate_Option",
+      "F_BaseplateHardware",
+      "F_Bearing_Option",
+      "F_Casing_Drains",
+      "F_Casing_Hardware",
+      "F_CouplingGuard",
+      "F_Coupling_Option",
+      "F_CycloneSep",
+      "F_Dynamic_Impeller",
+      "F_Flange_Type",
+      "F_Flush",
+      "F_Frame_Size",
+      "F_Gland_Hardware",
+      "F_ImpellerTrim",
+      "F_MotorHpRpm",
+      "F_MotorOption",
+      "F_Motor_Type",
+      "F_NamePlate",
+      "F_NamePlate2",
+      "F_Paint_Upgrade",
+      "F_Power_Frame_Hardware",
+      "F_Pump_Elastomers",
+      "F_Pump_Material",
+      "F_Seal_Elastomers",
+      "F_Seal_Guard",
+      "F_Seal_Materials",
+      "F_Seal_Option",
+      "F_Seal_Type",
+      "F_Setting",
+      "F_Shaft_Grounding",
+      "F_Shaft_Material",
+      "F_Sleeve",
+      "F_Strainer",
+      "F_Suction_Discharge",
+      "F_Vapor_Seal"
+    ],
+    "all_constraints_fields": [
+      "Alt_Size",
+      "F_Baseplate_Option",
+      "F_BaseplateHardware",
+      "F_Bearing_Option",
+      "F_Casing_Drains",
+      "F_Casing_Hardware",
+      "F_CouplingGuard",
+      "F_Coupling_Option",
+      "F_CycloneSep",
+      "F_Dynamic_Impeller",
+      "F_Flange_Type",
+      "F_Flush",
+      "F_Frame_Size",
+      "F_Gland_Hardware",
+      "F_ImpellerTrim",
+      "F_MotorHpRpm",
+      "F_MotorOption",
+      "F_Motor_Type",
+      "F_NamePlate",
+      "F_NamePlate2",
+      "F_Paint_Upgrade",
+      "F_Power_Frame_Hardware",
+      "F_Pump_Elastomers",
+      "F_Pump_Material",
+      "F_Seal_Elastomers",
+      "F_Seal_Guard",
+      "F_Seal_Materials",
+      "F_Seal_Option",
+      "F_Seal_Type",
+      "F_Setting",
+      "F_Shaft_Grounding",
+      "F_Shaft_Material",
+      "F_Sleeve",
+      "F_Strainer",
+      "F_Suction_Discharge"
+    ],
+    "all_selections_count": 56,
+    "all_items_count": 36,
+    "all_constraints_count": 35,
+    "series_field_lists": {
+      "1500": {
+        "from_selections": [
+          "Alt Size",
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Bearing Option",
+          "C-Face Adaptor",
+          "Casing Drains",
+          "Casing Hardware",
+          "Coupling Guard",
+          "Coupling Option",
+          "Cyclone Seperator",
+          "Impeller Balance",
+          "Flange Type",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Gland Hardware",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Power Frame Hardware",
+          "Pump Elastomers",
+          "Pump Material",
+          "Seal Elastomers",
+          "Seal Guard",
+          "Seal Materials",
+          "Seal Mfg",
+          "Seal Option",
+          "Seal Type",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sleeve",
+          "Sound Level Testing",
+          "Suction Discharge Taps",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Bearing_Option",
+          "F_Casing_Drains",
+          "F_Casing_Hardware",
+          "F_CouplingGuard",
+          "F_Coupling_Option",
+          "F_CycloneSep",
+          "F_Dynamic_Impeller",
+          "F_Flange_Type",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_Gland_Hardware",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Power_Frame_Hardware",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Seal_Elastomers",
+          "F_Seal_Guard",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Sleeve",
+          "F_Suction_Discharge"
+        ],
+        "selections_count": 46,
+        "items_count": 33,
+        "match": false
+      },
+      "1530": {
+        "from_selections": [
+          "Alt Size",
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Casing Drains",
+          "Casing Hardware",
+          "Cyclone Seperator",
+          "Impeller Balance",
+          "Flange Type",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Gland Hardware",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Pump Elastomers",
+          "Pump Material",
+          "Seal Elastomers",
+          "Seal Guard",
+          "Seal Materials",
+          "Seal Mfg",
+          "Seal Option",
+          "Seal Type",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sound Level Testing",
+          "Suction Discharge Taps",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Casing_Drains",
+          "F_Casing_Hardware",
+          "F_CycloneSep",
+          "F_Dynamic_Impeller",
+          "F_Flange_Type",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_Gland_Hardware",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Seal_Elastomers",
+          "F_Seal_Guard",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Suction_Discharge"
+        ],
+        "selections_count": 40,
+        "items_count": 28,
+        "match": false
+      },
+      "1600": {
+        "from_selections": [
+          "Alt Size",
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Bearing Option",
+          "C-Face Adaptor",
+          "Casing Drains",
+          "Casing Hardware",
+          "Coupling Guard",
+          "Coupling Option",
+          "Impeller Balance",
+          "Flange Type",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Gland Hardware",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Power Frame Hardware",
+          "Pump Elastomers",
+          "Pump Material",
+          "Seal Elastomers",
+          "Seal Guard",
+          "Seal Materials",
+          "Seal Mfg",
+          "Seal Option",
+          "Seal Type",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sleeve",
+          "Sound Level Testing",
+          "Suction Discharge Taps",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Bearing_Option",
+          "F_Casing_Drains",
+          "F_Casing_Hardware",
+          "F_CouplingGuard",
+          "F_Coupling_Option",
+          "F_Dynamic_Impeller",
+          "F_Flange_Type",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_Gland_Hardware",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Power_Frame_Hardware",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Seal_Elastomers",
+          "F_Seal_Guard",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Sleeve",
+          "F_Suction_Discharge"
+        ],
+        "selections_count": 45,
+        "items_count": 32,
+        "match": false
+      },
+      "1630": {
+        "from_selections": [
+          "Alt Size",
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Casing Drains",
+          "Casing Hardware",
+          "Impeller Balance",
+          "Flange Type",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Gland Hardware",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Pump Elastomers",
+          "Pump Material",
+          "Seal Elastomers",
+          "Seal Guard",
+          "Seal Materials",
+          "Seal Mfg",
+          "Seal Option",
+          "Seal Type",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sound Level Testing",
+          "Suction Discharge Taps",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Casing_Drains",
+          "F_Casing_Hardware",
+          "F_Dynamic_Impeller",
+          "F_Flange_Type",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_Gland_Hardware",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Seal_Elastomers",
+          "F_Seal_Guard",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Suction_Discharge"
+        ],
+        "selections_count": 39,
+        "items_count": 27,
+        "match": false
+      },
+      "2530": {
+        "from_selections": [
+          "Alt Size",
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Casing Drains",
+          "Casing Hardware",
+          "Impeller Balance",
+          "Flange Type",
+          "Frame Size",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Pump Elastomers",
+          "Pump Material",
+          "Shaft Grounding",
+          "Sound Level Testing",
+          "Suction Discharge Taps",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Casing_Drains",
+          "F_Casing_Hardware",
+          "F_Dynamic_Impeller",
+          "F_Frame_Size",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Shaft_Grounding",
+          "F_Suction_Discharge"
+        ],
+        "selections_count": 29,
+        "items_count": 18,
+        "match": false
+      },
+      "3000": {
+        "from_selections": [
+          "Alt Size",
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Casing Drains",
+          "Casing Hardware",
+          "Coupling Guard",
+          "Coupling Option",
+          "Cyclone Seperator",
+          "Impeller Balance",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Gland Hardware",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Power Frame Hardware",
+          "Pump Elastomers",
+          "Pump Material",
+          "Seal Elastomers",
+          "Seal Guard",
+          "Seal Materials",
+          "Seal Mfg",
+          "Seal Option",
+          "Seal Type",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sleeve",
+          "Sound Level Testing",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Casing_Hardware",
+          "F_CouplingGuard",
+          "F_Coupling_Option",
+          "F_CycloneSep",
+          "F_Dynamic_Impeller",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Power_Frame_Hardware",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Seal_Elastomers",
+          "F_Seal_Guard",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "selections_count": 42,
+        "items_count": 28,
+        "match": false
+      },
+      "5500": {
+        "from_selections": [
+          "Alt Size",
+          "Coupling Option",
+          "Impeller Balance",
+          "Flange Type",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Length",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Enclosure",
+          "Motor Hertz",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "Motor Voltage",
+          "Mounting Plate Option",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Pump Elastomers",
+          "Pump Material",
+          "Setting/Length",
+          "Setting",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sleeve",
+          "Sound Level Testing",
+          "Strainer",
+          "Tailpipe Option",
+          "Tailpipe Length",
+          "Vibration Testing",
+          "Wetted Hardware",
+          "Wetted Hardware Selection"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Coupling_Option",
+          "F_Dynamic_Impeller",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Setting",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Sleeve",
+          "F_Strainer"
+        ],
+        "selections_count": 38,
+        "items_count": 19,
+        "match": false
+      },
+      "5530": {
+        "from_selections": [
+          "Alt Size",
+          "Coupling Option",
+          "Impeller Balance",
+          "Flush",
+          "Flush Material",
+          "Frame Size",
+          "Hydrotest Certificate",
+          "Impeller Trim",
+          "Motor Control",
+          "Motor Efficiency",
+          "Motor Hp",
+          "Motor Mfg",
+          "Motor Option",
+          "Motor RPM",
+          "NamePlate",
+          "Customer Nameplate",
+          "Paint Upgrade",
+          "Performance Testing",
+          "Pump Elastomers",
+          "Pump Material",
+          "Setting",
+          "Shaft Grounding",
+          "Shaft Material",
+          "Sound Level Testing",
+          "Vapor Seal",
+          "Vibration Testing"
+        ],
+        "from_items": [
+          "Alt_Size",
+          "F_Coupling_Option",
+          "F_Dynamic_Impeller",
+          "F_Flush",
+          "F_Frame_Size",
+          "F_ImpellerTrim",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_NamePlate",
+          "F_NamePlate2",
+          "F_Paint_Upgrade",
+          "F_Pump_Elastomers",
+          "F_Pump_Material",
+          "F_Setting",
+          "F_Shaft_Grounding",
+          "F_Shaft_Material",
+          "F_Vapor_Seal"
+        ],
+        "selections_count": 26,
+        "items_count": 18,
+        "match": false
+      },
+      "7500": {
+        "from_selections": [
+          "Alt Size",
+          "NamePlate",
+          "Customer Nameplate",
+          "Pump Material"
+        ],
+        "from_items": [
+          "F_NamePlate",
+          "F_NamePlate2"
+        ],
+        "selections_count": 4,
+        "items_count": 2,
+        "match": false
+      },
+      "8500": {
+        "from_selections": [
+          "Alt Size",
+          "NamePlate",
+          "Customer Nameplate",
+          "Pump Material"
+        ],
+        "from_items": [
+          "F_NamePlate",
+          "F_NamePlate2"
+        ],
+        "selections_count": 4,
+        "items_count": 2,
+        "match": false
+      }
+    },
+    "series_count": 10,
+    "mismatch_column_count": 12
+  },
+  "hierarchy": {
+    "headers": [
+      "Pump Options",
+      "Impeller",
+      "Mechanical Seal",
+      "Motor",
+      "Baseplate",
+      "Mounting plate",
+      "Vertical",
+      "Other"
+    ],
+    "row_count": 13,
+    "rows": [
+      {
+        "Pump Options": null,
+        "Impeller": "Series",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": "ImpellerTrim",
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Seal Option"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Alt Size",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": "Dynamic Impeller",
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Seal Type"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Flange Type",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Seal Materials"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Pump Material",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Seal Elastomers"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Casing Drains",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Seal Guard"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Suction Discharge Taps",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Flush"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Casing Hardware",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "CycloneSep"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Pump Elastomers",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Gland Hardware"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Shaft Material",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": "Seal Mfg"
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Sleeve",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": null
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Power Frame Hardware",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": null
+      },
+      {
+        "Pump Options": null,
+        "Impeller": "Bearing Option",
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": null,
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": null
+      },
+      {
+        "Pump Options": null,
+        "Impeller": null,
+        "Mechanical Seal": null,
+        "Motor": null,
+        "Baseplate": "Trim Range",
+        "Mounting plate": null,
+        "Vertical": null,
+        "Other": null
+      }
+    ]
+  },
+  "combine_variables": {
+    "section_count": 1,
+    "sections": [
+      {
+        "start_row": 3,
+        "header_sample": [
+          "F_MotorHpRPM",
+          "MotorHp",
+          "MotorRPM",
+          "MotorType",
+          "F_MotorEnclosure",
+          "F_MotorEfficiency",
+          "F_MotorVoltage",
+          "F_MotorHertz",
+          "F_MotorHp",
+          "F_MotorRPM"
+        ],
+        "data_rows": 74
+      }
+    ]
+  }
+}

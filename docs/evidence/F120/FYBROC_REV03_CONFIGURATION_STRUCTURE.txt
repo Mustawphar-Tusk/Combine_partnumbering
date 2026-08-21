@@ -1,0 +1,137 @@
+========================================================================================================================
+F120.6 - FYBROC REV0.3 CONFIGURATION STRUCTURE
+========================================================================================================================
+
+Git commit  : a4476218daf6259c6349e2c6be5fb4fda32da66b
+Git clean   : False
+
+========================================================================================================================
+1. TO DO SHEET
+========================================================================================================================
+
+COMPLETED:
+  [Completed] To do:
+  [2026-07-09] Mark Standard selections on Selections sheet
+  [2026-07-09] Make sure spec sheets questions match the questions in this file
+
+PENDING:
+  - Add in Flush Assembly Selection
+  - Make conversion for Motor options
+  - Remove Underscores
+  - What is the Max Length of Tailpipe that can be supplied?
+  - Convert the price pages to better tables
+  - Add Wetted hardware question (Match Shaft material, Custom Material), make constraint table for Wetted hardware and Shaft material.
+  - Constraint Tables for new Questions
+  - VFD needs Shaft Grounding Ring
+
+HORIZONTAL QUESTIONS (38):
+   2. Series                              -> —
+   3. Size                                -> Alt_Size
+   4. Pump Material                       -> F_Pump_Material
+   5. Shaft Material                      -> F_Shaft_Material
+   6. Casing drain                        -> F_Casing_Drains
+   7. Gauge Taps                          -> F_Suction_Discharge
+   8. Impeller Sleeve                     -> F_Sleeve
+   9. Pump elastomers                     -> F_Pump_Elastomers
+  10. Gland Hardware                      -> F_Gland_Hardware
+  11. Flush                               -> F_Flush
+  12. Cyclone Separator                   -> F_CycloneSep
+  14. Seal Option                         -> F_Seal_Option
+  15. Seal Type                           -> F_Seal_Type
+  16. Seal materials                      -> F_Seal_Materials
+  17. Seal Elastomers                     -> F_Seal_Elastomers
+  18. Seal Guard                          -> F_Seal_Guard
+  20. Power Frame Bearings                -> F_Bearing_Option
+  21. Coupling Options                    -> F_Coupling_Option
+  22. Coupling Guard                      -> F_CouplingGuard
+  23. Baseplate                           -> F_Baseplate_Option
+  24. Casing Hardware                     -> F_Casing_Hardware
+  25. Baseplate Hardware                  -> F_BaseplateHardware
+  26. Power Frame Hardware                -> F_Power_Frame_Hardware
+  28. Testing                             -> —
+  31. Impeller Trim                       -> F_ImpellerTrim
+  32. Impeller Range                      -> —
+  33. Dynamic Impeller                    -> F_Dynamic_Impeller
+  35. Motor Option                        -> F_MotorOption
+  36. Motor Control                       -> —
+  37. Power [HP]                          -> F_MotorHp
+  38. Speed                               -> F_MotorRPM
+  39. Voltage                             -> F_MotorVoltage
+  40. Phase/Hertz                         -> F_MotorHertz
+  41. Frame                               -> F_Frame_Size
+  42. Enclosure                           -> F_MotorEnclosure
+  43. Efficiency                          -> F_MotorEfficiency
+  44. C-Face Adaptor                      -> —
+  45. Manufacturer                        -> F_MotorMfg
+
+VERTICAL QUESTIONS (31):
+   2. Series                              -> —
+   3. Size                                -> Alt_Size
+   4. Pump Material                       -> F_Pump_Material
+   5. Shaft Material                      -> F_Shaft_Material
+   6. Shaft Sleeve                        -> F_Sleeve
+   7. Pump elastomers                     -> F_Pump_Elastomers
+   8. Wetted Hardware                     -> —
+   9. Flush                               -> F_Flush
+  10. Mounting Plate                      -> F_Mounting_Plate_Option
+  12. Impeller Trim                       -> F_ImpellerTrim
+  13. Impeller Range                      -> —
+  14. Dynamic Impeller                    -> F_Dynamic_Impeller
+  16. Coupling Options                    -> F_Coupling_Option
+  17. Strainer                            -> F_Strainer
+  18. Tailpipe                            -> F_Tailpipe_Option
+  20. Setting Number                      -> F_Setting
+  21. L-Dimension                         -> —
+  22. Tailpipe                            -> F_Tailpipe_Length
+  23. Strainer                            -> —
+  24. Total Pump Length                   -> (Not a question)
+  25. Testing                             -> —
+  28. Motor Options                       -> F_MotorOption
+  29. Motor Control                       -> —
+  30. Power [HP]                          -> F_MotorHp
+  31. Speed                               -> F_MotorRPM
+  32. Voltage                             -> F_MotorVoltage
+  33. Phase/Hertz                         -> F_MotorHertz
+  34. Frame                               -> F_Frame_Size
+  35. Enclosure                           -> F_MotorEnclosure
+  36. Efficiency                          -> F_MotorEfficiency
+  37. Manufacturer                        -> F_MotorMfg
+
+========================================================================================================================
+2. MAIN PAGE
+========================================================================================================================
+
+DESCRIPTIONS:
+  Items: What questions are asked on each item for every series? Each Item page is mapped to show what questions are asked.
+  Selections: What selections are available for each question and which selections are allowed for each series? The selections available for each question are listed and then mapped to what is allowed for each series.
+  Constraints: What combination of selections are not allowed? The constraints on the combination of two selections are identified.
+
+ALL fields: 56 selections, 36 items, 35 constraints
+Mismatch indicators: 12 columns marked 'Lists do not match'
+Series analyzed: 10
+
+  1500: 46 sel / 33 items [MISMATCH]
+  1530: 40 sel / 28 items [MISMATCH]
+  1600: 45 sel / 32 items [MISMATCH]
+  1630: 39 sel / 27 items [MISMATCH]
+  2530: 29 sel / 18 items [MISMATCH]
+  3000: 42 sel / 28 items [MISMATCH]
+  5500: 38 sel / 19 items [MISMATCH]
+  5530: 26 sel / 18 items [MISMATCH]
+  7500: 4 sel / 2 items [MISMATCH]
+  8500: 4 sel / 2 items [MISMATCH]
+
+========================================================================================================================
+3. HIERARCHY
+========================================================================================================================
+
+Headers: ['Pump Options', 'Impeller', 'Mechanical Seal', 'Motor', 'Baseplate', 'Mounting plate', 'Vertical', 'Other']
+Row count: 13
+
+========================================================================================================================
+4. COMBINE VARIABLES
+========================================================================================================================
+
+Sections: 1
+
+  Row 3: ['F_MotorHpRPM', 'MotorHp', 'MotorRPM', 'MotorType', 'F_MotorEnclosure', 'F_MotorEfficiency', 'F_MotorVoltage', 'F_MotorHertz', 'F_MotorHp', 'F_MotorRPM']  (74 data rows)
