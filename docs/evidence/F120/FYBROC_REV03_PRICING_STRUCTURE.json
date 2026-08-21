@@ -4,7 +4,7 @@
   "roadmap_version": "1.0",
   "milestone": "F120",
   "source_workbook": "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx",
-  "generated_utc": "2026-08-21T22:18:39.122872+00:00",
+  "generated_utc": "2026-08-21T22:20:46.781596+00:00",
   "git_commit": "fc4313616598c3a37c7cb3b6ff36c2da2acb3ee7",
   "git_working_tree_clean": false,
   "pricing_index": {
@@ -726,7 +726,7 @@
           "Baseplate Option",
           "Price"
         ],
-        "data_rows": 2849,
+        "data_rows": 564,
         "sample_rows": [
           {
             "Series": "1500",
@@ -836,7 +836,7 @@
           "Coupling Option",
           "Price"
         ],
-        "data_rows": 2849,
+        "data_rows": 1050,
         "sample_rows": [
           {
             "Series": "1500",
@@ -936,7 +936,7 @@
           "Flush",
           "Price"
         ],
-        "data_rows": 2849,
+        "data_rows": 2052,
         "sample_rows": [
           {
             "Alt Size": "1x1.5x6",
@@ -1082,33 +1082,6 @@
     },
     "table_blocks": [
       {
-        "start_col": 2,
-        "description": "",
-        "headers": [
-          "Alt_Size",
-          "Setting",
-          "Combined"
-        ],
-        "data_rows_estimated": 52440,
-        "sample_rows": [
-          {
-            "Alt_Size": "1x1.5x6",
-            "Setting": "1",
-            "Combined": "1x1.5x6+1"
-          },
-          {
-            "Alt_Size": "1.5x3x6",
-            "Setting": "1",
-            "Combined": "1.5x3x6+1"
-          },
-          {
-            "Alt_Size": "2x3x6",
-            "Setting": "1",
-            "Combined": "2x3x6+1"
-          }
-        ]
-      },
-      {
         "start_col": 6,
         "description": "1500 Only - Base Price for a pump based on size and material",
         "headers": [
@@ -1224,46 +1197,7 @@
           "Sleeve",
           "Shaft Adder",
           "Sleeve Adder",
-          "Price"
-        ],
-        "data_rows_estimated": 52440,
-        "sample_rows": [
-          {
-            "Series": "5500",
-            "Alt_Size": "1x1.5x6",
-            "Setting": "1",
-            "Shaft Material": "316 SS",
-            "Sleeve": "No Sleeve",
-            "Shaft Adder": "0",
-            "Sleeve Adder": "0",
-            "Price": "0"
-          },
-          {
-            "Series": "5500",
-            "Alt_Size": "1.5x3x6",
-            "Setting": "1",
-            "Shaft Material": "316 SS",
-            "Sleeve": "No Sleeve",
-            "Shaft Adder": "0",
-            "Sleeve Adder": "0",
-            "Price": "0"
-          },
-          {
-            "Series": "5500",
-            "Alt_Size": "2x3x6",
-            "Setting": "1",
-            "Shaft Material": "316 SS",
-            "Sleeve": "No Sleeve",
-            "Shaft Adder": "0",
-            "Sleeve Adder": "0",
-            "Price": "0"
-          }
-        ]
-      },
-      {
-        "start_col": 33,
-        "description": "",
-        "headers": [
+          "Price",
           "Series",
           "Alt Size",
           "F_MotorHpRpm",
@@ -1275,27 +1209,45 @@
         "sample_rows": [
           {
             "Series": "5500",
+            "Alt_Size": "1x1.5x6",
+            "Setting": "1",
+            "Shaft Material": "316 SS",
+            "Sleeve": "No Sleeve",
+            "Shaft Adder": "0",
+            "Sleeve Adder": "0",
+            "Price": null,
             "Alt Size": "1x1.5x6",
             "F_MotorHpRpm": null,
             "Frame Size": null,
-            "Coupling Option": null,
-            "Price": null
+            "Coupling Option": null
           },
           {
             "Series": "5500",
+            "Alt_Size": "1.5x3x6",
+            "Setting": "1",
+            "Shaft Material": "316 SS",
+            "Sleeve": "No Sleeve",
+            "Shaft Adder": "0",
+            "Sleeve Adder": "0",
+            "Price": null,
             "Alt Size": "1.5x3x6",
             "F_MotorHpRpm": null,
             "Frame Size": null,
-            "Coupling Option": null,
-            "Price": null
+            "Coupling Option": null
           },
           {
             "Series": "5500",
+            "Alt_Size": "2x3x6",
+            "Setting": "1",
+            "Shaft Material": "316 SS",
+            "Sleeve": "No Sleeve",
+            "Shaft Adder": "0",
+            "Sleeve Adder": "0",
+            "Price": null,
             "Alt Size": "2x3x6",
             "F_MotorHpRpm": null,
             "Frame Size": null,
-            "Coupling Option": null,
-            "Price": null
+            "Coupling Option": null
           }
         ]
       },
@@ -1304,7 +1256,28 @@
         "description": "TAILPIPE",
         "headers": [
           "Series",
-          "Alt_Size",
+          "Alt_Size"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt_Size": "1x1.5x6"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "1.5x3x6"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "2x3x6"
+          }
+        ]
+      },
+      {
+        "start_col": 43,
+        "description": "Tailpipe only comes in two materials",
+        "headers": [
           "Pump Material",
           "Wetted Hardware",
           "Tailpipe Length",
@@ -1313,13 +1286,15 @@
           "Talipipe Multiplier",
           "First foot of Tailpipe",
           "Multiplier",
-          "Calculated Price"
+          "Calculated Price",
+          "Tailpipe Length",
+          "Price per Foot Multiplier",
+          "Pump Material",
+          "Tailpipe Material"
         ],
         "data_rows_estimated": 52440,
         "sample_rows": [
           {
-            "Series": "5500",
-            "Alt_Size": "1x1.5x6",
             "Pump Material": "VR-1",
             "Wetted Hardware": "316 SS",
             "Tailpipe Length": "6",
@@ -1328,79 +1303,32 @@
             "Talipipe Multiplier": "0",
             "First foot of Tailpipe": "1278",
             "Multiplier": "124",
-            "Calculated Price": "1278"
-          },
-          {
-            "Series": "5500",
-            "Alt_Size": "1.5x3x6",
-            "Pump Material": "VR-1",
-            "Wetted Hardware": "316 SS",
-            "Tailpipe Length": "6",
-            "Price": "1429",
-            "Tailpipe Material": "VR-1",
-            "Talipipe Multiplier": "0",
-            "First foot of Tailpipe": "1429",
-            "Multiplier": "152",
-            "Calculated Price": "1429"
-          },
-          {
-            "Series": "5500",
-            "Alt_Size": "2x3x6",
-            "Pump Material": "VR-1",
-            "Wetted Hardware": "316 SS",
-            "Tailpipe Length": "6",
-            "Price": "1429",
-            "Tailpipe Material": "VR-1",
-            "Talipipe Multiplier": "0",
-            "First foot of Tailpipe": "1429",
-            "Multiplier": "152",
-            "Calculated Price": "1429"
-          }
-        ]
-      },
-      {
-        "start_col": 55,
-        "description": "",
-        "headers": [
-          "Tailpipe Length",
-          "Price per Foot Multiplier"
-        ],
-        "data_rows_estimated": 52440,
-        "sample_rows": [
-          {
-            "Tailpipe Length": "6",
+            "Calculated Price": "1278",
             "Price per Foot Multiplier": "0"
-          },
-          {
-            "Tailpipe Length": "7",
-            "Price per Foot Multiplier": "0"
-          },
-          {
-            "Tailpipe Length": "8",
-            "Price per Foot Multiplier": "0"
-          }
-        ]
-      },
-      {
-        "start_col": 59,
-        "description": "",
-        "headers": [
-          "Pump Material",
-          "Tailpipe Material"
-        ],
-        "data_rows_estimated": 52440,
-        "sample_rows": [
-          {
-            "Pump Material": "VR-1",
-            "Tailpipe Material": "VR-1"
           },
           {
             "Pump Material": "VR-1 BPO/DMA",
-            "Tailpipe Material": "VR-1"
+            "Wetted Hardware": "316 SS",
+            "Tailpipe Length": "7",
+            "Price": "1429",
+            "Tailpipe Material": "VR-1",
+            "Talipipe Multiplier": "0",
+            "First foot of Tailpipe": "1429",
+            "Multiplier": "152",
+            "Calculated Price": "1429",
+            "Price per Foot Multiplier": "0"
           },
           {
             "Pump Material": "VR-1A",
-            "Tailpipe Material": "VR-1"
+            "Wetted Hardware": "316 SS",
+            "Tailpipe Length": "8",
+            "Price": "1429",
+            "Tailpipe Material": "VR-1",
+            "Talipipe Multiplier": "0",
+            "First foot of Tailpipe": "1429",
+            "Multiplier": "152",
+            "Calculated Price": "1429",
+            "Price per Foot Multiplier": "0"
           }
         ]
       },
@@ -1408,47 +1336,65 @@
         "start_col": 64,
         "description": "Shaft Material",
         "headers": [
-          "316 SS",
-          "No Sleeve",
           "316 SS"
         ],
-        "data_rows_estimated": 52440,
+        "data_rows_estimated": 11,
         "sample_rows": [
           {
-            "316 SS": "Carp-20",
+            "316 SS": "Carp-20"
+          },
+          {
+            "316 SS": "Hastelloy C"
+          },
+          {
+            "316 SS": "Titanium"
+          }
+        ]
+      },
+      {
+        "start_col": 65,
+        "description": "Sleeve",
+        "headers": [
+          "No Sleeve"
+        ],
+        "data_rows_estimated": 11,
+        "sample_rows": [
+          {
             "No Sleeve": "No Sleeve"
           },
           {
-            "316 SS": "Hast-C",
             "No Sleeve": "No Sleeve"
           },
           {
-            "316 SS": "Titanium",
             "No Sleeve": "No Sleeve"
           }
         ]
       },
       {
-        "start_col": 69,
-        "description": "",
+        "start_col": 66,
+        "description": "Wetted Hardware",
         "headers": [
+          "316 SS",
           "Series",
           "Alt_Size",
           "Strainer"
         ],
-        "data_rows_estimated": 52440,
+        "data_rows_estimated": 11,
         "sample_rows": [
           {
+            "316 SS": "Carp-20",
             "Series": "5500",
             "Alt_Size": "1x1.5x6",
             "Strainer": null
           },
           {
+            "316 SS": "Hast-C",
             "Series": "5500",
             "Alt_Size": "1.5x3x6",
             "Strainer": null
           },
           {
+            "316 SS": "Titanium",
             "Series": "5500",
             "Alt_Size": "2x3x6",
             "Strainer": null
@@ -1456,6 +1402,6 @@
         ]
       }
     ],
-    "table_count": 11
+    "table_count": 9
   }
 }

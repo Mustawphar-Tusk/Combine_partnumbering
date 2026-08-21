@@ -117,7 +117,7 @@ Table blocks: 20
 
   Col 56: 1500 Only - Baseplate pricing
     Headers: ['Series', 'Alt Size', 'Frame Size', 'Baseplate Option', 'Price']
-    Data rows: 2849
+    Data rows: 564
 
   Col 62: 1500 - Adder for Baseplate Hardware
     Headers: ['Series', 'Alt Size', 'Baseplate Hardware', 'Price']
@@ -129,7 +129,7 @@ Table blocks: 20
 
   Col 75: 1500 - Coupling Pricing
     Headers: ['Series', 'Alt Size', 'F_MotorHpRpm', 'Frame Size', 'Coupling Option', 'Price']
-    Data rows: 2849
+    Data rows: 1050
 
   Col 82: 1500 - Adder for Flange Type
     Headers: ['Series', 'Alt Size', 'Flange Type', 'Price']
@@ -141,7 +141,7 @@ Table blocks: 20
 
   Col 92: 1500 - Flush Pricing
     Headers: ['Alt Size', 'Pump Material', 'Flush Material', 'Flush', 'Price']
-    Data rows: 2849
+    Data rows: 2052
 
   Col 98: 1500 - Flush Adder
     Headers: ['Alt Size', 'Pump Material', 'Flush Material', 'Flush', 'Price']
@@ -160,11 +160,7 @@ Table blocks: 20
 ========================================================================================================================
 
 Sheet: 52445 rows x 71 cols
-Table blocks: 11
-
-  Col 2: 
-    Headers: ['Alt_Size', 'Setting', 'Combined']
-    Data rows (est): 52440
+Table blocks: 9
 
   Col 6: 1500 Only - Base Price for a pump based on size and material
     Headers: ['Series', 'Alt_Size', 'Setting', 'Pump Material', 'Price']
@@ -179,30 +175,26 @@ Table blocks: 11
     Data rows (est): 52440
 
   Col 24: 5500 - Shaft and Shaft Sleeve Adder
-    Headers: ['Series', 'Alt_Size', 'Setting', 'Shaft Material', 'Sleeve', 'Shaft Adder', 'Sleeve Adder', 'Price']
-    Data rows (est): 52440
-
-  Col 33: 
-    Headers: ['Series', 'Alt Size', 'F_MotorHpRpm', 'Frame Size', 'Coupling Option', 'Price']
+    Headers: ['Series', 'Alt_Size', 'Setting', 'Shaft Material', 'Sleeve', 'Shaft Adder', 'Sleeve Adder', 'Price', 'Series', 'Alt Size', 'F_MotorHpRpm', 'Frame Size', 'Coupling Option', 'Price']
     Data rows (est): 52440
 
   Col 41: TAILPIPE
-    Headers: ['Series', 'Alt_Size', 'Pump Material', 'Wetted Hardware', 'Tailpipe Length', 'Price', 'Tailpipe Material', 'Talipipe Multiplier', 'First foot of Tailpipe', 'Multiplier', 'Calculated Price']
+    Headers: ['Series', 'Alt_Size']
     Data rows (est): 52440
 
-  Col 55: 
-    Headers: ['Tailpipe Length', 'Price per Foot Multiplier']
-    Data rows (est): 52440
-
-  Col 59: 
-    Headers: ['Pump Material', 'Tailpipe Material']
+  Col 43: Tailpipe only comes in two materials
+    Headers: ['Pump Material', 'Wetted Hardware', 'Tailpipe Length', 'Price', 'Tailpipe Material', 'Talipipe Multiplier', 'First foot of Tailpipe', 'Multiplier', 'Calculated Price', 'Tailpipe Length', 'Price per Foot Multiplier', 'Pump Material', 'Tailpipe Material']
     Data rows (est): 52440
 
   Col 64: Shaft Material
-    Headers: ['316 SS', 'No Sleeve', '316 SS']
-    Data rows (est): 52440
+    Headers: ['316 SS']
+    Data rows (est): 11
 
-  Col 69: 
-    Headers: ['Series', 'Alt_Size', 'Strainer']
-    Data rows (est): 52440
+  Col 65: Sleeve
+    Headers: ['No Sleeve']
+    Data rows (est): 11
+
+  Col 66: Wetted Hardware
+    Headers: ['316 SS', 'Series', 'Alt_Size', 'Strainer']
+    Data rows (est): 11
 
