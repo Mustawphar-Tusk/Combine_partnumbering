@@ -1,0 +1,6683 @@
+{
+  "artifact": "FYBROC_SELECTIONS_MODEL",
+  "step": "F120.2",
+  "roadmap_version": "1.0",
+  "milestone": "F120",
+  "generated_utc": "2026-08-21T15:41:08.388021+00:00",
+  "git_commit": "a4bd6337fd8344b8e0bff078d1705174a88bd68b",
+  "git_working_tree_clean": false,
+  "selections": {
+    "series_columns": [
+      "1500",
+      "1530",
+      "1600",
+      "1630",
+      "2530",
+      "3000",
+      "5500",
+      "5530",
+      "7500",
+      "8500"
+    ],
+    "question_count": 56,
+    "questions": [
+      "Alt Size",
+      "Baseplate Option",
+      "BaseplateHardware",
+      "Bearing Option",
+      "C-Face Adaptor",
+      "Casing Drains",
+      "Casing Hardware",
+      "Coupling Guard",
+      "Coupling Option",
+      "Customer Nameplate",
+      "Cyclone Seperator",
+      "Flange Type",
+      "Flush",
+      "Flush Material",
+      "Frame Size",
+      "Gland Hardware",
+      "Hydrotest Certificate",
+      "Impeller Balance",
+      "Impeller Trim",
+      "Length",
+      "Motor Control",
+      "Motor Efficiency",
+      "Motor Enclosure",
+      "Motor Hertz",
+      "Motor Hp",
+      "Motor Mfg",
+      "Motor Option",
+      "Motor RPM",
+      "Motor Voltage",
+      "Mounting Plate Option",
+      "NamePlate",
+      "Paint Upgrade",
+      "Performance Testing",
+      "Power Frame Hardware",
+      "Pump Elastomers",
+      "Pump Material",
+      "Seal Elastomers",
+      "Seal Guard",
+      "Seal Materials",
+      "Seal Mfg",
+      "Seal Option",
+      "Seal Type",
+      "Setting",
+      "Setting/Length",
+      "Shaft Grounding",
+      "Shaft Material",
+      "Sleeve",
+      "Sound Level Testing",
+      "Strainer",
+      "Suction Discharge Taps",
+      "Tailpipe Length",
+      "Tailpipe Option",
+      "Vapor Seal",
+      "Vibration Testing",
+      "Wetted Hardware",
+      "Wetted Hardware Selection"
+    ],
+    "answer_row_count": 676,
+    "rows": [
+      {
+        "question": "Alt Size",
+        "answer": "1x1.5x6",
+        "valid_series": [
+          "1500",
+          "1530",
+          "2530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Alt Size",
+        "answer": "1.5x3x6",
+        "valid_series": [
+          "1500",
+          "1530",
+          "2530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Alt Size",
+        "answer": "2x3x6",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 9
+      },
+      {
+        "question": "Alt Size",
+        "answer": "1x1.5x8",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Alt Size",
+        "answer": "1.5x3x8",
+        "valid_series": [
+          "1500",
+          "1530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Alt Size",
+        "answer": "2x3x8",
+        "valid_series": [
+          "1500",
+          "1530",
+          "2530",
+          "3000",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Alt Size",
+        "answer": "3x4x8",
+        "valid_series": [
+          "1500",
+          "1530",
+          "2530",
+          "3000",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Alt Size",
+        "answer": "1x2x10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "2530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Alt Size",
+        "answer": "1.5x3x10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Alt Size",
+        "answer": "2x3x10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Alt Size",
+        "answer": "3x4x10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Alt Size",
+        "answer": "4x4x10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Alt Size",
+        "answer": "4x6x10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "2530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Alt Size",
+        "answer": "2x3x13",
+        "valid_series": [
+          "1500",
+          "1530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Alt Size",
+        "answer": "3x4x13",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Alt Size",
+        "answer": "4x6x13",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530",
+          "7500"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Alt Size",
+        "answer": "6x8x13",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Alt Size",
+        "answer": "8x10x15",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Alt Size",
+        "answer": "10x12x16",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Alt Size",
+        "answer": "6x10x8",
+        "valid_series": [
+          "8500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Alt Size",
+        "answer": "6x12x9",
+        "valid_series": [
+          "8500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Alt Size",
+        "answer": "8x14x10",
+        "valid_series": [
+          "8500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Alt Size",
+        "answer": "8x15x11",
+        "valid_series": [
+          "8500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Alt Size",
+        "answer": "4x6x11",
+        "valid_series": [
+          "3000"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Alt Size",
+        "answer": "3x4x6",
+        "valid_series": [
+          "2530"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Baseplate Option",
+        "answer": "Baseplate Included",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Baseplate Option",
+        "answer": "No Baseplate",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "BaseplateHardware",
+        "answer": "303 SS",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "BaseplateHardware",
+        "answer": "316 SS",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Bearing Option",
+        "answer": "Oil Bath Lubrication",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Bearing Option",
+        "answer": "Re-Greaseable Bearings",
+        "valid_series": [
+          "1500",
+          "1600"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Bearing Option",
+        "answer": "Greased for Life Bearings",
+        "valid_series": [
+          "1500",
+          "1600"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "C-Face Adaptor",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "C-Face Adaptor",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "1500",
+          "1600"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Casing Drains",
+        "answer": "Not Supplied by Fybroc",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Casing Drains",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Casing Hardware",
+        "answer": "303 SS",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Casing Hardware",
+        "answer": "316 SS",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Coupling Guard",
+        "answer": "Steel",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Coupling Guard",
+        "answer": "316 SS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Coupling Guard",
+        "answer": "Non Sparking",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Coupling Guard",
+        "answer": "No Coupling Guard",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Coupling Option",
+        "answer": "Coupling Included",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Coupling Option",
+        "answer": "No Coupling",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Cyclone Seperator",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Cyclone Seperator",
+        "answer": "By Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Impeller Balance",
+        "answer": "Not Supplied by Fybroc",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Impeller Balance",
+        "answer": "Dynamic Balancing",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Flange Type",
+        "answer": "ANSI Flange",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Flange Type",
+        "answer": "DIN/ISO Flange",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Flange Type",
+        "answer": "JIS Flange",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Flush",
+        "answer": "External Flush",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Flush",
+        "answer": "Internal Flush",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Flush",
+        "answer": "Bypass(Tapped Discharge)",
+        "valid_series": [
+          "1500",
+          "1530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Flush",
+        "answer": "Bypass(Tapped Spacer)",
+        "valid_series": [
+          "1500",
+          "1530"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Flush",
+        "answer": "Bypass(Cyclone Separator)",
+        "valid_series": [
+          "1500",
+          "1530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Flush",
+        "answer": "Bypass(Cyclone Separator/Spacer)",
+        "valid_series": [
+          "1500",
+          "1530"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Flush Material",
+        "answer": "Polypro",
+        "valid_series": [
+          "1500",
+          "1530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Flush Material",
+        "answer": "PTFE/PVDF",
+        "valid_series": [
+          "1500",
+          "1530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Flush Material",
+        "answer": "Not Applicable",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Frame Size",
+        "answer": "143T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "145T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "182T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "184T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "213T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "215T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "254T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "256T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "284T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "286T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "284TS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "324T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "286TS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "326T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "324TS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "364T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "326TS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "365T",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "364TS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "365TS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "405TS",
+        "valid_series": [
+          "1500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "404T",
+        "valid_series": [
+          "1500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "405T",
+        "valid_series": [
+          "1500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "444T",
+        "valid_series": [
+          "1500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "445T",
+        "valid_series": [
+          "1500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "143JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "145JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "182JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "184JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "213JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "215JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "254JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "256JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "284JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "286JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "324JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "326JM",
+        "valid_series": [
+          "1530",
+          "1630"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "143TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "145TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "182TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "184TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "213TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "215TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "254TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "256TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "284TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "286TC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "284TSC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "324TC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "286TSC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "326TC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "324TSC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "364TC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "326TSC",
+        "valid_series": [
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Frame Size",
+        "answer": "365TC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "364TSC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "365TSC",
+        "valid_series": [
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Frame Size",
+        "answer": "404TC",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "405TC",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "444TC",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "445TC",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Frame Size",
+        "answer": "447TC",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Gland Hardware",
+        "answer": "303 SS",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Gland Hardware",
+        "answer": "316 SS",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Gland Hardware",
+        "answer": "Carp-20",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Gland Hardware",
+        "answer": "Titanium",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Gland Hardware",
+        "answer": "Hastelloy C",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Hydrotest Certificate",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Hydrotest Certificate",
+        "answer": "Non-Wit Hydro Test Certificate",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Hydrotest Certificate",
+        "answer": "Wit Hydro Test Certificate",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "4.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "5.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "6.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "7.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "8.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "9.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "10.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "11.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.125",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.250",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.375",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.500",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.625",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.750",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "12.875",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.000",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.125",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.250",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.375",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.500",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.625",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.750",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "13.875",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.000",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.125",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.250",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.375",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.500",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.625",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.750",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "14.875",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.000",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.125",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.250",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.375",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.500",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.625",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.750",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "15.875",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Impeller Trim",
+        "answer": "16.000",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Length",
+        "answer": "18",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "19",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "20",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "21",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "22",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "23",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "24",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "25",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "26",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "27",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "28",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "29",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "30",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "31",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "32",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "33",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "34",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "35",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "36",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "37",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "38",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "39",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "40",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "41",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "42",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "43",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "44",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "45",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "46",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "47",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "48",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "49",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "50",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "51",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "52",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "53",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "54",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "55",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "56",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "57",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "58",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "59",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "60",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "61",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "62",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "63",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "64",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "65",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "66",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "67",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "68",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "69",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "70",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "71",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "72",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "73",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "74",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "75",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "76",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "77",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "78",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "79",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "80",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "81",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "82",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "83",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "84",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "85",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "86",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "87",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "88",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "89",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "90",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "91",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "92",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "93",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "94",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "95",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "96",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "97",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "98",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "99",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "100",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "101",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "102",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "103",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "104",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "105",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "106",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "107",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "108",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "109",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "110",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "111",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "112",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "113",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "114",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "115",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "116",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "117",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "118",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "119",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "120",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "121",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "122",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "123",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "124",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "125",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "126",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "127",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "128",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "129",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "130",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "131",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "132",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "133",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "134",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "135",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "136",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "137",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "138",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "139",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "140",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "141",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "142",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "143",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "144",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "145",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "146",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "147",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "148",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "149",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "150",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "151",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "152",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "153",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "154",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "155",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "156",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "157",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "158",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "159",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "160",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "161",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "162",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "163",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "164",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "165",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "166",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "167",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "168",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "169",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "170",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "171",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "172",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "173",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "174",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "175",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "176",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "177",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "178",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "179",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "180",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "181",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "182",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "183",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "184",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "185",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "186",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "187",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "188",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "189",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "190",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "191",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "192",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "193",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "194",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "195",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "196",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "197",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "198",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "199",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Length",
+        "answer": "200",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Motor Control",
+        "answer": "Single Speed",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Control",
+        "answer": "VFD",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Efficiency",
+        "answer": "PE",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Enclosure",
+        "answer": "TEFC",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Motor Enclosure",
+        "answer": "TEFC SD",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Enclosure",
+        "answer": "IEEE 841",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Enclosure",
+        "answer": "Custom",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Motor Hertz",
+        "answer": "3ph - 50 hz",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Hertz",
+        "answer": "3ph - 60 hz",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "1",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "1.5",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "2",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "3",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "5",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "7.5",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "10",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "15",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "20",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "25",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "30",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "40",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "50",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "60",
+        "valid_series": [
+          "1500",
+          "1600",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "75",
+        "valid_series": [
+          "1500",
+          "1600",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "100",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "125",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "150",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Hp",
+        "answer": "200",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Motor Mfg",
+        "answer": "Standard Offering",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Mfg",
+        "answer": "Baldor",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Mfg",
+        "answer": "TECO",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Mfg",
+        "answer": "Toshiba",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Option",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Option",
+        "answer": "Installed by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor Option",
+        "answer": "By Others",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Motor RPM",
+        "answer": "900",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor RPM",
+        "answer": "1200",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor RPM",
+        "answer": "1800",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Motor RPM",
+        "answer": "3600",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Motor RPM",
+        "answer": "Custom",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Motor Voltage",
+        "answer": "230",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Voltage",
+        "answer": "230/460",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Motor Voltage",
+        "answer": "460",
+        "valid_series": [
+          "1500",
+          "5500"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Motor Voltage",
+        "answer": "Custom",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Mounting Plate Option",
+        "answer": "Standard Offering",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Mounting Plate Option",
+        "answer": "Custom Mounting Plate",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "NamePlate",
+        "answer": "ANSI",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "NamePlate",
+        "answer": "Metric",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530",
+          "7500",
+          "8500"
+        ],
+        "valid_series_count": 10
+      },
+      {
+        "question": "NamePlate",
+        "answer": "No Units",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530",
+          "7500",
+          "8500"
+        ],
+        "valid_series_count": 10
+      },
+      {
+        "question": "Customer Nameplate",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Customer Nameplate",
+        "answer": "Customer",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530",
+          "7500",
+          "8500"
+        ],
+        "valid_series_count": 10
+      },
+      {
+        "question": "Paint Upgrade",
+        "answer": "Not Included",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Paint Upgrade",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Performance Testing",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Performance Testing",
+        "answer": "Non-Wit Perf Test",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Performance Testing",
+        "answer": "Wit Perf Test",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Performance Testing",
+        "answer": "Non-Wit Perf Test NPSHR",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Performance Testing",
+        "answer": "Wit Perf Test NPSHR",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Power Frame Hardware",
+        "answer": "303 SS",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Power Frame Hardware",
+        "answer": "316 SS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000"
+        ],
+        "valid_series_count": 3
+      },
+      {
+        "question": "Pump Elastomers",
+        "answer": "FKM",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Pump Elastomers",
+        "answer": "EPR",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Pump Elastomers",
+        "answer": "PTFE",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Pump Material",
+        "answer": "VR-1",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Pump Material",
+        "answer": "VR-1 BPO/DMA",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Pump Material",
+        "answer": "VR-1A",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 7
+      },
+      {
+        "question": "Pump Material",
+        "answer": "VR-1A BPO/DMA",
+        "valid_series": [
+          "1500",
+          "1530",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Pump Material",
+        "answer": "VR-1V",
+        "valid_series": [
+          "1500",
+          "1530"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Pump Material",
+        "answer": "EY-2",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "5500"
+        ],
+        "valid_series_count": 6
+      },
+      {
+        "question": "Seal Elastomers",
+        "answer": "FKM",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Seal Elastomers",
+        "answer": "EPR",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Elastomers",
+        "answer": "PTFE",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Guard",
+        "answer": "Not Supplied by Fybroc",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Seal Guard",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Materials",
+        "answer": "Carbon vs Ceramic",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Seal Materials",
+        "answer": "Silcar vs Silcar",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Mfg",
+        "answer": "Standard Offering",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Seal Mfg",
+        "answer": "John Crane",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Mfg",
+        "answer": "Flowserve",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Mfg",
+        "answer": "Flex-a-seal",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Mfg",
+        "answer": "Custom Seal Mfg",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Option",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Seal Option",
+        "answer": "Installed by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Option",
+        "answer": "NoSeal Single Seal Gland",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Option",
+        "answer": "NoSeal Double Seal Gland",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Option",
+        "answer": "NoSeal NoSealGland",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Type",
+        "answer": "8B2 Single Outside",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Type",
+        "answer": "RAC Single Outside",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Type",
+        "answer": "8-1T Double Inside",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Type",
+        "answer": "RXO Double Inside",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Type",
+        "answer": "CRO Double Inside",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Seal Type",
+        "answer": "Custom Seal Type",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Setting/Length",
+        "answer": "Standard Setting",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Setting/Length",
+        "answer": "Custom Length",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "1",
+        "valid_series": [
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Setting",
+        "answer": "2",
+        "valid_series": [
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Setting",
+        "answer": "3",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "4",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "5",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "6",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "7",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "8",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "9",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "10",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "11",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "12",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "13",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "14",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "15",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "16",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "17",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "18",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Setting",
+        "answer": "19",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Shaft Grounding",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Shaft Grounding",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "303 SS",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "316 SS",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "3000"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "Carp-20",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "Hastelloy C",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "Titanium",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "FRP Wrapped Shaft (303SS Core)",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Shaft Material",
+        "answer": "FRP Wrapped Shaft (316SS Core)",
+        "valid_series": [
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Sleeve",
+        "answer": "Integral",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Sleeve",
+        "answer": "Separate FRP",
+        "valid_series": [
+          "1500",
+          "1600"
+        ],
+        "valid_series_count": 2
+      },
+      {
+        "question": "Sleeve",
+        "answer": "316SS",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Sleeve",
+        "answer": "Carp-20",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Sleeve",
+        "answer": "Titanium",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Sleeve",
+        "answer": "Hast-C",
+        "valid_series": [
+          "1500",
+          "1600",
+          "3000",
+          "5500"
+        ],
+        "valid_series_count": 4
+      },
+      {
+        "question": "Sleeve",
+        "answer": "No Sleeve",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Sound Level Testing",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Sound Level Testing",
+        "answer": "Non-Wit Sound Level Testing",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Sound Level Testing",
+        "answer": "Wit Sound Level Testing",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Strainer",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Strainer",
+        "answer": "Standard Strainer",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Strainer",
+        "answer": "Flat Screen Strainer",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Suction Discharge Taps",
+        "answer": "No Suction Discharge Taps",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Suction Discharge Taps",
+        "answer": "Suction Discharge Taps",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530"
+        ],
+        "valid_series_count": 5
+      },
+      {
+        "question": "Tailpipe Option",
+        "answer": "Not Supplied by Fybroc",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Tailpipe Option",
+        "answer": "Supplied by Fybroc",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "6",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "7",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "8",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "9",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "10",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "11",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "12",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "13",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "14",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "15",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "16",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "17",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "18",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "19",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "20",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "21",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "22",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "23",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "24",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "25",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "26",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "27",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "28",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "29",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "30",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "31",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "32",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "33",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "34",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "35",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "36",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "37",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "38",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "39",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "40",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "41",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "42",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "43",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "44",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "45",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "46",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "47",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "48",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "49",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "50",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "51",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "52",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "53",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "54",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "55",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "56",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "57",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "58",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "59",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "60",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "61",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "62",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "63",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "64",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "65",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "66",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "67",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "68",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "69",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "70",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "71",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "72",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "73",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "74",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "75",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "76",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "77",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "78",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "79",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "80",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "81",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "82",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "83",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "84",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "85",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "86",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "87",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "88",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "89",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "90",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "91",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "92",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "93",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "94",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "95",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "96",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "97",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "98",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "99",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "100",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "101",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "102",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "103",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "104",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "105",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "106",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "107",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "108",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "109",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "110",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "111",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "112",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "113",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "114",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "115",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "116",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "117",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "118",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "119",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Tailpipe Length",
+        "answer": "120",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Vapor Seal",
+        "answer": "Vapor Shield",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Vapor Seal",
+        "answer": "Vapor Seal",
+        "valid_series": [
+          "5530"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Vibration Testing",
+        "answer": "Not Included",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Vibration Testing",
+        "answer": "Non-Wit Vibration Testing",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Vibration Testing",
+        "answer": "Wit Vibration Testing",
+        "valid_series": [
+          "1500",
+          "1530",
+          "1600",
+          "1630",
+          "2530",
+          "3000",
+          "5500",
+          "5530"
+        ],
+        "valid_series_count": 8
+      },
+      {
+        "question": "Wetted Hardware",
+        "answer": "Match Shaft Material",
+        "valid_series": [],
+        "valid_series_count": 0
+      },
+      {
+        "question": "Wetted Hardware",
+        "answer": "Select Material",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Wetted Hardware Selection",
+        "answer": "303 SS",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Wetted Hardware Selection",
+        "answer": "316 SS",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Wetted Hardware Selection",
+        "answer": "Carp-20",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Wetted Hardware Selection",
+        "answer": "Hastelloy C",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      },
+      {
+        "question": "Wetted Hardware Selection",
+        "answer": "Titanium",
+        "valid_series": [
+          "5500"
+        ],
+        "valid_series_count": 1
+      }
+    ]
+  }
+}
