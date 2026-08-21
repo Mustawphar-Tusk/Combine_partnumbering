@@ -1,0 +1,561 @@
+========================================================================================================================
+F110.6 - FYBROC V6 SEAL ASSEMBLY HORIZONTAL
+========================================================================================================================
+
+Git commit           : 68f3c22ebd7888008d20574981e6f10cfcc38cb8
+Git clean            : False
+
+Fields               : 5
+Total combinations   : 67
+Distinct hex-codes   : 67
+Hex-code range       : 01 -> 1V
+Lookup key col       : C (concatenated all 5 field values)
+Hex-code col         : I (2-digit code)
+
+========================================================================================================================
+SEAL MANUFACTURER CODES
+========================================================================================================================
+
+  Standard Offering         -> S
+  Flexaseal                 -> F
+  John Crane                -> J
+  Custom                    -> C
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Seal Option:
+    - Supplied by Fybroc
+    - NoSeal Single Seal Gland
+    - NoSeal Double Seal Gland
+    - NoSeal No Seal Gland
+    - Customer Supplied
+
+  Seal Type:
+    - 8-1T Double Inside
+    - 8B2 Single Outside
+    - CRO Double Inside
+    - RXO Double Inside
+    - RAC Single Outside
+
+  Seal Materials:
+    - Carbon vs Ceramic
+    - Silcar vs Silcar
+
+  Seal Elastomers:
+    - FKM
+    - EPR
+    - PTFE
+
+  Seal Guard:
+    - Not Supplied by Fybroc
+    - Supplied by Fybroc
+
+========================================================================================================================
+DISTINCT VALUES PER FIELD (from full matrix)
+========================================================================================================================
+
+  Seal Option (5):
+    Customer Supplied
+    NoSeal Double Seal Gland
+    NoSeal No Seal Gland
+    NoSeal Single Seal Gland
+    Supplied by Fybroc
+
+  Seal Type (6):
+    -
+    8-1T Double Inside
+    8B2 Single Outside
+    CRO Double Inside
+    RAC Single Outside
+    RXO Double Inside
+
+  Seal Materials (3):
+    -
+    Carbon vs Ceramic
+    Silcar vs Silcar
+
+  Seal Elastomers (4):
+    -
+    EPR
+    FKM
+    PTFE
+
+  Seal Guard (2):
+    Not Supplied by Fybroc
+    Supplied by Fybroc
+
+========================================================================================================================
+ALL COMBINATIONS
+========================================================================================================================
+
+  ID=  1  hex=01  type_abbrev=8B2       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  2  hex=02  type_abbrev=RAC       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  3  hex=03  type_abbrev=8-1T      mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  4  hex=04  type_abbrev=RXO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  5  hex=05  type_abbrev=CRO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  6  hex=06  type_abbrev=8B2       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  7  hex=07  type_abbrev=RAC       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  8  hex=08  type_abbrev=8-1T      mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID=  9  hex=09  type_abbrev=RXO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 10  hex=0A  type_abbrev=CRO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 11  hex=0B  type_abbrev=8B2       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 12  hex=0C  type_abbrev=RAC       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 13  hex=0D  type_abbrev=8-1T      mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 14  hex=0E  type_abbrev=RXO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 15  hex=0F  type_abbrev=CRO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 16  hex=0G  type_abbrev=8B2       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 17  hex=0H  type_abbrev=RAC       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 18  hex=0I  type_abbrev=8-1T      mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 19  hex=0J  type_abbrev=RXO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 20  hex=0K  type_abbrev=CRO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 21  hex=0L  type_abbrev=8B2       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 22  hex=0M  type_abbrev=RAC       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 23  hex=0N  type_abbrev=8-1T      mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 24  hex=0O  type_abbrev=RXO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 25  hex=0P  type_abbrev=CRO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 26  hex=0Q  type_abbrev=8B2       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 27  hex=0R  type_abbrev=RAC       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 28  hex=0S  type_abbrev=8-1T      mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 29  hex=0T  type_abbrev=RXO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 30  hex=0U  type_abbrev=CRO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 31  hex=0V  type_abbrev=NMS       mats_abbrev=SSG
+    Seal Option            = NoSeal Single Seal Gland
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 32  hex=0W  type_abbrev=NMS       mats_abbrev=DSG
+    Seal Option            = NoSeal Double Seal Gland
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 33  hex=0X  type_abbrev=NMS       mats_abbrev=NSG
+    Seal Option            = NoSeal No Seal Gland
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 34  hex=0Y  type_abbrev=NMS       mats_abbrev=CSP
+    Seal Option            = Customer Supplied
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Not Supplied by Fybroc
+
+  ID= 35  hex=0Z  type_abbrev=8B2       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 36  hex=10  type_abbrev=RAC       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 37  hex=11  type_abbrev=8-1T      mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 38  hex=12  type_abbrev=RXO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 39  hex=13  type_abbrev=CRO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 40  hex=14  type_abbrev=8B2       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 41  hex=15  type_abbrev=RAC       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 42  hex=16  type_abbrev=8-1T      mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 43  hex=17  type_abbrev=RXO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 44  hex=18  type_abbrev=CRO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = FKM
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 45  hex=19  type_abbrev=8B2       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 46  hex=1A  type_abbrev=RAC       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 47  hex=1B  type_abbrev=8-1T      mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 48  hex=1C  type_abbrev=RXO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 49  hex=1D  type_abbrev=CRO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 50  hex=1E  type_abbrev=8B2       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 51  hex=1F  type_abbrev=RAC       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 52  hex=1G  type_abbrev=8-1T      mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 53  hex=1H  type_abbrev=RXO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 54  hex=1I  type_abbrev=CRO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = EPR
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 55  hex=1J  type_abbrev=8B2       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 56  hex=1K  type_abbrev=RAC       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 57  hex=1L  type_abbrev=8-1T      mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 58  hex=1M  type_abbrev=RXO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 59  hex=1N  type_abbrev=CRO       mats_abbrev=C/CR
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Carbon vs Ceramic
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 60  hex=1O  type_abbrev=8B2       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8B2 Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 61  hex=1P  type_abbrev=RAC       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RAC Single Outside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 62  hex=1Q  type_abbrev=8-1T      mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = 8-1T Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 63  hex=1R  type_abbrev=RXO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = RXO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 64  hex=1S  type_abbrev=CRO       mats_abbrev=SC/SC
+    Seal Option            = Supplied by Fybroc
+    Seal Type              = CRO Double Inside
+    Seal Materials         = Silcar vs Silcar
+    Seal Elastomers        = PTFE
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 65  hex=1T  type_abbrev=NMS       mats_abbrev=SSG
+    Seal Option            = NoSeal Single Seal Gland
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 66  hex=1U  type_abbrev=NMS       mats_abbrev=DSG
+    Seal Option            = NoSeal Double Seal Gland
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Supplied by Fybroc
+
+  ID= 67  hex=1V  type_abbrev=NMS       mats_abbrev=CSP
+    Seal Option            = Customer Supplied
+    Seal Type              = -
+    Seal Materials         = -
+    Seal Elastomers        = -
+    Seal Guard             = Supplied by Fybroc
+

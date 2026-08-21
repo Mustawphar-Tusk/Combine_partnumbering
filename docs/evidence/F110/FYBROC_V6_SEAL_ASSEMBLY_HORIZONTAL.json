@@ -1,0 +1,847 @@
+{
+  "artifact": "FYBROC_V6_SEAL_ASSEMBLY_HORIZONTAL",
+  "step": "F110.6",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "sheet": "Seal Assembly - Horizontal",
+  "generated_utc": "2026-08-21T21:34:38.677628+00:00",
+  "git_commit": "68f3c22ebd7888008d20574981e6f10cfcc38cb8",
+  "git_working_tree_clean": false,
+  "fields": [
+    "Seal Option",
+    "Seal Type",
+    "Seal Materials",
+    "Seal Elastomers",
+    "Seal Guard"
+  ],
+  "field_options": {
+    "Seal Option": [
+      "Supplied by Fybroc",
+      "NoSeal Single Seal Gland",
+      "NoSeal Double Seal Gland",
+      "NoSeal No Seal Gland",
+      "Customer Supplied"
+    ],
+    "Seal Type": [
+      "8-1T Double Inside",
+      "8B2 Single Outside",
+      "CRO Double Inside",
+      "RXO Double Inside",
+      "RAC Single Outside"
+    ],
+    "Seal Materials": [
+      "Carbon vs Ceramic",
+      "Silcar vs Silcar"
+    ],
+    "Seal Elastomers": [
+      "FKM",
+      "EPR",
+      "PTFE"
+    ],
+    "Seal Guard": [
+      "Not Supplied by Fybroc",
+      "Supplied by Fybroc"
+    ]
+  },
+  "seal_manufacturer_codes": [
+    {
+      "manufacturer": "Standard Offering",
+      "code": "S"
+    },
+    {
+      "manufacturer": "Flexaseal",
+      "code": "F"
+    },
+    {
+      "manufacturer": "John Crane",
+      "code": "J"
+    },
+    {
+      "manufacturer": "Custom",
+      "code": "C"
+    }
+  ],
+  "combination_matrix": {
+    "total_combinations": 67,
+    "distinct_hex_codes": 67,
+    "hex_code_range": {
+      "first": "01",
+      "last": "1V"
+    },
+    "distinct_values_per_field": {
+      "Seal Option": [
+        "Customer Supplied",
+        "NoSeal Double Seal Gland",
+        "NoSeal No Seal Gland",
+        "NoSeal Single Seal Gland",
+        "Supplied by Fybroc"
+      ],
+      "Seal Type": [
+        "-",
+        "8-1T Double Inside",
+        "8B2 Single Outside",
+        "CRO Double Inside",
+        "RAC Single Outside",
+        "RXO Double Inside"
+      ],
+      "Seal Materials": [
+        "-",
+        "Carbon vs Ceramic",
+        "Silcar vs Silcar"
+      ],
+      "Seal Elastomers": [
+        "-",
+        "EPR",
+        "FKM",
+        "PTFE"
+      ],
+      "Seal Guard": [
+        "Not Supplied by Fybroc",
+        "Supplied by Fybroc"
+      ]
+    },
+    "all_rows": [
+      {
+        "id": 1,
+        "hex_code": "01",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 2,
+        "hex_code": "02",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 3,
+        "hex_code": "03",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 4,
+        "hex_code": "04",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 5,
+        "hex_code": "05",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 6,
+        "hex_code": "06",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 7,
+        "hex_code": "07",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 8,
+        "hex_code": "08",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 9,
+        "hex_code": "09",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 10,
+        "hex_code": "0A",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 11,
+        "hex_code": "0B",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 12,
+        "hex_code": "0C",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 13,
+        "hex_code": "0D",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 14,
+        "hex_code": "0E",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 15,
+        "hex_code": "0F",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 16,
+        "hex_code": "0G",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 17,
+        "hex_code": "0H",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 18,
+        "hex_code": "0I",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 19,
+        "hex_code": "0J",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 20,
+        "hex_code": "0K",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 21,
+        "hex_code": "0L",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 22,
+        "hex_code": "0M",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 23,
+        "hex_code": "0N",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 24,
+        "hex_code": "0O",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 25,
+        "hex_code": "0P",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 26,
+        "hex_code": "0Q",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 27,
+        "hex_code": "0R",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 28,
+        "hex_code": "0S",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 29,
+        "hex_code": "0T",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 30,
+        "hex_code": "0U",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 31,
+        "hex_code": "0V",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "SSG",
+        "Seal Option": "NoSeal Single Seal Gland",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 32,
+        "hex_code": "0W",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "DSG",
+        "Seal Option": "NoSeal Double Seal Gland",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 33,
+        "hex_code": "0X",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "NSG",
+        "Seal Option": "NoSeal No Seal Gland",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 34,
+        "hex_code": "0Y",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "CSP",
+        "Seal Option": "Customer Supplied",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Not Supplied by Fybroc"
+      },
+      {
+        "id": 35,
+        "hex_code": "0Z",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 36,
+        "hex_code": "10",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 37,
+        "hex_code": "11",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 38,
+        "hex_code": "12",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 39,
+        "hex_code": "13",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 40,
+        "hex_code": "14",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 41,
+        "hex_code": "15",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 42,
+        "hex_code": "16",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 43,
+        "hex_code": "17",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 44,
+        "hex_code": "18",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "FKM",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 45,
+        "hex_code": "19",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 46,
+        "hex_code": "1A",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 47,
+        "hex_code": "1B",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 48,
+        "hex_code": "1C",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 49,
+        "hex_code": "1D",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 50,
+        "hex_code": "1E",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 51,
+        "hex_code": "1F",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 52,
+        "hex_code": "1G",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 53,
+        "hex_code": "1H",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 54,
+        "hex_code": "1I",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "EPR",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 55,
+        "hex_code": "1J",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 56,
+        "hex_code": "1K",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 57,
+        "hex_code": "1L",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 58,
+        "hex_code": "1M",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 59,
+        "hex_code": "1N",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "C/CR",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 60,
+        "hex_code": "1O",
+        "seal_type_abbrev": "8B2",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 61,
+        "hex_code": "1P",
+        "seal_type_abbrev": "RAC",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RAC Single Outside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 62,
+        "hex_code": "1Q",
+        "seal_type_abbrev": "8-1T",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8-1T Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 63,
+        "hex_code": "1R",
+        "seal_type_abbrev": "RXO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "RXO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 64,
+        "hex_code": "1S",
+        "seal_type_abbrev": "CRO",
+        "seal_materials_abbrev": "SC/SC",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "CRO Double Inside",
+        "Seal Materials": "Silcar vs Silcar",
+        "Seal Elastomers": "PTFE",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 65,
+        "hex_code": "1T",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "SSG",
+        "Seal Option": "NoSeal Single Seal Gland",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 66,
+        "hex_code": "1U",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "DSG",
+        "Seal Option": "NoSeal Double Seal Gland",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Supplied by Fybroc"
+      },
+      {
+        "id": 67,
+        "hex_code": "1V",
+        "seal_type_abbrev": "NMS",
+        "seal_materials_abbrev": "CSP",
+        "Seal Option": "Customer Supplied",
+        "Seal Type": "-",
+        "Seal Materials": "-",
+        "Seal Elastomers": "-",
+        "Seal Guard": "Supplied by Fybroc"
+      }
+    ]
+  },
+  "lookup_key_col": "C (concatenated all 5 field values)",
+  "hex_code_col": "I (2-digit code)",
+  "part_number_role": "Seal Assembly segment = Seal Manufacturer code (1 char, from Attributes or separate mfr lookup) + Seal Assembly hex-code (2 digits from col I). Smart Number uses VLOOKUP(concat_key, col_C, col_I) for the 2-digit token."
+}
