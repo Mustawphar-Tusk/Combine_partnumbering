@@ -1,0 +1,299 @@
+========================================================================================================================
+F110.3 - FYBROC V6 ATTRIBUTES (All identifier lookup tables from Nomenclature_V6 Attributes sheet)
+========================================================================================================================
+
+Git commit  : bea1579f91abb6ade1e5a11289894bc3d467c71a
+Git clean   : False
+
+Brand entries          : 1
+Series+Flange codes    : 21
+Series orientations    : 11
+Size codes             : 25
+Pump material codes    : 6
+Impeller trim codes    : 97
+Motor modification codes: 31
+Inch codes             : 13
+Decimal codes          : 8
+Sizes with trim ranges : 19
+
+========================================================================================================================
+BRAND
+========================================================================================================================
+
+  FYBR                 -> F
+
+========================================================================================================================
+SERIES + FLANGE TYPE -> CODE
+========================================================================================================================
+
+  Series=Series   Flange=Flange Type -> Code
+  Series=1500     Flange=ANSI     -> A
+  Series=1530     Flange=ANSI     -> B
+  Series=1600     Flange=ANSI     -> C
+  Series=1630     Flange=ANSI     -> D
+  Series=2530     Flange=ANSI     -> E
+  Series=3000     Flange=ANSI     -> F
+  Series=5500     Flange=ANSI     -> G
+  Series=5530     Flange=ANSI     -> H
+  Series=1500     Flange=DIN      -> I
+  Series=1530     Flange=DIN      -> J
+  Series=1600     Flange=DIN      -> K
+  Series=1630     Flange=DIN      -> L
+  Series=1500     Flange=JIS      -> M
+  Series=1530     Flange=JIS      -> N
+  Series=1600     Flange=JIS      -> O
+  Series=1630     Flange=JIS      -> P
+  Series=6000     Flange=ANSI     -> Q
+  Series=7500     Flange=ANSI     -> R
+  Series=7530     Flange=ANSI     -> S
+  Series=8500     Flange=ANSI     -> T
+
+========================================================================================================================
+SERIES ORIENTATION
+========================================================================================================================
+
+  1530     -> Horizontal
+  1600     -> Horizontal
+  1630     -> Horizontal
+  2530     -> Horizontal
+  3000     -> Horizontal
+  5500     -> Vertical
+  5530     -> Vertical
+  6000     -> Vertical
+  7500     -> Vertical
+  7530     -> Vertical
+  8500     -> Vertical
+
+========================================================================================================================
+SIZE CODES
+========================================================================================================================
+
+  1x1.5x6         -> 1
+  1x1.5x8         -> 2
+  1x2x10          -> 3
+  1.5x3x10        -> 4
+  1.5x3x6         -> 5
+  1.5x3x8         -> 6
+  2x3x6           -> 7
+  2x3x8           -> 8
+  2x3x10          -> 9
+  2x3x13          -> A
+  3x4x6           -> B
+  3x4x8           -> C
+  3x4x10          -> D
+  3x4x13          -> E
+  4x4x10          -> F
+  4x6x10          -> G
+  4x6x11          -> H
+  4x6x13          -> I
+  6x8x13          -> J
+  6x10x8          -> K
+  6x12x9          -> L
+  8x10x15         -> M
+  8x14x10         -> N
+  10x12x16        -> O
+  8x15x11         -> P
+
+========================================================================================================================
+PUMP MATERIAL CODES
+========================================================================================================================
+
+  VR-1                 -> 1
+  VR-1 BPO/DMA         -> 7
+  VR-1A                -> 5
+  VR-1A BPO/DMA        -> V
+  VR-1V                -> 3
+  EY-2                 -> 2
+
+========================================================================================================================
+IMPELLER TRIM CODES (decimal -> 2-char code)
+========================================================================================================================
+
+  16.000     -> MA
+  15.875     -> LH
+  15.750     -> LG
+  15.625     -> LF
+  15.500     -> LE
+  15.375     -> LD
+  15.250     -> LC
+  15.125     -> LB
+  15.000     -> LA
+  14.875     -> KH
+  14.750     -> KG
+  14.625     -> KF
+  14.500     -> KE
+  14.375     -> KD
+  14.250     -> KC
+  14.125     -> KB
+  14.000     -> KA
+  13.875     -> JH
+  13.750     -> JG
+  13.625     -> JF
+  13.500     -> JE
+  13.375     -> JD
+  13.250     -> JC
+  13.125     -> JB
+  13.000     -> JA
+  12.875     -> IH
+  12.750     -> IG
+  12.625     -> IF
+  12.500     -> IE
+  12.375     -> ID
+  12.250     -> IC
+  12.125     -> IB
+  12.000     -> IA
+  11.875     -> HH
+  11.750     -> HG
+  11.625     -> HF
+  11.500     -> HE
+  11.375     -> HD
+  11.250     -> HC
+  11.125     -> HB
+  11.000     -> HA
+  10.875     -> GH
+  10.750     -> GG
+  10.625     -> GF
+  10.500     -> GE
+  10.375     -> GD
+  10.250     -> GC
+  10.125     -> GB
+  10.000     -> GA
+  9.875      -> FH
+  9.750      -> FG
+  9.625      -> FF
+  9.500      -> FE
+  9.375      -> FD
+  9.250      -> FC
+  9.125      -> FB
+  9.000      -> FA
+  8.875      -> EH
+  8.750      -> EG
+  8.625      -> EF
+  8.500      -> EE
+  8.375      -> ED
+  8.250      -> EC
+  8.125      -> EB
+  8.000      -> EA
+  7.875      -> DH
+  7.750      -> DG
+  7.625      -> DF
+  7.500      -> DE
+  7.375      -> DD
+  7.250      -> DC
+  7.125      -> DB
+  7.000      -> DA
+  6.875      -> CH
+  6.750      -> CG
+  6.625      -> CF
+  6.500      -> CE
+  6.375      -> CD
+  6.250      -> CC
+  6.125      -> CB
+  6.000      -> CA
+  5.875      -> BH
+  5.750      -> BG
+  5.625      -> BF
+  5.500      -> BE
+  5.375      -> BD
+  5.250      -> BC
+  5.125      -> BB
+  5.000      -> BA
+  4.875      -> AH
+  4.750      -> AG
+  4.625      -> AF
+  4.500      -> AE
+  4.375      -> AD
+  4.250      -> AC
+  4.125      -> AB
+  4.000      -> AA
+
+========================================================================================================================
+MOTOR MODIFICATION CODES
+========================================================================================================================
+
+  X     No Modification
+  0     Nameplate Change (per Item Description)
+  1     Nameplate Change (Custom)
+  2     Shaft Grounding Ring (External)
+  3     Shaft Grounding Ring (Internal)
+  4     Insulated Bearing (ODE)
+  5     Tropicalization
+  6     Installation of C-Face
+  7     Shorten Shaft (TS Frames)
+  8     215JM Shaft Extension in 254JM Frame
+  9     Class H Insulation
+  A     Drip Cover
+  B     Space Heater (120V)
+  C     Space Heater (240V)
+  D     Space Heater with Aux Box (120V)
+  E     Space Heater with Aux Box (240V)
+  F     Thermistors (1/Phase)
+  G     Thermistors (1/Phase) with Auxilliary Box
+  H     Thermostats (1/Phase)
+  J     Thermostats (1/Phase) with Auxilliary Box
+  K     F1 to F2 Mounting Conversion
+  L     Oversized Main Conduit Box - Mount & Extend Leads
+  M     Convert to IP56
+  N     Convert to IP65
+  P     Paint
+  Q     Alternate Grease
+  R     Single Row Thrust Bearing
+  S     Double Row Thrust Bearing
+  T     IEEE-45 Marine Duty Below Deck
+  U     Stator Winding RTD's (1/ Phase)
+  V     Convert to IP66
+
+========================================================================================================================
+INCH CODES
+========================================================================================================================
+
+  4"       -> A
+  5"       -> B
+  6"       -> C
+  7"       -> D
+  8"       -> E
+  9"       -> F
+  10"      -> G
+  11"      -> H
+  12"      -> I
+  13"      -> J
+  14"      -> K
+  15"      -> L
+  16"      -> M
+
+========================================================================================================================
+DECIMAL SUFFIX CODES
+========================================================================================================================
+
+  .000"      -> A
+  .125"      -> B
+  .250"      -> C
+  .375"      -> D
+  .500"      -> E
+  .625"      -> F
+  .750"      -> G
+  .875"      -> H
+
+========================================================================================================================
+PER-SIZE VALID TRIM RANGES
+========================================================================================================================
+
+  1.5x3x10         30 trims  range: 6.000 - 9.625
+  1.5x3x6          19 trims  range: 4.000 - 6.250
+  1.5x3x8          24 trims  range: 5.500 - 8.375
+  10x12x16         41 trims  range: 11.000 - 16.000
+  1x1.5x6          19 trims  range: 4.000 - 6.250
+  1x1.5x8          17 trims  range: 5.500 - 7.500
+  1x2x10           33 trims  range: 6.000 - 10.000
+  2x3x10           33 trims  range: 6.000 - 10.000
+  2x3x13           33 trims  range: 9.000 - 13.000
+  2x3x6            17 trims  range: 4.000 - 6.000
+  2x3x8            24 trims  range: 5.500 - 8.375
+  3x4x10           33 trims  range: 6.000 - 10.000
+  3x4x13           33 trims  range: 9.000 - 13.000
+  3x4x8            21 trims  range: 5.500 - 8.000
+  4x4x10           29 trims  range: 6.000 - 9.500
+  4x6x10           23 trims  range: 8.000 - 10.750
+  4x6x13           33 trims  range: 9.000 - 13.000
+  6x8x13           29 trims  range: 10.000 - 13.500
+  8x10x15          25 trims  range: 12.000 - 15.000

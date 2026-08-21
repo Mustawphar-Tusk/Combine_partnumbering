@@ -1,0 +1,1514 @@
+{
+  "artifact": "FYBROC_V6_ATTRIBUTES",
+  "step": "F110.3",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "generated_utc": "2026-08-21T20:50:26.535635+00:00",
+  "git_commit": "bea1579f91abb6ade1e5a11289894bc3d467c71a",
+  "git_working_tree_clean": false,
+  "brand": [
+    {
+      "brand": "FYBR",
+      "code": "F"
+    }
+  ],
+  "series_flange_codes": [
+    {
+      "series": "Series",
+      "flange_type": "Flange Type",
+      "code": "Code"
+    },
+    {
+      "series": "1500",
+      "flange_type": "ANSI",
+      "code": "A"
+    },
+    {
+      "series": "1530",
+      "flange_type": "ANSI",
+      "code": "B"
+    },
+    {
+      "series": "1600",
+      "flange_type": "ANSI",
+      "code": "C"
+    },
+    {
+      "series": "1630",
+      "flange_type": "ANSI",
+      "code": "D"
+    },
+    {
+      "series": "2530",
+      "flange_type": "ANSI",
+      "code": "E"
+    },
+    {
+      "series": "3000",
+      "flange_type": "ANSI",
+      "code": "F"
+    },
+    {
+      "series": "5500",
+      "flange_type": "ANSI",
+      "code": "G"
+    },
+    {
+      "series": "5530",
+      "flange_type": "ANSI",
+      "code": "H"
+    },
+    {
+      "series": "1500",
+      "flange_type": "DIN",
+      "code": "I"
+    },
+    {
+      "series": "1530",
+      "flange_type": "DIN",
+      "code": "J"
+    },
+    {
+      "series": "1600",
+      "flange_type": "DIN",
+      "code": "K"
+    },
+    {
+      "series": "1630",
+      "flange_type": "DIN",
+      "code": "L"
+    },
+    {
+      "series": "1500",
+      "flange_type": "JIS",
+      "code": "M"
+    },
+    {
+      "series": "1530",
+      "flange_type": "JIS",
+      "code": "N"
+    },
+    {
+      "series": "1600",
+      "flange_type": "JIS",
+      "code": "O"
+    },
+    {
+      "series": "1630",
+      "flange_type": "JIS",
+      "code": "P"
+    },
+    {
+      "series": "6000",
+      "flange_type": "ANSI",
+      "code": "Q"
+    },
+    {
+      "series": "7500",
+      "flange_type": "ANSI",
+      "code": "R"
+    },
+    {
+      "series": "7530",
+      "flange_type": "ANSI",
+      "code": "S"
+    },
+    {
+      "series": "8500",
+      "flange_type": "ANSI",
+      "code": "T"
+    }
+  ],
+  "series_orientation": [
+    {
+      "series": "1530",
+      "orientation": "Horizontal"
+    },
+    {
+      "series": "1600",
+      "orientation": "Horizontal"
+    },
+    {
+      "series": "1630",
+      "orientation": "Horizontal"
+    },
+    {
+      "series": "2530",
+      "orientation": "Horizontal"
+    },
+    {
+      "series": "3000",
+      "orientation": "Horizontal"
+    },
+    {
+      "series": "5500",
+      "orientation": "Vertical"
+    },
+    {
+      "series": "5530",
+      "orientation": "Vertical"
+    },
+    {
+      "series": "6000",
+      "orientation": "Vertical"
+    },
+    {
+      "series": "7500",
+      "orientation": "Vertical"
+    },
+    {
+      "series": "7530",
+      "orientation": "Vertical"
+    },
+    {
+      "series": "8500",
+      "orientation": "Vertical"
+    }
+  ],
+  "size_codes": [
+    {
+      "size": "1x1.5x6",
+      "code": "1"
+    },
+    {
+      "size": "1x1.5x8",
+      "code": "2"
+    },
+    {
+      "size": "1x2x10",
+      "code": "3"
+    },
+    {
+      "size": "1.5x3x10",
+      "code": "4"
+    },
+    {
+      "size": "1.5x3x6",
+      "code": "5"
+    },
+    {
+      "size": "1.5x3x8",
+      "code": "6"
+    },
+    {
+      "size": "2x3x6",
+      "code": "7"
+    },
+    {
+      "size": "2x3x8",
+      "code": "8"
+    },
+    {
+      "size": "2x3x10",
+      "code": "9"
+    },
+    {
+      "size": "2x3x13",
+      "code": "A"
+    },
+    {
+      "size": "3x4x6",
+      "code": "B"
+    },
+    {
+      "size": "3x4x8",
+      "code": "C"
+    },
+    {
+      "size": "3x4x10",
+      "code": "D"
+    },
+    {
+      "size": "3x4x13",
+      "code": "E"
+    },
+    {
+      "size": "4x4x10",
+      "code": "F"
+    },
+    {
+      "size": "4x6x10",
+      "code": "G"
+    },
+    {
+      "size": "4x6x11",
+      "code": "H"
+    },
+    {
+      "size": "4x6x13",
+      "code": "I"
+    },
+    {
+      "size": "6x8x13",
+      "code": "J"
+    },
+    {
+      "size": "6x10x8",
+      "code": "K"
+    },
+    {
+      "size": "6x12x9",
+      "code": "L"
+    },
+    {
+      "size": "8x10x15",
+      "code": "M"
+    },
+    {
+      "size": "8x14x10",
+      "code": "N"
+    },
+    {
+      "size": "10x12x16",
+      "code": "O"
+    },
+    {
+      "size": "8x15x11",
+      "code": "P"
+    }
+  ],
+  "pump_material_codes": [
+    {
+      "material": "VR-1",
+      "code": "1"
+    },
+    {
+      "material": "VR-1 BPO/DMA",
+      "code": "7"
+    },
+    {
+      "material": "VR-1A",
+      "code": "5"
+    },
+    {
+      "material": "VR-1A BPO/DMA",
+      "code": "V"
+    },
+    {
+      "material": "VR-1V",
+      "code": "3"
+    },
+    {
+      "material": "EY-2",
+      "code": "2"
+    }
+  ],
+  "impeller_trim_codes": [
+    {
+      "trim_decimal": "16.000",
+      "code": "MA"
+    },
+    {
+      "trim_decimal": "15.875",
+      "code": "LH"
+    },
+    {
+      "trim_decimal": "15.750",
+      "code": "LG"
+    },
+    {
+      "trim_decimal": "15.625",
+      "code": "LF"
+    },
+    {
+      "trim_decimal": "15.500",
+      "code": "LE"
+    },
+    {
+      "trim_decimal": "15.375",
+      "code": "LD"
+    },
+    {
+      "trim_decimal": "15.250",
+      "code": "LC"
+    },
+    {
+      "trim_decimal": "15.125",
+      "code": "LB"
+    },
+    {
+      "trim_decimal": "15.000",
+      "code": "LA"
+    },
+    {
+      "trim_decimal": "14.875",
+      "code": "KH"
+    },
+    {
+      "trim_decimal": "14.750",
+      "code": "KG"
+    },
+    {
+      "trim_decimal": "14.625",
+      "code": "KF"
+    },
+    {
+      "trim_decimal": "14.500",
+      "code": "KE"
+    },
+    {
+      "trim_decimal": "14.375",
+      "code": "KD"
+    },
+    {
+      "trim_decimal": "14.250",
+      "code": "KC"
+    },
+    {
+      "trim_decimal": "14.125",
+      "code": "KB"
+    },
+    {
+      "trim_decimal": "14.000",
+      "code": "KA"
+    },
+    {
+      "trim_decimal": "13.875",
+      "code": "JH"
+    },
+    {
+      "trim_decimal": "13.750",
+      "code": "JG"
+    },
+    {
+      "trim_decimal": "13.625",
+      "code": "JF"
+    },
+    {
+      "trim_decimal": "13.500",
+      "code": "JE"
+    },
+    {
+      "trim_decimal": "13.375",
+      "code": "JD"
+    },
+    {
+      "trim_decimal": "13.250",
+      "code": "JC"
+    },
+    {
+      "trim_decimal": "13.125",
+      "code": "JB"
+    },
+    {
+      "trim_decimal": "13.000",
+      "code": "JA"
+    },
+    {
+      "trim_decimal": "12.875",
+      "code": "IH"
+    },
+    {
+      "trim_decimal": "12.750",
+      "code": "IG"
+    },
+    {
+      "trim_decimal": "12.625",
+      "code": "IF"
+    },
+    {
+      "trim_decimal": "12.500",
+      "code": "IE"
+    },
+    {
+      "trim_decimal": "12.375",
+      "code": "ID"
+    },
+    {
+      "trim_decimal": "12.250",
+      "code": "IC"
+    },
+    {
+      "trim_decimal": "12.125",
+      "code": "IB"
+    },
+    {
+      "trim_decimal": "12.000",
+      "code": "IA"
+    },
+    {
+      "trim_decimal": "11.875",
+      "code": "HH"
+    },
+    {
+      "trim_decimal": "11.750",
+      "code": "HG"
+    },
+    {
+      "trim_decimal": "11.625",
+      "code": "HF"
+    },
+    {
+      "trim_decimal": "11.500",
+      "code": "HE"
+    },
+    {
+      "trim_decimal": "11.375",
+      "code": "HD"
+    },
+    {
+      "trim_decimal": "11.250",
+      "code": "HC"
+    },
+    {
+      "trim_decimal": "11.125",
+      "code": "HB"
+    },
+    {
+      "trim_decimal": "11.000",
+      "code": "HA"
+    },
+    {
+      "trim_decimal": "10.875",
+      "code": "GH"
+    },
+    {
+      "trim_decimal": "10.750",
+      "code": "GG"
+    },
+    {
+      "trim_decimal": "10.625",
+      "code": "GF"
+    },
+    {
+      "trim_decimal": "10.500",
+      "code": "GE"
+    },
+    {
+      "trim_decimal": "10.375",
+      "code": "GD"
+    },
+    {
+      "trim_decimal": "10.250",
+      "code": "GC"
+    },
+    {
+      "trim_decimal": "10.125",
+      "code": "GB"
+    },
+    {
+      "trim_decimal": "10.000",
+      "code": "GA"
+    },
+    {
+      "trim_decimal": "9.875",
+      "code": "FH"
+    },
+    {
+      "trim_decimal": "9.750",
+      "code": "FG"
+    },
+    {
+      "trim_decimal": "9.625",
+      "code": "FF"
+    },
+    {
+      "trim_decimal": "9.500",
+      "code": "FE"
+    },
+    {
+      "trim_decimal": "9.375",
+      "code": "FD"
+    },
+    {
+      "trim_decimal": "9.250",
+      "code": "FC"
+    },
+    {
+      "trim_decimal": "9.125",
+      "code": "FB"
+    },
+    {
+      "trim_decimal": "9.000",
+      "code": "FA"
+    },
+    {
+      "trim_decimal": "8.875",
+      "code": "EH"
+    },
+    {
+      "trim_decimal": "8.750",
+      "code": "EG"
+    },
+    {
+      "trim_decimal": "8.625",
+      "code": "EF"
+    },
+    {
+      "trim_decimal": "8.500",
+      "code": "EE"
+    },
+    {
+      "trim_decimal": "8.375",
+      "code": "ED"
+    },
+    {
+      "trim_decimal": "8.250",
+      "code": "EC"
+    },
+    {
+      "trim_decimal": "8.125",
+      "code": "EB"
+    },
+    {
+      "trim_decimal": "8.000",
+      "code": "EA"
+    },
+    {
+      "trim_decimal": "7.875",
+      "code": "DH"
+    },
+    {
+      "trim_decimal": "7.750",
+      "code": "DG"
+    },
+    {
+      "trim_decimal": "7.625",
+      "code": "DF"
+    },
+    {
+      "trim_decimal": "7.500",
+      "code": "DE"
+    },
+    {
+      "trim_decimal": "7.375",
+      "code": "DD"
+    },
+    {
+      "trim_decimal": "7.250",
+      "code": "DC"
+    },
+    {
+      "trim_decimal": "7.125",
+      "code": "DB"
+    },
+    {
+      "trim_decimal": "7.000",
+      "code": "DA"
+    },
+    {
+      "trim_decimal": "6.875",
+      "code": "CH"
+    },
+    {
+      "trim_decimal": "6.750",
+      "code": "CG"
+    },
+    {
+      "trim_decimal": "6.625",
+      "code": "CF"
+    },
+    {
+      "trim_decimal": "6.500",
+      "code": "CE"
+    },
+    {
+      "trim_decimal": "6.375",
+      "code": "CD"
+    },
+    {
+      "trim_decimal": "6.250",
+      "code": "CC"
+    },
+    {
+      "trim_decimal": "6.125",
+      "code": "CB"
+    },
+    {
+      "trim_decimal": "6.000",
+      "code": "CA"
+    },
+    {
+      "trim_decimal": "5.875",
+      "code": "BH"
+    },
+    {
+      "trim_decimal": "5.750",
+      "code": "BG"
+    },
+    {
+      "trim_decimal": "5.625",
+      "code": "BF"
+    },
+    {
+      "trim_decimal": "5.500",
+      "code": "BE"
+    },
+    {
+      "trim_decimal": "5.375",
+      "code": "BD"
+    },
+    {
+      "trim_decimal": "5.250",
+      "code": "BC"
+    },
+    {
+      "trim_decimal": "5.125",
+      "code": "BB"
+    },
+    {
+      "trim_decimal": "5.000",
+      "code": "BA"
+    },
+    {
+      "trim_decimal": "4.875",
+      "code": "AH"
+    },
+    {
+      "trim_decimal": "4.750",
+      "code": "AG"
+    },
+    {
+      "trim_decimal": "4.625",
+      "code": "AF"
+    },
+    {
+      "trim_decimal": "4.500",
+      "code": "AE"
+    },
+    {
+      "trim_decimal": "4.375",
+      "code": "AD"
+    },
+    {
+      "trim_decimal": "4.250",
+      "code": "AC"
+    },
+    {
+      "trim_decimal": "4.125",
+      "code": "AB"
+    },
+    {
+      "trim_decimal": "4.000",
+      "code": "AA"
+    }
+  ],
+  "motor_modification_codes": [
+    {
+      "modification": "No Modification",
+      "code": "X"
+    },
+    {
+      "modification": "Nameplate Change (per Item Description)",
+      "code": "0"
+    },
+    {
+      "modification": "Nameplate Change (Custom)",
+      "code": "1"
+    },
+    {
+      "modification": "Shaft Grounding Ring (External)",
+      "code": "2"
+    },
+    {
+      "modification": "Shaft Grounding Ring (Internal)",
+      "code": "3"
+    },
+    {
+      "modification": "Insulated Bearing (ODE)",
+      "code": "4"
+    },
+    {
+      "modification": "Tropicalization",
+      "code": "5"
+    },
+    {
+      "modification": "Installation of C-Face",
+      "code": "6"
+    },
+    {
+      "modification": "Shorten Shaft (TS Frames)",
+      "code": "7"
+    },
+    {
+      "modification": "215JM Shaft Extension in 254JM Frame",
+      "code": "8"
+    },
+    {
+      "modification": "Class H Insulation",
+      "code": "9"
+    },
+    {
+      "modification": "Drip Cover",
+      "code": "A"
+    },
+    {
+      "modification": "Space Heater (120V)",
+      "code": "B"
+    },
+    {
+      "modification": "Space Heater (240V)",
+      "code": "C"
+    },
+    {
+      "modification": "Space Heater with Aux Box (120V)",
+      "code": "D"
+    },
+    {
+      "modification": "Space Heater with Aux Box (240V)",
+      "code": "E"
+    },
+    {
+      "modification": "Thermistors (1/Phase)",
+      "code": "F"
+    },
+    {
+      "modification": "Thermistors (1/Phase) with Auxilliary Box",
+      "code": "G"
+    },
+    {
+      "modification": "Thermostats (1/Phase)",
+      "code": "H"
+    },
+    {
+      "modification": "Thermostats (1/Phase) with Auxilliary Box",
+      "code": "J"
+    },
+    {
+      "modification": "F1 to F2 Mounting Conversion",
+      "code": "K"
+    },
+    {
+      "modification": "Oversized Main Conduit Box - Mount & Extend Leads",
+      "code": "L"
+    },
+    {
+      "modification": "Convert to IP56",
+      "code": "M"
+    },
+    {
+      "modification": "Convert to IP65",
+      "code": "N"
+    },
+    {
+      "modification": "Paint",
+      "code": "P"
+    },
+    {
+      "modification": "Alternate Grease",
+      "code": "Q"
+    },
+    {
+      "modification": "Single Row Thrust Bearing",
+      "code": "R"
+    },
+    {
+      "modification": "Double Row Thrust Bearing",
+      "code": "S"
+    },
+    {
+      "modification": "IEEE-45 Marine Duty Below Deck",
+      "code": "T"
+    },
+    {
+      "modification": "Stator Winding RTD's (1/ Phase)",
+      "code": "U"
+    },
+    {
+      "modification": "Convert to IP66",
+      "code": "V"
+    }
+  ],
+  "inch_codes": [
+    {
+      "inch": "4\"",
+      "code": "A"
+    },
+    {
+      "inch": "5\"",
+      "code": "B"
+    },
+    {
+      "inch": "6\"",
+      "code": "C"
+    },
+    {
+      "inch": "7\"",
+      "code": "D"
+    },
+    {
+      "inch": "8\"",
+      "code": "E"
+    },
+    {
+      "inch": "9\"",
+      "code": "F"
+    },
+    {
+      "inch": "10\"",
+      "code": "G"
+    },
+    {
+      "inch": "11\"",
+      "code": "H"
+    },
+    {
+      "inch": "12\"",
+      "code": "I"
+    },
+    {
+      "inch": "13\"",
+      "code": "J"
+    },
+    {
+      "inch": "14\"",
+      "code": "K"
+    },
+    {
+      "inch": "15\"",
+      "code": "L"
+    },
+    {
+      "inch": "16\"",
+      "code": "M"
+    }
+  ],
+  "decimal_codes": [
+    {
+      "decimal": ".000\"",
+      "code": "A"
+    },
+    {
+      "decimal": ".125\"",
+      "code": "B"
+    },
+    {
+      "decimal": ".250\"",
+      "code": "C"
+    },
+    {
+      "decimal": ".375\"",
+      "code": "D"
+    },
+    {
+      "decimal": ".500\"",
+      "code": "E"
+    },
+    {
+      "decimal": ".625\"",
+      "code": "F"
+    },
+    {
+      "decimal": ".750\"",
+      "code": "G"
+    },
+    {
+      "decimal": ".875\"",
+      "code": "H"
+    }
+  ],
+  "size_valid_trims": {
+    "1.5x3x10": {
+      "trim_count": 30,
+      "trims": [
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000",
+        "8.875",
+        "8.750",
+        "8.625",
+        "8.500",
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000"
+      ]
+    },
+    "1.5x3x6": {
+      "trim_count": 19,
+      "trims": [
+        "6.250",
+        "6.125",
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500",
+        "5.375",
+        "5.250",
+        "5.125",
+        "5.000",
+        "4.875",
+        "4.750",
+        "4.625",
+        "4.500",
+        "4.375",
+        "4.250",
+        "4.125",
+        "4.000"
+      ]
+    },
+    "1.5x3x8": {
+      "trim_count": 24,
+      "trims": [
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500"
+      ]
+    },
+    "10x12x16": {
+      "trim_count": 41,
+      "trims": [
+        "16.000",
+        "15.875",
+        "15.750",
+        "15.625",
+        "15.500",
+        "15.375",
+        "15.250",
+        "15.125",
+        "15.000",
+        "14.875",
+        "14.750",
+        "14.625",
+        "14.500",
+        "14.375",
+        "14.250",
+        "14.125",
+        "14.000",
+        "13.875",
+        "13.750",
+        "13.625",
+        "13.500",
+        "13.375",
+        "13.250",
+        "13.125",
+        "13.000",
+        "12.875",
+        "12.750",
+        "12.625",
+        "12.500",
+        "12.375",
+        "12.250",
+        "12.125",
+        "12.000",
+        "11.875",
+        "11.750",
+        "11.625",
+        "11.500",
+        "11.375",
+        "11.250",
+        "11.125",
+        "11.000"
+      ]
+    },
+    "1x1.5x6": {
+      "trim_count": 19,
+      "trims": [
+        "6.250",
+        "6.125",
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500",
+        "5.375",
+        "5.250",
+        "5.125",
+        "5.000",
+        "4.875",
+        "4.750",
+        "4.625",
+        "4.500",
+        "4.375",
+        "4.250",
+        "4.125",
+        "4.000"
+      ]
+    },
+    "1x1.5x8": {
+      "trim_count": 17,
+      "trims": [
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500"
+      ]
+    },
+    "1x2x10": {
+      "trim_count": 33,
+      "trims": [
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000",
+        "8.875",
+        "8.750",
+        "8.625",
+        "8.500",
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000"
+      ]
+    },
+    "2x3x10": {
+      "trim_count": 33,
+      "trims": [
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000",
+        "8.875",
+        "8.750",
+        "8.625",
+        "8.500",
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000"
+      ]
+    },
+    "2x3x13": {
+      "trim_count": 33,
+      "trims": [
+        "13.000",
+        "12.875",
+        "12.750",
+        "12.625",
+        "12.500",
+        "12.375",
+        "12.250",
+        "12.125",
+        "12.000",
+        "11.875",
+        "11.750",
+        "11.625",
+        "11.500",
+        "11.375",
+        "11.250",
+        "11.125",
+        "11.000",
+        "10.875",
+        "10.750",
+        "10.625",
+        "10.500",
+        "10.375",
+        "10.250",
+        "10.125",
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000"
+      ]
+    },
+    "2x3x6": {
+      "trim_count": 17,
+      "trims": [
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500",
+        "5.375",
+        "5.250",
+        "5.125",
+        "5.000",
+        "4.875",
+        "4.750",
+        "4.625",
+        "4.500",
+        "4.375",
+        "4.250",
+        "4.125",
+        "4.000"
+      ]
+    },
+    "2x3x8": {
+      "trim_count": 24,
+      "trims": [
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500"
+      ]
+    },
+    "3x4x10": {
+      "trim_count": 33,
+      "trims": [
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000",
+        "8.875",
+        "8.750",
+        "8.625",
+        "8.500",
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000"
+      ]
+    },
+    "3x4x13": {
+      "trim_count": 33,
+      "trims": [
+        "13.000",
+        "12.875",
+        "12.750",
+        "12.625",
+        "12.500",
+        "12.375",
+        "12.250",
+        "12.125",
+        "12.000",
+        "11.875",
+        "11.750",
+        "11.625",
+        "11.500",
+        "11.375",
+        "11.250",
+        "11.125",
+        "11.000",
+        "10.875",
+        "10.750",
+        "10.625",
+        "10.500",
+        "10.375",
+        "10.250",
+        "10.125",
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000"
+      ]
+    },
+    "3x4x8": {
+      "trim_count": 21,
+      "trims": [
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000",
+        "5.875",
+        "5.750",
+        "5.625",
+        "5.500"
+      ]
+    },
+    "4x4x10": {
+      "trim_count": 29,
+      "trims": [
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000",
+        "8.875",
+        "8.750",
+        "8.625",
+        "8.500",
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000",
+        "7.875",
+        "7.750",
+        "7.625",
+        "7.500",
+        "7.375",
+        "7.250",
+        "7.125",
+        "7.000",
+        "6.875",
+        "6.750",
+        "6.625",
+        "6.500",
+        "6.375",
+        "6.250",
+        "6.125",
+        "6.000"
+      ]
+    },
+    "4x6x10": {
+      "trim_count": 23,
+      "trims": [
+        "10.750",
+        "10.625",
+        "10.500",
+        "10.375",
+        "10.250",
+        "10.125",
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000",
+        "8.875",
+        "8.750",
+        "8.625",
+        "8.500",
+        "8.375",
+        "8.250",
+        "8.125",
+        "8.000"
+      ]
+    },
+    "4x6x13": {
+      "trim_count": 33,
+      "trims": [
+        "13.000",
+        "12.875",
+        "12.750",
+        "12.625",
+        "12.500",
+        "12.375",
+        "12.250",
+        "12.125",
+        "12.000",
+        "11.875",
+        "11.750",
+        "11.625",
+        "11.500",
+        "11.375",
+        "11.250",
+        "11.125",
+        "11.000",
+        "10.875",
+        "10.750",
+        "10.625",
+        "10.500",
+        "10.375",
+        "10.250",
+        "10.125",
+        "10.000",
+        "9.875",
+        "9.750",
+        "9.625",
+        "9.500",
+        "9.375",
+        "9.250",
+        "9.125",
+        "9.000"
+      ]
+    },
+    "6x8x13": {
+      "trim_count": 29,
+      "trims": [
+        "13.500",
+        "13.375",
+        "13.250",
+        "13.125",
+        "13.000",
+        "12.875",
+        "12.750",
+        "12.625",
+        "12.500",
+        "12.375",
+        "12.250",
+        "12.125",
+        "12.000",
+        "11.875",
+        "11.750",
+        "11.625",
+        "11.500",
+        "11.375",
+        "11.250",
+        "11.125",
+        "11.000",
+        "10.875",
+        "10.750",
+        "10.625",
+        "10.500",
+        "10.375",
+        "10.250",
+        "10.125",
+        "10.000"
+      ]
+    },
+    "8x10x15": {
+      "trim_count": 25,
+      "trims": [
+        "15.000",
+        "14.875",
+        "14.750",
+        "14.625",
+        "14.500",
+        "14.375",
+        "14.250",
+        "14.125",
+        "14.000",
+        "13.875",
+        "13.750",
+        "13.625",
+        "13.500",
+        "13.375",
+        "13.250",
+        "13.125",
+        "13.000",
+        "12.875",
+        "12.750",
+        "12.625",
+        "12.500",
+        "12.375",
+        "12.250",
+        "12.125",
+        "12.000"
+      ]
+    }
+  }
+}
