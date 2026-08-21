@@ -1,0 +1,467 @@
+{
+  "artifact": "FYBROC_V6_PUMP_OPTIONS_VERTICAL",
+  "step": "F110.5b",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "sheet": "Pump Options - Vertical",
+  "generated_utc": "2026-08-21T21:31:58.629007+00:00",
+  "git_commit": "e1d027989f1dfd02604eaf9998a0f5a31a8fd73d",
+  "git_working_tree_clean": false,
+  "fields": [
+    "Shaft Material",
+    "Impeller Sleeve",
+    "Wetted Hardware",
+    "Pump Elastomers",
+    "Flush",
+    "Flush Options",
+    "Impeller Balance",
+    "Vapor Protection",
+    "Strainer"
+  ],
+  "field_options": {
+    "Shaft Material": [
+      "316 SS",
+      "Carp-20",
+      "Hastelloy C",
+      "Titanium",
+      "FRP Wrapped Shaft (303SS Core)",
+      "FRP Wrapped Shaft (316SS Core)",
+      "Special Shaft Material"
+    ],
+    "Sleeve": [
+      "316 SS",
+      "Carp-20",
+      "Hast C",
+      "Titanium"
+    ],
+    "Wetted Hardware": [
+      "303 SS",
+      "316 SS",
+      "Carp-20",
+      "Hast C",
+      "Titanium"
+    ],
+    "Pump Elastomers": [
+      "FKM",
+      "EPR",
+      "PTFE"
+    ],
+    "Flush": [
+      "External Flush",
+      "Internal Flush",
+      "Bypass (Tapped Discharge)",
+      "Bypass (Cyclone Separator)"
+    ],
+    "Cyclone Separator": [
+      "Not Included",
+      "Cyclone Separator"
+    ],
+    "Impeller Balance": [
+      "Not Supplied by Fybroc",
+      "Dynamic Balancing"
+    ],
+    "Vapor Seal": [
+      "Vapor Shield",
+      "Vapor Seal"
+    ],
+    "Strainer": [
+      "Not Included",
+      "Standard Strainer",
+      "Flat Strainer"
+    ],
+    "Flush Material": []
+  },
+  "combination_matrix": {
+    "total_combinations": 23040,
+    "distinct_hex_codes": 23040,
+    "hex_code_range": {
+      "first": "0001",
+      "last": "0HS0"
+    },
+    "distinct_values_per_field": {
+      "Shaft Material": [
+        "316 SS",
+        "Carp-20",
+        "FRP Wrapped Shaft (303SS Core)",
+        "FRP Wrapped Shaft (316SS Core)",
+        "Hastelloy C",
+        "Titanium"
+      ],
+      "Impeller Sleeve": [
+        "316 SS",
+        "Carp-20",
+        "Hast C",
+        "Titanium"
+      ],
+      "Wetted Hardware": [
+        "303 SS",
+        "316 SS",
+        "Carp-20",
+        "Hast C",
+        "Titanium"
+      ],
+      "Pump Elastomers": [
+        "EPR",
+        "FKM",
+        "PTFE"
+      ],
+      "Flush": [
+        "Bypass (Cyclone Separator)",
+        "Bypass (Tapped Discharge)",
+        "External Flush",
+        "Internal Flush"
+      ],
+      "Flush Options": [
+        "Cyclone Separator",
+        "Flush Assembly - Double",
+        "Flush Assembly - Single",
+        "No Options"
+      ],
+      "Impeller Balance": [
+        "Dynamic Balancing",
+        "Not Supplied by Fybroc"
+      ],
+      "Vapor Protection": [
+        "Vapor Seal",
+        "Vapor Shield"
+      ],
+      "Strainer": [
+        "Flat Strainer",
+        "Not Included",
+        "Standard Strainer"
+      ]
+    },
+    "sample_rows": [
+      {
+        "id": 1,
+        "hex_code": "0001",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "External Flush",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 2,
+        "hex_code": "0002",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "External Flush",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 3,
+        "hex_code": "0003",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "PTFE",
+        "Flush": "External Flush",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 4,
+        "hex_code": "0004",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "Internal Flush",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 5,
+        "hex_code": "0005",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "Internal Flush",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 6,
+        "hex_code": "0006",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "PTFE",
+        "Flush": "Internal Flush",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 7,
+        "hex_code": "0007",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "Bypass (Tapped Discharge)",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 8,
+        "hex_code": "0008",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "Bypass (Tapped Discharge)",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 9,
+        "hex_code": "0009",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "PTFE",
+        "Flush": "Bypass (Tapped Discharge)",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 10,
+        "hex_code": "000A",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "Bypass (Cyclone Separator)",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 11,
+        "hex_code": "000B",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "Bypass (Cyclone Separator)",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 12,
+        "hex_code": "000C",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "PTFE",
+        "Flush": "Bypass (Cyclone Separator)",
+        "Flush Options": "No Options",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 13,
+        "hex_code": "000D",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "External Flush",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 14,
+        "hex_code": "000E",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "External Flush",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 15,
+        "hex_code": "000F",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "PTFE",
+        "Flush": "External Flush",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 16,
+        "hex_code": "000G",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "Internal Flush",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 17,
+        "hex_code": "000H",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "Internal Flush",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 18,
+        "hex_code": "000I",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "PTFE",
+        "Flush": "Internal Flush",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 19,
+        "hex_code": "000J",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "FKM",
+        "Flush": "Bypass (Tapped Discharge)",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      },
+      {
+        "id": 20,
+        "hex_code": "000K",
+        "shaft_label": null,
+        "flush_abbrev": null,
+        "Shaft Material": "316 SS",
+        "Impeller Sleeve": "316 SS",
+        "Wetted Hardware": "303 SS",
+        "Pump Elastomers": "EPR",
+        "Flush": "Bypass (Tapped Discharge)",
+        "Flush Options": "Cyclone Separator",
+        "Impeller Balance": "Not Supplied by Fybroc",
+        "Vapor Protection": "Vapor Shield",
+        "Strainer": "Not Included"
+      }
+    ]
+  },
+  "lookup_key_col": "C (concatenated all field values)",
+  "hex_code_col": "M",
+  "part_number_role": "The hex-code in col M is the Pump Options segment token embedded in the Fybroc vertical part number. Smart Number uses VLOOKUP(concat_key, col_C, col_M).",
+  "vs_horizontal": {
+    "field_count_vertical": 9,
+    "field_count_horizontal": 12,
+    "vertical_only_fields": [
+      "Wetted Hardware",
+      "Flush Options",
+      "Vapor Protection",
+      "Strainer"
+    ],
+    "horizontal_only_fields": [
+      "Casing Drains",
+      "Suction Discharge",
+      "Casing Hardware",
+      "Bearing Option",
+      "Frame Hardware",
+      "Gland Hardware",
+      "Cyclone Separator"
+    ],
+    "shared_fields": [
+      "Shaft Material",
+      "Sleeve/Impeller Sleeve",
+      "Pump Elastomers",
+      "Flush",
+      "Impeller Balance"
+    ]
+  }
+}

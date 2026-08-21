@@ -1,0 +1,378 @@
+========================================================================================================================
+F110.5b - FYBROC V6 PUMP OPTIONS VERTICAL
+========================================================================================================================
+
+Git commit           : e1d027989f1dfd02604eaf9998a0f5a31a8fd73d
+Git clean            : False
+
+Fields               : 9
+Total combinations   : 23,040
+Distinct hex-codes   : 23,040
+Hex-code range       : 0001 -> 0HS0
+Lookup key col       : C (concatenated all field values)
+Hex-code col         : M
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Shaft Material:
+    - 316 SS
+    - Carp-20
+    - Hastelloy C
+    - Titanium
+    - FRP Wrapped Shaft (303SS Core)
+    - FRP Wrapped Shaft (316SS Core)
+    - Special Shaft Material
+
+  Sleeve:
+    - 316 SS
+    - Carp-20
+    - Hast C
+    - Titanium
+
+  Wetted Hardware:
+    - 303 SS
+    - 316 SS
+    - Carp-20
+    - Hast C
+    - Titanium
+
+  Pump Elastomers:
+    - FKM
+    - EPR
+    - PTFE
+
+  Flush:
+    - External Flush
+    - Internal Flush
+    - Bypass (Tapped Discharge)
+    - Bypass (Cyclone Separator)
+
+  Cyclone Separator:
+    - Not Included
+    - Cyclone Separator
+
+  Impeller Balance:
+    - Not Supplied by Fybroc
+    - Dynamic Balancing
+
+  Vapor Seal:
+    - Vapor Shield
+    - Vapor Seal
+
+  Strainer:
+    - Not Included
+    - Standard Strainer
+    - Flat Strainer
+
+  Flush Material:
+
+========================================================================================================================
+DISTINCT VALUES PER FIELD (from full matrix)
+========================================================================================================================
+
+  Shaft Material (6):
+    316 SS
+    Carp-20
+    FRP Wrapped Shaft (303SS Core)
+    FRP Wrapped Shaft (316SS Core)
+    Hastelloy C
+    Titanium
+
+  Impeller Sleeve (4):
+    316 SS
+    Carp-20
+    Hast C
+    Titanium
+
+  Wetted Hardware (5):
+    303 SS
+    316 SS
+    Carp-20
+    Hast C
+    Titanium
+
+  Pump Elastomers (3):
+    EPR
+    FKM
+    PTFE
+
+  Flush (4):
+    Bypass (Cyclone Separator)
+    Bypass (Tapped Discharge)
+    External Flush
+    Internal Flush
+
+  Flush Options (4):
+    Cyclone Separator
+    Flush Assembly - Double
+    Flush Assembly - Single
+    No Options
+
+  Impeller Balance (2):
+    Dynamic Balancing
+    Not Supplied by Fybroc
+
+  Vapor Protection (2):
+    Vapor Seal
+    Vapor Shield
+
+  Strainer (3):
+    Flat Strainer
+    Not Included
+    Standard Strainer
+
+========================================================================================================================
+VERTICAL vs HORIZONTAL DIFFERENCES
+========================================================================================================================
+
+  Vertical fields  : 9
+  Horizontal fields: 12
+
+  Vertical-only fields:
+    + Wetted Hardware
+    + Flush Options
+    + Vapor Protection
+    + Strainer
+
+  Horizontal-only fields:
+    - Casing Drains
+    - Suction Discharge
+    - Casing Hardware
+    - Bearing Option
+    - Frame Hardware
+    - Gland Hardware
+    - Cyclone Separator
+
+  Shared fields:
+    = Shaft Material
+    = Sleeve/Impeller Sleeve
+    = Pump Elastomers
+    = Flush
+    = Impeller Balance
+
+========================================================================================================================
+SAMPLE ROWS (first 20)
+========================================================================================================================
+
+  ID=     1  hex=0001  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = External Flush
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     2  hex=0002  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = External Flush
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     3  hex=0003  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = PTFE
+    Flush                        = External Flush
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     4  hex=0004  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = Internal Flush
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     5  hex=0005  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = Internal Flush
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     6  hex=0006  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = PTFE
+    Flush                        = Internal Flush
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     7  hex=0007  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = Bypass (Tapped Discharge)
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     8  hex=0008  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = Bypass (Tapped Discharge)
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=     9  hex=0009  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = PTFE
+    Flush                        = Bypass (Tapped Discharge)
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    10  hex=000A  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = Bypass (Cyclone Separator)
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    11  hex=000B  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = Bypass (Cyclone Separator)
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    12  hex=000C  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = PTFE
+    Flush                        = Bypass (Cyclone Separator)
+    Flush Options                = No Options
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    13  hex=000D  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = External Flush
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    14  hex=000E  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = External Flush
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    15  hex=000F  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = PTFE
+    Flush                        = External Flush
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    16  hex=000G  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = Internal Flush
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    17  hex=000H  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = Internal Flush
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    18  hex=000I  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = PTFE
+    Flush                        = Internal Flush
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    19  hex=000J  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = FKM
+    Flush                        = Bypass (Tapped Discharge)
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
+  ID=    20  hex=000K  shaft=—  flush=—
+    Shaft Material               = 316 SS
+    Impeller Sleeve              = 316 SS
+    Wetted Hardware              = 303 SS
+    Pump Elastomers              = EPR
+    Flush                        = Bypass (Tapped Discharge)
+    Flush Options                = Cyclone Separator
+    Impeller Balance             = Not Supplied by Fybroc
+    Vapor Protection             = Vapor Shield
+    Strainer                     = Not Included
+
