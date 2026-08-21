@@ -1,0 +1,428 @@
+========================================================================================================================
+F110.5a - FYBROC V6 PUMP OPTIONS HORIZONTAL
+========================================================================================================================
+
+Git commit           : 4b01dd00b371df4c916f6f7196e8e478d9a9a914
+Git clean            : False
+
+Fields               : 12
+Total combinations   : 138,240
+Distinct hex-codes   : 138,240
+Hex-code range       : 0001 -> 2YO0
+Lookup key col       : C (concatenated all field values)
+Hex-code col         : P
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Casing Drains:
+    - Not Supplied by Fybroc
+    - Supplied by Fybroc
+
+  Suction Discharge Taps:
+    - No Suction Discharge Tapss
+    - Suction Discharge Taps
+
+  Shaft Material:
+    - 303 SS
+    - 316 SS
+
+  Sleeve:
+    - Integral
+    - 316SS
+    - Carp-20
+    - Hast-C
+    - Titanium
+    - Separate FRP
+
+  Casing Hardware:
+    - 303 SS
+    - 316 SS
+
+  Pump Elastomers:
+    - FKM
+    - EPR
+    - PTFE
+
+  Bearing Option:
+    - Oil Bath Lubrication
+    - Re-Greaseable Bearings
+    - Greased for Life Bearings
+
+  Power Frame Hardware:
+    - 303 SS
+    - 316 SS
+
+  Gland Hardware:
+    - 303 SS
+    - 316 SS
+    - Carp-20
+    - Hastelloy C
+    - Titanium
+
+  Flush:
+    - External Flush
+    - Internal Flush
+    - Bypass (Tapped Discharge)
+    - Bypass (Tapped Spacer)
+    - Bypass (Cyclone Separator)
+    - Bypass (Cyclone Separator / Spacer)
+
+  Cyclone Separator:
+    - Not Included
+    - By Fybroc
+
+  Impeller Balance:
+    - Not Supplied by Fybroc
+    - Dynamic Balancing
+
+========================================================================================================================
+DISTINCT VALUES PER FIELD (from full matrix)
+========================================================================================================================
+
+  Casing Drains (2):
+    Not Supplied by Fybroc
+    Supplied by Fybroc
+
+  Suction Discharge (2):
+    No Suction Discharge Taps
+    Suction Discharge Taps
+
+  Shaft Material (2):
+    303 SS
+    316 SS
+
+  Sleeve (6):
+    316SS
+    Carp-20
+    Hast-C
+    Integral
+    Separate FRP
+    Titanium
+
+  Casing Hardware (2):
+    303 SS
+    316 SS
+
+  Pump Elastomers (3):
+    EPR
+    FKM
+    PTFE
+
+  Bearing Option (3):
+    Greased for Life Bearings
+    Oil Bath Lubrication
+    Re-Greaseable Bearings
+
+  Frame Hardware (2):
+    303 SS
+    316 SS
+
+  Gland Hardware (5):
+    303 SS
+    316 SS
+    Carp-20
+    Hastelloy C
+    Titanium
+
+  Flush (6):
+    Bypass (Cyclone Separator / Spacer)
+    Bypass (Cyclone Separator)
+    Bypass (Tapped Discharge)
+    Bypass (Tapped Spacer)
+    External Flush
+    Internal Flush
+
+  Cyclone Separator (2):
+    By Fybroc
+    Not Included
+
+  Dynamic Balancing (2):
+    Dynamic Balancing
+    Not Supplied by Fybroc
+
+========================================================================================================================
+SAMPLE ROWS (first 20)
+========================================================================================================================
+
+  ID=     1  hex=0001  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     2  hex=0002  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     3  hex=0003  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     4  hex=0004  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     5  hex=0005  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     6  hex=0006  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     7  hex=0007  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     8  hex=0008  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = Integral
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=     9  hex=0009  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    10  hex=000A  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    11  hex=000B  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    12  hex=000C  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    13  hex=000D  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    14  hex=000E  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    15  hex=000F  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    16  hex=000G  shaft=316 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 316 SS
+    Sleeve                    = 316SS
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    17  hex=000H  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Carp-20
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    18  hex=000I  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = No Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Carp-20
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    19  hex=000J  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Not Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Carp-20
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
+  ID=    20  hex=000K  shaft=303 SHAFT  flush=EXT
+    Casing Drains             = Supplied by Fybroc
+    Suction Discharge         = Suction Discharge Taps
+    Shaft Material            = 303 SS
+    Sleeve                    = Carp-20
+    Casing Hardware           = 303 SS
+    Pump Elastomers           = FKM
+    Bearing Option            = Oil Bath Lubrication
+    Frame Hardware            = 303 SS
+    Gland Hardware            = 303 SS
+    Flush                     = External Flush
+    Cyclone Separator         = Not Included
+    Dynamic Balancing         = Not Supplied by Fybroc
+
