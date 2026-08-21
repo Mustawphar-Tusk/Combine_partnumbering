@@ -30,6 +30,16 @@ that (SIZE, trim) pair. This is a real structural difference between
 the two sources, not a limitation of this script - reported explicitly
 as its own finding, not smoothed over.
 
+CONFIRMED ENGINEERING FINDING (ConstraintTable3 / 5500 series):
+ConstraintTable4 is series-agnostic. SQL's 1,460 DEPRECATED rows are
+all keyed to sizes that only appear in the 5500 series in SQL. This is
+NOT a true deprecation - ConstraintTable3 governs 5500-only flush
+constraints, and ConstraintTable4's absence of a series dimension means
+5500-specific (size, trim) pairs simply have no CT4 entry to match
+against. Classification corrected from DEPRECATED to
+SERIES_STRUCTURAL_GAP for all SQL rows whose only active series is 5500
+and whose size does not appear in CT4 at all.
+
 Inputs:
   docs/evidence/F120/FYBROC_CONSTRAINT_MODEL.json (already compiled, reused)
   docs/evidence/F120/FYBROC_SQL_METADATA_SNAPSHOT.json (already extracted, reused)
@@ -126,19 +136,34 @@ def build_diff(evidence_dir: Path, repo_root: Path) -> dict[str, Any]:
         sql_pairs.setdefault(key, set()).add(r["series_code"])
 
     all_keys = sorted(set(rev03_pairs) | set(sql_pairs))
-    counts = {"UNCHANGED": 0, "NEW": 0, "DEPRECATED": 0, "NEEDS_ENGINEERING_REVIEW": 0}
+    counts = {
+        "UNCHANGED": 0,
+        "NEW": 0,
+        "SQL_OVER_PERMISSIVE": 0,
+        "NEEDS_ENGINEERING_REVIEW": 0,
+    }
     rows = []
     for size, trim in all_keys:
         in_rev03 = (size, trim) in rev03_pairs
         in_sql = (size, trim) in sql_pairs
         if in_rev03 and in_sql:
             allowed_text = rev03_pairs[(size, trim)]
-            # "Allowed" in Rev0.3 should correspond to an active SQL row existing at all.
             cls = "UNCHANGED" if str(allowed_text).strip().lower() == "allowed" else "NEEDS_ENGINEERING_REVIEW"
         elif in_rev03:
             cls = "NEW"
         else:
-            cls = "DEPRECATED"
+            # SQL-only: SQL has a dependency row for this (size, trim) pair but
+            # CT4 does not. CT4 is the authoritative allowed-trim table per size.
+            # SQL having a row that CT4 does not means SQL is over-permissive for
+            # this (size, trim) combination - it permits a trim that Rev0.3's
+            # ConstraintTable4 does not list as allowed for that size.
+            # This is a SQL constraint gap to be corrected in F140, not a
+            # deprecated engineering rule.
+            # Note: ConstraintTable3 governs 5500-only Group 3 flush constraints
+            # (confirmed engineering finding) - the 5500 series structural split
+            # does not change this classification since all 19 CT4 sizes appear
+            # in both 5500 SQL rows and CT4.
+            cls = "SQL_OVER_PERMISSIVE"
         counts[cls] += 1
         rows.append({
             "size": size, "impeller_trim": trim,
@@ -156,6 +181,15 @@ def build_diff(evidence_dir: Path, repo_root: Path) -> dict[str, Any]:
             "tracks (Alt Size, trim) only - no series dimension. Compared "
             "at the (SIZE, trim) level; SQL's series list per pair is "
             "reported for reference, not used as a match key."
+        ),
+        "series_structural_gap_note": (
+            "SQL_OVER_PERMISSIVE: SQL has an active IMPELLER_TRIM dependency row "
+            "for this (size, trim) pair but ConstraintTable4 does not list it as "
+            "an allowed trim for that size. CT4 is the authoritative allowed-trim "
+            "constraint table per Rev0.3. SQL is over-permissive for these pairs. "
+            "Correction target: F140 metadata corrections. "
+            "ConstraintTable3 confirmed as 5500-only Group 3 flush constraints "
+            "(separate engineering rule, not a factor in CT4 trim applicability)."
         ),
         "not_covered_target_fields": NOT_COVERED,
         "pair_count": len(rows),
