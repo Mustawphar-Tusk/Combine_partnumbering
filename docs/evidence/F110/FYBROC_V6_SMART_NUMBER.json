@@ -1,0 +1,690 @@
+{
+  "artifact": "FYBROC_V6_SMART_NUMBER",
+  "step": "F110.4",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "generated_utc": "2026-08-21T21:09:48.325988+00:00",
+  "git_commit": "82302ddee1dd5a188cbc3cebfa3ac3a34c3b12b0",
+  "git_working_tree_clean": false,
+  "source_sheets_referenced": [
+    "Attributes",
+    "Pump Options - Horizontal",
+    "Pump Options - Vertical",
+    "Seal Assembly - Horizontal",
+    "Setting-Length-Vertical",
+    "Options - Horizontal",
+    "Options - Vertical",
+    "Motor Assy",
+    "Testing"
+  ],
+  "horizontal": {
+    "orientation": "Horizontal",
+    "title": "Fybroc Horizontal Part Number",
+    "example_part_number": "FA35FC-1VC1-S03-3G-04XXXX-00",
+    "part_number_cell": "D9",
+    "segment_count": 13,
+    "part_number_format": "BrandSeriesSizePump MaterialImpeller Trim - Pump Options - Seal ManufacturerSeal Assembly - Options - Frame SizeMotor Assembly - Motor Modifications - Testing",
+    "segments": [
+      {
+        "col": 4,
+        "col_letter": "D",
+        "segment_name": "Brand",
+        "example_code": "F",
+        "label": "Brand",
+        "fields": [
+          {
+            "field": "Brand",
+            "example_value": "Not Supplied by Fybroc"
+          }
+        ]
+      },
+      {
+        "col": 5,
+        "col_letter": "E",
+        "segment_name": "Series",
+        "example_code": "A",
+        "label": "Series",
+        "fields": [
+          {
+            "field": "Series",
+            "example_value": "1500"
+          },
+          {
+            "field": "Flange Type",
+            "example_value": "ANSI"
+          }
+        ]
+      },
+      {
+        "col": 7,
+        "col_letter": "G",
+        "segment_name": "Size",
+        "example_code": "3",
+        "label": "Size",
+        "fields": [
+          {
+            "field": "Size",
+            "example_value": "Seal Option:"
+          }
+        ]
+      },
+      {
+        "col": 8,
+        "col_letter": "H",
+        "segment_name": "Pump Material",
+        "example_code": "5",
+        "label": "Pump Material",
+        "fields": [
+          {
+            "field": "Pump Material",
+            "example_value": "Supplied by Fybroc"
+          }
+        ]
+      },
+      {
+        "col": 9,
+        "col_letter": "I",
+        "segment_name": "Impeller Trim",
+        "example_code": "FC",
+        "label": "Impeller Trim",
+        "fields": [
+          {
+            "field": "Impeller Trim",
+            "example_value": "Casing Drains:"
+          }
+        ]
+      },
+      {
+        "col": 11,
+        "col_letter": "K",
+        "segment_name": "Pump Options",
+        "example_code": "1VC1",
+        "label": "Pump Options",
+        "fields": [
+          {
+            "field": "Casing Drains",
+            "example_value": "Coupling Included"
+          },
+          {
+            "field": "Suction Discharge",
+            "example_value": "Steel"
+          },
+          {
+            "field": "Shaft Material",
+            "example_value": "Baseplate Included"
+          },
+          {
+            "field": "Impeller Sleeve",
+            "example_value": "303 SS"
+          },
+          {
+            "field": "Casing Hardware",
+            "example_value": "Not Included"
+          },
+          {
+            "field": "Pump Elastomers",
+            "example_value": "Supplied by Fybroc"
+          },
+          {
+            "field": "Bearing Option",
+            "example_value": "Oil Bath Lubrication"
+          },
+          {
+            "field": "Frame Hardware",
+            "example_value": "316 SS"
+          },
+          {
+            "field": "Gland Hardware",
+            "example_value": "303 SS"
+          },
+          {
+            "field": "Flush",
+            "example_value": "Bypass (Tapped Discharge)"
+          },
+          {
+            "field": "Flush Material",
+            "example_value": "Bypass (Tapped Discharge)"
+          },
+          {
+            "field": "Cyclone Separator",
+            "example_value": "Not Included"
+          },
+          {
+            "field": "Dynamic Impeller",
+            "example_value": "Dynamic Balancing"
+          }
+        ]
+      },
+      {
+        "col": 15,
+        "col_letter": "O",
+        "segment_name": "Seal Manufacturer",
+        "example_code": "S",
+        "label": "Seal Manufacturer",
+        "fields": [
+          {
+            "field": "Seal Manufacturer",
+            "example_value": "Motor Included*"
+          }
+        ]
+      },
+      {
+        "col": 16,
+        "col_letter": "P",
+        "segment_name": "Seal Assembly",
+        "example_code": "03",
+        "label": "Complete Seal Assy",
+        "fields": [
+          {
+            "field": "Seal Option",
+            "example_value": "Supplied by Fybroc"
+          },
+          {
+            "field": "Seal Type",
+            "example_value": "8-1T Double Inside"
+          },
+          {
+            "field": "Seal Materials",
+            "example_value": "Carbon vs Ceramic"
+          },
+          {
+            "field": "Seal Elastomers",
+            "example_value": "FKM"
+          },
+          {
+            "field": "Seal Guard",
+            "example_value": "Not Supplied by Fybroc"
+          }
+        ]
+      },
+      {
+        "col": 19,
+        "col_letter": "S",
+        "segment_name": "Options",
+        "example_code": "3G",
+        "label": "Options",
+        "fields": [
+          {
+            "field": "Coupling Option",
+            "example_value": "Coupling Included"
+          },
+          {
+            "field": "Coupling Guard",
+            "example_value": "Steel"
+          },
+          {
+            "field": "Baseplate Option",
+            "example_value": "Baseplate Included"
+          },
+          {
+            "field": "Baseplate Hardware",
+            "example_value": "303 SS"
+          },
+          {
+            "field": "Customer Nameplate",
+            "example_value": "Not Included"
+          },
+          {
+            "field": "C-Face Adapter",
+            "example_value": "Supplied by Fybroc"
+          }
+        ]
+      },
+      {
+        "col": 22,
+        "col_letter": "V",
+        "segment_name": "Frame Size",
+        "example_code": "05",
+        "label": "Frame Size",
+        "fields": [
+          {
+            "field": "Frame Size",
+            "example_value": "Motor Option:"
+          }
+        ]
+      },
+      {
+        "col": 23,
+        "col_letter": "W",
+        "segment_name": "Motor Assembly",
+        "example_code": "04X",
+        "label": "Motor Assy",
+        "fields": [
+          {
+            "field": "Motor Option",
+            "example_value": "Motor Included*"
+          },
+          {
+            "field": "Motor Class",
+            "example_value": "Imperial"
+          },
+          {
+            "field": "Motor Orientation",
+            "example_value": "Hor T"
+          },
+          {
+            "field": "Horsepower",
+            "example_value": "5 HP"
+          },
+          {
+            "field": "RPM",
+            "example_value": "3600"
+          },
+          {
+            "field": "Voltage",
+            "example_value": "230/460"
+          },
+          {
+            "field": "Hertz",
+            "example_value": "3/60"
+          },
+          {
+            "field": "Frame",
+            "example_value": "184"
+          },
+          {
+            "field": "Enclosure",
+            "example_value": "SD"
+          },
+          {
+            "field": "Efficiency",
+            "example_value": "PE"
+          },
+          {
+            "field": "Manufacturer",
+            "example_value": "Standard Offering"
+          }
+        ]
+      },
+      {
+        "col": 26,
+        "col_letter": "Z",
+        "segment_name": "Motor Modifications",
+        "example_code": "XXX",
+        "label": "Motor Modifications",
+        "fields": [
+          {
+            "field": "Modification 1",
+            "example_value": "No Modification"
+          },
+          {
+            "field": "Modification 2",
+            "example_value": "No Modification"
+          },
+          {
+            "field": "Modification 3",
+            "example_value": "No Modification"
+          }
+        ]
+      },
+      {
+        "col": 29,
+        "col_letter": "AC",
+        "segment_name": "Testing",
+        "example_code": "00",
+        "label": "Testing",
+        "fields": [
+          {
+            "field": "Performance Testing",
+            "example_value": "NONE"
+          },
+          {
+            "field": "Hydro Testing",
+            "example_value": "NONE"
+          },
+          {
+            "field": "Vibration",
+            "example_value": "NONE"
+          },
+          {
+            "field": "Sound Level",
+            "example_value": "NONE"
+          }
+        ]
+      }
+    ],
+    "example_description": "PUMP, FYBR, 1500, 1x2x10, VR-1A, 9.250 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR",
+    "example_codes": {
+      "Brand": "F",
+      "Series": "A",
+      "Size": "3",
+      "Pump Material": "5",
+      "Impeller Trim": "FC",
+      "Pump Options": "1VC1",
+      "Seal Manufacturer": "S",
+      "Seal Assembly": "03",
+      "Options": "3G",
+      "Frame Size": "05",
+      "Motor Assembly": "04X",
+      "Motor Modifications": "XXX",
+      "Testing": "00"
+    }
+  },
+  "vertical": {
+    "orientation": "Vertical",
+    "title": "Fybroc Vertical Part Number",
+    "example_part_number": "FG31-EA-07PP-0700-0C-09V-XXX-00",
+    "part_number_cell": "D34",
+    "segment_count": 13,
+    "part_number_format": "BrandSeriesSizePump MaterialImpeller Trim - Pump Options - Setting/LengthVertical Options - Options - Frame SizeMotor Assembly - Motor Modifications - Testing",
+    "segments": [
+      {
+        "col": 4,
+        "col_letter": "D",
+        "segment_name": "Brand",
+        "example_code": "F",
+        "label": "Brand",
+        "fields": [
+          {
+            "field": "Brand",
+            "example_value": "316 SS"
+          }
+        ]
+      },
+      {
+        "col": 5,
+        "col_letter": "E",
+        "segment_name": "Series",
+        "example_code": "G",
+        "label": "Series",
+        "fields": [
+          {
+            "field": "Series",
+            "example_value": "5500"
+          },
+          {
+            "field": "Flange Type",
+            "example_value": "ANSI"
+          }
+        ]
+      },
+      {
+        "col": 7,
+        "col_letter": "G",
+        "segment_name": "Size",
+        "example_code": "3",
+        "label": "Size",
+        "fields": [
+          {
+            "field": "Size",
+            "example_value": "Setting"
+          }
+        ]
+      },
+      {
+        "col": 8,
+        "col_letter": "H",
+        "segment_name": "Pump Material",
+        "example_code": "1",
+        "label": "Pump Material",
+        "fields": [
+          {
+            "field": "Pump Material",
+            "example_value": "Tailpipe Option"
+          }
+        ]
+      },
+      {
+        "col": 9,
+        "col_letter": "I",
+        "segment_name": "Impeller Trim",
+        "example_code": "EA",
+        "label": "Impeller Trim",
+        "fields": [
+          {
+            "field": "Impeller Trim",
+            "example_value": "Not Supplied by Fybroc"
+          }
+        ]
+      },
+      {
+        "col": 11,
+        "col_letter": "K",
+        "segment_name": "Pump Options",
+        "example_code": "07PP",
+        "label": "Pump Options",
+        "fields": [
+          {
+            "field": "Shaft Material",
+            "example_value": "Coupling Included"
+          },
+          {
+            "field": "Impeller Sleeve",
+            "example_value": "Steel"
+          },
+          {
+            "field": "Wetted Hardware",
+            "example_value": "Mounting Plate Included"
+          },
+          {
+            "field": "Pump Elastomers",
+            "example_value": "Not Included"
+          },
+          {
+            "field": "Flush",
+            "example_value": "External Flush"
+          },
+          {
+            "field": "Flush Options",
+            "example_value": "Cyclone Separator"
+          },
+          {
+            "field": "Impeller Balance",
+            "example_value": "Not Supplied by Fybroc"
+          },
+          {
+            "field": "Vapor Protection",
+            "example_value": "Vapor Seal"
+          },
+          {
+            "field": "Strainer Options",
+            "example_value": "Not Included"
+          }
+        ]
+      },
+      {
+        "col": 15,
+        "col_letter": "O",
+        "segment_name": "Setting/Length",
+        "example_code": "07",
+        "label": "Setting/Length",
+        "fields": [
+          {
+            "field": "Setting/Length",
+            "example_value": "Motor Included*"
+          },
+          {
+            "field": "S-Dimension",
+            "example_value": "Imperial"
+          }
+        ]
+      },
+      {
+        "col": 17,
+        "col_letter": "Q",
+        "segment_name": "Vertical Options",
+        "example_code": "00",
+        "label": "Vertical Options",
+        "fields": [
+          {
+            "field": "Tailpipe Option",
+            "example_value": "Modification 1:"
+          },
+          {
+            "field": "Tailpipe Length",
+            "example_value": "Modification 2:"
+          }
+        ]
+      },
+      {
+        "col": 19,
+        "col_letter": "S",
+        "segment_name": "Options",
+        "example_code": "0C",
+        "label": "Options",
+        "fields": [
+          {
+            "field": "Coupling Option",
+            "example_value": "Coupling Included"
+          },
+          {
+            "field": "Coupling Guard",
+            "example_value": "Steel"
+          },
+          {
+            "field": "Mounting Plate Option",
+            "example_value": "Mounting Plate Included"
+          },
+          {
+            "field": "Customer Nameplate",
+            "example_value": "Not Included"
+          }
+        ]
+      },
+      {
+        "col": 22,
+        "col_letter": "V",
+        "segment_name": "Frame Size",
+        "example_code": "08",
+        "label": "Frame Size",
+        "fields": [
+          {
+            "field": "Frame Size",
+            "example_value": "Motor Option:"
+          }
+        ]
+      },
+      {
+        "col": 23,
+        "col_letter": "W",
+        "segment_name": "Motor Assembly",
+        "example_code": "09V",
+        "label": "Motor Assy",
+        "fields": [
+          {
+            "field": "Motor Option",
+            "example_value": "Motor Included*"
+          },
+          {
+            "field": "Motor Class",
+            "example_value": "Imperial"
+          },
+          {
+            "field": "Motor Orientation",
+            "example_value": "Hor TS"
+          },
+          {
+            "field": "Horsepower",
+            "example_value": "30 HP"
+          },
+          {
+            "field": "RPM",
+            "example_value": "3600"
+          },
+          {
+            "field": "Voltage",
+            "example_value": "230/460"
+          },
+          {
+            "field": "Hertz",
+            "example_value": "3/60"
+          },
+          {
+            "field": "Frame",
+            "example_value": "286"
+          },
+          {
+            "field": "Enclosure",
+            "example_value": "SD"
+          },
+          {
+            "field": "Efficiency",
+            "example_value": "PE"
+          },
+          {
+            "field": "Manufacturer",
+            "example_value": "Standard Offering"
+          }
+        ]
+      },
+      {
+        "col": 26,
+        "col_letter": "Z",
+        "segment_name": "Motor Modifications",
+        "example_code": "XXX",
+        "label": "Motor Modifications",
+        "fields": [
+          {
+            "field": "Modification 1",
+            "example_value": "No Modification"
+          },
+          {
+            "field": "Modification 2",
+            "example_value": "No Modification"
+          },
+          {
+            "field": "Modification 3",
+            "example_value": "No Modification"
+          }
+        ]
+      },
+      {
+        "col": 29,
+        "col_letter": "AC",
+        "segment_name": "Testing",
+        "example_code": "00",
+        "label": "Testing",
+        "fields": [
+          {
+            "field": "Performance Testing",
+            "example_value": "NONE"
+          },
+          {
+            "field": "Hydro Testing",
+            "example_value": "NONE"
+          },
+          {
+            "field": "Vibration",
+            "example_value": "NONE"
+          },
+          {
+            "field": "Sound Level",
+            "example_value": "NONE"
+          }
+        ]
+      }
+    ],
+    "legacy_part_number": "F5500-010000",
+    "example_codes": {
+      "Brand": "F",
+      "Series": "G",
+      "Size": "3",
+      "Pump Material": "1",
+      "Impeller Trim": "EA",
+      "Pump Options": "07PP",
+      "Setting/Length": "07",
+      "Vertical Options": "00",
+      "Options": "0C",
+      "Frame Size": "08",
+      "Motor Assembly": "09V",
+      "Motor Modifications": "XXX",
+      "Testing": "00"
+    }
+  },
+  "findings": {
+    "part_number_separator": "-",
+    "part_number_cell_horizontal": "D9",
+    "part_number_cell_vertical": "D34",
+    "horizontal_segments": 13,
+    "vertical_segments": 13,
+    "orientation_diff": [
+      "Horizontal: Seal Manufacturer + Seal Assembly segment group",
+      "Vertical: Setting/Length + Vertical Options segment group replaces Seal group position",
+      "Horizontal: Pump Options include Flush, Casing Drains, Suction Discharge, Shaft Material, Bearing, Gland Hardware",
+      "Vertical: Pump Options include Shaft Material, Wetted Hardware, Flush, Vapor Protection, Strainer",
+      "Vertical: Setting/Length segment encodes setting number + dimension code",
+      "Vertical: Legacy part number format (F<series>-<size><trim>) also displayed (row 35)"
+    ]
+  }
+}

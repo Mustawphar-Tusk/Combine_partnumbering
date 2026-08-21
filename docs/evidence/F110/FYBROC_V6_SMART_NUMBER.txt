@@ -1,0 +1,191 @@
+========================================================================================================================
+F110.4 - FYBROC V6 SMART NUMBER (Part Number Construction Flow, Both Orientations)
+========================================================================================================================
+
+Git commit  : 82302ddee1dd5a188cbc3cebfa3ac3a34c3b12b0
+Git clean   : False
+
+Source sheets referenced: Attributes, Pump Options - Horizontal, Pump Options - Vertical, Seal Assembly - Horizontal, Setting-Length-Vertical, Options - Horizontal, Options - Vertical, Motor Assy, Testing
+
+========================================================================================================================
+HORIZONTAL PART NUMBER
+========================================================================================================================
+
+  Title              : Fybroc Horizontal Part Number
+  Part Number Cell   : D9
+  Example PN         : FA35FC-1VC1-S03-3G-04XXXX-00
+  Separator          : "-"
+  Segment count      : 13
+  Format             : BrandSeriesSizePump MaterialImpeller Trim - Pump Options - Seal ManufacturerSeal Assembly - Options - Frame SizeMotor Assembly - Motor Modifications - Testing
+
+  Example codes      : {'Brand': 'F', 'Series': 'A', 'Size': '3', 'Pump Material': '5', 'Impeller Trim': 'FC', 'Pump Options': '1VC1', 'Seal Manufacturer': 'S', 'Seal Assembly': '03', 'Options': '3G', 'Frame Size': '05', 'Motor Assembly': '04X', 'Motor Modifications': 'XXX', 'Testing': '00'}
+
+  SEGMENTS:
+    Col D   [Brand                 ]  code=F       
+          Brand                               = Not Supplied by Fybroc
+
+    Col E   [Series                ]  code=A       
+          Series                              = 1500
+          Flange Type                         = ANSI
+
+    Col G   [Size                  ]  code=3       
+          Size                                = Seal Option:
+
+    Col H   [Pump Material         ]  code=5       
+          Pump Material                       = Supplied by Fybroc
+
+    Col I   [Impeller Trim         ]  code=FC      
+          Impeller Trim                       = Casing Drains:
+
+    Col K   [Pump Options          ]  code=1VC1    
+          Casing Drains                       = Coupling Included
+          Suction Discharge                   = Steel
+          Shaft Material                      = Baseplate Included
+          Impeller Sleeve                     = 303 SS
+          Casing Hardware                     = Not Included
+          Pump Elastomers                     = Supplied by Fybroc
+          Bearing Option                      = Oil Bath Lubrication
+          Frame Hardware                      = 316 SS
+          Gland Hardware                      = 303 SS
+          Flush                               = Bypass (Tapped Discharge)
+          Flush Material                      = Bypass (Tapped Discharge)
+          Cyclone Separator                   = Not Included
+          Dynamic Impeller                    = Dynamic Balancing
+
+    Col O   [Seal Manufacturer     ]  code=S       
+          Seal Manufacturer                   = Motor Included*
+
+    Col P   [Seal Assembly         ]  code=03      
+          Seal Option                         = Supplied by Fybroc
+          Seal Type                           = 8-1T Double Inside
+          Seal Materials                      = Carbon vs Ceramic
+          Seal Elastomers                     = FKM
+          Seal Guard                          = Not Supplied by Fybroc
+
+    Col S   [Options               ]  code=3G      
+          Coupling Option                     = Coupling Included
+          Coupling Guard                      = Steel
+          Baseplate Option                    = Baseplate Included
+          Baseplate Hardware                  = 303 SS
+          Customer Nameplate                  = Not Included
+          C-Face Adapter                      = Supplied by Fybroc
+
+    Col V   [Frame Size            ]  code=05      
+          Frame Size                          = Motor Option:
+
+    Col W   [Motor Assembly        ]  code=04X     
+          Motor Option                        = Motor Included*
+          Motor Class                         = Imperial
+          Motor Orientation                   = Hor T
+          Horsepower                          = 5 HP
+          RPM                                 = 3600
+          Voltage                             = 230/460
+          Hertz                               = 3/60
+          Frame                               = 184
+          Enclosure                           = SD
+          Efficiency                          = PE
+          Manufacturer                        = Standard Offering
+
+    Col Z   [Motor Modifications   ]  code=XXX     
+          Modification 1                      = No Modification
+          Modification 2                      = No Modification
+          Modification 3                      = No Modification
+
+    Col AC  [Testing               ]  code=00      
+          Performance Testing                 = NONE
+          Hydro Testing                       = NONE
+          Vibration                           = NONE
+          Sound Level                         = NONE
+
+========================================================================================================================
+VERTICAL PART NUMBER
+========================================================================================================================
+
+  Title              : Fybroc Vertical Part Number
+  Part Number Cell   : D34
+  Example PN         : FG31-EA-07PP-0700-0C-09V-XXX-00
+  Separator          : "-"
+  Segment count      : 13
+  Format             : BrandSeriesSizePump MaterialImpeller Trim - Pump Options - Setting/LengthVertical Options - Options - Frame SizeMotor Assembly - Motor Modifications - Testing
+
+  Example codes      : {'Brand': 'F', 'Series': 'G', 'Size': '3', 'Pump Material': '1', 'Impeller Trim': 'EA', 'Pump Options': '07PP', 'Setting/Length': '07', 'Vertical Options': '00', 'Options': '0C', 'Frame Size': '08', 'Motor Assembly': '09V', 'Motor Modifications': 'XXX', 'Testing': '00'}
+
+  SEGMENTS:
+    Col D   [Brand                 ]  code=F       
+          Brand                               = 316 SS
+
+    Col E   [Series                ]  code=G       
+          Series                              = 5500
+          Flange Type                         = ANSI
+
+    Col G   [Size                  ]  code=3       
+          Size                                = Setting
+
+    Col H   [Pump Material         ]  code=1       
+          Pump Material                       = Tailpipe Option
+
+    Col I   [Impeller Trim         ]  code=EA      
+          Impeller Trim                       = Not Supplied by Fybroc
+
+    Col K   [Pump Options          ]  code=07PP    
+          Shaft Material                      = Coupling Included
+          Impeller Sleeve                     = Steel
+          Wetted Hardware                     = Mounting Plate Included
+          Pump Elastomers                     = Not Included
+          Flush                               = External Flush
+          Flush Options                       = Cyclone Separator
+          Impeller Balance                    = Not Supplied by Fybroc
+          Vapor Protection                    = Vapor Seal
+          Strainer Options                    = Not Included
+
+    Col O   [Setting/Length        ]  code=07      
+          Setting/Length                      = Motor Included*
+          S-Dimension                         = Imperial
+
+    Col Q   [Vertical Options      ]  code=00      
+          Tailpipe Option                     = Modification 1:
+          Tailpipe Length                     = Modification 2:
+
+    Col S   [Options               ]  code=0C      
+          Coupling Option                     = Coupling Included
+          Coupling Guard                      = Steel
+          Mounting Plate Option               = Mounting Plate Included
+          Customer Nameplate                  = Not Included
+
+    Col V   [Frame Size            ]  code=08      
+          Frame Size                          = Motor Option:
+
+    Col W   [Motor Assembly        ]  code=09V     
+          Motor Option                        = Motor Included*
+          Motor Class                         = Imperial
+          Motor Orientation                   = Hor TS
+          Horsepower                          = 30 HP
+          RPM                                 = 3600
+          Voltage                             = 230/460
+          Hertz                               = 3/60
+          Frame                               = 286
+          Enclosure                           = SD
+          Efficiency                          = PE
+          Manufacturer                        = Standard Offering
+
+    Col Z   [Motor Modifications   ]  code=XXX     
+          Modification 1                      = No Modification
+          Modification 2                      = No Modification
+          Modification 3                      = No Modification
+
+    Col AC  [Testing               ]  code=00      
+          Performance Testing                 = NONE
+          Hydro Testing                       = NONE
+          Vibration                           = NONE
+          Sound Level                         = NONE
+
+========================================================================================================================
+ORIENTATION DIFFERENCES
+========================================================================================================================
+
+  - Horizontal: Seal Manufacturer + Seal Assembly segment group
+  - Vertical: Setting/Length + Vertical Options segment group replaces Seal group position
+  - Horizontal: Pump Options include Flush, Casing Drains, Suction Discharge, Shaft Material, Bearing, Gland Hardware
+  - Vertical: Pump Options include Shaft Material, Wetted Hardware, Flush, Vapor Protection, Strainer
+  - Vertical: Setting/Length segment encodes setting number + dimension code
+  - Vertical: Legacy part number format (F<series>-<size><trim>) also displayed (row 35)
