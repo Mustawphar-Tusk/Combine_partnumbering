@@ -1,0 +1,1461 @@
+{
+  "artifact": "FYBROC_REV03_PRICING_STRUCTURE",
+  "step": "F120.7",
+  "roadmap_version": "1.0",
+  "milestone": "F120",
+  "source_workbook": "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx",
+  "generated_utc": "2026-08-21T22:18:39.122872+00:00",
+  "git_commit": "fc4313616598c3a37c7cb3b6ff36c2da2acb3ee7",
+  "git_working_tree_clean": false,
+  "pricing_index": {
+    "entry_count": 55,
+    "entries": [
+      {
+        "key1": "Alt Size",
+        "key2": "Pump Material",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Base Price for a pump based on size and material"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "VR-1 Base Price",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Base Price for a pump based on Size"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Shaft Material",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Shaft Material"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Sleeve",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Shaft Sleeve"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Gland Hardware",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Gland Hardware"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Power Frame Hardware",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Power Frame Hardware"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Bearing Option",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Bearing Option"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Casing Hardware",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Casing Hardware"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Pump Elastomers",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Adder for Pump Elastomers"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Coupling Guard",
+        "key3": null,
+        "key4": null,
+        "description": "1500 Only - Coupling Guard Pricing"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Frame Size",
+        "key3": "Baseplate Option",
+        "key4": null,
+        "description": "1500 Only - Baseplate pricing"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Baseplate Hardware",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Baseplate Hardware"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Seal Option",
+        "key3": "Seal Type",
+        "key4": "Seal Materials",
+        "description": "Mechanical Seal Pricing (John Crane and Flowserve only)"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "F_MotorHpRpm",
+        "key3": "Frame Size",
+        "key4": "Coupling Option",
+        "description": "1500 - Coupling Pricing"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Flange Type",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Flange Type"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Cyclone Seperator",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Cyclone Separator"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Pump Material",
+        "key3": "Flush Material",
+        "key4": "Flush",
+        "description": "1500 - Flush Pricing"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Pump Material",
+        "key3": "Flush Material",
+        "key4": "Flush",
+        "description": "1500 - Flush Adder. Tapped Discharge Spacer depends on material"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Casing Drains",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Casing Drains"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Impeller Balance",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Dynamically Balanced Impeller"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Suction Discharge Taps",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Suction and Discharge Taps"
+      },
+      {
+        "key1": "Alt Size",
+        "key2": "Seal Guard",
+        "key3": null,
+        "key4": null,
+        "description": "1500 - Adder for Seal Guard"
+      },
+      {
+        "key1": "Need to finish and/or validate pricing for:",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "1530 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "1600 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "1630 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "2530 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "3000 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "5500 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "5530 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "7500 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "8500 Series",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Seal Option",
+        "key2": "Need to add Flex-a-seal pricing.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Seal Type",
+        "key2": "Need to add Flex-a-seal pricing.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Seal Materials",
+        "key2": "Need to add Flex-a-seal pricing.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "C-Face Adaptor",
+        "key2": "Would need to add TC frames to selections list. First we would need to determine which TC frames are allowed for 1500 and 1600.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Hydrotest Certificate",
+        "key2": "Unclear if this is in the pricebook. There is a section for Hydrotest, but is that for the certificate or for the test? Because we hydrotest all Fybroc pumps.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Sound Level Testing",
+        "key2": "Not in pricebook. Should be in the price estimator.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Vibration Testing",
+        "key2": "Not in pricebook. Should be in the price estimator.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Performance Testing",
+        "key2": "In pricebook, have to add to this file.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Frame Size",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Control",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Efficiency",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Enclosure",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Hertz",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Hp",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Mfg",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Option",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor RPM",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Motor Voltage",
+        "key2": "Motor pricing",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Paint Upgrade",
+        "key2": "Not in pricebook. Should be in the price estimator.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Shaft Grounding",
+        "key2": "Not in pricebook. Should be in the price estimator.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Recently added selections that still need pricing:",
+        "key2": null,
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Custom Seal Mfg",
+        "key2": "If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      },
+      {
+        "key1": "Custom Seal Type",
+        "key2": "If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list.",
+        "key3": null,
+        "key4": null,
+        "description": null
+      }
+    ]
+  },
+  "pricing_1500": {
+    "sheet_dimensions": {
+      "max_row": 2854,
+      "max_col": 127
+    },
+    "status": "Not Ready For Beta Testing",
+    "table_blocks": [
+      {
+        "start_col": 2,
+        "description": "1500 Only - Base Price for a pump based on size",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Pump Material",
+          "Price",
+          "Series",
+          "Alt Size",
+          "VR-1 Base Price"
+        ],
+        "data_rows": 114,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Pump Material": "VR-1",
+            "Price": "4987",
+            "VR-1 Base Price": "4987"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Pump Material": "VR-1",
+            "Price": "5256",
+            "VR-1 Base Price": "5256"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Pump Material": "VR-1",
+            "Price": "5510",
+            "VR-1 Base Price": "5510"
+          }
+        ]
+      },
+      {
+        "start_col": 11,
+        "description": "1500 Only - Adder for pump material",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Pump Material",
+          "Adder"
+        ],
+        "data_rows": 114,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Pump Material": "VR-1",
+            "Adder": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Pump Material": "VR-1",
+            "Adder": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Pump Material": "VR-1",
+            "Adder": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 16,
+        "description": "1500 Only - Adder for Shaft Material",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Shaft Material"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Shaft Material": "303_SS"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Shaft Material": "303_SS"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Shaft Material": "303_SS"
+          }
+        ]
+      },
+      {
+        "start_col": 21,
+        "description": "1500 Only - Adder for Shaft Sleeve",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Sleeve",
+          "Price"
+        ],
+        "data_rows": 114,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Sleeve": "Integral",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Sleeve": "Integral",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Sleeve": "Integral",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 26,
+        "description": "1500 Only - Adder for Gland Hardware",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Gland Hardware",
+          "Price"
+        ],
+        "data_rows": 95,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Gland Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Gland Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Gland Hardware": "303_SS",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 31,
+        "description": "1500 Only - Adder for Power Frame Hardware",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Power Frame Hardware",
+          "Price"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Power Frame Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Power Frame Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Power Frame Hardware": "303_SS",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 36,
+        "description": "1500 Only - Adder for Bearing Option",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Bearing Option",
+          "Price"
+        ],
+        "data_rows": 57,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Bearing Option": "Oil_Bath_Lubrication",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Bearing Option": "Oil_Bath_Lubrication",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Bearing Option": "Oil_Bath_Lubrication",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 41,
+        "description": "1500 Only - Adder for Casing Hardware",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Casing Hardware",
+          "Price"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Casing Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Casing Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Casing Hardware": "303_SS",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 46,
+        "description": "1500 Only - Adder for Pump Elastomers",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Pump Elastomers",
+          "Price"
+        ],
+        "data_rows": 57,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Pump Elastomers": "FKM",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Pump Elastomers": "FKM",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Pump Elastomers": "FKM",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 51,
+        "description": "1500 Only - Coupling Guard Pricing",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Coupling Guard",
+          "Price"
+        ],
+        "data_rows": 76,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Coupling Guard": "Steel",
+            "Price": "447"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Coupling Guard": "Steel",
+            "Price": "447"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Coupling Guard": "Steel",
+            "Price": "447"
+          }
+        ]
+      },
+      {
+        "start_col": 56,
+        "description": "1500 Only - Baseplate pricing",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Frame Size",
+          "Baseplate Option",
+          "Price"
+        ],
+        "data_rows": 2849,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Frame Size": "143T",
+            "Baseplate Option": "Supplied_by_Fybroc",
+            "Price": "1432"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Frame Size": "145T",
+            "Baseplate Option": "Supplied_by_Fybroc",
+            "Price": "1432"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Frame Size": "182T",
+            "Baseplate Option": "Supplied_by_Fybroc",
+            "Price": "1370"
+          }
+        ]
+      },
+      {
+        "start_col": 62,
+        "description": "1500 - Adder for Baseplate Hardware",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Baseplate Hardware",
+          "Price"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Baseplate Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Baseplate Hardware": "303_SS",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Baseplate Hardware": "303_SS",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 67,
+        "description": "Mechanical Seal Pricing (John Crane and Flowserve only)",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Seal Option",
+          "Seal Type",
+          "Seal Materials",
+          "Seal Elastomers",
+          "Price"
+        ],
+        "data_rows": 2849,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Seal Option": "Supplied_by_Fybroc",
+            "Seal Type": "Crane_8B2_Single_Outside",
+            "Seal Materials": "Carbon_vs_Ceramic",
+            "Seal Elastomers": "FKM",
+            "Price": "749"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Seal Option": "Supplied_by_Fybroc",
+            "Seal Type": "Crane_8B2_Single_Outside",
+            "Seal Materials": "Carbon_vs_Ceramic",
+            "Seal Elastomers": "FKM",
+            "Price": "749"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Seal Option": "Supplied_by_Fybroc",
+            "Seal Type": "Crane_8B2_Single_Outside",
+            "Seal Materials": "Carbon_vs_Ceramic",
+            "Seal Elastomers": "FKM",
+            "Price": "749"
+          }
+        ]
+      },
+      {
+        "start_col": 75,
+        "description": "1500 - Coupling Pricing",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "F_MotorHpRpm",
+          "Frame Size",
+          "Coupling Option",
+          "Price"
+        ],
+        "data_rows": 2849,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "F_MotorHpRpm": "1-1800",
+            "Frame Size": "143T",
+            "Coupling Option": "Supplied_by_Fybroc",
+            "Price": "409"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "F_MotorHpRpm": "1.5-1800",
+            "Frame Size": "145T",
+            "Coupling Option": "Supplied_by_Fybroc",
+            "Price": "409"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "F_MotorHpRpm": "1.5-3600",
+            "Frame Size": "143T",
+            "Coupling Option": "Supplied_by_Fybroc",
+            "Price": "409"
+          }
+        ]
+      },
+      {
+        "start_col": 82,
+        "description": "1500 - Adder for Flange Type",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Flange Type",
+          "Price"
+        ],
+        "data_rows": 57,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Flange Type": "ANSI Flange",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Flange Type": "ANSI Flange",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Flange Type": "ANSI Flange",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 87,
+        "description": "1500 - Adder for Cyclone Separator",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Cyclone Seperator",
+          "Price"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Cyclone Seperator": "Not_Supplied_by_Fybroc",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Cyclone Seperator": "Not_Supplied_by_Fybroc",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Cyclone Seperator": "Not_Supplied_by_Fybroc",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 92,
+        "description": "1500 - Flush Pricing",
+        "headers": [
+          "Alt Size",
+          "Pump Material",
+          "Flush Material",
+          "Flush",
+          "Price"
+        ],
+        "data_rows": 2849,
+        "sample_rows": [
+          {
+            "Alt Size": "1x1.5x6",
+            "Pump Material": "VR-1",
+            "Flush Material": "Polypro",
+            "Flush": "Internal_Flush",
+            "Price": "n/a"
+          },
+          {
+            "Alt Size": "1.5x3x6",
+            "Pump Material": "VR-1",
+            "Flush Material": "Polypro",
+            "Flush": "Internal_Flush",
+            "Price": "n/a"
+          },
+          {
+            "Alt Size": "2x3x6",
+            "Pump Material": "VR-1",
+            "Flush Material": "Polypro",
+            "Flush": "Internal_Flush",
+            "Price": "n/a"
+          }
+        ]
+      },
+      {
+        "start_col": 98,
+        "description": "1500 - Flush Adder",
+        "headers": [
+          "Alt Size",
+          "Pump Material",
+          "Flush Material",
+          "Flush",
+          "Price"
+        ],
+        "data_rows": 76,
+        "sample_rows": [
+          {
+            "Alt Size": "1x1.5x6",
+            "Pump Material": "VR-1",
+            "Flush Material": "Polypro",
+            "Flush": "Bypass(Tapped_Discharge)",
+            "Price": "0"
+          },
+          {
+            "Alt Size": "1.5x3x6",
+            "Pump Material": "VR-1",
+            "Flush Material": "Polypro",
+            "Flush": "Bypass(Tapped_Discharge)",
+            "Price": "0"
+          },
+          {
+            "Alt Size": "2x3x6",
+            "Pump Material": "VR-1",
+            "Flush Material": "Polypro",
+            "Flush": "Bypass(Tapped_Discharge)",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 104,
+        "description": "1500 - Adder for Casing Drains",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Casing Drains",
+          "Price",
+          "Series",
+          "Alt Size",
+          "Impeller Balance",
+          "Price",
+          "Series",
+          "Alt Size",
+          "Suction Discharge Taps",
+          "Price"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Casing Drains": "Not_Supplied_by_Fybroc",
+            "Price": "0",
+            "Impeller Balance": "Not_Supplied_by_Fybroc",
+            "Suction Discharge Taps": "Not_Supplied_by_Fybroc"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Casing Drains": "Not_Supplied_by_Fybroc",
+            "Price": "0",
+            "Impeller Balance": "Not_Supplied_by_Fybroc",
+            "Suction Discharge Taps": "Not_Supplied_by_Fybroc"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Casing Drains": "Not_Supplied_by_Fybroc",
+            "Price": "0",
+            "Impeller Balance": "Not_Supplied_by_Fybroc",
+            "Suction Discharge Taps": "Not_Supplied_by_Fybroc"
+          }
+        ]
+      },
+      {
+        "start_col": 119,
+        "description": "1500 - Adder for Seal Guard",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "Seal Guard",
+          "Price"
+        ],
+        "data_rows": 38,
+        "sample_rows": [
+          {
+            "Series": "1500",
+            "Alt Size": "1x1.5x6",
+            "Seal Guard": "Not_Supplied_by_Fybroc",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "1.5x3x6",
+            "Seal Guard": "Not_Supplied_by_Fybroc",
+            "Price": "0"
+          },
+          {
+            "Series": "1500",
+            "Alt Size": "2x3x6",
+            "Seal Guard": "Not_Supplied_by_Fybroc",
+            "Price": "0"
+          }
+        ]
+      }
+    ],
+    "table_count": 20
+  },
+  "pricing_5500": {
+    "sheet_dimensions": {
+      "max_row": 52445,
+      "max_col": 71
+    },
+    "table_blocks": [
+      {
+        "start_col": 2,
+        "description": "",
+        "headers": [
+          "Alt_Size",
+          "Setting",
+          "Combined"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Alt_Size": "1x1.5x6",
+            "Setting": "1",
+            "Combined": "1x1.5x6+1"
+          },
+          {
+            "Alt_Size": "1.5x3x6",
+            "Setting": "1",
+            "Combined": "1.5x3x6+1"
+          },
+          {
+            "Alt_Size": "2x3x6",
+            "Setting": "1",
+            "Combined": "2x3x6+1"
+          }
+        ]
+      },
+      {
+        "start_col": 6,
+        "description": "1500 Only - Base Price for a pump based on size and material",
+        "headers": [
+          "Series",
+          "Alt_Size",
+          "Setting",
+          "Pump Material",
+          "Price"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt_Size": "1x1.5x6",
+            "Setting": "1",
+            "Pump Material": "VR-1",
+            "Price": "11245"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "1.5x3x6",
+            "Setting": "1",
+            "Pump Material": "VR-1",
+            "Price": "12282"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "2x3x6",
+            "Setting": "1",
+            "Pump Material": "VR-1",
+            "Price": "13323"
+          }
+        ]
+      },
+      {
+        "start_col": 12,
+        "description": "5500 - Pump Material Adder",
+        "headers": [
+          "Series",
+          "Alt_Size",
+          "Setting",
+          "Pump Material",
+          "Adder Price"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt_Size": "1x1.5x6",
+            "Setting": "1",
+            "Pump Material": "VR-1",
+            "Adder Price": "0"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "1.5x3x6",
+            "Setting": "1",
+            "Pump Material": "VR-1",
+            "Adder Price": "0"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "2x3x6",
+            "Setting": "1",
+            "Pump Material": "VR-1",
+            "Adder Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 18,
+        "description": "5500 - Adder for Shaft Sleeve",
+        "headers": [
+          "Series",
+          "Size",
+          "Setting Group",
+          "Sleeve",
+          "Price"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Size": "1x1.5x6",
+            "Setting Group": "1-4",
+            "Sleeve": "No Sleeve",
+            "Price": "0"
+          },
+          {
+            "Series": "5500",
+            "Size": "1x1.5x6",
+            "Setting Group": "5-9",
+            "Sleeve": "No Sleeve",
+            "Price": "0"
+          },
+          {
+            "Series": "5500",
+            "Size": "1x1.5x6",
+            "Setting Group": "10-14",
+            "Sleeve": "No Sleeve",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 24,
+        "description": "5500 - Shaft and Shaft Sleeve Adder",
+        "headers": [
+          "Series",
+          "Alt_Size",
+          "Setting",
+          "Shaft Material",
+          "Sleeve",
+          "Shaft Adder",
+          "Sleeve Adder",
+          "Price"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt_Size": "1x1.5x6",
+            "Setting": "1",
+            "Shaft Material": "316 SS",
+            "Sleeve": "No Sleeve",
+            "Shaft Adder": "0",
+            "Sleeve Adder": "0",
+            "Price": "0"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "1.5x3x6",
+            "Setting": "1",
+            "Shaft Material": "316 SS",
+            "Sleeve": "No Sleeve",
+            "Shaft Adder": "0",
+            "Sleeve Adder": "0",
+            "Price": "0"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "2x3x6",
+            "Setting": "1",
+            "Shaft Material": "316 SS",
+            "Sleeve": "No Sleeve",
+            "Shaft Adder": "0",
+            "Sleeve Adder": "0",
+            "Price": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 33,
+        "description": "",
+        "headers": [
+          "Series",
+          "Alt Size",
+          "F_MotorHpRpm",
+          "Frame Size",
+          "Coupling Option",
+          "Price"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt Size": "1x1.5x6",
+            "F_MotorHpRpm": null,
+            "Frame Size": null,
+            "Coupling Option": null,
+            "Price": null
+          },
+          {
+            "Series": "5500",
+            "Alt Size": "1.5x3x6",
+            "F_MotorHpRpm": null,
+            "Frame Size": null,
+            "Coupling Option": null,
+            "Price": null
+          },
+          {
+            "Series": "5500",
+            "Alt Size": "2x3x6",
+            "F_MotorHpRpm": null,
+            "Frame Size": null,
+            "Coupling Option": null,
+            "Price": null
+          }
+        ]
+      },
+      {
+        "start_col": 41,
+        "description": "TAILPIPE",
+        "headers": [
+          "Series",
+          "Alt_Size",
+          "Pump Material",
+          "Wetted Hardware",
+          "Tailpipe Length",
+          "Price",
+          "Tailpipe Material",
+          "Talipipe Multiplier",
+          "First foot of Tailpipe",
+          "Multiplier",
+          "Calculated Price"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt_Size": "1x1.5x6",
+            "Pump Material": "VR-1",
+            "Wetted Hardware": "316 SS",
+            "Tailpipe Length": "6",
+            "Price": "1278",
+            "Tailpipe Material": "VR-1",
+            "Talipipe Multiplier": "0",
+            "First foot of Tailpipe": "1278",
+            "Multiplier": "124",
+            "Calculated Price": "1278"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "1.5x3x6",
+            "Pump Material": "VR-1",
+            "Wetted Hardware": "316 SS",
+            "Tailpipe Length": "6",
+            "Price": "1429",
+            "Tailpipe Material": "VR-1",
+            "Talipipe Multiplier": "0",
+            "First foot of Tailpipe": "1429",
+            "Multiplier": "152",
+            "Calculated Price": "1429"
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "2x3x6",
+            "Pump Material": "VR-1",
+            "Wetted Hardware": "316 SS",
+            "Tailpipe Length": "6",
+            "Price": "1429",
+            "Tailpipe Material": "VR-1",
+            "Talipipe Multiplier": "0",
+            "First foot of Tailpipe": "1429",
+            "Multiplier": "152",
+            "Calculated Price": "1429"
+          }
+        ]
+      },
+      {
+        "start_col": 55,
+        "description": "",
+        "headers": [
+          "Tailpipe Length",
+          "Price per Foot Multiplier"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Tailpipe Length": "6",
+            "Price per Foot Multiplier": "0"
+          },
+          {
+            "Tailpipe Length": "7",
+            "Price per Foot Multiplier": "0"
+          },
+          {
+            "Tailpipe Length": "8",
+            "Price per Foot Multiplier": "0"
+          }
+        ]
+      },
+      {
+        "start_col": 59,
+        "description": "",
+        "headers": [
+          "Pump Material",
+          "Tailpipe Material"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Pump Material": "VR-1",
+            "Tailpipe Material": "VR-1"
+          },
+          {
+            "Pump Material": "VR-1 BPO/DMA",
+            "Tailpipe Material": "VR-1"
+          },
+          {
+            "Pump Material": "VR-1A",
+            "Tailpipe Material": "VR-1"
+          }
+        ]
+      },
+      {
+        "start_col": 64,
+        "description": "Shaft Material",
+        "headers": [
+          "316 SS",
+          "No Sleeve",
+          "316 SS"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "316 SS": "Carp-20",
+            "No Sleeve": "No Sleeve"
+          },
+          {
+            "316 SS": "Hast-C",
+            "No Sleeve": "No Sleeve"
+          },
+          {
+            "316 SS": "Titanium",
+            "No Sleeve": "No Sleeve"
+          }
+        ]
+      },
+      {
+        "start_col": 69,
+        "description": "",
+        "headers": [
+          "Series",
+          "Alt_Size",
+          "Strainer"
+        ],
+        "data_rows_estimated": 52440,
+        "sample_rows": [
+          {
+            "Series": "5500",
+            "Alt_Size": "1x1.5x6",
+            "Strainer": null
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "1.5x3x6",
+            "Strainer": null
+          },
+          {
+            "Series": "5500",
+            "Alt_Size": "2x3x6",
+            "Strainer": null
+          }
+        ]
+      }
+    ],
+    "table_count": 11
+  }
+}

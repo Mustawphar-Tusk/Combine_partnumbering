@@ -1,0 +1,208 @@
+========================================================================================================================
+F120.7 - FYBROC REV0.3 PRICING STRUCTURE
+========================================================================================================================
+
+Git commit  : fc4313616598c3a37c7cb3b6ff36c2da2acb3ee7
+Git clean   : False
+
+========================================================================================================================
+PRICING INDEX
+========================================================================================================================
+
+Entries: 55
+
+  Alt Size x Pump Material                                     1500 Only - Base Price for a pump based on size and material
+  Alt Size x VR-1 Base Price                                   1500 Only - Base Price for a pump based on Size
+  Alt Size x Shaft Material                                    1500 Only - Adder for Shaft Material
+  Alt Size x Sleeve                                            1500 Only - Adder for Shaft Sleeve
+  Alt Size x Gland Hardware                                    1500 Only - Adder for Gland Hardware
+  Alt Size x Power Frame Hardware                              1500 Only - Adder for Power Frame Hardware
+  Alt Size x Bearing Option                                    1500 Only - Adder for Bearing Option
+  Alt Size x Casing Hardware                                   1500 Only - Adder for Casing Hardware
+  Alt Size x Pump Elastomers                                   1500 Only - Adder for Pump Elastomers
+  Alt Size x Coupling Guard                                    1500 Only - Coupling Guard Pricing
+  Alt Size x Frame Size x Baseplate Option                     1500 Only - Baseplate pricing
+  Alt Size x Baseplate Hardware                                1500 - Adder for Baseplate Hardware
+  Alt Size x Seal Option x Seal Type x Seal Materials          Mechanical Seal Pricing (John Crane and Flowserve only)
+  Alt Size x F_MotorHpRpm x Frame Size x Coupling Option       1500 - Coupling Pricing
+  Alt Size x Flange Type                                       1500 - Adder for Flange Type
+  Alt Size x Cyclone Seperator                                 1500 - Adder for Cyclone Separator
+  Alt Size x Pump Material x Flush Material x Flush            1500 - Flush Pricing
+  Alt Size x Pump Material x Flush Material x Flush            1500 - Flush Adder. Tapped Discharge Spacer depends on material
+  Alt Size x Casing Drains                                     1500 - Adder for Casing Drains
+  Alt Size x Impeller Balance                                  1500 - Adder for Dynamically Balanced Impeller
+  Alt Size x Suction Discharge Taps                            1500 - Adder for Suction and Discharge Taps
+  Alt Size x Seal Guard                                        1500 - Adder for Seal Guard
+  Need to finish and/or validate pricing for:                  
+  1530 Series                                                  
+  1600 Series                                                  
+  1630 Series                                                  
+  2530 Series                                                  
+  3000 Series                                                  
+  5500 Series                                                  
+  5530 Series                                                  
+  7500 Series                                                  
+  8500 Series                                                  
+  Seal Option x Need to add Flex-a-seal pricing.               
+  Seal Type x Need to add Flex-a-seal pricing.                 
+  Seal Materials x Need to add Flex-a-seal pricing.            
+  C-Face Adaptor x Would need to add TC frames to selections list. First we would need to determine which TC frames are allowed for 1500 and 1600. 
+  Hydrotest Certificate x Unclear if this is in the pricebook. There is a section for Hydrotest, but is that for the certificate or for the test? Because we hydrotest all Fybroc pumps. 
+  Sound Level Testing x Not in pricebook. Should be in the price estimator. 
+  Vibration Testing x Not in pricebook. Should be in the price estimator. 
+  Performance Testing x In pricebook, have to add to this file. 
+  Frame Size x Motor pricing                                   
+  Motor Control x Motor pricing                                
+  Motor Efficiency x Motor pricing                             
+  Motor Enclosure x Motor pricing                              
+  Motor Hertz x Motor pricing                                  
+  Motor Hp x Motor pricing                                     
+  Motor Mfg x Motor pricing                                    
+  Motor Option x Motor pricing                                 
+  Motor RPM x Motor pricing                                    
+  Motor Voltage x Motor pricing                                
+  Paint Upgrade x Not in pricebook. Should be in the price estimator. 
+  Shaft Grounding x Not in pricebook. Should be in the price estimator. 
+  Recently added selections that still need pricing:           
+  Custom Seal Mfg x If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list. 
+  Custom Seal Type x If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list. 
+
+========================================================================================================================
+1500 PRICING
+========================================================================================================================
+
+Status: Not Ready For Beta Testing
+Sheet: 2854 rows x 127 cols
+Table blocks: 20
+
+  Col 2: 1500 Only - Base Price for a pump based on size
+    Headers: ['Series', 'Alt Size', 'Pump Material', 'Price', 'Series', 'Alt Size', 'VR-1 Base Price']
+    Data rows: 114
+
+  Col 11: 1500 Only - Adder for pump material
+    Headers: ['Series', 'Alt Size', 'Pump Material', 'Adder']
+    Data rows: 114
+
+  Col 16: 1500 Only - Adder for Shaft Material
+    Headers: ['Series', 'Alt Size', 'Shaft Material']
+    Data rows: 38
+
+  Col 21: 1500 Only - Adder for Shaft Sleeve
+    Headers: ['Series', 'Alt Size', 'Sleeve', 'Price']
+    Data rows: 114
+
+  Col 26: 1500 Only - Adder for Gland Hardware
+    Headers: ['Series', 'Alt Size', 'Gland Hardware', 'Price']
+    Data rows: 95
+
+  Col 31: 1500 Only - Adder for Power Frame Hardware
+    Headers: ['Series', 'Alt Size', 'Power Frame Hardware', 'Price']
+    Data rows: 38
+
+  Col 36: 1500 Only - Adder for Bearing Option
+    Headers: ['Series', 'Alt Size', 'Bearing Option', 'Price']
+    Data rows: 57
+
+  Col 41: 1500 Only - Adder for Casing Hardware
+    Headers: ['Series', 'Alt Size', 'Casing Hardware', 'Price']
+    Data rows: 38
+
+  Col 46: 1500 Only - Adder for Pump Elastomers
+    Headers: ['Series', 'Alt Size', 'Pump Elastomers', 'Price']
+    Data rows: 57
+
+  Col 51: 1500 Only - Coupling Guard Pricing
+    Headers: ['Series', 'Alt Size', 'Coupling Guard', 'Price']
+    Data rows: 76
+
+  Col 56: 1500 Only - Baseplate pricing
+    Headers: ['Series', 'Alt Size', 'Frame Size', 'Baseplate Option', 'Price']
+    Data rows: 2849
+
+  Col 62: 1500 - Adder for Baseplate Hardware
+    Headers: ['Series', 'Alt Size', 'Baseplate Hardware', 'Price']
+    Data rows: 38
+
+  Col 67: Mechanical Seal Pricing (John Crane and Flowserve only)
+    Headers: ['Series', 'Alt Size', 'Seal Option', 'Seal Type', 'Seal Materials', 'Seal Elastomers', 'Price']
+    Data rows: 2849
+
+  Col 75: 1500 - Coupling Pricing
+    Headers: ['Series', 'Alt Size', 'F_MotorHpRpm', 'Frame Size', 'Coupling Option', 'Price']
+    Data rows: 2849
+
+  Col 82: 1500 - Adder for Flange Type
+    Headers: ['Series', 'Alt Size', 'Flange Type', 'Price']
+    Data rows: 57
+
+  Col 87: 1500 - Adder for Cyclone Separator
+    Headers: ['Series', 'Alt Size', 'Cyclone Seperator', 'Price']
+    Data rows: 38
+
+  Col 92: 1500 - Flush Pricing
+    Headers: ['Alt Size', 'Pump Material', 'Flush Material', 'Flush', 'Price']
+    Data rows: 2849
+
+  Col 98: 1500 - Flush Adder
+    Headers: ['Alt Size', 'Pump Material', 'Flush Material', 'Flush', 'Price']
+    Data rows: 76
+
+  Col 104: 1500 - Adder for Casing Drains
+    Headers: ['Series', 'Alt Size', 'Casing Drains', 'Price', 'Series', 'Alt Size', 'Impeller Balance', 'Price', 'Series', 'Alt Size', 'Suction Discharge Taps', 'Price']
+    Data rows: 38
+
+  Col 119: 1500 - Adder for Seal Guard
+    Headers: ['Series', 'Alt Size', 'Seal Guard', 'Price']
+    Data rows: 38
+
+========================================================================================================================
+5500 PRICING
+========================================================================================================================
+
+Sheet: 52445 rows x 71 cols
+Table blocks: 11
+
+  Col 2: 
+    Headers: ['Alt_Size', 'Setting', 'Combined']
+    Data rows (est): 52440
+
+  Col 6: 1500 Only - Base Price for a pump based on size and material
+    Headers: ['Series', 'Alt_Size', 'Setting', 'Pump Material', 'Price']
+    Data rows (est): 52440
+
+  Col 12: 5500 - Pump Material Adder
+    Headers: ['Series', 'Alt_Size', 'Setting', 'Pump Material', 'Adder Price']
+    Data rows (est): 52440
+
+  Col 18: 5500 - Adder for Shaft Sleeve
+    Headers: ['Series', 'Size', 'Setting Group', 'Sleeve', 'Price']
+    Data rows (est): 52440
+
+  Col 24: 5500 - Shaft and Shaft Sleeve Adder
+    Headers: ['Series', 'Alt_Size', 'Setting', 'Shaft Material', 'Sleeve', 'Shaft Adder', 'Sleeve Adder', 'Price']
+    Data rows (est): 52440
+
+  Col 33: 
+    Headers: ['Series', 'Alt Size', 'F_MotorHpRpm', 'Frame Size', 'Coupling Option', 'Price']
+    Data rows (est): 52440
+
+  Col 41: TAILPIPE
+    Headers: ['Series', 'Alt_Size', 'Pump Material', 'Wetted Hardware', 'Tailpipe Length', 'Price', 'Tailpipe Material', 'Talipipe Multiplier', 'First foot of Tailpipe', 'Multiplier', 'Calculated Price']
+    Data rows (est): 52440
+
+  Col 55: 
+    Headers: ['Tailpipe Length', 'Price per Foot Multiplier']
+    Data rows (est): 52440
+
+  Col 59: 
+    Headers: ['Pump Material', 'Tailpipe Material']
+    Data rows (est): 52440
+
+  Col 64: Shaft Material
+    Headers: ['316 SS', 'No Sleeve', '316 SS']
+    Data rows (est): 52440
+
+  Col 69: 
+    Headers: ['Series', 'Alt_Size', 'Strainer']
+    Data rows (est): 52440
+
