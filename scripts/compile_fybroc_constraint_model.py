@@ -203,18 +203,33 @@ def compile_combination_matrix(ws_constraints) -> dict[str, Any]:
 
 def compile_constraint_index(ws_ci) -> list[dict[str, Any]]:
     """Compile the named constraint entries from the Constraint Index sheet."""
+    # Tables confirmed as 5500-series-only from engineering review of workbook descriptions
+    SERIES_5500_ONLY = {"ConstraintTable3", "ConstraintTable6", "ConstraintTable13"}
+
     entries = []
     for r in range(CI_DATA_START, ws_ci.max_row + 1):
         opt1 = _str(ws_ci.cell(row=r, column=CI_COL_OPT1).value)
         opt2 = _str(ws_ci.cell(row=r, column=CI_COL_OPT2).value)
-        if not opt1 and not opt2:
+        opt3 = _str(ws_ci.cell(row=r, column=CI_COL_OPT3).value)
+        table_name = _str(ws_ci.cell(row=r, column=CI_COL_TABLE).value)
+        description = _str(ws_ci.cell(row=r, column=CI_COL_DESC).value)
+
+        # Skip blank rows and the Combine Variables section header/rows
+        if not opt1 and not opt2 and not opt3 and not table_name and not description:
+            continue
+        # Stop at the Combine Variables section (row 46 onwards)
+        if opt1 and opt1.lower() == "combine variables":
             break
+
         entries.append({
             "option1": opt1,
             "option2": opt2,
-            "option3": _str(ws_ci.cell(row=r, column=CI_COL_OPT3).value),
-            "table_name": _str(ws_ci.cell(row=r, column=CI_COL_TABLE).value),
-            "description": _str(ws_ci.cell(row=r, column=CI_COL_DESC).value),
+            "option3": opt3,
+            "table_name": table_name,
+            "description": description,
+            "series_applicability": (
+                "5500_ONLY" if table_name in SERIES_5500_ONLY else "ALL_SERIES"
+            ),
             "resolved_table": None,  # filled in by Section 3
         })
     return entries

@@ -3,8 +3,8 @@
   "step": "F120.3",
   "roadmap_version": "1.0",
   "milestone": "F120",
-  "generated_utc": "2026-08-21T19:47:43.064000+00:00",
-  "git_commit": "ccd207b44d07db161ce6fa60d3d5d9e0be15f5b6",
+  "generated_utc": "2026-08-21T20:08:52.910952+00:00",
+  "git_commit": "d4c26505e6cecf9d114da709b98cbacfa501257f",
   "git_working_tree_clean": false,
   "combination_matrix": {
     "series_codes": [
@@ -3578,6 +3578,7 @@
       "option3": null,
       "table_name": "ConstraintTable1",
       "description": "Group 3 couplings guards in Aluminum (Non-Sparking) are Not Allowed.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 2,
         "headers": [
@@ -3611,6 +3612,7 @@
       "option3": null,
       "table_name": "ConstraintTable2",
       "description": "Cannot make a 2x3x13 1500 or 1530 in ISO nor JIS",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -3619,6 +3621,7 @@
       "option3": null,
       "table_name": "ConstraintTable3",
       "description": "5500 ONLY, Group 3 Internal flush not allowed",
+      "series_applicability": "5500_ONLY",
       "resolved_table": null
     },
     {
@@ -3627,6 +3630,7 @@
       "option3": null,
       "table_name": null,
       "description": "Series Depedent. Derrived from Alt_Size X F_MotorHpRpm.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -3635,6 +3639,7 @@
       "option3": null,
       "table_name": "ConstraintTable4",
       "description": "Impeller Trims",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 6,
         "headers": [
@@ -6238,6 +6243,7 @@
       "option3": null,
       "table_name": null,
       "description": "Series Depedent. From pump curves, only certain Horsepower and RPM combinations are available for each size.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6246,6 +6252,7 @@
       "option3": null,
       "table_name": "ConstraintTable5",
       "description": "We cannot make pumps in some materials. This can change on a case by case basis, some parts can be made in certain materials where as some parts can't be made in certain materials.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 10,
         "headers": [
@@ -6344,6 +6351,7 @@
       "option3": null,
       "table_name": "ConstraintTable6",
       "description": "5500 ONLY, Group 3 pumps with a wrapped shaft not allowed.",
+      "series_applicability": "5500_ONLY",
       "resolved_table": null
     },
     {
@@ -6352,6 +6360,7 @@
       "option3": null,
       "table_name": "ConstraintTable7",
       "description": "Casings in VR-1V are not permitted to have Casing Drains. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 14,
         "headers": [
@@ -6375,6 +6384,7 @@
       "option3": null,
       "table_name": "ConstraintTable8",
       "description": "If you don't choose Cyclone Separator Flush, you can't just get Cyclone Separator.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 18,
         "headers": [
@@ -6423,6 +6433,7 @@
       "option3": null,
       "table_name": "ConstraintTable9",
       "description": "Casings in VR-1V are not permitted to have taps for some flush options. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 22,
         "headers": [
@@ -6456,6 +6467,7 @@
       "option3": null,
       "table_name": null,
       "description": "Motor frames are only available in certain Horsepower and RPM combinations.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6464,6 +6476,7 @@
       "option3": null,
       "table_name": null,
       "description": "Motor Horsepower and RPMs are only available in certain Motor Types.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6472,6 +6485,7 @@
       "option3": null,
       "table_name": "ConstraintTable10",
       "description": "We can not supply Paint Upgrade if the motor is being supplied by the customer.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 26,
         "headers": [
@@ -6500,6 +6514,7 @@
       "option3": null,
       "table_name": "ConstraintTable11",
       "description": "We can not supply Shaft Grounding Rings if the motor is being supplied by the customer.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6508,6 +6523,7 @@
       "option3": null,
       "table_name": "ConstraintTable12",
       "description": "Verticals, No intermediate bearing material for EY-2, therefore only settings 1-4 are allowed.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 30,
         "headers": [
@@ -6601,6 +6617,7 @@
       "option3": null,
       "table_name": "ConstraintTable13",
       "description": "5500 ONLY, EY-2 and Wrapped Shafts are Now Allowed.",
+      "series_applicability": "5500_ONLY",
       "resolved_table": null
     },
     {
@@ -6609,6 +6626,7 @@
       "option3": null,
       "table_name": "ConstraintTable14",
       "description": "We do not make Separate Sleeve in EY-2, not VR-1V. Those are two materials that require the all FRP parts match due to chemical compatability.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6617,6 +6635,7 @@
       "option3": null,
       "table_name": "ConstraintTable15",
       "description": "Casings in VR-1V are not permitted to have taps. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6625,6 +6644,7 @@
       "option3": null,
       "table_name": "ConstraintTable16",
       "description": "If there is no gland, then we cannot supply a seal guard.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 34,
         "headers": [
@@ -6648,6 +6668,7 @@
       "option3": null,
       "table_name": "ConstraintTable17",
       "description": "Must get a matching gland with seal.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -6656,6 +6677,7 @@
       "option3": null,
       "table_name": "ConstraintTable18",
       "description": "Wrapped shafts only come in Settings 1-4. Can't have intermediate bearings.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 38,
         "headers": [
@@ -6714,6 +6736,7 @@
       "option3": null,
       "table_name": "ConstraintTable19",
       "description": "For normal shafts, sleeve must be in the same material. For wrapped shaft, only allowed Hast-C or Titanium shaft sleeve. Shaft sleeve is not a separate Position number, it is included in Shaft part number.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 42,
         "headers": [
@@ -6792,6 +6815,7 @@
       "option3": null,
       "table_name": "ConstraintTable20",
       "description": "VFDs must get Shaft Grounding ring.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 46,
         "headers": [
@@ -6815,6 +6839,7 @@
       "option3": "Alt Size",
       "table_name": "ConstraintTable21",
       "description": "Verticals, No intermediate bearing material for EY-2, therefore only lengths up to Setting 4 for a size are allowed.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 50,
         "headers": [
@@ -27696,6 +27721,7 @@
       "option3": null,
       "table_name": "ConstraintTable22",
       "description": "If Custom Length is selected, Length can be selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 55,
         "headers": [
@@ -28629,6 +28655,7 @@
       "option3": null,
       "table_name": "ConstraintTable23",
       "description": "If Standard Setting is selected, Setting can be selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 59,
         "headers": [
@@ -28742,6 +28769,7 @@
       "option3": null,
       "table_name": "ConstraintTable24",
       "description": "If Tailpipe is Supplied, Tailpipe Length can be selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 63,
         "headers": [
@@ -29335,6 +29363,7 @@
       "option3": null,
       "table_name": "ConstraintTable25",
       "description": "Seal Type must match Seal Manufacturer selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 67,
         "headers": [
@@ -29503,6 +29532,7 @@
       "option3": null,
       "table_name": "ConstraintTable26",
       "description": "Seal Manufacturer depends on if Supplied by Fybroc or Installed by Fybroc is selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": null
     },
     {
@@ -29511,6 +29541,7 @@
       "option3": null,
       "table_name": "ConstraintTable27",
       "description": "Wetted Hardware Selection can only be selected if Custom Wetted Hardware is selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 71,
         "headers": [
@@ -29579,6 +29610,7 @@
       "option3": null,
       "table_name": "ConstraintTable28",
       "description": "No flush material required if Internal Flush or External Flush are selected.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 75,
         "headers": [
@@ -29687,6 +29719,7 @@
       "option3": null,
       "table_name": "ConstraintTable29",
       "description": "C-Face adapter is not allowed on Group 3 pumps.",
+      "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 79,
         "headers": [
@@ -29713,6 +29746,15 @@
           }
         ]
       }
+    },
+    {
+      "option1": "Shaft Material",
+      "option2": "Sleeve",
+      "option3": "Wetted Hardware",
+      "table_name": null,
+      "description": "Wetted hardware should match Shaft if No Sleeve, Otherwise, it should match sleeve.",
+      "series_applicability": "ALL_SERIES",
+      "resolved_table": null
     }
   ],
   "feasible_tables": {

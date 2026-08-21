@@ -2,13 +2,13 @@
 F120.3 - FYBROC CONSTRAINT MODEL (Combination Matrix + Constraint Index + Feasible Tables)
 ============================================================================================================================================
 
-Git commit  : ccd207b44d07db161ce6fa60d3d5d9e0be15f5b6
+Git commit  : d4c26505e6cecf9d114da709b98cbacfa501257f
 Git clean   : False
 
 Series codes       : 1500, 1530, 1600, 1630, 2530, 3000, 5500, 5530
 Distinct sizes     : 80
 Combination fields : 34
-Constraint index   : 33 entries
+Constraint index   : 34 entries
 Feasible tables    : 20 tables
 
 ============================================================================================================================================
@@ -152,6 +152,9 @@ CONSTRAINT INDEX
 
   ConstraintTable29         Alt Size x C-Face Adapter  [3 rows]
     C-Face adapter is not allowed on Group 3 pumps.
+
+  NO TABLE (series-derived) Shaft Material x Sleeve x Wetted Hardware  [NOT RESOLVED]
+    Wetted hardware should match Shaft if No Sleeve, Otherwise, it should match sleeve.
 
 ============================================================================================================================================
 FEASIBLE CONSTRAINT TABLES
