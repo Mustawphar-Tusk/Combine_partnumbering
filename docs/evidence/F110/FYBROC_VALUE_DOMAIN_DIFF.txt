@@ -1,0 +1,211 @@
+============================================================================================================================================
+F110.2b - FYBROC VALUE-DOMAIN DIFF (Seal Assembly / Options / Motor Assy)
+============================================================================================================================================
+
+Git commit  : 175fe816937b2b815b63465f6a39f0fe8d4ac1f5
+Git clean   : False
+
+TOTAL CLASSIFICATION COUNTS
+--------------------------------------------------------------------------------------------------------------------------------------------
+  DEPRECATED     : 26
+  NEW            : 69
+  UNCHANGED      : 112
+
+============================================================================================================================================
+Seal Assembly  ::  'Seal Assembly' vs 'Seal Assembly - Horizontal'
+============================================================================================================================================
+
+[Seal_Option] <-> [Seal Option]  (10 values)
+    UNCHANGED=2  NEW=4  DEPRECATED=4
+      DEPRECATED   'Mechanical Seal Included*'
+      DEPRECATED   'No Seal (Double Seal Gland by Fyboc)'
+      DEPRECATED   'No Seal (No Seal Gland)'
+      DEPRECATED   'No Seal (Single Seal Gland by Fyboc)'
+      NEW          'NoSeal Double Seal Gland'
+      NEW          'NoSeal No Seal Gland'
+      NEW          'NoSeal Single Seal Gland'
+      NEW          'Supplied by Fybroc'
+
+[Seal_Type] <-> [Seal Type]  (7 values)
+    UNCHANGED=7
+
+[Seal_Materials] <-> [Seal Materials]  (6 values)
+    UNCHANGED=2  NEW=2  DEPRECATED=2
+      NEW          'Carbon vs Ceramic'
+      DEPRECATED   'Carbon vs. Ceramic*'
+      NEW          'Silcar vs Silcar'
+      DEPRECATED   'Silcar vs. Silcar'
+
+[Seal_Elastomers] <-> [Seal Elastomers]  (5 values)
+    UNCHANGED=5
+
+[Seal_Guard] <-> [Seal Guard]  (5 values)
+    UNCHANGED=1  NEW=2  DEPRECATED=2
+      DEPRECATED   'No Seal Guard'
+      NEW          'Not Supplied by Fybroc'
+      DEPRECATED   'Seal Guard Included'
+      NEW          'Supplied by Fybroc'
+
+[(none)] <-> [Seal Manufacturer]  (11 values)
+    note: No V5 equivalent - new field in V6.
+    NEW=11
+      NEW          'Standard Offering'
+      NEW          'Flexaseal'
+      NEW          'John Crane'
+      NEW          'Custom'
+      NEW          'Seal Type'
+      NEW          '8B2'
+      NEW          'RAC'
+      NEW          '8-1T'
+      NEW          'RXO'
+      NEW          'CRO'
+      NEW          'NMS'
+
+============================================================================================================================================
+Options (vs Horizontal)  ::  'Options' vs 'Options - Horizontal'
+============================================================================================================================================
+
+[Coupling_Option] <-> [Coupling Option]  (3 values)
+    UNCHANGED=3
+
+[Coupling_Guard] <-> [Coupling Guard]  (8 values)
+    UNCHANGED=2  NEW=3  DEPRECATED=3
+      NEW          '316 SS'
+      DEPRECATED   '316 SS Coupling Guard'
+      NEW          'Non Sparking'
+      DEPRECATED   'Non Sparking Coupling Guard'
+      NEW          'Steel'
+      DEPRECATED   'Steel Coupling Guard*'
+
+[Baseplate_Option] <-> [Baseplate Option]  (3 values)
+    UNCHANGED=3
+
+[Baseplate_Hardware] <-> [Baseplate Hardware]  (6 values)
+    UNCHANGED=2  NEW=2  DEPRECATED=2
+      NEW          '303 SS'
+      DEPRECATED   '303 SS Baseplate HW*'
+      NEW          '316 SS'
+      DEPRECATED   '316 SS Baseplate HW'
+
+[Custom_Nameplate] <-> [Customer Nameplate]  (4 values)
+    UNCHANGED=2  NEW=1  DEPRECATED=1
+      DEPRECATED   'No Customer Nameplate'
+      NEW          'Not Included'
+
+[(none)] <-> [C-Face Adapter]  (3 values)
+    note: No V5 equivalent - new field in V6.
+    NEW=3
+      NEW          'Not Included'
+      NEW          'Supplied by Fybroc'
+      NEW          'C Face Adapter'
+
+============================================================================================================================================
+Options (vs Vertical)  ::  'Options' vs 'Options - Vertical'
+============================================================================================================================================
+
+[Coupling_Option] <-> [Coupling Option]  (3 values)
+    UNCHANGED=3
+
+[Coupling_Guard] <-> [Coupling Guard]  (8 values)
+    UNCHANGED=2  NEW=3  DEPRECATED=3
+      NEW          '316 SS'
+      DEPRECATED   '316 SS Coupling Guard'
+      NEW          'Non Sparking'
+      DEPRECATED   'Non Sparking Coupling Guard'
+      NEW          'Steel'
+      DEPRECATED   'Steel Coupling Guard*'
+
+[Baseplate_Option] <-> [Mounting Plate Option]  (5 values)
+    UNCHANGED=1  NEW=2  DEPRECATED=2
+      DEPRECATED   'Baseplate Included*'
+      NEW          'Mounting Plate Included'
+      DEPRECATED   'No Baseplate'
+      NEW          'No Mounting Plate'
+
+[Baseplate_Hardware] <-> [(none)]  (4 values)
+    note: No V6 equivalent found - verified absent, not just unmatched by name.
+    DEPRECATED=4
+      DEPRECATED   '303 SS Baseplate HW*'
+      DEPRECATED   '316 SS Baseplate HW'
+      DEPRECATED   '-'
+      DEPRECATED   'Baseplate_Hardware'
+
+[Custom_Nameplate] <-> [Customer Nameplate]  (4 values)
+    UNCHANGED=2  NEW=1  DEPRECATED=1
+      DEPRECATED   'No Customer Nameplate'
+      NEW          'Not Included'
+
+============================================================================================================================================
+Motor Assy  ::  ' Motor Assy' vs ' Motor Assy'
+============================================================================================================================================
+
+[Motor_Option] <-> [Motor Option]  (4 values)
+    UNCHANGED=4
+
+[Motor_Class] <-> [Motor Class]  (4 values)
+    UNCHANGED=3  NEW=1
+      NEW          'IEC'
+
+[Motor_Orientation] <-> [Motor Orientation]  (14 values)
+    UNCHANGED=4  NEW=10
+      NEW          'Hor JM'
+      NEW          'Hor TC'
+      NEW          'Hor TSC'
+      NEW          'Vrt JMV'
+      NEW          'Vrt TC'
+      NEW          'Vrt TCV'
+      NEW          'Vrt TCZ'
+      NEW          'Vrt TSC'
+      NEW          'Vrt VH'
+      NEW          'Vrt VP'
+
+[Motor_Horsepower] <-> [Motor Horsepower]  (20 values)
+    UNCHANGED=20
+
+[Motor_RPM] <-> [Motor RPM]  (9 values)
+    UNCHANGED=5  NEW=4
+      NEW          '1000'
+      NEW          '1500'
+      NEW          '3000'
+      NEW          '900'
+
+[Motor_Voltage] <-> [Motor Voltage]  (17 values)
+    UNCHANGED=4  NEW=13
+      NEW          '190/380'
+      NEW          '200'
+      NEW          '208-230/460'
+      NEW          '208-230/460 - 190/380'
+      NEW          '220'
+      NEW          '230'
+      NEW          '230/400'
+      NEW          '230/460 - 190/380'
+      NEW          '240/380-415'
+      NEW          '380'
+      NEW          '400'
+      NEW          '415'
+      NEW          '575'
+
+[Motor_Hertz] <-> [Motor Hertz]  (6 values)
+    UNCHANGED=2  NEW=3  DEPRECATED=1
+      DEPRECATED   '/3/60'
+      NEW          '3/(50/60)'
+      NEW          '3/50'
+      NEW          '3/60'
+
+[Motor_Frame] <-> [Motor Frame]  (20 values)
+    UNCHANGED=20
+
+[Motor_Enclosure] <-> [Motor Enclosure]  (7 values)
+    UNCHANGED=5  NEW=2
+      NEW          'WD'
+      NEW          'XP'
+
+[Motor_Efficiency] <-> [Motor Efficiency]  (3 values)
+    UNCHANGED=3
+
+[Motor_Manufacturer] <-> [Motor Manufacturer]  (8 values)
+    UNCHANGED=5  NEW=2  DEPRECATED=1
+      NEW          'Custom'
+      DEPRECATED   'Fybroc Choice*'
+      NEW          'Standard Offering'
+

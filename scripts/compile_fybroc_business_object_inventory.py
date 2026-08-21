@@ -181,6 +181,12 @@ MILESTONE_KNOWN: dict[tuple[str, str], tuple[list[str], str]] = {
         ["constraints", "configuration_fields"],
         "docs/milestones/F100_5_1_SERIES_SHEET_CLASSIFICATION_CORRECTION.md",
     ),
+    ("Price Estimator-Fybroc.xlsm", "newrules 5 2 23"): (
+        ["dependencies"],
+        "docs/milestones/F100_5_2_NEWRULES_CLASSIFICATION_CORRECTION.md "
+        "(confirmed via cfg.FieldOptionDependency.SourceWorksheet in the "
+        "live active metadata publication)",
+    ),
 }
 
 # ---------------------------------------------------------------------------

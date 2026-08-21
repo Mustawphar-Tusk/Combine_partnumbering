@@ -96,36 +96,59 @@ hex code V5 used to provide directly.
 
 ---
 
-## 2. Testing hex mapping — which version: RESOLVED. Actual codes: still open
+## 2. Testing hex mapping — CLOSED (2026-08-20), substantially different from expected
 
-**Which version to use:** resolved by "V6 is authoritative." V6's split
-into "Performance Testing" and "Hydro Testing" (confirmed live in
-`Smart Number`) replaces V5's single combined Testing field.
+**Which version to use:** V6, per the authoritative-source decision.
 
-**Still open:** V5 has a Testing hex table inside `Attributes` (columns
-21/22). V6 has no such columns there — the actual codes now live in V6's
-dedicated `Testing` sheet, which hasn't been read/verified yet. Adopting
-V6's *approach* is settled; confirming what its actual hex codes are is
-still real work.
+**What V6 actually does (read directly, not assumed):** decomposes
+Testing into four independent axes - Performance Testing, Hydrotest,
+Vibration, Sound Level - each with its own small option list, then
+combines all four into a single **Base-36 permutation code** (e.g.
+`"00"`, `"01"`, `"0G"`). V5, by contrast, pre-enumerates entire testing
+*scenarios* as one flat list, each with its own code (`"NW-Perf,
+Vibration & NPSH"` -> `"T02"`).
 
-**Resolves when:** F110.4 (Testing rule diff) reads V6's `Testing`
-sheet directly and documents its codes.
+This is not a relocation with equivalent codes - it's a different
+encoding paradigm entirely (decomposed+combined vs. flat enumeration).
+V5 codes cannot be simply remapped to V6 codes; identifier-generation
+logic needs new development for Testing, not a lookup table.
+
+**Notable side finding:** V6's Testing sheet has a column explicitly
+labeled "Testing Base Code Matches Dean Code" - this encoding was
+deliberately built to align with Dean's own testing codes. Relevant to
+Phase U (unified Dean+Fybroc platform) later, not just an internal
+Fybroc detail - worth keeping in view for that work rather than losing it here.
+
+**This also resolves two Pricing Index gap-list items** ("Sound Level
+Testing... Not in pricebook," "Vibration Testing... Not in pricebook")
+- they're real, distinct V6 testing axes, not missing categories V5 had
+that got dropped.
 
 ---
 
-## 4. Possible missing Vertical part-number builder — OPEN, not resolved by V6-authoritative
+## 4. Possible missing Vertical part-number builder — INVESTIGATED, still needs engineering
 
 V6's `Smart Number` sheet is explicitly titled "Fybroc Horizontal Part
 Number" (found directly in the sheet, row 4). That phrasing implies a
-separate Vertical equivalent should exist. Not located yet.
+separate Vertical equivalent should exist.
+
+**Checked directly (2026-08-20), not just flagged as a guess:** every
+sheet in V6 (no hidden sheet, all 10 are visible - confirmed via
+`ws.sheet_state`), every sheet name in Rev0.3, and the contents of
+`Combine Variables` specifically (the one plausible candidate by name -
+turned out to be motor HP/RPM/frame combination logic, unrelated to
+part-number orientation). No Vertical part-number builder exists
+anywhere in either authoritative workbook under any name checked.
 
 This is NOT a "which version wins" question, so engineering's V6-
-authoritative answer doesn't resolve it - it's a "does V6 actually have
-this at all" question. Needs a direct answer.
+authoritative answer doesn't resolve it - it's a "does this exist at
+all yet" question, and the file evidence says no.
 
-**Resolves when:** engineering confirms whether a Vertical part-number
-builder exists elsewhere in V6, or whether `Smart Number` handles both
-orientations despite the Horizontal-specific title.
+**Resolves when:** engineering confirms whether `Smart Number` actually
+handles both orientations despite the Horizontal-specific title (e.g.
+by referencing `Setting-Length-Vertical` / `Pump Options - Vertical` /
+`Options - Vertical` when Vertical is selected), or whether a Vertical
+part-number builder genuinely needs to be built and doesn't exist yet.
 
 ---
 

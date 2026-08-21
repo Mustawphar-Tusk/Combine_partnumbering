@@ -1,0 +1,944 @@
+{
+  "artifact": "FYBROC_ITEMS_HIERARCHY_MODEL",
+  "step": "F120.1",
+  "roadmap_version": "1.0",
+  "milestone": "F120",
+  "generated_utc": "2026-08-20T21:48:51.234056+00:00",
+  "git_commit": "a4bd6337fd8344b8e0bff078d1705174a88bd68b",
+  "git_working_tree_clean": false,
+  "items": {
+    "field_count": 35,
+    "field_names": [
+      "F_BaseplateHardware",
+      "F_Baseplate_Option",
+      "F_Bearing_Option",
+      "F_Casing_Drains",
+      "F_Casing_Hardware",
+      "F_CouplingGuard",
+      "F_Coupling_Option",
+      "F_CycloneSep",
+      "F_Dynamic_Impeller",
+      "F_Flange_Type",
+      "F_Flush",
+      "F_Frame_Size",
+      "F_Gland_Hardware",
+      "F_ImpellerTrim",
+      "F_MotorHpRpm",
+      "F_MotorOption",
+      "F_Motor_Type",
+      "F_NamePlate",
+      "F_NamePlate2",
+      "F_Paint_Upgrade",
+      "F_Power_Frame_Hardware",
+      "F_Pump_Elastomers",
+      "F_Pump_Material",
+      "F_Seal_Elastomers",
+      "F_Seal_Guard",
+      "F_Seal_Materials",
+      "F_Seal_Option",
+      "F_Seal_Type",
+      "F_Setting",
+      "F_Shaft_Grounding",
+      "F_Shaft_Material",
+      "F_Sleeve",
+      "F_Strainer",
+      "F_Suction_Discharge",
+      "F_Vapor_Seal"
+    ],
+    "series_found": [
+      "1500",
+      "1530",
+      "1600",
+      "1630",
+      "2530",
+      "3000",
+      "5500",
+      "5530",
+      "7500",
+      "8500"
+    ],
+    "row_count": 97,
+    "rows": [
+      {
+        "series": "1500",
+        "item": "1",
+        "applicable_fields": [
+          "F_Casing_Drains",
+          "F_Flange_Type",
+          "F_Flush",
+          "F_Pump_Material",
+          "F_Suction_Discharge"
+        ],
+        "applicable_field_count": 5
+      },
+      {
+        "series": "1530",
+        "item": "1",
+        "applicable_fields": [
+          "F_Casing_Drains",
+          "F_Flange_Type",
+          "F_Flush",
+          "F_Pump_Material",
+          "F_Suction_Discharge"
+        ],
+        "applicable_field_count": 5
+      },
+      {
+        "series": "2530",
+        "item": "1",
+        "applicable_fields": [
+          "F_Casing_Drains",
+          "F_Pump_Material",
+          "F_Suction_Discharge"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "1",
+        "applicable_fields": [
+          "F_Casing_Hardware",
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5500",
+        "item": "1",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "1",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "1",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "1",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1600",
+        "item": "1A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "1A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "1A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1600",
+        "item": "1B",
+        "applicable_fields": [
+          "F_Casing_Drains",
+          "F_Flange_Type",
+          "F_Pump_Material",
+          "F_Suction_Discharge"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "1630",
+        "item": "1B",
+        "applicable_fields": [
+          "F_Casing_Drains",
+          "F_Flange_Type",
+          "F_Pump_Material",
+          "F_Suction_Discharge"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "2530",
+        "item": "1B",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "1B",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "1B",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "8500",
+        "item": "1B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "1C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "1C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "1C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "1C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "1C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "1C",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "1C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "1C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "1D",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "1D",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1D",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1DA",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1D",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1DA",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "1D",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "1D",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "1D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "1D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "1D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "1E",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "1E",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1E",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1E",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "1E",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "1E",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "1E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "1E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "1E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1600",
+        "item": "1F",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1F",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1G",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1G",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1H",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1H",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1J",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1630",
+        "item": "1J",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "1K",
+        "applicable_fields": [
+          "F_Casing_Drains"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "1K",
+        "applicable_fields": [
+          "F_Casing_Drains"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1K",
+        "applicable_fields": [
+          "F_Casing_Drains"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1K",
+        "applicable_fields": [
+          "F_Casing_Drains"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "1K",
+        "applicable_fields": [
+          "F_Casing_Drains"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1L",
+        "applicable_fields": [
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1630",
+        "item": "1L",
+        "applicable_fields": [
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1600",
+        "item": "1M",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1M",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "1N",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "1N",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1500",
+        "item": "1P",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1500",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "1530",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "1630",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "2530",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5500",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5530",
+        "item": "2",
+        "applicable_fields": [
+          "F_Dynamic_Impeller",
+          "F_ImpellerTrim",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "2",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "2",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "2A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "2B",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1600",
+        "item": "2B",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "2B",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "2B",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "2B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "2B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "2C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "6",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1630",
+        "item": "6",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "2530",
+        "item": "6",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "6",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "5530",
+        "item": "6",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "6",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "6",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "6A",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1630",
+        "item": "6A",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "6A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "6A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      }
+    ],
+    "not_compiled": "Columns 66-88 (per-series item-code cross-reference block) - see module docstring. Row 1 of that block contains an explicit engineering warning that row position does not align items across series; not compiled here to avoid guessing at semantics that aren't fully clear yet."
+  },
+  "hierarchy": {
+    "group_count": 8,
+    "groups": [
+      {
+        "group": "Pump Options",
+        "field_count": 12,
+        "fields": [
+          "Series",
+          "Alt Size",
+          "Flange Type",
+          "Pump Material",
+          "Casing Drains",
+          "Suction Discharge Taps",
+          "Casing Hardware",
+          "Pump Elastomers",
+          "Shaft Material",
+          "Sleeve",
+          "Power Frame Hardware",
+          "Bearing Option"
+        ]
+      },
+      {
+        "group": "Impeller",
+        "field_count": 3,
+        "fields": [
+          "ImpellerTrim",
+          "Dynamic Impeller",
+          "Trim Range"
+        ]
+      },
+      {
+        "group": "Mechanical Seal",
+        "field_count": 9,
+        "fields": [
+          "Seal Option",
+          "Seal Type",
+          "Seal Materials",
+          "Seal Elastomers",
+          "Seal Guard",
+          "Flush",
+          "CycloneSep",
+          "Gland Hardware",
+          "Seal Mfg"
+        ]
+      },
+      {
+        "group": "Motor",
+        "field_count": 11,
+        "fields": [
+          "MotorOption",
+          "MotorEfficiency",
+          "MotorEnclosure",
+          "MotorHertz",
+          "MotorHp",
+          "MotorRPM",
+          "MotorVoltage",
+          "Frame Size",
+          "Paint Upgrade",
+          "Shaft Grounding",
+          "MotorMfg"
+        ]
+      },
+      {
+        "group": "Baseplate",
+        "field_count": 4,
+        "fields": [
+          "Baseplate Option",
+          "BaseplateHardware",
+          "Coupling Option",
+          "CouplingGuard"
+        ]
+      },
+      {
+        "group": "Mounting plate",
+        "field_count": 1,
+        "fields": [
+          "Mounting Plate Option"
+        ]
+      },
+      {
+        "group": "Vertical",
+        "field_count": 6,
+        "fields": [
+          "Setting",
+          "Vapor Seal",
+          "Strainer",
+          "Length",
+          "Tailpipe Option",
+          "Tailpipe Length"
+        ]
+      },
+      {
+        "group": "Other",
+        "field_count": 2,
+        "fields": [
+          "NamePlate",
+          "NamePlate2"
+        ]
+      }
+    ]
+  }
+}
