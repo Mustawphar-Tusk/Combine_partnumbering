@@ -1,0 +1,249 @@
+========================================================================================================================
+F110.8a - FYBROC V6 OPTIONS HORIZONTAL
+========================================================================================================================
+
+Git commit  : 2861cfae811146f62272368d507536707a0c46b6
+Git clean   : False
+
+Fields             : 6
+Total combinations : 192
+Distinct hex-codes : 192
+Hex range          : 01 -> 5C
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Coupling Option:
+    - Coupling Included
+    - No Coupling
+
+  Coupling Guard:
+    - Steel
+    - No Coupling Guard
+    - 316 SS
+    - Non Sparking
+
+  Baseplate Option:
+    - Baseplate Included
+    - No Baseplate
+
+  Baseplate Hardware:
+    - 303 SS
+    - 316 SS
+
+  Customer Nameplate:
+    - Not Included
+    - Customer Nameplate
+
+  C-Face Adapter:
+    - Not Included
+    - Supplied by Fybroc
+
+========================================================================================================================
+DISTINCT VALUES PER FIELD
+========================================================================================================================
+
+  Coupling Option (2): ['Coupling Included', 'No Coupling']
+  Coupling Guard (4): ['316 SS', 'No Coupling Guard', 'Non Sparking', 'Steel']
+  Baseplate Option (2): ['Baseplate Included', 'No Baseplate']
+  Baseplate Hardware (3): ['-', '303 SS', '316 SS']
+  Customer Nameplate (2): ['Customer Nameplate', 'Not Included']
+  C-Face Adapter (2): ['Not Included', 'Supplied by Fybroc']
+
+========================================================================================================================
+ALL COMBINATIONS
+========================================================================================================================
+
+  ID=  1  hex=01  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  2  hex=02  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  3  hex=03  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  4  hex=04  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  5  hex=05  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  6  hex=06  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  7  hex=07  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  8  hex=08  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID=  9  hex=09  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 10  hex=0A  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 11  hex=0B  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 12  hex=0C  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 13  hex=0D  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 14  hex=0E  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 15  hex=0F  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 16  hex=0G  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 17  hex=0H  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 18  hex=0I  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 19  hex=0J  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 20  hex=0K  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 21  hex=0L  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 22  hex=0M  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 23  hex=0N  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 24  hex=0O  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 25  hex=0P  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 26  hex=0Q  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 27  hex=0R  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 28  hex=0S  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 29  hex=0T  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 30  hex=0U  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 31  hex=0V  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 32  hex=0W  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 33  hex=0X  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 34  hex=0Y  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 35  hex=0Z  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 36  hex=10  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 37  hex=11  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 38  hex=12  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 39  hex=13  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 40  hex=14  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 41  hex=15  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 42  hex=16  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 43  hex=17  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 44  hex=18  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 45  hex=19  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 46  hex=1A  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 47  hex=1B  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 48  hex=1C  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Not Included
+  ID= 49  hex=1D  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 50  hex=1E  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 51  hex=1F  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 52  hex=1G  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 53  hex=1H  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 54  hex=1I  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 55  hex=1J  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 56  hex=1K  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 57  hex=1L  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 58  hex=1M  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 59  hex=1N  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 60  hex=1O  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 61  hex=1P  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 62  hex=1Q  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 63  hex=1R  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 64  hex=1S  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 65  hex=1T  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 66  hex=1U  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 67  hex=1V  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 68  hex=1W  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 69  hex=1X  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 70  hex=1Y  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 71  hex=1Z  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 72  hex=20  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 73  hex=21  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 74  hex=22  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 75  hex=23  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 76  hex=24  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 77  hex=25  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 78  hex=26  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 79  hex=27  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 80  hex=28  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 81  hex=29  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 82  hex=2A  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 83  hex=2B  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 84  hex=2C  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 85  hex=2D  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 86  hex=2E  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 87  hex=2F  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 88  hex=2G  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 89  hex=2H  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 90  hex=2I  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 91  hex=2J  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 92  hex=2K  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 93  hex=2L  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 94  hex=2M  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 95  hex=2N  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 96  hex=2O  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Not Included
+  ID= 97  hex=2P  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID= 98  hex=2Q  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID= 99  hex=2R  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=100  hex=2S  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=101  hex=2T  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=102  hex=2U  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=103  hex=2V  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=104  hex=2W  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=105  hex=2X  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=106  hex=2Y  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=107  hex=2Z  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=108  hex=30  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=109  hex=31  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=110  hex=32  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=111  hex=33  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=112  hex=34  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=113  hex=35  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=114  hex=36  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=115  hex=37  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=116  hex=38  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=117  hex=39  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=118  hex=3A  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=119  hex=3B  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=120  hex=3C  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=121  hex=3D  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=122  hex=3E  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=123  hex=3F  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=124  hex=3G  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=125  hex=3H  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=126  hex=3I  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=127  hex=3J  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=128  hex=3K  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=129  hex=3L  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=130  hex=3M  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=131  hex=3N  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=132  hex=3O  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=133  hex=3P  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=134  hex=3Q  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=135  hex=3R  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=136  hex=3S  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=137  hex=3T  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=138  hex=3U  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=139  hex=3V  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=140  hex=3W  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=141  hex=3X  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=142  hex=3Y  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=143  hex=3Z  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=144  hex=40  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Not Included  C-Face Adapter=Supplied by Fybroc
+  ID=145  hex=41  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=146  hex=42  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=147  hex=43  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=148  hex=44  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=149  hex=45  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=150  hex=46  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=151  hex=47  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=152  hex=48  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=153  hex=49  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=154  hex=4A  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=155  hex=4B  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=156  hex=4C  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=157  hex=4D  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=158  hex=4E  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=159  hex=4F  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=160  hex=4G  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=-  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=161  hex=4H  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=162  hex=4I  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=163  hex=4J  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=164  hex=4K  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=165  hex=4L  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=166  hex=4M  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=167  hex=4N  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=168  hex=4O  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=169  hex=4P  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=170  hex=4Q  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=171  hex=4R  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=172  hex=4S  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=173  hex=4T  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=174  hex=4U  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=175  hex=4V  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=176  hex=4W  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=303 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=177  hex=4X  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=178  hex=4Y  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=179  hex=4Z  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=180  hex=50  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=181  hex=51  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=182  hex=52  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=183  hex=53  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=184  hex=54  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=No Baseplate  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=185  hex=55  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=186  hex=56  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=187  hex=57  Coupling Option=No Coupling  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=188  hex=58  Coupling Option=Coupling Included  Coupling Guard=Steel  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=189  hex=59  Coupling Option=No Coupling  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=190  hex=5A  Coupling Option=Coupling Included  Coupling Guard=316 SS  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=191  hex=5B  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc
+  ID=192  hex=5C  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Baseplate Option=Baseplate Included  Baseplate Hardware=316 SS  Customer Nameplate=Customer Nameplate  C-Face Adapter=Supplied by Fybroc

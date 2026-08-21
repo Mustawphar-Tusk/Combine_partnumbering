@@ -1,0 +1,855 @@
+{
+  "artifact": "FYBROC_V6_OPTIONS_VERTICAL",
+  "step": "F110.8b",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "sheet": "Options - Vertical",
+  "generated_utc": "2026-08-21T21:54:30.260191+00:00",
+  "git_commit": "2861cfae811146f62272368d507536707a0c46b6",
+  "git_working_tree_clean": false,
+  "fields": [
+    "Coupling Option",
+    "Coupling Guard",
+    "Mounting Plate Option",
+    "Customer Nameplate"
+  ],
+  "field_options": {
+    "Coupling Option": [
+      "Coupling Included",
+      "No Coupling"
+    ],
+    "Coupling Guard": [
+      "Steel",
+      "No Coupling Guard",
+      "316 SS",
+      "Non Sparking"
+    ],
+    "Mounting Plate Option": [
+      "Mounting Plate Included",
+      "No Mounting Plate"
+    ],
+    "Customer Nameplate": [
+      "Not Included",
+      "Customer Nameplate"
+    ]
+  },
+  "combination_matrix": {
+    "total_combinations": 96,
+    "distinct_hex_codes": 96,
+    "hex_code_range": {
+      "first": "01",
+      "last": "2O"
+    },
+    "distinct_values_per_field": {
+      "Coupling Option": [
+        "Coupling Included",
+        "No Coupling"
+      ],
+      "Coupling Guard": [
+        "316 SS",
+        "No Coupling Guard",
+        "Non Sparking",
+        "Steel"
+      ],
+      "Mounting Plate Option": [
+        "Mounting Plate Included",
+        "No Mounting Plate"
+      ],
+      "Customer Nameplate": [
+        "Customer Nameplate",
+        "Not Included"
+      ]
+    },
+    "all_rows": [
+      {
+        "id": 1,
+        "hex_code": "01",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 2,
+        "hex_code": "02",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 3,
+        "hex_code": "03",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 4,
+        "hex_code": "04",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 5,
+        "hex_code": "05",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 6,
+        "hex_code": "06",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 7,
+        "hex_code": "07",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 8,
+        "hex_code": "08",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 9,
+        "hex_code": "09",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 10,
+        "hex_code": "0A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 11,
+        "hex_code": "0B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 12,
+        "hex_code": "0C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 13,
+        "hex_code": "0D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 14,
+        "hex_code": "0E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 15,
+        "hex_code": "0F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 16,
+        "hex_code": "0G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 17,
+        "hex_code": "0H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 18,
+        "hex_code": "0I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 19,
+        "hex_code": "0J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 20,
+        "hex_code": "0K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 21,
+        "hex_code": "0L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 22,
+        "hex_code": "0M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 23,
+        "hex_code": "0N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 24,
+        "hex_code": "0O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 25,
+        "hex_code": "0P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 26,
+        "hex_code": "0Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 27,
+        "hex_code": "0R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 28,
+        "hex_code": "0S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 29,
+        "hex_code": "0T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 30,
+        "hex_code": "0U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 31,
+        "hex_code": "0V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 32,
+        "hex_code": "0W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 33,
+        "hex_code": "0X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 34,
+        "hex_code": "0Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 35,
+        "hex_code": "0Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 36,
+        "hex_code": "10",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 37,
+        "hex_code": "11",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 38,
+        "hex_code": "12",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 39,
+        "hex_code": "13",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 40,
+        "hex_code": "14",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 41,
+        "hex_code": "15",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 42,
+        "hex_code": "16",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 43,
+        "hex_code": "17",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 44,
+        "hex_code": "18",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 45,
+        "hex_code": "19",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 46,
+        "hex_code": "1A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 47,
+        "hex_code": "1B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 48,
+        "hex_code": "1C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Not Included"
+      },
+      {
+        "id": 49,
+        "hex_code": "1D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 50,
+        "hex_code": "1E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 51,
+        "hex_code": "1F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 52,
+        "hex_code": "1G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 53,
+        "hex_code": "1H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 54,
+        "hex_code": "1I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 55,
+        "hex_code": "1J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 56,
+        "hex_code": "1K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 57,
+        "hex_code": "1L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 58,
+        "hex_code": "1M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 59,
+        "hex_code": "1N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 60,
+        "hex_code": "1O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 61,
+        "hex_code": "1P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 62,
+        "hex_code": "1Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 63,
+        "hex_code": "1R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 64,
+        "hex_code": "1S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 65,
+        "hex_code": "1T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 66,
+        "hex_code": "1U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 67,
+        "hex_code": "1V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 68,
+        "hex_code": "1W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 69,
+        "hex_code": "1X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 70,
+        "hex_code": "1Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 71,
+        "hex_code": "1Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 72,
+        "hex_code": "20",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 73,
+        "hex_code": "21",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 74,
+        "hex_code": "22",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 75,
+        "hex_code": "23",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 76,
+        "hex_code": "24",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 77,
+        "hex_code": "25",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 78,
+        "hex_code": "26",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 79,
+        "hex_code": "27",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 80,
+        "hex_code": "28",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 81,
+        "hex_code": "29",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 82,
+        "hex_code": "2A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 83,
+        "hex_code": "2B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 84,
+        "hex_code": "2C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 85,
+        "hex_code": "2D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 86,
+        "hex_code": "2E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 87,
+        "hex_code": "2F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 88,
+        "hex_code": "2G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "No Mounting Plate",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 89,
+        "hex_code": "2H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 90,
+        "hex_code": "2I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 91,
+        "hex_code": "2J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 92,
+        "hex_code": "2K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 93,
+        "hex_code": "2L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 94,
+        "hex_code": "2M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 95,
+        "hex_code": "2N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      },
+      {
+        "id": 96,
+        "hex_code": "2O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Mounting Plate Option": "Mounting Plate Included",
+        "Customer Nameplate": "Customer Nameplate"
+      }
+    ]
+  },
+  "lookup_key_col": "C",
+  "hex_code_col": "H",
+  "vs_horizontal": {
+    "vertical_fields": 4,
+    "horizontal_fields": 6,
+    "vertical_only": [
+      "Mounting Plate Option"
+    ],
+    "horizontal_only": [
+      "Baseplate Option",
+      "Baseplate Hardware",
+      "C-Face Adapter"
+    ],
+    "shared": [
+      "Coupling Option",
+      "Coupling Guard",
+      "Customer Nameplate"
+    ]
+  },
+  "part_number_role": "Options segment in vertical part number. VLOOKUP(concat_key,col_C,col_H)."
+}

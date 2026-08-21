@@ -1,0 +1,142 @@
+========================================================================================================================
+F110.8b - FYBROC V6 OPTIONS VERTICAL
+========================================================================================================================
+
+Git commit  : 2861cfae811146f62272368d507536707a0c46b6
+Git clean   : False
+
+Fields             : 4
+Total combinations : 96
+Distinct hex-codes : 96
+Hex range          : 01 -> 2O
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Coupling Option:
+    - Coupling Included
+    - No Coupling
+
+  Coupling Guard:
+    - Steel
+    - No Coupling Guard
+    - 316 SS
+    - Non Sparking
+
+  Mounting Plate Option:
+    - Mounting Plate Included
+    - No Mounting Plate
+
+  Customer Nameplate:
+    - Not Included
+    - Customer Nameplate
+
+========================================================================================================================
+VERTICAL vs HORIZONTAL
+========================================================================================================================
+
+  Vertical-only: ['Mounting Plate Option']
+  Horizontal-only: ['Baseplate Option', 'Baseplate Hardware', 'C-Face Adapter']
+  Shared: ['Coupling Option', 'Coupling Guard', 'Customer Nameplate']
+
+========================================================================================================================
+ALL COMBINATIONS
+========================================================================================================================
+
+  ID=  1  hex=01  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  2  hex=02  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  3  hex=03  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  4  hex=04  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  5  hex=05  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  6  hex=06  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  7  hex=07  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  8  hex=08  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID=  9  hex=09  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 10  hex=0A  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 11  hex=0B  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 12  hex=0C  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 13  hex=0D  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 14  hex=0E  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 15  hex=0F  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 16  hex=0G  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 17  hex=0H  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 18  hex=0I  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 19  hex=0J  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 20  hex=0K  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 21  hex=0L  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 22  hex=0M  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 23  hex=0N  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 24  hex=0O  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 25  hex=0P  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 26  hex=0Q  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 27  hex=0R  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 28  hex=0S  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 29  hex=0T  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 30  hex=0U  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 31  hex=0V  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 32  hex=0W  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 33  hex=0X  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 34  hex=0Y  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 35  hex=0Z  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 36  hex=10  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 37  hex=11  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 38  hex=12  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 39  hex=13  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 40  hex=14  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Not Included
+  ID= 41  hex=15  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 42  hex=16  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 43  hex=17  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 44  hex=18  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 45  hex=19  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 46  hex=1A  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 47  hex=1B  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 48  hex=1C  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Not Included
+  ID= 49  hex=1D  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 50  hex=1E  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 51  hex=1F  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 52  hex=1G  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 53  hex=1H  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 54  hex=1I  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 55  hex=1J  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 56  hex=1K  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 57  hex=1L  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 58  hex=1M  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 59  hex=1N  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 60  hex=1O  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 61  hex=1P  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 62  hex=1Q  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 63  hex=1R  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 64  hex=1S  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 65  hex=1T  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 66  hex=1U  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 67  hex=1V  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 68  hex=1W  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 69  hex=1X  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 70  hex=1Y  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 71  hex=1Z  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 72  hex=20  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 73  hex=21  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 74  hex=22  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 75  hex=23  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 76  hex=24  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 77  hex=25  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 78  hex=26  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 79  hex=27  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 80  hex=28  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 81  hex=29  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 82  hex=2A  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 83  hex=2B  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 84  hex=2C  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 85  hex=2D  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 86  hex=2E  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 87  hex=2F  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 88  hex=2G  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=No Mounting Plate  Customer Nameplate=Customer Nameplate
+  ID= 89  hex=2H  Coupling Option=No Coupling  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 90  hex=2I  Coupling Option=Coupling Included  Coupling Guard=No Coupling Guard  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 91  hex=2J  Coupling Option=No Coupling  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 92  hex=2K  Coupling Option=Coupling Included  Coupling Guard=Steel  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 93  hex=2L  Coupling Option=No Coupling  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 94  hex=2M  Coupling Option=Coupling Included  Coupling Guard=316 SS  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 95  hex=2N  Coupling Option=No Coupling  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate
+  ID= 96  hex=2O  Coupling Option=Coupling Included  Coupling Guard=Non Sparking  Mounting Plate Option=Mounting Plate Included  Customer Nameplate=Customer Nameplate

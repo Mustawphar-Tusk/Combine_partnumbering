@@ -1,0 +1,160 @@
+========================================================================================================================
+F110.7 - FYBROC V6 SETTING-LENGTH VERTICAL
+========================================================================================================================
+
+Git commit  : 2861cfae811146f62272368d507536707a0c46b6
+Git clean   : False
+
+Setting/Length table rows : 202
+Setting/Length types      : ['Length', 'Setting']
+Dimension values          : 202 values
+
+Tailpipe table rows       : 116
+Tailpipe options          : ['Not Supplied by Fybroc', 'Supplied by Fybroc']
+Tailpipe lengths          : ['-', '10', '100', '101', '102', '103', '104', '105', '106', '107', '108', '109', '11', '110', '111', '112', '113', '114', '115', '116', '117', '118', '119', '12', '120', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '6', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '7', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '8', '80', '81', '82', '83', '84', '85', '86', '87', '88', '89', '9', '90', '91', '92', '93', '94', '95', '96', '97', '98', '99']
+
+========================================================================================================================
+SETTING/LENGTH ROWS (first 20)
+========================================================================================================================
+
+  type=Setting    dim=S-01     idx=1    code=01
+  type=Setting    dim=S-02     idx=2    code=02
+  type=Setting    dim=S-03     idx=3    code=03
+  type=Setting    dim=S-04     idx=4    code=04
+  type=Setting    dim=S-05     idx=5    code=05
+  type=Setting    dim=S-06     idx=6    code=06
+  type=Setting    dim=S-07     idx=7    code=07
+  type=Setting    dim=S-08     idx=8    code=08
+  type=Setting    dim=S-09     idx=9    code=09
+  type=Setting    dim=S-10     idx=10   code=10
+  type=Setting    dim=S-11     idx=11   code=11
+  type=Setting    dim=S-12     idx=12   code=12
+  type=Setting    dim=S-13     idx=13   code=13
+  type=Setting    dim=S-14     idx=14   code=14
+  type=Setting    dim=S-15     idx=15   code=15
+  type=Setting    dim=S-16     idx=16   code=16
+  type=Setting    dim=S-17     idx=17   code=17
+  type=Setting    dim=S-18     idx=18   code=18
+  type=Setting    dim=S-19     idx=19   code=19
+  type=Length     dim=18       idx=20   code=A0
+
+========================================================================================================================
+TAILPIPE ROWS
+========================================================================================================================
+
+  opt=Not Supplied by Fybroc    len=-      idx=0    code=00
+  opt=Supplied by Fybroc        len=6      idx=1    code=06
+  opt=Supplied by Fybroc        len=7      idx=2    code=07
+  opt=Supplied by Fybroc        len=8      idx=3    code=08
+  opt=Supplied by Fybroc        len=9      idx=4    code=09
+  opt=Supplied by Fybroc        len=10     idx=5    code=10
+  opt=Supplied by Fybroc        len=11     idx=6    code=11
+  opt=Supplied by Fybroc        len=12     idx=7    code=12
+  opt=Supplied by Fybroc        len=13     idx=8    code=13
+  opt=Supplied by Fybroc        len=14     idx=9    code=14
+  opt=Supplied by Fybroc        len=15     idx=10   code=15
+  opt=Supplied by Fybroc        len=16     idx=11   code=16
+  opt=Supplied by Fybroc        len=17     idx=12   code=17
+  opt=Supplied by Fybroc        len=18     idx=13   code=18
+  opt=Supplied by Fybroc        len=19     idx=14   code=19
+  opt=Supplied by Fybroc        len=20     idx=15   code=20
+  opt=Supplied by Fybroc        len=21     idx=16   code=21
+  opt=Supplied by Fybroc        len=22     idx=17   code=22
+  opt=Supplied by Fybroc        len=23     idx=18   code=23
+  opt=Supplied by Fybroc        len=24     idx=19   code=24
+  opt=Supplied by Fybroc        len=25     idx=20   code=25
+  opt=Supplied by Fybroc        len=26     idx=21   code=26
+  opt=Supplied by Fybroc        len=27     idx=22   code=27
+  opt=Supplied by Fybroc        len=28     idx=23   code=28
+  opt=Supplied by Fybroc        len=29     idx=24   code=29
+  opt=Supplied by Fybroc        len=30     idx=25   code=30
+  opt=Supplied by Fybroc        len=31     idx=26   code=31
+  opt=Supplied by Fybroc        len=32     idx=27   code=32
+  opt=Supplied by Fybroc        len=33     idx=28   code=33
+  opt=Supplied by Fybroc        len=34     idx=29   code=34
+  opt=Supplied by Fybroc        len=35     idx=30   code=35
+  opt=Supplied by Fybroc        len=36     idx=31   code=36
+  opt=Supplied by Fybroc        len=37     idx=32   code=37
+  opt=Supplied by Fybroc        len=38     idx=33   code=38
+  opt=Supplied by Fybroc        len=39     idx=34   code=39
+  opt=Supplied by Fybroc        len=40     idx=35   code=40
+  opt=Supplied by Fybroc        len=41     idx=36   code=41
+  opt=Supplied by Fybroc        len=42     idx=37   code=42
+  opt=Supplied by Fybroc        len=43     idx=38   code=43
+  opt=Supplied by Fybroc        len=44     idx=39   code=44
+  opt=Supplied by Fybroc        len=45     idx=40   code=45
+  opt=Supplied by Fybroc        len=46     idx=41   code=46
+  opt=Supplied by Fybroc        len=47     idx=42   code=47
+  opt=Supplied by Fybroc        len=48     idx=43   code=48
+  opt=Supplied by Fybroc        len=49     idx=44   code=49
+  opt=Supplied by Fybroc        len=50     idx=45   code=50
+  opt=Supplied by Fybroc        len=51     idx=46   code=51
+  opt=Supplied by Fybroc        len=52     idx=47   code=52
+  opt=Supplied by Fybroc        len=53     idx=48   code=53
+  opt=Supplied by Fybroc        len=54     idx=49   code=54
+  opt=Supplied by Fybroc        len=55     idx=50   code=55
+  opt=Supplied by Fybroc        len=56     idx=51   code=56
+  opt=Supplied by Fybroc        len=57     idx=52   code=57
+  opt=Supplied by Fybroc        len=58     idx=53   code=58
+  opt=Supplied by Fybroc        len=59     idx=54   code=59
+  opt=Supplied by Fybroc        len=60     idx=55   code=60
+  opt=Supplied by Fybroc        len=61     idx=56   code=61
+  opt=Supplied by Fybroc        len=62     idx=57   code=62
+  opt=Supplied by Fybroc        len=63     idx=58   code=63
+  opt=Supplied by Fybroc        len=64     idx=59   code=64
+  opt=Supplied by Fybroc        len=65     idx=60   code=65
+  opt=Supplied by Fybroc        len=66     idx=61   code=66
+  opt=Supplied by Fybroc        len=67     idx=62   code=67
+  opt=Supplied by Fybroc        len=68     idx=63   code=68
+  opt=Supplied by Fybroc        len=69     idx=64   code=69
+  opt=Supplied by Fybroc        len=70     idx=65   code=70
+  opt=Supplied by Fybroc        len=71     idx=66   code=71
+  opt=Supplied by Fybroc        len=72     idx=67   code=72
+  opt=Supplied by Fybroc        len=73     idx=68   code=73
+  opt=Supplied by Fybroc        len=74     idx=69   code=74
+  opt=Supplied by Fybroc        len=75     idx=70   code=75
+  opt=Supplied by Fybroc        len=76     idx=71   code=76
+  opt=Supplied by Fybroc        len=77     idx=72   code=77
+  opt=Supplied by Fybroc        len=78     idx=73   code=78
+  opt=Supplied by Fybroc        len=79     idx=74   code=79
+  opt=Supplied by Fybroc        len=80     idx=75   code=80
+  opt=Supplied by Fybroc        len=81     idx=76   code=81
+  opt=Supplied by Fybroc        len=82     idx=77   code=82
+  opt=Supplied by Fybroc        len=83     idx=78   code=83
+  opt=Supplied by Fybroc        len=84     idx=79   code=84
+  opt=Supplied by Fybroc        len=85     idx=80   code=85
+  opt=Supplied by Fybroc        len=86     idx=81   code=86
+  opt=Supplied by Fybroc        len=87     idx=82   code=87
+  opt=Supplied by Fybroc        len=88     idx=83   code=88
+  opt=Supplied by Fybroc        len=89     idx=84   code=89
+  opt=Supplied by Fybroc        len=90     idx=85   code=90
+  opt=Supplied by Fybroc        len=91     idx=86   code=91
+  opt=Supplied by Fybroc        len=92     idx=87   code=92
+  opt=Supplied by Fybroc        len=93     idx=88   code=93
+  opt=Supplied by Fybroc        len=94     idx=89   code=94
+  opt=Supplied by Fybroc        len=95     idx=90   code=95
+  opt=Supplied by Fybroc        len=96     idx=91   code=96
+  opt=Supplied by Fybroc        len=97     idx=92   code=97
+  opt=Supplied by Fybroc        len=98     idx=93   code=98
+  opt=Supplied by Fybroc        len=99     idx=94   code=99
+  opt=Supplied by Fybroc        len=100    idx=95   code=A0
+  opt=Supplied by Fybroc        len=101    idx=96   code=A1
+  opt=Supplied by Fybroc        len=102    idx=97   code=A2
+  opt=Supplied by Fybroc        len=103    idx=98   code=A3
+  opt=Supplied by Fybroc        len=104    idx=99   code=A4
+  opt=Supplied by Fybroc        len=105    idx=100  code=A5
+  opt=Supplied by Fybroc        len=106    idx=101  code=A6
+  opt=Supplied by Fybroc        len=107    idx=102  code=A7
+  opt=Supplied by Fybroc        len=108    idx=103  code=A8
+  opt=Supplied by Fybroc        len=109    idx=104  code=A9
+  opt=Supplied by Fybroc        len=110    idx=105  code=B0
+  opt=Supplied by Fybroc        len=111    idx=106  code=B1
+  opt=Supplied by Fybroc        len=112    idx=107  code=B2
+  opt=Supplied by Fybroc        len=113    idx=108  code=B3
+  opt=Supplied by Fybroc        len=114    idx=109  code=B4
+  opt=Supplied by Fybroc        len=115    idx=110  code=B5
+  opt=Supplied by Fybroc        len=116    idx=111  code=B6
+  opt=Supplied by Fybroc        len=117    idx=112  code=B7
+  opt=Supplied by Fybroc        len=118    idx=113  code=B8
+  opt=Supplied by Fybroc        len=119    idx=114  code=B9
+  opt=Supplied by Fybroc        len=120    idx=115  code=C0

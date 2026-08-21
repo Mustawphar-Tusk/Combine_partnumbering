@@ -1,0 +1,2264 @@
+{
+  "artifact": "FYBROC_V6_SETTING_LENGTH_VERTICAL",
+  "step": "F110.7",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "sheet": "Setting-Length-Vertical",
+  "generated_utc": "2026-08-21T21:54:29.280578+00:00",
+  "git_commit": "2861cfae811146f62272368d507536707a0c46b6",
+  "git_working_tree_clean": false,
+  "setting_length_table": {
+    "row_count": 202,
+    "setting_length_types": [
+      "Length",
+      "Setting"
+    ],
+    "dimension_values": [
+      "100",
+      "101",
+      "102",
+      "103",
+      "104",
+      "105",
+      "106",
+      "107",
+      "108",
+      "109",
+      "110",
+      "111",
+      "112",
+      "113",
+      "114",
+      "115",
+      "116",
+      "117",
+      "118",
+      "119",
+      "120",
+      "121",
+      "122",
+      "123",
+      "124",
+      "125",
+      "126",
+      "127",
+      "128",
+      "129",
+      "130",
+      "131",
+      "132",
+      "133",
+      "134",
+      "135",
+      "136",
+      "137",
+      "138",
+      "139",
+      "140",
+      "141",
+      "142",
+      "143",
+      "144",
+      "145",
+      "146",
+      "147",
+      "148",
+      "149",
+      "150",
+      "151",
+      "152",
+      "153",
+      "154",
+      "155",
+      "156",
+      "157",
+      "158",
+      "159",
+      "160",
+      "161",
+      "162",
+      "163",
+      "164",
+      "165",
+      "166",
+      "167",
+      "168",
+      "169",
+      "170",
+      "171",
+      "172",
+      "173",
+      "174",
+      "175",
+      "176",
+      "177",
+      "178",
+      "179",
+      "18",
+      "180",
+      "181",
+      "182",
+      "183",
+      "184",
+      "185",
+      "186",
+      "187",
+      "188",
+      "189",
+      "19",
+      "190",
+      "191",
+      "192",
+      "193",
+      "194",
+      "195",
+      "196",
+      "197",
+      "198",
+      "199",
+      "20",
+      "200",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99",
+      "S-01",
+      "S-02",
+      "S-03",
+      "S-04",
+      "S-05",
+      "S-06",
+      "S-07",
+      "S-08",
+      "S-09",
+      "S-10",
+      "S-11",
+      "S-12",
+      "S-13",
+      "S-14",
+      "S-15",
+      "S-16",
+      "S-17",
+      "S-18",
+      "S-19"
+    ],
+    "lookup_key_col": "C",
+    "code_col": "G",
+    "rows": [
+      {
+        "setting_length": "Setting",
+        "dimension": "S-01",
+        "index": 1,
+        "code": "01"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-02",
+        "index": 2,
+        "code": "02"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-03",
+        "index": 3,
+        "code": "03"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-04",
+        "index": 4,
+        "code": "04"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-05",
+        "index": 5,
+        "code": "05"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-06",
+        "index": 6,
+        "code": "06"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-07",
+        "index": 7,
+        "code": "07"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-08",
+        "index": 8,
+        "code": "08"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-09",
+        "index": 9,
+        "code": "09"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-10",
+        "index": 10,
+        "code": "10"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-11",
+        "index": 11,
+        "code": "11"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-12",
+        "index": 12,
+        "code": "12"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-13",
+        "index": 13,
+        "code": "13"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-14",
+        "index": 14,
+        "code": "14"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-15",
+        "index": 15,
+        "code": "15"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-16",
+        "index": 16,
+        "code": "16"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-17",
+        "index": 17,
+        "code": "17"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-18",
+        "index": 18,
+        "code": "18"
+      },
+      {
+        "setting_length": "Setting",
+        "dimension": "S-19",
+        "index": 19,
+        "code": "19"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "18",
+        "index": 20,
+        "code": "A0"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "19",
+        "index": 21,
+        "code": "A1"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "20",
+        "index": 22,
+        "code": "A2"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "21",
+        "index": 23,
+        "code": "A3"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "22",
+        "index": 24,
+        "code": "A4"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "23",
+        "index": 25,
+        "code": "A5"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "24",
+        "index": 26,
+        "code": "A6"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "25",
+        "index": 27,
+        "code": "A7"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "26",
+        "index": 28,
+        "code": "A8"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "27",
+        "index": 29,
+        "code": "A9"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "28",
+        "index": 30,
+        "code": "AA"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "29",
+        "index": 31,
+        "code": "AB"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "30",
+        "index": 32,
+        "code": "AC"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "31",
+        "index": 33,
+        "code": "AD"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "32",
+        "index": 34,
+        "code": "AE"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "33",
+        "index": 35,
+        "code": "AF"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "34",
+        "index": 36,
+        "code": "AG"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "35",
+        "index": 37,
+        "code": "AH"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "36",
+        "index": 38,
+        "code": "AI"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "37",
+        "index": 39,
+        "code": "AJ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "38",
+        "index": 40,
+        "code": "AK"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "39",
+        "index": 41,
+        "code": "AL"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "40",
+        "index": 42,
+        "code": "AM"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "41",
+        "index": 43,
+        "code": "AN"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "42",
+        "index": 44,
+        "code": "AP"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "43",
+        "index": 45,
+        "code": "AQ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "44",
+        "index": 46,
+        "code": "AR"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "45",
+        "index": 47,
+        "code": "AS"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "46",
+        "index": 48,
+        "code": "AT"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "47",
+        "index": 49,
+        "code": "AU"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "48",
+        "index": 50,
+        "code": "AV"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "49",
+        "index": 51,
+        "code": "AW"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "50",
+        "index": 52,
+        "code": "AX"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "51",
+        "index": 53,
+        "code": "AY"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "52",
+        "index": 54,
+        "code": "AZ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "53",
+        "index": 55,
+        "code": "B0"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "54",
+        "index": 56,
+        "code": "B1"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "55",
+        "index": 57,
+        "code": "B2"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "56",
+        "index": 58,
+        "code": "B3"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "57",
+        "index": 59,
+        "code": "B4"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "58",
+        "index": 60,
+        "code": "B5"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "59",
+        "index": 61,
+        "code": "B6"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "60",
+        "index": 62,
+        "code": "B7"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "61",
+        "index": 63,
+        "code": "B8"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "62",
+        "index": 64,
+        "code": "B9"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "63",
+        "index": 65,
+        "code": "BA"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "64",
+        "index": 66,
+        "code": "BB"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "65",
+        "index": 67,
+        "code": "BC"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "66",
+        "index": 68,
+        "code": "BD"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "67",
+        "index": 69,
+        "code": "BE"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "68",
+        "index": 70,
+        "code": "BF"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "69",
+        "index": 71,
+        "code": "BG"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "70",
+        "index": 72,
+        "code": "BH"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "71",
+        "index": 73,
+        "code": "BI"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "72",
+        "index": 74,
+        "code": "BJ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "73",
+        "index": 75,
+        "code": "BK"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "74",
+        "index": 76,
+        "code": "BL"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "75",
+        "index": 77,
+        "code": "BM"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "76",
+        "index": 78,
+        "code": "BN"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "77",
+        "index": 79,
+        "code": "BP"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "78",
+        "index": 80,
+        "code": "BQ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "79",
+        "index": 81,
+        "code": "BR"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "80",
+        "index": 82,
+        "code": "BS"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "81",
+        "index": 83,
+        "code": "BT"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "82",
+        "index": 84,
+        "code": "BU"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "83",
+        "index": 85,
+        "code": "BV"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "84",
+        "index": 86,
+        "code": "BW"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "85",
+        "index": 87,
+        "code": "BX"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "86",
+        "index": 88,
+        "code": "BY"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "87",
+        "index": 89,
+        "code": "BZ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "88",
+        "index": 90,
+        "code": "C0"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "89",
+        "index": 91,
+        "code": "C1"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "90",
+        "index": 92,
+        "code": "C2"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "91",
+        "index": 93,
+        "code": "C3"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "92",
+        "index": 94,
+        "code": "C4"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "93",
+        "index": 95,
+        "code": "C5"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "94",
+        "index": 96,
+        "code": "C6"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "95",
+        "index": 97,
+        "code": "C7"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "96",
+        "index": 98,
+        "code": "C8"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "97",
+        "index": 99,
+        "code": "C9"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "98",
+        "index": 100,
+        "code": "CA"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "99",
+        "index": 101,
+        "code": "CB"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "100",
+        "index": 102,
+        "code": "CC"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "101",
+        "index": 103,
+        "code": "CD"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "102",
+        "index": 104,
+        "code": "CE"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "103",
+        "index": 105,
+        "code": "CF"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "104",
+        "index": 106,
+        "code": "CG"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "105",
+        "index": 107,
+        "code": "CH"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "106",
+        "index": 108,
+        "code": "CI"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "107",
+        "index": 109,
+        "code": "CJ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "108",
+        "index": 110,
+        "code": "CK"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "109",
+        "index": 111,
+        "code": "CL"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "110",
+        "index": 112,
+        "code": "CM"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "111",
+        "index": 113,
+        "code": "CN"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "112",
+        "index": 114,
+        "code": "CP"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "113",
+        "index": 115,
+        "code": "CQ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "114",
+        "index": 116,
+        "code": "CR"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "115",
+        "index": 117,
+        "code": "CS"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "116",
+        "index": 118,
+        "code": "CT"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "117",
+        "index": 119,
+        "code": "CU"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "118",
+        "index": 120,
+        "code": "CV"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "119",
+        "index": 121,
+        "code": "CW"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "120",
+        "index": 122,
+        "code": "CX"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "121",
+        "index": 123,
+        "code": "CY"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "122",
+        "index": 124,
+        "code": "CZ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "123",
+        "index": 125,
+        "code": "D0"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "124",
+        "index": 126,
+        "code": "D1"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "125",
+        "index": 127,
+        "code": "D2"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "126",
+        "index": 128,
+        "code": "D3"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "127",
+        "index": 129,
+        "code": "D4"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "128",
+        "index": 130,
+        "code": "D5"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "129",
+        "index": 131,
+        "code": "D6"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "130",
+        "index": 132,
+        "code": "D7"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "131",
+        "index": 133,
+        "code": "D8"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "132",
+        "index": 134,
+        "code": "D9"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "133",
+        "index": 135,
+        "code": "DA"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "134",
+        "index": 136,
+        "code": "DB"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "135",
+        "index": 137,
+        "code": "DC"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "136",
+        "index": 138,
+        "code": "DD"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "137",
+        "index": 139,
+        "code": "DE"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "138",
+        "index": 140,
+        "code": "DF"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "139",
+        "index": 141,
+        "code": "DG"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "140",
+        "index": 142,
+        "code": "DH"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "141",
+        "index": 143,
+        "code": "DI"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "142",
+        "index": 144,
+        "code": "DJ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "143",
+        "index": 145,
+        "code": "DK"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "144",
+        "index": 146,
+        "code": "DL"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "145",
+        "index": 147,
+        "code": "DM"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "146",
+        "index": 148,
+        "code": "DN"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "147",
+        "index": 149,
+        "code": "DP"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "148",
+        "index": 150,
+        "code": "DQ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "149",
+        "index": 151,
+        "code": "DR"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "150",
+        "index": 152,
+        "code": "DS"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "151",
+        "index": 153,
+        "code": "DT"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "152",
+        "index": 154,
+        "code": "DU"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "153",
+        "index": 155,
+        "code": "DV"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "154",
+        "index": 156,
+        "code": "DW"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "155",
+        "index": 157,
+        "code": "DX"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "156",
+        "index": 158,
+        "code": "DY"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "157",
+        "index": 159,
+        "code": "DZ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "158",
+        "index": 160,
+        "code": "E0"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "159",
+        "index": 161,
+        "code": "E1"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "160",
+        "index": 162,
+        "code": "E2"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "161",
+        "index": 163,
+        "code": "E3"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "162",
+        "index": 164,
+        "code": "E4"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "163",
+        "index": 165,
+        "code": "E5"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "164",
+        "index": 166,
+        "code": "E6"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "165",
+        "index": 167,
+        "code": "E7"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "166",
+        "index": 168,
+        "code": "E8"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "167",
+        "index": 169,
+        "code": "E9"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "168",
+        "index": 170,
+        "code": "EA"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "169",
+        "index": 171,
+        "code": "EB"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "170",
+        "index": 172,
+        "code": "EC"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "171",
+        "index": 173,
+        "code": "ED"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "172",
+        "index": 174,
+        "code": "EE"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "173",
+        "index": 175,
+        "code": "EF"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "174",
+        "index": 176,
+        "code": "EG"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "175",
+        "index": 177,
+        "code": "EH"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "176",
+        "index": 178,
+        "code": "EI"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "177",
+        "index": 179,
+        "code": "EJ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "178",
+        "index": 180,
+        "code": "EK"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "179",
+        "index": 181,
+        "code": "EL"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "180",
+        "index": 182,
+        "code": "EM"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "181",
+        "index": 183,
+        "code": "EN"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "182",
+        "index": 184,
+        "code": "EP"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "183",
+        "index": 185,
+        "code": "EQ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "184",
+        "index": 186,
+        "code": "ER"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "185",
+        "index": 187,
+        "code": "ES"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "186",
+        "index": 188,
+        "code": "ET"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "187",
+        "index": 189,
+        "code": "EU"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "188",
+        "index": 190,
+        "code": "EV"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "189",
+        "index": 191,
+        "code": "EW"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "190",
+        "index": 192,
+        "code": "EX"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "191",
+        "index": 193,
+        "code": "EY"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "192",
+        "index": 194,
+        "code": "EZ"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "193",
+        "index": 195,
+        "code": "F0"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "194",
+        "index": 196,
+        "code": "F1"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "195",
+        "index": 197,
+        "code": "F2"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "196",
+        "index": 198,
+        "code": "F3"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "197",
+        "index": 199,
+        "code": "F4"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "198",
+        "index": 200,
+        "code": "F5"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "199",
+        "index": 201,
+        "code": "F6"
+      },
+      {
+        "setting_length": "Length",
+        "dimension": "200",
+        "index": 202,
+        "code": "F7"
+      }
+    ]
+  },
+  "tailpipe_table": {
+    "row_count": 116,
+    "tailpipe_options": [
+      "Not Supplied by Fybroc",
+      "Supplied by Fybroc"
+    ],
+    "tailpipe_lengths": [
+      "-",
+      "10",
+      "100",
+      "101",
+      "102",
+      "103",
+      "104",
+      "105",
+      "106",
+      "107",
+      "108",
+      "109",
+      "11",
+      "110",
+      "111",
+      "112",
+      "113",
+      "114",
+      "115",
+      "116",
+      "117",
+      "118",
+      "119",
+      "12",
+      "120",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "6",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "7",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "8",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "9",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99"
+    ],
+    "lookup_key_col": "O",
+    "code_col": "S",
+    "rows": [
+      {
+        "tailpipe_option": "Not Supplied by Fybroc",
+        "tailpipe_length": "-",
+        "index": 0,
+        "code": "00"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "6",
+        "index": 1,
+        "code": "06"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "7",
+        "index": 2,
+        "code": "07"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "8",
+        "index": 3,
+        "code": "08"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "9",
+        "index": 4,
+        "code": "09"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "10",
+        "index": 5,
+        "code": "10"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "11",
+        "index": 6,
+        "code": "11"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "12",
+        "index": 7,
+        "code": "12"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "13",
+        "index": 8,
+        "code": "13"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "14",
+        "index": 9,
+        "code": "14"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "15",
+        "index": 10,
+        "code": "15"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "16",
+        "index": 11,
+        "code": "16"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "17",
+        "index": 12,
+        "code": "17"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "18",
+        "index": 13,
+        "code": "18"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "19",
+        "index": 14,
+        "code": "19"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "20",
+        "index": 15,
+        "code": "20"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "21",
+        "index": 16,
+        "code": "21"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "22",
+        "index": 17,
+        "code": "22"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "23",
+        "index": 18,
+        "code": "23"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "24",
+        "index": 19,
+        "code": "24"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "25",
+        "index": 20,
+        "code": "25"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "26",
+        "index": 21,
+        "code": "26"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "27",
+        "index": 22,
+        "code": "27"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "28",
+        "index": 23,
+        "code": "28"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "29",
+        "index": 24,
+        "code": "29"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "30",
+        "index": 25,
+        "code": "30"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "31",
+        "index": 26,
+        "code": "31"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "32",
+        "index": 27,
+        "code": "32"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "33",
+        "index": 28,
+        "code": "33"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "34",
+        "index": 29,
+        "code": "34"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "35",
+        "index": 30,
+        "code": "35"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "36",
+        "index": 31,
+        "code": "36"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "37",
+        "index": 32,
+        "code": "37"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "38",
+        "index": 33,
+        "code": "38"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "39",
+        "index": 34,
+        "code": "39"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "40",
+        "index": 35,
+        "code": "40"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "41",
+        "index": 36,
+        "code": "41"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "42",
+        "index": 37,
+        "code": "42"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "43",
+        "index": 38,
+        "code": "43"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "44",
+        "index": 39,
+        "code": "44"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "45",
+        "index": 40,
+        "code": "45"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "46",
+        "index": 41,
+        "code": "46"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "47",
+        "index": 42,
+        "code": "47"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "48",
+        "index": 43,
+        "code": "48"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "49",
+        "index": 44,
+        "code": "49"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "50",
+        "index": 45,
+        "code": "50"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "51",
+        "index": 46,
+        "code": "51"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "52",
+        "index": 47,
+        "code": "52"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "53",
+        "index": 48,
+        "code": "53"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "54",
+        "index": 49,
+        "code": "54"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "55",
+        "index": 50,
+        "code": "55"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "56",
+        "index": 51,
+        "code": "56"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "57",
+        "index": 52,
+        "code": "57"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "58",
+        "index": 53,
+        "code": "58"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "59",
+        "index": 54,
+        "code": "59"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "60",
+        "index": 55,
+        "code": "60"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "61",
+        "index": 56,
+        "code": "61"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "62",
+        "index": 57,
+        "code": "62"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "63",
+        "index": 58,
+        "code": "63"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "64",
+        "index": 59,
+        "code": "64"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "65",
+        "index": 60,
+        "code": "65"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "66",
+        "index": 61,
+        "code": "66"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "67",
+        "index": 62,
+        "code": "67"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "68",
+        "index": 63,
+        "code": "68"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "69",
+        "index": 64,
+        "code": "69"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "70",
+        "index": 65,
+        "code": "70"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "71",
+        "index": 66,
+        "code": "71"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "72",
+        "index": 67,
+        "code": "72"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "73",
+        "index": 68,
+        "code": "73"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "74",
+        "index": 69,
+        "code": "74"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "75",
+        "index": 70,
+        "code": "75"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "76",
+        "index": 71,
+        "code": "76"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "77",
+        "index": 72,
+        "code": "77"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "78",
+        "index": 73,
+        "code": "78"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "79",
+        "index": 74,
+        "code": "79"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "80",
+        "index": 75,
+        "code": "80"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "81",
+        "index": 76,
+        "code": "81"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "82",
+        "index": 77,
+        "code": "82"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "83",
+        "index": 78,
+        "code": "83"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "84",
+        "index": 79,
+        "code": "84"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "85",
+        "index": 80,
+        "code": "85"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "86",
+        "index": 81,
+        "code": "86"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "87",
+        "index": 82,
+        "code": "87"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "88",
+        "index": 83,
+        "code": "88"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "89",
+        "index": 84,
+        "code": "89"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "90",
+        "index": 85,
+        "code": "90"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "91",
+        "index": 86,
+        "code": "91"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "92",
+        "index": 87,
+        "code": "92"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "93",
+        "index": 88,
+        "code": "93"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "94",
+        "index": 89,
+        "code": "94"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "95",
+        "index": 90,
+        "code": "95"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "96",
+        "index": 91,
+        "code": "96"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "97",
+        "index": 92,
+        "code": "97"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "98",
+        "index": 93,
+        "code": "98"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "99",
+        "index": 94,
+        "code": "99"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "100",
+        "index": 95,
+        "code": "A0"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "101",
+        "index": 96,
+        "code": "A1"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "102",
+        "index": 97,
+        "code": "A2"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "103",
+        "index": 98,
+        "code": "A3"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "104",
+        "index": 99,
+        "code": "A4"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "105",
+        "index": 100,
+        "code": "A5"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "106",
+        "index": 101,
+        "code": "A6"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "107",
+        "index": 102,
+        "code": "A7"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "108",
+        "index": 103,
+        "code": "A8"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "109",
+        "index": 104,
+        "code": "A9"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "110",
+        "index": 105,
+        "code": "B0"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "111",
+        "index": 106,
+        "code": "B1"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "112",
+        "index": 107,
+        "code": "B2"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "113",
+        "index": 108,
+        "code": "B3"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "114",
+        "index": 109,
+        "code": "B4"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "115",
+        "index": 110,
+        "code": "B5"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "116",
+        "index": 111,
+        "code": "B6"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "117",
+        "index": 112,
+        "code": "B7"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "118",
+        "index": 113,
+        "code": "B8"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "119",
+        "index": 114,
+        "code": "B9"
+      },
+      {
+        "tailpipe_option": "Supplied by Fybroc",
+        "tailpipe_length": "120",
+        "index": 115,
+        "code": "C0"
+      }
+    ]
+  },
+  "part_number_role": "Setting/Length code (2-digit) = Setting-Length segment. Tailpipe code (2-digit) = Vertical Options segment."
+}

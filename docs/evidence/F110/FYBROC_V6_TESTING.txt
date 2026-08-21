@@ -1,0 +1,100 @@
+========================================================================================================================
+F110.10 - FYBROC V6 TESTING
+========================================================================================================================
+
+Git commit  : 2861cfae811146f62272368d507536707a0c46b6
+Git clean   : False
+
+Fields             : 4
+Total combinations : 60
+Distinct hex-codes : 60
+Hex range          : 00 -> 6B
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Performance Testing:
+    - NONE
+    - 1C-Non-Wit Perf Test
+    - 1D-Wit Perf Test
+    - 1E-Non-Wit Perf Test NPSHR
+    - 1F-Wit Perf Test NPSHR
+
+  Hydrotest:
+    - NONE
+    - 2A-Non-Wit Hydro Test
+    - 2B-Wit Hydro Test
+
+  Vibration:
+    - NONE
+    - 5B-Vibration Test
+
+  Sound Level:
+    - NONE
+    - 4B-Sound Level Test
+
+========================================================================================================================
+ALL COMBINATIONS
+========================================================================================================================
+
+  ID=  0  hex=00  perf=NONE  hydro=NONE  vib=NONE  sound=NONE
+  ID=  1  hex=01  perf=NONE  hydro=NONE  vib=NONE  sound=4B-Sound Level Test
+  ID=  2  hex=02  perf=NONE  hydro=NONE  vib=5B-Vibration Test  sound=NONE
+  ID=  3  hex=03  perf=NONE  hydro=NONE  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID= 16  hex=0G  perf=NONE  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=NONE
+  ID= 17  hex=0H  perf=NONE  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID= 18  hex=0I  perf=NONE  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID= 19  hex=0J  perf=NONE  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID= 32  hex=0W  perf=NONE  hydro=2B-Wit Hydro Test  vib=NONE  sound=NONE
+  ID= 33  hex=0X  perf=NONE  hydro=2B-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID= 34  hex=0Y  perf=NONE  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID= 35  hex=0Z  perf=NONE  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID= 48  hex=1C  perf=1C-Non-Wit Perf Test  hydro=NONE  vib=NONE  sound=NONE
+  ID= 49  hex=1D  perf=1C-Non-Wit Perf Test  hydro=NONE  vib=NONE  sound=4B-Sound Level Test
+  ID= 50  hex=1E  perf=1C-Non-Wit Perf Test  hydro=NONE  vib=5B-Vibration Test  sound=NONE
+  ID= 51  hex=1F  perf=1C-Non-Wit Perf Test  hydro=NONE  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID= 64  hex=1S  perf=1C-Non-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=NONE
+  ID= 65  hex=1T  perf=1C-Non-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID= 66  hex=1U  perf=1C-Non-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID= 67  hex=1V  perf=1C-Non-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID= 80  hex=28  perf=1C-Non-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=NONE  sound=NONE
+  ID= 81  hex=29  perf=1C-Non-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID= 82  hex=2A  perf=1C-Non-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID= 83  hex=2B  perf=1C-Non-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID= 96  hex=2O  perf=1D-Wit Perf Test  hydro=NONE  vib=NONE  sound=NONE
+  ID= 97  hex=2P  perf=1D-Wit Perf Test  hydro=NONE  vib=NONE  sound=4B-Sound Level Test
+  ID= 98  hex=2Q  perf=1D-Wit Perf Test  hydro=NONE  vib=5B-Vibration Test  sound=NONE
+  ID= 99  hex=2R  perf=1D-Wit Perf Test  hydro=NONE  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=112  hex=34  perf=1D-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=NONE
+  ID=113  hex=35  perf=1D-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID=114  hex=36  perf=1D-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID=115  hex=37  perf=1D-Wit Perf Test  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=128  hex=3K  perf=1D-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=NONE  sound=NONE
+  ID=129  hex=3L  perf=1D-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID=130  hex=3M  perf=1D-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID=131  hex=3N  perf=1D-Wit Perf Test  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=144  hex=40  perf=1E-Non-Wit Perf Test NPSHR  hydro=NONE  vib=NONE  sound=NONE
+  ID=145  hex=41  perf=1E-Non-Wit Perf Test NPSHR  hydro=NONE  vib=NONE  sound=4B-Sound Level Test
+  ID=146  hex=42  perf=1E-Non-Wit Perf Test NPSHR  hydro=NONE  vib=5B-Vibration Test  sound=NONE
+  ID=147  hex=43  perf=1E-Non-Wit Perf Test NPSHR  hydro=NONE  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=160  hex=4G  perf=1E-Non-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=NONE
+  ID=161  hex=4H  perf=1E-Non-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID=162  hex=4I  perf=1E-Non-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID=163  hex=4J  perf=1E-Non-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=176  hex=4W  perf=1E-Non-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=NONE  sound=NONE
+  ID=177  hex=4X  perf=1E-Non-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID=178  hex=4Y  perf=1E-Non-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID=179  hex=4Z  perf=1E-Non-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=192  hex=5C  perf=1F-Wit Perf Test NPSHR  hydro=NONE  vib=NONE  sound=NONE
+  ID=193  hex=5D  perf=1F-Wit Perf Test NPSHR  hydro=NONE  vib=NONE  sound=4B-Sound Level Test
+  ID=194  hex=5E  perf=1F-Wit Perf Test NPSHR  hydro=NONE  vib=5B-Vibration Test  sound=NONE
+  ID=195  hex=5F  perf=1F-Wit Perf Test NPSHR  hydro=NONE  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=208  hex=5S  perf=1F-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=NONE
+  ID=209  hex=5T  perf=1F-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID=210  hex=5U  perf=1F-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID=211  hex=5V  perf=1F-Wit Perf Test NPSHR  hydro=2A-Non-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test
+  ID=224  hex=68  perf=1F-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=NONE  sound=NONE
+  ID=225  hex=69  perf=1F-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=NONE  sound=4B-Sound Level Test
+  ID=226  hex=6A  perf=1F-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=NONE
+  ID=227  hex=6B  perf=1F-Wit Perf Test NPSHR  hydro=2B-Wit Hydro Test  vib=5B-Vibration Test  sound=4B-Sound Level Test

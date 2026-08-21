@@ -1,0 +1,2009 @@
+{
+  "artifact": "FYBROC_V6_OPTIONS_HORIZONTAL",
+  "step": "F110.8a",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "sheet": "Options - Horizontal",
+  "generated_utc": "2026-08-21T21:54:29.772253+00:00",
+  "git_commit": "2861cfae811146f62272368d507536707a0c46b6",
+  "git_working_tree_clean": false,
+  "fields": [
+    "Coupling Option",
+    "Coupling Guard",
+    "Baseplate Option",
+    "Baseplate Hardware",
+    "Customer Nameplate",
+    "C-Face Adapter"
+  ],
+  "field_options": {
+    "Coupling Option": [
+      "Coupling Included",
+      "No Coupling"
+    ],
+    "Coupling Guard": [
+      "Steel",
+      "No Coupling Guard",
+      "316 SS",
+      "Non Sparking"
+    ],
+    "Baseplate Option": [
+      "Baseplate Included",
+      "No Baseplate"
+    ],
+    "Baseplate Hardware": [
+      "303 SS",
+      "316 SS"
+    ],
+    "Customer Nameplate": [
+      "Not Included",
+      "Customer Nameplate"
+    ],
+    "C-Face Adapter": [
+      "Not Included",
+      "Supplied by Fybroc"
+    ]
+  },
+  "combination_matrix": {
+    "total_combinations": 192,
+    "distinct_hex_codes": 192,
+    "hex_code_range": {
+      "first": "01",
+      "last": "5C"
+    },
+    "distinct_values_per_field": {
+      "Coupling Option": [
+        "Coupling Included",
+        "No Coupling"
+      ],
+      "Coupling Guard": [
+        "316 SS",
+        "No Coupling Guard",
+        "Non Sparking",
+        "Steel"
+      ],
+      "Baseplate Option": [
+        "Baseplate Included",
+        "No Baseplate"
+      ],
+      "Baseplate Hardware": [
+        "-",
+        "303 SS",
+        "316 SS"
+      ],
+      "Customer Nameplate": [
+        "Customer Nameplate",
+        "Not Included"
+      ],
+      "C-Face Adapter": [
+        "Not Included",
+        "Supplied by Fybroc"
+      ]
+    },
+    "all_rows": [
+      {
+        "id": 1,
+        "hex_code": "01",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 2,
+        "hex_code": "02",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 3,
+        "hex_code": "03",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 4,
+        "hex_code": "04",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 5,
+        "hex_code": "05",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 6,
+        "hex_code": "06",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 7,
+        "hex_code": "07",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 8,
+        "hex_code": "08",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 9,
+        "hex_code": "09",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 10,
+        "hex_code": "0A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 11,
+        "hex_code": "0B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 12,
+        "hex_code": "0C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 13,
+        "hex_code": "0D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 14,
+        "hex_code": "0E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 15,
+        "hex_code": "0F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 16,
+        "hex_code": "0G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 17,
+        "hex_code": "0H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 18,
+        "hex_code": "0I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 19,
+        "hex_code": "0J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 20,
+        "hex_code": "0K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 21,
+        "hex_code": "0L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 22,
+        "hex_code": "0M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 23,
+        "hex_code": "0N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 24,
+        "hex_code": "0O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 25,
+        "hex_code": "0P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 26,
+        "hex_code": "0Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 27,
+        "hex_code": "0R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 28,
+        "hex_code": "0S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 29,
+        "hex_code": "0T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 30,
+        "hex_code": "0U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 31,
+        "hex_code": "0V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 32,
+        "hex_code": "0W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 33,
+        "hex_code": "0X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 34,
+        "hex_code": "0Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 35,
+        "hex_code": "0Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 36,
+        "hex_code": "10",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 37,
+        "hex_code": "11",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 38,
+        "hex_code": "12",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 39,
+        "hex_code": "13",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 40,
+        "hex_code": "14",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 41,
+        "hex_code": "15",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 42,
+        "hex_code": "16",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 43,
+        "hex_code": "17",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 44,
+        "hex_code": "18",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 45,
+        "hex_code": "19",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 46,
+        "hex_code": "1A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 47,
+        "hex_code": "1B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 48,
+        "hex_code": "1C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 49,
+        "hex_code": "1D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 50,
+        "hex_code": "1E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 51,
+        "hex_code": "1F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 52,
+        "hex_code": "1G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 53,
+        "hex_code": "1H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 54,
+        "hex_code": "1I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 55,
+        "hex_code": "1J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 56,
+        "hex_code": "1K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 57,
+        "hex_code": "1L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 58,
+        "hex_code": "1M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 59,
+        "hex_code": "1N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 60,
+        "hex_code": "1O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 61,
+        "hex_code": "1P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 62,
+        "hex_code": "1Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 63,
+        "hex_code": "1R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 64,
+        "hex_code": "1S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 65,
+        "hex_code": "1T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 66,
+        "hex_code": "1U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 67,
+        "hex_code": "1V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 68,
+        "hex_code": "1W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 69,
+        "hex_code": "1X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 70,
+        "hex_code": "1Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 71,
+        "hex_code": "1Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 72,
+        "hex_code": "20",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 73,
+        "hex_code": "21",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 74,
+        "hex_code": "22",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 75,
+        "hex_code": "23",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 76,
+        "hex_code": "24",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 77,
+        "hex_code": "25",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 78,
+        "hex_code": "26",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 79,
+        "hex_code": "27",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 80,
+        "hex_code": "28",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 81,
+        "hex_code": "29",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 82,
+        "hex_code": "2A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 83,
+        "hex_code": "2B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 84,
+        "hex_code": "2C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 85,
+        "hex_code": "2D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 86,
+        "hex_code": "2E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 87,
+        "hex_code": "2F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 88,
+        "hex_code": "2G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 89,
+        "hex_code": "2H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 90,
+        "hex_code": "2I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 91,
+        "hex_code": "2J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 92,
+        "hex_code": "2K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 93,
+        "hex_code": "2L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 94,
+        "hex_code": "2M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 95,
+        "hex_code": "2N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 96,
+        "hex_code": "2O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Not Included"
+      },
+      {
+        "id": 97,
+        "hex_code": "2P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 98,
+        "hex_code": "2Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 99,
+        "hex_code": "2R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 100,
+        "hex_code": "2S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 101,
+        "hex_code": "2T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 102,
+        "hex_code": "2U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 103,
+        "hex_code": "2V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 104,
+        "hex_code": "2W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 105,
+        "hex_code": "2X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 106,
+        "hex_code": "2Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 107,
+        "hex_code": "2Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 108,
+        "hex_code": "30",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 109,
+        "hex_code": "31",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 110,
+        "hex_code": "32",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 111,
+        "hex_code": "33",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 112,
+        "hex_code": "34",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 113,
+        "hex_code": "35",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 114,
+        "hex_code": "36",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 115,
+        "hex_code": "37",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 116,
+        "hex_code": "38",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 117,
+        "hex_code": "39",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 118,
+        "hex_code": "3A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 119,
+        "hex_code": "3B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 120,
+        "hex_code": "3C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 121,
+        "hex_code": "3D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 122,
+        "hex_code": "3E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 123,
+        "hex_code": "3F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 124,
+        "hex_code": "3G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 125,
+        "hex_code": "3H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 126,
+        "hex_code": "3I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 127,
+        "hex_code": "3J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 128,
+        "hex_code": "3K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 129,
+        "hex_code": "3L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 130,
+        "hex_code": "3M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 131,
+        "hex_code": "3N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 132,
+        "hex_code": "3O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 133,
+        "hex_code": "3P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 134,
+        "hex_code": "3Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 135,
+        "hex_code": "3R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 136,
+        "hex_code": "3S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 137,
+        "hex_code": "3T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 138,
+        "hex_code": "3U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 139,
+        "hex_code": "3V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 140,
+        "hex_code": "3W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 141,
+        "hex_code": "3X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 142,
+        "hex_code": "3Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 143,
+        "hex_code": "3Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 144,
+        "hex_code": "40",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Not Included",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 145,
+        "hex_code": "41",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 146,
+        "hex_code": "42",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 147,
+        "hex_code": "43",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 148,
+        "hex_code": "44",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 149,
+        "hex_code": "45",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 150,
+        "hex_code": "46",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 151,
+        "hex_code": "47",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 152,
+        "hex_code": "48",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 153,
+        "hex_code": "49",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 154,
+        "hex_code": "4A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 155,
+        "hex_code": "4B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 156,
+        "hex_code": "4C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 157,
+        "hex_code": "4D",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 158,
+        "hex_code": "4E",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 159,
+        "hex_code": "4F",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 160,
+        "hex_code": "4G",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "-",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 161,
+        "hex_code": "4H",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 162,
+        "hex_code": "4I",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 163,
+        "hex_code": "4J",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 164,
+        "hex_code": "4K",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 165,
+        "hex_code": "4L",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 166,
+        "hex_code": "4M",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 167,
+        "hex_code": "4N",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 168,
+        "hex_code": "4O",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 169,
+        "hex_code": "4P",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 170,
+        "hex_code": "4Q",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 171,
+        "hex_code": "4R",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 172,
+        "hex_code": "4S",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 173,
+        "hex_code": "4T",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 174,
+        "hex_code": "4U",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 175,
+        "hex_code": "4V",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 176,
+        "hex_code": "4W",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "303 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 177,
+        "hex_code": "4X",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 178,
+        "hex_code": "4Y",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 179,
+        "hex_code": "4Z",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 180,
+        "hex_code": "50",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 181,
+        "hex_code": "51",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 182,
+        "hex_code": "52",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 183,
+        "hex_code": "53",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 184,
+        "hex_code": "54",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "No Baseplate",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 185,
+        "hex_code": "55",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 186,
+        "hex_code": "56",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "No Coupling Guard",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 187,
+        "hex_code": "57",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 188,
+        "hex_code": "58",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Steel",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 189,
+        "hex_code": "59",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 190,
+        "hex_code": "5A",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "316 SS",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 191,
+        "hex_code": "5B",
+        "Coupling Option": "No Coupling",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      },
+      {
+        "id": 192,
+        "hex_code": "5C",
+        "Coupling Option": "Coupling Included",
+        "Coupling Guard": "Non Sparking",
+        "Baseplate Option": "Baseplate Included",
+        "Baseplate Hardware": "316 SS",
+        "Customer Nameplate": "Customer Nameplate",
+        "C-Face Adapter": "Supplied by Fybroc"
+      }
+    ]
+  },
+  "lookup_key_col": "C",
+  "hex_code_col": "J",
+  "part_number_role": "Options segment in horizontal part number. VLOOKUP(concat_key,col_C,col_J)."
+}

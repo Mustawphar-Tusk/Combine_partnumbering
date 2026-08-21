@@ -1,0 +1,129 @@
+========================================================================================================================
+F110.9 - FYBROC V6 MOTOR ASSY
+========================================================================================================================
+
+Git commit  : 2861cfae811146f62272368d507536707a0c46b6
+Git clean   : False
+
+Fields             : 11
+Total combinations : 702
+Distinct hex-codes : 702
+Hex range          : 001 -> 0JI
+
+========================================================================================================================
+FIELD OPTIONS
+========================================================================================================================
+
+  Motor Option:
+    - Motor Included*
+    - No Motor
+    - Customer Supplied
+
+  Motor Class:
+    - Imperial
+    - IEC
+
+  Motor Orientation:
+    - Hor T
+    - Hor TS
+    - Hor TC
+    - Hor TSC
+    - Hor JM
+
+  Motor Horsepower:
+    - 1 HP
+    - 1.5 HP
+    - 2  HP
+    - 3 HP
+    - 5 HP
+    - 7.5 HP
+
+  Motor RPM:
+    - 3600
+    - 1800
+    - 1200
+    - 3000
+
+  Motor Voltage:
+    - 230/460
+    - 460
+    - 220
+
+  Motor Hertz:
+    - 3/60
+    - 3/50
+
+  Motor Frame:
+    - 143
+    - 145
+    - 182
+    - 184
+    - 213
+    - 215
+
+  Motor Enclosure:
+    - TEFC
+    - SD
+    - IEEE-841
+    - XP
+
+  Motor Efficiency:
+    - PE
+
+  Motor Manufacturer:
+    - Standard Offering
+    - Toshiba
+    - TECO
+    - Baldor
+    - Custom
+
+========================================================================================================================
+DISTINCT VALUES PER FIELD
+========================================================================================================================
+
+  Motor Option (3): ['Customer Supplied', 'Motor Included*', 'No Motor']
+  Motor Class (2): ['-', 'Imperial']
+  Motor Orientation (3): ['-', 'Hor T', 'Hor TS']
+  Motor Horsepower (19): ['-', '1 HP', '1.5 HP', '10 HP', '100 HP', '125 HP', '15 HP', '150 HP', '2  HP', '20 HP', '25 HP', '3 HP', '30 HP', '40 HP', '5 HP', '50 HP', '60 HP', '7.5 HP', '75 HP']
+  Motor RPM (4): ['-', '1200', '1800', '3600']
+  Motor Voltage (3): ['-', '230/460', '460']
+  Motor Hertz (2): ['-', '3/60']
+  Motor Frame (19): ['-', '143', '145', '182', '184', '213', '215', '254', '256', '284', '286', '324', '326', '364', '365', '404', '405', '444', '445']
+  Motor Enclosure (4): ['-', 'IEEE-841', 'SD', 'TEFC']
+  Motor Efficiency (2): ['-', 'PE']
+  Motor Manufacturer (5): ['-', 'Baldor', 'Standard Offering', 'TECO', 'Toshiba']
+
+========================================================================================================================
+SAMPLE ROWS (first 30)
+========================================================================================================================
+
+  ID=   1  hex=001  Motor Option=No Motor  Motor Class=-  Motor Orientation=-  Motor Horsepower=-  Motor RPM=-
+  ID=   2  hex=002  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   3  hex=003  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   4  hex=004  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   5  hex=005  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   6  hex=006  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   7  hex=007  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   8  hex=008  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=   9  hex=009  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  10  hex=00A  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  11  hex=00B  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  12  hex=00C  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  13  hex=00D  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  14  hex=00E  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  15  hex=00F  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  16  hex=00G  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  17  hex=00H  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  18  hex=00I  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  19  hex=00J  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  20  hex=00K  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  21  hex=00L  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  22  hex=00M  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor TS  Motor Horsepower=-  Motor RPM=-
+  ID=  23  hex=00N  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  24  hex=00O  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  25  hex=00P  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  26  hex=00Q  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=-  Motor RPM=-
+  ID=  27  hex=00R  Motor Option=No Motor  Motor Class=-  Motor Orientation=-  Motor Horsepower=-  Motor RPM=-
+  ID=  28  hex=00S  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=1 HP  Motor RPM=1800
+  ID=  29  hex=00T  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=2  HP  Motor RPM=3600
+  ID=  30  hex=00U  Motor Option=No Motor  Motor Class=-  Motor Orientation=Hor T  Motor Horsepower=1.5 HP  Motor RPM=1800

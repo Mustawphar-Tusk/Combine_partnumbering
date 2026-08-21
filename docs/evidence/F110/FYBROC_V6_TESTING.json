@@ -1,0 +1,554 @@
+{
+  "artifact": "FYBROC_V6_TESTING",
+  "step": "F110.10",
+  "roadmap_version": "1.0",
+  "milestone": "F110",
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "sheet": "Testing",
+  "generated_utc": "2026-08-21T21:54:31.240849+00:00",
+  "git_commit": "2861cfae811146f62272368d507536707a0c46b6",
+  "git_working_tree_clean": false,
+  "fields": [
+    "Performance Testing",
+    "Hydrotest",
+    "Vibration",
+    "Sound Level"
+  ],
+  "field_options": {
+    "Performance Testing": [
+      "NONE",
+      "1C-Non-Wit Perf Test",
+      "1D-Wit Perf Test",
+      "1E-Non-Wit Perf Test NPSHR",
+      "1F-Wit Perf Test NPSHR"
+    ],
+    "Hydrotest": [
+      "NONE",
+      "2A-Non-Wit Hydro Test",
+      "2B-Wit Hydro Test"
+    ],
+    "Vibration": [
+      "NONE",
+      "5B-Vibration Test"
+    ],
+    "Sound Level": [
+      "NONE",
+      "4B-Sound Level Test"
+    ]
+  },
+  "combination_matrix": {
+    "total_combinations": 60,
+    "distinct_hex_codes": 60,
+    "hex_code_range": {
+      "first": "00",
+      "last": "6B"
+    },
+    "distinct_values_per_field": {
+      "Performance Testing": [
+        "1C-Non-Wit Perf Test",
+        "1D-Wit Perf Test",
+        "1E-Non-Wit Perf Test NPSHR",
+        "1F-Wit Perf Test NPSHR",
+        "NONE"
+      ],
+      "Hydrotest": [
+        "2A-Non-Wit Hydro Test",
+        "2B-Wit Hydro Test",
+        "NONE"
+      ],
+      "Vibration": [
+        "5B-Vibration Test",
+        "NONE"
+      ],
+      "Sound Level": [
+        "4B-Sound Level Test",
+        "NONE"
+      ]
+    },
+    "all_rows": [
+      {
+        "id": 0,
+        "hex_code": "00",
+        "Performance Testing": "NONE",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 1,
+        "hex_code": "01",
+        "Performance Testing": "NONE",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 2,
+        "hex_code": "02",
+        "Performance Testing": "NONE",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 3,
+        "hex_code": "03",
+        "Performance Testing": "NONE",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 16,
+        "hex_code": "0G",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 17,
+        "hex_code": "0H",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 18,
+        "hex_code": "0I",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 19,
+        "hex_code": "0J",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 32,
+        "hex_code": "0W",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 33,
+        "hex_code": "0X",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 34,
+        "hex_code": "0Y",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 35,
+        "hex_code": "0Z",
+        "Performance Testing": "NONE",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 48,
+        "hex_code": "1C",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 49,
+        "hex_code": "1D",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 50,
+        "hex_code": "1E",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 51,
+        "hex_code": "1F",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 64,
+        "hex_code": "1S",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 65,
+        "hex_code": "1T",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 66,
+        "hex_code": "1U",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 67,
+        "hex_code": "1V",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 80,
+        "hex_code": "28",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 81,
+        "hex_code": "29",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 82,
+        "hex_code": "2A",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 83,
+        "hex_code": "2B",
+        "Performance Testing": "1C-Non-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 96,
+        "hex_code": "2O",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 97,
+        "hex_code": "2P",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 98,
+        "hex_code": "2Q",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 99,
+        "hex_code": "2R",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 112,
+        "hex_code": "34",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 113,
+        "hex_code": "35",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 114,
+        "hex_code": "36",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 115,
+        "hex_code": "37",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 128,
+        "hex_code": "3K",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 129,
+        "hex_code": "3L",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 130,
+        "hex_code": "3M",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 131,
+        "hex_code": "3N",
+        "Performance Testing": "1D-Wit Perf Test",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 144,
+        "hex_code": "40",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 145,
+        "hex_code": "41",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 146,
+        "hex_code": "42",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 147,
+        "hex_code": "43",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 160,
+        "hex_code": "4G",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 161,
+        "hex_code": "4H",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 162,
+        "hex_code": "4I",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 163,
+        "hex_code": "4J",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 176,
+        "hex_code": "4W",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 177,
+        "hex_code": "4X",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 178,
+        "hex_code": "4Y",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 179,
+        "hex_code": "4Z",
+        "Performance Testing": "1E-Non-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 192,
+        "hex_code": "5C",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 193,
+        "hex_code": "5D",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 194,
+        "hex_code": "5E",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 195,
+        "hex_code": "5F",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "NONE",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 208,
+        "hex_code": "5S",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 209,
+        "hex_code": "5T",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 210,
+        "hex_code": "5U",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 211,
+        "hex_code": "5V",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2A-Non-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 224,
+        "hex_code": "68",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 225,
+        "hex_code": "69",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "NONE",
+        "Sound Level": "4B-Sound Level Test"
+      },
+      {
+        "id": 226,
+        "hex_code": "6A",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "NONE"
+      },
+      {
+        "id": 227,
+        "hex_code": "6B",
+        "Performance Testing": "1F-Wit Perf Test NPSHR",
+        "Hydrotest": "2B-Wit Hydro Test",
+        "Vibration": "5B-Vibration Test",
+        "Sound Level": "4B-Sound Level Test"
+      }
+    ]
+  },
+  "lookup_key_col": "G",
+  "hex_code_col": "L (2-char)",
+  "part_number_role": "Testing segment in part number (2-char hex). VLOOKUP(concat_key,col_G,col_L)."
+}
