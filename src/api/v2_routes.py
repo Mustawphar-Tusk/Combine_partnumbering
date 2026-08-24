@@ -134,7 +134,7 @@ class ValidateResponse(BaseModel):
 class ResolveRequest(BaseModel):
     series: str
     selections: dict[str, str]
-    segment_codes: dict[str, str]
+    segment_codes: dict[str, str] = Field(default_factory=dict)
     requested_by: str | None = None
 
 
