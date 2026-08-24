@@ -1,0 +1,132 @@
+{
+  "artifact": "FYBROC_REGRESSION_RESULTS",
+  "step": "F170.1",
+  "milestone": "F170",
+  "generated_utc": "2026-08-24T18:20:39.985917+00:00",
+  "git_commit": "7866ee1f0c6ee87bdfaab2d41b927a4b0c5a52e6",
+  "test_count": 10,
+  "passed": 2,
+  "failed": 8,
+  "results": [
+    {
+      "series": "1500",
+      "flange": "ANSI",
+      "size": "1x1.5x6",
+      "material": "VR-1",
+      "trim": "6.000",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FA11CA-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FA11CA",
+      "match": false
+    },
+    {
+      "series": "1500",
+      "flange": "ANSI",
+      "size": "1x2x10",
+      "material": "VR-1A",
+      "trim": "9.250",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FA35FC-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FA35FC",
+      "match": false
+    },
+    {
+      "series": "1500",
+      "flange": "ANSI",
+      "size": "3x4x8",
+      "material": "EY-2",
+      "trim": "7.500",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FAC2DE-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FAC2DE",
+      "match": false
+    },
+    {
+      "series": "1500",
+      "flange": "DIN",
+      "size": "2x3x6",
+      "material": "VR-1",
+      "trim": "5.500",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FI71BE-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FI71BE",
+      "match": false
+    },
+    {
+      "series": "1530",
+      "flange": "ANSI",
+      "size": "1.5x3x8",
+      "material": "VR-1",
+      "trim": "7.000",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FB61DA-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FB61DA",
+      "match": false
+    },
+    {
+      "series": "1530",
+      "flange": "ANSI",
+      "size": "2x3x10",
+      "material": "VR-1A",
+      "trim": "9.000",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FB95FA-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FB95FA",
+      "match": false
+    },
+    {
+      "series": "1600",
+      "flange": "ANSI",
+      "size": "2x3x6",
+      "material": "VR-1",
+      "trim": "5.500",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FC71BE-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FC71BE",
+      "match": false
+    },
+    {
+      "series": "1600",
+      "flange": "ANSI",
+      "size": "3x4x8",
+      "material": "VR-1A",
+      "trim": "7.500",
+      "excel_pn": "-2146826246",
+      "sql_pn": "FCC5DE-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "ERROR",
+      "sql_prefix": "FCC5DE",
+      "match": false
+    },
+    {
+      "series": "5500",
+      "flange": "ANSI",
+      "size": "1x2x10",
+      "material": "VR-1",
+      "trim": "8.000",
+      "excel_pn": "FG31EA-1VC1-S03-3G-04XXXX-00",
+      "sql_pn": "FG31EA-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "FG31EA",
+      "sql_prefix": "FG31EA",
+      "match": true
+    },
+    {
+      "series": "5500",
+      "flange": "ANSI",
+      "size": "3x4x10",
+      "material": "VR-1",
+      "trim": "9.000",
+      "excel_pn": "FGD1FA-1VC1-S03-3G-04XXXX-00",
+      "sql_pn": "FGD1FA-0001-S01-01-01001-XXX-00",
+      "excel_prefix": "FGD1FA",
+      "sql_prefix": "FGD1FA",
+      "match": true
+    }
+  ]
+}
