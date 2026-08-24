@@ -986,10 +986,10 @@ D140	Dean Excel Oracle	COMPLETE
 D150	Dean exhaustive regression	COMPLETE
 D160	Dean signoff	COMPLETE
 U100	canonical product model	COMPLETE
-U110	unified configuration dictionary	CURRENT
-U120	FastAPI V2	PENDING
-U130	reusable BOM	PENDING
-U140	quote engine	PENDING
+U110	unified configuration dictionary	COMPLETE
+U120	FastAPI V2	COMPLETE
+U130	reusable BOM	COMPLETE
+U140	quote engine	COMPLETE
 U150	Excel V2	PENDING
 U160	React UI	PENDING
 U170	security/audit	PENDING
@@ -1017,22 +1017,24 @@ MASTER ROADMAP
 Version:            1.2
 
 Current Phase:      U — Unified Application
-Current Milestone:  U100
+Current Milestone:  U150
 Status:             READY TO START
 
 Current Objective:
-Implement canonical configuration JSON, manufacturing sites,
-active configured-product schema consolidation, historical lineage.
+Replace slow chained V1 Excel navigation with single-request V2 evaluate flow.
 
 Current Exit Gate:
-Both families persist through one product model.
+Excel configuration interaction meets agreed responsiveness target.
 
 Next Permitted Milestone:
-U110 — Unified Configuration Dictionary
+U160 — React Configurator
 
-PHASE F COMPLETE (2026-08-24): Fybroc CONFIGURATION-COMPLETE
-PHASE D COMPLETE (2026-08-24): Dean STRUCTURALLY-COMPLETE
-  (metadata loading is execution work on proven infrastructure)
+Completed (2026-08-24):
+U100    Canonical product model             COMPLETE
+U110    Unified configuration dictionary    COMPLETE (55 fields, 266 codes)
+U120    FastAPI V2 with caching             COMPLETE (4 endpoints, TTL cache)
+U130    Reusable BOM engine                 COMPLETE (BOMHeader+BOMLine+reuse+GetBOMBySKU)
+U140    Quote engine                        COMPLETE (QuoteLine with SKU/PN/pricing lineage)
 
 F130 Key Findings:
 - 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
