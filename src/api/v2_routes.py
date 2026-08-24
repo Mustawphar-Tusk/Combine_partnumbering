@@ -423,85 +423,31 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         trim_code = lookup("IMPELLER_TRIM", body.selections.get("IMPELLER_TRIM", "")) or "??"
 
         # Composite segment codes — look up from combination tables in SQL
-        # The SelectionsJson in the combination table has field->value pairs
-        # SFO values differ from combo values - need keyword-based matching
+        # Use cfg.VocabularyMap to translate SFO values to combo values, then search
         
-        # Vocabulary mapping: SFO option value -> combo table search keyword
-        VOCAB_MAP = {
-            # CASING_DRAINS
-            "supplied by fybroc": "casing drains",
-            "not supplied by fybroc": "no casing drain",
-            # SUCTION_DISCHARGE_TAPS  
-            "suction discharge taps": "suction discharge tap",
-            "no suction discharge taps": "no suction discharge",
-            # SHAFT_MATERIAL
-            "303 ss": "303 ss",
-            "316 ss": "316 ss",
-            "carp-20": "carp-20",
-            "hastelloy c": "hastelloy",
-            "titanium": "titanium",
-            # FLUSH
-            "internal flush": "internal flush",
-            "external flush": "external flush",
-            "bypass(tapped discharge)": "bypass",
-            "bypass(tapped spacer)": "bypass",
-            "bypass(cyclone separator)": "cyclone",
-            # PUMP_ELASTOMERS
-            "fkm": "fkm",
-            "epr": "epr",
-            "ptfe": "ptfe",
-            # GLAND_HARDWARE
-            "316 ss": "316",
-            "carp-20": "carp",
-            # SEAL_OPTION
-            "installed by fybroc": "mechanical seal included",
-            "supplied by fybroc": "mechanical seal included",
-            "noseal single seal gland": "no seal (single",
-            "noseal double seal gland": "no seal (double",
-            "noseal nosealgland": "no seal (no seal",
-            # SEAL_TYPE
-            "8b2 single outside": "8b2 single",
-            "rac single outside": "rac single",
-            "8-1t double inside": "8-1t double",  
-            "8 1t double inside": "8-1t double",
-            "cro double inside": "cro double",
-            "rxo double inside": "rxo double",
-            # SEAL_MATERIALS
-            "carbon vs ceramic": "carbon vs",
-            "silcar vs silcar": "silcar",
-            # COUPLING_OPTION
-            "coupling included": "coupling included",
-            "no coupling": "no coupling",
-            # BASEPLATE_OPTION
-            "baseplate included": "baseplate",
-            "no baseplate": "no baseplate",
-            # MOTOR_OPTION
-            "installed by fybroc": "motor included",
-            "by others": "no motor",
-            "supplied by fybroc": "motor included",
-        }
-        
-        def map_value(sfo_val):
-            """Map an SFO option value to a combo table search keyword."""
-            if not sfo_val:
+        def translate_to_combo(field_code, sfo_value):
+            """Translate an SFO option value to its combo table equivalent."""
+            if not sfo_value:
                 return ""
-            lower = sfo_val.lower().strip()
-            return VOCAB_MAP.get(lower, lower)
+            row = cursor.execute(
+                "SELECT ComboValue FROM cfg.VocabularyMap WHERE FieldCode = ? AND LOWER(SFOValue) = ?",
+                field_code, sfo_value.lower().strip()
+            ).fetchone()
+            return row[0] if row else sfo_value  # fallback to raw value
         
         def lookup_segment(segment_code, field_value_pairs):
-            """Look up hex code by matching mapped values against SelectionsJson."""
+            """Look up hex code by matching translated combo values against SelectionsJson."""
             keywords = []
             for field, sfo_val in field_value_pairs:
-                kw = map_value(sfo_val)
-                if kw and len(kw) > 2:
-                    keywords.append(kw)
+                combo_val = translate_to_combo(field, sfo_val)
+                if combo_val and len(combo_val) > 2:
+                    keywords.append(combo_val.lower())
             
             if not keywords:
                 return None
             
-            # Build query - match ALL keywords in SelectionsJson
             conditions = ["LOWER(SelectionsJson) LIKE ?"] * len(keywords)
-            params = [segment_code] + [f"%{kw}%" for kw in keywords[:4]]  # max 4 conditions
+            params = [segment_code] + [f"%{kw}%" for kw in keywords[:4]]
             
             where = " AND ".join(conditions[:len(params)-1])
             sql = f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {where}"
