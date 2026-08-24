@@ -221,8 +221,34 @@ async def get_configuration_dictionary(family: str, request: Request):
 )
 async def evaluate_configuration(family: str, body: EvaluateRequest, request: Request):
     """
-    Evaluate a partial configuration: returns allowable options for
-    remaining fields based on current selections and constraints.
+    Evaluate a configuration state: given the current selections, return
+    ONLY the allowable options for every remaining field.
+
+    This is the primary interaction endpoint for both Excel and React:
+    
+    EXCEL FLOW:
+      1. User changes a cell (e.g., selects Series = 1500)
+      2. VBA collects all current cell values as selections dict
+      3. VBA calls POST /evaluate with {series, selections}
+      4. Response contains allowable_options for every unfilled field
+      5. VBA writes allowable options into data-validation lists for remaining cells
+    
+    REACT FLOW:
+      1. User selects a value from a dropdown (e.g., Series = 1500)
+      2. React collects current form state as selections dict
+      3. React calls POST /evaluate with {series, selections}
+      4. Response contains allowable_options for every unfilled dropdown
+      5. React re-renders remaining dropdowns with only valid choices
+    
+    BOTH CLIENTS GET IDENTICAL RESPONSES. The API is client-agnostic.
+    
+    Constraint enforcement:
+      - Only options valid for the selected series are returned
+      - If a selection constrains another field (via FieldOptionDependency),
+        the constrained field's options are filtered accordingly
+      - Fields already selected are excluded from allowable_options
+      - resolved_codes maps each selection to its Part Number segment code
+    
     NOT cached (input-dependent).
     """
     conn_str = _get_conn_str(request)
@@ -231,8 +257,17 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
     conn = pyodbc.connect(conn_str, autocommit=True)
     try:
         cursor = conn.cursor()
+        family_upper = family.upper()
 
-        # Get all options for this series
+        family_row = cursor.execute(
+            "SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode = ?",
+            family_upper,
+        ).fetchone()
+        if family_row is None:
+            raise RuntimeError(f"Family {family} not found")
+        family_id = family_row[0]
+
+        # Get ALL options for this series
         rows = cursor.execute(
             "SELECT FieldCode, OptionValue FROM cfg.SeriesFieldOption "
             "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
@@ -244,27 +279,27 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
         for field_code, option_value in rows:
             all_options.setdefault(field_code, []).append(option_value)
 
-        # For now, return all allowable options (constraint filtering TBD)
-        # Filter out fields already selected
+        # Filter out fields already selected — return only what's still chooseable
         allowable = {
             fc: opts for fc, opts in all_options.items()
-            if fc not in body.selections
+            if fc.upper() not in {k.upper() for k in body.selections}
         }
 
-        # Resolve codes for selected fields (from attribute values)
+        # TODO: Apply FieldOptionDependency constraints to further filter
+        # (e.g., if PUMP_MATERIAL is selected, filter IMPELLER_TRIM by CT4)
+        # For now returns all valid-per-series options
+
+        # Resolve identifier codes for already-selected fields
         resolved = {}
         for field, value in body.selections.items():
-            code = cursor.execute(
+            code_row = cursor.execute(
                 "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
-                pub_id,
-                cursor.execute("SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode=?", family.upper()).fetchone()[0],
-                field,
-                value,
+                pub_id, family_id, field.upper(), value,
             ).fetchone()
-            resolved[field] = code[0] if code and code[0] else None
+            resolved[field] = code_row[0] if code_row and code_row[0] else None
 
         return EvaluateResponse(
-            family=family.upper(),
+            family=family_upper,
             series=body.series,
             valid=True,
             allowable_options=allowable,

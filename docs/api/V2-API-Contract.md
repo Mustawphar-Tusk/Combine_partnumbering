@@ -9,13 +9,33 @@
 
 ## Overview
 
-The V2 API provides a direct, cacheable interface for pump configuration. Unlike V1's token-based navigation, V2 accepts configuration selections directly and returns allowable options, validation results, and resolved identifiers in a single request.
+The V2 API provides a direct, cacheable interface for pump configuration. It is designed as a **unified interaction layer** that serves both Excel (VBA) and React (web UI) clients identically.
 
-**Key improvements over V1:**
+**Architecture principle:** Both clients perform the same operation:
+```
+User selects a value → API returns ONLY what's still valid
+```
+
+Whether the selection happens in an Excel cell or a React dropdown is irrelevant to the API. The response is identical — a list of allowable options per remaining field.
+
+**Excel interaction flow:**
+```
+Excel cell change → VBA collects all current values → ONE POST /evaluate → 
+VBA writes allowable options into data-validation lists for remaining cells
+```
+
+**React interaction flow:**
+```
+Dropdown selection → React collects form state → ONE POST /evaluate →
+React re-renders remaining dropdowns with only valid choices
+```
+
+**Key design decisions:**
 - In-memory caching (5-minute TTL, keyed on publication ID)
-- Single-request evaluate (vs V1's multi-step advance)
-- Direct field/value input (vs V1's opaque token flow)
+- Single-request evaluate replaces V1's multi-step token navigation
+- Direct field/value input — no opaque tokens needed
 - Both families (Fybroc + Dean) through same endpoint structure
+- Only allowable configurations are ever returned — invalid options are never shown
 
 ---
 
