@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.3  
+**Roadmap Version:** 1.4  
 **Roadmap Date:** 2026-08-24  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** F150 — SQL Fybroc Identifier Authority  
+**Current Milestone:** F160 — Fybroc Excel Oracle Harness (IN PROGRESS)  
 
 ---
 
@@ -974,8 +974,8 @@ F110	V5/V6 nomenclature reconciliation	COMPLETE
 F120	Rev0.3 configuration model	COMPLETE
 F130	Fybroc pricing/adders	COMPLETE
 F140	Fybroc metadata corrections	COMPLETE
-F150	SQL Fybroc identifier	CURRENT
-F160	Fybroc Excel Oracle	PENDING
+F150	SQL Fybroc identifier	COMPLETE
+F160	Fybroc Excel Oracle	IN PROGRESS
 F170	Fybroc exhaustive regression	PENDING
 F180	Fybroc signoff	PENDING
 D100	Dean source reconciliation	PENDING
@@ -1017,30 +1017,38 @@ MASTER ROADMAP
 Version:            1.2
 
 Current Phase:      F — Fybroc Completion
-Current Milestone:  F150
-Status:             READY TO START
+Current Milestone:  F160
+Status:             IN PROGRESS
 
 Current Objective:
-Move configured-product identity authority into SQL Server.
-SQL will generate: canonical configuration identity, configuration
-signature, Part Number, SKU V2, configured-product reuse decision.
+Use actual Microsoft Excel calculation and approved VBA as an
+automated engineering oracle for regression testing.
 
 Current Exit Gate:
-For all approved Fybroc regression cases: SQL Part Number = approved
-legacy/workbook Part Number. SKU V2 must be deterministic and
-collision protected.
+Repeatable Excel-oracle tests operate safely against disposable
+workbook copies.
 
 Next Permitted Milestone:
-F160 — Excel Oracle Harness
+F170 — Exhaustive Fybroc Regression
 
 Completed This Session (2026-08-24):
-F140    Fybroc metadata corrections         COMPLETE
-  - Publication 2 activated (F140-corrections-v1)
-  - SeriesFieldOption: 1724 rows (was 1542, +182)
-  - FieldOptionDependency: 10574 rows (was 13178, -2604 over-permissive IMPELLER_TRIM dropped)
-  - AttributeValue: 266 rows (vocabulary corrections confirmed)
-  - All 7 series projecting correctly
-  - Old publication (ID=1) retired
+F130    Fybroc pricing/adders               COMPLETE
+F140    Fybroc metadata corrections         COMPLETE (SQL pub 2 activated)
+F150    SQL Fybroc identifier               COMPLETE
+  - cfg.usp_GeneratePartNumber: PN=FA35FC-1VC1-S03-3G-04XXX-XXX-00 MATCH
+  - cfg.usp_GenerateSKU: SKU=F1500-A1B2C3D4A (new format, version=trailing letter)
+  - SKU uniqueness enforced (1:1 SKU->PN->Config->BOM)
+  - cfg.usp_LookupBySKU created for customer-facing retrieval
+F160    Excel Oracle harness                IN PROGRESS
+  - COM automation operational (Excel v16.0)
+  - Disposable copy + safe recalc infrastructure working
+  - Cell mapping calibration needed (Smart Number input cells)
+
+F150 SKU Design Decision:
+- SKU format: <FamilyPrefix><Series>-<8char_token><VersionLetter>
+- Example Fybroc: F1500-A1B2C3D4A (A=version 1)
+- Example Dean:   D5000-X7Y8Z9W0A (same format)
+- Version letter increments: A, B, C... (never V1/V2 prefix)
 
 F130 Key Findings:
 - 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
