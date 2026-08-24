@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.4  
+**Roadmap Version:** 1.5  
 **Roadmap Date:** 2026-08-24  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** F160 — Fybroc Excel Oracle Harness (IN PROGRESS)  
+**Current Milestone:** D100 — Dean Source Reconciliation  
 
 ---
 
@@ -975,10 +975,10 @@ F120	Rev0.3 configuration model	COMPLETE
 F130	Fybroc pricing/adders	COMPLETE
 F140	Fybroc metadata corrections	COMPLETE
 F150	SQL Fybroc identifier	COMPLETE
-F160	Fybroc Excel Oracle	IN PROGRESS
-F170	Fybroc exhaustive regression	PENDING
-F180	Fybroc signoff	PENDING
-D100	Dean source reconciliation	PENDING
+F160	Fybroc Excel Oracle	COMPLETE
+F170	Fybroc exhaustive regression	COMPLETE
+F180	Fybroc signoff	COMPLETE
+D100	Dean source reconciliation	CURRENT
 D110	Dean configuration completion	PENDING
 D120	Dean pricing/adders	PENDING
 D130	SQL Dean identifier	PENDING
@@ -1016,39 +1016,22 @@ P190	closeout	PENDING
 MASTER ROADMAP
 Version:            1.2
 
-Current Phase:      F — Fybroc Completion
-Current Milestone:  F160
-Status:             IN PROGRESS
+Current Phase:      D — Dean Completion
+Current Milestone:  D100
+Status:             READY TO START
 
 Current Objective:
-Use actual Microsoft Excel calculation and approved VBA as an
-automated engineering oracle for regression testing.
+Deep-inventory and reconcile all four Dean engineering workbooks.
 
 Current Exit Gate:
-Repeatable Excel-oracle tests operate safely against disposable
-workbook copies.
+All Dean engineering sources classified and reconciled.
 
 Next Permitted Milestone:
-F170 — Exhaustive Fybroc Regression
+D110 — Dean Configuration & Dependency Completion
 
-Completed This Session (2026-08-24):
-F130    Fybroc pricing/adders               COMPLETE
-F140    Fybroc metadata corrections         COMPLETE (SQL pub 2 activated)
-F150    SQL Fybroc identifier               COMPLETE
-  - cfg.usp_GeneratePartNumber: PN=FA35FC-1VC1-S03-3G-04XXX-XXX-00 MATCH
-  - cfg.usp_GenerateSKU: SKU=F1500-A1B2C3D4A (new format, version=trailing letter)
-  - SKU uniqueness enforced (1:1 SKU->PN->Config->BOM)
-  - cfg.usp_LookupBySKU created for customer-facing retrieval
-F160    Excel Oracle harness                IN PROGRESS
-  - COM automation operational (Excel v16.0)
-  - Disposable copy + safe recalc infrastructure working
-  - Cell mapping calibration needed (Smart Number input cells)
-
-F150 SKU Design Decision:
-- SKU format: <FamilyPrefix><Series>-<8char_token><VersionLetter>
-- Example Fybroc: F1500-A1B2C3D4A (A=version 1)
-- Example Dean:   D5000-X7Y8Z9W0A (same format)
-- Version letter increments: A, B, C... (never V1/V2 prefix)
+PHASE F COMPLETE (2026-08-24):
+F100-F180 all COMPLETE. Fybroc declared CONFIGURATION-COMPLETE.
+See docs/evidence/F180/FYBROC_SIGNOFF.md for full signoff details.
 
 F130 Key Findings:
 - 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
