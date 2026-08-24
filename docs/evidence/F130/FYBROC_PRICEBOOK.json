@@ -1,0 +1,1442 @@
+{
+  "artifact": "FYBROC_PRICEBOOK",
+  "step": "F130.1",
+  "roadmap_version": "1.1",
+  "milestone": "F130",
+  "source_workbook": "workbooks/Fybroc/Price Estimator-Fybroc.xlsm",
+  "sheet": "Pricebook",
+  "generated_utc": "2026-08-24T14:24:02.791881+00:00",
+  "git_commit": "642d41e629925181e44991caec1577d294797bb9",
+  "git_working_tree_clean": false,
+  "table_block_count": 15,
+  "total_price_columns": 125,
+  "blocks": [
+    {
+      "start_col": 2,
+      "end_col": 16,
+      "table_id": "table81",
+      "title": "1500 Pump Pricing",
+      "headers": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1A BPO/DMA",
+        "W.E.K.",
+        "VR-1 W.E.K.",
+        "VR-1 Wght",
+        "VR-1V",
+        "VR-1V BPO/DMA"
+      ],
+      "meta_columns": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1A BPO/DMA",
+        "W.E.K.",
+        "VR-1 W.E.K.",
+        "VR-1 Wght",
+        "VR-1V",
+        "VR-1V BPO/DMA"
+      ],
+      "price_column_count": 10,
+      "data_rows": 19,
+      "sample_rows": [
+        {
+          "Group": 1,
+          "SIZE": "1X1.5X6",
+          "ANSI DESIG.": "AA",
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "VR-1 (Standard)": 4987,
+          "VR-1A": 8666,
+          "EY-2": 6652,
+          "VR-1 BPO/DMA": 5480,
+          "VR-1A BPO/DMA": 9530,
+          "W.E.K.": 1802,
+          "VR-1 W.E.K.": 3185,
+          "VR-1 Wght": 54,
+          "VR-1V": 13870,
+          "VR-1V BPO/DMA": 14369
+        },
+        {
+          "Group": 1,
+          "SIZE": "1.5X3X6",
+          "ANSI DESIG.": "AB",
+          "ANSI Size": "1.5x3x6 (6AB)",
+          "VR-1 (Standard)": 5256,
+          "VR-1A": 9133,
+          "EY-2": 7007,
+          "VR-1 BPO/DMA": 5777,
+          "VR-1A BPO/DMA": 10041,
+          "W.E.K.": 1802,
+          "VR-1 W.E.K.": 3454,
+          "VR-1 Wght": 55,
+          "VR-1V": 14619,
+          "VR-1V BPO/DMA": 15145
+        },
+        {
+          "Group": 1,
+          "SIZE": "2X3X6",
+          "ANSI DESIG.": "AC",
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 5510,
+          "VR-1A": 9575,
+          "EY-2": 7343,
+          "VR-1 BPO/DMA": 6056,
+          "VR-1A BPO/DMA": 10528,
+          "W.E.K.": 1802,
+          "VR-1 W.E.K.": 3708,
+          "VR-1 Wght": 57,
+          "VR-1V": 15327,
+          "VR-1V BPO/DMA": 15878
+        },
+        {
+          "Group": 1,
+          "SIZE": "1X1.5X8",
+          "ANSI DESIG.": "AA",
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard)": 5980,
+          "VR-1A": 10394,
+          "EY-2": 7972,
+          "VR-1 BPO/DMA": 6573,
+          "VR-1A BPO/DMA": 11427,
+          "W.E.K.": 1802,
+          "VR-1 W.E.K.": 4178,
+          "VR-1 Wght": 58,
+          "VR-1V": 16637,
+          "VR-1V BPO/DMA": 17235
+        },
+        {
+          "Group": 2,
+          "SIZE": "1.5X3X8",
+          "ANSI DESIG.": "A50",
+          "ANSI Size": "1.5x3x8 (8A50)",
+          "VR-1 (Standard)": 8942,
+          "VR-1A": 15689,
+          "EY-2": 12035,
+          "VR-1 BPO/DMA": 9826,
+          "VR-1A BPO/DMA": 17252,
+          "W.E.K.": 2346,
+          "VR-1 W.E.K.": 6596,
+          "VR-1 Wght": 149,
+          "VR-1V": 23546,
+          "VR-1V BPO/DMA": 24440
+        }
+      ]
+    },
+    {
+      "start_col": 17,
+      "end_col": 26,
+      "table_id": "table49",
+      "title": "1530 Pump Pricing",
+      "headers": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1V",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "meta_columns": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1V",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "price_column_count": 6,
+      "data_rows": 16,
+      "sample_rows": [
+        {
+          "Group": 1,
+          "SIZE": "1X1.5X6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "VR-1 (Standard)": 4854,
+          "VR-1A": 8299,
+          "EY-2": 6433,
+          "VR-1V": 13737,
+          "VR-1 BPO/DMA": 5307,
+          "VR-1 Wght": 30
+        },
+        {
+          "Group": 1,
+          "SIZE": "1.5X3X6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1.5x3x6 (6AB)",
+          "VR-1 (Standard)": 5176,
+          "VR-1A": 8852,
+          "EY-2": 6865,
+          "VR-1V": 14544,
+          "VR-1 BPO/DMA": 5660,
+          "VR-1 Wght": 32
+        },
+        {
+          "Group": 1,
+          "SIZE": "2X3X6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 5315,
+          "VR-1A": 9087,
+          "EY-2": 7042,
+          "VR-1V": 15134,
+          "VR-1 BPO/DMA": 5811,
+          "VR-1 Wght": 33
+        },
+        {
+          "Group": 1,
+          "SIZE": "1X1.5X8",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard)": 5565,
+          "VR-1A": 9512,
+          "EY-2": 7375,
+          "VR-1V": 16222,
+          "VR-1 BPO/DMA": 6082,
+          "VR-1 Wght": 31
+        },
+        {
+          "Group": 2,
+          "SIZE": "1.5X3X8",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1.5x3x8 (8A50)",
+          "VR-1 (Standard)": 8713,
+          "VR-1A": 13556,
+          "EY-2": 11544,
+          "VR-1V": 23315,
+          "VR-1 BPO/DMA": 9520,
+          "VR-1 Wght": 66
+        }
+      ]
+    },
+    {
+      "start_col": 28,
+      "end_col": 38,
+      "table_id": "table50",
+      "title": "1600 Pump Pricing",
+      "headers": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "W.E.K.",
+        "VR-1 W.E.K.",
+        "VR-1 Wght"
+      ],
+      "meta_columns": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "W.E.K.",
+        "VR-1 W.E.K.",
+        "VR-1 Wght"
+      ],
+      "price_column_count": 7,
+      "data_rows": 6,
+      "sample_rows": [
+        {
+          "Group": 1,
+          "SIZE": "2X3X6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 14057,
+          "VR-1A": "N/A",
+          "EY-2": 19305,
+          "VR-1 BPO/DMA": 15447,
+          "W.E.K.": 1802,
+          "VR-1 W.E.K.": 12255,
+          "VR-1 Wght": 63
+        },
+        {
+          "Group": 1,
+          "SIZE": "1X1.5X8",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard)": 13786,
+          "VR-1A": "N/A",
+          "EY-2": 18932,
+          "VR-1 BPO/DMA": 15149,
+          "W.E.K.": 1802,
+          "VR-1 W.E.K.": 11984,
+          "VR-1 Wght": 60
+        },
+        {
+          "Group": 2,
+          "SIZE": "2X3X10",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x10 (10A60)",
+          "VR-1 (Standard)": 21553,
+          "VR-1A": "N/A",
+          "EY-2": 26812,
+          "VR-1 BPO/DMA": 23687,
+          "W.E.K.": 2346,
+          "VR-1 W.E.K.": 19207,
+          "VR-1 Wght": 288
+        },
+        {
+          "Group": 2,
+          "SIZE": "3X4X10",
+          "ANSI DESIG.": null,
+          "ANSI Size": "3x4x10 (10A70)",
+          "VR-1 (Standard)": 21886,
+          "VR-1A": "N/A",
+          "EY-2": 27740,
+          "VR-1 BPO/DMA": 24052,
+          "W.E.K.": 2346,
+          "VR-1 W.E.K.": 19540,
+          "VR-1 Wght": 299
+        },
+        {
+          "Group": 2,
+          "SIZE": "3X4X13",
+          "ANSI DESIG.": null,
+          "ANSI Size": "3x4x13 (13A40)",
+          "VR-1 (Standard)": 26821,
+          "VR-1A": "N/A",
+          "EY-2": " C/F ",
+          "VR-1 BPO/DMA": 29476,
+          "W.E.K.": 2346,
+          "VR-1 W.E.K.": 24475,
+          "VR-1 Wght": 402
+        }
+      ]
+    },
+    {
+      "start_col": 40,
+      "end_col": 48,
+      "table_id": "table91",
+      "title": "1630 Pump Pricing",
+      "headers": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "meta_columns": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "price_column_count": 5,
+      "data_rows": 6,
+      "sample_rows": [
+        {
+          "Group": 1,
+          "SIZE": "2X3X6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 13071,
+          "VR-1A": "N/A",
+          "EY-2": 18428,
+          "VR-1 BPO/DMA": 14367,
+          "VR-1 Wght": 63
+        },
+        {
+          "Group": 1,
+          "SIZE": "1X1.5X8",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard)": 12823,
+          "VR-1A": "N/A",
+          "EY-2": 18170,
+          "VR-1 BPO/DMA": 14091,
+          "VR-1 Wght": 60
+        },
+        {
+          "Group": 2,
+          "SIZE": "2X3X10",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x10 (10A60)",
+          "VR-1 (Standard)": 20079,
+          "VR-1A": "N/A",
+          "EY-2": 27337,
+          "VR-1 BPO/DMA": 22067,
+          "VR-1 Wght": 288
+        },
+        {
+          "Group": 2,
+          "SIZE": "3X4X10",
+          "ANSI DESIG.": null,
+          "ANSI Size": "3x4x10 (10A70)",
+          "VR-1 (Standard)": 20312,
+          "VR-1A": "N/A",
+          "EY-2": 27654,
+          "VR-1 BPO/DMA": 22324,
+          "VR-1 Wght": 299
+        },
+        {
+          "Group": 2,
+          "SIZE": "3X4X13",
+          "ANSI DESIG.": null,
+          "ANSI Size": "3x4x13 (13A40)",
+          "VR-1 (Standard)": 25830,
+          "VR-1A": "N/A",
+          "EY-2": " C/F ",
+          "VR-1 BPO/DMA": 28384,
+          "VR-1 Wght": 402
+        }
+      ]
+    },
+    {
+      "start_col": 50,
+      "end_col": 58,
+      "table_id": "table92",
+      "title": "2530 Pump Pricing",
+      "headers": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "meta_columns": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "price_column_count": 5,
+      "data_rows": 10,
+      "sample_rows": [
+        {
+          "Group": 1,
+          "SIZE": "1x1.5x6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "VR-1 (Standard)": 12619,
+          "VR-1A": "N/A",
+          "EY-2": 13476,
+          "VR-1 BPO/DMA": 13795,
+          "VR-1 Wght": 62
+        },
+        {
+          "Group": 1,
+          "SIZE": "1.5x3x6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1.5x3x6 (6AB)",
+          "VR-1 (Standard)": 12847,
+          "VR-1A": "N/A",
+          "EY-2": 13727,
+          "VR-1 BPO/DMA": 14044,
+          "VR-1 Wght": 64
+        },
+        {
+          "Group": 1,
+          "SIZE": "2x3x6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 13081,
+          "VR-1A": "N/A",
+          "EY-2": 14041,
+          "VR-1 BPO/DMA": 14295,
+          "VR-1 Wght": 64
+        },
+        {
+          "Group": 1,
+          "SIZE": "1x1.5x8",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard)": 13723,
+          "VR-1A": "N/A",
+          "EY-2": 14741,
+          "VR-1 BPO/DMA": 14999,
+          "VR-1 Wght": 62
+        },
+        {
+          "Group": 2,
+          "SIZE": "3x4x6*",
+          "ANSI DESIG.": null,
+          "ANSI Size": "3x4x6 (--)",
+          "VR-1 (Standard)": 17676,
+          "VR-1A": "N/A",
+          "EY-2": 19872,
+          "VR-1 BPO/DMA": 19321,
+          "VR-1 Wght": 130
+        }
+      ]
+    },
+    {
+      "start_col": 60,
+      "end_col": 68,
+      "table_id": "table93",
+      "title": "2630 Pump Pricing",
+      "headers": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "meta_columns": [
+        "Group",
+        "SIZE",
+        "ANSI DESIG.",
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "EY-2",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght"
+      ],
+      "price_column_count": 5,
+      "data_rows": 2,
+      "sample_rows": [
+        {
+          "Group": 1,
+          "SIZE": "2x3x6",
+          "ANSI DESIG.": null,
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 29065,
+          "VR-1A": "N/A",
+          "EY-2": "C/F",
+          "VR-1 BPO/DMA": 31940,
+          "VR-1 Wght": 74
+        },
+        {
+          "Group": 1,
+          "SIZE": "1x1.5x8",
+          "ANSI DESIG.": null,
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard)": 31247,
+          "VR-1A": "N/A",
+          "EY-2": "C/F",
+          "VR-1 BPO/DMA": 34340,
+          "VR-1 Wght": 66
+        }
+      ]
+    },
+    {
+      "start_col": 70,
+      "end_col": 79,
+      "table_id": "Table79",
+      "title": "Seal Pricing (1500/1530/1600/1630/3000)",
+      "headers": [
+        "Seal Type",
+        "Group 1",
+        "Group 1 Cost",
+        "Group 1P",
+        "Group 2",
+        "Group 2 Cost",
+        "Group 2P",
+        "Group 3",
+        "Group 3 Cost",
+        "Group 3P"
+      ],
+      "meta_columns": [
+        "Seal Type"
+      ],
+      "price_columns": [
+        "Group 1",
+        "Group 1 Cost",
+        "Group 1P",
+        "Group 2",
+        "Group 2 Cost",
+        "Group 2P",
+        "Group 3",
+        "Group 3 Cost",
+        "Group 3P"
+      ],
+      "price_column_count": 9,
+      "data_rows": 25,
+      "sample_rows": [
+        {
+          "Seal Type": "8B2 (Single Outside) (Std)",
+          "Group 1": 749,
+          "Group 1 Cost": 162.84,
+          "Group 1P": "08976C0102",
+          "Group 2": 1165,
+          "Group 2 Cost": 222.49,
+          "Group 2P": "08975C0102",
+          "Group 3": 2438,
+          "Group 3 Cost": 494.13,
+          "Group 3P": "08974C0102"
+        },
+        {
+          "Seal Type": "Flowserve RAC (Single Outside)",
+          "Group 1": 929,
+          "Group 1 Cost": 226.6,
+          "Group 1P": "08901C0102",
+          "Group 2": 1860,
+          "Group 2 Cost": 342,
+          "Group 2P": "08906C0102",
+          "Group 3": 2709,
+          "Group 3 Cost": 615,
+          "Group 3P": "08935C0102"
+        },
+        {
+          "Seal Type": "8-1T (Double Inside)",
+          "Group 1": 1095,
+          "Group 1 Cost": 198.71,
+          "Group 1P": "08944C0102",
+          "Group 2": 1696,
+          "Group 2 Cost": 328,
+          "Group 2P": "08931C0102",
+          "Group 3": 2955,
+          "Group 3 Cost": 529.01,
+          "Group 3P": "08973C0102"
+        },
+        {
+          "Seal Type": "Flowserve RXO (Double Inside)",
+          "Group 1": 1633,
+          "Group 1 Cost": 408.58,
+          "Group 1P": "08942C0102",
+          "Group 2": 2460,
+          "Group 2 Cost": 554,
+          "Group 2P": "08941C0102",
+          "Group 3": 4683,
+          "Group 3 Cost": null,
+          "Group 3P": "08948C0102"
+        },
+        {
+          "Seal Type": "Flowserve CRO (Double Inside)",
+          "Group 1": 1316,
+          "Group 1 Cost": 180,
+          "Group 1P": "08940C0102",
+          "Group 2": 2232,
+          "Group 2 Cost": 295,
+          "Group 2P": "08939C0102",
+          "Group 3": 3902,
+          "Group 3 Cost": null,
+          "Group 3P": "08947C0102"
+        }
+      ]
+    },
+    {
+      "start_col": 82,
+      "end_col": 85,
+      "table_id": "table83",
+      "title": "Coupling Pricing (1500/1600)",
+      "headers": [
+        "Frame",
+        "1",
+        "2",
+        "3"
+      ],
+      "meta_columns": [
+        "Frame"
+      ],
+      "price_columns": [
+        "1",
+        "2",
+        "3"
+      ],
+      "price_column_count": 3,
+      "data_rows": 18,
+      "sample_rows": [
+        {
+          "Frame": 143,
+          "1": 230,
+          "2": 230,
+          "3": "*"
+        },
+        {
+          "Frame": 145,
+          "1": 230,
+          "2": 230,
+          "3": "*"
+        },
+        {
+          "Frame": 182,
+          "1": 230,
+          "2": 230,
+          "3": "*"
+        },
+        {
+          "Frame": 184,
+          "1": 230,
+          "2": 230,
+          "3": "*"
+        },
+        {
+          "Frame": 213,
+          "1": 315,
+          "2": 315,
+          "3": "*"
+        }
+      ]
+    },
+    {
+      "start_col": 87,
+      "end_col": 115,
+      "table_id": "table96",
+      "title": "5500 Pump Pricing",
+      "headers": [
+        "ANSI Size",
+        "Setting Number",
+        "ANSI Size : Setting Number",
+        "VR-1 Wght",
+        "VR-1 (Standard) : 316 SS",
+        "VR-1 BPO/DMA : 316 SS",
+        "VR-1 (Standard) : Carp-20",
+        "VR-1 BPO/DMA : Carp-20",
+        "VR-1 (Standard) : Titanium",
+        "VR-1 BPO/DMA : Titanium",
+        "VR-1 (Standard) : Hastelloy C",
+        "VR-1 BPO/DMA : Hastelloy C",
+        "VR-1A Adder",
+        "VR-1A : 316 SS",
+        "VR-1A : Carp-20",
+        "VR-1A : Titanium",
+        "VR-1A : Hastelloy C",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "Dia. At Sleeve Bearings",
+        "Suction Pipe Size",
+        "VR-1 (Standard) : 316SS Wetted H/W",
+        "VR-1 BPO/DMA : 316SS Wetted H/W",
+        "EY-2 (Standard) : 316SS Wetted H/W"
+      ],
+      "meta_columns": [
+        "ANSI Size",
+        "Setting Number",
+        "ANSI Size : Setting Number",
+        "Dia. At Sleeve Bearings",
+        "Suction Pipe Size"
+      ],
+      "price_columns": [
+        "VR-1 Wght",
+        "VR-1 (Standard) : 316 SS",
+        "VR-1 BPO/DMA : 316 SS",
+        "VR-1 (Standard) : Carp-20",
+        "VR-1 BPO/DMA : Carp-20",
+        "VR-1 (Standard) : Titanium",
+        "VR-1 BPO/DMA : Titanium",
+        "VR-1 (Standard) : Hastelloy C",
+        "VR-1 BPO/DMA : Hastelloy C",
+        "VR-1A Adder",
+        "VR-1A : 316 SS",
+        "VR-1A : Carp-20",
+        "VR-1A : Titanium",
+        "VR-1A : Hastelloy C",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1 (Standard) : 316SS Wetted H/W",
+        "VR-1 BPO/DMA : 316SS Wetted H/W",
+        "EY-2 (Standard) : 316SS Wetted H/W"
+      ],
+      "price_column_count": 23,
+      "data_rows": 76,
+      "sample_rows": [
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "Setting Number": "#1 - #4",
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):#1 - #4",
+          "VR-1 Wght": "#N/A",
+          "VR-1 (Standard) : 316 SS": 11245,
+          "VR-1 BPO/DMA : 316 SS": 12355,
+          "VR-1 (Standard) : Carp-20": 13738,
+          "VR-1 BPO/DMA : Carp-20": 14848,
+          "VR-1 (Standard) : Titanium": 17472,
+          "VR-1 BPO/DMA : Titanium": 18582,
+          "VR-1 (Standard) : Hastelloy C": 21820,
+          "VR-1 BPO/DMA : Hastelloy C": 22930,
+          "VR-1A Adder": 6009,
+          "VR-1A : 316 SS": 17254,
+          "VR-1A : Carp-20": 19747,
+          "VR-1A : Titanium": 23481,
+          "VR-1A : Hastelloy C": 27829,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 15147,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 16047,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 16257,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 17157,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 21156,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 22056,
+          "Dia. At Sleeve Bearings": 1.125,
+          "Suction Pipe Size": "1.5-Initial",
+          "VR-1 (Standard) : 316SS Wetted H/W": 1278,
+          "VR-1 BPO/DMA : 316SS Wetted H/W": 1325,
+          "EY-2 (Standard) : 316SS Wetted H/W": 1525
+        },
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "Setting Number": "#5 - #9",
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):#5 - #9",
+          "VR-1 Wght": "#N/A",
+          "VR-1 (Standard) : 316 SS": 12963,
+          "VR-1 BPO/DMA : 316 SS": 14248,
+          "VR-1 (Standard) : Carp-20": 15834,
+          "VR-1 BPO/DMA : Carp-20": 17119,
+          "VR-1 (Standard) : Titanium": 19532,
+          "VR-1 BPO/DMA : Titanium": 20817,
+          "VR-1 (Standard) : Hastelloy C": 24395,
+          "VR-1 BPO/DMA : Hastelloy C": 25680,
+          "VR-1A Adder": 6007,
+          "VR-1A : 316 SS": 18970,
+          "VR-1A : Carp-20": 21841,
+          "VR-1A : Titanium": 25539,
+          "VR-1A : Hastelloy C": 30402,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "Dia. At Sleeve Bearings": 1.125,
+          "Suction Pipe Size": "2-Initial",
+          "VR-1 (Standard) : 316SS Wetted H/W": 1278,
+          "VR-1 BPO/DMA : 316SS Wetted H/W": 1325,
+          "EY-2 (Standard) : 316SS Wetted H/W": 1525
+        },
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "Setting Number": "#10 - #14",
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):#10 - #14",
+          "VR-1 Wght": "#N/A",
+          "VR-1 (Standard) : 316 SS": 14692,
+          "VR-1 BPO/DMA : 316 SS": 16146,
+          "VR-1 (Standard) : Carp-20": 17931,
+          "VR-1 BPO/DMA : Carp-20": 19385,
+          "VR-1 (Standard) : Titanium": 21678,
+          "VR-1 BPO/DMA : Titanium": 23132,
+          "VR-1 (Standard) : Hastelloy C": 27081,
+          "VR-1 BPO/DMA : Hastelloy C": 28535,
+          "VR-1A Adder": 6006,
+          "VR-1A : 316 SS": 20698,
+          "VR-1A : Carp-20": 23937,
+          "VR-1A : Titanium": 27684,
+          "VR-1A : Hastelloy C": 33087,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "Dia. At Sleeve Bearings": 1.125,
+          "Suction Pipe Size": "3-Initial",
+          "VR-1 (Standard) : 316SS Wetted H/W": 1429,
+          "VR-1 BPO/DMA : 316SS Wetted H/W": 1479,
+          "EY-2 (Standard) : 316SS Wetted H/W": 1716
+        },
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "Setting Number": "#15 - #19",
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):#15 - #19",
+          "VR-1 Wght": "#N/A",
+          "VR-1 (Standard) : 316 SS": 16417,
+          "VR-1 BPO/DMA : 316 SS": 18042,
+          "VR-1 (Standard) : Carp-20": 20046,
+          "VR-1 BPO/DMA : Carp-20": 21671,
+          "VR-1 (Standard) : Titanium": 23835,
+          "VR-1 BPO/DMA : Titanium": 25460,
+          "VR-1 (Standard) : Hastelloy C": 29774,
+          "VR-1 BPO/DMA : Hastelloy C": 31399,
+          "VR-1A Adder": 6009,
+          "VR-1A : 316 SS": 22426,
+          "VR-1A : Carp-20": 26055,
+          "VR-1A : Titanium": 29844,
+          "VR-1A : Hastelloy C": 35783,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": "*",
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": "*",
+          "Dia. At Sleeve Bearings": 1.125,
+          "Suction Pipe Size": "4-Initial",
+          "VR-1 (Standard) : 316SS Wetted H/W": 1638,
+          "VR-1 BPO/DMA : 316SS Wetted H/W": 1697,
+          "EY-2 (Standard) : 316SS Wetted H/W": "C/F"
+        },
+        {
+          "ANSI Size": "1.5x3x6 (6AB)",
+          "Setting Number": "#1 - #4",
+          "ANSI Size : Setting Number": "1.5x3x6 (6AB):#1 - #4",
+          "VR-1 Wght": "#N/A",
+          "VR-1 (Standard) : 316 SS": 12282,
+          "VR-1 BPO/DMA : 316 SS": 13499,
+          "VR-1 (Standard) : Carp-20": 14997,
+          "VR-1 BPO/DMA : Carp-20": 16214,
+          "VR-1 (Standard) : Titanium": 18456,
+          "VR-1 BPO/DMA : Titanium": 19673,
+          "VR-1 (Standard) : Hastelloy C": 23175,
+          "VR-1 BPO/DMA : Hastelloy C": 24392,
+          "VR-1A Adder": 6007,
+          "VR-1A : 316 SS": 18289,
+          "VR-1A : Carp-20": 21004,
+          "VR-1A : Titanium": 24463,
+          "VR-1A : Hastelloy C": 29182,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 16122,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 17083,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 17339,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 18300,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 22129,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 23090,
+          "Dia. At Sleeve Bearings": 1.125,
+          "Suction Pipe Size": "6-Initial",
+          "VR-1 (Standard) : 316SS Wetted H/W": 2003,
+          "VR-1 BPO/DMA : 316SS Wetted H/W": 2075,
+          "EY-2 (Standard) : 316SS Wetted H/W": "C/F"
+        }
+      ]
+    },
+    {
+      "start_col": 116,
+      "end_col": 124,
+      "table_id": null,
+      "title": "5500/7500 Tailpipe Pricing",
+      "headers": [
+        "VR-1 (Standard) : Carp-20 Wetted H/W",
+        "VR-1 BPO/DMA : Carp-20 Wetted H/W",
+        "EY-2 (Standard) : Carp-20 Wetted H/W",
+        "VR-1 (Standard) : Titan. Wetted H/W",
+        "VR-1 BPO/DMA : Titan. Wetted H/W",
+        "EY-2 (Standard) : Titan. Wetted H/W",
+        "VR-1 (Standard) : Hast-C Wetted H/W",
+        "VR-1 BPO/DMA : Hast-C Wetted H/W",
+        "EY-2 (Standard) : Hast-C Wetted H/W"
+      ],
+      "meta_columns": [],
+      "price_columns": [
+        "VR-1 (Standard) : Carp-20 Wetted H/W",
+        "VR-1 BPO/DMA : Carp-20 Wetted H/W",
+        "EY-2 (Standard) : Carp-20 Wetted H/W",
+        "VR-1 (Standard) : Titan. Wetted H/W",
+        "VR-1 BPO/DMA : Titan. Wetted H/W",
+        "EY-2 (Standard) : Titan. Wetted H/W",
+        "VR-1 (Standard) : Hast-C Wetted H/W",
+        "VR-1 BPO/DMA : Hast-C Wetted H/W",
+        "EY-2 (Standard) : Hast-C Wetted H/W"
+      ],
+      "price_column_count": 9,
+      "data_rows": 16,
+      "sample_rows": [
+        {
+          "VR-1 (Standard) : Carp-20 Wetted H/W": 1763,
+          "VR-1 BPO/DMA : Carp-20 Wetted H/W": 1790,
+          "EY-2 (Standard) : Carp-20 Wetted H/W": 2107,
+          "VR-1 (Standard) : Titan. Wetted H/W": 2173,
+          "VR-1 BPO/DMA : Titan. Wetted H/W": 2204,
+          "EY-2 (Standard) : Titan. Wetted H/W": 2597,
+          "VR-1 (Standard) : Hast-C Wetted H/W": 2783,
+          "VR-1 BPO/DMA : Hast-C Wetted H/W": 2823,
+          "EY-2 (Standard) : Hast-C Wetted H/W": 3177
+        },
+        {
+          "VR-1 (Standard) : Carp-20 Wetted H/W": 1763,
+          "VR-1 BPO/DMA : Carp-20 Wetted H/W": 1790,
+          "EY-2 (Standard) : Carp-20 Wetted H/W": 2107,
+          "VR-1 (Standard) : Titan. Wetted H/W": 2173,
+          "VR-1 BPO/DMA : Titan. Wetted H/W": 2204,
+          "EY-2 (Standard) : Titan. Wetted H/W": 2597,
+          "VR-1 (Standard) : Hast-C Wetted H/W": 2783,
+          "VR-1 BPO/DMA : Hast-C Wetted H/W": 2823,
+          "EY-2 (Standard) : Hast-C Wetted H/W": 3177
+        },
+        {
+          "VR-1 (Standard) : Carp-20 Wetted H/W": 1917,
+          "VR-1 BPO/DMA : Carp-20 Wetted H/W": 1944,
+          "EY-2 (Standard) : Carp-20 Wetted H/W": 2318,
+          "VR-1 (Standard) : Titan. Wetted H/W": 2365,
+          "VR-1 BPO/DMA : Titan. Wetted H/W": 2398,
+          "EY-2 (Standard) : Titan. Wetted H/W": 2823,
+          "VR-1 (Standard) : Hast-C Wetted H/W": 3023,
+          "VR-1 BPO/DMA : Hast-C Wetted H/W": 3061,
+          "EY-2 (Standard) : Hast-C Wetted H/W": 3441
+        },
+        {
+          "VR-1 (Standard) : Carp-20 Wetted H/W": 2255,
+          "VR-1 BPO/DMA : Carp-20 Wetted H/W": 2286,
+          "EY-2 (Standard) : Carp-20 Wetted H/W": "C/F",
+          "VR-1 (Standard) : Titan. Wetted H/W": 2721,
+          "VR-1 BPO/DMA : Titan. Wetted H/W": 2757,
+          "EY-2 (Standard) : Titan. Wetted H/W": "C/F",
+          "VR-1 (Standard) : Hast-C Wetted H/W": 3490,
+          "VR-1 BPO/DMA : Hast-C Wetted H/W": 3540,
+          "EY-2 (Standard) : Hast-C Wetted H/W": "C/F"
+        },
+        {
+          "VR-1 (Standard) : Carp-20 Wetted H/W": 2742,
+          "VR-1 BPO/DMA : Carp-20 Wetted H/W": 2778,
+          "EY-2 (Standard) : Carp-20 Wetted H/W": "C/F",
+          "VR-1 (Standard) : Titan. Wetted H/W": 3215,
+          "VR-1 BPO/DMA : Titan. Wetted H/W": 3258,
+          "EY-2 (Standard) : Titan. Wetted H/W": "C/F",
+          "VR-1 (Standard) : Hast-C Wetted H/W": 4115,
+          "VR-1 BPO/DMA : Hast-C Wetted H/W": 4170,
+          "EY-2 (Standard) : Hast-C Wetted H/W": "C/F"
+        }
+      ]
+    },
+    {
+      "start_col": 126,
+      "end_col": 130,
+      "table_id": "Table128",
+      "title": "5530 Pricing",
+      "headers": [
+        "ANSI Size",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)",
+        "VR-1A Adder",
+        "VR-1A : FRP Wrapped Shaft (303SS Core)",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)"
+      ],
+      "meta_columns": [
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)",
+        "VR-1A Adder",
+        "VR-1A : FRP Wrapped Shaft (303SS Core)",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)"
+      ],
+      "price_column_count": 4,
+      "data_rows": 16,
+      "sample_rows": [
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)": 12599,
+          "VR-1A Adder": 5997,
+          "VR-1A : FRP Wrapped Shaft (303SS Core)": 18345,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)": 13786
+        },
+        {
+          "ANSI Size": "1.5x3x6 (6AB)",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)": 12960,
+          "VR-1A Adder": 5997,
+          "VR-1A : FRP Wrapped Shaft (303SS Core)": 18709,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)": 14182
+        },
+        {
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)": 14052,
+          "VR-1A Adder": 5997,
+          "VR-1A : FRP Wrapped Shaft (303SS Core)": 19803,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)": 15380
+        },
+        {
+          "ANSI Size": "1x1.5x8 (8AA)",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)": 13539,
+          "VR-1A Adder": 5997,
+          "VR-1A : FRP Wrapped Shaft (303SS Core)": 19289,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)": 14817
+        },
+        {
+          "ANSI Size": "1.5x3x8 (8A50)",
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core)": 14696,
+          "VR-1A Adder": 7185,
+          "VR-1A : FRP Wrapped Shaft (303SS Core)": 21585,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core)": 16085
+        }
+      ]
+    },
+    {
+      "start_col": 133,
+      "end_col": 155,
+      "table_id": "table143",
+      "title": "7500 Pump Pricing",
+      "headers": [
+        "ANSI Size",
+        "L-Min",
+        "L-Max",
+        "ANSI Size : Setting Number",
+        "VR-1 (Standard) : 316 SS",
+        "VR-1 BPO/DMA : 316 SS",
+        "VR-1 (Standard) : Carp-20",
+        "VR-1 BPO/DMA : Carp-20",
+        "VR-1 (Standard) : Titanium",
+        "VR-1 BPO/DMA : Titanium",
+        "VR-1 (Standard) : Hastelloy C",
+        "VR-1 BPO/DMA : Hastelloy C",
+        "VR-1A Adder",
+        "VR-1A : 316 SS",
+        "VR-1A : Carp-20",
+        "VR-1A : Titanium",
+        "VR-1A : Hastelloy C",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W"
+      ],
+      "meta_columns": [
+        "ANSI Size",
+        "ANSI Size : Setting Number"
+      ],
+      "price_columns": [
+        "L-Min",
+        "L-Max",
+        "VR-1 (Standard) : 316 SS",
+        "VR-1 BPO/DMA : 316 SS",
+        "VR-1 (Standard) : Carp-20",
+        "VR-1 BPO/DMA : Carp-20",
+        "VR-1 (Standard) : Titanium",
+        "VR-1 BPO/DMA : Titanium",
+        "VR-1 (Standard) : Hastelloy C",
+        "VR-1 BPO/DMA : Hastelloy C",
+        "VR-1A Adder",
+        "VR-1A : 316 SS",
+        "VR-1A : Carp-20",
+        "VR-1A : Titanium",
+        "VR-1A : Hastelloy C",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W",
+        "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W"
+      ],
+      "price_column_count": 21,
+      "data_rows": 3,
+      "sample_rows": [
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "L-Min": 18,
+          "L-Max": 24,
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):24",
+          "VR-1 (Standard) : 316 SS": 19738,
+          "VR-1 BPO/DMA : 316 SS": 21691,
+          "VR-1 (Standard) : Carp-20": 22738,
+          "VR-1 BPO/DMA : Carp-20": 24691,
+          "VR-1 (Standard) : Titanium": "C/F",
+          "VR-1 BPO/DMA : Titanium": "C/F",
+          "VR-1 (Standard) : Hastelloy C": 33255,
+          "VR-1 BPO/DMA : Hastelloy C": 35208,
+          "VR-1A Adder": 6276,
+          "VR-1A : 316 SS": 26014,
+          "VR-1A : Carp-20": 29014,
+          "VR-1A : Titanium": "C/F",
+          "VR-1A : Hastelloy C": 39531,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 26434,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 26434,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 28387,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 28387,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 32710,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 32710
+        },
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "L-Min": 25,
+          "L-Max": 36,
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):36",
+          "VR-1 (Standard) : 316 SS": 21893,
+          "VR-1 BPO/DMA : 316 SS": 24060,
+          "VR-1 (Standard) : Carp-20": 23436,
+          "VR-1 BPO/DMA : Carp-20": 25603,
+          "VR-1 (Standard) : Titanium": "C/F",
+          "VR-1 BPO/DMA : Titanium": "C/F",
+          "VR-1 (Standard) : Hastelloy C": 34339,
+          "VR-1 BPO/DMA : Hastelloy C": 36506,
+          "VR-1A Adder": 6279,
+          "VR-1A : 316 SS": 28172,
+          "VR-1A : Carp-20": 29715,
+          "VR-1A : Titanium": "C/F",
+          "VR-1A : Hastelloy C": 40618,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 27242,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 27242,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 29409,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 29409,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 33521,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 33521
+        },
+        {
+          "ANSI Size": "1x1.5x6 (6AA)",
+          "L-Min": 37,
+          "L-Max": 48,
+          "ANSI Size : Setting Number": "1x1.5x6 (6AA):48",
+          "VR-1 (Standard) : 316 SS": 20681,
+          "VR-1 BPO/DMA : 316 SS": 22727,
+          "VR-1 (Standard) : Carp-20": 24072,
+          "VR-1 BPO/DMA : Carp-20": 26118,
+          "VR-1 (Standard) : Titanium": "C/F",
+          "VR-1 BPO/DMA : Titanium": "C/F",
+          "VR-1 (Standard) : Hastelloy C": 35084,
+          "VR-1 BPO/DMA : Hastelloy C": 37130,
+          "VR-1A Adder": 6280,
+          "VR-1A : 316 SS": 26961,
+          "VR-1A : Carp-20": 30352,
+          "VR-1A : Titanium": "C/F",
+          "VR-1A : Hastelloy C": 41364,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 27986,
+          "VR-1 (Standard) : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 27986,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 30032,
+          "VR-1 BPO/DMA : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 30032,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Titan. Wetted H/W": 34266,
+          "VR-1A : FRP Wrapped Shaft (303SS Core) : Hast-C Wetted H/W": 34266
+        }
+      ]
+    },
+    {
+      "start_col": 157,
+      "end_col": 167,
+      "table_id": "Table144",
+      "title": "7530 Pump Pricing",
+      "headers": [
+        "ANSI Size",
+        "RPM",
+        "ANSI Size : RPM",
+        "VR-1 (Standard) : 10HP",
+        "VR-1 (Standard) : 15HP",
+        "VR-1 (Standard) : 20HP",
+        "VR-1 (Standard) : 25HP",
+        "VR-1 BPO/DMA : 10HP",
+        "VR-1 BPO/DMA : 15HP",
+        "VR-1 BPO/DMA : 20HP",
+        "VR-1 BPO/DMA : 25HP"
+      ],
+      "meta_columns": [
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "RPM",
+        "ANSI Size : RPM",
+        "VR-1 (Standard) : 10HP",
+        "VR-1 (Standard) : 15HP",
+        "VR-1 (Standard) : 20HP",
+        "VR-1 (Standard) : 25HP",
+        "VR-1 BPO/DMA : 10HP",
+        "VR-1 BPO/DMA : 15HP",
+        "VR-1 BPO/DMA : 20HP",
+        "VR-1 BPO/DMA : 25HP"
+      ],
+      "price_column_count": 10,
+      "data_rows": 10,
+      "sample_rows": [
+        {
+          "ANSI Size": "1.5x3x8 (8A50)",
+          "RPM": 3600,
+          "ANSI Size : RPM": "1.5x3x8 (8A50):3600",
+          "VR-1 (Standard) : 10HP": 12934,
+          "VR-1 (Standard) : 15HP": 13783,
+          "VR-1 (Standard) : 20HP": 15586,
+          "VR-1 (Standard) : 25HP": 17704,
+          "VR-1 BPO/DMA : 10HP": 14231,
+          "VR-1 BPO/DMA : 15HP": 15077,
+          "VR-1 BPO/DMA : 20HP": 16878,
+          "VR-1 BPO/DMA : 25HP": 18996
+        },
+        {
+          "ANSI Size": "1.5x3x8 (8A50)",
+          "RPM": 1800,
+          "ANSI Size : RPM": "1.5x3x8 (8A50):1800",
+          "VR-1 (Standard) : 10HP": 13142,
+          "VR-1 (Standard) : 15HP": 14459,
+          "VR-1 (Standard) : 20HP": 15930,
+          "VR-1 (Standard) : 25HP": 17840,
+          "VR-1 BPO/DMA : 10HP": 14458,
+          "VR-1 BPO/DMA : 15HP": 15774,
+          "VR-1 BPO/DMA : 20HP": 17243,
+          "VR-1 BPO/DMA : 25HP": 19152
+        },
+        {
+          "ANSI Size": "2x3x8 (8A60)",
+          "RPM": 3600,
+          "ANSI Size : RPM": "2x3x8 (8A60):3600",
+          "VR-1 (Standard) : 10HP": 13454,
+          "VR-1 (Standard) : 15HP": 14477,
+          "VR-1 (Standard) : 20HP": 16363,
+          "VR-1 (Standard) : 25HP": 18562,
+          "VR-1 BPO/DMA : 10HP": 14799,
+          "VR-1 BPO/DMA : 15HP": 15822,
+          "VR-1 BPO/DMA : 20HP": 17709,
+          "VR-1 BPO/DMA : 25HP": 19908
+        },
+        {
+          "ANSI Size": "2x3x8 (8A60)",
+          "RPM": 1800,
+          "ANSI Size : RPM": "2x3x8 (8A60):1800",
+          "VR-1 (Standard) : 10HP": 13663,
+          "VR-1 (Standard) : 15HP": 15133,
+          "VR-1 (Standard) : 20HP": 16709,
+          "VR-1 (Standard) : 25HP": 18737,
+          "VR-1 BPO/DMA : 10HP": 15029,
+          "VR-1 BPO/DMA : 15HP": 16502,
+          "VR-1 BPO/DMA : 20HP": 18072,
+          "VR-1 BPO/DMA : 25HP": 20102
+        },
+        {
+          "ANSI Size": "3x4x8 (8A70)",
+          "RPM": 3600,
+          "ANSI Size : RPM": "3x4x8 (8A70):3600",
+          "VR-1 (Standard) : 10HP": 14303,
+          "VR-1 (Standard) : 15HP": 15186,
+          "VR-1 (Standard) : 20HP": 17143,
+          "VR-1 (Standard) : 25HP": 19416,
+          "VR-1 BPO/DMA : 10HP": 15734,
+          "VR-1 BPO/DMA : 15HP": 16617,
+          "VR-1 BPO/DMA : 20HP": 18571,
+          "VR-1 BPO/DMA : 25HP": 20847
+        }
+      ]
+    },
+    {
+      "start_col": 169,
+      "end_col": 176,
+      "table_id": "Table152",
+      "title": "3000 Pump Pricing",
+      "headers": [
+        "ANSI Size",
+        "VR-1 (Standard)",
+        "VR-1A",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght",
+        "POLYPROPYLENE"
+      ],
+      "meta_columns": [
+        "ANSI Size"
+      ],
+      "price_columns": [
+        "VR-1 (Standard)",
+        "VR-1A",
+        "VR-1 BPO/DMA",
+        "VR-1 Wght",
+        "POLYPROPYLENE"
+      ],
+      "price_column_count": 5,
+      "data_rows": 6,
+      "sample_rows": [
+        {
+          "ANSI Size": "2x3x6 (6AC)",
+          "VR-1 (Standard)": 11773,
+          "VR-1A": 18185,
+          "VR-1 BPO/DMA": 12941,
+          "VR-1 Wght": 125,
+          "POLYPROPYLENE": "PMSP-510-1/4T1"
+        },
+        {
+          "ANSI Size": "2x3x8 (8A60)",
+          "VR-1 (Standard)": 16126,
+          "VR-1A": 24919,
+          "VR-1 BPO/DMA": 17725,
+          "VR-1 Wght": 219,
+          "POLYPROPYLENE": "PMSP-510-1/3T1"
+        },
+        {
+          "ANSI Size": "3x4x8 (8A70)",
+          "VR-1 (Standard)": 16723,
+          "VR-1A": 25826,
+          "VR-1 BPO/DMA": 18379,
+          "VR-1 Wght": 231,
+          "POLYPROPYLENE": "PMSP-510-1/2T1"
+        },
+        {
+          "ANSI Size": "2x3x10 (10A60)",
+          "VR-1 (Standard)": 21153,
+          "VR-1A": 32667,
+          "VR-1 BPO/DMA": 23247,
+          "VR-1 Wght": 269,
+          "POLYPROPYLENE": "PMSP-525-1/3T1"
+        },
+        {
+          "ANSI Size": "4x6x11 (--)",
+          "VR-1 (Standard)": 29258,
+          "VR-1A": 42946,
+          "VR-1 BPO/DMA": 32154,
+          "VR-1 Wght": 375,
+          "POLYPROPYLENE": "PMSP-525-1/2T1"
+        }
+      ]
+    },
+    {
+      "start_col": 178,
+      "end_col": 188,
+      "table_id": null,
+      "title": "500 Pump Pricing",
+      "headers": [
+        "KYNAR",
+        "POLYPROPYLENE",
+        "KYNAR"
+      ],
+      "meta_columns": [],
+      "price_columns": [
+        "KYNAR",
+        "POLYPROPYLENE",
+        "KYNAR"
+      ],
+      "price_column_count": 3,
+      "data_rows": 25,
+      "sample_rows": [
+        {
+          "KYNAR": "KM-510-1/4T1",
+          "POLYPROPYLENE": "PM-510-1/4T1"
+        },
+        {
+          "KYNAR": "KM-510-1/3T1",
+          "POLYPROPYLENE": "PM-510-1/3T1"
+        },
+        {
+          "KYNAR": "KM-510-1/2T1",
+          "POLYPROPYLENE": "PM-510-1/2T1"
+        },
+        {
+          "KYNAR": "KM-525-1/3T1",
+          "POLYPROPYLENE": "PM-525-1/3T1"
+        },
+        {
+          "KYNAR": "KM-525-1/2T1",
+          "POLYPROPYLENE": "PM-525-1/2T1"
+        }
+      ]
+    }
+  ]
+}

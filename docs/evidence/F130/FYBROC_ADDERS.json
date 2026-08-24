@@ -1,0 +1,944 @@
+{
+  "artifact": "FYBROC_ADDERS",
+  "step": "F130.2",
+  "roadmap_version": "1.1",
+  "milestone": "F130",
+  "source_workbook": "workbooks/Fybroc/Price Estimator-Fybroc.xlsm",
+  "sheet": "Adders",
+  "generated_utc": "2026-08-24T14:26:40.794302+00:00",
+  "git_commit": "642d41e629925181e44991caec1577d294797bb9",
+  "git_working_tree_clean": false,
+  "section_count": 14,
+  "total_adder_lines": 98,
+  "sections": [
+    {
+      "start_row": 1,
+      "category": "Hardware",
+      "adder_count": 10,
+      "adders": [
+        {
+          "description": "303SS (Standard)",
+          "id": 100.0,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": 0.0,
+          "col7": "Vertical"
+        },
+        {
+          "description": "316SS Gland H/W",
+          "id": null,
+          "group_1": 133.0,
+          "group_2": 182.0,
+          "group_3": 303.0,
+          "extra": 0.0,
+          "col7": "316SS"
+        },
+        {
+          "description": "Carp-20 Gland H/W",
+          "id": null,
+          "group_1": 176.0,
+          "group_2": 235.0,
+          "group_3": 411.0,
+          "extra": 0.0,
+          "col7": "Carp-20"
+        },
+        {
+          "description": "Titan. Gland H/W",
+          "id": null,
+          "group_1": 313.0,
+          "group_2": 364.0,
+          "group_3": 520.0,
+          "extra": 0.0,
+          "col7": "Titan."
+        },
+        {
+          "description": "Hast-C Gland H/W",
+          "id": null,
+          "group_1": 494.0,
+          "group_2": 543.0,
+          "group_3": 714.0,
+          "extra": 0.0,
+          "col7": "Hast-C"
+        },
+        {
+          "description": "316SS Bearing Frame H/W",
+          "id": null,
+          "group_1": 224.0,
+          "group_2": 244.0,
+          "group_3": 315.0,
+          "extra": 0.0
+        },
+        {
+          "description": "316SS Baseplate H/W",
+          "id": null,
+          "group_1": 428.0,
+          "group_2": 473.0,
+          "group_3": 608.0,
+          "extra": 0.0
+        },
+        {
+          "description": "316SS Baseplate Shims",
+          "id": null,
+          "group_1": 244.0,
+          "group_2": 244.0,
+          "group_3": 244.0,
+          "extra": 0.0
+        },
+        {
+          "description": "316SS Casing H/W",
+          "id": null,
+          "group_1": 547.0,
+          "group_2": 579.0,
+          "group_3": 617.0,
+          "extra": 0.0
+        },
+        {
+          "description": "316SS All H/W",
+          "id": null,
+          "group_1": 1332.0,
+          "group_2": 1478.0,
+          "group_3": 1843.0,
+          "extra": 0.0
+        }
+      ]
+    },
+    {
+      "start_row": 13,
+      "category": "Shaft (5500, 7500)",
+      "adder_count": 1,
+      "adders": [
+        {
+          "description": "316 SS",
+          "id": 101.0,
+          "group_1": 399.0,
+          "group_2": 528.0,
+          "group_3": 881.0,
+          "extra": 0.0
+        }
+      ]
+    },
+    {
+      "start_row": 16,
+      "category": "Flush (1500, 1530, 1600, 1630, 3000)",
+      "adder_count": 2,
+      "adders": [
+        {
+          "description": "Casing Bypass Flush",
+          "id": 102.0,
+          "group_1": 520.0,
+          "group_2": 520.0,
+          "group_3": 520.0,
+          "extra": 520.0,
+          "col7": 0.0
+        },
+        {
+          "description": "Internal Cover Flush",
+          "id": null,
+          "group_1": 335.0,
+          "group_2": 443.0,
+          "group_3": 885.0,
+          "extra": 1480.0,
+          "col7": 0.0
+        }
+      ]
+    },
+    {
+      "start_row": 20,
+      "category": "Bearings",
+      "adder_count": 3,
+      "adders": [
+        {
+          "description": "Oil Bath Lubrication (Std)",
+          "id": 103.0,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": null
+        },
+        {
+          "description": "Re-Greaseable Bearings",
+          "id": null,
+          "group_1": 972.0,
+          "group_2": 1257.0,
+          "group_3": 1945.0,
+          "extra": "#N/A"
+        },
+        {
+          "description": "Greased for Life Bearings",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": null
+        }
+      ]
+    },
+    {
+      "start_row": 25,
+      "category": "MISC.",
+      "adder_count": 30,
+      "adders": [
+        {
+          "description": "Suction & Discharge Gauge Taps",
+          "id": 104.0,
+          "group_1": 1041.0,
+          "group_2": 521.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Casing Drains",
+          "id": null,
+          "group_1": 335.0,
+          "group_2": 335.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Flush Assembly Package - Double Seal",
+          "id": null,
+          "group_1": 1802.0,
+          "group_2": "C/F",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Flush Assembly Package - Single Seal",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "C-Face Adapter",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "N/A",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Cyclone Separator",
+          "id": null,
+          "group_1": 1764.0,
+          "group_2": 1764.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Teflon/Kynar Tubing and Fittings and Tapped Discharge Spacer (Casing Bypass Flush)",
+          "id": null,
+          "group_1": "#N/A",
+          "group_2": "#N/A",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Teflon/Kynar Tubing and Fittings and Tapped Discharge (Casing Bypass Flush)",
+          "id": null,
+          "group_1": 869.0,
+          "group_2": 869.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Polypropylene Tubing and Fittings and Tapped Discharge Spacer (Casing Bypass Flush)",
+          "id": null,
+          "group_1": "#N/A",
+          "group_2": "#N/A",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Polypropylene Tubing and Fittings and Tapped Discharge (Casing Bypass Flush)",
+          "id": null,
+          "group_1": 520.0,
+          "group_2": 0.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Carbon Filled Teflon Throat Bushing",
+          "id": null,
+          "group_1": "#N/A",
+          "group_2": "N/A",
+          "group_3": null,
+          "extra": null,
+          "col7": 162.0
+        },
+        {
+          "description": "Dynamically Balanced Impeller",
+          "id": null,
+          "group_1": 388.0,
+          "group_2": 388.0,
+          "group_3": null,
+          "extra": null,
+          "col7": 181.0
+        },
+        {
+          "description": "316SS Mechanical Seal Guard",
+          "id": null,
+          "group_1": "#N/A",
+          "group_2": "N/A",
+          "group_3": null,
+          "extra": null,
+          "col7": 520.0
+        },
+        {
+          "description": "Greased for Life Bearings",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "N/A",
+          "group_3": null,
+          "extra": null,
+          "col7": 581.0
+        },
+        {
+          "description": "Re-Greaseable Bearings",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "N/A",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Oil Bath Lubrication (Std)",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "N/A",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "DIN/ISO Flanges",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Bearing Frame with Metric Shaft on Coupling End",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": null,
+          "extra": null,
+          "col7": 562.0
+        },
+        {
+          "description": "JIS Flanges",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": null,
+          "extra": null,
+          "col7": 628.0
+        },
+        {
+          "description": "FLOAT - Normally Closed:  40003000X",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 286.0,
+          "group_3": "Y",
+          "extra": null
+        },
+        {
+          "description": "FLOAT - Normally Open:   40004000X",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 286.0,
+          "group_3": "Y",
+          "extra": null
+        },
+        {
+          "description": "FLOAT COMPLETE ASSY:   40018000X",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 1442.0,
+          "group_3": "Y",
+          "extra": null
+        },
+        {
+          "description": "FLOAT ALARM PACK SERIES 2000-4:  40116000X",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 503.0,
+          "group_3": "Y",
+          "extra": null
+        },
+        {
+          "description": "FLOAT ALARM PACK SERIES 2100-4:  40111000X",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "C/F",
+          "group_3": "Y",
+          "extra": null
+        },
+        {
+          "description": "Cert. of Origin",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Cert. of Origin (Attested by Local Chamber of Commerce)",
+          "id": null,
+          "group_1": 737.0,
+          "group_2": 737.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Cert. of Conformance",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Cert. of Material",
+          "id": null,
+          "group_1": 408.0,
+          "group_2": 408.0,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Cert. of Quality",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": null,
+          "extra": null,
+          "col7": 1267.0
+        },
+        {
+          "description": "Hydro-Test Per Internal Factory Procedures",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": "#N/A",
+          "group_3": null,
+          "extra": null,
+          "col7": 1417.0
+        }
+      ]
+    },
+    {
+      "start_row": 57,
+      "category": "Elastomers (All but self-priming pumps)",
+      "adder_count": 6,
+      "adders": [
+        {
+          "description": "Viton (Standard)",
+          "id": 105.0,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": 0.0,
+          "col7": 0.0
+        },
+        {
+          "description": "EPR",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": 0.0,
+          "col7": 0.0
+        },
+        {
+          "description": "Kalrez",
+          "id": null,
+          "group_1": "*",
+          "group_2": "*",
+          "group_3": "*",
+          "extra": "*",
+          "col7": "*"
+        },
+        {
+          "description": "Teflon",
+          "id": null,
+          "group_1": 227.0,
+          "group_2": 406.0,
+          "group_3": 644.0,
+          "extra": 723.0,
+          "col7": 1210.0
+        },
+        {
+          "description": "Teflon encapsulated Viton",
+          "id": null,
+          "group_1": 227.0,
+          "group_2": 406.0,
+          "group_3": 644.0,
+          "extra": 723.0,
+          "col7": 1210.0
+        },
+        {
+          "description": "Aflas",
+          "id": null,
+          "group_1": "*",
+          "group_2": "*",
+          "group_3": "*",
+          "extra": "*",
+          "col7": "*"
+        }
+      ]
+    },
+    {
+      "start_row": 66,
+      "category": "Elastomers (Self-priming pumps)",
+      "adder_count": 6,
+      "adders": [
+        {
+          "description": "Viton (Standard)",
+          "id": 106.0,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": null
+        },
+        {
+          "description": "EPR",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": null
+        },
+        {
+          "description": "Kalrez",
+          "id": null,
+          "group_1": "*",
+          "group_2": "*",
+          "group_3": "*",
+          "extra": null
+        },
+        {
+          "description": "Teflon",
+          "id": null,
+          "group_1": 227.0,
+          "group_2": 644.0,
+          "group_3": 723.0,
+          "extra": null
+        },
+        {
+          "description": "Teflon encapsulated Viton",
+          "id": null,
+          "group_1": 227.0,
+          "group_2": 644.0,
+          "group_3": 723.0,
+          "extra": null
+        },
+        {
+          "description": "Aflas",
+          "id": null,
+          "group_1": "*",
+          "group_2": "*",
+          "group_3": "*",
+          "extra": null
+        }
+      ]
+    },
+    {
+      "start_row": 91,
+      "category": "Journal Sleeve",
+      "adder_count": 7,
+      "adders": [
+        {
+          "description": "316SS Journal Sleeve",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "C/F",
+          "col7": "C/F"
+        },
+        {
+          "description": "7530-Carp-20 Journal Sleeve",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "N/A",
+          "col7": "N/A"
+        },
+        {
+          "description": "Carp-20 Journal Sleeve",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "C/F",
+          "col7": "C/F"
+        },
+        {
+          "description": "7530-Titanium Journal Sleeve",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "N/A",
+          "col7": "N/A"
+        },
+        {
+          "description": "Titanium Journal Sleeve",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "C/F",
+          "col7": "C/F"
+        },
+        {
+          "description": "7530-Hast-C Journal Sleeve",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "N/A",
+          "col7": "N/A"
+        },
+        {
+          "description": "Hast-C Journal Sleeve",
+          "id": null,
+          "group_1": "C/F",
+          "group_2": "C/F",
+          "group_3": "C/F",
+          "extra": "C/F",
+          "col7": "C/F"
+        }
+      ]
+    },
+    {
+      "start_row": 100,
+      "category": "Alloy Shaft Sleeve / Packing",
+      "adder_count": 11,
+      "adders": [
+        {
+          "description": "316SS Shaft Sleeve",
+          "id": null,
+          "group_1": 345.0,
+          "group_2": 707.0,
+          "group_3": 1134.0,
+          "extra": 0.0
+        },
+        {
+          "description": "Carp-20 Shaft Sleeve",
+          "id": null,
+          "group_1": 676.0,
+          "group_2": 1051.0,
+          "group_3": 1424.0,
+          "extra": null
+        },
+        {
+          "description": "Titanium Shaft Sleeve",
+          "id": null,
+          "group_1": 1311.0,
+          "group_2": 1974.0,
+          "group_3": 2983.0,
+          "extra": null
+        },
+        {
+          "description": "Hast-C Shaft Sleeve",
+          "id": null,
+          "group_1": 790.0,
+          "group_2": 1577.0,
+          "group_3": 2050.0,
+          "extra": null
+        },
+        {
+          "description": "Required Adders 1500,1600,3000",
+          "id": null,
+          "group_1": "Cost",
+          "group_2": "Value",
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "IEC Metric Frame - Coupling",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": null,
+          "extra": null,
+          "col7": 329.0
+        },
+        {
+          "description": "IEC Metric Frame - Baseplate",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": null,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "IEC Metric Frame - Motor Riser",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": null,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "316SS Coupling Guard",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": null,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "Alum. Non-Spark Coupling Guard",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": null,
+          "group_3": null,
+          "extra": null
+        },
+        {
+          "description": "C-Face Adapter",
+          "id": null,
+          "group_1": 0.0,
+          "group_2": null,
+          "group_3": null,
+          "extra": null
+        }
+      ]
+    },
+    {
+      "start_row": 284,
+      "category": "Shaft (5500, 7500)",
+      "adder_count": 1,
+      "adders": [
+        {
+          "description": "---",
+          "id": null,
+          "group_1": 591.0,
+          "group_2": 1432.0,
+          "group_3": 2359.0,
+          "extra": null,
+          "col7": "316 SS"
+        }
+      ]
+    },
+    {
+      "start_row": 287,
+      "category": "Journal Sleeve",
+      "adder_count": 7,
+      "adders": [
+        {
+          "description": "316SS Shaft Sleeve",
+          "id": null,
+          "group_1": 577.0,
+          "group_2": 693.0,
+          "group_3": 693.0,
+          "extra": 1018.0,
+          "col7": 1224.0
+        },
+        {
+          "description": "7530-Carp-20 Shaft Sleeve",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 1542.0,
+          "group_3": 1542.0,
+          "extra": "N/A",
+          "col7": "N/A"
+        },
+        {
+          "description": "Carp-20 Shaft Sleeve",
+          "id": null,
+          "group_1": 646.0,
+          "group_2": 760.0,
+          "group_3": 760.0,
+          "extra": 1157.0,
+          "col7": 1595.0
+        },
+        {
+          "description": "7530-Titanium Shaft Sleeve",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 2697.0,
+          "group_3": 2697.0,
+          "extra": "N/A",
+          "col7": "N/A"
+        },
+        {
+          "description": "Titanium Shaft Sleeve",
+          "id": null,
+          "group_1": 1951.0,
+          "group_2": 2263.0,
+          "group_3": 2263.0,
+          "extra": 2845.0,
+          "col7": 3769.0
+        },
+        {
+          "description": "7530-Hast-C Shaft Sleeve",
+          "id": null,
+          "group_1": "N/A",
+          "group_2": 2697.0,
+          "group_3": 2697.0,
+          "extra": "N/A",
+          "col7": "N/A"
+        },
+        {
+          "description": "Hast-C Shaft Sleeve",
+          "id": null,
+          "group_1": 972.0,
+          "group_2": 1252.0,
+          "group_3": 1252.0,
+          "extra": 1419.0,
+          "col7": 2021.0
+        }
+      ]
+    },
+    {
+      "start_row": 296,
+      "category": "Flush (1500, 1530, 1600, 1630, 3000)",
+      "adder_count": 2,
+      "adders": [
+        {
+          "description": "Bypass Flush",
+          "id": null,
+          "group_1": 520.0,
+          "group_2": 520.0,
+          "group_3": 520.0,
+          "extra": 520.0
+        },
+        {
+          "description": "Internal Cover Flush",
+          "id": null,
+          "group_1": 335.0,
+          "group_2": 443.0,
+          "group_3": 885.0,
+          "extra": 1480.0
+        }
+      ]
+    },
+    {
+      "start_row": 300,
+      "category": "Flush (1500, 1530, 1600, 1630, 3000)",
+      "adder_count": 2,
+      "adders": [
+        {
+          "description": "Casing Bypass Flush",
+          "id": null,
+          "group_1": 520.0,
+          "group_2": 520.0,
+          "group_3": 520.0,
+          "extra": 520.0
+        },
+        {
+          "description": "Internal Cover Flush",
+          "id": null,
+          "group_1": 335.0,
+          "group_2": 443.0,
+          "group_3": 885.0,
+          "extra": 1480.0
+        }
+      ]
+    },
+    {
+      "start_row": 304,
+      "category": "Hardware",
+      "adder_count": 10,
+      "adders": [
+        {
+          "description": "---",
+          "id": 332.0,
+          "group_1": 0.0,
+          "group_2": 0.0,
+          "group_3": 0.0,
+          "extra": 333.0,
+          "col7": "303SS (Standard)"
+        },
+        {
+          "description": "316SS Wetted H/W",
+          "id": null,
+          "group_1": 551.0,
+          "group_2": 585.0,
+          "group_3": 620.0,
+          "extra": null,
+          "col7": "316SS Gland H/W"
+        },
+        {
+          "description": "Carp-20 Wetted H/W",
+          "id": null,
+          "group_1": 745.0,
+          "group_2": 789.0,
+          "group_3": 840.0,
+          "extra": null,
+          "col7": "Carp-20 Gland H/W"
+        },
+        {
+          "description": "Titan. Wetted H/W",
+          "id": null,
+          "group_1": 941.0,
+          "group_2": 999.0,
+          "group_3": 1061.0,
+          "extra": null,
+          "col7": "Titan. Gland H/W"
+        },
+        {
+          "description": "Hast-C Wetted H/W",
+          "id": null,
+          "group_1": 1297.0,
+          "group_2": 1378.0,
+          "group_3": 1462.0,
+          "extra": null,
+          "col7": "Hast-C Gland H/W"
+        },
+        {
+          "description": "---",
+          "id": null,
+          "group_1": null,
+          "group_2": null,
+          "group_3": null,
+          "extra": null,
+          "col7": "316SS Bearing Frame H/W"
+        },
+        {
+          "description": "---",
+          "id": null,
+          "group_1": null,
+          "group_2": null,
+          "group_3": null,
+          "extra": null,
+          "col7": "316SS Baseplate H/W"
+        },
+        {
+          "description": "---",
+          "id": null,
+          "group_1": null,
+          "group_2": null,
+          "group_3": null,
+          "extra": null,
+          "col7": "316SS Baseplate Shims"
+        },
+        {
+          "description": "---",
+          "id": null,
+          "group_1": null,
+          "group_2": null,
+          "group_3": null,
+          "extra": null,
+          "col7": "316SS Casing H/W"
+        },
+        {
+          "description": "---",
+          "id": null,
+          "group_1": 551.0,
+          "group_2": 585.0,
+          "group_3": 620.0,
+          "extra": null,
+          "col7": "316SS All H/W"
+        }
+      ]
+    }
+  ]
+}

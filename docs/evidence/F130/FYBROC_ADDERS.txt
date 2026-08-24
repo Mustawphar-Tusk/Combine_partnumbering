@@ -1,0 +1,178 @@
+========================================================================================================================
+F130.2 - FYBROC ADDERS (from Price Estimator)
+========================================================================================================================
+
+Git commit       : 642d41e629925181e44991caec1577d294797bb9
+Git clean        : False
+
+Sections         : 14
+Total adder lines: 98
+
+========================================================================================================================
+Hardware (row 1, 10 adders)
+========================================================================================================================
+
+  303SS (Standard)                                        G1=0.0      G2=0.0      G3=0.0     
+  316SS Gland H/W                                         G1=133.0    G2=182.0    G3=303.0   
+  Carp-20 Gland H/W                                       G1=176.0    G2=235.0    G3=411.0   
+  Titan. Gland H/W                                        G1=313.0    G2=364.0    G3=520.0   
+  Hast-C Gland H/W                                        G1=494.0    G2=543.0    G3=714.0   
+  316SS Bearing Frame H/W                                 G1=224.0    G2=244.0    G3=315.0   
+  316SS Baseplate H/W                                     G1=428.0    G2=473.0    G3=608.0   
+  316SS Baseplate Shims                                   G1=244.0    G2=244.0    G3=244.0   
+  316SS Casing H/W                                        G1=547.0    G2=579.0    G3=617.0   
+  316SS All H/W                                           G1=1332.0   G2=1478.0   G3=1843.0  
+
+========================================================================================================================
+Shaft (5500, 7500) (row 13, 1 adders)
+========================================================================================================================
+
+  316 SS                                                  G1=399.0    G2=528.0    G3=881.0   
+
+========================================================================================================================
+Flush (1500, 1530, 1600, 1630, 3000) (row 16, 2 adders)
+========================================================================================================================
+
+  Casing Bypass Flush                                     G1=520.0    G2=520.0    G3=520.0   
+  Internal Cover Flush                                    G1=335.0    G2=443.0    G3=885.0   
+
+========================================================================================================================
+Bearings (row 20, 3 adders)
+========================================================================================================================
+
+  Oil Bath Lubrication (Std)                              G1=0.0      G2=0.0      G3=0.0     
+  Re-Greaseable Bearings                                  G1=972.0    G2=1257.0   G3=1945.0  
+  Greased for Life Bearings                               G1=0.0      G2=0.0      G3=0.0     
+
+========================================================================================================================
+MISC. (row 25, 30 adders)
+========================================================================================================================
+
+  Suction & Discharge Gauge Taps                          G1=1041.0   G2=521.0    G3=None    
+  Casing Drains                                           G1=335.0    G2=335.0    G3=None    
+  Flush Assembly Package - Double Seal                    G1=1802.0   G2=C/F      G3=None    
+  Flush Assembly Package - Single Seal                    G1=C/F      G2=C/F      G3=None    
+  C-Face Adapter                                          G1=N/A      G2=N/A      G3=None    
+  Cyclone Separator                                       G1=1764.0   G2=1764.0   G3=None    
+  Teflon/Kynar Tubing and Fittings and Tapped Discharge Spacer (Casing Bypass Flush) G1=#N/A     G2=#N/A     G3=None    
+  Teflon/Kynar Tubing and Fittings and Tapped Discharge (Casing Bypass Flush) G1=869.0    G2=869.0    G3=None    
+  Polypropylene Tubing and Fittings and Tapped Discharge Spacer (Casing Bypass Flush) G1=#N/A     G2=#N/A     G3=None    
+  Polypropylene Tubing and Fittings and Tapped Discharge (Casing Bypass Flush) G1=520.0    G2=0.0      G3=None    
+  Carbon Filled Teflon Throat Bushing                     G1=#N/A     G2=N/A      G3=None    
+  Dynamically Balanced Impeller                           G1=388.0    G2=388.0    G3=None    
+  316SS Mechanical Seal Guard                             G1=#N/A     G2=N/A      G3=None    
+  Greased for Life Bearings                               G1=N/A      G2=N/A      G3=None    
+  Re-Greaseable Bearings                                  G1=N/A      G2=N/A      G3=None    
+  Oil Bath Lubrication (Std)                              G1=N/A      G2=N/A      G3=None    
+  DIN/ISO Flanges                                         G1=C/F      G2=C/F      G3=None    
+  Bearing Frame with Metric Shaft on Coupling End         G1=C/F      G2=C/F      G3=None    
+  JIS Flanges                                             G1=C/F      G2=C/F      G3=None    
+  FLOAT - Normally Closed:  40003000X                     G1=N/A      G2=286.0    G3=Y       
+  FLOAT - Normally Open:   40004000X                      G1=N/A      G2=286.0    G3=Y       
+  FLOAT COMPLETE ASSY:   40018000X                        G1=N/A      G2=1442.0   G3=Y       
+  FLOAT ALARM PACK SERIES 2000-4:  40116000X              G1=N/A      G2=503.0    G3=Y       
+  FLOAT ALARM PACK SERIES 2100-4:  40111000X              G1=N/A      G2=C/F      G3=Y       
+  Cert. of Origin                                         G1=0.0      G2=0.0      G3=None    
+  Cert. of Origin (Attested by Local Chamber of Commerce) G1=737.0    G2=737.0    G3=None    
+  Cert. of Conformance                                    G1=0.0      G2=0.0      G3=None    
+  Cert. of Material                                       G1=408.0    G2=408.0    G3=None    
+  Cert. of Quality                                        G1=0.0      G2=0.0      G3=None    
+  Hydro-Test Per Internal Factory Procedures              G1=0.0      G2=#N/A     G3=None    
+
+========================================================================================================================
+Elastomers (All but self-priming pumps) (row 57, 6 adders)
+========================================================================================================================
+
+  Viton (Standard)                                        G1=0.0      G2=0.0      G3=0.0     
+  EPR                                                     G1=0.0      G2=0.0      G3=0.0     
+  Kalrez                                                  G1=*        G2=*        G3=*       
+  Teflon                                                  G1=227.0    G2=406.0    G3=644.0   
+  Teflon encapsulated Viton                               G1=227.0    G2=406.0    G3=644.0   
+  Aflas                                                   G1=*        G2=*        G3=*       
+
+========================================================================================================================
+Elastomers (Self-priming pumps) (row 66, 6 adders)
+========================================================================================================================
+
+  Viton (Standard)                                        G1=0.0      G2=0.0      G3=0.0     
+  EPR                                                     G1=0.0      G2=0.0      G3=0.0     
+  Kalrez                                                  G1=*        G2=*        G3=*       
+  Teflon                                                  G1=227.0    G2=644.0    G3=723.0   
+  Teflon encapsulated Viton                               G1=227.0    G2=644.0    G3=723.0   
+  Aflas                                                   G1=*        G2=*        G3=*       
+
+========================================================================================================================
+Journal Sleeve (row 91, 7 adders)
+========================================================================================================================
+
+  316SS Journal Sleeve                                    G1=C/F      G2=C/F      G3=C/F     
+  7530-Carp-20 Journal Sleeve                             G1=N/A      G2=C/F      G3=C/F     
+  Carp-20 Journal Sleeve                                  G1=C/F      G2=C/F      G3=C/F     
+  7530-Titanium Journal Sleeve                            G1=N/A      G2=C/F      G3=C/F     
+  Titanium Journal Sleeve                                 G1=C/F      G2=C/F      G3=C/F     
+  7530-Hast-C Journal Sleeve                              G1=N/A      G2=C/F      G3=C/F     
+  Hast-C Journal Sleeve                                   G1=C/F      G2=C/F      G3=C/F     
+
+========================================================================================================================
+Alloy Shaft Sleeve / Packing (row 100, 11 adders)
+========================================================================================================================
+
+  316SS Shaft Sleeve                                      G1=345.0    G2=707.0    G3=1134.0  
+  Carp-20 Shaft Sleeve                                    G1=676.0    G2=1051.0   G3=1424.0  
+  Titanium Shaft Sleeve                                   G1=1311.0   G2=1974.0   G3=2983.0  
+  Hast-C Shaft Sleeve                                     G1=790.0    G2=1577.0   G3=2050.0  
+  Required Adders 1500,1600,3000                          G1=Cost     G2=Value    G3=None    
+  IEC Metric Frame - Coupling                             G1=0.0      G2=0.0      G3=None    
+  IEC Metric Frame - Baseplate                            G1=0.0      G2=None     G3=None    
+  IEC Metric Frame - Motor Riser                          G1=0.0      G2=None     G3=None    
+  316SS Coupling Guard                                    G1=0.0      G2=None     G3=None    
+  Alum. Non-Spark Coupling Guard                          G1=0.0      G2=None     G3=None    
+  C-Face Adapter                                          G1=0.0      G2=None     G3=None    
+
+========================================================================================================================
+Shaft (5500, 7500) (row 284, 1 adders)
+========================================================================================================================
+
+  ---                                                     G1=591.0    G2=1432.0   G3=2359.0  
+
+========================================================================================================================
+Journal Sleeve (row 287, 7 adders)
+========================================================================================================================
+
+  316SS Shaft Sleeve                                      G1=577.0    G2=693.0    G3=693.0   
+  7530-Carp-20 Shaft Sleeve                               G1=N/A      G2=1542.0   G3=1542.0  
+  Carp-20 Shaft Sleeve                                    G1=646.0    G2=760.0    G3=760.0   
+  7530-Titanium Shaft Sleeve                              G1=N/A      G2=2697.0   G3=2697.0  
+  Titanium Shaft Sleeve                                   G1=1951.0   G2=2263.0   G3=2263.0  
+  7530-Hast-C Shaft Sleeve                                G1=N/A      G2=2697.0   G3=2697.0  
+  Hast-C Shaft Sleeve                                     G1=972.0    G2=1252.0   G3=1252.0  
+
+========================================================================================================================
+Flush (1500, 1530, 1600, 1630, 3000) (row 296, 2 adders)
+========================================================================================================================
+
+  Bypass Flush                                            G1=520.0    G2=520.0    G3=520.0   
+  Internal Cover Flush                                    G1=335.0    G2=443.0    G3=885.0   
+
+========================================================================================================================
+Flush (1500, 1530, 1600, 1630, 3000) (row 300, 2 adders)
+========================================================================================================================
+
+  Casing Bypass Flush                                     G1=520.0    G2=520.0    G3=520.0   
+  Internal Cover Flush                                    G1=335.0    G2=443.0    G3=885.0   
+
+========================================================================================================================
+Hardware (row 304, 10 adders)
+========================================================================================================================
+
+  ---                                                     G1=0.0      G2=0.0      G3=0.0     
+  316SS Wetted H/W                                        G1=551.0    G2=585.0    G3=620.0   
+  Carp-20 Wetted H/W                                      G1=745.0    G2=789.0    G3=840.0   
+  Titan. Wetted H/W                                       G1=941.0    G2=999.0    G3=1061.0  
+  Hast-C Wetted H/W                                       G1=1297.0   G2=1378.0   G3=1462.0  
+  ---                                                     G1=None     G2=None     G3=None    
+  ---                                                     G1=None     G2=None     G3=None    
+  ---                                                     G1=None     G2=None     G3=None    
+  ---                                                     G1=None     G2=None     G3=None    
+  ---                                                     G1=551.0    G2=585.0    G3=620.0   
+
