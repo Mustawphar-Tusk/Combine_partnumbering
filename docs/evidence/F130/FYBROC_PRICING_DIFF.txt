@@ -1,0 +1,136 @@
+========================================================================================================================
+F130.6 - FYBROC PRICING DIFF (Rev0.3 vs Price Estimator)
+========================================================================================================================
+
+Git commit  : 7eb597afb2c60fa05ef3a10a7ce5c7bef0cefe5c
+Git clean   : False
+
+========================================================================================================================
+1500 SERIES BASE PRICE COMPARISON
+========================================================================================================================
+
+Rev0.3 prices   : 109
+PE prices       : 128
+Total compared  : 165
+Match rate      : 43.6%
+
+Counts:
+  MATCH           : 72
+  MISMATCH        : 0
+  REV03_ONLY      : 37
+  PE_ONLY         : 56
+
+DIFFERENCES (93 entries):
+
+  REV03_ONLY   size=1.5x3x10     material=vr1_bpodma      rev03=10187.0  pe=None  diff=None
+  REV03_ONLY   size=1.5x3x10     material=vr1a_bpodma     rev03=17882.0  pe=None  diff=None
+  PE_ONLY      size=1.5x3x10     material=vr1abpodma      rev03=None  pe=17882.0  diff=None
+  PE_ONLY      size=1.5x3x10     material=vr1bpodma       rev03=None  pe=10187.0  diff=None
+  PE_ONLY      size=1.5x3x10     material=vr1vbpodma      rev03=None  pe=27166.0  diff=None
+  REV03_ONLY   size=1.5x3x6      material=vr1_bpodma      rev03=5777.0  pe=None  diff=None
+  REV03_ONLY   size=1.5x3x6      material=vr1a_bpodma     rev03=10041.0  pe=None  diff=None
+  PE_ONLY      size=1.5x3x6      material=vr1abpodma      rev03=None  pe=10041.0  diff=None
+  PE_ONLY      size=1.5x3x6      material=vr1bpodma       rev03=None  pe=5777.0  diff=None
+  PE_ONLY      size=1.5x3x6      material=vr1vbpodma      rev03=None  pe=15145.0  diff=None
+  REV03_ONLY   size=1.5x3x8      material=vr1_bpodma      rev03=9826.0  pe=None  diff=None
+  REV03_ONLY   size=1.5x3x8      material=vr1a_bpodma     rev03=17252.0  pe=None  diff=None
+  PE_ONLY      size=1.5x3x8      material=vr1abpodma      rev03=None  pe=17252.0  diff=None
+  PE_ONLY      size=1.5x3x8      material=vr1bpodma       rev03=None  pe=9826.0  diff=None
+  PE_ONLY      size=1.5x3x8      material=vr1vbpodma      rev03=None  pe=24440.0  diff=None
+  REV03_ONLY   size=10x12x16     material=vr1_bpodma      rev03=71804.0  pe=None  diff=None
+  PE_ONLY      size=10x12x16     material=vr1bpodma       rev03=None  pe=71804.0  diff=None
+  PE_ONLY      size=10x12x16     material=vr1vbpodma      rev03=None  pe=159195.0  diff=None
+  REV03_ONLY   size=1x1.5x6      material=vr1_bpodma      rev03=5480.0  pe=None  diff=None
+  REV03_ONLY   size=1x1.5x6      material=vr1a_bpodma     rev03=9530.0  pe=None  diff=None
+  PE_ONLY      size=1x1.5x6      material=vr1abpodma      rev03=None  pe=9530.0  diff=None
+  PE_ONLY      size=1x1.5x6      material=vr1bpodma       rev03=None  pe=5480.0  diff=None
+  PE_ONLY      size=1x1.5x6      material=vr1vbpodma      rev03=None  pe=14369.0  diff=None
+  REV03_ONLY   size=1x1.5x8      material=vr1_bpodma      rev03=6573.0  pe=None  diff=None
+  REV03_ONLY   size=1x1.5x8      material=vr1a_bpodma     rev03=11427.0  pe=None  diff=None
+  PE_ONLY      size=1x1.5x8      material=vr1abpodma      rev03=None  pe=11427.0  diff=None
+  PE_ONLY      size=1x1.5x8      material=vr1bpodma       rev03=None  pe=6573.0  diff=None
+  PE_ONLY      size=1x1.5x8      material=vr1vbpodma      rev03=None  pe=17235.0  diff=None
+  REV03_ONLY   size=1x2x10       material=vr1_bpodma      rev03=9753.0  pe=None  diff=None
+  REV03_ONLY   size=1x2x10       material=vr1a_bpodma     rev03=16873.0  pe=None  diff=None
+  PE_ONLY      size=1x2x10       material=vr1abpodma      rev03=None  pe=16873.0  diff=None
+  PE_ONLY      size=1x2x10       material=vr1bpodma       rev03=None  pe=9753.0  diff=None
+  PE_ONLY      size=1x2x10       material=vr1vbpodma      rev03=None  pe=26013.0  diff=None
+  REV03_ONLY   size=2x3x10       material=vr1_bpodma      rev03=11258.0  pe=None  diff=None
+  REV03_ONLY   size=2x3x10       material=vr1a_bpodma     rev03=19762.0  pe=None  diff=None
+  PE_ONLY      size=2x3x10       material=vr1abpodma      rev03=None  pe=19762.0  diff=None
+  PE_ONLY      size=2x3x10       material=vr1bpodma       rev03=None  pe=11258.0  diff=None
+  PE_ONLY      size=2x3x10       material=vr1vbpodma      rev03=None  pe=27999.0  diff=None
+  REV03_ONLY   size=2x3x13       material=vr1_bpodma      rev03=15163.0  pe=None  diff=None
+  REV03_ONLY   size=2x3x13       material=vr1a_bpodma     rev03=26234.0  pe=None  diff=None
+  PE_ONLY      size=2x3x13       material=vr1abpodma      rev03=None  pe=26234.0  diff=None
+  PE_ONLY      size=2x3x13       material=vr1bpodma       rev03=None  pe=15163.0  diff=None
+  PE_ONLY      size=2x3x13       material=vr1vbpodma      rev03=None  pe=39076.0  diff=None
+  REV03_ONLY   size=2x3x6        material=vr1_bpodma      rev03=6056.0  pe=None  diff=None
+  REV03_ONLY   size=2x3x6        material=vr1a_bpodma     rev03=10528.0  pe=None  diff=None
+  PE_ONLY      size=2x3x6        material=vr1abpodma      rev03=None  pe=10528.0  diff=None
+  PE_ONLY      size=2x3x6        material=vr1bpodma       rev03=None  pe=6056.0  diff=None
+  PE_ONLY      size=2x3x6        material=vr1vbpodma      rev03=None  pe=15878.0  diff=None
+  REV03_ONLY   size=2x3x8        material=vr1_bpodma      rev03=10177.0  pe=None  diff=None
+  REV03_ONLY   size=2x3x8        material=vr1a_bpodma     rev03=17865.0  pe=None  diff=None
+  PE_ONLY      size=2x3x8        material=vr1abpodma      rev03=None  pe=17865.0  diff=None
+  PE_ONLY      size=2x3x8        material=vr1bpodma       rev03=None  pe=10177.0  diff=None
+  PE_ONLY      size=2x3x8        material=vr1vbpodma      rev03=None  pe=25313.0  diff=None
+  REV03_ONLY   size=3x4x10       material=vr1_bpodma      rev03=13554.0  pe=None  diff=None
+  REV03_ONLY   size=3x4x10       material=vr1a_bpodma     rev03=23450.0  pe=None  diff=None
+  PE_ONLY      size=3x4x10       material=vr1abpodma      rev03=None  pe=23450.0  diff=None
+  PE_ONLY      size=3x4x10       material=vr1bpodma       rev03=None  pe=13554.0  diff=None
+  PE_ONLY      size=3x4x10       material=vr1vbpodma      rev03=None  pe=34319.0  diff=None
+  REV03_ONLY   size=3x4x13       material=vr1_bpodma      rev03=18259.0  pe=None  diff=None
+  REV03_ONLY   size=3x4x13       material=vr1a_bpodma     rev03=31590.0  pe=None  diff=None
+  PE_ONLY      size=3x4x13       material=vr1abpodma      rev03=None  pe=31590.0  diff=None
+  PE_ONLY      size=3x4x13       material=vr1bpodma       rev03=None  pe=18259.0  diff=None
+  PE_ONLY      size=3x4x13       material=vr1vbpodma      rev03=None  pe=44592.0  diff=None
+  REV03_ONLY   size=3x4x8        material=vr1_bpodma      rev03=10647.0  pe=None  diff=None
+  REV03_ONLY   size=3x4x8        material=vr1a_bpodma     rev03=18427.0  pe=None  diff=None
+  PE_ONLY      size=3x4x8        material=vr1abpodma      rev03=None  pe=18427.0  diff=None
+  PE_ONLY      size=3x4x8        material=vr1bpodma       rev03=None  pe=10647.0  diff=None
+  PE_ONLY      size=3x4x8        material=vr1vbpodma      rev03=None  pe=26961.0  diff=None
+  REV03_ONLY   size=4x4x10       material=vr1_bpodma      rev03=15512.0  pe=None  diff=None
+  REV03_ONLY   size=4x4x10       material=vr1a_bpodma     rev03=26834.0  pe=None  diff=None
+  PE_ONLY      size=4x4x10       material=vr1abpodma      rev03=None  pe=26834.0  diff=None
+  PE_ONLY      size=4x4x10       material=vr1bpodma       rev03=None  pe=15512.0  diff=None
+  PE_ONLY      size=4x4x10       material=vr1vbpodma      rev03=None  pe=39273.0  diff=None
+  REV03_ONLY   size=4x6x10       material=vr1_bpodma      rev03=17482.0  pe=None  diff=None
+  REV03_ONLY   size=4x6x10       material=vr1a_bpodma     rev03=30244.0  pe=None  diff=None
+  PE_ONLY      size=4x6x10       material=vr1abpodma      rev03=None  pe=30244.0  diff=None
+  PE_ONLY      size=4x6x10       material=vr1bpodma       rev03=None  pe=17482.0  diff=None
+  PE_ONLY      size=4x6x10       material=vr1vbpodma      rev03=None  pe=43482.0  diff=None
+  REV03_ONLY   size=4x6x13       material=vr1_bpodma      rev03=20024.0  pe=None  diff=None
+  REV03_ONLY   size=4x6x13       material=vr1a_bpodma     rev03=34641.0  pe=None  diff=None
+  PE_ONLY      size=4x6x13       material=vr1abpodma      rev03=None  pe=34641.0  diff=None
+  PE_ONLY      size=4x6x13       material=vr1bpodma       rev03=None  pe=20024.0  diff=None
+  PE_ONLY      size=4x6x13       material=vr1vbpodma      rev03=None  pe=54311.0  diff=None
+  REV03_ONLY   size=6x8x13       material=vr1_bpodma      rev03=31869.0  pe=None  diff=None
+  REV03_ONLY   size=6x8x13       material=vr1a_bpodma     rev03=40469.0  pe=None  diff=None
+  PE_ONLY      size=6x8x13       material=vr1abpodma      rev03=None  pe=40469.0  diff=None
+  PE_ONLY      size=6x8x13       material=vr1bpodma       rev03=None  pe=31869.0  diff=None
+  PE_ONLY      size=6x8x13       material=vr1vbpodma      rev03=None  pe=80704.0  diff=None
+  REV03_ONLY   size=8x10x15      material=vr1_bpodma      rev03=42635.0  pe=None  diff=None
+  REV03_ONLY   size=8x10x15      material=vr1a_bpodma     rev03=55481.0  pe=None  diff=None
+  PE_ONLY      size=8x10x15      material=vr1abpodma      rev03=None  pe=55481.0  diff=None
+  PE_ONLY      size=8x10x15      material=vr1bpodma       rev03=None  pe=42635.0  diff=None
+  PE_ONLY      size=8x10x15      material=vr1vbpodma      rev03=None  pe=100284.0  diff=None
+
+========================================================================================================================
+5500 SERIES STRUCTURAL COMPARISON
+========================================================================================================================
+
+Rev0.3 5500:
+  Estimated rows : 52440
+  Sizes          : 19 (['1.5x3x10', '1.5x3x6', '1.5x3x8', '10x12x16', '1x1.5x6', '1x1.5x8', '1x2x10', '2x3x10', '2x3x13', '2x3x6'])
+  Settings       : 19 (['1', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '2', '3', '4', '5', '6', '7', '8', '9'])
+  Materials      : 2 (['VR-1', 'VR-1 BPO/DMA'])
+  Price range    : {'min': 11245.0, 'max': 98990.0}
+
+Price Estimator 5500:
+  Data rows      : 72
+  Sizes          : 19 (['1.5x3x10 (10A50)', '1.5x3x6 (6AB)', '1.5x3x8 (8A50)', '10x12x16 (--)', '1x1.5x6 (6AA)', '1x1.5x8 (8AA)', '1x2x10 (10A05)', '2x3x10 (10A60)', '2x3x13 (13A30)', '2x3x6 (6AC)'])
+  Settings       : 4 (['#1 - #4', '#10 - #14', '#15 - #19', '#5 - #9'])
+  Price range    : {'min': 11245.0, 'max': 98990.0}
+
+FINDING: Rev0.3 has 52440 rows (19 sizes x 19 settings x 2 materials). Price Estimator has 72 rows (19 sizes x 4 settings). Both sources have Setting-level granularity for 5500.
