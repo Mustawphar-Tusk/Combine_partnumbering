@@ -423,41 +423,66 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         trim_code = lookup("IMPELLER_TRIM", body.selections.get("IMPELLER_TRIM", "")) or "??"
 
         # Composite segment codes — look up from combination tables in SQL
-        def lookup_segment(segment_code, sel_keys):
-            """Look up hex code by matching selection values against combination keys."""
-            vals = [str(body.selections.get(k, "")) for k in sel_keys if body.selections.get(k)]
-            if not vals:
+        # The SelectionsJson in the combination table has field->value pairs
+        # We match by finding a row where the values are case-insensitive substrings
+        def lookup_segment(segment_code, field_map):
+            """
+            Look up hex code by matching user selections against SelectionsJson.
+            field_map: dict of {combo_field_name: ui_selection_value}
+            """
+            if not any(field_map.values()):
                 return None
-            pattern = "%".join(v[:15] for v in vals[:3])
-            if not pattern:
+            # Build a WHERE clause that checks SelectionsJson contains each value
+            # Use LOWER + LIKE on the JSON blob for fuzzy matching
+            conditions = []
+            params = [segment_code]
+            for combo_field, ui_value in field_map.items():
+                if ui_value:
+                    # Strip common suffixes and normalize
+                    clean_val = ui_value.lower().strip()
+                    if clean_val and len(clean_val) > 2:
+                        conditions.append("LOWER(SelectionsJson) LIKE ?")
+                        params.append(f"%{clean_val[:20]}%")
+            
+            if not conditions:
                 return None
-            row = cursor.execute(
-                "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                "WHERE SegmentCode = ? AND LOWER(CombinationKey) LIKE ?",
-                segment_code, f"%{pattern.lower()}%"
-            ).fetchone()
-            return row[0] if row else None
+            
+            # Require ALL conditions match (AND)
+            where = " AND ".join(conditions)
+            sql = f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {where}"
+            try:
+                row = cursor.execute(sql, *params).fetchone()
+                return row[0] if row else None
+            except:
+                return None
 
-        pump_opts = lookup_segment("PUMP_OPTIONS",
-            ["CASING_DRAINS","SUCTION_DISCHARGE_TAPS","SHAFT_MATERIAL","SLEEVE",
-             "CASING_HARDWARE","PUMP_ELASTOMERS","BEARING_OPTION","POWER_FRAME_HARDWARE",
-             "GLAND_HARDWARE","FLUSH","CYCLONE_SEPERATOR","IMPELLER_BALANCE"]
-        ) or body.segment_codes.get("PUMP_OPTIONS", "????")
+        # Map UI selection field codes to the values the user chose
+        pump_opts = lookup_segment("PUMP_OPTIONS", {
+            "CASING_DRAINS": body.selections.get("CASING_DRAINS", ""),
+            "SHAFT_MATERIAL": body.selections.get("SHAFT_MATERIAL", ""),
+            "FLUSH": body.selections.get("FLUSH", ""),
+            "PUMP_ELASTOMERS": body.selections.get("PUMP_ELASTOMERS", ""),
+            "GLAND_HARDWARE": body.selections.get("GLAND_HARDWARE", ""),
+        }) or body.segment_codes.get("PUMP_OPTIONS", "????")
 
         seal_mfg = body.segment_codes.get("SEAL_MFG", "?")
-        seal_assy = lookup_segment("SEAL_ASSEMBLY",
-            ["SEAL_OPTION","SEAL_TYPE","SEAL_MATERIALS","SEAL_ELASTOMERS","SEAL_GUARD"]
-        ) or body.segment_codes.get("SEAL_ASSY", "??")
+        seal_assy = lookup_segment("SEAL_ASSEMBLY", {
+            "SEAL_OPTION": body.selections.get("SEAL_OPTION", ""),
+            "SEAL_TYPE": body.selections.get("SEAL_TYPE", ""),
+            "SEAL_MATERIALS": body.selections.get("SEAL_MATERIALS", ""),
+        }) or body.segment_codes.get("SEAL_ASSY", "??")
 
-        options_code = lookup_segment("OPTIONS",
-            ["COUPLING_OPTION","COUPLING_GUARD","BASEPLATE_OPTION","BASEPLATEHARDWARE","CUSTOMER_NAMEPLATE","C_FACE_ADAPTOR"]
-        ) or body.segment_codes.get("OPTIONS", "??")
+        options_code = lookup_segment("OPTIONS", {
+            "COUPLING_OPTION": body.selections.get("COUPLING_OPTION", ""),
+            "BASEPLATE_OPTION": body.selections.get("BASEPLATE_OPTION", ""),
+        }) or body.segment_codes.get("OPTIONS", "??")
 
         frame_size = body.segment_codes.get("FRAME_SIZE", "??")
-        motor_assy = lookup_segment("MOTOR_ASSEMBLY",
-            ["MOTOR_OPTION","MOTOR_CLASS","MOTOR_ORIENTATION","MOTOR_HP","MOTOR_RPM",
-             "MOTOR_VOLTAGE","MOTOR_HERTZ","FRAME_SIZE","MOTOR_ENCLOSURE","MOTOR_EFFICIENCY","MOTOR_MFG"]
-        ) or body.segment_codes.get("MOTOR_ASSY", "???")
+        motor_assy = lookup_segment("MOTOR_ASSEMBLY", {
+            "MOTOR_OPTION": body.selections.get("MOTOR_OPTION", ""),
+            "MOTOR_HP": body.selections.get("MOTOR_HP", ""),
+            "MOTOR_RPM": body.selections.get("MOTOR_RPM", ""),
+        }) or body.segment_codes.get("MOTOR_ASSY", "???")
         motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
         testing = body.segment_codes.get("TESTING", "00")
 
