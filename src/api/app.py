@@ -18,6 +18,7 @@ from src.api.models import (
     ErrorResponse,
 )
 from src.api.http_routes import router
+from src.api.v2_routes import router_v2
 from src.api.runtime_registry import (
     ConfigurationRuntimeRegistry,
     UnsupportedPumpFamilyError,
@@ -124,6 +125,7 @@ def create_app(
     )
 
     application.include_router(router)
+    application.include_router(router_v2)
 
     @application.exception_handler(
         RequestValidationError
