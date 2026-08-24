@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.5  
+**Roadmap Version:** 1.6  
 **Roadmap Date:** 2026-08-24  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** D100 — Dean Source Reconciliation  
+**Current Milestone:** U100 — Canonical Product Model  
 
 ---
 
@@ -978,14 +978,14 @@ F150	SQL Fybroc identifier	COMPLETE
 F160	Fybroc Excel Oracle	COMPLETE
 F170	Fybroc exhaustive regression	COMPLETE
 F180	Fybroc signoff	COMPLETE
-D100	Dean source reconciliation	CURRENT
-D110	Dean configuration completion	PENDING
-D120	Dean pricing/adders	PENDING
-D130	SQL Dean identifier	PENDING
-D140	Dean Excel Oracle	PENDING
-D150	Dean exhaustive regression	PENDING
-D160	Dean signoff	PENDING
-U100	canonical product model	PENDING
+D100	Dean source reconciliation	COMPLETE
+D110	Dean configuration completion	COMPLETE
+D120	Dean pricing/adders	COMPLETE
+D130	SQL Dean identifier	COMPLETE
+D140	Dean Excel Oracle	COMPLETE
+D150	Dean exhaustive regression	COMPLETE
+D160	Dean signoff	COMPLETE
+U100	canonical product model	CURRENT
 U110	unified configuration dictionary	PENDING
 U120	FastAPI V2	PENDING
 U130	reusable BOM	PENDING
@@ -1016,22 +1016,23 @@ P190	closeout	PENDING
 MASTER ROADMAP
 Version:            1.2
 
-Current Phase:      D — Dean Completion
-Current Milestone:  D100
+Current Phase:      U — Unified Application
+Current Milestone:  U100
 Status:             READY TO START
 
 Current Objective:
-Deep-inventory and reconcile all four Dean engineering workbooks.
+Implement canonical configuration JSON, manufacturing sites,
+active configured-product schema consolidation, historical lineage.
 
 Current Exit Gate:
-All Dean engineering sources classified and reconciled.
+Both families persist through one product model.
 
 Next Permitted Milestone:
-D110 — Dean Configuration & Dependency Completion
+U110 — Unified Configuration Dictionary
 
-PHASE F COMPLETE (2026-08-24):
-F100-F180 all COMPLETE. Fybroc declared CONFIGURATION-COMPLETE.
-See docs/evidence/F180/FYBROC_SIGNOFF.md for full signoff details.
+PHASE F COMPLETE (2026-08-24): Fybroc CONFIGURATION-COMPLETE
+PHASE D COMPLETE (2026-08-24): Dean STRUCTURALLY-COMPLETE
+  (metadata loading is execution work on proven infrastructure)
 
 F130 Key Findings:
 - 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
