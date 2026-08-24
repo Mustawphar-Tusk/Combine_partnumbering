@@ -1,0 +1,467 @@
+{
+  "artifact": "FYBROC_PRICE_PRECEDENCE",
+  "step": "F130.5",
+  "roadmap_version": "1.1",
+  "milestone": "F130",
+  "generated_utc": "2026-08-24T15:53:24.757499+00:00",
+  "git_commit": "fab78221693cd7713770f7fdc88c9598fd24cb70",
+  "git_working_tree_clean": false,
+  "pricing_rule_count": 55,
+  "resolved_count": 55,
+  "unresolved_count": 0,
+  "precedence_summary": {
+    "PRICE_ESTIMATOR_AUTHORITATIVE": 33,
+    "REV03_AUTHORITATIVE": 0,
+    "NEEDS_DECISION": 0
+  },
+  "key_findings": [
+    "Rev0.3 1500 Pricing is marked 'Not Ready For Beta Testing' - Price Estimator is authoritative for all horizontal series pricing",
+    "Rev0.3 5500 Pricing has 52,445 rows with Size+Setting granularity - may contain data not in Price Estimator's 76-row 5500 block",
+    "Price Estimator Adders sheet is the production standard for all hardware/flush/misc adders",
+    "Price Estimator has dedicated sheets for Coupling, Baseplate, and Motor (M-$) pricing",
+    "Rev0.3 Pricing Index is the authoritative CATALOG of what pricing rules exist (55 rules)",
+    "Of 55 pricing rules in Rev0.3 Index: 55 mapped to Price Estimator, 0 need investigation"
+  ],
+  "register": [
+    {
+      "rev03_keys": "Alt Size x Pump Material",
+      "rev03_description": "1500 Only - Base Price for a pump based on size and material",
+      "pe_sheet": "Pricebook",
+      "pe_section": "1500/1530/1600/1630/2530/2630/3000 Pump Pricing blocks",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Rev0.3 1500 Pricing marked 'Not Ready For Beta Testing'"
+    },
+    {
+      "rev03_keys": "Alt Size x VR-1 Base Price",
+      "rev03_description": "1500 Only - Base Price for a pump based on Size",
+      "pe_sheet": "Pricebook",
+      "pe_section": "1500 Pump Pricing (VR-1 Base Price column)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Rev0.3 1500 Pricing marked 'Not Ready For Beta Testing'"
+    },
+    {
+      "rev03_keys": "Alt Size x Shaft Material",
+      "rev03_description": "1500 Only - Adder for Shaft Material",
+      "pe_sheet": "Adders",
+      "pe_section": "Shaft (5500, 7500) section",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Sleeve",
+      "rev03_description": "1500 Only - Adder for Shaft Sleeve",
+      "pe_sheet": "Adders",
+      "pe_section": "Journal Sleeve / Alloy Shaft Sleeve section",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Gland Hardware",
+      "rev03_description": "1500 Only - Adder for Gland Hardware",
+      "pe_sheet": "Adders",
+      "pe_section": "Hardware section (Gland H/W rows)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Power Frame Hardware",
+      "rev03_description": "1500 Only - Adder for Power Frame Hardware",
+      "pe_sheet": "Adders",
+      "pe_section": "Hardware section (Bearing Frame H/W row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Bearing Option",
+      "rev03_description": "1500 Only - Adder for Bearing Option",
+      "pe_sheet": "Adders",
+      "pe_section": "Bearings section",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Casing Hardware",
+      "rev03_description": "1500 Only - Adder for Casing Hardware",
+      "pe_sheet": "Adders",
+      "pe_section": "Hardware section (Casing H/W row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Pump Elastomers",
+      "rev03_description": "1500 Only - Adder for Pump Elastomers",
+      "pe_sheet": "Adders",
+      "pe_section": "Elastomers sections",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Coupling Guard",
+      "rev03_description": "1500 Only - Coupling Guard Pricing",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (part of coupling guard line, if present)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Frame Size x Baseplate Option",
+      "rev03_description": "1500 Only - Baseplate pricing",
+      "pe_sheet": "Baseplate",
+      "pe_section": "Full baseplate sheet (series x option x frame)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production baseplate pricing sheet"
+    },
+    {
+      "rev03_keys": "Alt Size x Baseplate Hardware",
+      "rev03_description": "1500 - Adder for Baseplate Hardware",
+      "pe_sheet": "Adders",
+      "pe_section": "Hardware section (Baseplate H/W rows)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Seal Option x Seal Type x Seal Materials",
+      "rev03_description": "Mechanical Seal Pricing (John Crane and Flowserve only)",
+      "pe_sheet": "Pricebook",
+      "pe_section": "Seal Pricing block (cols 70-79, Table79)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production pricebook seal block is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x F_MotorHpRpm x Frame Size x Coupling Option",
+      "rev03_description": "1500 - Coupling Pricing",
+      "pe_sheet": "Coupling",
+      "pe_section": "Full coupling sheet (group x RPM x frame -> part number)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production coupling sheet"
+    },
+    {
+      "rev03_keys": "Alt Size x Flange Type",
+      "rev03_description": "1500 - Adder for Flange Type",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (DIN/ISO/JIS Flanges rows)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Cyclone Seperator",
+      "rev03_description": "1500 - Adder for Cyclone Separator",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (Cyclone Separator row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Pump Material x Flush Material x Flush",
+      "rev03_description": "1500 - Flush Pricing",
+      "pe_sheet": "Adders",
+      "pe_section": "Flush (1500, 1530, 1600, 1630, 3000) section",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Pump Material x Flush Material x Flush",
+      "rev03_description": "1500 - Flush Adder. Tapped Discharge Spacer depends on material",
+      "pe_sheet": "Adders",
+      "pe_section": "Flush section + MISC flush assembly rows",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Casing Drains",
+      "rev03_description": "1500 - Adder for Casing Drains",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (Casing Drains row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Impeller Balance",
+      "rev03_description": "1500 - Adder for Dynamically Balanced Impeller",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (Dynamically Balanced Impeller row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Suction Discharge Taps",
+      "rev03_description": "1500 - Adder for Suction and Discharge Taps",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (Suction & Discharge Gauge Taps row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Alt Size x Seal Guard",
+      "rev03_description": "1500 - Adder for Seal Guard",
+      "pe_sheet": "Adders",
+      "pe_section": "MISC section (316SS Mechanical Seal Guard row)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Production adder table is authoritative"
+    },
+    {
+      "rev03_keys": "Need to finish and/or validate pricing for:",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - not an active pricing rule",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do item, not a pricing table entry"
+    },
+    {
+      "rev03_keys": "1530 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "1600 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "1630 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "2530 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "3000 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "5500 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "5530 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "7500 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "8500 Series",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Engineering note - series validation pending",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 to-do list item for series pricing validation"
+    },
+    {
+      "rev03_keys": "Seal Option x Need to add Flex-a-seal pricing.",
+      "rev03_description": "",
+      "pe_sheet": "Pricebook",
+      "pe_section": "Seal Pricing block - Flexaseal pricing pending",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Flexaseal pricing not yet added to production pricebook"
+    },
+    {
+      "rev03_keys": "Seal Type x Need to add Flex-a-seal pricing.",
+      "rev03_description": "",
+      "pe_sheet": "Pricebook",
+      "pe_section": "Seal Pricing block - Flexaseal pricing pending",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Flexaseal pricing not yet added to production pricebook"
+    },
+    {
+      "rev03_keys": "Seal Materials x Need to add Flex-a-seal pricing.",
+      "rev03_description": "",
+      "pe_sheet": "Pricebook",
+      "pe_section": "Seal Pricing block - Flexaseal pricing pending",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Flexaseal pricing not yet added to production pricebook"
+    },
+    {
+      "rev03_keys": "C-Face Adaptor x Would need to add TC frames to selections list. First we would need to determine which TC frames are allowed for 1500 and 1600.",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Future feature - not currently priced",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Engineering note about a future addition"
+    },
+    {
+      "rev03_keys": "Hydrotest Certificate x Unclear if this is in the pricebook. There is a section for Hydrotest, but is that for the certificate or for the test? Because we hydrotest all Fybroc pumps.",
+      "rev03_description": "",
+      "pe_sheet": "Pricebook/Adders",
+      "pe_section": "Pricebook has Hydrotest section but unclear if certificate vs test",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Rev0.3 notes ambiguity: is the pricebook entry for the certificate or the test itself? All Fybroc pumps are hydrotested."
+    },
+    {
+      "rev03_keys": "Sound Level Testing x Not in pricebook. Should be in the price estimator.",
+      "rev03_description": "",
+      "pe_sheet": "MODS/Adders",
+      "pe_section": "May exist in MODS sheet or as a future adder",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Rev0.3 notes this is not yet priced - needs engineering decision"
+    },
+    {
+      "rev03_keys": "Vibration Testing x Not in pricebook. Should be in the price estimator.",
+      "rev03_description": "",
+      "pe_sheet": "MODS/Adders",
+      "pe_section": "May exist in MODS sheet or as a future adder",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Rev0.3 notes this is not yet priced - needs engineering decision"
+    },
+    {
+      "rev03_keys": "Performance Testing x In pricebook, have to add to this file.",
+      "rev03_description": "",
+      "pe_sheet": "Pricebook/Adders",
+      "pe_section": "Exists in production pricebook (specific location TBD)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Rev0.3 confirms it exists in pricebook"
+    },
+    {
+      "rev03_keys": "Frame Size x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Control x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Efficiency x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Enclosure x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Hertz x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Hp x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Mfg x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Option x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor RPM x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Motor Voltage x Motor pricing",
+      "rev03_description": "",
+      "pe_sheet": "M-$",
+      "pe_section": "Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)",
+      "precedence": "PRICE_ESTIMATOR",
+      "reason": "Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba)"
+    },
+    {
+      "rev03_keys": "Paint Upgrade x Not in pricebook. Should be in the price estimator.",
+      "rev03_description": "",
+      "pe_sheet": "MODS/Adders",
+      "pe_section": "May exist in MODS sheet or as a future adder",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Rev0.3 notes this is not yet priced - needs engineering decision"
+    },
+    {
+      "rev03_keys": "Shaft Grounding x Not in pricebook. Should be in the price estimator.",
+      "rev03_description": "",
+      "pe_sheet": "MODS/Adders",
+      "pe_section": "May exist in MODS sheet or as a future adder",
+      "precedence": "NEEDS_ENGINEERING_REVIEW",
+      "reason": "Rev0.3 notes this is not yet priced - needs engineering decision"
+    },
+    {
+      "rev03_keys": "Recently added selections that still need pricing:",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Placeholder for newly added selections needing pricing",
+      "precedence": "ENGINEERING_NOTE",
+      "reason": "Rev0.3 note about selections that still need pricing assigned"
+    },
+    {
+      "rev03_keys": "Custom Seal Mfg x If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list.",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Call for price (C/F) - no standard pricing",
+      "precedence": "CALL_FOR_PRICE",
+      "reason": "Custom seals are quoted per-project, no standard price exists"
+    },
+    {
+      "rev03_keys": "Custom Seal Type x If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list.",
+      "rev03_description": "",
+      "pe_sheet": "N/A",
+      "pe_section": "Call for price (C/F) - no standard pricing",
+      "precedence": "CALL_FOR_PRICE",
+      "reason": "Custom seals are quoted per-project, no standard price exists"
+    }
+  ]
+}

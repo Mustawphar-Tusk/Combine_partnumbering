@@ -1,0 +1,309 @@
+========================================================================================================================
+F130.5 - FYBROC PRICE PRECEDENCE & SOURCE LINEAGE
+========================================================================================================================
+
+Git commit     : fab78221693cd7713770f7fdc88c9598fd24cb70
+Git clean      : False
+
+Total pricing rules (from Rev0.3 Index): 55
+Resolved (mapped to PE)                : 55
+Unresolved (need decision)             : 0
+
+========================================================================================================================
+PRECEDENCE SUMMARY
+========================================================================================================================
+
+  PRICE_ESTIMATOR_AUTHORITATIVE            : 33
+  REV03_AUTHORITATIVE                      : 0
+  NEEDS_DECISION                           : 0
+
+========================================================================================================================
+KEY FINDINGS
+========================================================================================================================
+
+  - Rev0.3 1500 Pricing is marked 'Not Ready For Beta Testing' - Price Estimator is authoritative for all horizontal series pricing
+  - Rev0.3 5500 Pricing has 52,445 rows with Size+Setting granularity - may contain data not in Price Estimator's 76-row 5500 block
+  - Price Estimator Adders sheet is the production standard for all hardware/flush/misc adders
+  - Price Estimator has dedicated sheets for Coupling, Baseplate, and Motor (M-$) pricing
+  - Rev0.3 Pricing Index is the authoritative CATALOG of what pricing rules exist (55 rules)
+  - Of 55 pricing rules in Rev0.3 Index: 55 mapped to Price Estimator, 0 need investigation
+
+========================================================================================================================
+FULL PRECEDENCE REGISTER
+========================================================================================================================
+
+  [✓] Alt Size x Pump Material                                    
+      Rev0.3: 1500 Only - Base Price for a pump based on size and material
+      PE:     Pricebook -> 1500/1530/1600/1630/2530/2630/3000 Pump Pricing blocks
+      Rule:   PRICE_ESTIMATOR (Rev0.3 1500 Pricing marked 'Not Ready For Beta Testing')
+
+  [✓] Alt Size x VR-1 Base Price                                  
+      Rev0.3: 1500 Only - Base Price for a pump based on Size
+      PE:     Pricebook -> 1500 Pump Pricing (VR-1 Base Price column)
+      Rule:   PRICE_ESTIMATOR (Rev0.3 1500 Pricing marked 'Not Ready For Beta Testing')
+
+  [✓] Alt Size x Shaft Material                                   
+      Rev0.3: 1500 Only - Adder for Shaft Material
+      PE:     Adders -> Shaft (5500, 7500) section
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Sleeve                                           
+      Rev0.3: 1500 Only - Adder for Shaft Sleeve
+      PE:     Adders -> Journal Sleeve / Alloy Shaft Sleeve section
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Gland Hardware                                   
+      Rev0.3: 1500 Only - Adder for Gland Hardware
+      PE:     Adders -> Hardware section (Gland H/W rows)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Power Frame Hardware                             
+      Rev0.3: 1500 Only - Adder for Power Frame Hardware
+      PE:     Adders -> Hardware section (Bearing Frame H/W row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Bearing Option                                   
+      Rev0.3: 1500 Only - Adder for Bearing Option
+      PE:     Adders -> Bearings section
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Casing Hardware                                  
+      Rev0.3: 1500 Only - Adder for Casing Hardware
+      PE:     Adders -> Hardware section (Casing H/W row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Pump Elastomers                                  
+      Rev0.3: 1500 Only - Adder for Pump Elastomers
+      PE:     Adders -> Elastomers sections
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Coupling Guard                                   
+      Rev0.3: 1500 Only - Coupling Guard Pricing
+      PE:     Adders -> MISC section (part of coupling guard line, if present)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Frame Size x Baseplate Option                    
+      Rev0.3: 1500 Only - Baseplate pricing
+      PE:     Baseplate -> Full baseplate sheet (series x option x frame)
+      Rule:   PRICE_ESTIMATOR (Dedicated production baseplate pricing sheet)
+
+  [✓] Alt Size x Baseplate Hardware                               
+      Rev0.3: 1500 - Adder for Baseplate Hardware
+      PE:     Adders -> Hardware section (Baseplate H/W rows)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Seal Option x Seal Type x Seal Materials         
+      Rev0.3: Mechanical Seal Pricing (John Crane and Flowserve only)
+      PE:     Pricebook -> Seal Pricing block (cols 70-79, Table79)
+      Rule:   PRICE_ESTIMATOR (Production pricebook seal block is authoritative)
+
+  [✓] Alt Size x F_MotorHpRpm x Frame Size x Coupling Option      
+      Rev0.3: 1500 - Coupling Pricing
+      PE:     Coupling -> Full coupling sheet (group x RPM x frame -> part number)
+      Rule:   PRICE_ESTIMATOR (Dedicated production coupling sheet)
+
+  [✓] Alt Size x Flange Type                                      
+      Rev0.3: 1500 - Adder for Flange Type
+      PE:     Adders -> MISC section (DIN/ISO/JIS Flanges rows)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Cyclone Seperator                                
+      Rev0.3: 1500 - Adder for Cyclone Separator
+      PE:     Adders -> MISC section (Cyclone Separator row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Pump Material x Flush Material x Flush           
+      Rev0.3: 1500 - Flush Pricing
+      PE:     Adders -> Flush (1500, 1530, 1600, 1630, 3000) section
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Pump Material x Flush Material x Flush           
+      Rev0.3: 1500 - Flush Adder. Tapped Discharge Spacer depends on material
+      PE:     Adders -> Flush section + MISC flush assembly rows
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Casing Drains                                    
+      Rev0.3: 1500 - Adder for Casing Drains
+      PE:     Adders -> MISC section (Casing Drains row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Impeller Balance                                 
+      Rev0.3: 1500 - Adder for Dynamically Balanced Impeller
+      PE:     Adders -> MISC section (Dynamically Balanced Impeller row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Suction Discharge Taps                           
+      Rev0.3: 1500 - Adder for Suction and Discharge Taps
+      PE:     Adders -> MISC section (Suction & Discharge Gauge Taps row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [✓] Alt Size x Seal Guard                                       
+      Rev0.3: 1500 - Adder for Seal Guard
+      PE:     Adders -> MISC section (316SS Mechanical Seal Guard row)
+      Rule:   PRICE_ESTIMATOR (Production adder table is authoritative)
+
+  [R] Need to finish and/or validate pricing for:                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - not an active pricing rule
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do item, not a pricing table entry)
+
+  [R] 1530 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 1600 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 1630 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 2530 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 3000 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 5500 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 5530 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 7500 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] 8500 Series                                                 
+      Rev0.3: 
+      PE:     N/A -> Engineering note - series validation pending
+      Rule:   ENGINEERING_NOTE (Rev0.3 to-do list item for series pricing validation)
+
+  [R] Seal Option x Need to add Flex-a-seal pricing.              
+      Rev0.3: 
+      PE:     Pricebook -> Seal Pricing block - Flexaseal pricing pending
+      Rule:   NEEDS_ENGINEERING_REVIEW (Flexaseal pricing not yet added to production pricebook)
+
+  [R] Seal Type x Need to add Flex-a-seal pricing.                
+      Rev0.3: 
+      PE:     Pricebook -> Seal Pricing block - Flexaseal pricing pending
+      Rule:   NEEDS_ENGINEERING_REVIEW (Flexaseal pricing not yet added to production pricebook)
+
+  [R] Seal Materials x Need to add Flex-a-seal pricing.           
+      Rev0.3: 
+      PE:     Pricebook -> Seal Pricing block - Flexaseal pricing pending
+      Rule:   NEEDS_ENGINEERING_REVIEW (Flexaseal pricing not yet added to production pricebook)
+
+  [R] C-Face Adaptor x Would need to add TC frames to selections list. First we would need to determine which TC frames are allowed for 1500 and 1600.
+      Rev0.3: 
+      PE:     N/A -> Future feature - not currently priced
+      Rule:   ENGINEERING_NOTE (Engineering note about a future addition)
+
+  [R] Hydrotest Certificate x Unclear if this is in the pricebook. There is a section for Hydrotest, but is that for the certificate or for the test? Because we hydrotest all Fybroc pumps.
+      Rev0.3: 
+      PE:     Pricebook/Adders -> Pricebook has Hydrotest section but unclear if certificate vs test
+      Rule:   NEEDS_ENGINEERING_REVIEW (Rev0.3 notes ambiguity: is the pricebook entry for the certificate or the test itself? All Fybroc pumps are hydrotested.)
+
+  [R] Sound Level Testing x Not in pricebook. Should be in the price estimator.
+      Rev0.3: 
+      PE:     MODS/Adders -> May exist in MODS sheet or as a future adder
+      Rule:   NEEDS_ENGINEERING_REVIEW (Rev0.3 notes this is not yet priced - needs engineering decision)
+
+  [R] Vibration Testing x Not in pricebook. Should be in the price estimator.
+      Rev0.3: 
+      PE:     MODS/Adders -> May exist in MODS sheet or as a future adder
+      Rule:   NEEDS_ENGINEERING_REVIEW (Rev0.3 notes this is not yet priced - needs engineering decision)
+
+  [✓] Performance Testing x In pricebook, have to add to this file.
+      Rev0.3: 
+      PE:     Pricebook/Adders -> Exists in production pricebook (specific location TBD)
+      Rule:   PRICE_ESTIMATOR (Rev0.3 confirms it exists in pricebook)
+
+  [✓] Frame Size x Motor pricing                                  
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Control x Motor pricing                               
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Efficiency x Motor pricing                            
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Enclosure x Motor pricing                             
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Hertz x Motor pricing                                 
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Hp x Motor pricing                                    
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Mfg x Motor pricing                                   
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Option x Motor pricing                                
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor RPM x Motor pricing                                   
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [✓] Motor Voltage x Motor pricing                               
+      Rev0.3: 
+      PE:     M-$ -> Motor pricing tables (TEFC/SD, H/V orientations, all HP/RPM combos)
+      Rule:   PRICE_ESTIMATOR (Dedicated production motor pricing sheet (M-$, M-$$, TECO, Baldor, Toshiba))
+
+  [R] Paint Upgrade x Not in pricebook. Should be in the price estimator.
+      Rev0.3: 
+      PE:     MODS/Adders -> May exist in MODS sheet or as a future adder
+      Rule:   NEEDS_ENGINEERING_REVIEW (Rev0.3 notes this is not yet priced - needs engineering decision)
+
+  [R] Shaft Grounding x Not in pricebook. Should be in the price estimator.
+      Rev0.3: 
+      PE:     MODS/Adders -> May exist in MODS sheet or as a future adder
+      Rule:   NEEDS_ENGINEERING_REVIEW (Rev0.3 notes this is not yet priced - needs engineering decision)
+
+  [R] Recently added selections that still need pricing:          
+      Rev0.3: 
+      PE:     N/A -> Placeholder for newly added selections needing pricing
+      Rule:   ENGINEERING_NOTE (Rev0.3 note about selections that still need pricing assigned)
+
+  [R] Custom Seal Mfg x If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list.
+      Rev0.3: 
+      PE:     N/A -> Call for price (C/F) - no standard pricing
+      Rule:   CALL_FOR_PRICE (Custom seals are quoted per-project, no standard price exists)
+
+  [R] Custom Seal Type x If a customer selects Seal Option: Supplied by Fybroc and Seal Mfg: Custom Seal Mfg, and Seal Type: Custom Seal Type, we will not have a price, nor will we have a part number. Not sure how we will assign a price to a virtually infinite seal list.
+      Rev0.3: 
+      PE:     N/A -> Call for price (C/F) - no standard pricing
+      Rule:   CALL_FOR_PRICE (Custom seals are quoted per-project, no standard price exists)
+
