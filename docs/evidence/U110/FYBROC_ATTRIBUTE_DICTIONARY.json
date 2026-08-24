@@ -1,0 +1,1351 @@
+{
+  "family": "FYBROC",
+  "publication_id": 2,
+  "purpose": "Maps configuration display values to Part Number segment codes",
+  "field_count": 6,
+  "total_codes": 266,
+  "fields": {
+    "IMPELLER_TRIM": [
+      {
+        "display_value": "16.000",
+        "identifier_code": "MA",
+        "display_order": 10
+      },
+      {
+        "display_value": "15.875",
+        "identifier_code": "LH",
+        "display_order": 20
+      },
+      {
+        "display_value": "15.750",
+        "identifier_code": "LG",
+        "display_order": 30
+      },
+      {
+        "display_value": "15.625",
+        "identifier_code": "LF",
+        "display_order": 40
+      },
+      {
+        "display_value": "15.500",
+        "identifier_code": "LE",
+        "display_order": 50
+      },
+      {
+        "display_value": "15.375",
+        "identifier_code": "LD",
+        "display_order": 60
+      },
+      {
+        "display_value": "15.250",
+        "identifier_code": "LC",
+        "display_order": 70
+      },
+      {
+        "display_value": "15.125",
+        "identifier_code": "LB",
+        "display_order": 80
+      },
+      {
+        "display_value": "15.000",
+        "identifier_code": "LA",
+        "display_order": 90
+      },
+      {
+        "display_value": "14.875",
+        "identifier_code": "KH",
+        "display_order": 100
+      },
+      {
+        "display_value": "14.750",
+        "identifier_code": "KG",
+        "display_order": 110
+      },
+      {
+        "display_value": "14.625",
+        "identifier_code": "KF",
+        "display_order": 120
+      },
+      {
+        "display_value": "14.500",
+        "identifier_code": "KE",
+        "display_order": 130
+      },
+      {
+        "display_value": "14.375",
+        "identifier_code": "KD",
+        "display_order": 140
+      },
+      {
+        "display_value": "14.250",
+        "identifier_code": "KC",
+        "display_order": 150
+      },
+      {
+        "display_value": "14.125",
+        "identifier_code": "KB",
+        "display_order": 160
+      },
+      {
+        "display_value": "14.000",
+        "identifier_code": "KA",
+        "display_order": 170
+      },
+      {
+        "display_value": "13.875",
+        "identifier_code": "JH",
+        "display_order": 180
+      },
+      {
+        "display_value": "13.750",
+        "identifier_code": "JG",
+        "display_order": 190
+      },
+      {
+        "display_value": "13.625",
+        "identifier_code": "JF",
+        "display_order": 200
+      },
+      {
+        "display_value": "13.500",
+        "identifier_code": "JE",
+        "display_order": 210
+      },
+      {
+        "display_value": "13.375",
+        "identifier_code": "JD",
+        "display_order": 220
+      },
+      {
+        "display_value": "13.250",
+        "identifier_code": "JC",
+        "display_order": 230
+      },
+      {
+        "display_value": "13.125",
+        "identifier_code": "JB",
+        "display_order": 240
+      },
+      {
+        "display_value": "13.000",
+        "identifier_code": "JA",
+        "display_order": 250
+      },
+      {
+        "display_value": "12.875",
+        "identifier_code": "IH",
+        "display_order": 260
+      },
+      {
+        "display_value": "12.750",
+        "identifier_code": "IG",
+        "display_order": 270
+      },
+      {
+        "display_value": "12.625",
+        "identifier_code": "IF",
+        "display_order": 280
+      },
+      {
+        "display_value": "12.500",
+        "identifier_code": "IE",
+        "display_order": 290
+      },
+      {
+        "display_value": "12.375",
+        "identifier_code": "ID",
+        "display_order": 300
+      },
+      {
+        "display_value": "12.250",
+        "identifier_code": "IC",
+        "display_order": 310
+      },
+      {
+        "display_value": "12.125",
+        "identifier_code": "IB",
+        "display_order": 320
+      },
+      {
+        "display_value": "12.000",
+        "identifier_code": "IA",
+        "display_order": 330
+      },
+      {
+        "display_value": "11.875",
+        "identifier_code": "HH",
+        "display_order": 340
+      },
+      {
+        "display_value": "11.750",
+        "identifier_code": "HG",
+        "display_order": 350
+      },
+      {
+        "display_value": "11.625",
+        "identifier_code": "HF",
+        "display_order": 360
+      },
+      {
+        "display_value": "11.500",
+        "identifier_code": "HE",
+        "display_order": 370
+      },
+      {
+        "display_value": "11.375",
+        "identifier_code": "HD",
+        "display_order": 380
+      },
+      {
+        "display_value": "11.250",
+        "identifier_code": "HC",
+        "display_order": 390
+      },
+      {
+        "display_value": "11.125",
+        "identifier_code": "HB",
+        "display_order": 400
+      },
+      {
+        "display_value": "11.000",
+        "identifier_code": "HA",
+        "display_order": 410
+      },
+      {
+        "display_value": "10.875",
+        "identifier_code": "GH",
+        "display_order": 420
+      },
+      {
+        "display_value": "10.750",
+        "identifier_code": "GG",
+        "display_order": 430
+      },
+      {
+        "display_value": "10.625",
+        "identifier_code": "GF",
+        "display_order": 440
+      },
+      {
+        "display_value": "10.500",
+        "identifier_code": "GE",
+        "display_order": 450
+      },
+      {
+        "display_value": "10.375",
+        "identifier_code": "GD",
+        "display_order": 460
+      },
+      {
+        "display_value": "10.250",
+        "identifier_code": "GC",
+        "display_order": 470
+      },
+      {
+        "display_value": "10.125",
+        "identifier_code": "GB",
+        "display_order": 480
+      },
+      {
+        "display_value": "10.000",
+        "identifier_code": "GA",
+        "display_order": 490
+      },
+      {
+        "display_value": "9.875",
+        "identifier_code": "FH",
+        "display_order": 500
+      },
+      {
+        "display_value": "9.750",
+        "identifier_code": "FG",
+        "display_order": 510
+      },
+      {
+        "display_value": "9.625",
+        "identifier_code": "FF",
+        "display_order": 520
+      },
+      {
+        "display_value": "9.500",
+        "identifier_code": "FE",
+        "display_order": 530
+      },
+      {
+        "display_value": "9.375",
+        "identifier_code": "FD",
+        "display_order": 540
+      },
+      {
+        "display_value": "9.250",
+        "identifier_code": "FC",
+        "display_order": 550
+      },
+      {
+        "display_value": "9.125",
+        "identifier_code": "FB",
+        "display_order": 560
+      },
+      {
+        "display_value": "9.000",
+        "identifier_code": "FA",
+        "display_order": 570
+      },
+      {
+        "display_value": "8.875",
+        "identifier_code": "EH",
+        "display_order": 580
+      },
+      {
+        "display_value": "8.750",
+        "identifier_code": "EG",
+        "display_order": 590
+      },
+      {
+        "display_value": "8.625",
+        "identifier_code": "EF",
+        "display_order": 600
+      },
+      {
+        "display_value": "8.500",
+        "identifier_code": "EE",
+        "display_order": 610
+      },
+      {
+        "display_value": "8.375",
+        "identifier_code": "ED",
+        "display_order": 620
+      },
+      {
+        "display_value": "8.250",
+        "identifier_code": "EC",
+        "display_order": 630
+      },
+      {
+        "display_value": "8.125",
+        "identifier_code": "EB",
+        "display_order": 640
+      },
+      {
+        "display_value": "8.000",
+        "identifier_code": "EA",
+        "display_order": 650
+      },
+      {
+        "display_value": "7.875",
+        "identifier_code": "DH",
+        "display_order": 660
+      },
+      {
+        "display_value": "7.750",
+        "identifier_code": "DG",
+        "display_order": 670
+      },
+      {
+        "display_value": "7.625",
+        "identifier_code": "DF",
+        "display_order": 680
+      },
+      {
+        "display_value": "7.500",
+        "identifier_code": "DE",
+        "display_order": 690
+      },
+      {
+        "display_value": "7.375",
+        "identifier_code": "DD",
+        "display_order": 700
+      },
+      {
+        "display_value": "7.250",
+        "identifier_code": "DC",
+        "display_order": 710
+      },
+      {
+        "display_value": "7.125",
+        "identifier_code": "DB",
+        "display_order": 720
+      },
+      {
+        "display_value": "7.000",
+        "identifier_code": "DA",
+        "display_order": 730
+      },
+      {
+        "display_value": "6.875",
+        "identifier_code": "CH",
+        "display_order": 740
+      },
+      {
+        "display_value": "6.750",
+        "identifier_code": "CG",
+        "display_order": 750
+      },
+      {
+        "display_value": "6.625",
+        "identifier_code": "CF",
+        "display_order": 760
+      },
+      {
+        "display_value": "6.500",
+        "identifier_code": "CE",
+        "display_order": 770
+      },
+      {
+        "display_value": "6.375",
+        "identifier_code": "CD",
+        "display_order": 780
+      },
+      {
+        "display_value": "6.250",
+        "identifier_code": "CC",
+        "display_order": 790
+      },
+      {
+        "display_value": "6.125",
+        "identifier_code": "CB",
+        "display_order": 800
+      },
+      {
+        "display_value": "6.000",
+        "identifier_code": "CA",
+        "display_order": 810
+      },
+      {
+        "display_value": "5.875",
+        "identifier_code": "BH",
+        "display_order": 820
+      },
+      {
+        "display_value": "5.750",
+        "identifier_code": "BG",
+        "display_order": 830
+      },
+      {
+        "display_value": "5.625",
+        "identifier_code": "BF",
+        "display_order": 840
+      },
+      {
+        "display_value": "5.500",
+        "identifier_code": "BE",
+        "display_order": 850
+      },
+      {
+        "display_value": "5.375",
+        "identifier_code": "BD",
+        "display_order": 860
+      },
+      {
+        "display_value": "5.250",
+        "identifier_code": "BC",
+        "display_order": 870
+      },
+      {
+        "display_value": "5.125",
+        "identifier_code": "BB",
+        "display_order": 880
+      },
+      {
+        "display_value": "5.000",
+        "identifier_code": "BA",
+        "display_order": 890
+      },
+      {
+        "display_value": "4.875",
+        "identifier_code": "AH",
+        "display_order": 900
+      },
+      {
+        "display_value": "4.750",
+        "identifier_code": "AG",
+        "display_order": 910
+      },
+      {
+        "display_value": "4.625",
+        "identifier_code": "AF",
+        "display_order": 920
+      },
+      {
+        "display_value": "4.500",
+        "identifier_code": "AE",
+        "display_order": 930
+      },
+      {
+        "display_value": "4.375",
+        "identifier_code": "AD",
+        "display_order": 940
+      },
+      {
+        "display_value": "4.250",
+        "identifier_code": "AC",
+        "display_order": 950
+      },
+      {
+        "display_value": "4.125",
+        "identifier_code": "AB",
+        "display_order": 960
+      },
+      {
+        "display_value": "4.000",
+        "identifier_code": "AA",
+        "display_order": 970
+      }
+    ],
+    "MOTOR_MODIFICATIONS": [
+      {
+        "display_value": "No Modification",
+        "identifier_code": "X",
+        "display_order": 10
+      },
+      {
+        "display_value": "Nameplate Change (per Item Description)",
+        "identifier_code": "0",
+        "display_order": 20
+      },
+      {
+        "display_value": "Nameplate Change (Custom)",
+        "identifier_code": "1",
+        "display_order": 30
+      },
+      {
+        "display_value": "Shaft Grounding Ring (External)",
+        "identifier_code": "2",
+        "display_order": 40
+      },
+      {
+        "display_value": "Shaft Grounding Ring (Internal)",
+        "identifier_code": "3",
+        "display_order": 50
+      },
+      {
+        "display_value": "Insulated Bearing (ODE)",
+        "identifier_code": "4",
+        "display_order": 60
+      },
+      {
+        "display_value": "Tropicalization",
+        "identifier_code": "5",
+        "display_order": 70
+      },
+      {
+        "display_value": "Installation of C-Face",
+        "identifier_code": "6",
+        "display_order": 80
+      },
+      {
+        "display_value": "Shorten Shaft (TS Frames)",
+        "identifier_code": "7",
+        "display_order": 90
+      },
+      {
+        "display_value": "215JM Shaft Extension in 254JM Frame",
+        "identifier_code": "8",
+        "display_order": 100
+      },
+      {
+        "display_value": "Class H Insulation",
+        "identifier_code": "9",
+        "display_order": 110
+      },
+      {
+        "display_value": "Drip Cover",
+        "identifier_code": "A",
+        "display_order": 120
+      },
+      {
+        "display_value": "Space Heater (120V)",
+        "identifier_code": "B",
+        "display_order": 130
+      },
+      {
+        "display_value": "Space Heater (240V)",
+        "identifier_code": "C",
+        "display_order": 140
+      },
+      {
+        "display_value": "Space Heater with Aux Box (120V)",
+        "identifier_code": "D",
+        "display_order": 150
+      },
+      {
+        "display_value": "Space Heater with Aux Box (240V)",
+        "identifier_code": "E",
+        "display_order": 160
+      },
+      {
+        "display_value": "Thermistors (1/Phase)",
+        "identifier_code": "F",
+        "display_order": 170
+      },
+      {
+        "display_value": "Thermistors (1/Phase) with Auxilliary Box",
+        "identifier_code": "G",
+        "display_order": 180
+      },
+      {
+        "display_value": "Thermostats (1/Phase)",
+        "identifier_code": "H",
+        "display_order": 190
+      },
+      {
+        "display_value": "Thermostats (1/Phase) with Auxilliary Box",
+        "identifier_code": "J",
+        "display_order": 200
+      },
+      {
+        "display_value": "F1 to F2 Mounting Conversion",
+        "identifier_code": "K",
+        "display_order": 210
+      },
+      {
+        "display_value": "Oversized Main Conduit Box - Mount & Extend Leads",
+        "identifier_code": "L",
+        "display_order": 220
+      },
+      {
+        "display_value": "Convert to IP56",
+        "identifier_code": "M",
+        "display_order": 230
+      },
+      {
+        "display_value": "Convert to IP65",
+        "identifier_code": "N",
+        "display_order": 240
+      },
+      {
+        "display_value": "Paint",
+        "identifier_code": "P",
+        "display_order": 250
+      },
+      {
+        "display_value": "Alternate Grease",
+        "identifier_code": "Q",
+        "display_order": 260
+      },
+      {
+        "display_value": "Single Row Thrust Bearing",
+        "identifier_code": "R",
+        "display_order": 270
+      },
+      {
+        "display_value": "Double Row Thrust Bearing",
+        "identifier_code": "S",
+        "display_order": 280
+      },
+      {
+        "display_value": "IEEE-45 Marine Duty Below Deck",
+        "identifier_code": "T",
+        "display_order": 290
+      },
+      {
+        "display_value": "Stator Winding RTD's (1/ Phase)",
+        "identifier_code": "U",
+        "display_order": 300
+      },
+      {
+        "display_value": "Convert to IP66",
+        "identifier_code": "V",
+        "display_order": 310
+      }
+    ],
+    "PUMP_MATERIAL": [
+      {
+        "display_value": "VR-1*",
+        "identifier_code": "1",
+        "display_order": 10
+      },
+      {
+        "display_value": "VR-1 BPO/DMA",
+        "identifier_code": "7",
+        "display_order": 20
+      },
+      {
+        "display_value": "VR-1A",
+        "identifier_code": "5",
+        "display_order": 30
+      },
+      {
+        "display_value": "VR-1A BPO/DMA",
+        "identifier_code": "V",
+        "display_order": 40
+      },
+      {
+        "display_value": "VR-1V",
+        "identifier_code": "3",
+        "display_order": 50
+      },
+      {
+        "display_value": "EY-2",
+        "identifier_code": "2",
+        "display_order": 60
+      }
+    ],
+    "SERIES": [
+      {
+        "display_value": "1500 (ANSI)",
+        "identifier_code": "A",
+        "display_order": 10
+      },
+      {
+        "display_value": "1530 (ANSI)",
+        "identifier_code": "B",
+        "display_order": 20
+      },
+      {
+        "display_value": "1600 (ANSI)",
+        "identifier_code": "C",
+        "display_order": 30
+      },
+      {
+        "display_value": "1630 (ANSI)",
+        "identifier_code": "D",
+        "display_order": 40
+      },
+      {
+        "display_value": "2530",
+        "identifier_code": "E",
+        "display_order": 50
+      },
+      {
+        "display_value": "3000",
+        "identifier_code": "F",
+        "display_order": 60
+      },
+      {
+        "display_value": "5500",
+        "identifier_code": "G",
+        "display_order": 70
+      },
+      {
+        "display_value": "5530",
+        "identifier_code": "H",
+        "display_order": 80
+      },
+      {
+        "display_value": "1500 (Din)",
+        "identifier_code": "I",
+        "display_order": 90
+      },
+      {
+        "display_value": "1530 (Din)",
+        "identifier_code": "J",
+        "display_order": 100
+      },
+      {
+        "display_value": "1600 (Din)",
+        "identifier_code": "K",
+        "display_order": 110
+      },
+      {
+        "display_value": "1630 (Din)",
+        "identifier_code": "L",
+        "display_order": 120
+      },
+      {
+        "display_value": "1500 (JIS)",
+        "identifier_code": "M",
+        "display_order": 130
+      },
+      {
+        "display_value": "1530 (JIS)",
+        "identifier_code": "N",
+        "display_order": 140
+      },
+      {
+        "display_value": "1600 (JIS)",
+        "identifier_code": "O",
+        "display_order": 150
+      },
+      {
+        "display_value": "1630 (JIS)",
+        "identifier_code": "P",
+        "display_order": 160
+      }
+    ],
+    "SIZE": [
+      {
+        "display_value": "1x1.5x6",
+        "identifier_code": "1",
+        "display_order": 10
+      },
+      {
+        "display_value": "1x1.5x8",
+        "identifier_code": "2",
+        "display_order": 20
+      },
+      {
+        "display_value": "1x2x10",
+        "identifier_code": "3",
+        "display_order": 30
+      },
+      {
+        "display_value": "1.5x3x10",
+        "identifier_code": "4",
+        "display_order": 40
+      },
+      {
+        "display_value": "1.5x3x6",
+        "identifier_code": "5",
+        "display_order": 50
+      },
+      {
+        "display_value": "1.5x3x8",
+        "identifier_code": "6",
+        "display_order": 60
+      },
+      {
+        "display_value": "2x3x6",
+        "identifier_code": "7",
+        "display_order": 70
+      },
+      {
+        "display_value": "2x3x8",
+        "identifier_code": "8",
+        "display_order": 80
+      },
+      {
+        "display_value": "2x3x10",
+        "identifier_code": "9",
+        "display_order": 90
+      },
+      {
+        "display_value": "2x3x13",
+        "identifier_code": "A",
+        "display_order": 100
+      },
+      {
+        "display_value": "3x4x6",
+        "identifier_code": "B",
+        "display_order": 110
+      },
+      {
+        "display_value": "3x4x8",
+        "identifier_code": "C",
+        "display_order": 120
+      },
+      {
+        "display_value": "3x4x10",
+        "identifier_code": "D",
+        "display_order": 130
+      },
+      {
+        "display_value": "3x4x13",
+        "identifier_code": "E",
+        "display_order": 140
+      },
+      {
+        "display_value": "4x4x10",
+        "identifier_code": "F",
+        "display_order": 150
+      },
+      {
+        "display_value": "4x6x10",
+        "identifier_code": "G",
+        "display_order": 160
+      },
+      {
+        "display_value": "4x6x11",
+        "identifier_code": "H",
+        "display_order": 170
+      },
+      {
+        "display_value": "4x6x13",
+        "identifier_code": "I",
+        "display_order": 180
+      },
+      {
+        "display_value": "6x8x13",
+        "identifier_code": "J",
+        "display_order": 190
+      },
+      {
+        "display_value": "6x10x8",
+        "identifier_code": "K",
+        "display_order": 200
+      },
+      {
+        "display_value": "6x12x9",
+        "identifier_code": "L",
+        "display_order": 210
+      },
+      {
+        "display_value": "8x10x15",
+        "identifier_code": "M",
+        "display_order": 220
+      },
+      {
+        "display_value": "8x14x10",
+        "identifier_code": "N",
+        "display_order": 230
+      },
+      {
+        "display_value": "10x12x16",
+        "identifier_code": "O",
+        "display_order": 240
+      },
+      {
+        "display_value": "8x15x11",
+        "identifier_code": "P",
+        "display_order": 250
+      }
+    ],
+    "TESTING": [
+      {
+        "display_value": "-",
+        "identifier_code": "T00",
+        "display_order": 10
+      },
+      {
+        "display_value": "NW-Perf",
+        "identifier_code": "T01",
+        "display_order": 20
+      },
+      {
+        "display_value": "NW-Perf & Vibration",
+        "identifier_code": "T02",
+        "display_order": 30
+      },
+      {
+        "display_value": "NW-Perf & NPSH",
+        "identifier_code": "T03",
+        "display_order": 40
+      },
+      {
+        "display_value": "NW-Perf & Noise",
+        "identifier_code": "T04",
+        "display_order": 50
+      },
+      {
+        "display_value": "NW-Perf, Vibration & NPSH",
+        "identifier_code": "T05",
+        "display_order": 60
+      },
+      {
+        "display_value": "NW-Perf, NPSH & Noise",
+        "identifier_code": "T06",
+        "display_order": 70
+      },
+      {
+        "display_value": "NW-Perf, Vibration & Noise",
+        "identifier_code": "T07",
+        "display_order": 80
+      },
+      {
+        "display_value": "NW-Perf, Vibration, NPSH & Noise",
+        "identifier_code": "T08",
+        "display_order": 90
+      },
+      {
+        "display_value": "NW-Perf & P.E. Signed-Perf",
+        "identifier_code": "T09",
+        "display_order": 100
+      },
+      {
+        "display_value": "NW-Perf & 4 Hour Run Test",
+        "identifier_code": "T0A",
+        "display_order": 110
+      },
+      {
+        "display_value": "NW-Perf, Vibration & P.E. Signed-Perf",
+        "identifier_code": "T0B",
+        "display_order": 120
+      },
+      {
+        "display_value": "NW-Perf, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T0C",
+        "display_order": 130
+      },
+      {
+        "display_value": "NW-Perf, Noise & P.E. Signed-Perf",
+        "identifier_code": "T0D",
+        "display_order": 140
+      },
+      {
+        "display_value": "NW-Perf, Vibration, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T0E",
+        "display_order": 150
+      },
+      {
+        "display_value": "NW-Perf, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T0F",
+        "display_order": 160
+      },
+      {
+        "display_value": "NW-Perf, Vibration, Noise & P.E. Signed-Perf",
+        "identifier_code": "T0G",
+        "display_order": 170
+      },
+      {
+        "display_value": "NW-Perf, Vibration, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T0H",
+        "display_order": 180
+      },
+      {
+        "display_value": "NW-Perf, Vibration & 4 Hour Run Test",
+        "identifier_code": "T0I",
+        "display_order": 190
+      },
+      {
+        "display_value": "NW-Perf, NPSH & 4 Hour Run Test",
+        "identifier_code": "T0J",
+        "display_order": 200
+      },
+      {
+        "display_value": "NW-Perf, Noise & 4 Hour Run Test",
+        "identifier_code": "T0K",
+        "display_order": 210
+      },
+      {
+        "display_value": "NW-Perf, Vibration, NPSH & 4 Hour Run Test",
+        "identifier_code": "T0L",
+        "display_order": 220
+      },
+      {
+        "display_value": "NW-Perf, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T0M",
+        "display_order": 230
+      },
+      {
+        "display_value": "NW-Perf, Vibration, Noise & 4 Hour Run Test",
+        "identifier_code": "T0N",
+        "display_order": 240
+      },
+      {
+        "display_value": "NW-Perf, Vibration, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T0O",
+        "display_order": 250
+      },
+      {
+        "display_value": "NW-Perf & Hydro",
+        "identifier_code": "T0P",
+        "display_order": 260
+      },
+      {
+        "display_value": "NW-Perf, Hydro, NPSH & Noise",
+        "identifier_code": "T0Q",
+        "display_order": 270
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration & Noise",
+        "identifier_code": "T0R",
+        "display_order": 280
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, NPSH & Noise",
+        "identifier_code": "T0S",
+        "display_order": 290
+      },
+      {
+        "display_value": "NW-Perf, Hydro & P.E. Signed-Perf",
+        "identifier_code": "T0T",
+        "display_order": 300
+      },
+      {
+        "display_value": "NW-Perf, Hydro & 4 Hour Run Test",
+        "identifier_code": "T0U",
+        "display_order": 310
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration & P.E. Signed-Perf",
+        "identifier_code": "T0V",
+        "display_order": 320
+      },
+      {
+        "display_value": "NW-Perf, Hydro, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T0W",
+        "display_order": 330
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Noise & P.E. Signed-Perf",
+        "identifier_code": "T0X",
+        "display_order": 340
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T0Y",
+        "display_order": 350
+      },
+      {
+        "display_value": "NW-Perf, Hydro, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T0Z",
+        "display_order": 360
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, Noise & P.E. Signed-Perf",
+        "identifier_code": "T10",
+        "display_order": 370
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T11",
+        "display_order": 380
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration & 4 Hour Run Test",
+        "identifier_code": "T12",
+        "display_order": 390
+      },
+      {
+        "display_value": "NW-Perf, Hydro, NPSH & 4 Hour Run Test",
+        "identifier_code": "T13",
+        "display_order": 400
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Noise & 4 Hour Run Test",
+        "identifier_code": "T14",
+        "display_order": 410
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, NPSH & 4 Hour Run Test",
+        "identifier_code": "T15",
+        "display_order": 420
+      },
+      {
+        "display_value": "NW-Perf, Hydro, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T16",
+        "display_order": 430
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, Noise & 4 Hour Run Test",
+        "identifier_code": "T17",
+        "display_order": 440
+      },
+      {
+        "display_value": "NW-Perf, Hydro, Vibration, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T18",
+        "display_order": 450
+      },
+      {
+        "display_value": "NW-Hydro",
+        "identifier_code": "T19",
+        "display_order": 460
+      },
+      {
+        "display_value": "Wit-Perf",
+        "identifier_code": "T1A",
+        "display_order": 470
+      },
+      {
+        "display_value": "Wit-Perf & Vibration",
+        "identifier_code": "T1B",
+        "display_order": 480
+      },
+      {
+        "display_value": "Wit-Perf & NPSH",
+        "identifier_code": "T1C",
+        "display_order": 490
+      },
+      {
+        "display_value": "Wit-Perf & Noise",
+        "identifier_code": "T1D",
+        "display_order": 500
+      },
+      {
+        "display_value": "Wit-Perf, Vibration & NPSH",
+        "identifier_code": "T1E",
+        "display_order": 510
+      },
+      {
+        "display_value": "Wit-Perf, NPSH & Noise",
+        "identifier_code": "T1F",
+        "display_order": 520
+      },
+      {
+        "display_value": "Wit-Perf, Vibration & Noise",
+        "identifier_code": "T1G",
+        "display_order": 530
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, NPSH & Noise",
+        "identifier_code": "T1H",
+        "display_order": 540
+      },
+      {
+        "display_value": "Wit-Perf & P.E. Signed-Perf",
+        "identifier_code": "T1I",
+        "display_order": 550
+      },
+      {
+        "display_value": "Wit-Perf & 4 Hour Run Test",
+        "identifier_code": "T1J",
+        "display_order": 560
+      },
+      {
+        "display_value": "Wit-Perf, Vibration & P.E. Signed-Perf",
+        "identifier_code": "T1K",
+        "display_order": 570
+      },
+      {
+        "display_value": "Wit-Perf, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T1L",
+        "display_order": 580
+      },
+      {
+        "display_value": "Wit-Perf, Noise & P.E. Signed-Perf",
+        "identifier_code": "T1M",
+        "display_order": 590
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T1N",
+        "display_order": 600
+      },
+      {
+        "display_value": "Wit-Perf, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T1O",
+        "display_order": 610
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, Noise & P.E. Signed-Perf",
+        "identifier_code": "T1P",
+        "display_order": 620
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T1Q",
+        "display_order": 630
+      },
+      {
+        "display_value": "Wit-Perf, Vibration & 4 Hour Run Test",
+        "identifier_code": "T1R",
+        "display_order": 640
+      },
+      {
+        "display_value": "Wit-Perf, NPSH & 4 Hour Run Test",
+        "identifier_code": "T1S",
+        "display_order": 650
+      },
+      {
+        "display_value": "Wit-Perf, Noise & 4 Hour Run Test",
+        "identifier_code": "T1T",
+        "display_order": 660
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, NPSH & 4 Hour Run Test",
+        "identifier_code": "T1U",
+        "display_order": 670
+      },
+      {
+        "display_value": "Wit-Perf, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T1V",
+        "display_order": 680
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, Noise & 4 Hour Run Test",
+        "identifier_code": "T1W",
+        "display_order": 690
+      },
+      {
+        "display_value": "Wit-Perf, Vibration, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T1X",
+        "display_order": 700
+      },
+      {
+        "display_value": "Wit-Perf & Hydro",
+        "identifier_code": "T1Y",
+        "display_order": 710
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, NPSH & Noise",
+        "identifier_code": "T1Z",
+        "display_order": 720
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration & Noise",
+        "identifier_code": "T20",
+        "display_order": 730
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, NPSH & Noise",
+        "identifier_code": "T21",
+        "display_order": 740
+      },
+      {
+        "display_value": "Wit-Perf, Hydro & P.E. Signed-Perf",
+        "identifier_code": "T22",
+        "display_order": 750
+      },
+      {
+        "display_value": "Wit-Perf, Hydro & 4 Hour Run Test",
+        "identifier_code": "T23",
+        "display_order": 760
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration & P.E. Signed-Perf",
+        "identifier_code": "T24",
+        "display_order": 770
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T25",
+        "display_order": 780
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Noise & P.E. Signed-Perf",
+        "identifier_code": "T26",
+        "display_order": 790
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, NPSH & P.E. Signed-Perf",
+        "identifier_code": "T27",
+        "display_order": 800
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T28",
+        "display_order": 810
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, Noise & P.E. Signed-Perf",
+        "identifier_code": "T29",
+        "display_order": 820
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, NPSH, Noise & P.E. Signed-Perf",
+        "identifier_code": "T2A",
+        "display_order": 830
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration & 4 Hour Run Test",
+        "identifier_code": "T2B",
+        "display_order": 840
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, NPSH & 4 Hour Run Test",
+        "identifier_code": "T2C",
+        "display_order": 850
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Noise & 4 Hour Run Test",
+        "identifier_code": "T2D",
+        "display_order": 860
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, NPSH & 4 Hour Run Test",
+        "identifier_code": "T2E",
+        "display_order": 870
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T2F",
+        "display_order": 880
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, Noise & 4 Hour Run Test",
+        "identifier_code": "T2G",
+        "display_order": 890
+      },
+      {
+        "display_value": "Wit-Perf, Hydro, Vibration, NPSH, Noise & 4 Hour Run Test",
+        "identifier_code": "T2H",
+        "display_order": 900
+      },
+      {
+        "display_value": "Wit-Hydro",
+        "identifier_code": "T2I",
+        "display_order": 910
+      }
+    ]
+  }
+}

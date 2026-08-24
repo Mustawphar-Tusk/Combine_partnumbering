@@ -1,0 +1,41 @@
+{
+  "endpoint": "GET /api/v2/families/{family}/configuration-dictionary",
+  "description": "Returns the complete runtime configuration dictionary for a pump family",
+  "response_schema": {
+    "family": "FYBROC | DEAN",
+    "publication_version": "F140-corrections-v1",
+    "fields": [
+      {
+        "field_code": "PUMP_MATERIAL",
+        "field_name": "Pump Material",
+        "data_type": "dropdown",
+        "series_options": {
+          "1500": [
+            "vr-1",
+            "vr-1a",
+            "ey-2",
+            "vr-1 bpo/dma",
+            "vr-1a bpo/dma",
+            "vr-1v"
+          ],
+          "1530": [
+            "vr-1",
+            "vr-1a",
+            "ey-2"
+          ]
+        },
+        "identifier_codes": {
+          "vr-1": "1",
+          "vr-1a": "5",
+          "ey-2": "2"
+        }
+      }
+    ],
+    "constraints": [
+      "... from cfg.FieldOptionDependency ..."
+    ],
+    "attribute_codes": [
+      "... from cfg.AttributeValue ..."
+    ]
+  }
+}
