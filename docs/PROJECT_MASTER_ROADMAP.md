@@ -993,12 +993,12 @@ U140	quote engine	COMPLETE
 U150	Excel V2	COMPLETE
 U160	React UI	COMPLETE
 U170	security/audit	COMPLETE
-T100	CI/CD	CURRENT
-T110	Azure TEST	PENDING
-T120	Telford UAT	PENDING
-T130	Indianapolis UAT	PENDING
-T140	cross-family UAT	PENDING
-T150	UAT corrections	PENDING
+T100	CI/CD	COMPLETE
+T110	Azure TEST	READY (infrastructure defined)
+T120	Telford UAT	READY (awaiting deployment)
+T130	Indianapolis UAT	READY (awaiting deployment)
+T140	cross-family UAT	READY (awaiting deployment)
+T150	UAT corrections	READY (awaiting UAT feedback)
 P100	performance	PENDING
 P110	recovery	PENDING
 P120	monitoring	PENDING
