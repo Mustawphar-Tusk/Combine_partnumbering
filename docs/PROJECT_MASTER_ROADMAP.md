@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.2  
-**Roadmap Date:** 2026-08-22  
+**Roadmap Version:** 1.3  
+**Roadmap Date:** 2026-08-24  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** F140 — Fybroc Metadata Corrections & Publication  
+**Current Milestone:** F150 — SQL Fybroc Identifier Authority  
 
 ---
 
@@ -973,8 +973,8 @@ F100	Fybroc source inventory	COMPLETE
 F110	V5/V6 nomenclature reconciliation	COMPLETE
 F120	Rev0.3 configuration model	COMPLETE
 F130	Fybroc pricing/adders	COMPLETE
-F140	Fybroc metadata corrections	CURRENT
-F150	SQL Fybroc identifier	PENDING
+F140	Fybroc metadata corrections	COMPLETE
+F150	SQL Fybroc identifier	CURRENT
 F160	Fybroc Excel Oracle	PENDING
 F170	Fybroc exhaustive regression	PENDING
 F180	Fybroc signoff	PENDING
@@ -1017,23 +1017,30 @@ MASTER ROADMAP
 Version:            1.2
 
 Current Phase:      F — Fybroc Completion
-Current Milestone:  F140
+Current Milestone:  F150
 Status:             READY TO START
 
 Current Objective:
-Correct the configuration metadata based on F100-F130 findings.
-Apply corrections to all 7 supported series (1500, 1530, 1600, 1630, 2530, 3000, 5500).
+Move configured-product identity authority into SQL Server.
+SQL will generate: canonical configuration identity, configuration
+signature, Part Number, SKU V2, configured-product reuse decision.
 
 Current Exit Gate:
-For every supported series: valid options project correctly, invalid
-options fail closed, dependency transitions work, no unexplained
-empty-option state exists.
+For all approved Fybroc regression cases: SQL Part Number = approved
+legacy/workbook Part Number. SKU V2 must be deterministic and
+collision protected.
 
 Next Permitted Milestone:
-F150 — SQL Fybroc Identifier Authority
+F160 — Excel Oracle Harness
 
-Completed This Session (2026-08-22):
-F130    Fybroc pricing/adders               COMPLETE
+Completed This Session (2026-08-24):
+F140    Fybroc metadata corrections         COMPLETE
+  - Publication 2 activated (F140-corrections-v1)
+  - SeriesFieldOption: 1724 rows (was 1542, +182)
+  - FieldOptionDependency: 10574 rows (was 13178, -2604 over-permissive IMPELLER_TRIM dropped)
+  - AttributeValue: 266 rows (vocabulary corrections confirmed)
+  - All 7 series projecting correctly
+  - Old publication (ID=1) retired
 
 F130 Key Findings:
 - 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
