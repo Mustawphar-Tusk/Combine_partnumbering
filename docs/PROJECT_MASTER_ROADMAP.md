@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.0  
-**Roadmap Date:** 2026-08-19  
+**Roadmap Version:** 1.2  
+**Roadmap Date:** 2026-08-22  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** F100 — Fybroc Source Inventory & Reconciliation  
+**Current Milestone:** F140 — Fybroc Metadata Corrections & Publication  
 
 ---
 
@@ -969,11 +969,11 @@ Milestone	Description	Status
 
 M024.1	uv migration	COMPLETE
 M024.2	architecture baseline	COMPLETE
-F100	Fybroc source inventory	CURRENT
-F110	V5/V6 nomenclature reconciliation	PENDING
-F120	Rev0.3 configuration model	PENDING
-F130	Fybroc pricing/adders	PENDING
-F140	Fybroc metadata corrections	PENDING
+F100	Fybroc source inventory	COMPLETE
+F110	V5/V6 nomenclature reconciliation	COMPLETE
+F120	Rev0.3 configuration model	COMPLETE
+F130	Fybroc pricing/adders	COMPLETE
+F140	Fybroc metadata corrections	CURRENT
 F150	SQL Fybroc identifier	PENDING
 F160	Fybroc Excel Oracle	PENDING
 F170	Fybroc exhaustive regression	PENDING
@@ -1014,22 +1014,44 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.0
+Version:            1.2
 
 Current Phase:      F — Fybroc Completion
-Current Milestone:  F100
+Current Milestone:  F140
 Status:             READY TO START
 
 Current Objective:
-Deep-read and reconcile all five Fybroc workbooks.
+Correct the configuration metadata based on F100-F130 findings.
+Apply corrections to all 7 supported series (1500, 1530, 1600, 1630, 2530, 3000, 5500).
 
 Current Exit Gate:
-Every relevant field, rule, constraint, dependency,
-identifier mapping, pricing/add-on, formula and macro
-has been inventoried and classified.
+For every supported series: valid options project correctly, invalid
+options fail closed, dependency transitions work, no unexplained
+empty-option state exists.
 
 Next Permitted Milestone:
-F110 — V5 to V6 Nomenclature Reconciliation
+F150 — SQL Fybroc Identifier Authority
+
+Completed This Session (2026-08-22):
+F130    Fybroc pricing/adders               COMPLETE
+
+F130 Key Findings:
+- 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
+- Price Estimator has 19 additional prices (VR-1V, VR-1V BPO/DMA materials)
+- Rev0.3 pricing is a faithful subset of Price Estimator - no conflicts
+- 5500: Rev0.3 has 52,440 rows (19 sizes x 19 settings x 2 materials)
+        PE has 72 rows (19 sizes x 4 settings) - both use Setting granularity
+- Price Estimator is AUTHORITATIVE for all 33 production pricing rules
+- 55/55 pricing index rules classified (33 PE, rest engineering notes/review items)
+- Adders: 14 sections, 98 lines covering hardware, flush, bearings, elastomers, misc
+- Components: Coupling (13 groups x 37 frames), Baseplate (85 rows x frames), Motor (13 blocks)
+
+F130 Gaps Carried Forward to F140:
+- PE has VR-1V + VR-1V BPO/DMA pricing that current SQL metadata may not support
+- 5500 Setting-level pricing: Rev0.3 has 19 settings vs PE's 4 settings (PE may be incomplete for 5500)
+- Flexaseal seal pricing: not yet in production pricebook (NEEDS_ENGINEERING_REVIEW)
+- Hydrotest certificate: ambiguous - certificate vs test pricing unclear
+- Paint Upgrade, Shaft Grounding, Testing: noted as "not in pricebook" by engineering
 
 Deferred:
 SQL identifier work             -> F150
