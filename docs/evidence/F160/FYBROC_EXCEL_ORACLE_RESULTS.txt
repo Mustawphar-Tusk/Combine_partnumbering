@@ -1,0 +1,32 @@
+========================================================================================================================
+F160.1 - FYBROC EXCEL ORACLE RESULTS
+========================================================================================================================
+
+Git commit  : bfc14a2cfb0ed576312f7a0b45d5688b3f66e9c9
+Source      : workbooks/Fybroc/Nomenclature_V6.xlsm
+Tests       : 3
+Passed      : 0
+Failed      : 3
+Errors      : 0
+
+  [FAIL] Standard 1500 ANSI VR-1A
+    Inputs: {'SERIES': '1500', 'FLANGE_TYPE': 'ANSI', 'SIZE': '1x2x10', 'PUMP_MATERIAL': 'VR-1A', 'IMPELLER_TRIM': '9.250'}
+    Excel PN: -2146826246
+    Expected prefix: FA35  Actual: -214
+    Segments: {'brand': 'F', 'series': '-2146826246', 'size': '3.0', 'material': '5.0', 'trim': '-2146826246', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
+    Description: PUMP, FYBR, 1500, 1x2x10, VR-1A, 9.25 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR
+
+  [FAIL] Standard 1500 DIN VR-1
+    Inputs: {'SERIES': '1500', 'FLANGE_TYPE': 'DIN', 'SIZE': '1x1.5x6', 'PUMP_MATERIAL': 'VR-1', 'IMPELLER_TRIM': '6.000'}
+    Excel PN: -2146826246
+    Expected prefix: FI11  Actual: -214
+    Segments: {'brand': 'F', 'series': '-2146826246', 'size': '1.0', 'material': '1.0', 'trim': '-2146826246', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
+    Description: PUMP, FYBR, 1500, 1x1.5x6, VR-1, 6 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR
+
+  [FAIL] Standard 5500 ANSI VR-1
+    Inputs: {'SERIES': '5500', 'FLANGE_TYPE': 'ANSI', 'SIZE': '1x2x10', 'PUMP_MATERIAL': 'VR-1', 'IMPELLER_TRIM': '8.000'}
+    Excel PN: -2146826246
+    Expected prefix: FG31  Actual: -214
+    Segments: {'brand': 'F', 'series': 'G', 'size': '3.0', 'material': '1.0', 'trim': '-2146826246', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
+    Description: PUMP, FYBR, 5500, 1x2x10, VR-1, 8 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR
+

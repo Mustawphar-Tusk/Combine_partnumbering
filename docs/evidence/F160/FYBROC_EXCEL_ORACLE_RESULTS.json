@@ -1,0 +1,106 @@
+{
+  "artifact": "FYBROC_EXCEL_ORACLE_RESULTS",
+  "step": "F160.1",
+  "roadmap_version": "1.3",
+  "milestone": "F160",
+  "generated_utc": "2026-08-24T17:56:05.471969+00:00",
+  "git_commit": "bfc14a2cfb0ed576312f7a0b45d5688b3f66e9c9",
+  "git_working_tree_clean": false,
+  "source_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+  "test_count": 3,
+  "passed": 0,
+  "failed": 3,
+  "errors": 0,
+  "results": [
+    {
+      "test_name": "Standard 1500 ANSI VR-1A",
+      "inputs": {
+        "SERIES": "1500",
+        "FLANGE_TYPE": "ANSI",
+        "SIZE": "1x2x10",
+        "PUMP_MATERIAL": "VR-1A",
+        "IMPELLER_TRIM": "9.250"
+      },
+      "excel_part_number": "-2146826246",
+      "excel_description": "PUMP, FYBR, 1500, 1x2x10, VR-1A, 9.25 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR",
+      "excel_segments": {
+        "brand": "F",
+        "series": "-2146826246",
+        "size": "3.0",
+        "material": "5.0",
+        "trim": "-2146826246",
+        "pump_options": "1VC1",
+        "seal_mfg": "S",
+        "seal_assy": "03",
+        "options": "3G",
+        "frame_size": "05",
+        "motor_assy": "04X",
+        "motor_mods": "XXX",
+        "testing": "00"
+      },
+      "prefix_match": false,
+      "expected_prefix": "FA35",
+      "actual_prefix": "-214"
+    },
+    {
+      "test_name": "Standard 1500 DIN VR-1",
+      "inputs": {
+        "SERIES": "1500",
+        "FLANGE_TYPE": "DIN",
+        "SIZE": "1x1.5x6",
+        "PUMP_MATERIAL": "VR-1",
+        "IMPELLER_TRIM": "6.000"
+      },
+      "excel_part_number": "-2146826246",
+      "excel_description": "PUMP, FYBR, 1500, 1x1.5x6, VR-1, 6 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR",
+      "excel_segments": {
+        "brand": "F",
+        "series": "-2146826246",
+        "size": "1.0",
+        "material": "1.0",
+        "trim": "-2146826246",
+        "pump_options": "1VC1",
+        "seal_mfg": "S",
+        "seal_assy": "03",
+        "options": "3G",
+        "frame_size": "05",
+        "motor_assy": "04X",
+        "motor_mods": "XXX",
+        "testing": "00"
+      },
+      "prefix_match": false,
+      "expected_prefix": "FI11",
+      "actual_prefix": "-214"
+    },
+    {
+      "test_name": "Standard 5500 ANSI VR-1",
+      "inputs": {
+        "SERIES": "5500",
+        "FLANGE_TYPE": "ANSI",
+        "SIZE": "1x2x10",
+        "PUMP_MATERIAL": "VR-1",
+        "IMPELLER_TRIM": "8.000"
+      },
+      "excel_part_number": "-2146826246",
+      "excel_description": "PUMP, FYBR, 5500, 1x2x10, VR-1, 8 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR",
+      "excel_segments": {
+        "brand": "F",
+        "series": "G",
+        "size": "3.0",
+        "material": "1.0",
+        "trim": "-2146826246",
+        "pump_options": "1VC1",
+        "seal_mfg": "S",
+        "seal_assy": "03",
+        "options": "3G",
+        "frame_size": "05",
+        "motor_assy": "04X",
+        "motor_mods": "XXX",
+        "testing": "00"
+      },
+      "prefix_match": false,
+      "expected_prefix": "FG31",
+      "actual_prefix": "-214"
+    }
+  ]
+}
