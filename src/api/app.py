@@ -8,6 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import (
     RequestValidationError,
 )
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -128,14 +129,14 @@ def create_app(
     application.include_router(router)
     application.include_router(router_v2)
 
-    # Serve the test configurator UI from /ui folder
-    ui_dir = PROJECT_ROOT / "ui"
-    if ui_dir.exists():
-        application.mount(
-            "/ui",
-            StaticFiles(directory=str(ui_dir), html=True),
-            name="ui",
-        )
+    # CORS — allow all origins for development
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     @application.exception_handler(
         RequestValidationError
@@ -294,4 +295,13 @@ def create_app(
     return application
 
 
+# Mount static UI AFTER app creation (must be last to avoid route conflicts)
 app = create_app()
+
+_ui_dir = PROJECT_ROOT / "ui"
+if _ui_dir.exists():
+    app.mount(
+        "/ui",
+        StaticFiles(directory=str(_ui_dir), html=True),
+        name="ui",
+    )
