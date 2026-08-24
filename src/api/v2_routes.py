@@ -424,31 +424,86 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         # Composite segment codes — look up from combination tables in SQL
         # The SelectionsJson in the combination table has field->value pairs
-        # We match by finding a row where the values are case-insensitive substrings
-        def lookup_segment(segment_code, field_map):
-            """
-            Look up hex code by matching user selections against SelectionsJson.
-            field_map: dict of {combo_field_name: ui_selection_value}
-            """
-            if not any(field_map.values()):
-                return None
-            # Build a WHERE clause that checks SelectionsJson contains each value
-            # Use LOWER + LIKE on the JSON blob for fuzzy matching
-            conditions = []
-            params = [segment_code]
-            for combo_field, ui_value in field_map.items():
-                if ui_value:
-                    # Strip common suffixes and normalize
-                    clean_val = ui_value.lower().strip()
-                    if clean_val and len(clean_val) > 2:
-                        conditions.append("LOWER(SelectionsJson) LIKE ?")
-                        params.append(f"%{clean_val[:20]}%")
+        # SFO values differ from combo values - need keyword-based matching
+        
+        # Vocabulary mapping: SFO option value -> combo table search keyword
+        VOCAB_MAP = {
+            # CASING_DRAINS
+            "supplied by fybroc": "casing drains",
+            "not supplied by fybroc": "no casing drain",
+            # SUCTION_DISCHARGE_TAPS  
+            "suction discharge taps": "suction discharge tap",
+            "no suction discharge taps": "no suction discharge",
+            # SHAFT_MATERIAL
+            "303 ss": "303 ss",
+            "316 ss": "316 ss",
+            "carp-20": "carp-20",
+            "hastelloy c": "hastelloy",
+            "titanium": "titanium",
+            # FLUSH
+            "internal flush": "internal flush",
+            "external flush": "external flush",
+            "bypass(tapped discharge)": "bypass",
+            "bypass(tapped spacer)": "bypass",
+            "bypass(cyclone separator)": "cyclone",
+            # PUMP_ELASTOMERS
+            "fkm": "fkm",
+            "epr": "epr",
+            "ptfe": "ptfe",
+            # GLAND_HARDWARE
+            "316 ss": "316",
+            "carp-20": "carp",
+            # SEAL_OPTION
+            "installed by fybroc": "mechanical seal included",
+            "supplied by fybroc": "mechanical seal included",
+            "noseal single seal gland": "no seal (single",
+            "noseal double seal gland": "no seal (double",
+            "noseal nosealgland": "no seal (no seal",
+            # SEAL_TYPE
+            "8b2 single outside": "8b2 single",
+            "rac single outside": "rac single",
+            "8-1t double inside": "8-1t double",  
+            "8 1t double inside": "8-1t double",
+            "cro double inside": "cro double",
+            "rxo double inside": "rxo double",
+            # SEAL_MATERIALS
+            "carbon vs ceramic": "carbon vs",
+            "silcar vs silcar": "silcar",
+            # COUPLING_OPTION
+            "coupling included": "coupling included",
+            "no coupling": "no coupling",
+            # BASEPLATE_OPTION
+            "baseplate included": "baseplate",
+            "no baseplate": "no baseplate",
+            # MOTOR_OPTION
+            "installed by fybroc": "motor included",
+            "by others": "no motor",
+            "supplied by fybroc": "motor included",
+        }
+        
+        def map_value(sfo_val):
+            """Map an SFO option value to a combo table search keyword."""
+            if not sfo_val:
+                return ""
+            lower = sfo_val.lower().strip()
+            return VOCAB_MAP.get(lower, lower)
+        
+        def lookup_segment(segment_code, field_value_pairs):
+            """Look up hex code by matching mapped values against SelectionsJson."""
+            keywords = []
+            for field, sfo_val in field_value_pairs:
+                kw = map_value(sfo_val)
+                if kw and len(kw) > 2:
+                    keywords.append(kw)
             
-            if not conditions:
+            if not keywords:
                 return None
             
-            # Require ALL conditions match (AND)
-            where = " AND ".join(conditions)
+            # Build query - match ALL keywords in SelectionsJson
+            conditions = ["LOWER(SelectionsJson) LIKE ?"] * len(keywords)
+            params = [segment_code] + [f"%{kw}%" for kw in keywords[:4]]  # max 4 conditions
+            
+            where = " AND ".join(conditions[:len(params)-1])
             sql = f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {where}"
             try:
                 row = cursor.execute(sql, *params).fetchone()
@@ -456,33 +511,34 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             except:
                 return None
 
-        # Map UI selection field codes to the values the user chose
-        pump_opts = lookup_segment("PUMP_OPTIONS", {
-            "CASING_DRAINS": body.selections.get("CASING_DRAINS", ""),
-            "SHAFT_MATERIAL": body.selections.get("SHAFT_MATERIAL", ""),
-            "FLUSH": body.selections.get("FLUSH", ""),
-            "PUMP_ELASTOMERS": body.selections.get("PUMP_ELASTOMERS", ""),
-            "GLAND_HARDWARE": body.selections.get("GLAND_HARDWARE", ""),
-        }) or body.segment_codes.get("PUMP_OPTIONS", "????")
+        # PUMP_OPTIONS lookup
+        pump_opts = lookup_segment("PUMP_OPTIONS", [
+            ("CASING_DRAINS", body.selections.get("CASING_DRAINS", "")),
+            ("SHAFT_MATERIAL", body.selections.get("SHAFT_MATERIAL", "")),
+            ("FLUSH", body.selections.get("FLUSH", "")),
+            ("PUMP_ELASTOMERS", body.selections.get("PUMP_ELASTOMERS", "")),
+        ]) or body.segment_codes.get("PUMP_OPTIONS", "????")
 
+        # SEAL_ASSEMBLY lookup
         seal_mfg = body.segment_codes.get("SEAL_MFG", "?")
-        seal_assy = lookup_segment("SEAL_ASSEMBLY", {
-            "SEAL_OPTION": body.selections.get("SEAL_OPTION", ""),
-            "SEAL_TYPE": body.selections.get("SEAL_TYPE", ""),
-            "SEAL_MATERIALS": body.selections.get("SEAL_MATERIALS", ""),
-        }) or body.segment_codes.get("SEAL_ASSY", "??")
+        seal_assy = lookup_segment("SEAL_ASSEMBLY", [
+            ("SEAL_OPTION", body.selections.get("SEAL_OPTION", "")),
+            ("SEAL_TYPE", body.selections.get("SEAL_TYPE", "")),
+            ("SEAL_MATERIALS", body.selections.get("SEAL_MATERIALS", "")),
+        ]) or body.segment_codes.get("SEAL_ASSY", "??")
 
-        options_code = lookup_segment("OPTIONS", {
-            "COUPLING_OPTION": body.selections.get("COUPLING_OPTION", ""),
-            "BASEPLATE_OPTION": body.selections.get("BASEPLATE_OPTION", ""),
-        }) or body.segment_codes.get("OPTIONS", "??")
+        # OPTIONS lookup
+        options_code = lookup_segment("OPTIONS", [
+            ("COUPLING_OPTION", body.selections.get("COUPLING_OPTION", "")),
+            ("BASEPLATE_OPTION", body.selections.get("BASEPLATE_OPTION", "")),
+        ]) or body.segment_codes.get("OPTIONS", "??")
 
+        # MOTOR_ASSEMBLY lookup
         frame_size = body.segment_codes.get("FRAME_SIZE", "??")
-        motor_assy = lookup_segment("MOTOR_ASSEMBLY", {
-            "MOTOR_OPTION": body.selections.get("MOTOR_OPTION", ""),
-            "MOTOR_HP": body.selections.get("MOTOR_HP", ""),
-            "MOTOR_RPM": body.selections.get("MOTOR_RPM", ""),
-        }) or body.segment_codes.get("MOTOR_ASSY", "???")
+        motor_assy = lookup_segment("MOTOR_ASSEMBLY", [
+            ("MOTOR_OPTION", body.selections.get("MOTOR_OPTION", "")),
+        ]) or body.segment_codes.get("MOTOR_ASSY", "???")
+        
         motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
         testing = body.segment_codes.get("TESTING", "00")
 
