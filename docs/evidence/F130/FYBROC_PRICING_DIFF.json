@@ -3,90 +3,26 @@
   "step": "F130.6",
   "roadmap_version": "1.1",
   "milestone": "F130",
-  "generated_utc": "2026-08-24T15:59:30.676991+00:00",
-  "git_commit": "7eb597afb2c60fa05ef3a10a7ce5c7bef0cefe5c",
+  "generated_utc": "2026-08-24T16:11:42.667930+00:00",
+  "git_commit": "11ddc4043b4c7011fc86fdbdac88410d9a9e49f1",
   "git_working_tree_clean": false,
   "comparison_1500": {
     "rev03_price_count": 109,
     "pe_price_count": 128,
-    "total_compared": 165,
+    "total_compared": 128,
     "counts": {
-      "MATCH": 72,
+      "MATCH": 109,
       "MISMATCH": 0,
-      "REV03_ONLY": 37,
-      "PE_ONLY": 56
+      "REV03_ONLY": 0,
+      "PE_ONLY": 19
     },
-    "match_rate": "43.6%",
+    "match_rate": "85.2%",
     "differences": [
-      {
-        "size": "1.5x3x10",
-        "material": "vr1_bpodma",
-        "rev03_price": 10187.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1.5x3x10",
-        "material": "vr1a_bpodma",
-        "rev03_price": 17882.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1.5x3x10",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 17882.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1.5x3x10",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 10187.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
       {
         "size": "1.5x3x10",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 27166.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1.5x3x6",
-        "material": "vr1_bpodma",
-        "rev03_price": 5777.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1.5x3x6",
-        "material": "vr1a_bpodma",
-        "rev03_price": 10041.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1.5x3x6",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 10041.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1.5x3x6",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 5777.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -100,57 +36,9 @@
       },
       {
         "size": "1.5x3x8",
-        "material": "vr1_bpodma",
-        "rev03_price": 9826.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1.5x3x8",
-        "material": "vr1a_bpodma",
-        "rev03_price": 17252.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1.5x3x8",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 17252.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1.5x3x8",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 9826.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1.5x3x8",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 24440.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "10x12x16",
-        "material": "vr1_bpodma",
-        "rev03_price": 71804.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "10x12x16",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 71804.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -164,73 +52,9 @@
       },
       {
         "size": "1x1.5x6",
-        "material": "vr1_bpodma",
-        "rev03_price": 5480.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1x1.5x6",
-        "material": "vr1a_bpodma",
-        "rev03_price": 9530.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1x1.5x6",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 9530.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1x1.5x6",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 5480.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1x1.5x6",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 14369.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1x1.5x8",
-        "material": "vr1_bpodma",
-        "rev03_price": 6573.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1x1.5x8",
-        "material": "vr1a_bpodma",
-        "rev03_price": 11427.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1x1.5x8",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 11427.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1x1.5x8",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 6573.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -244,73 +68,9 @@
       },
       {
         "size": "1x2x10",
-        "material": "vr1_bpodma",
-        "rev03_price": 9753.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1x2x10",
-        "material": "vr1a_bpodma",
-        "rev03_price": 16873.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "1x2x10",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 16873.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1x2x10",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 9753.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "1x2x10",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 26013.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x10",
-        "material": "vr1_bpodma",
-        "rev03_price": 11258.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x10",
-        "material": "vr1a_bpodma",
-        "rev03_price": 19762.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x10",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 19762.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x10",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 11258.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -324,73 +84,9 @@
       },
       {
         "size": "2x3x13",
-        "material": "vr1_bpodma",
-        "rev03_price": 15163.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x13",
-        "material": "vr1a_bpodma",
-        "rev03_price": 26234.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x13",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 26234.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x13",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 15163.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x13",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 39076.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x6",
-        "material": "vr1_bpodma",
-        "rev03_price": 6056.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x6",
-        "material": "vr1a_bpodma",
-        "rev03_price": 10528.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x6",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 10528.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x6",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 6056.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -404,73 +100,9 @@
       },
       {
         "size": "2x3x8",
-        "material": "vr1_bpodma",
-        "rev03_price": 10177.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x8",
-        "material": "vr1a_bpodma",
-        "rev03_price": 17865.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "2x3x8",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 17865.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x8",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 10177.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "2x3x8",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 25313.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "3x4x10",
-        "material": "vr1_bpodma",
-        "rev03_price": 13554.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "3x4x10",
-        "material": "vr1a_bpodma",
-        "rev03_price": 23450.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "3x4x10",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 23450.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "3x4x10",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 13554.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -484,73 +116,9 @@
       },
       {
         "size": "3x4x13",
-        "material": "vr1_bpodma",
-        "rev03_price": 18259.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "3x4x13",
-        "material": "vr1a_bpodma",
-        "rev03_price": 31590.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "3x4x13",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 31590.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "3x4x13",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 18259.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "3x4x13",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 44592.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "3x4x8",
-        "material": "vr1_bpodma",
-        "rev03_price": 10647.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "3x4x8",
-        "material": "vr1a_bpodma",
-        "rev03_price": 18427.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "3x4x8",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 18427.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "3x4x8",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 10647.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -564,73 +132,9 @@
       },
       {
         "size": "4x4x10",
-        "material": "vr1_bpodma",
-        "rev03_price": 15512.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "4x4x10",
-        "material": "vr1a_bpodma",
-        "rev03_price": 26834.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "4x4x10",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 26834.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "4x4x10",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 15512.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "4x4x10",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 39273.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "4x6x10",
-        "material": "vr1_bpodma",
-        "rev03_price": 17482.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "4x6x10",
-        "material": "vr1a_bpodma",
-        "rev03_price": 30244.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "4x6x10",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 30244.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "4x6x10",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 17482.0,
         "difference": null,
         "classification": "PE_ONLY"
       },
@@ -644,38 +148,6 @@
       },
       {
         "size": "4x6x13",
-        "material": "vr1_bpodma",
-        "rev03_price": 20024.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "4x6x13",
-        "material": "vr1a_bpodma",
-        "rev03_price": 34641.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "4x6x13",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 34641.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "4x6x13",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 20024.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "4x6x13",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 54311.0,
@@ -684,73 +156,9 @@
       },
       {
         "size": "6x8x13",
-        "material": "vr1_bpodma",
-        "rev03_price": 31869.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "6x8x13",
-        "material": "vr1a_bpodma",
-        "rev03_price": 40469.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "6x8x13",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 40469.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "6x8x13",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 31869.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "6x8x13",
         "material": "vr1vbpodma",
         "rev03_price": null,
         "pe_price": 80704.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "8x10x15",
-        "material": "vr1_bpodma",
-        "rev03_price": 42635.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "8x10x15",
-        "material": "vr1a_bpodma",
-        "rev03_price": 55481.0,
-        "pe_price": null,
-        "difference": null,
-        "classification": "REV03_ONLY"
-      },
-      {
-        "size": "8x10x15",
-        "material": "vr1abpodma",
-        "rev03_price": null,
-        "pe_price": 55481.0,
-        "difference": null,
-        "classification": "PE_ONLY"
-      },
-      {
-        "size": "8x10x15",
-        "material": "vr1bpodma",
-        "rev03_price": null,
-        "pe_price": 42635.0,
         "difference": null,
         "classification": "PE_ONLY"
       },

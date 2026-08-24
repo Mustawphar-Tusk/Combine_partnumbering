@@ -62,7 +62,7 @@ def normalize_size(s):
 def normalize_material(m):
     """Normalize material names for comparison."""
     if m is None: return None
-    return str(m).strip().lower().replace("-", "").replace(" ", "").replace("/", "")
+    return str(m).strip().lower().replace("-", "").replace(" ", "").replace("/", "").replace("_", "")
 
 
 def extract_rev03_1500_prices(ws) -> dict[tuple[str, str], float]:
