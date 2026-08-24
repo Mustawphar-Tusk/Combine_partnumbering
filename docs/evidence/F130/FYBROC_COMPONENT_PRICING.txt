@@ -1,0 +1,69 @@
+========================================================================================================================
+F130.3 - FYBROC COMPONENT PRICING
+========================================================================================================================
+
+Git commit  : 6bffc5fb5e0e799e177de63148add452f26ede55
+Git clean   : False
+
+========================================================================================================================
+COUPLING
+========================================================================================================================
+
+Frames: 37 (143T, 145T, 182T, 184T, 213T, 215T, 254T, 256T, 254T (split slv.), 256T (split slv.)...)
+Data rows: 13
+
+  Group 1-1800              RPM=1750  (sample: {'143T': '07000C029', '145T': '07000C029', '182T': '07000C079'})
+  Group 1-3600              RPM=3500  (sample: {'143T': '07000C029', '145T': '07000C029', '182T': '07000C039'})
+  Group 2-1200              RPM=1150  (sample: {'143T': '07000C039', '145T': '07000C039', '182T': '07000C059'})
+  Group 2-1800              RPM=1750  (sample: {'143T': '07000C039', '145T': '07000C039', '182T': '07000C099'})
+  Group 2-3600              RPM=3500  (sample: {'143T': 'FYBROCCOUPLING', '145T': 'FYBROCCOUPLING', '182T': '07000C059'})
+  Group 3-1200              RPM=1150  (sample: {'143T': 'FYBROCCOUPLING', '145T': 'FYBROCCOUPLING', '182T': 'FYBROCCOUPLING'})
+  Group 3-1800              RPM=1750  (sample: {'143T': 'FYBROCCOUPLING', '145T': 'FYBROCCOUPLING', '182T': 'FYBROCCOUPLING'})
+  10x12x16-900              RPM=880  (sample: {'143T': 'FYBROCCOUPLING', '145T': 'FYBROCCOUPLING', '182T': 'FYBROCCOUPLING'})
+  10x12x16-1200             RPM=1180  (sample: {'143T': 'FYBROCCOUPLING', '145T': 'FYBROCCOUPLING', '182T': 'FYBROCCOUPLING'})
+  Group 6x10x8-1800         RPM=None  (sample: {})
+
+========================================================================================================================
+BASEPLATE
+========================================================================================================================
+
+Frames: 23 (143T, 145T, 182T, 184T, 213T, 215T, 254T, 256T, 284TS, 286TS...)
+Series found: ['1500']
+Total rows: 85
+
+  [1500] $ - Option #1:Group 1                              price_row=True
+  [1500] Option #1:Group 1                                  price_row=False
+  [1500] $ - Option #1(drilled for motor):Group 1           price_row=True
+  [1500] Option #1(drilled for motor):Group 1               price_row=False
+  [1500] $ - Option #1(w/ 303SS H/W):Group 1                price_row=True
+  [1500] Option #1(w/ 303SS H/W):Group 1                    price_row=False
+  [1500] $ - Option #2:Group 1                              price_row=True
+  [1500] Option #2:Group 1                                  price_row=False
+  [1500] $ - Option #3:Group 1                              price_row=True
+  [1500] Option #3:Group 1                                  price_row=False
+  [1500] $ - Option #4:Group 1                              price_row=True
+  [1500] Option #4:Group 1                                  price_row=False
+  [1500] Option #4:Group 1-ALL 316SS                        price_row=False
+  [1500] $ - Option #5:Group 1                              price_row=True
+  [1500] Option #5:Group 1                                  price_row=False
+
+========================================================================================================================
+MOTOR PRICING (M-$)
+========================================================================================================================
+
+Dimensions: {'max_row': 266, 'max_col': 235}
+Table blocks: 13
+
+  Col 2: HorTFrameTEncPeff              desc=HORIZONTAL T-FRAME (3/60)                headers=['HP', 'RPM', 'HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)'] rows=57
+  Col 5: 55                             desc=NP                                       headers=['LIST', 'FRAME', 'WEIGHT (LBS)', 'HP', 'RPM', 'HP-RPM'] rows=57
+  Col 9: HorTFrameMEncPeff              desc=HORIZONTAL T-FRAME (3/60)                headers=['HP', 'RPM', 'HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)'] rows=57
+  Col 12: 56                             desc=EP                                       headers=['LIST', 'FRAME', 'WEIGHT (LBS)', 'HP', 'RPM', 'HP-RPM'] rows=57
+  Col 16: HorTFrameXEncPeff              desc=HORIZONTAL T-FRAME (3/60)                headers=['HP', 'RPM', 'HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)'] rows=57
+  Col 19: 57                             desc=XP                                       headers=['LIST', 'FRAME', 'WEIGHT (LBS)', 'HP', 'RPM', 'HP-RPM'] rows=57
+  Col 23: HorTFrameIEncPeff              desc=HORIZONTAL T-FRAME (3/60)                headers=['HP', 'RPM', 'HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)', 'TECO IEEE841 COST'] rows=57
+  Col 26: 157                            desc=HB                                       headers=['LIST', 'FRAME', 'WEIGHT (LBS)', 'TECO IEEE841 COST', 'TECO M&C COST', 'HP'] rows=57
+  Col 32: HorTFrameIEncPeff              desc=HORIZONTAL T-FRAME (3/60)                headers=['HP', 'RPM', 'HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)', 'TECO IEEE45 COST'] rows=57
+  Col 34: 178                            desc=HH                                       headers=['HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)', 'TECO IEEE45 COST', 'TECO M&C COST'] rows=57
+  Col 41: HorTCFrameTEncPeff             desc=HORIZONTAL TC-FRAME (3/60)               headers=['HP', 'RPM', 'HP-RPM', 'LIST', 'FRAME', 'WEIGHT (LBS)'] rows=57
+  Col 44: 58                             desc=NP…C                                     headers=['LIST', 'FRAME', 'WEIGHT (LBS)', 'HP', 'RPM'] rows=57
+  Col 48: HorTCFrameMEncPeff             desc=HORIZONTAL TC-FRAME (3/60)               headers=['HP', 'RPM'] rows=57

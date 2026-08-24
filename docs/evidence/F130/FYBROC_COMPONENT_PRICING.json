@@ -1,0 +1,1167 @@
+{
+  "artifact": "FYBROC_COMPONENT_PRICING",
+  "step": "F130.3",
+  "roadmap_version": "1.1",
+  "milestone": "F130",
+  "source_workbook": "workbooks/Fybroc/Price Estimator-Fybroc.xlsm",
+  "generated_utc": "2026-08-24T14:31:22.230096+00:00",
+  "git_commit": "6bffc5fb5e0e799e177de63148add452f26ede55",
+  "git_working_tree_clean": false,
+  "coupling": {
+    "sheet": "Coupling",
+    "frame_columns": [
+      "143T",
+      "145T",
+      "182T",
+      "184T",
+      "213T",
+      "215T",
+      "254T",
+      "256T",
+      "254T (split slv.)",
+      "256T (split slv.)",
+      "284TS",
+      "286TS",
+      "284T",
+      "286T",
+      "324TS",
+      "326TS",
+      "324T",
+      "326T",
+      "364TS",
+      "365TS",
+      "364T",
+      "365T",
+      "404TS",
+      "405TS",
+      "404T",
+      "405T",
+      "444TS",
+      "445TS",
+      "444T",
+      "445T",
+      "447T",
+      "448T",
+      "143TC",
+      "145TC",
+      "182TC",
+      "184TC",
+      "213TC"
+    ],
+    "frame_count": 37,
+    "data_rows": 13,
+    "rows": [
+      {
+        "model": "Group 1-1800",
+        "rpm": 1750,
+        "couplings": {
+          "143T": "07000C029",
+          "145T": "07000C029",
+          "182T": "07000C079",
+          "184T": "07000C079",
+          "213T": "07000C149",
+          "215T": "07000C149",
+          "254T": "FYBROCCOUPLING",
+          "256T": "FYBROCCOUPLING",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "FYBROCCOUPLING",
+          "286TS": "FYBROCCOUPLING",
+          "284T": "FYBROCCOUPLING",
+          "286T": "FYBROCCOUPLING",
+          "324TS": "FYBROCCOUPLING",
+          "326TS": "FYBROCCOUPLING",
+          "324T": "FYBROCCOUPLING",
+          "326T": "FYBROCCOUPLING",
+          "364TS": "FYBROCCOUPLING",
+          "365TS": "FYBROCCOUPLING",
+          "364T": "FYBROCCOUPLING",
+          "365T": "FYBROCCOUPLING",
+          "404TS": "FYBROCCOUPLING",
+          "405TS": "FYBROCCOUPLING",
+          "404T": "FYBROCCOUPLING",
+          "405T": "FYBROCCOUPLING",
+          "444TS": "FYBROCCOUPLING",
+          "445TS": "FYBROCCOUPLING",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "FYBROCCOUPLING",
+          "448T": "FYBROCCOUPLING",
+          "143TC": "07004C139",
+          "145TC": "07004C139",
+          "182TC": "07004C149",
+          "184TC": "07004C149",
+          "213TC": "07004C159"
+        }
+      },
+      {
+        "model": "Group 1-3600",
+        "rpm": 3500,
+        "couplings": {
+          "143T": "07000C029",
+          "145T": "07000C029",
+          "182T": "07000C039",
+          "184T": "07000C039",
+          "213T": "07000C089",
+          "215T": "07000C089",
+          "254T": "07000C159",
+          "256T": "07000C159",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "FYBROCCOUPLING",
+          "286TS": "FYBROCCOUPLING",
+          "284T": "FYBROCCOUPLING",
+          "286T": "FYBROCCOUPLING",
+          "324TS": "FYBROCCOUPLING",
+          "326TS": "FYBROCCOUPLING",
+          "324T": "FYBROCCOUPLING",
+          "326T": "FYBROCCOUPLING",
+          "364TS": "FYBROCCOUPLING",
+          "365TS": "FYBROCCOUPLING",
+          "364T": "FYBROCCOUPLING",
+          "365T": "FYBROCCOUPLING",
+          "404TS": "FYBROCCOUPLING",
+          "405TS": "FYBROCCOUPLING",
+          "404T": "FYBROCCOUPLING",
+          "405T": "FYBROCCOUPLING",
+          "444TS": "FYBROCCOUPLING",
+          "445TS": "FYBROCCOUPLING",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "FYBROCCOUPLING",
+          "448T": "FYBROCCOUPLING",
+          "143TC": "07004C139",
+          "145TC": "07004C139",
+          "182TC": "07004C149",
+          "184TC": "07004C149",
+          "213TC": "07004C159"
+        }
+      },
+      {
+        "model": "Group 2-1200",
+        "rpm": 1150,
+        "couplings": {
+          "143T": "07000C039",
+          "145T": "07000C039",
+          "182T": "07000C059",
+          "184T": "07000C059",
+          "213T": "07000C109",
+          "215T": "07000C109",
+          "254T": "07000C179",
+          "256T": "07000C179",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "FYBROCCOUPLING",
+          "286TS": "FYBROCCOUPLING",
+          "284T": "07000C279",
+          "286T": "07000C279",
+          "324TS": "FYBROCCOUPLING",
+          "326TS": "FYBROCCOUPLING",
+          "324T": "FYBROCCOUPLING",
+          "326T": "FYBROCCOUPLING",
+          "364TS": "FYBROCCOUPLING",
+          "365TS": "FYBROCCOUPLING",
+          "364T": "FYBROCCOUPLING",
+          "365T": "FYBROCCOUPLING",
+          "404TS": "FYBROCCOUPLING",
+          "405TS": "FYBROCCOUPLING",
+          "404T": "FYBROCCOUPLING",
+          "405T": "FYBROCCOUPLING",
+          "444TS": "FYBROCCOUPLING",
+          "445TS": "FYBROCCOUPLING",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "FYBROCCOUPLING",
+          "448T": "FYBROCCOUPLING",
+          "143TC": "FYBROCCOUPLING",
+          "145TC": "FYBROCCOUPLING",
+          "182TC": "07004C029",
+          "184TC": "07004C029",
+          "213TC": "07004C039"
+        }
+      },
+      {
+        "model": "Group 2-1800",
+        "rpm": 1750,
+        "couplings": {
+          "143T": "07000C039",
+          "145T": "07000C039",
+          "182T": "07000C099",
+          "184T": "07000C099",
+          "213T": "07000C169",
+          "215T": "07000C169",
+          "254T": "07000C269",
+          "256T": "07000C269",
+          "254T (split slv.)": "07000C1Q9",
+          "256T (split slv.)": "07000C1Q9",
+          "284TS": "FYBROCCOUPLING",
+          "286TS": "FYBROCCOUPLING",
+          "284T": "07000C329",
+          "286T": "07000C329",
+          "324TS": "07000C2J9",
+          "326TS": "07000C2J9",
+          "324T": "07000C349",
+          "326T": "07000C349",
+          "364TS": "FYBROCCOUPLING",
+          "365TS": "FYBROCCOUPLING",
+          "364T": "07000C229",
+          "365T": "07000C229",
+          "404TS": "FYBROCCOUPLING",
+          "405TS": "FYBROCCOUPLING",
+          "404T": "FYBROCCOUPLING",
+          "405T": "FYBROCCOUPLING",
+          "444TS": "FYBROCCOUPLING",
+          "445TS": "FYBROCCOUPLING",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "07000C879",
+          "448T": "07000C879",
+          "143TC": "07004C019",
+          "145TC": "07004C019",
+          "182TC": "07004C029",
+          "184TC": "07004C029",
+          "213TC": "07004C039"
+        }
+      },
+      {
+        "model": "Group 2-3600",
+        "rpm": 3500,
+        "couplings": {
+          "143T": "FYBROCCOUPLING",
+          "145T": "FYBROCCOUPLING",
+          "182T": "07000C059",
+          "184T": "07000C059",
+          "213T": "07000C109",
+          "215T": "07000C109",
+          "254T": "07000C179",
+          "256T": "07000C179",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "07000C269",
+          "286TS": "07000C269",
+          "284T": "07000C279",
+          "286T": "07000C279",
+          "324TS": "07000C2J9",
+          "326TS": "07000C2J9",
+          "324T": "07000C349",
+          "326T": "07000C349",
+          "364TS": "07000C2G9",
+          "365TS": "07000C2G9",
+          "364T": "07000C229",
+          "365T": "07000C229",
+          "404TS": "07000C609",
+          "405TS": "07000C609",
+          "404T": "FYBROCCOUPLING",
+          "405T": "FYBROCCOUPLING",
+          "444TS": "07000C229",
+          "445TS": "07000C229",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "FYBROCCOUPLING",
+          "448T": "FYBROCCOUPLING",
+          "143TC": "07004C019",
+          "145TC": "07004C019",
+          "182TC": "07004C029",
+          "184TC": "07004C029",
+          "213TC": "07004C039"
+        }
+      },
+      {
+        "model": "Group 3-1200",
+        "rpm": 1150,
+        "couplings": {
+          "143T": "FYBROCCOUPLING",
+          "145T": "FYBROCCOUPLING",
+          "182T": "FYBROCCOUPLING",
+          "184T": "FYBROCCOUPLING",
+          "213T": "FYBROCCOUPLING",
+          "215T": "FYBROCCOUPLING",
+          "254T": "07000C899 (old) 07000C2S9 (new)",
+          "256T": "07000C899 (old) 07000C2S9 (new)",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "07000C479",
+          "286TS": "07000C479",
+          "284T": "07000C489",
+          "286T": "07000C489",
+          "324TS": "07000C499",
+          "326TS": "07000C499",
+          "324T": "07000C509",
+          "326T": "07000C509",
+          "364TS": "07000C519",
+          "365TS": "07000C519",
+          "364T": "07000C529",
+          "365T": "07000C529",
+          "404TS": "07000C449",
+          "405TS": "07000C449",
+          "404T": "07000C679 (old) 07000C2T9 (new)",
+          "405T": "07000C679 (old) 07000C2T9 (new)",
+          "444TS": "FYBROCCOUPLING",
+          "445TS": "FYBROCCOUPLING",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "FYBROCCOUPLING",
+          "448T": "FYBROCCOUPLING",
+          "143TC": "FYBROCCOUPLING",
+          "145TC": "FYBROCCOUPLING",
+          "182TC": "FYBROCCOUPLING",
+          "184TC": "FYBROCCOUPLING",
+          "213TC": "FYBROCCOUPLING"
+        }
+      },
+      {
+        "model": "Group 3-1800",
+        "rpm": 1750,
+        "couplings": {
+          "143T": "FYBROCCOUPLING",
+          "145T": "FYBROCCOUPLING",
+          "182T": "FYBROCCOUPLING",
+          "184T": "FYBROCCOUPLING",
+          "213T": "FYBROCCOUPLING",
+          "215T": "FYBROCCOUPLING",
+          "254T": "FYBROCCOUPLING",
+          "256T": "FYBROCCOUPLING",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "07000C479",
+          "286TS": "07000C479",
+          "284T": "07000C489",
+          "286T": "07000C489",
+          "324TS": "07000C499",
+          "326TS": "07000C499",
+          "324T": "07000C509",
+          "326T": "07000C509",
+          "364TS": "07000C519",
+          "365TS": "07000C519",
+          "364T": "07000C529",
+          "365T": "07000C529",
+          "404TS": "07000C449",
+          "405TS": "07000C449",
+          "404T": "07000C679 (old) 07000C2T9 (new)",
+          "405T": "07000C679 (old) 07000C2T9 (new)",
+          "444TS": "07000C549",
+          "445TS": "07000C549",
+          "444T": "07000C559",
+          "445T": "07000C559",
+          "447T": "07000C879",
+          "448T": "07000C879",
+          "143TC": "FYBROCCOUPLING",
+          "145TC": "FYBROCCOUPLING",
+          "182TC": "FYBROCCOUPLING",
+          "184TC": "FYBROCCOUPLING",
+          "213TC": "FYBROCCOUPLING"
+        }
+      },
+      {
+        "model": "10x12x16-900",
+        "rpm": 880,
+        "couplings": {
+          "143T": "FYBROCCOUPLING",
+          "145T": "FYBROCCOUPLING",
+          "182T": "FYBROCCOUPLING",
+          "184T": "FYBROCCOUPLING",
+          "213T": "FYBROCCOUPLING",
+          "215T": "FYBROCCOUPLING",
+          "254T": "FYBROCCOUPLING",
+          "256T": "FYBROCCOUPLING",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "FYBROCCOUPLING",
+          "286TS": "FYBROCCOUPLING",
+          "284T": "07000C359",
+          "286T": "07000C359",
+          "324TS": "07000C709",
+          "326TS": "07000C709",
+          "324T": "07000C699",
+          "326T": "07000C699",
+          "364TS": "07000C689",
+          "365TS": "07000C689",
+          "364T": "07000C669",
+          "365T": "07000C669",
+          "404TS": "07000C449",
+          "405TS": "07000C449",
+          "404T": "07000C679 (old) 07000C2T9 (new)",
+          "405T": "07000C679 (old) 07000C2T9 (new)",
+          "444TS": "FYBROCCOUPLING",
+          "445TS": "FYBROCCOUPLING",
+          "444T": "FYBROCCOUPLING",
+          "445T": "FYBROCCOUPLING",
+          "447T": "FYBROCCOUPLING",
+          "448T": "FYBROCCOUPLING",
+          "143TC": "FYBROCCOUPLING",
+          "145TC": "FYBROCCOUPLING",
+          "182TC": "FYBROCCOUPLING",
+          "184TC": "FYBROCCOUPLING",
+          "213TC": "FYBROCCOUPLING"
+        }
+      },
+      {
+        "model": "10x12x16-1200",
+        "rpm": 1180,
+        "couplings": {
+          "143T": "FYBROCCOUPLING",
+          "145T": "FYBROCCOUPLING",
+          "182T": "FYBROCCOUPLING",
+          "184T": "FYBROCCOUPLING",
+          "213T": "FYBROCCOUPLING",
+          "215T": "FYBROCCOUPLING",
+          "254T": "FYBROCCOUPLING",
+          "256T": "FYBROCCOUPLING",
+          "254T (split slv.)": "FYBROCCOUPLING",
+          "256T (split slv.)": "FYBROCCOUPLING",
+          "284TS": "FYBROCCOUPLING",
+          "286TS": "FYBROCCOUPLING",
+          "284T": "FYBROCCOUPLING",
+          "286T": "FYBROCCOUPLING",
+          "324TS": "07000C709",
+          "326TS": "07000C709",
+          "324T": "07000C699",
+          "326T": "07000C699",
+          "364TS": "07000C689",
+          "365TS": "07000C689",
+          "364T": "07000C669",
+          "365T": "07000C669",
+          "404TS": "07000C449",
+          "405TS": "07000C449",
+          "404T": "07000C679 (old) 07000C2T9 (new)",
+          "405T": "07000C679 (old) 07000C2T9 (new)",
+          "444TS": "07000C549",
+          "445TS": "07000C549",
+          "444T": "07000C559",
+          "445T": "07000C559",
+          "447T": "07000C879",
+          "448T": "07000C879",
+          "143TC": "FYBROCCOUPLING",
+          "145TC": "FYBROCCOUPLING",
+          "182TC": "FYBROCCOUPLING",
+          "184TC": "FYBROCCOUPLING",
+          "213TC": "FYBROCCOUPLING"
+        }
+      },
+      {
+        "model": "Group 6x10x8-1800",
+        "rpm": null,
+        "couplings": {}
+      },
+      {
+        "model": "Group 6x12x9-1800",
+        "rpm": null,
+        "couplings": {}
+      },
+      {
+        "model": "Group 8x14x10-1800",
+        "rpm": null,
+        "couplings": {}
+      },
+      {
+        "model": "Group 8x15x11-1800",
+        "rpm": null,
+        "couplings": {}
+      }
+    ]
+  },
+  "baseplate": {
+    "sheet": "Baseplate",
+    "frame_columns": [
+      "143T",
+      "145T",
+      "182T",
+      "184T",
+      "213T",
+      "215T",
+      "254T",
+      "256T",
+      "284TS",
+      "286TS",
+      "284T",
+      "286T",
+      "324TS",
+      "326TS",
+      "324T",
+      "326T",
+      "364TS",
+      "365TS",
+      "364T",
+      "365T",
+      "404TS",
+      "405TS",
+      "404T"
+    ],
+    "frame_count": 23,
+    "total_rows": 85,
+    "series_found": [
+      "1500"
+    ],
+    "rows": [
+      {
+        "series": "1500",
+        "label": "$ - Option #1:Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1157,
+          "145T": 1157,
+          "182T": 1157,
+          "184T": 1157,
+          "213T": 1346
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1:Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D021",
+          "145T": "02300D021",
+          "182T": "02300D021",
+          "184T": "02300D021",
+          "213T": "02301D021"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1(drilled for motor):Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1157,
+          "145T": 1157,
+          "182T": 1157,
+          "184T": 1157,
+          "213T": 1346
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1(drilled for motor):Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D031",
+          "145T": "02300D031",
+          "182T": "02300D031",
+          "184T": "02300D031",
+          "213T": "02301D031"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1(w/ 303SS H/W):Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1253,
+          "145T": 1253,
+          "182T": 1253,
+          "184T": 1253,
+          "213T": 1439
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1(w/ 303SS H/W):Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D021A",
+          "145T": "02300D021A",
+          "182T": "02300D021A",
+          "184T": "02300D021A",
+          "213T": "02301D021A"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #2:Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 275,
+          "145T": 275,
+          "182T": 210,
+          "184T": 210,
+          "213T": 97
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #2:Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "K02300D03C",
+          "145T": "K02300D03C",
+          "182T": "K02300D03D",
+          "184T": "K02300D03D",
+          "213T": "K02301D03B"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #3:Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 447,
+          "145T": 447,
+          "182T": 447,
+          "184T": 447,
+          "213T": 447
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #3:Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": "*",
+          "184T": "*",
+          "213T": "*"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #4:Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1432,
+          "145T": 1432,
+          "182T": 1370,
+          "184T": 1370,
+          "213T": 1442
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #4:Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D031Z",
+          "145T": "02300D031Z",
+          "182T": "02300D031Y",
+          "184T": "02300D031Y",
+          "213T": "02301D031Z"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #4:Group 1-ALL 316SS",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D031Z-C",
+          "145T": "02300D031Z-C",
+          "182T": "*",
+          "184T": "*",
+          "213T": "02301D031Z-C"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #5:Group 1",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1879,
+          "145T": 1879,
+          "182T": 1817,
+          "184T": 1817,
+          "213T": 1891
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #5:Group 1",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D031C",
+          "145T": "02300D031C",
+          "182T": "02300D031D",
+          "184T": "02300D031D",
+          "213T": "02301D031B"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #5:Group 1-316SS H/W Only",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D031C-C",
+          "145T": "02300D031C-C",
+          "182T": "02300D031D-C",
+          "184T": "02300D031D-C",
+          "213T": "02301D031B-C"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #5:Group 1-ALL 316SS",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02300D031X-C",
+          "145T": "02300D031X-C",
+          "182T": "*",
+          "184T": "*",
+          "213T": "02301D031X-C"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1:Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1872,
+          "145T": 1872,
+          "182T": 1872,
+          "184T": 1872,
+          "213T": 1872
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1:Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D011",
+          "145T": "02332D011",
+          "182T": "02332D011",
+          "184T": "02332D011",
+          "213T": "02332D011"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1(drilled for motor):Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 1872,
+          "145T": 1872,
+          "182T": 1872,
+          "184T": 1872,
+          "213T": 1872
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1(drilled for motor):Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D081",
+          "145T": "02332D081",
+          "182T": "02332D021",
+          "184T": "02332D021",
+          "213T": "02332D031"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1(w/ 303SS H/W):Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 2189,
+          "145T": 2189,
+          "182T": 2189,
+          "184T": 2189,
+          "213T": 2189
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1(w/ 303SS H/W):Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D011A",
+          "145T": "02332D011A",
+          "182T": "02332D011A",
+          "184T": "02332D011A",
+          "213T": "02332D011A"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #2:Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 495,
+          "145T": 495,
+          "182T": 495,
+          "184T": 495,
+          "213T": 525
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #2:Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "K02332D08A",
+          "145T": "K02332D08A",
+          "182T": "K02332D02A",
+          "184T": "K02332D02A",
+          "213T": "K02332D03A"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #3:Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 514,
+          "145T": 514,
+          "182T": 514,
+          "184T": 514,
+          "213T": 514
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #3:Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": "*",
+          "184T": "*",
+          "213T": "*"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #4:Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 2370,
+          "145T": 2370,
+          "182T": 2370,
+          "184T": 2370,
+          "213T": 2399
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #4:Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D081Z",
+          "145T": "02332D081Z",
+          "182T": "02332D021Z",
+          "184T": "02332D021Z",
+          "213T": "02332D031Z"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #4:Group 2-ALL 316SS",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": "*",
+          "184T": "*",
+          "213T": "02332D031Z-C"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #5:Group 2",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": 2883,
+          "145T": 2883,
+          "182T": 2883,
+          "184T": 2883,
+          "213T": 2915
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #5:Group 2",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D081A",
+          "145T": "02332D081A",
+          "182T": "02332D021A",
+          "184T": "02332D021A",
+          "213T": "02332D031A"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #5:Group 2-316SS H/W Only",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D081A-C",
+          "145T": "02332D081A-C",
+          "182T": "02332D021V-C",
+          "184T": "02332D021V-C",
+          "213T": "02332D031W-C"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #5:Group 2-ALL 316SS",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "02332D081X-C",
+          "145T": "02332D081X-C",
+          "182T": "02332D021X-C",
+          "184T": "02332D021X-C",
+          "213T": "02332D031V-C"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1:4x6x10 - Group 2:13",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": 1872,
+          "184T": 1872,
+          "213T": 1872
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1:4x6x10 - Group 2:13",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": "02332D011",
+          "184T": "02332D011",
+          "213T": "02332D011"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1(drilled for motor):Group 2:13",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": 1872,
+          "184T": 1872,
+          "213T": 1872
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1(drilled for motor):Group 2:13",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": "02332D021",
+          "184T": "02332D021",
+          "213T": "02332D031"
+        }
+      },
+      {
+        "series": "1500",
+        "label": "$ - Option #1(w/ 303SS H/W):Group 2:13",
+        "is_price_row": true,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": 2189,
+          "184T": 2189,
+          "213T": 2189
+        }
+      },
+      {
+        "series": "1500",
+        "label": "Option #1(w/ 303SS H/W):Group 2:13",
+        "is_price_row": false,
+        "sample_values": {
+          "143T": "*",
+          "145T": "*",
+          "182T": "02332D011A",
+          "184T": "02332D011A",
+          "213T": "02332D011A"
+        }
+      }
+    ]
+  },
+  "motor_pricing": {
+    "sheet": "M-$",
+    "dimensions": {
+      "max_row": 266,
+      "max_col": 235
+    },
+    "table_blocks": [
+      {
+        "col": 2,
+        "table_id": "HorTFrameTEncPeff",
+        "description": "HORIZONTAL T-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM",
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 5,
+        "table_id": "55",
+        "description": "NP",
+        "headers": [
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "HP",
+          "RPM",
+          "HP-RPM"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 9,
+        "table_id": "HorTFrameMEncPeff",
+        "description": "HORIZONTAL T-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM",
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 12,
+        "table_id": "56",
+        "description": "EP",
+        "headers": [
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "HP",
+          "RPM",
+          "HP-RPM"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 16,
+        "table_id": "HorTFrameXEncPeff",
+        "description": "HORIZONTAL T-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM",
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 19,
+        "table_id": "57",
+        "description": "XP",
+        "headers": [
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "HP",
+          "RPM",
+          "HP-RPM"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 23,
+        "table_id": "HorTFrameIEncPeff",
+        "description": "HORIZONTAL T-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM",
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "TECO IEEE841 COST"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 26,
+        "table_id": "157",
+        "description": "HB",
+        "headers": [
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "TECO IEEE841 COST",
+          "TECO M&C COST",
+          "HP"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 32,
+        "table_id": "HorTFrameIEncPeff",
+        "description": "HORIZONTAL T-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM",
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "TECO IEEE45 COST"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 34,
+        "table_id": "178",
+        "description": "HH",
+        "headers": [
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "TECO IEEE45 COST",
+          "TECO M&C COST"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 41,
+        "table_id": "HorTCFrameTEncPeff",
+        "description": "HORIZONTAL TC-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM",
+          "HP-RPM",
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 44,
+        "table_id": "58",
+        "description": "NP…C",
+        "headers": [
+          "LIST",
+          "FRAME",
+          "WEIGHT (LBS)",
+          "HP",
+          "RPM"
+        ],
+        "data_rows": 57
+      },
+      {
+        "col": 48,
+        "table_id": "HorTCFrameMEncPeff",
+        "description": "HORIZONTAL TC-FRAME (3/60)",
+        "headers": [
+          "HP",
+          "RPM"
+        ],
+        "data_rows": 57
+      }
+    ],
+    "block_count": 13
+  }
+}
