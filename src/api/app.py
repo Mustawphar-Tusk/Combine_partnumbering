@@ -9,6 +9,7 @@ from fastapi.exceptions import (
     RequestValidationError,
 )
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from src.api.errors import (
     ConfigurationOperationConflict,
@@ -126,6 +127,15 @@ def create_app(
 
     application.include_router(router)
     application.include_router(router_v2)
+
+    # Serve the test configurator UI from /ui folder
+    ui_dir = PROJECT_ROOT / "ui"
+    if ui_dir.exists():
+        application.mount(
+            "/ui",
+            StaticFiles(directory=str(ui_dir), html=True),
+            name="ui",
+        )
 
     @application.exception_handler(
         RequestValidationError

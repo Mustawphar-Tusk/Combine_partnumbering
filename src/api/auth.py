@@ -57,7 +57,7 @@ class AuthenticatedUser:
 _DEV_USER = AuthenticatedUser(
     user_id="dev-user-001",
     display_name="Development User",
-    email="dev@tuskind.com",
+    email="makorede@tuskind.com",
     roles=[ROLE_ADMIN],
     tenant_id="dev-tenant",
 )

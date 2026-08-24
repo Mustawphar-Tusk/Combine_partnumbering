@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pump Configurator - Test UI</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { margin-bottom: 20px; color: #16213e; }
+        .top-bar { display: flex; gap: 20px; margin-bottom: 30px; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .top-bar select { padding: 8px 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 4px; }
+        .top-bar label { font-weight: 600; margin-right: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 30px; }
+        .field-card { background: #fff; padding: 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .field-card label { display: block; font-size: 12px; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 6px; }
+        .field-card select { width: 100%; padding: 8px; font-size: 14px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+        .field-card select:focus { border-color: #4a90d9; outline: none; box-shadow: 0 0 0 2px rgba(74,144,217,0.2); }
+        .field-card .code { font-size: 11px; color: #999; margin-top: 4px; }
+        .result-panel { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .result-panel h2 { margin-bottom: 16px; color: #16213e; }
+        .result-row { display: flex; gap: 12px; margin-bottom: 8px; align-items: baseline; }
+        .result-row .label { font-weight: 600; min-width: 140px; color: #666; }
+        .result-row .value { font-family: 'Courier New', monospace; font-size: 15px; color: #1a1a2e; }
+        .btn { padding: 10px 24px; background: #4a90d9; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 600; }
+        .btn:hover { background: #357abd; }
+        .btn:disabled { background: #ccc; cursor: not-allowed; }
+        .status { padding: 8px 16px; border-radius: 4px; font-size: 13px; margin-top: 16px; }
+        .status.loading { background: #fff3cd; color: #856404; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.success { background: #d4edda; color: #155724; }
+        .selections-summary { margin-top: 20px; padding: 16px; background: #f8f9fa; border-radius: 6px; }
+        .selections-summary h3 { margin-bottom: 8px; font-size: 14px; }
+        .selections-summary .sel-item { font-size: 13px; padding: 2px 0; }
+        .selections-summary .sel-item .code { color: #4a90d9; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Pump Configurator</h1>
+
+        <div class="top-bar">
+            <div>
+                <label>Family:</label>
+                <select id="family" onchange="reset()">
+                    <option value="FYBROC">Fybroc</option>
+                    <option value="DEAN">Dean</option>
+                </select>
+            </div>
+            <div>
+                <label>Series:</label>
+                <select id="series" onchange="onSeriesChange()">
+                    <option value="">-- Select --</option>
+                    <option value="1500">1500</option>
+                    <option value="1530">1530</option>
+                    <option value="1600">1600</option>
+                    <option value="1630">1630</option>
+                    <option value="2530">2530</option>
+                    <option value="3000">3000</option>
+                    <option value="5500">5500</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn" onclick="resolve()" id="resolveBtn" disabled>Generate Part Number & SKU</button>
+            </div>
+        </div>
+
+        <div id="status"></div>
+
+        <div class="grid" id="fieldsGrid"></div>
+
+        <div id="selectionsPanel" class="selections-summary" style="display:none">
+            <h3>Current Selections & Resolved Codes</h3>
+            <div id="selectionsList"></div>
+        </div>
+
+        <div id="resultPanel" class="result-panel" style="display:none">
+            <h2>✅ Configured Product</h2>
+            <div class="result-row"><span class="label">Part Number:</span><span class="value" id="resPn"></span></div>
+            <div class="result-row"><span class="label">SKU:</span><span class="value" id="resSku"></span></div>
+            <div class="result-row"><span class="label">Signature:</span><span class="value" id="resSig"></span></div>
+            <div class="result-row"><span class="label">Reused:</span><span class="value" id="resReused"></span></div>
+        </div>
+    </div>
+
+    <script>
+        const API = '/api/v2';
+        let selections = {};
+        let resolvedCodes = {};
+        let allowableOptions = {};
+
+        function setStatus(msg, type) {
+            const el = document.getElementById('status');
+            el.className = 'status ' + type;
+            el.textContent = msg;
+            el.style.display = msg ? 'block' : 'none';
+        }
+
+        function reset() {
+            selections = {};
+            resolvedCodes = {};
+            allowableOptions = {};
+            document.getElementById('series').value = '';
+            document.getElementById('fieldsGrid').innerHTML = '';
+            document.getElementById('selectionsPanel').style.display = 'none';
+            document.getElementById('resultPanel').style.display = 'none';
+            document.getElementById('resolveBtn').disabled = true;
+            setStatus('', '');
+        }
+
+        async function onSeriesChange() {
+            selections = {};
+            resolvedCodes = {};
+            document.getElementById('resultPanel').style.display = 'none';
+            await evaluate();
+        }
+
+        async function onFieldChange(fieldCode, value) {
+            if (value) {
+                selections[fieldCode] = value;
+            } else {
+                delete selections[fieldCode];
+            }
+            document.getElementById('resultPanel').style.display = 'none';
+            await evaluate();
+        }
+
+        async function evaluate() {
+            const family = document.getElementById('family').value;
+            const series = document.getElementById('series').value;
+            if (!series) return;
+
+            setStatus('Evaluating...', 'loading');
+
+            try {
+                const resp = await fetch(`${API}/families/${family}/configurations/evaluate`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ series, selections })
+                });
+
+                if (!resp.ok) throw new Error(`API ${resp.status}`);
+
+                const data = await resp.json();
+                allowableOptions = data.allowable_options;
+                resolvedCodes = data.resolved_codes || {};
+
+                renderFields();
+                renderSelections();
+                document.getElementById('resolveBtn').disabled = Object.keys(selections).length === 0;
+                setStatus(`${Object.keys(allowableOptions).length} fields available, ${Object.keys(selections).length} selected`, 'success');
+            } catch (e) {
+                setStatus('Error: ' + e.message, 'error');
+            }
+        }
+
+        function renderFields() {
+            const grid = document.getElementById('fieldsGrid');
+            grid.innerHTML = '';
+
+            for (const [fieldCode, options] of Object.entries(allowableOptions)) {
+                const card = document.createElement('div');
+                card.className = 'field-card';
+                card.innerHTML = `
+                    <label>${fieldCode.replace(/_/g, ' ')}</label>
+                    <select onchange="onFieldChange('${fieldCode}', this.value)">
+                        <option value="">-- Select --</option>
+                        ${options.map(o => `<option value="${o}">${o}</option>`).join('')}
+                    </select>
+                    <div class="code" id="code-${fieldCode}"></div>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        function renderSelections() {
+            const panel = document.getElementById('selectionsPanel');
+            const list = document.getElementById('selectionsList');
+
+            if (Object.keys(selections).length === 0) {
+                panel.style.display = 'none';
+                return;
+            }
+
+            panel.style.display = 'block';
+            list.innerHTML = Object.entries(selections).map(([field, value]) => {
+                const code = resolvedCodes[field];
+                return `<div class="sel-item"><strong>${field}:</strong> ${value} ${code ? '<span class="code">→ ' + code + '</span>' : ''}</div>`;
+            }).join('');
+        }
+
+        async function resolve() {
+            const family = document.getElementById('family').value;
+            const series = document.getElementById('series').value;
+
+            setStatus('Resolving...', 'loading');
+
+            try {
+                const resp = await fetch(`${API}/families/${family}/configured-products/resolve`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        series,
+                        selections,
+                        segment_codes: resolvedCodes
+                    })
+                });
+
+                if (!resp.ok) throw new Error(`Resolve error: ${resp.status}`);
+
+                const data = await resp.json();
+                document.getElementById('resPn').textContent = data.part_number;
+                document.getElementById('resSku').textContent = data.sku;
+                document.getElementById('resSig').textContent = data.configuration_signature.substring(0, 24) + '...';
+                document.getElementById('resReused').textContent = data.existing_configuration ? 'Yes (existing)' : 'No (new)';
+                document.getElementById('resultPanel').style.display = 'block';
+                setStatus('Product resolved successfully!', 'success');
+            } catch (e) {
+                setStatus('Error: ' + e.message, 'error');
+            }
+        }
+    </script>
+</body>
+</html>
