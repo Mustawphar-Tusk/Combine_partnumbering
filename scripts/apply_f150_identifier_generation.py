@@ -102,9 +102,60 @@ def main():
     conn = pyodbc.connect(conn_str, autocommit=True)
     cursor = conn.cursor()
 
-    # Deploy the updated procedure
+    # Deploy the updated Part Number procedure
     cursor.execute(PROC_SQL)
     print("cfg.usp_GeneratePartNumber updated.")
+
+    # Deploy the corrected SKU procedure (new format: F<Series>-<8char><VersionLetter>)
+    cursor.execute("""
+CREATE OR ALTER PROCEDURE cfg.usp_GenerateSKU
+    @FamilyCode varchar(50),
+    @SeriesCode varchar(100),
+    @ConfigurationSignature char(64),
+    @SKU varchar(100) OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- SKU format: <FamilyPrefix><Series>-<8-char token><VersionLetter>
+    -- VersionLetter: A=first version, B=second, etc. (same for Fybroc and Dean)
+    -- 8-char token is derived deterministically from the SHA-256 signature
+
+    DECLARE @Version int = 1,
+            @VersionLetter char(1),
+            @Token varchar(8),
+            @FamilyPrefix char(1);
+
+    -- Family prefix: F for Fybroc, D for Dean
+    SET @FamilyPrefix = CASE
+        WHEN @FamilyCode = 'FYBROC' THEN 'F'
+        WHEN @FamilyCode = 'DEAN' THEN 'D'
+        ELSE LEFT(@FamilyCode, 1)
+    END;
+
+    -- Check if this signature already exists (reuse)
+    IF EXISTS (
+        SELECT 1 FROM cfg.ConfiguredProduct
+        WHERE ConfigurationSignature = @ConfigurationSignature
+    )
+    BEGIN
+        SELECT @SKU = SKUCode
+        FROM cfg.ConfiguredProduct
+        WHERE ConfigurationSignature = @ConfigurationSignature;
+        RETURN;
+    END;
+
+    -- Generate 8-char deterministic token from signature
+    SET @Token = UPPER(SUBSTRING(@ConfigurationSignature, 1, 8));
+
+    -- Version letter: A=1, B=2, etc.
+    SET @VersionLetter = CHAR(64 + @Version);  -- ASCII 65=A, 66=B...
+
+    -- Build SKU: <FamilyPrefix><Series>-<Token><VersionLetter>
+    SET @SKU = CONCAT(@FamilyPrefix, @SeriesCode, '-', @Token, @VersionLetter);
+END;
+""")
+    print("cfg.usp_GenerateSKU updated (new format: F<Series>-<8char><VersionLetter>).")
 
     # Test with the V6 Smart Number example
     test_config = json.dumps({
@@ -130,11 +181,11 @@ def main():
         "FYBROC", test_config,
     )
     pn = cursor.fetchone()[0]
-    print(f"Generated PN: {pn}")
+    print(f"\nGenerated PN: {pn}")
     print(f"Expected:     FA35FC-1VC1-S03-3G-04XXX-XXX-00")
-    print(f"Match:        {'YES' if pn == 'FA35FC-1VC1-S03-3G-04XXX-XXX-00' else 'NO - ' + pn}")
+    print(f"Match:        {'YES' if pn == 'FA35FC-1VC1-S03-3G-04XXX-XXX-00' else 'NO'}")
 
-    # Test SKU
+    # Test SKU with new format
     sig = "A1B2C3D4E5F6A7B8C9D0E1F2A3B4C5D6E7F8A9B0C1D2E3F4A5B6C7D8E9F0A1B2"
     cursor.execute(
         "DECLARE @SKU varchar(100); "
@@ -143,8 +194,11 @@ def main():
         "FYBROC", "1500", sig,
     )
     sku = cursor.fetchone()[0]
+    expected_sku = "F1500-A1B2C3D4A"
     print(f"\nGenerated SKU: {sku}")
-    print(f"Format check:  F1500-V1-XXXXXXXX = {'PASS' if sku.startswith('F1500-V1-') and len(sku) == 17 else 'FAIL'}")
+    print(f"Expected:      {expected_sku}")
+    print(f"Match:         {'YES' if sku == expected_sku else 'NO'}")
+    print(f"Format:        F<Series>-<8char><VersionLetter=A>")
 
     conn.close()
 
