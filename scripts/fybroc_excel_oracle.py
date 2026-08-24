@@ -39,20 +39,63 @@ WORKBOOK_REL = "workbooks/Fybroc/Nomenclature_V6.xlsm"
 SHEET_SMART_NUMBER = "Smart Number"
 
 # Smart Number cell map (horizontal configuration)
-# These are the cells where user selections go
-H_SELECTIONS = {
-    # Row 14 col 6 = Series selection
-    "SERIES": ("Smart Number", 14, 6),
-    "FLANGE_TYPE": ("Smart Number", 15, 6),
-    "SIZE": ("Smart Number", 14, 7),
-    "PUMP_MATERIAL": ("Smart Number", 14, 8),
-    "IMPELLER_TRIM": ("Smart Number", 14, 9),
+# These are the DATA VALIDATION input cells (confirmed via COM inspection)
+H_INPUT_CELLS = {
+    "SERIES": (14, 6),         # Current: 1500
+    "FLANGE_TYPE": (15, 6),    # Current: ANSI
+    "SIZE": (14, 7),           # Current: 1x2x10
+    "PUMP_MATERIAL": (14, 8),  # Current: VR-1A
+    "IMPELLER_TRIM": (14, 9),  # Current: 9.250
+    "CASING_DRAINS": (14, 13),
+    "SUCTION_DISCHARGE": (15, 13),
+    "SHAFT_MATERIAL": (16, 13),
+    "SLEEVE": (17, 13),
+    "CASING_HARDWARE": (18, 13),
+    "PUMP_ELASTOMERS": (19, 13),
+    "BEARING_OPTION": (20, 13),
+    "FRAME_HARDWARE": (21, 13),
+    "GLAND_HARDWARE": (22, 13),
+    "FLUSH": (23, 13),
+    "FLUSH_MATERIAL": (24, 13),
+    "CYCLONE_SEPARATOR": (25, 13),
+    "DYNAMIC_IMPELLER": (26, 13),
+    "SEAL_MFG": (14, 15),
+    "SEAL_OPTION": (14, 17),
+    "SEAL_TYPE": (15, 17),
+    "SEAL_MATERIALS": (16, 17),
+    "SEAL_ELASTOMERS": (17, 17),
+    "SEAL_GUARD": (18, 17),
+    "COUPLING_OPTION": (14, 20),
+    "COUPLING_GUARD": (15, 20),
+    "BASEPLATE_OPTION": (16, 20),
+    "BASEPLATE_HARDWARE": (17, 20),
+    "NAMEPLATE": (18, 20),
+    "C_FACE": (19, 20),
+    "MOTOR_OPTION": (14, 24),
+    "MOTOR_CLASS": (15, 24),
+    "MOTOR_ORIENTATION": (16, 24),
+    "MOTOR_HP": (17, 24),
+    "MOTOR_RPM": (18, 24),
+    "MOTOR_VOLTAGE": (19, 24),
+    "MOTOR_HERTZ": (20, 24),
+    "MOTOR_FRAME": (21, 24),
+    "MOTOR_ENCLOSURE": (22, 24),
+    "MOTOR_EFFICIENCY": (23, 24),
+    "MOTOR_MANUFACTURER": (24, 24),
+    "MOTOR_MOD_1": (14, 27),
+    "MOTOR_MOD_2": (15, 27),
+    "MOTOR_MOD_3": (16, 27),
+    "PERFORMANCE_TESTING": (14, 30),
+    "HYDRO_TESTING": (15, 30),
+    "VIBRATION": (16, 30),
+    "SOUND_LEVEL": (17, 30),
 }
 
 # Output cells (horizontal)
 H_OUTPUTS = {
-    "part_number": ("Smart Number", 9, 4),      # D9 = generated PN
-    "description": ("Smart Number", 8, 4),       # D8 = description
+    "part_number_formatted": (5, 4),   # D5 = PN with separators between all groups
+    "description": (8, 4),              # D8 = description
+    "part_number_compact": (9, 4),      # D9 = compact PN (used as actual part number)
 }
 
 # Segment code cells (row 13)
@@ -75,37 +118,24 @@ H_SEGMENT_CODES = {
 # Test configurations to run through the oracle
 TEST_CASES = [
     {
-        "name": "Standard 1500 ANSI VR-1A",
-        "inputs": {
-            "SERIES": "1500",
-            "FLANGE_TYPE": "ANSI",
-            "SIZE": "1x2x10",
-            "PUMP_MATERIAL": "VR-1A",
-            "IMPELLER_TRIM": "9.250",
-        },
-        "expected_pn_prefix": "FA35",  # F + A(1500+ANSI) + 3(1x2x10) + 5(VR-1A)
+        "name": "Default config (already in workbook)",
+        "inputs": {},  # Don't change anything - just read current state
+        "expected_pn": "FA35FC-1VC1-S03-3G-04XXXX-00",
     },
     {
-        "name": "Standard 1500 DIN VR-1",
+        "name": "Change Size to 1.5x3x6 and Trim to 5.500 (valid per CT4)",
         "inputs": {
-            "SERIES": "1500",
-            "FLANGE_TYPE": "DIN",
-            "SIZE": "1x1.5x6",
-            "PUMP_MATERIAL": "VR-1",
-            "IMPELLER_TRIM": "6.000",
+            "SIZE": "1.5x3x6",
+            "IMPELLER_TRIM": "5.500",
         },
-        "expected_pn_prefix": "FI11",  # F + I(1500+DIN) + 1(1x1.5x6) + 1(VR-1)
+        "expected_pn_prefix": "FA55BE",  # F + A(1500+ANSI) + 5(1.5x3x6) + 5(VR-1A) + BE(5.500)
     },
     {
-        "name": "Standard 5500 ANSI VR-1",
+        "name": "Change material to VR-1",
         "inputs": {
-            "SERIES": "5500",
-            "FLANGE_TYPE": "ANSI",
-            "SIZE": "1x2x10",
             "PUMP_MATERIAL": "VR-1",
-            "IMPELLER_TRIM": "8.000",
         },
-        "expected_pn_prefix": "FG31",  # F + G(5500+ANSI) + 3(1x2x10) + 1(VR-1)
+        "expected_pn_prefix": "FA51BE",  # F + A(1500+ANSI) + 5(1.5x3x6) + 1(VR-1) + BE(5.500)
     },
 ]
 
@@ -151,8 +181,11 @@ def run_oracle(repo_root: Path, test_cases: list[dict]) -> list[dict]:
 
             # Write selections to the Smart Number sheet
             for field, value in tc["inputs"].items():
-                if field in H_SELECTIONS:
-                    sheet_name, row, col = H_SELECTIONS[field]
+                if field in H_INPUT_CELLS:
+                    row, col = H_INPUT_CELLS[field]
+                    # Trim values must be written as text (not numeric)
+                    if field == "IMPELLER_TRIM":
+                        ws.Cells(row, col).NumberFormat = "@"
                     ws.Cells(row, col).Value = value
 
             # Force recalculate
@@ -160,10 +193,12 @@ def run_oracle(repo_root: Path, test_cases: list[dict]) -> list[dict]:
             time.sleep(0.5)  # Allow Excel to settle
 
             # Read outputs
-            pn_row, pn_col = H_OUTPUTS["part_number"][1], H_OUTPUTS["part_number"][2]
-            desc_row, desc_col = H_OUTPUTS["description"][1], H_OUTPUTS["description"][2]
+            pn_row, pn_col = H_OUTPUTS["part_number_compact"]
+            desc_row, desc_col = H_OUTPUTS["description"]
+            pn_fmt_row, pn_fmt_col = H_OUTPUTS["part_number_formatted"]
 
             result["excel_part_number"] = str(ws.Cells(pn_row, pn_col).Value or "")
+            result["excel_part_number_formatted"] = str(ws.Cells(pn_fmt_row, pn_fmt_col).Value or "")
             result["excel_description"] = str(ws.Cells(desc_row, desc_col).Value or "")
 
             # Read segment codes
@@ -173,12 +208,20 @@ def run_oracle(repo_root: Path, test_cases: list[dict]) -> list[dict]:
                 segments[seg_name] = str(v) if v is not None else None
             result["excel_segments"] = segments
 
-            # Validate against expected prefix
-            expected = tc.get("expected_pn_prefix", "")
-            actual_prefix = result["excel_part_number"][:len(expected)] if expected else ""
-            result["prefix_match"] = actual_prefix == expected
-            result["expected_prefix"] = expected
-            result["actual_prefix"] = actual_prefix
+            # Validate
+            expected_pn = tc.get("expected_pn")
+            expected_prefix = tc.get("expected_pn_prefix", "")
+            if expected_pn:
+                result["match"] = result["excel_part_number"] == expected_pn
+                result["expected"] = expected_pn
+            elif expected_prefix:
+                actual_prefix = result["excel_part_number"][:len(expected_prefix)]
+                result["prefix_match"] = actual_prefix == expected_prefix
+                result["expected_prefix"] = expected_prefix
+                result["actual_prefix"] = actual_prefix
+                result["match"] = result["prefix_match"]
+            else:
+                result["match"] = True  # No expectation = pass
 
             results.append(result)
 
@@ -204,8 +247,8 @@ def build_model(repo_root):
 
     results = run_oracle(repo_root, TEST_CASES)
 
-    passed = sum(1 for r in results if r.get("prefix_match"))
-    failed = sum(1 for r in results if "prefix_match" in r and not r["prefix_match"])
+    passed = sum(1 for r in results if r.get("match"))
+    failed = sum(1 for r in results if "match" in r and not r["match"])
     errors = sum(1 for r in results if "error" in r)
 
     return {
@@ -241,13 +284,16 @@ def write_outputs(evidence_dir, result):
         if "error" in r:
             out.append(f"  ERROR: {r['error']}\r\n\r\n")
             continue
-        status = "PASS" if r["prefix_match"] else "FAIL"
+        status = "PASS" if r.get("match") else "FAIL"
         out.append(f"  [{status}] {r['test_name']}\r\n")
         out.append(f"    Inputs: {r['inputs']}\r\n")
-        out.append(f"    Excel PN: {r['excel_part_number']}\r\n")
-        out.append(f"    Expected prefix: {r['expected_prefix']}  Actual: {r['actual_prefix']}\r\n")
-        out.append(f"    Segments: {r['excel_segments']}\r\n")
-        out.append(f"    Description: {r['excel_description']}\r\n\r\n")
+        out.append(f"    Excel PN: {r.get('excel_part_number', '?')}\r\n")
+        if 'expected' in r:
+            out.append(f"    Expected: {r['expected']}\r\n")
+        elif 'expected_prefix' in r:
+            out.append(f"    Expected prefix: {r['expected_prefix']}  Actual: {r.get('actual_prefix','?')}\r\n")
+        out.append(f"    Segments: {r.get('excel_segments', {})}\r\n")
+        out.append(f"    Description: {r.get('excel_description', '?')}\r\n\r\n")
 
     (evidence_dir / "FYBROC_EXCEL_ORACLE_RESULTS.txt").write_text("".join(out), encoding="utf-8")
 
