@@ -1,0 +1,51 @@
+========================================================================================================================
+F140.1 - FYBROC CORRECTIONS MANIFEST
+========================================================================================================================
+
+Git commit  : 01873c6ced679f5c7d86db59276407a28bc6a0cd
+Git clean   : False
+
+========================================================================================================================
+ACTION PLAN
+========================================================================================================================
+
+  1. Publish 1724 corrected SeriesFieldOption rows (replaces current 1,542)
+  2. Constrain IMPELLER_TRIM dependencies to 517 allowed (size,trim) pairs
+  3. Apply 12 vocabulary replacements to AttributeValue display values
+  4. Validate all 7 supported series project correctly after corrections
+
+========================================================================================================================
+CORRECTED SERIES FIELD OPTIONS
+========================================================================================================================
+
+  Total rows           : 1724
+  Supported series     : ['1500', '1530', '1600', '1630', '2530', '3000', '5500']
+  Distinct fields      : 55
+  Output CSV           : exports/fybroc_corrected_series_field_options.csv
+
+========================================================================================================================
+IMPELLER TRIM CORRECTIONS
+========================================================================================================================
+
+  Allowed (size,trim) pairs : 517
+  Distinct sizes            : 19
+  Action                    : Deactivate all cfg.FieldOptionDependency rows for IMPELLER_TRIM where (SIZE, target_display_value) is NOT in this allowed-pairs set. This corrects the 1,460 SQL_OVER_PERMISSIVE rows identified in F120.5c.
+
+========================================================================================================================
+VOCABULARY CORRECTIONS
+========================================================================================================================
+
+  Total replacements : 12
+
+  [SEAL_TYPE] 'crane 8 1t double inside' -> '8 1t double inside'  (REPLACE)
+  [SEAL_TYPE] 'crane 8b2 single outside' -> '8b2 single outside'  (REPLACE)
+  [SEAL_TYPE] 'flowserve cro double inside' -> 'cro double inside'  (REPLACE)
+  [SEAL_TYPE] 'flowserve rac single outside' -> 'rac single outside'  (REPLACE)
+  [SEAL_TYPE] 'flowserve rxo double inside' -> 'rxo double inside'  (REPLACE)
+  [BASEPLATE_OPTION] 'by others' -> 'no baseplate'  (REPLACE)
+  [BASEPLATE_OPTION] 'supplied by fybroc' -> 'baseplate included'  (REPLACE)
+  [COUPLING_OPTION] 'by others' -> 'no coupling'  (REPLACE)
+  [COUPLING_OPTION] 'supplied by fybroc' -> 'coupling included'  (REPLACE)
+  [NAMEPLATE] 'customer' -> 'ansi'  (REPLACE)
+  [NAMEPLATE] 'not included' -> 'no units'  (REPLACE)
+  [IMPELLER_TRIM] 'full' -> None  (REMOVE)
