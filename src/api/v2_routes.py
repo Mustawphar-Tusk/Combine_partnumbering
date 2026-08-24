@@ -353,19 +353,17 @@ async def validate_configuration(family: str, body: ValidateRequest, request: Re
 
 @router_v2.post(
     "/families/{family}/configured-products/resolve",
-    response_model=ResolveResponse,
 )
 async def resolve_configured_product(family: str, body: ResolveRequest, request: Request):
     """
     Resolve a complete configuration into a Part Number, SKU, and
-    configured product (with reuse detection).
+    configured product (with reuse detection). Also returns pricing.
     NOT cached (creates side effects).
     """
     conn_str = _get_conn_str(request)
 
     # Build configuration JSON for SQL procedures
     config_json = json.dumps({
-        "SERIES": body.series,
         **body.selections,
         **{f"{k}_CODE": v for k, v in body.segment_codes.items()},
     })
@@ -376,22 +374,56 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
     conn = pyodbc.connect(conn_str, autocommit=True)
     try:
         cursor = conn.cursor()
+        pub_id, _ = _get_active_publication(conn_str)
+        family_upper = family.upper()
 
-        # Generate Part Number
-        cursor.execute(
-            "DECLARE @PN varchar(200); "
-            "EXEC cfg.usp_GeneratePartNumber @FamilyCode=?, @ConfigurationJson=?, @PartNumber=@PN OUTPUT; "
-            "SELECT @PN;",
-            family.upper(), config_json,
-        )
-        pn = cursor.fetchone()[0]
+        family_row = cursor.execute(
+            "SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode = ?", family_upper
+        ).fetchone()
+        if family_row is None:
+            raise RuntimeError(f"Family {family} not found")
+        family_id = family_row[0]
+
+        # Build Part Number from resolved attribute codes
+        brand = "F" if family_upper == "FYBROC" else "D"
+
+        # Look up each code
+        def lookup(field, value):
+            if not value:
+                return None
+            row = cursor.execute(
+                "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
+                pub_id, family_id, field, value
+            ).fetchone()
+            return row[0] if row and row[0] else None
+
+        series_val = body.selections.get("SERIES", body.series)
+        flange_val = body.selections.get("FLANGE_TYPE", "")
+        series_key = f"{series_val} ({flange_val})" if flange_val else series_val
+        series_code = lookup("SERIES", series_key) or lookup("SERIES", series_val) or "?"
+
+        size_code = lookup("SIZE", body.selections.get("ALT_SIZE", body.selections.get("SIZE", ""))) or "?"
+        material_code = lookup("PUMP_MATERIAL", body.selections.get("PUMP_MATERIAL", "")) or "?"
+        trim_code = lookup("IMPELLER_TRIM", body.selections.get("IMPELLER_TRIM", "")) or "??"
+
+        # Composite segment codes from the request (pre-resolved by client or defaulted)
+        pump_opts = body.segment_codes.get("PUMP_OPTIONS", "????")
+        seal_mfg = body.segment_codes.get("SEAL_MFG", "?")
+        seal_assy = body.segment_codes.get("SEAL_ASSY", "??")
+        options = body.segment_codes.get("OPTIONS", "??")
+        frame_size = body.segment_codes.get("FRAME_SIZE", "??")
+        motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
+        motor_mods = body.segment_codes.get("MOTOR_MODS", "???")
+        testing = body.segment_codes.get("TESTING", "??")
+
+        pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
 
         # Generate SKU
         cursor.execute(
             "DECLARE @SKU varchar(100); "
             "EXEC cfg.usp_GenerateSKU @FamilyCode=?, @SeriesCode=?, @ConfigurationSignature=?, @SKU=@SKU OUTPUT; "
             "SELECT @SKU;",
-            family.upper(), body.series, signature,
+            family_upper, body.series, signature,
         )
         sku = cursor.fetchone()[0]
 
@@ -401,13 +433,49 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             signature,
         ).fetchone()
 
-        return ResolveResponse(
-            family=family.upper(),
-            part_number=pn,
-            sku=sku,
-            configuration_signature=signature,
-            existing_configuration=existing is not None,
-            configured_product_id=existing[0] if existing else None,
-        )
+        # Pricing lookup
+        pricing = []
+        size_upper = (body.selections.get("ALT_SIZE") or body.selections.get("SIZE") or "").upper()
+        material_display = body.selections.get("PUMP_MATERIAL", "")
+
+        # Base pump price
+        base_row = cursor.execute("""
+            SELECT TOP 1 pr.Amount
+            FROM price.PriceRule pr
+            JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+            WHERE pr.SeriesCode = ? AND pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
+              AND UPPER(pr.SourceSizeValue) = ? AND LOWER(pr.SourceOptionValue) LIKE ?
+            ORDER BY pr.Priority
+        """, body.series, size_upper, f"%{material_display[:4]}%").fetchone()
+
+        if base_row:
+            pricing.append({"component": "Base Pump", "amount": float(base_row[0])})
+
+        # Seal pricing
+        seal_type = body.selections.get("SEAL_TYPE", "")
+        if seal_type:
+            seal_row = cursor.execute("""
+                SELECT TOP 1 pr.Amount
+                FROM price.PriceRule pr
+                JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                WHERE pr.ComponentCode = 'SEAL' AND pr.IsActive = 1
+                  AND LOWER(pr.SourceOptionValue) LIKE ?
+                ORDER BY pr.Priority
+            """, f"%{seal_type[:6]}%").fetchone()
+            if seal_row:
+                pricing.append({"component": "Seal", "amount": float(seal_row[0])})
+
+        total = sum(p["amount"] for p in pricing)
+
+        return {
+            "family": family_upper,
+            "part_number": pn,
+            "sku": sku,
+            "configuration_signature": signature,
+            "existing_configuration": existing is not None,
+            "configured_product_id": existing[0] if existing else None,
+            "pricing": pricing,
+            "total_price": total,
+        }
     finally:
         conn.close()

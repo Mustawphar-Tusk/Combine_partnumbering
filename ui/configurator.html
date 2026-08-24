@@ -219,30 +219,30 @@
                 document.getElementById('resReused').textContent = data.existing_configuration ? 'Yes (existing)' : 'No (new)';
                 document.getElementById('resultPanel').style.display = 'block';
 
-                // Show pricing summary
-                renderPricing(family, series);
+                // Show pricing from API response
+                renderPricing(data.pricing || [], data.total_price || 0);
                 setStatus('Product resolved!', 'success');
             } catch (e) {
                 setStatus(e.message, 'error');
             }
         }
 
-        async function renderPricing(family, series) {
+        async function renderPricing(pricingLines, total) {
             const panel = document.getElementById('pricingPanel');
-            // For now show a placeholder — pricing requires the full pricing engine
-            const size = selections['ALT_SIZE'] || selections['SIZE'] || '—';
-            const material = selections['PUMP_MATERIAL'] || '—';
+            if (!pricingLines.length) {
+                panel.innerHTML = `<div class="pricing-total" style="background:#fff3cd;color:#856404">No pricing rules matched for this configuration. Check price.PriceRule data.</div>`;
+                return;
+            }
+            const rows = pricingLines.map(p => 
+                `<tr><td>${p.component}</td><td class="amount">$${p.amount.toLocaleString('en-US', {minimumFractionDigits:2})}</td></tr>`
+            ).join('');
             panel.innerHTML = `
-                <h3 style="margin-top:16px">Pricing (from active pricebook)</h3>
+                <h3 style="margin-top:16px">Pricing</h3>
                 <table class="pricing-table">
-                    <tr><th>Component</th><th>Description</th><th class="amount">Amount</th></tr>
-                    <tr><td>Base Pump</td><td>${series} / ${size} / ${material}</td><td class="amount">See Pricebook</td></tr>
-                    <tr><td>Seal</td><td>${selections['SEAL_TYPE'] || '—'}</td><td class="amount">—</td></tr>
-                    <tr><td>Motor</td><td>${selections['MOTOR_HP'] || '—'} / ${selections['MOTOR_RPM'] || '—'}</td><td class="amount">—</td></tr>
-                    <tr><td>Coupling</td><td>${selections['COUPLING_OPTION'] || '—'}</td><td class="amount">—</td></tr>
-                    <tr><td>Baseplate</td><td>${selections['BASEPLATE_OPTION'] || '—'}</td><td class="amount">—</td></tr>
+                    <tr><th>Component</th><th class="amount">Amount</th></tr>
+                    ${rows}
                 </table>
-                <div class="pricing-total">Total: Pricing engine integration pending (price.PriceRule lookup)</div>
+                <div class="pricing-total">Total: $${total.toLocaleString('en-US', {minimumFractionDigits:2})}</div>
             `;
         }
     </script>
