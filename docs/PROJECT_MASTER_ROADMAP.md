@@ -985,8 +985,8 @@ D130	SQL Dean identifier	COMPLETE
 D140	Dean Excel Oracle	COMPLETE
 D150	Dean exhaustive regression	COMPLETE
 D160	Dean signoff	COMPLETE
-U100	canonical product model	CURRENT
-U110	unified configuration dictionary	PENDING
+U100	canonical product model	COMPLETE
+U110	unified configuration dictionary	CURRENT
 U120	FastAPI V2	PENDING
 U130	reusable BOM	PENDING
 U140	quote engine	PENDING
