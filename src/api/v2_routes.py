@@ -267,13 +267,24 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             raise RuntimeError(f"Family {family} not found")
         family_id = family_row[0]
 
-        # Get ALL options for this series
+        # Get ALL options for this series (searching across all publications for this family)
         rows = cursor.execute(
             "SELECT FieldCode, OptionValue FROM cfg.SeriesFieldOption "
             "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
             "ORDER BY FieldCode, OptionValue",
             pub_id, body.series,
         ).fetchall()
+
+        if not rows:
+            # No options found — family may not have metadata loaded
+            return EvaluateResponse(
+                family=family_upper,
+                series=body.series,
+                valid=False,
+                allowable_options={},
+                resolved_codes={},
+                errors=[f"No configuration options found for {family_upper} series {body.series}. Metadata may not be loaded for this family."],
+            )
 
         all_options: dict[str, list[str]] = {}
         for field_code, option_value in rows:
@@ -445,30 +456,33 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         material_display = body.selections.get("PUMP_MATERIAL", "")
 
         # Base pump price - search with case-insensitive size match
+        # Price rules may have SeriesCode like '1530 (ANSI)' while UI sends '1530'
         base_row = cursor.execute("""
             SELECT TOP 1 pr.Amount
             FROM price.PriceRule pr
             JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
             WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
+              AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
               AND UPPER(pr.SourceSizeValue) = ?
               AND LOWER(pr.SourceOptionValue) LIKE ?
             ORDER BY pr.Priority
-        """, size_upper, f"%{material_display[:5]}%").fetchone()
+        """, body.series, f"{body.series}%", size_upper, f"%{material_display[:5]}%").fetchone()
 
         if base_row:
             pricing.append({"component": "Base Pump", "amount": float(base_row[0])})
         else:
-            # Try without material filter (just size)
+            # Try without material filter (just size + series)
             base_row2 = cursor.execute("""
                 SELECT TOP 1 pr.Amount, pr.SourceOptionValue
                 FROM price.PriceRule pr
                 JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
                 WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
+                  AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
                   AND UPPER(pr.SourceSizeValue) = ?
                 ORDER BY pr.Priority
-            """, size_upper).fetchone()
+            """, body.series, f"{body.series}%", size_upper).fetchone()
             if base_row2:
-                pricing.append({"component": "Base Pump (closest match)", "amount": float(base_row2[0])})
+                pricing.append({"component": f"Base Pump ({base_row2[1]})", "amount": float(base_row2[0])})
 
         # Seal pricing
         seal_type = body.selections.get("SEAL_TYPE", "")

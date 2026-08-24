@@ -46,7 +46,7 @@
 
         <div class="top-bar">
             <div><label>Family:</label><select id="family" onchange="reset()"><option value="FYBROC">Fybroc</option><option value="DEAN">Dean</option></select></div>
-            <div><label>Series:</label><select id="series" onchange="onSeriesChange()"><option value="">-- Select --</option><option value="1500">1500</option><option value="1530">1530</option><option value="1600">1600</option><option value="1630">1630</option><option value="2530">2530</option><option value="3000">3000</option><option value="5500">5500</option></select></div>
+            <div><label>Series:</label><select id="series" onchange="onSeriesChange()"><option value="">-- Select --</option></select></div>
             <button class="btn" onclick="resolve()" id="resolveBtn" disabled>Generate Part Number & SKU</button>
             <button class="btn" style="background:#6c757d" onclick="reset()">Reset All</button>
         </div>
@@ -88,7 +88,34 @@
             document.getElementById('resultPanel').style.display = 'none';
             document.getElementById('resolveBtn').disabled = true;
             setStatus('', '');
+            loadSeriesList();
         }
+
+        async function loadSeriesList() {
+            const family = document.getElementById('family').value;
+            const seriesSelect = document.getElementById('series');
+            seriesSelect.innerHTML = '<option value="">-- Loading... --</option>';
+            try {
+                const resp = await fetch(`${API}/families/${family}/configuration-dictionary`);
+                if (!resp.ok) throw new Error(`${resp.status}`);
+                const data = await resp.json();
+                // Extract distinct series from the dictionary fields
+                const allSeries = new Set();
+                for (const field of data.fields) {
+                    for (const s of Object.keys(field.series_options || {})) {
+                        allSeries.add(s);
+                    }
+                }
+                const sorted = [...allSeries].sort();
+                seriesSelect.innerHTML = '<option value="">-- Select Series --</option>' +
+                    sorted.map(s => `<option value="${s}">${s}</option>`).join('');
+            } catch(e) {
+                seriesSelect.innerHTML = '<option value="">-- Error loading --</option>';
+            }
+        }
+
+        // Load series on page load
+        window.addEventListener('load', loadSeriesList);
 
         async function onSeriesChange() {
             selections = {};
