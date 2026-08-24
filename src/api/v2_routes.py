@@ -399,7 +399,12 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         series_val = body.selections.get("SERIES", body.series)
         flange_val = body.selections.get("FLANGE_TYPE", "")
-        series_key = f"{series_val} ({flange_val})" if flange_val else series_val
+        
+        # Map FLANGE_TYPE option values to the short codes used in SERIES AttributeValue
+        flange_map = {"ansi flange": "ANSI", "din/iso flange": "Din", "jis flange": "JIS", "ansi": "ANSI", "din": "Din", "jis": "JIS"}
+        flange_short = flange_map.get(flange_val.lower(), "ANSI") if flange_val else "ANSI"
+        
+        series_key = f"{series_val} ({flange_short})"
         series_code = lookup("SERIES", series_key) or lookup("SERIES", series_val) or "?"
 
         size_code = lookup("SIZE", body.selections.get("ALT_SIZE", body.selections.get("SIZE", ""))) or "?"
@@ -435,21 +440,35 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         # Pricing lookup
         pricing = []
-        size_upper = (body.selections.get("ALT_SIZE") or body.selections.get("SIZE") or "").upper()
+        size_val = body.selections.get("ALT_SIZE") or body.selections.get("SIZE") or ""
+        size_upper = size_val.upper()
         material_display = body.selections.get("PUMP_MATERIAL", "")
 
-        # Base pump price
+        # Base pump price - search with case-insensitive size match
         base_row = cursor.execute("""
             SELECT TOP 1 pr.Amount
             FROM price.PriceRule pr
             JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
-            WHERE pr.SeriesCode = ? AND pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
-              AND UPPER(pr.SourceSizeValue) = ? AND LOWER(pr.SourceOptionValue) LIKE ?
+            WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
+              AND UPPER(pr.SourceSizeValue) = ?
+              AND LOWER(pr.SourceOptionValue) LIKE ?
             ORDER BY pr.Priority
-        """, body.series, size_upper, f"%{material_display[:4]}%").fetchone()
+        """, size_upper, f"%{material_display[:5]}%").fetchone()
 
         if base_row:
             pricing.append({"component": "Base Pump", "amount": float(base_row[0])})
+        else:
+            # Try without material filter (just size)
+            base_row2 = cursor.execute("""
+                SELECT TOP 1 pr.Amount, pr.SourceOptionValue
+                FROM price.PriceRule pr
+                JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
+                  AND UPPER(pr.SourceSizeValue) = ?
+                ORDER BY pr.Priority
+            """, size_upper).fetchone()
+            if base_row2:
+                pricing.append({"component": "Base Pump (closest match)", "amount": float(base_row2[0])})
 
         # Seal pricing
         seal_type = body.selections.get("SEAL_TYPE", "")
@@ -461,7 +480,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 WHERE pr.ComponentCode = 'SEAL' AND pr.IsActive = 1
                   AND LOWER(pr.SourceOptionValue) LIKE ?
                 ORDER BY pr.Priority
-            """, f"%{seal_type[:6]}%").fetchone()
+            """, f"%{seal_type[:8]}%").fetchone()
             if seal_row:
                 pricing.append({"component": "Seal", "amount": float(seal_row[0])})
 
