@@ -422,17 +422,46 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         material_code = lookup("PUMP_MATERIAL", body.selections.get("PUMP_MATERIAL", "")) or "?"
         trim_code = lookup("IMPELLER_TRIM", body.selections.get("IMPELLER_TRIM", "")) or "??"
 
-        # Composite segment codes from the request (pre-resolved by client or defaulted)
-        pump_opts = body.segment_codes.get("PUMP_OPTIONS", "????")
-        seal_mfg = body.segment_codes.get("SEAL_MFG", "?")
-        seal_assy = body.segment_codes.get("SEAL_ASSY", "??")
-        options = body.segment_codes.get("OPTIONS", "??")
-        frame_size = body.segment_codes.get("FRAME_SIZE", "??")
-        motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
-        motor_mods = body.segment_codes.get("MOTOR_MODS", "???")
-        testing = body.segment_codes.get("TESTING", "??")
+        # Composite segment codes — look up from combination tables in SQL
+        def lookup_segment(segment_code, sel_keys):
+            """Look up hex code by matching selection values against combination keys."""
+            vals = [str(body.selections.get(k, "")) for k in sel_keys if body.selections.get(k)]
+            if not vals:
+                return None
+            pattern = "%".join(v[:15] for v in vals[:3])
+            if not pattern:
+                return None
+            row = cursor.execute(
+                "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                "WHERE SegmentCode = ? AND LOWER(CombinationKey) LIKE ?",
+                segment_code, f"%{pattern.lower()}%"
+            ).fetchone()
+            return row[0] if row else None
 
-        pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
+        pump_opts = lookup_segment("PUMP_OPTIONS",
+            ["CASING_DRAINS","SUCTION_DISCHARGE_TAPS","SHAFT_MATERIAL","SLEEVE",
+             "CASING_HARDWARE","PUMP_ELASTOMERS","BEARING_OPTION","POWER_FRAME_HARDWARE",
+             "GLAND_HARDWARE","FLUSH","CYCLONE_SEPERATOR","IMPELLER_BALANCE"]
+        ) or body.segment_codes.get("PUMP_OPTIONS", "????")
+
+        seal_mfg = body.segment_codes.get("SEAL_MFG", "?")
+        seal_assy = lookup_segment("SEAL_ASSEMBLY",
+            ["SEAL_OPTION","SEAL_TYPE","SEAL_MATERIALS","SEAL_ELASTOMERS","SEAL_GUARD"]
+        ) or body.segment_codes.get("SEAL_ASSY", "??")
+
+        options_code = lookup_segment("OPTIONS",
+            ["COUPLING_OPTION","COUPLING_GUARD","BASEPLATE_OPTION","BASEPLATEHARDWARE","CUSTOMER_NAMEPLATE","C_FACE_ADAPTOR"]
+        ) or body.segment_codes.get("OPTIONS", "??")
+
+        frame_size = body.segment_codes.get("FRAME_SIZE", "??")
+        motor_assy = lookup_segment("MOTOR_ASSEMBLY",
+            ["MOTOR_OPTION","MOTOR_CLASS","MOTOR_ORIENTATION","MOTOR_HP","MOTOR_RPM",
+             "MOTOR_VOLTAGE","MOTOR_HERTZ","FRAME_SIZE","MOTOR_ENCLOSURE","MOTOR_EFFICIENCY","MOTOR_MFG"]
+        ) or body.segment_codes.get("MOTOR_ASSY", "???")
+        motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
+        testing = body.segment_codes.get("TESTING", "00")
+
+        pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
 
         # Generate SKU
         cursor.execute(
