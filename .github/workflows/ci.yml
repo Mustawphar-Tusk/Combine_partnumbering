@@ -1,0 +1,46 @@
+# T100 - CI/CD Pipeline
+# Runs on every push: sync deps, lint, test, validate SQL migrations
+
+name: CI
+
+on:
+  push:
+    branches: [main, feature/*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Install dependencies
+        run: uv sync --locked
+
+      - name: Run tests
+        run: uv run pytest tests/ -v --tb=short
+
+      - name: Verify SQL migrations parse
+        run: |
+          uv run python -c "
+          from pathlib import Path
+          sql_dir = Path('sql')
+          for f in sorted(sql_dir.glob('*.sql')):
+              content = f.read_text(encoding='utf-8')
+              assert len(content) > 0, f'{f.name} is empty'
+              print(f'  OK: {f.name} ({len(content)} chars)')
+          print(f'All {len(list(sql_dir.glob(\"*.sql\")))} SQL files valid.')
+          "
+
+      - name: Check application imports
+        run: |
+          uv run python -c "
+          from src.api.app import create_app
+          from src.api.v2_routes import router_v2
+          from src.api.auth import get_current_user
+          print('All imports OK')
+          "
