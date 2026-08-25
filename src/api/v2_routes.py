@@ -492,10 +492,8 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             return row[0] if row else None
         
         def lookup_segment_by_key(segment_code, field_order, sfo_field_map):
-            """Build combination key from translated values and search."""
-            # For fields the user didn't select, we can't build the full key
-            # Fall back to LIKE search with available values
-            translated_vals = []
+            """Look up hex code by matching SFO values directly against re-indexed SelectionsJson."""
+            keywords = []
             for combo_field in field_order:
                 # Find which SFO field maps to this combo field
                 sfo_field = None
@@ -505,17 +503,15 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                         break
                 
                 sfo_val = body.selections.get(sfo_field, "") if sfo_field else ""
-                if sfo_val:
-                    combo_val = translate_to_combo_with_star(sfo_field, sfo_val)
-                    if combo_val:
-                        translated_vals.append(combo_val.lower())
+                if sfo_val and len(sfo_val) > 2:
+                    keywords.append(sfo_val.lower().strip())
             
-            if not translated_vals:
+            if not keywords:
                 return None
             
-            # Use LIKE with translated values (most reliable approach for partial selections)
-            conditions = ["LOWER(SelectionsJson) LIKE ?"] * min(len(translated_vals), 4)
-            params = [segment_code] + [f"%{v}%" for v in translated_vals[:4]]
+            # Direct match — SelectionsJson is now in SFO vocabulary
+            conditions = ["LOWER(SelectionsJson) LIKE ?"] * min(len(keywords), 4)
+            params = [segment_code] + [f"%{kw}%" for kw in keywords[:4]]
             
             where = " AND ".join(conditions)
             sql = f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {where}"
@@ -534,79 +530,59 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         else:
             pump_opts = lookup_segment_by_key("PUMP_OPTIONS", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
 
-        # SEAL_ASSEMBLY lookup
-        # Seal Mfg code from VocabularyMap (S/F/J/C)
+        # Seal Mfg code (S/F/J/C) — still from VocabularyMap
         seal_mfg_val = body.selections.get("SEAL_MFG", "")
         if seal_mfg_val:
             mfg_row = cursor.execute(
-                "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='SEAL_MFG' AND LOWER(ComboValue)=?",
-                seal_mfg_val.lower().strip()
+                "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='SEAL_MFG' AND LOWER(ComboValue) LIKE ?",
+                f"%{seal_mfg_val.lower().strip()}%"
             ).fetchone()
             seal_mfg = mfg_row[0] if mfg_row else "S"
         else:
             seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
-        
-        # Seal Assembly hex
+
+        # Seal Assembly hex — direct match (data re-indexed to SFO vocabulary)
         seal_option_val = body.selections.get("SEAL_OPTION", "")
         seal_type_val = body.selections.get("SEAL_TYPE", "")
         seal_assy = "??"
         
-        if seal_option_val and ("noseal" in seal_option_val.lower() or "customer" in seal_option_val.lower()):
-            # NoSeal/Customer - search by option alone
-            t_opt = translate_to_combo_with_star("SEAL_OPTION", seal_option_val)
-            if t_opt:
-                try:
-                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{t_opt.lower()}%").fetchone()
-                    if row: seal_assy = row[0]
-                except: pass
+        if seal_option_val:
+            keywords = [seal_option_val.lower()]
+            if seal_type_val:
+                keywords.append(seal_type_val.lower())
+            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(keywords))
+            params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in keywords]
+            try:
+                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
+                if row: seal_assy = row[0]
+            except: pass
         elif seal_type_val:
-            # Has seal type - try option+type first, fallback to type alone
-            t_opt = translate_to_combo_with_star("SEAL_OPTION", seal_option_val) if seal_option_val else None
-            t_type = translate_to_combo_with_star("SEAL_TYPE", seal_type_val)
-            
-            if t_opt and t_type:
-                try:
-                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ? AND LOWER(SelectionsJson) LIKE ?", f"%{t_opt.lower()}%", f"%{t_type.lower()}%").fetchone()
-                    if row: seal_assy = row[0]
-                except: pass
-            
-            # Fallback: type alone
-            if seal_assy == "??" and t_type:
-                try:
-                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{t_type.lower()}%").fetchone()
-                    if row: seal_assy = row[0]
-                except: pass
+            try:
+                row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{seal_type_val.lower()}%").fetchone()
+                if row: seal_assy = row[0]
+            except: pass
 
-        # OPTIONS lookup
-        opt_keywords = []
-        for sfo_f in ["COUPLING_OPTION", "BASEPLATE_OPTION"]:
-            v = body.selections.get(sfo_f, "")
-            if v:
-                t = translate_to_combo_with_star(sfo_f, v)
-                if t:
-                    opt_keywords.append(t.lower())
+        # OPTIONS — direct match
+        opt_keywords = [v.lower() for k in ["COUPLING_OPTION", "BASEPLATE_OPTION"]
+                       if (v := body.selections.get(k, "")) and len(v) > 2]
         if opt_keywords:
             conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(opt_keywords))
             params = ["OPTIONS"] + [f"%{k}%" for k in opt_keywords]
             try:
-                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {conditions}", *params).fetchone()
+                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
                 options_code = row[0] if row else "??"
             except:
                 options_code = "??"
         else:
             options_code = body.segment_codes.get("OPTIONS", "??")
 
-        # MOTOR_ASSEMBLY lookup
-        motor_opt = body.selections.get("MOTOR_OPTION", "")
-        if motor_opt:
-            t_motor = translate_to_combo_with_star("MOTOR_OPTION", motor_opt)
-            if t_motor:
-                try:
-                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND LOWER(SelectionsJson) LIKE ?", "MOTOR_ASSEMBLY", f"%{t_motor.lower()}%").fetchone()
-                    motor_assy = row[0] if row else "???"
-                except:
-                    motor_assy = "???"
-            else:
+        # MOTOR_ASSEMBLY — direct match
+        motor_opt_val = body.selections.get("MOTOR_OPTION", "")
+        if motor_opt_val:
+            try:
+                row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='MOTOR_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{motor_opt_val.lower()}%").fetchone()
+                motor_assy = row[0] if row else "???"
+            except:
                 motor_assy = "???"
         else:
             motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
