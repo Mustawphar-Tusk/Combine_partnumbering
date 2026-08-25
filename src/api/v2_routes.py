@@ -625,7 +625,13 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         hydro = body.selections.get("HYDROTEST_CERTIFICATE", "")
         vib = body.selections.get("VIBRATION_TESTING", "")
         sound = body.selections.get("SOUND_LEVEL_TESTING", "")
-        test_keywords = [v.lower() for v in [perf, hydro, vib, sound] if v and len(v) > 3 and v.lower() != "none"]
+        # Use shorter distinctive keywords (strip "testing"/"certificate" suffixes)
+        test_keywords = []
+        for v in [perf, hydro, vib, sound]:
+            if v and len(v) > 3 and v.lower() not in ("none", ""):
+                # Take first 15 chars max to avoid suffix mismatches
+                kw = v.lower().replace(" testing", " test").replace(" certificate", "")[:20]
+                test_keywords.append(kw)
         if test_keywords:
             conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * min(len(test_keywords), 4))
             params = ["TESTING"] + [f"%{k}%" for k in test_keywords[:4]]
