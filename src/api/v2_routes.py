@@ -478,10 +478,26 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
         
         # For seal, use only SEAL_OPTION and SEAL_TYPE (most reliable 2 fields)
-        seal_assy = lookup_segment("SEAL_ASSEMBLY", [
-            ("SEAL_OPTION", body.selections.get("SEAL_OPTION", "")),
-            ("SEAL_TYPE", body.selections.get("SEAL_TYPE", "")),
-        ]) or body.segment_codes.get("SEAL_ASSY", "??")
+        # If SEAL_OPTION is a 'noseal' variant, only search by SEAL_OPTION (no SEAL_TYPE needed)
+        seal_option_val = body.selections.get("SEAL_OPTION", "")
+        seal_type_val = body.selections.get("SEAL_TYPE", "")
+        
+        if seal_option_val and ("noseal" in seal_option_val.lower() or "customer" in seal_option_val.lower()):
+            # NoSeal or Customer Supplied - only need SEAL_OPTION for lookup
+            seal_assy = lookup_segment("SEAL_ASSEMBLY", [
+                ("SEAL_OPTION", seal_option_val),
+            ]) or body.segment_codes.get("SEAL_ASSY", "??")
+        elif seal_option_val and seal_type_val:
+            seal_assy = lookup_segment("SEAL_ASSEMBLY", [
+                ("SEAL_OPTION", seal_option_val),
+                ("SEAL_TYPE", seal_type_val),
+            ]) or body.segment_codes.get("SEAL_ASSY", "??")
+        elif seal_type_val:
+            seal_assy = lookup_segment("SEAL_ASSEMBLY", [
+                ("SEAL_TYPE", seal_type_val),
+            ]) or body.segment_codes.get("SEAL_ASSY", "??")
+        else:
+            seal_assy = body.segment_codes.get("SEAL_ASSY", "??")
 
         # OPTIONS lookup
         options_code = lookup_segment("OPTIONS", [
