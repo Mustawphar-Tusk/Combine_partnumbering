@@ -525,8 +525,14 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             except:
                 return None
 
-        # PUMP_OPTIONS lookup
-        pump_opts = lookup_segment_by_key("PUMP_OPTIONS", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
+        # PUMP_OPTIONS lookup - use vertical table for vertical series
+        VERTICAL_SERIES = {"5500", "5530", "6000", "7500", "7530", "8500"}
+        is_vertical = body.series in VERTICAL_SERIES
+        
+        if is_vertical:
+            pump_opts = lookup_segment_by_key("PUMP_OPTIONS_VERTICAL", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
+        else:
+            pump_opts = lookup_segment_by_key("PUMP_OPTIONS", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
 
         # SEAL_ASSEMBLY lookup
         # Seal Mfg code from VocabularyMap (S/F/J/C)
