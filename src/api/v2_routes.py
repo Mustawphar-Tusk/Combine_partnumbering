@@ -296,9 +296,42 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             if fc.upper() not in {k.upper() for k in body.selections}
         }
 
-        # TODO: Apply FieldOptionDependency constraints to further filter
-        # (e.g., if PUMP_MATERIAL is selected, filter IMPELLER_TRIM by CT4)
-        # For now returns all valid-per-series options
+        # CONSTRAINT ENFORCEMENT: Apply FeasibleConstraint rules
+        # For each user selection, find constraints and remove disallowed values
+        for sel_field, sel_value in body.selections.items():
+            # Find the constraint field name for this SFO field
+            constraint_field_row = cursor.execute(
+                "SELECT ConstraintFieldName FROM cfg.ConstraintFieldMap WHERE SFOFieldCode = ?",
+                sel_field.upper()
+            ).fetchone()
+            if not constraint_field_row:
+                continue
+            constraint_field = constraint_field_row[0]
+
+            # Find all "Not Allowed" constraints where this field+value is Option1
+            not_allowed_rows = cursor.execute(
+                "SELECT Option2Field, Option2Value FROM cfg.FeasibleConstraint "
+                "WHERE Option1Field = ? AND LOWER(Option1Value) LIKE ? AND LOWER(Allowed) LIKE '%not allowed%'",
+                constraint_field, f"%{sel_value.lower()[:20]}%"
+            ).fetchall()
+
+            for target_constraint_field, not_allowed_value in not_allowed_rows:
+                # Map the target constraint field back to SFO field code
+                target_sfo_row = cursor.execute(
+                    "SELECT SFOFieldCode FROM cfg.ConstraintFieldMap WHERE ConstraintFieldName = ?",
+                    target_constraint_field
+                ).fetchone()
+                if not target_sfo_row:
+                    continue
+                target_sfo_field = target_sfo_row[0]
+
+                # Remove the not-allowed value from allowable options
+                if target_sfo_field in allowable:
+                    original_count = len(allowable[target_sfo_field])
+                    allowable[target_sfo_field] = [
+                        v for v in allowable[target_sfo_field]
+                        if not_allowed_value.lower().strip() not in v.lower()
+                    ]
 
         # Resolve identifier codes for already-selected fields
         resolved = {}
