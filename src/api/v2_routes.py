@@ -508,6 +508,27 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
 
+        # Debug info for segment resolution
+        segment_debug = {
+            "brand": brand,
+            "series_code": series_code,
+            "size_code": size_code,
+            "material_code": material_code,
+            "trim_code": trim_code,
+            "pump_options": pump_opts,
+            "seal_mfg": seal_mfg,
+            "seal_assy": seal_assy,
+            "options": options_code,
+            "frame_size": frame_size,
+            "motor_assy": motor_assy,
+            "motor_mods": motor_mods,
+            "testing": testing,
+            "failed_segments": [k for k, v in {
+                "seal_assy": seal_assy, "motor_assy": motor_assy,
+                "pump_options": pump_opts, "options": options_code,
+            }.items() if "?" in str(v)],
+        }
+
         # Generate SKU
         cursor.execute(
             "DECLARE @SKU varchar(100); "
@@ -590,6 +611,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "configured_product_id": existing[0] if existing else None,
             "pricing": pricing,
             "total_price": total,
+            "segment_debug": segment_debug,
         }
     finally:
         conn.close()

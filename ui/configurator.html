@@ -246,6 +246,16 @@
                 document.getElementById('resReused').textContent = data.existing_configuration ? 'Yes (existing)' : 'No (new)';
                 document.getElementById('resultPanel').style.display = 'block';
 
+                // Show failed segments if any
+                if (data.segment_debug && data.segment_debug.failed_segments && data.segment_debug.failed_segments.length > 0) {
+                    const failedInfo = document.createElement('div');
+                    failedInfo.style.cssText = 'margin-top:8px;padding:8px;background:#fff3cd;border-radius:4px;font-size:12px;';
+                    failedInfo.innerHTML = '<strong>Unresolved segments:</strong> ' + 
+                        data.segment_debug.failed_segments.join(', ') + 
+                        '<br><small>These fields need VocabularyMap entries or are not selected.</small>';
+                    document.getElementById('resultPanel').appendChild(failedInfo);
+                }
+
                 // Show pricing from API response
                 renderPricing(data.pricing || [], data.total_price || 0);
                 setStatus('Product resolved!', 'success');
