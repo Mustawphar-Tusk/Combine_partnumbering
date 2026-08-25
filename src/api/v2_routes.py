@@ -546,8 +546,13 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         seal_type_val = body.selections.get("SEAL_TYPE", "")
         seal_assy = "??"
         
-        if seal_option_val:
-            keywords = [seal_option_val.lower()]
+        # Normalize synonym
+        seal_opt_search = seal_option_val.lower()
+        if "supplied by fybroc" in seal_opt_search:
+            seal_opt_search = "installed by fybroc"
+        
+        if seal_opt_search:
+            keywords = [seal_opt_search]
             if seal_type_val:
                 keywords.append(seal_type_val.lower())
             conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(keywords))
@@ -556,6 +561,12 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
                 if row: seal_assy = row[0]
             except: pass
+            # Fallback: type alone
+            if seal_assy == "??" and seal_type_val:
+                try:
+                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{seal_type_val.lower()}%").fetchone()
+                    if row: seal_assy = row[0]
+                except: pass
         elif seal_type_val:
             try:
                 row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{seal_type_val.lower()}%").fetchone()
