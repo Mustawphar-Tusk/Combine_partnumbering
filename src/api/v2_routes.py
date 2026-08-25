@@ -477,10 +477,10 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         else:
             seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
         
+        # For seal, use only SEAL_OPTION and SEAL_TYPE (most reliable 2 fields)
         seal_assy = lookup_segment("SEAL_ASSEMBLY", [
             ("SEAL_OPTION", body.selections.get("SEAL_OPTION", "")),
             ("SEAL_TYPE", body.selections.get("SEAL_TYPE", "")),
-            ("SEAL_MATERIALS", body.selections.get("SEAL_MATERIALS", "")),
         ]) or body.segment_codes.get("SEAL_ASSY", "??")
 
         # OPTIONS lookup
