@@ -588,7 +588,36 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
         
         motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
-        testing = body.segment_codes.get("TESTING", "00")
+        
+        # Motor Modifications — build 3-char code from individual mod selections
+        mod1 = body.selections.get("MOTOR_MOD_1", "")
+        mod2 = body.selections.get("MOTOR_MOD_2", "")
+        mod3 = body.selections.get("MOTOR_MOD_3", "")
+        if mod1 or mod2 or mod3:
+            def get_mod_code(mod_val):
+                if not mod_val or "no modification" in mod_val.lower():
+                    return "X"
+                row = cursor.execute(
+                    "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='MOTOR_MOD' AND LOWER(ComboValue)=?",
+                    mod_val.lower().strip()
+                ).fetchone()
+                return row[0] if row else "X"
+            motor_mods = get_mod_code(mod1) + get_mod_code(mod2) + get_mod_code(mod3)
+
+        # Testing — lookup from TESTING combination table
+        testing = "00"
+        perf = body.selections.get("PERFORMANCE_TESTING", "")
+        hydro = body.selections.get("HYDROTEST_CERTIFICATE", "")
+        vib = body.selections.get("VIBRATION_TESTING", "")
+        sound = body.selections.get("SOUND_LEVEL_TESTING", "")
+        test_keywords = [v.lower() for v in [perf, hydro, vib, sound] if v and len(v) > 2]
+        if test_keywords:
+            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * min(len(test_keywords), 4))
+            params = ["TESTING"] + [f"%{k}%" for k in test_keywords[:4]]
+            try:
+                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
+                if row: testing = row[0]
+            except: pass
 
         # Frame size from selection
         import re
