@@ -1,7 +1,8 @@
 # U100 — Canonical Product Model
 
-**Date:** 2026-08-24  
+**Date:** 2026-08-25  
 **Milestone:** U100  
+**Last updated:** 2026-08-25 (added vertical Part Number format, updated examples)
 
 ---
 
@@ -13,9 +14,17 @@
 
 ## Canonical Part Number Segment Sequence
 
+**Horizontal pumps (all segments present):**
 ```
-<Brand><SeriesCode><Size><Material><Trim>-<WetEndOptions>-<SealOptions>-<PlanOptions>-<PowerFrameOptions>-<MotorOptions>-<BaseplateOptions>-<AdditionalOptions>-<TestingOptions>
+<Brand><SeriesCode><Size><Material><Trim>-<WetEndOptions>-<SealMfg><SealAssy>-<Options>-<FrameSize><MotorAssy>-<MotorMods>-<Testing>
 ```
+
+**Vertical pumps (seal segment omitted):**
+```
+<Brand><SeriesCode><Size><Material><Trim>-<WetEndOptions>-<Options>-<FrameSize><MotorAssy>-<MotorMods>-<Testing>
+```
+
+**Rule:** Vertical pumps (5500, 5530, 6000, 7500, 7530, 8500) do not have seal assemblies. The seal segment is completely omitted from their Part Numbers — it is not a placeholder, it simply doesn't exist.
 
 | Position | Segment | Separator | Fybroc Source | Dean Source |
 |----------|---------|-----------|---------------|-------------|
@@ -45,9 +54,14 @@
 
 ## Part Number Examples
 
-**Fybroc:** `FA35FC-1VC1-S03-3G-04XXX-XXX-00`
+**Fybroc Horizontal:** `FA35FC-1VC1-S03-3G-04XXX-XXX-00`
 - Brand=F, Series=A(1500+ANSI), Size=3, Material=5(VR-1A), Trim=FC(9.250)
 - WetEnd=1VC1, Seal=S03, Options=3G, PowerFrame=04XXX, Motor=XXX, Testing=00
+
+**Fybroc Vertical:** `FG42GB-07HO-02-32049-XXX-00`
+- Brand=F, Series=G(5500+ANSI), Size=4, Material=2(VR-1), Trim=GB
+- WetEnd=07HO, Options=02, PowerFrame=32049, Motor=XXX, Testing=00
+- Note: Seal segment is OMITTED for vertical series (no seal assembly)
 
 **Dean:** `D610-00CA-AB01-ERR-TBD__-07617-0V03L-0KN00-00-1Z1IJ4`
 - Brand=D, Series=610(A610→D610), WetEnd=00CA, Trim=AB(4.125)

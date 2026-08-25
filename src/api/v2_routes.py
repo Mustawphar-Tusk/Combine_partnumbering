@@ -526,7 +526,51 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         is_vertical = body.series in VERTICAL_SERIES
         
         if is_vertical:
-            pump_opts = lookup_segment_by_key("PUMP_OPTIONS_VERTICAL", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
+            # Vertical combo table fields: SHAFT_MATERIAL, IMPELLER_SLEEVE, WETTED_HARDWARE,
+            # PUMP_ELASTOMERS, FLUSH, FLUSH_OPTIONS, IMPELLER_BALANCE, VAPOR_PROTECTION, STRAINER
+            # SFO field → vertical combo field mapping:
+            VERTICAL_SFO_TO_COMBO = {
+                "SHAFT_MATERIAL": "SHAFT_MATERIAL",
+                "SLEEVE": "IMPELLER_SLEEVE",
+                "WETTED_HARDWARE": "WETTED_HARDWARE",
+                "WETTED_HARDWARE_SELECTION": "WETTED_HARDWARE",
+                "PUMP_ELASTOMERS": "PUMP_ELASTOMERS",
+                "FLUSH": "FLUSH",
+                "FLUSH_OPTIONS": "FLUSH_OPTIONS",
+                "IMPELLER_BALANCE": "IMPELLER_BALANCE",
+                "VAPOR_SEAL": "VAPOR_PROTECTION",
+                "STRAINER": "STRAINER",
+            }
+            
+            # Collect keywords from vertical SFO fields
+            vert_keywords = []
+            for sfo_field, combo_field in VERTICAL_SFO_TO_COMBO.items():
+                sfo_val = body.selections.get(sfo_field, "")
+                if sfo_val and len(sfo_val) > 2:
+                    vert_keywords.append(sfo_val.lower().strip())
+            
+            if vert_keywords:
+                # Progressive matching for vertical pump options
+                pump_opts = None
+                for n in range(len(vert_keywords), 0, -1):
+                    use_kw = vert_keywords[:n]
+                    conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(use_kw))
+                    params = ["PUMP_OPTIONS_VERTICAL"] + [f"%{k}%" for k in use_kw]
+                    try:
+                        row = cursor.execute(
+                            f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                            f"WHERE SegmentCode=? AND {conditions}",
+                            *params
+                        ).fetchone()
+                        if row:
+                            pump_opts = row[0]
+                            break
+                    except:
+                        continue
+                pump_opts = pump_opts or "0000"  # Default: standard vertical pump options
+            else:
+                # No vertical pump option fields available for this series — use default
+                pump_opts = "0000"
         else:
             pump_opts = lookup_segment_by_key("PUMP_OPTIONS", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
 
@@ -541,37 +585,105 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         else:
             seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
 
-        # Seal Assembly hex — direct match (data re-indexed to SFO vocabulary)
+        # Seal Assembly hex — multi-field match against re-indexed SelectionsJson
+        # Combo fields: SEAL_OPTION, SEAL_TYPE, SEAL_MATERIALS, SEAL_ELASTOMERS, SEAL_GUARD
         seal_option_val = body.selections.get("SEAL_OPTION", "")
         seal_type_val = body.selections.get("SEAL_TYPE", "")
+        seal_materials_val = body.selections.get("SEAL_MATERIALS", "")
+        seal_elastomers_val = body.selections.get("SEAL_ELASTOMERS", "")
+        seal_guard_val = body.selections.get("SEAL_GUARD", "")
         seal_assy = "??"
         
-        # Normalize synonym
-        seal_opt_search = seal_option_val.lower()
-        if "supplied by fybroc" in seal_opt_search:
-            seal_opt_search = "installed by fybroc"
+        # Check if this series even HAS seal configuration fields
+        # If not, the seal segment should be a standard default (noseal)
+        has_seal_fields = cursor.execute(
+            "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
+            "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode IN ('SEAL_OPTION','SEAL_TYPE')",
+            pub_id, body.series
+        ).fetchone()[0] > 0
         
-        if seal_opt_search:
-            keywords = [seal_opt_search]
+        if not has_seal_fields and not is_vertical:
+            # Series has no seal configuration — use noseal default code
+            # Look up the "noseal nosealgland" + "not supplied by fybroc" combo
+            try:
+                row = cursor.execute(
+                    "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                    "WHERE SegmentCode='SEAL_ASSEMBLY' "
+                    "AND LOWER(SelectionsJson) LIKE '%noseal nosealgland%' "
+                    "AND LOWER(SelectionsJson) LIKE '%not supplied by fybroc%'"
+                ).fetchone()
+                seal_assy = row[0] if row else "0X"  # 0X = noseal nosealgland default
+            except:
+                seal_assy = "0X"
+            seal_mfg = "S"  # Standard offering for no-seal
+        elif not has_seal_fields and is_vertical:
+            seal_assy = "N/A"  # Will be omitted from PN anyway
+        else:
+            # Build search keywords from all seal fields
+            seal_keywords = []
+            
+            if seal_option_val:
+                seal_opt_search = seal_option_val.lower()
+                # Normalize synonym
+                if "supplied by fybroc" in seal_opt_search:
+                    seal_opt_search = "installed by fybroc"
+                seal_keywords.append(seal_opt_search)
+            
             if seal_type_val:
-                keywords.append(seal_type_val.lower())
-            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(keywords))
-            params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in keywords]
-            try:
-                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
-                if row: seal_assy = row[0]
-            except: pass
-            # Fallback: type alone
-            if seal_assy == "??" and seal_type_val:
+                seal_keywords.append(seal_type_val.lower())
+            
+            if seal_materials_val:
+                seal_keywords.append(seal_materials_val.lower())
+            
+            if seal_elastomers_val:
+                seal_keywords.append(seal_elastomers_val.lower())
+            
+            if seal_guard_val:
+                # SEAL_GUARD SFO values: "supplied by fybroc" / "not supplied by fybroc"
+                seal_keywords.append(seal_guard_val.lower())
+
+            if seal_keywords:
+                conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(seal_keywords))
+                params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in seal_keywords]
                 try:
-                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{seal_type_val.lower()}%").fetchone()
-                    if row: seal_assy = row[0]
-                except: pass
-        elif seal_type_val:
-            try:
-                row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{seal_type_val.lower()}%").fetchone()
-                if row: seal_assy = row[0]
-            except: pass
+                    row = cursor.execute(
+                        f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                        f"WHERE SegmentCode=? AND {conditions}",
+                        *params
+                    ).fetchone()
+                    if row:
+                        seal_assy = row[0]
+                except:
+                    pass
+                
+                # Fallback 1: option + type only
+                if seal_assy == "??" and seal_type_val and seal_option_val:
+                    kw = seal_keywords[:2]  # just option + type
+                    conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(kw))
+                    params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in kw]
+                    try:
+                        row = cursor.execute(
+                            f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                            f"WHERE SegmentCode=? AND {conditions}",
+                            *params
+                        ).fetchone()
+                        if row:
+                            seal_assy = row[0]
+                    except:
+                        pass
+                
+                # Fallback 2: option alone (for noseal/customer supplied which have type="-")
+                if seal_assy == "??" and seal_option_val:
+                    try:
+                        row = cursor.execute(
+                            "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                            "WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?",
+                            f"%{seal_keywords[0]}%"
+                        ).fetchone()
+                        if row:
+                            seal_assy = row[0]
+                    except:
+                        pass
 
         # OPTIONS — direct match
         opt_keywords = [v.lower() for k in ["COUPLING_OPTION", "BASEPLATE_OPTION"]
@@ -581,26 +693,120 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             params = ["OPTIONS"] + [f"%{k}%" for k in opt_keywords]
             try:
                 row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
-                options_code = row[0] if row else "??"
+                options_code = row[0] if row else "00"
             except:
-                options_code = "??"
+                options_code = "00"
         else:
-            options_code = body.segment_codes.get("OPTIONS", "??")
+            # No coupling/baseplate fields selected — check if series even has them
+            has_options_fields = cursor.execute(
+                "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
+                "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode IN ('COUPLING_OPTION','BASEPLATE_OPTION')",
+                pub_id, body.series
+            ).fetchone()[0] > 0
+            options_code = body.segment_codes.get("OPTIONS", "00") if not has_options_fields else "??"
 
-        # MOTOR_ASSEMBLY — direct match
+        # MOTOR_ASSEMBLY — multi-field lookup (same pattern as PUMP_OPTIONS)
+        # The combo table has 11 fields: MOTOR_OPTION, MOTOR_CLASS, MOTOR_ORIENTATION,
+        # MOTOR_HORSEPOWER, MOTOR_RPM, MOTOR_VOLTAGE, MOTOR_HERTZ, MOTOR_FRAME,
+        # MOTOR_ENCLOSURE, MOTOR_EFFICIENCY, MOTOR_MANUFACTURER
+        # SFO field → combo JSON field mapping:
+        MOTOR_SFO_TO_COMBO = {
+            "MOTOR_OPTION": "MOTOR_OPTION",
+            "MOTOR_HP": "MOTOR_HORSEPOWER",
+            "MOTOR_RPM": "MOTOR_RPM",
+            "MOTOR_VOLTAGE": "MOTOR_VOLTAGE",
+            "MOTOR_HERTZ": "MOTOR_HERTZ",
+            "FRAME_SIZE": "MOTOR_FRAME",
+            "MOTOR_ENCLOSURE": "MOTOR_ENCLOSURE",
+            "MOTOR_EFFICIENCY": "MOTOR_EFFICIENCY",
+            "MOTOR_MFG": "MOTOR_MANUFACTURER",
+        }
+
+        motor_keywords = []
         motor_opt_val = body.selections.get("MOTOR_OPTION", "")
         if motor_opt_val:
             # Handle synonym: "supplied by fybroc" = "installed by fybroc" for motor
             motor_search = motor_opt_val.lower()
             if "supplied by fybroc" in motor_search:
-                motor_search = "installed by fybroc"  # normalize to combo vocabulary
+                motor_search = "installed by fybroc"
+            motor_keywords.append(motor_search)
+
+        # Add other motor fields for more precise matching
+        for sfo_field, combo_field in MOTOR_SFO_TO_COMBO.items():
+            if sfo_field == "MOTOR_OPTION":
+                continue  # Already handled above
+            val = body.selections.get(sfo_field, "")
+            if val and len(val) >= 1:
+                # Normalize: SFO "3ph - 60 hz" → combo has "/3/60"; SFO "143t" → combo "143"
+                search_val = val.lower().strip()
+                # Frame size: strip 't' suffix (SFO="143t", combo="143")
+                if sfo_field == "FRAME_SIZE":
+                    search_val = search_val.rstrip("t").strip()
+                # Hertz: SFO="3ph - 60 hz" → combo="/3/60"; SFO="3ph - 50 hz" → combo="/3/50"
+                elif sfo_field == "MOTOR_HERTZ":
+                    if "60" in search_val:
+                        search_val = "3/60"
+                    elif "50" in search_val:
+                        search_val = "3/50"
+                # HP: SFO="1.5" → combo="1.5 hp"; SFO="7.5" → combo="7.5 hp"
+                # Use quote boundary: combo JSON has "MOTOR_HORSEPOWER": "5 hp"
+                # So search for '"5 hp"' to avoid matching "1.5 hp" or "25 hp"
+                elif sfo_field == "MOTOR_HP":
+                    search_val = f'": "{search_val} hp"'  # matches the JSON value exactly
+                # MFG: SFO="standard offering" → combo="fybroc choice"
+                elif sfo_field == "MOTOR_MFG":
+                    if "standard" in search_val:
+                        search_val = "fybroc choice"
+                motor_keywords.append(search_val)
+
+        if motor_keywords:
+            # Progressive matching: try all keywords first, then progressively reduce
+            # Priority order: motor_option, hp, rpm, voltage, hertz, frame, enclosure, efficiency, mfg
+            motor_assy = "???"
+            
+            # Try full match first
+            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(motor_keywords))
+            params = ["MOTOR_ASSEMBLY"] + [f"%{k}%" for k in motor_keywords]
             try:
-                row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='MOTOR_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{motor_search}%").fetchone()
-                motor_assy = row[0] if row else "???"
+                row = cursor.execute(
+                    f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                    f"WHERE SegmentCode=? AND {conditions}",
+                    *params
+                ).fetchone()
+                if row:
+                    motor_assy = row[0]
             except:
-                motor_assy = "???"
+                pass
+            
+            # Progressive fallback: remove keywords from the end (least important)
+            if motor_assy == "???":
+                for n in range(len(motor_keywords) - 1, 0, -1):
+                    use_kw = motor_keywords[:n]
+                    conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(use_kw))
+                    params = ["MOTOR_ASSEMBLY"] + [f"%{k}%" for k in use_kw]
+                    try:
+                        row = cursor.execute(
+                            f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                            f"WHERE SegmentCode=? AND {conditions}",
+                            *params
+                        ).fetchone()
+                        if row:
+                            motor_assy = row[0]
+                            break
+                    except:
+                        continue
         else:
-            motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
+            # No motor keywords formed — check if series even has motor configuration
+            has_motor_fields = cursor.execute(
+                "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
+                "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode='MOTOR_OPTION'",
+                pub_id, body.series
+            ).fetchone()[0] > 0
+            if has_motor_fields:
+                motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
+            else:
+                # No motor fields for this series — default to "no motor" (code 001)
+                motor_assy = "001"
         
         motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
         
@@ -705,23 +911,41 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         size_upper = size_val.upper()
         material_display = body.selections.get("PUMP_MATERIAL", "").lower()
 
-        # Normalize material for matching: 'vr-1' should match 'VR-1 (Standard)'
-        # Build a LIKE pattern from the material selection
-        mat_pattern = material_display.replace(" ", "%")
-        if mat_pattern and not mat_pattern.endswith("%"):
-            mat_pattern = f"%{mat_pattern}%"
+        # Normalize material for matching against price.PriceRule SourceOptionValue
+        # SFO values: "vr-1", "vr-1a", "ey-2", "vr-1 bpo/dma", "vr-1a bpo/dma", "vr-1v"
+        # Pricing values: "VR-1 (Standard)", "EY-2", "VR-1 BPO/DMA", "VR-1V"
+        # Build multiple LIKE patterns to try
+        mat_patterns = []
+        if material_display:
+            # Direct pattern (works for ey-2, vr-1 bpo/dma, vr-1v)
+            direct = material_display.replace(" ", "%")
+            mat_patterns.append(f"%{direct}%")
+            
+            # VR-1 / VR-1A → "VR-1 (Standard)" mapping
+            # "vr-1a" and "vr-1" are both standard VR-1 material
+            if material_display in ("vr-1", "vr-1a"):
+                mat_patterns.append("%vr-1%standard%")
+                mat_patterns.append("%vr-1 (%")
+            elif "bpo/dma" in material_display:
+                mat_patterns.append("%bpo/dma%")
+            elif material_display == "vr-1v":
+                mat_patterns.append("%vr-1v%")
 
-        # Base pump price - search with series LIKE and material LIKE
-        base_row = cursor.execute("""
-            SELECT TOP 1 pr.Amount, pr.SourceOptionValue
-            FROM price.PriceRule pr
-            JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
-            WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
-              AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
-              AND UPPER(pr.SourceSizeValue) LIKE ?
-              AND LOWER(pr.SourceOptionValue) LIKE ?
-            ORDER BY pr.Priority
-        """, body.series, f"{body.series}%", f"{size_upper}%", mat_pattern).fetchone()
+        # Base pump price - try each material pattern until one matches
+        base_row = None
+        for mat_pattern in mat_patterns:
+            base_row = cursor.execute("""
+                SELECT TOP 1 pr.Amount, pr.SourceOptionValue
+                FROM price.PriceRule pr
+                JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
+                  AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
+                  AND UPPER(pr.SourceSizeValue) LIKE ?
+                  AND LOWER(pr.SourceOptionValue) LIKE ?
+                ORDER BY pr.Priority
+            """, body.series, f"{body.series}%", f"{size_upper}%", mat_pattern).fetchone()
+            if base_row:
+                break
 
         if base_row:
             pricing.append({"component": "Base Pump", "amount": float(base_row[0]), "detail": base_row[1]})

@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.6  
-**Roadmap Date:** 2026-08-24  
+**Roadmap Version:** 1.7  
+**Roadmap Date:** 2026-08-25  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** U100 — Canonical Product Model  
+**Current Milestone:** T110 — Azure TEST Environment  
 
 ---
 
@@ -1014,56 +1014,55 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.2
+Version:            1.6
 
-Current Phase:      U — Unified Application
-Current Milestone:  U150
-Status:             READY TO START
+Current Phase:      T — Central Testing & UAT
+Current Milestone:  T110 (Azure TEST Environment)
+Status:             READY — awaiting deployment infrastructure
 
 Current Objective:
-Replace slow chained V1 Excel navigation with single-request V2 evaluate flow.
+Deploy central TEST environment to Azure for shared Telford/Indianapolis access.
 
 Current Exit Gate:
-Excel configuration interaction meets agreed responsiveness target.
+FastAPI + React deployed on Azure with Entra authentication and SQL connectivity.
 
 Next Permitted Milestone:
-U160 — React Configurator
+T120 — Telford UAT
 
-Completed (2026-08-24):
-U100    Canonical product model             COMPLETE
-U110    Unified configuration dictionary    COMPLETE (55 fields, 266 codes)
-U120    FastAPI V2 with caching             COMPLETE (4 endpoints, TTL cache)
-U130    Reusable BOM engine                 COMPLETE (BOMHeader+BOMLine+reuse+GetBOMBySKU)
-U140    Quote engine                        COMPLETE (QuoteLine with SKU/PN/pricing lineage)
+Completed (through 2026-08-25):
+F100-F180   Fybroc phase complete                   COMPLETE (f180-fybroc-complete)
+D100-D160   Dean phase complete                     COMPLETE (d160-dean-complete)
+U100-U170   Unified application complete            COMPLETE (u170-unified-complete)
+T100        CI/CD pipeline defined                  COMPLETE
 
-F130 Key Findings:
+Active work:
+- End-to-end UI testing of all Fybroc series via configurator
+- 6/10 configurable series FULLY COMPLETE (all horizontal)
+- 4/10 vertical series OPERATIONAL (minor motor_assy lookup gaps)
+- 2/12 total series have NO CONFIG DATA (6000, 7530 — engineering decision needed)
+
+Key Technical State:
+- FastAPI V2: 4 endpoints (dictionary, evaluate, validate, resolve)
+- In-memory cache: 5-min TTL, keyed on (family, publication_id)
+- Constraint enforcement: 4,440 FeasibleConstraint rules
+- Pricing: Price Estimator-Fybroc.xlsm is AUTHORITATIVE
+- SKU format: F<Series>-<8char><VersionLetter> (same for Dean with D prefix)
+- Part Number: Unified segment sequence for both families
+- Progressive UI: Fields locked until preceding hierarchy fields are selected
+
+F130 Key Findings (preserved):
 - 1500 base prices: 109 MATCH, 0 MISMATCH between Rev0.3 and Price Estimator
 - Price Estimator has 19 additional prices (VR-1V, VR-1V BPO/DMA materials)
 - Rev0.3 pricing is a faithful subset of Price Estimator - no conflicts
-- 5500: Rev0.3 has 52,440 rows (19 sizes x 19 settings x 2 materials)
-        PE has 72 rows (19 sizes x 4 settings) - both use Setting granularity
 - Price Estimator is AUTHORITATIVE for all 33 production pricing rules
-- 55/55 pricing index rules classified (33 PE, rest engineering notes/review items)
 - Adders: 14 sections, 98 lines covering hardware, flush, bearings, elastomers, misc
 - Components: Coupling (13 groups x 37 frames), Baseplate (85 rows x frames), Motor (13 blocks)
 
-F130 Gaps Carried Forward to F140:
-- PE has VR-1V + VR-1V BPO/DMA pricing that current SQL metadata may not support
-- 5500 Setting-level pricing: Rev0.3 has 19 settings vs PE's 4 settings (PE may be incomplete for 5500)
-- Flexaseal seal pricing: not yet in production pricebook (NEEDS_ENGINEERING_REVIEW)
-- Hydrotest certificate: ambiguous - certificate vs test pricing unclear
-- Paint Upgrade, Shaft Grounding, Testing: noted as "not in pricebook" by engineering
-
-Deferred:
-SQL identifier work             -> F150
-Dean implementation             -> after F180
-Canonical unified model         -> U100
-BOM                             -> U130
-Quote engine                    -> U140
-Excel V2                        -> U150
-React                           -> U160
-Azure shared testing            -> T110
-Production                      -> P140+
+Known limitations carried forward:
+- Vertical motor_assy: some SFO values don't match MOTOR_ASSEMBLY combo table (data gap, not architecture)
+- Seal_assy: some horizontal combinations don't match SEAL_ASSEMBLY combo table (data gap)
+- Series 6000 + 7530: require engineering to define configuration options
+- Series 8500: config works but no pricing rules exist
 
 
 13. Roadmap Change Control

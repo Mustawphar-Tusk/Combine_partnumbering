@@ -1,7 +1,7 @@
 # V2 Pump Configuration API Contract
 
-**Version:** 2.0  
-**Date:** 2026-08-24  
+**Version:** 2.1  
+**Date:** 2026-08-25  
 **Status:** Active  
 **Base Path:** `/api/v2`  
 
@@ -224,7 +224,28 @@ Resolve a complete configuration into a Part Number, SKU, and configured product
   "sku": "F1500-A1B2C3D4A",
   "configuration_signature": "BB793B4F...(64 hex chars)",
   "existing_configuration": false,
-  "configured_product_id": null
+  "configured_product_id": null,
+  "pricing": [
+    {"component": "Base Pump", "amount": 17252.00, "detail": "VR-1A (Standard)"}
+  ],
+  "total_price": 17252.00,
+  "segment_debug": {
+    "brand": "F",
+    "series_code": "A",
+    "size_code": "3",
+    "material_code": "5",
+    "trim_code": "FC",
+    "pump_options": "1VC1",
+    "seal_mfg": "S",
+    "seal_assy": "03",
+    "options": "3G",
+    "frame_size": "04",
+    "motor_assy": "XXX",
+    "motor_mods": "XXX",
+    "testing": "00",
+    "is_vertical": false,
+    "failed_segments": []
+  }
 }
 ```
 
@@ -237,9 +258,18 @@ Resolve a complete configuration into a Part Number, SKU, and configured product
   "sku": "F1500-A1B2C3D4A",
   "configuration_signature": "BB793B4F...",
   "existing_configuration": true,
-  "configured_product_id": 42
+  "configured_product_id": 42,
+  "pricing": [
+    {"component": "Base Pump", "amount": 17252.00, "detail": "VR-1A (Standard)"}
+  ],
+  "total_price": 17252.00,
+  "segment_debug": {}
 }
 ```
+
+**Segment Debug:** The `segment_debug` object is included in all resolve responses to aid development troubleshooting. It shows how each Part Number segment was resolved, which segments failed lookup, and whether the configuration is for a vertical series (where seal segment is omitted).
+
+**Pricing:** The `pricing` array contains all matched price rules for the configuration. `total_price` is the sum. If no pricing rules match, the array is empty and `total_price` is 0.
 
 ---
 
@@ -302,11 +332,20 @@ SKU uniquely identifies one Part Number → one Configuration → one BOM.
 
 Unified segment sequence (separator = `-`):
 
+**Horizontal (1500, 1530, 1600, 1630, 2530, 3000):**
 ```
-<Brand><SeriesCode><Size><Material><Trim>-<WetEndOptions>-<SealOptions>-<Options>-<PowerFrame+Motor>-<MotorMods>-<Testing>
+<Brand><SeriesCode><Size><Material><Trim>-<WetEndOptions>-<SealMfg><SealAssy>-<Options>-<FrameSize><MotorAssy>-<MotorMods>-<Testing>
 ```
 
-**Fybroc example:** `FA35FC-1VC1-S03-3G-04XXX-XXX-00`  
+**Vertical (5500, 5530, 7500, 8500):**
+```
+<Brand><SeriesCode><Size><Material><Trim>-<WetEndOptions>-<Options>-<FrameSize><MotorAssy>-<MotorMods>-<Testing>
+```
+
+Note: Vertical pumps omit the seal segment entirely (they do not have seal assemblies).
+
+**Fybroc horizontal example:** `FA35FC-1VC1-S03-3G-04XXX-XXX-00`  
+**Fybroc vertical example:** `FG42GB-07HO-02-32049-XXX-00`  
 **Dean example:** `D610-00CA-AB01-ERR-TBD__-07617-0V03L-0KN00-00-1Z1IJ4`
 
 ---

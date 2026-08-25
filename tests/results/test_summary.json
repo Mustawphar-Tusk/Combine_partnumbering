@@ -1,0 +1,128 @@
+{
+  "timestamp": "2026-08-25 18:31:08",
+  "total_elapsed_seconds": 511.41496562957764,
+  "configs_per_series": 10,
+  "seed": 200,
+  "summaries": [
+    {
+      "series": "1500",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4523.740172386169,
+      "csv_path": "tests\\results\\series_1500_results.csv"
+    },
+    {
+      "series": "1530",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4797.665286064148,
+      "csv_path": "tests\\results\\series_1530_results.csv"
+    },
+    {
+      "series": "1600",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4580.856275558472,
+      "csv_path": "tests\\results\\series_1600_results.csv"
+    },
+    {
+      "series": "1630",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4712.964248657227,
+      "csv_path": "tests\\results\\series_1630_results.csv"
+    },
+    {
+      "series": "2530",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4702.196788787842,
+      "csv_path": "tests\\results\\series_2530_results.csv"
+    },
+    {
+      "series": "3000",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4702.917242050171,
+      "csv_path": "tests\\results\\series_3000_results.csv"
+    },
+    {
+      "series": "5500",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 9,
+      "has_pricing_pct": 90.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 10181.2406539917,
+      "csv_path": "tests\\results\\series_5500_results.csv"
+    },
+    {
+      "series": "5530",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 10,
+      "has_pricing_pct": 100.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4756.221866607666,
+      "csv_path": "tests\\results\\series_5530_results.csv"
+    },
+    {
+      "series": "7500",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 0,
+      "has_pricing_pct": 0.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4091.34464263916,
+      "csv_path": "tests\\results\\series_7500_results.csv"
+    },
+    {
+      "series": "8500",
+      "total_tests": 10,
+      "errors": 0,
+      "fully_resolved": 10,
+      "fully_resolved_pct": 100.0,
+      "has_pricing": 0,
+      "has_pricing_pct": 0.0,
+      "failed_segment_breakdown": {},
+      "avg_elapsed_ms": 4090.029215812683,
+      "csv_path": "tests\\results\\series_8500_results.csv"
+    }
+  ]
+}
