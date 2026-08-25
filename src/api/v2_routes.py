@@ -486,8 +486,8 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 return None
             combo_field = SFO_TO_COMBO_FIELD.get(field_code, field_code)
             row = cursor.execute(
-                "SELECT ComboValue FROM cfg.VocabularyMap WHERE FieldCode = ? AND LOWER(SFOValue) = ?",
-                combo_field, sfo_value.lower().strip()
+                "SELECT ComboValue FROM cfg.VocabularyMap WHERE FieldCode = ? AND LOWER(SFOValue) LIKE ?",
+                combo_field, f"%{sfo_value.lower().strip()}%"
             ).fetchone()
             return row[0] if row else None
         
