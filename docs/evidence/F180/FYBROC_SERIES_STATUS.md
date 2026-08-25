@@ -15,10 +15,10 @@
 | 1630 | Horizontal | D (ANSI), L (DIN), P (JIS) | ✅ 176 opts | ✅ 222 rules | ✅ | COMPLETE |
 | 2530 | Horizontal | E (ANSI) | ✅ 164 opts | ✅ 30 rules | ✅ | COMPLETE |
 | 3000 | Horizontal | F (ANSI) | ✅ 181 opts | ✅ 222 rules | ✅ | COMPLETE |
-| 5500 | Vertical | G (ANSI) | ✅ 550 opts | ✅ 72 rules | ✅ | COMPLETE |
-| 5530 | Vertical | H (ANSI) | ✅ 155 opts | In Pricebook (not loaded to SQL yet) | ✅ | CONFIG ONLY |
-| 7500 | Vertical | R (ANSI) | ✅ 19 opts | In Pricebook (not loaded to SQL yet) | ✅ | CONFIG ONLY |
-| 8500 | Vertical | T (ANSI) | ✅ 7 opts | In Pricebook (not loaded to SQL yet) | ✅ | CONFIG ONLY |
+| 5500 | Vertical | G (ANSI) | ✅ 550 opts | ✅ 72 rules | ✅ | PARTIAL (pump_options/motor lookup gaps for some combos) |
+| 5530 | Vertical | H (ANSI) | ✅ 155 opts | ✅ 16 rules | ✅ | PARTIAL (pump_options works, seal N/A for vertical) |
+| 7500 | Vertical | R (ANSI) | ✅ 19 opts | ✅ 1 rule | ✅ | PARTIAL (same vertical gaps) |
+| 8500 | Vertical | T (ANSI) | ✅ 7 opts | No pricing | ✅ | CONFIG ONLY |
 | 6000 | Vertical | Q (ANSI) | ❌ No data in Rev0.3 | In Pricebook | ❌ | NO CONFIG DATA |
 | 7530 | Vertical | S (ANSI) | ❌ No data in Rev0.3 | In Pricebook | ❌ | NO CONFIG DATA |
 
@@ -47,3 +47,25 @@
 - **6000**: Has V6 code (Q) and pricing but no configuration options. Is this an active production series?
 - **7530**: Has V6 code (S) and pricing but no configuration options. Same question.
 - **2630**: Has pricing in Pricebook but no V6 code and no configuration. Legacy?
+
+
+---
+
+## Known Limitation: Vertical Series Segment Lookup
+
+**Status:** Horizontal series (1500-3000) are FULLY OPERATIONAL.  
+Vertical series (5500, 5530, 7500, 8500) have partial Part Number resolution.
+
+**Root cause:** The VocabularyMap translation layer works for horizontal series but has gaps for vertical series because vertical pumps use different field names and values in their combination tables (e.g., `WETTED_HARDWARE`, `VAPOR_PROTECTION`, `STRAINER`, `FLUSH_OPTIONS` which don't exist in horizontal).
+
+**Fix required:** Re-index the vertical combination table (`PUMP_OPTIONS_VERTICAL`) to use SFO-normalized values directly in `SelectionsJson`, eliminating the need for VocabularyMap translation. This is a data migration task, not an architecture change.
+
+**What works for vertical:**
+- Primary segment (Brand + Series + Size + Material + Trim) ✅
+- Pricing ✅
+- Configuration options + constraint enforcement ✅
+- Some pump_options combinations resolve (when VocabMap translation succeeds)
+
+**What doesn't:**
+- pump_options `????` for certain field value combinations
+- Seal segment correctly omitted (vertical pumps don't have seal assemblies)
