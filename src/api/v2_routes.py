@@ -623,9 +623,23 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         else:
             frame_size = body.segment_codes.get("FRAME_SIZE", "??")
 
-        pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
+        # Build Part Number (vertical series omit seal segment)
+        if is_vertical:
+            pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
+        else:
+            pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
 
         # Debug info for segment resolution
+        # For vertical series, seal_assy "??" is expected (no seal assembly segment)
+        failed = [k for k, v in {
+            "seal_assy": seal_assy, "motor_assy": motor_assy,
+            "pump_options": pump_opts, "options": options_code,
+        }.items() if "?" in str(v)]
+        
+        # Remove seal_assy from failed list for vertical series (expected behavior)
+        if is_vertical and "seal_assy" in failed:
+            failed.remove("seal_assy")
+        
         segment_debug = {
             "brand": brand,
             "series_code": series_code,
@@ -634,16 +648,14 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "trim_code": trim_code,
             "pump_options": pump_opts,
             "seal_mfg": seal_mfg,
-            "seal_assy": seal_assy,
+            "seal_assy": seal_assy if not is_vertical else "N/A (vertical)",
             "options": options_code,
             "frame_size": frame_size,
             "motor_assy": motor_assy,
             "motor_mods": motor_mods,
             "testing": testing,
-            "failed_segments": [k for k, v in {
-                "seal_assy": seal_assy, "motor_assy": motor_assy,
-                "pump_options": pump_opts, "options": options_code,
-            }.items() if "?" in str(v)],
+            "is_vertical": is_vertical,
+            "failed_segments": failed,
         }
 
         # Generate SKU
