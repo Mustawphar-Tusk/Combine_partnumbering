@@ -579,8 +579,12 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         # MOTOR_ASSEMBLY — direct match
         motor_opt_val = body.selections.get("MOTOR_OPTION", "")
         if motor_opt_val:
+            # Handle synonym: "supplied by fybroc" = "installed by fybroc" for motor
+            motor_search = motor_opt_val.lower()
+            if "supplied by fybroc" in motor_search:
+                motor_search = "installed by fybroc"  # normalize to combo vocabulary
             try:
-                row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='MOTOR_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{motor_opt_val.lower()}%").fetchone()
+                row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='MOTOR_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{motor_search}%").fetchone()
                 motor_assy = row[0] if row else "???"
             except:
                 motor_assy = "???"
