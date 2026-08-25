@@ -625,7 +625,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         hydro = body.selections.get("HYDROTEST_CERTIFICATE", "")
         vib = body.selections.get("VIBRATION_TESTING", "")
         sound = body.selections.get("SOUND_LEVEL_TESTING", "")
-        test_keywords = [v.lower() for v in [perf, hydro, vib, sound] if v and len(v) > 2]
+        test_keywords = [v.lower() for v in [perf, hydro, vib, sound] if v and len(v) > 3 and v.lower() != "none"]
         if test_keywords:
             conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * min(len(test_keywords), 4))
             params = ["TESTING"] + [f"%{k}%" for k in test_keywords[:4]]
