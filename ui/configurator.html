@@ -178,11 +178,39 @@
             const grid = document.getElementById('fieldsGrid');
             grid.innerHTML = '';
 
-            // Sort: selected fields first, then unselected
+            // AUTHORITATIVE engineering hierarchy (from Rev0.3 Constraints/To Do sheet)
+            const FIELD_ORDER = [
+                // Primary configuration
+                'ALT_SIZE', 'PUMP_MATERIAL', 'FLANGE_TYPE',
+                // Pump Options group
+                'SHAFT_MATERIAL', 'CASING_DRAINS', 'SUCTION_DISCHARGE_TAPS', 'SLEEVE',
+                'PUMP_ELASTOMERS', 'GLAND_HARDWARE', 'FLUSH', 'FLUSH_MATERIAL',
+                'CYCLONE_SEPERATOR', 'IMPELLER_BALANCE',
+                'CASING_HARDWARE', 'BEARING_OPTION', 'POWER_FRAME_HARDWARE',
+                // Seal Assembly group (in order)
+                'SEAL_OPTION', 'SEAL_TYPE', 'SEAL_MATERIALS', 'SEAL_ELASTOMERS', 'SEAL_GUARD', 'SEAL_MFG',
+                // Options group
+                'COUPLING_OPTION', 'COUPLING_GUARD', 'BASEPLATE_OPTION', 'BASEPLATEHARDWARE',
+                // Impeller
+                'IMPELLER_TRIM',
+                'DYNAMIC_IMPELLER',
+                // Motor group
+                'MOTOR_OPTION', 'MOTOR_CONTROL', 'MOTOR_HP', 'MOTOR_RPM',
+                'MOTOR_VOLTAGE', 'MOTOR_HERTZ', 'FRAME_SIZE',
+                'MOTOR_ENCLOSURE', 'MOTOR_EFFICIENCY', 'MOTOR_MFG',
+                // Testing/Other
+                'PERFORMANCE_TESTING', 'HYDROTEST_CERTIFICATE', 'VIBRATION_TESTING', 'SOUND_LEVEL_TESTING',
+                'NAMEPLATE', 'CUSTOMER_NAMEPLATE', 'PAINT_UPGRADE', 'SHAFT_GROUNDING', 'C_FACE_ADAPTOR',
+            ];
+
+            // Sort fields by hierarchy: ordered fields first, then any remaining alphabetically
             const sorted = Object.entries(allFieldOptions).sort((a, b) => {
-                const aSelected = selections[a[0]] ? 0 : 1;
-                const bSelected = selections[b[0]] ? 0 : 1;
-                return aSelected - bSelected || a[0].localeCompare(b[0]);
+                const aIdx = FIELD_ORDER.indexOf(a[0]);
+                const bIdx = FIELD_ORDER.indexOf(b[0]);
+                const aOrder = aIdx >= 0 ? aIdx : 999;
+                const bOrder = bIdx >= 0 ? bIdx : 999;
+                if (aOrder !== bOrder) return aOrder - bOrder;
+                return a[0].localeCompare(b[0]);
             });
 
             for (const [fieldCode, options] of sorted) {
