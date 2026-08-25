@@ -542,10 +542,10 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
             WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
               AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
-              AND UPPER(pr.SourceSizeValue) = ?
+              AND UPPER(pr.SourceSizeValue) LIKE ?
               AND LOWER(pr.SourceOptionValue) LIKE ?
             ORDER BY pr.Priority
-        """, body.series, f"{body.series}%", size_upper, mat_pattern).fetchone()
+        """, body.series, f"{body.series}%", f"{size_upper}%", mat_pattern).fetchone()
 
         if base_row:
             pricing.append({"component": "Base Pump", "amount": float(base_row[0]), "detail": base_row[1]})
@@ -557,9 +557,9 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
                 WHERE pr.ComponentCode = 'BASE_PUMP' AND pr.IsActive = 1
                   AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
-                  AND UPPER(pr.SourceSizeValue) = ?
+                  AND UPPER(pr.SourceSizeValue) LIKE ?
                 ORDER BY pr.Priority
-            """, body.series, f"{body.series}%", size_upper).fetchone()
+            """, body.series, f"{body.series}%", f"{size_upper}%").fetchone()
             if base_row2:
                 pricing.append({"component": "Base Pump (std material)", "amount": float(base_row2[0]), "detail": base_row2[1]})
 
