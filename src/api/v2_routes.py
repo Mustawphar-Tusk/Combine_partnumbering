@@ -466,7 +466,17 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         ]) or body.segment_codes.get("PUMP_OPTIONS", "????")
 
         # SEAL_ASSEMBLY lookup
-        seal_mfg = body.segment_codes.get("SEAL_MFG", "?")
+        # Seal Mfg code from VocabularyMap (S/F/J/C)
+        seal_mfg_val = body.selections.get("SEAL_MFG", "")
+        if seal_mfg_val:
+            mfg_row = cursor.execute(
+                "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='SEAL_MFG' AND LOWER(ComboValue)=?",
+                seal_mfg_val.lower().strip()
+            ).fetchone()
+            seal_mfg = mfg_row[0] if mfg_row else "S"
+        else:
+            seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
+        
         seal_assy = lookup_segment("SEAL_ASSEMBLY", [
             ("SEAL_OPTION", body.selections.get("SEAL_OPTION", "")),
             ("SEAL_TYPE", body.selections.get("SEAL_TYPE", "")),
@@ -480,7 +490,15 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         ]) or body.segment_codes.get("OPTIONS", "??")
 
         # MOTOR_ASSEMBLY lookup
-        frame_size = body.segment_codes.get("FRAME_SIZE", "??")
+        # Frame size: the SFO value IS the frame (e.g., '143t', '182t') - use first 2-3 digits
+        frame_val = body.selections.get("FRAME_SIZE", "")
+        if frame_val:
+            # Extract numeric part for the 2-char code
+            import re
+            digits = re.sub(r'[^0-9]', '', frame_val)
+            frame_size = digits[:2] if len(digits) >= 2 else "??"
+        else:
+            frame_size = body.segment_codes.get("FRAME_SIZE", "??")
         motor_assy = lookup_segment("MOTOR_ASSEMBLY", [
             ("MOTOR_OPTION", body.selections.get("MOTOR_OPTION", "")),
         ]) or body.segment_codes.get("MOTOR_ASSY", "???")
