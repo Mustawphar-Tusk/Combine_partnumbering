@@ -510,26 +510,33 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         # Seal Assembly hex
         seal_option_val = body.selections.get("SEAL_OPTION", "")
         seal_type_val = body.selections.get("SEAL_TYPE", "")
+        seal_assy = "??"
         
         if seal_option_val and ("noseal" in seal_option_val.lower() or "customer" in seal_option_val.lower()):
-            seal_assy = lookup_segment_by_key("SEAL_ASSEMBLY", ["SEAL_OPTION"], {"SEAL_OPTION": "SEAL_OPTION"}) or "??"
-        elif seal_option_val and seal_type_val:
-            # Translate both and search
+            # NoSeal/Customer - search by option alone
             t_opt = translate_to_combo_with_star("SEAL_OPTION", seal_option_val)
-            t_type = translate_to_combo_with_star("SEAL_TYPE", seal_type_val)
-            keywords = [v.lower() for v in [t_opt, t_type] if v]
-            if keywords:
-                conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(keywords))
-                params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in keywords]
+            if t_opt:
                 try:
-                    row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {conditions}", *params).fetchone()
-                    seal_assy = row[0] if row else "??"
-                except:
-                    seal_assy = "??"
-            else:
-                seal_assy = "??"
-        else:
-            seal_assy = body.segment_codes.get("SEAL_ASSY", "??")
+                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{t_opt.lower()}%").fetchone()
+                    if row: seal_assy = row[0]
+                except: pass
+        elif seal_type_val:
+            # Has seal type - try option+type first, fallback to type alone
+            t_opt = translate_to_combo_with_star("SEAL_OPTION", seal_option_val) if seal_option_val else None
+            t_type = translate_to_combo_with_star("SEAL_TYPE", seal_type_val)
+            
+            if t_opt and t_type:
+                try:
+                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ? AND LOWER(SelectionsJson) LIKE ?", f"%{t_opt.lower()}%", f"%{t_type.lower()}%").fetchone()
+                    if row: seal_assy = row[0]
+                except: pass
+            
+            # Fallback: type alone
+            if seal_assy == "??" and t_type:
+                try:
+                    row = cursor.execute("SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?", f"%{t_type.lower()}%").fetchone()
+                    if row: seal_assy = row[0]
+                except: pass
 
         # OPTIONS lookup
         opt_keywords = []
