@@ -20,6 +20,7 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 20px; }
         .field-card { background: #fff; padding: 14px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
         .field-card.selected { border: 2px solid #4a90d9; background: #f0f7ff; }
+        .field-card.locked { opacity: 0.5; border: 1px dashed #ccc; background: #f9f9f9; }
         .field-card label { display: block; font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px; }
         .field-card select { width: 100%; padding: 6px 8px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; }
         .field-card .code { font-size: 11px; color: #4a90d9; margin-top: 3px; font-weight: 600; }
@@ -203,7 +204,26 @@
                 'NAMEPLATE', 'CUSTOMER_NAMEPLATE', 'PAINT_UPGRADE', 'SHAFT_GROUNDING', 'C_FACE_ADAPTOR',
             ];
 
-            // Sort fields by hierarchy: ordered fields first, then any remaining alphabetically
+            // Determine which fields are unlocked based on hierarchy
+            // A field is unlocked if ALL preceding fields in the hierarchy are either:
+            //   - already selected, OR
+            //   - not available for this series (not in allFieldOptions)
+            function isFieldUnlocked(fieldCode) {
+                const idx = FIELD_ORDER.indexOf(fieldCode);
+                if (idx <= 0) return true; // First field always unlocked
+                
+                // Check all preceding fields in hierarchy
+                for (let i = 0; i < idx; i++) {
+                    const prevField = FIELD_ORDER[i];
+                    // If prev field exists in options but is NOT selected, this field is locked
+                    if (allFieldOptions[prevField] && !selections[prevField]) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            // Sort fields by hierarchy
             const sorted = Object.entries(allFieldOptions).sort((a, b) => {
                 const aIdx = FIELD_ORDER.indexOf(a[0]);
                 const bIdx = FIELD_ORDER.indexOf(b[0]);
@@ -215,8 +235,9 @@
 
             for (const [fieldCode, options] of sorted) {
                 const isSelected = fieldCode in selections;
+                const unlocked = isFieldUnlocked(fieldCode);
                 const card = document.createElement('div');
-                card.className = 'field-card' + (isSelected ? ' selected' : '');
+                card.className = 'field-card' + (isSelected ? ' selected' : '') + (!unlocked && !isSelected ? ' locked' : '');
 
                 if (isSelected) {
                     const code = resolvedCodes[fieldCode];
@@ -225,6 +246,13 @@
                         <div style="font-size:14px;font-weight:600;padding:4px 0">${selections[fieldCode]}</div>
                         ${code ? `<div class="code">→ ${code}</div>` : ''}
                         <button class="btn btn-sm change-btn" onclick="clearField('${fieldCode}')">Change</button>
+                    `;
+                } else if (!unlocked) {
+                    card.innerHTML = `
+                        <label>${fieldCode.replace(/_/g, ' ')}</label>
+                        <select disabled style="opacity:0.5;cursor:not-allowed">
+                            <option>-- Complete previous steps --</option>
+                        </select>
                     `;
                 } else {
                     card.innerHTML = `
