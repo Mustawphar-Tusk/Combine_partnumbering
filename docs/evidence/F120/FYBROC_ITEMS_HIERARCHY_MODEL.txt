@@ -2,7 +2,7 @@
 F120.1 - FYBROC ITEMS + HIERARCHY MODEL
 ============================================================================================================================================
 
-Git commit  : a4bd6337fd8344b8e0bff078d1705174a88bd68b
+Git commit  : fb3eb996d6f970bef0a0ac43bbd92aa4d5143402
 Git clean   : False
 
 ============================================================================================================================================
@@ -11,7 +11,7 @@ ITEMS - per-(series, item) field applicability
 
 Fields (F_ prefixed) : 35
 Series found          : 1500, 1530, 1600, 1630, 2530, 3000, 5500, 5530, 7500, 8500
-Total (series,item) rows : 97
+Total (series,item) rows : 467
 
 NOT compiled: Columns 66-88 (per-series item-code cross-reference block) - see module docstring. Row 1 of that block contains an explicit engineering warning that row position does not align items across series; not compiled here to avoid guessing at semantics that aren't fully clear yet.
 
@@ -114,6 +114,376 @@ SERIES    ITEM      FIELD COUNT   FIELDS
 1630      6A        2             F_Frame_Size, F_Shaft_Material
 5500      6A        0             
 5530      6A        0             
+7500      6A        0             
+8500      6A        0             
+1530      6B        1             F_Frame_Size
+1630      6B        1             F_Frame_Size
+5500      6B        3             F_Pump_Elastomers, F_Shaft_Material, F_Sleeve
+7500      6B        0             
+8500      6B        0             
+7500      6C        0             
+8500      6C        0             
+1500      11        2             F_Flush, F_Pump_Material
+1530      11        2             F_Flush, F_Pump_Material
+1600      11        2             F_Flush, F_Pump_Material
+1630      11        2             F_Flush, F_Pump_Material
+3000      11        2             F_Flush, F_Pump_Material
+5500      11        3             F_Flush, F_Pump_Material, F_Shaft_Material
+5530      11        2             F_Flush, F_Pump_Material
+7500      11        0             
+5500      11A       3             F_Pump_Material, F_Shaft_Material, F_Sleeve
+5530      11A       0             
+7500      11A       0             
+5500      11B       3             F_Pump_Material, F_Shaft_Material, F_Sleeve
+5530      11B       0             
+7500      11B       0             
+5500      12        0             
+5530      12        0             
+5500      12A       0             
+5530      12A       0             
+5500      12B       0             
+5530      12B       0             
+1500      14        2             F_Pump_Material, F_Sleeve
+1600      14        2             F_Pump_Material, F_Sleeve
+3000      14        1             F_Sleeve
+5500      14        2             F_Shaft_Material, F_Sleeve
+1530      14A       1             F_Pump_Material
+1630      14A       1             F_Pump_Material
+3000      14A       1             F_Pump_Elastomers
+5500      14A       2             F_Shaft_Material, F_Sleeve
+1530      14B       1             F_Shaft_Material
+1630      14B       1             F_Shaft_Material
+5500      14B       3             F_Pump_Elastomers, F_Shaft_Material, F_Sleeve
+7500      16        0             
+7500      16A       0             
+1500      17        3             F_Pump_Material, F_Seal_Option, F_Seal_Type
+1530      17        3             F_Pump_Material, F_Seal_Option, F_Seal_Type
+1600      17        3             F_Pump_Material, F_Seal_Option, F_Seal_Type
+1630      17        3             F_Pump_Material, F_Seal_Option, F_Seal_Type
+3000      17        3             F_Pump_Material, F_Seal_Option, F_Seal_Type
+8500      17        0             
+8500      17A       0             
+8500      17B       0             
+1500      17C       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+1530      17C       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+1600      17C       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+1630      17C       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+3000      17C       3             F_Casing_Hardware, F_Seal_Option, F_Seal_Type
+8500      17C       0             
+8500      17D       0             
+1500      17E       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+1530      17E       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+1600      17E       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+1630      17E       3             F_Gland_Hardware, F_Seal_Option, F_Seal_Type
+3000      17E       3             F_Casing_Hardware, F_Seal_Option, F_Seal_Type
+8500      17E       0             
+5500      18        1             F_Shaft_Material
+5530      18        0             
+7500      18        0             
+5500      18B       0             
+7500      18B       0             
+5500      18C       0             
+1500      19 Assy   3             F_Bearing_Option, F_Power_Frame_Hardware, F_Shaft_Material
+1600      19 Assy   3             F_Bearing_Option, F_Power_Frame_Hardware, F_Shaft_Material
+3000      19 Assy   2             F_Power_Frame_Hardware, F_Shaft_Material
+1530      19D       1             F_Casing_Hardware
+1500      19E       0             
+1600      19E       0             
+5500      19F       0             
+7500      19F       0             
+5500      21        0             
+7500      21        0             
+5500      21A       0             
+7500      21A       0             
+5500      21B       0             
+7500      21B       0             
+5500      22        0             
+8500      22        0             
+5500      22A       0             
+8500      22A       0             
+5500      22B       0             
+5500      22C       0             
+5500      22D       0             
+1500      23        3             F_Baseplate_Option, F_BaseplateHardware, F_Frame_Size
+1530      23        3             F_Baseplate_Option, F_BaseplateHardware, F_Frame_Size
+1600      23        3             F_Baseplate_Option, F_BaseplateHardware, F_Frame_Size
+1630      23        3             F_Baseplate_Option, F_BaseplateHardware, F_Frame_Size
+2530      23        3             F_Baseplate_Option, F_BaseplateHardware, F_Frame_Size
+3000      23        3             F_Baseplate_Option, F_BaseplateHardware, F_Frame_Size
+3000      24A       1             F_Pump_Material
+3000      24B       1             F_Casing_Hardware
+3000      24C       1             F_Casing_Hardware
+3000      24D       1             F_Pump_Elastomers
+5500      37A       0             
+7500      37A       0             
+5500      37C       0             
+7500      37C       0             
+5500      40        0             
+5530      40        0             
+7500      40        0             
+5500      41        0             
+7500      41        0             
+5500      41A       0             
+7500      41A       0             
+5500      41B       0             
+7500      41B       0             
+5500      41C       0             
+7500      41C       0             
+5500      41D       0             
+7500      41D       0             
+8500      44        0             
+5500      44        3             F_Coupling_Option, F_Frame_Size, F_MotorHpRpm
+5530      44        3             F_Coupling_Option, F_Frame_Size, F_MotorHpRpm
+7500      44A       0             
+8500      44A       0             
+7500      44B       0             
+7500      44C       0             
+1530      46        1             F_Frame_Size
+1630      46        1             F_Frame_Size
+7500      47        0             
+5500      49        0             
+7500      49        0             
+8500      55        0             
+8500      55A       0             
+8500      55B       0             
+8500      55C       0             
+8500      55D       0             
+7500      63        0             
+7500      63A       0             
+7500      63B       0             
+5500      66        0             
+5530      66        0             
+1530      67        0             
+1630      67        0             
+1500      70        3             F_Coupling_Option, F_Frame_Size, F_MotorHpRpm
+1600      70        3             F_Coupling_Option, F_Frame_Size, F_MotorHpRpm
+3000      70        3             F_Coupling_Option, F_Frame_Size, F_MotorHpRpm
+8500      70        0             
+5500      70A       2             F_Shaft_Material, F_Sleeve
+5530      70A       1             F_Vapor_Seal
+8500      70A       0             
+5500      70B       2             F_Shaft_Material, F_Sleeve
+7500      70B       0             
+8500      70B       0             
+8500      70C       0             
+5500      70D       3             F_Pump_Material, F_Shaft_Material, F_Sleeve
+7500      70D       0             
+8500      70D       0             
+5500      70E       2             F_Shaft_Material, F_Sleeve
+7500      70E       0             
+7500      70H       0             
+1500      71        0             
+1530      71        0             
+1600      71        0             
+1630      71        0             
+2530      71        0             
+1530      71A       2             F_Frame_Size, F_Shaft_Material
+1630      71A       2             F_Frame_Size, F_Shaft_Material
+2530      71A       2             F_Casing_Hardware, F_Frame_Size
+1530      71B       1             F_Frame_Size
+1630      71B       1             F_Frame_Size
+2530      71B       0             
+1530      71C       2             F_Frame_Size, F_Shaft_Material
+1630      71C       2             F_Frame_Size, F_Shaft_Material
+2530      71C       1             F_Casing_Hardware
+2530      71D       1             F_Frame_Size
+5500      71D       1             F_Frame_Size
+5530      71D       1             F_Frame_Size
+7500      71D       0             
+8500      71D       0             
+2530      71E       1             F_Frame_Size
+5500      71F       1             F_Frame_Size
+5530      71F       1             F_Frame_Size
+7500      71F       0             
+8500      71F       0             
+2530      72        0             
+1500      73        1             F_Pump_Elastomers
+1530      73        1             F_Pump_Elastomers
+1600      73        1             F_Pump_Elastomers
+1630      73        1             F_Pump_Elastomers
+2530      73        1             F_Pump_Elastomers
+3000      73        1             F_Pump_Elastomers
+5500      73        1             F_Pump_Elastomers
+5530      73        1             F_Pump_Elastomers
+7500      73        0             
+5500      77        0             
+7500      77        0             
+5500      81        1             F_Shaft_Material
+5530      81        0             
+7500      81        0             
+8500      81        0             
+8500      81A       0             
+8500      81B       0             
+8500      81C       0             
+8500      81D       0             
+8500      81E       0             
+8500      81F       0             
+7500      82        0             
+5500      82A       1             F_Frame_Size
+5530      82A       1             F_Frame_Size
+7500      82A       0             
+8500      82A       0             
+7500      82B       0             
+5500      82C       0             
+7500      82C       0             
+5500      82D       0             
+5500      82E       0             
+5500      82F       0             
+5500      87        4             F_Pump_Material, F_Shaft_Material, F_Sleeve, F_Strainer
+7500      87        0             
+8500      87        0             
+7500      87A       0             
+8500      87A       0             
+1500      89        4             F_Seal_Elastomers, F_Seal_Materials, F_Seal_Option, F_Seal_Type
+1530      89        4             F_Seal_Elastomers, F_Seal_Materials, F_Seal_Option, F_Seal_Type
+1600      89        4             F_Seal_Elastomers, F_Seal_Materials, F_Seal_Option, F_Seal_Type
+1630      89        4             F_Seal_Elastomers, F_Seal_Materials, F_Seal_Option, F_Seal_Type
+3000      89        4             F_Seal_Elastomers, F_Seal_Materials, F_Seal_Option, F_Seal_Type
+5500      89        3             F_Flush, F_Pump_Material, F_Shaft_Material
+7500      89        0             
+8500      89        0             
+8500      89B       0             
+8500      89C       0             
+5500      91        2             F_Pump_Material, F_Setting
+5530      91        2             F_Setting, F_Vapor_Seal
+7500      91        0             
+8500      91        0             
+5530      91A       1             F_Pump_Elastomers
+8500      91A       0             
+5500      91B       1             F_Shaft_Material
+5530      91B       0             
+7500      91B       0             
+8500      91B       0             
+5530      91C       1             F_Vapor_Seal
+7500      91C       0             
+8500      91C       0             
+5530      91D       1             F_Vapor_Seal
+7500      91D       0             
+5530      91E       1             F_Vapor_Seal
+5530      91F       1             F_Vapor_Seal
+5530      91G       1             F_Vapor_Seal
+5530      91H       2             F_Pump_Elastomers, F_Vapor_Seal
+5530      91I       2             F_Pump_Elastomers, F_Vapor_Seal
+5500      93        2             F_Pump_Material, F_Setting
+8500      93        0             
+5500      93A       1             F_Setting
+8500      93A       0             
+5500      93B       2             F_Flush, F_Shaft_Material
+5530      93B       1             F_Flush
+8500      93B       0             
+5500      93C       1             F_Shaft_Material
+8500      93C       0             
+5530      93C       0             
+5500      93D       0             
+5530      93D       0             
+8500      93D       0             
+5500      93E       4             F_Pump_Material, F_Setting, F_Shaft_Material, F_Sleeve
+8500      93E       0             
+5500      93F       4             F_Pump_Material, F_Setting, F_Shaft_Material, F_Sleeve
+8500      93F       0             
+5500      93G       2             F_Pump_Material, F_Setting
+8500      93G       0             
+8500      93H       0             
+8500      93J       0             
+8500      93K       0             
+8500      93L       0             
+5500      95        2             F_Pump_Material, F_Setting
+7500      95        0             
+1500      95A       2             F_Flush, F_Pump_Elastomers
+1530      95A       2             F_Flush, F_Pump_Elastomers
+5500      95A       1             F_Pump_Elastomers
+7500      95A       0             
+5500      95B       2             F_Flush, F_Pump_Material
+7500      95B       0             
+8500      96        0             
+8500      96A       0             
+8500      96B       0             
+8500      96C       0             
+8500      96D       0             
+8500      96E       0             
+8500      97        0             
+8500      97A       0             
+5500      99        1             F_Pump_Material
+7500      99        0             
+5500      99A       1             F_Pump_Material
+7500      99A       0             
+1500      127       1             F_Flush
+1530      127       1             F_Flush
+5500      127       2             F_Flush, F_Setting
+8500      127       0             
+1500      127A      2             F_CycloneSep, F_Flush
+1530      127A      2             F_CycloneSep, F_Flush
+3000      127A      2             F_CycloneSep, F_Flush
+5500      127A      2             F_Flush, F_Setting
+1500      127B      2             F_CycloneSep, F_Flush
+1530      127B      2             F_CycloneSep, F_Flush
+3000      127B      2             F_CycloneSep, F_Flush
+5500      127B      2             F_Flush, F_Setting
+1500      127C      2             F_CycloneSep, F_Flush
+1530      127C      2             F_CycloneSep, F_Flush
+3000      127C      2             F_CycloneSep, F_Flush
+5500      127C      2             F_Flush, F_Setting
+5500      127D      2             F_Flush, F_Setting
+1500      131       2             F_CouplingGuard, F_Frame_Size
+1600      131       2             F_CouplingGuard, F_Frame_Size
+3000      131       2             F_CouplingGuard, F_Frame_Size
+5530      131       0             
+1500      131A      3             F_Seal_Guard, F_Seal_Option, F_Seal_Type
+1530      131A      3             F_Seal_Guard, F_Seal_Option, F_Seal_Type
+1600      131A      3             F_Seal_Guard, F_Seal_Option, F_Seal_Type
+1630      131A      3             F_Seal_Guard, F_Seal_Option, F_Seal_Type
+3000      131A      3             F_Seal_Guard, F_Seal_Option, F_Seal_Type
+5530      131A      0             
+7500      131A      0             
+5530      131B      0             
+7500      131B      0             
+5530      131C      0             
+7500      131C      0             
+2530      230       1             F_Pump_Material
+2530      230A      1             F_Pump_Material
+2530      231       1             F_Pump_Material
+2530      232       1             F_Frame_Size
+2530      232A      0             
+2530      235       0             
+2530      235A      0             
+1500      CS        2             F_CycloneSep, F_Flush
+1530      CS        2             F_CycloneSep, F_Flush
+3000      CS        2             F_CycloneSep, F_Flush
+1500      IFP       1             F_Flush
+1530      IFP       1             F_Flush
+1600      IFP       1             F_Flush
+1630      IFP       1             F_Flush
+3000      IFP       1             F_Flush
+5500      IFP       1             F_Flush
+1500      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+1530      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+1600      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+1630      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+2530      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+3000      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+5500      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+5530      MT        6             F_Frame_Size, F_MotorHpRpm, F_MotorOption, F_Motor_Type, F_Paint_Upgrade, F_Shaft_Grounding
+7500      MT        0             
+1500      NP        1             F_NamePlate
+1530      NP        1             F_NamePlate
+1600      NP        1             F_NamePlate
+1630      NP        1             F_NamePlate
+2530      NP        1             F_NamePlate
+3000      NP        1             F_NamePlate
+5500      NP        1             F_NamePlate
+5530      NP        1             F_NamePlate
+7500      NP        1             F_NamePlate
+8500      NP        1             F_NamePlate
+1500      NP2       1             F_NamePlate2
+1530      NP2       1             F_NamePlate2
+1600      NP2       1             F_NamePlate2
+1630      NP2       1             F_NamePlate2
+2530      NP2       1             F_NamePlate2
+3000      NP2       1             F_NamePlate2
+5500      NP2       1             F_NamePlate2
+5530      NP2       1             F_NamePlate2
+7500      NP2       1             F_NamePlate2
+8500      NP2       1             F_NamePlate2
 
 ============================================================================================================================================
 HIERARCHY - field groupings

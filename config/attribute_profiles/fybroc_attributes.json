@@ -10,37 +10,32 @@
       "field_code": "SERIES",
       "field_name": "Series",
       "display_column": "F",
-      "code_column": "G"
+      "code_column": "H"
     },
     {
       "field_code": "SIZE",
       "field_name": "Size",
-      "display_column": "I",
-      "code_column": "J"
+      "display_column": "J",
+      "code_column": "K"
     },
     {
       "field_code": "PUMP_MATERIAL",
       "field_name": "Pump Material",
-      "display_column": "L",
-      "code_column": "M"
+      "display_column": "M",
+      "code_column": "N"
     },
     {
       "field_code": "IMPELLER_TRIM",
       "field_name": "Impeller Trim",
-      "display_column": "O",
-      "code_column": "P"
+      "display_column": "P",
+      "code_column": "Q"
     },
     {
       "field_code": "MOTOR_MODIFICATIONS",
       "field_name": "Motor Modifications",
-      "display_column": "R",
-      "code_column": "S"
-    },
-    {
-      "field_code": "TESTING",
-      "field_name": "Testing",
-      "display_column": "U",
-      "code_column": "V"
+      "display_column": "S",
+      "code_column": "T"
     }
-  ]
+  ],
+  "_migration_note": "Repointed from legacy 'Fybroc Nomenclature_V5.xlsm' to authoritative 'Nomenclature_V6.xlsm' Attributes sheet. V6 header row 7, data from row 8 for Size (J/K), Pump Material (M/N), Impeller Trim (P/Q), Motor Modifications (S/T). SERIES is special: V6 cols F/G/H hold TWO tables - a series+flange OPTION LIST at rows 7-20 (F=series, G=flange, H=blank) and the SERIES+FLANGE->CODE table at rows 22-42 (F=series, G=flange, H=code). This flat single-row_from compiler reads SERIES as F->H, so it emits harmless INCOMPLETE warnings for the code-less list rows (8-20) and DUPLICATE_DISPLAY warnings because the bare series repeats across flange variants. That is expected: the authoritative SERIES code is the composite Series+Flange, resolved at runtime by cfg.fn_LookupIdentifierCode using the '{series} ({flange})' key (see src/api/v2_routes.py). TESTING removed - V6 moved testing to a dedicated Testing sheet. See scripts/compile_fybroc_v6_attributes.py and docs/evidence/F110/FYBROC_V6_ATTRIBUTES.json."
 }

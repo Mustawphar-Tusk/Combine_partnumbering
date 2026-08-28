@@ -3,8 +3,8 @@
   "step": "F120.1",
   "roadmap_version": "1.0",
   "milestone": "F120",
-  "generated_utc": "2026-08-20T21:48:51.234056+00:00",
-  "git_commit": "a4bd6337fd8344b8e0bff078d1705174a88bd68b",
+  "generated_utc": "2026-08-27T20:46:03.536547+00:00",
+  "git_commit": "fb3eb996d6f970bef0a0ac43bbd92aa4d5143402",
   "git_working_tree_clean": false,
   "items": {
     "field_count": 35,
@@ -57,7 +57,7 @@
       "7500",
       "8500"
     ],
-    "row_count": 97,
+    "row_count": 467,
     "rows": [
       {
         "series": "1500",
@@ -836,6 +836,2796 @@
         "item": "6A",
         "applicable_fields": [],
         "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "6A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "6A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "6B",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "6B",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "6B",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "6B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "6B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "6C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "6C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1600",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1630",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5530",
+        "item": "11",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "7500",
+        "item": "11",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "11A",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5530",
+        "item": "11A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "11A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "11B",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5530",
+        "item": "11B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "11B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "12",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "12",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "12A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "12A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "12B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "12B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "14",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1600",
+        "item": "14",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "14",
+        "applicable_fields": [
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "14",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "14A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "14A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "14A",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "14A",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "14B",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "14B",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "14B",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "16",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "16A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "17",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1530",
+        "item": "17",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "17",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1630",
+        "item": "17",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "17",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "8500",
+        "item": "17",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "17A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "17B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "17C",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1530",
+        "item": "17C",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "17C",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1630",
+        "item": "17C",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "17C",
+        "applicable_fields": [
+          "F_Casing_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "8500",
+        "item": "17C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "17D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "17E",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1530",
+        "item": "17E",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "17E",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1630",
+        "item": "17E",
+        "applicable_fields": [
+          "F_Gland_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "17E",
+        "applicable_fields": [
+          "F_Casing_Hardware",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "8500",
+        "item": "17E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "18",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "18",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "18",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "18B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "18B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "18C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "19 Assy",
+        "applicable_fields": [
+          "F_Bearing_Option",
+          "F_Power_Frame_Hardware",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "19 Assy",
+        "applicable_fields": [
+          "F_Bearing_Option",
+          "F_Power_Frame_Hardware",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "19 Assy",
+        "applicable_fields": [
+          "F_Power_Frame_Hardware",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "19D",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1500",
+        "item": "19E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1600",
+        "item": "19E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "19F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "19F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "21",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "21",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "21A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "21A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "21B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "21B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "22",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "22",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "22A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "22A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "22B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "22C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "22D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "23",
+        "applicable_fields": [
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1530",
+        "item": "23",
+        "applicable_fields": [
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "23",
+        "applicable_fields": [
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1630",
+        "item": "23",
+        "applicable_fields": [
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "2530",
+        "item": "23",
+        "applicable_fields": [
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "23",
+        "applicable_fields": [
+          "F_Baseplate_Option",
+          "F_BaseplateHardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "24A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "24B",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "24C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "24D",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "37A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "37A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "37C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "37C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "40",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "40",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "40",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "41",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "41",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "41A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "41A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "41B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "41B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "41C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "41C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "41D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "41D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "44",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "44",
+        "applicable_fields": [
+          "F_Coupling_Option",
+          "F_Frame_Size",
+          "F_MotorHpRpm"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5530",
+        "item": "44",
+        "applicable_fields": [
+          "F_Coupling_Option",
+          "F_Frame_Size",
+          "F_MotorHpRpm"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "44A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "44A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "44B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "44C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "46",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "46",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "47",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "49",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "49",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "55",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "55A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "55B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "55C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "55D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "63",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "63A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "63B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "66",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "66",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "67",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1630",
+        "item": "67",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "70",
+        "applicable_fields": [
+          "F_Coupling_Option",
+          "F_Frame_Size",
+          "F_MotorHpRpm"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "70",
+        "applicable_fields": [
+          "F_Coupling_Option",
+          "F_Frame_Size",
+          "F_MotorHpRpm"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "70",
+        "applicable_fields": [
+          "F_Coupling_Option",
+          "F_Frame_Size",
+          "F_MotorHpRpm"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "8500",
+        "item": "70",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "70A",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "70A",
+        "applicable_fields": [
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "70A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "70B",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "7500",
+        "item": "70B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "70B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "70C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "70D",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "70D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "70D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "70E",
+        "applicable_fields": [
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "7500",
+        "item": "70E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "70H",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "71",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "71",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1600",
+        "item": "71",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1630",
+        "item": "71",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "2530",
+        "item": "71",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "71A",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1630",
+        "item": "71A",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "2530",
+        "item": "71A",
+        "applicable_fields": [
+          "F_Casing_Hardware",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "71B",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "71B",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "71B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1530",
+        "item": "71C",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1630",
+        "item": "71C",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "2530",
+        "item": "71C",
+        "applicable_fields": [
+          "F_Casing_Hardware"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "71D",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "71D",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "71D",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "71D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "71D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "2530",
+        "item": "71E",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "71F",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "71F",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "71F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "71F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "2530",
+        "item": "72",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "73",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "73",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "77",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "77",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "81",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "81",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "81",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "81F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "82",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "82A",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "82A",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "82A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "82A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "82B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "82C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "82C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "82D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "82E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "82F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "87",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Shaft_Material",
+          "F_Sleeve",
+          "F_Strainer"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "7500",
+        "item": "87",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "87",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "87A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "87A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "89",
+        "applicable_fields": [
+          "F_Seal_Elastomers",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "1530",
+        "item": "89",
+        "applicable_fields": [
+          "F_Seal_Elastomers",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "1600",
+        "item": "89",
+        "applicable_fields": [
+          "F_Seal_Elastomers",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "1630",
+        "item": "89",
+        "applicable_fields": [
+          "F_Seal_Elastomers",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "3000",
+        "item": "89",
+        "applicable_fields": [
+          "F_Seal_Elastomers",
+          "F_Seal_Materials",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "5500",
+        "item": "89",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "7500",
+        "item": "89",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "89",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "89B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "89C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "91",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "91",
+        "applicable_fields": [
+          "F_Setting",
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "7500",
+        "item": "91",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "91",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "91A",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "91A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "91B",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "91B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "91B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "91B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "91C",
+        "applicable_fields": [
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "91C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "91C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "91D",
+        "applicable_fields": [
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "91D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "91E",
+        "applicable_fields": [
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "91F",
+        "applicable_fields": [
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "91G",
+        "applicable_fields": [
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "91H",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "91I",
+        "applicable_fields": [
+          "F_Pump_Elastomers",
+          "F_Vapor_Seal"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "93",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "8500",
+        "item": "93",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93A",
+        "applicable_fields": [
+          "F_Setting"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "93A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93B",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "93B",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "93B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93C",
+        "applicable_fields": [
+          "F_Shaft_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "93C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "93C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "93D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "93D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93E",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "8500",
+        "item": "93E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93F",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting",
+          "F_Shaft_Material",
+          "F_Sleeve"
+        ],
+        "applicable_field_count": 4
+      },
+      {
+        "series": "8500",
+        "item": "93F",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "93G",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "8500",
+        "item": "93G",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "93H",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "93J",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "93K",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "93L",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "95",
+        "applicable_fields": [
+          "F_Pump_Material",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "7500",
+        "item": "95",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "95A",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "95A",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "95A",
+        "applicable_fields": [
+          "F_Pump_Elastomers"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "95A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "95B",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "7500",
+        "item": "95B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "96",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "96A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "96B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "96C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "96D",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "96E",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "97",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "8500",
+        "item": "97A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "99",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "99",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5500",
+        "item": "99A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "99A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "127",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "127",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "127",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "8500",
+        "item": "127",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "127A",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "127A",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "127A",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "127A",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1500",
+        "item": "127B",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "127B",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "127B",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "127B",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1500",
+        "item": "127C",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "127C",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "127C",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "127C",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5500",
+        "item": "127D",
+        "applicable_fields": [
+          "F_Flush",
+          "F_Setting"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1500",
+        "item": "131",
+        "applicable_fields": [
+          "F_CouplingGuard",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1600",
+        "item": "131",
+        "applicable_fields": [
+          "F_CouplingGuard",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "131",
+        "applicable_fields": [
+          "F_CouplingGuard",
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "5530",
+        "item": "131",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "131A",
+        "applicable_fields": [
+          "F_Seal_Guard",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1530",
+        "item": "131A",
+        "applicable_fields": [
+          "F_Seal_Guard",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1600",
+        "item": "131A",
+        "applicable_fields": [
+          "F_Seal_Guard",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "1630",
+        "item": "131A",
+        "applicable_fields": [
+          "F_Seal_Guard",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "3000",
+        "item": "131A",
+        "applicable_fields": [
+          "F_Seal_Guard",
+          "F_Seal_Option",
+          "F_Seal_Type"
+        ],
+        "applicable_field_count": 3
+      },
+      {
+        "series": "5530",
+        "item": "131A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "131A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "131B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "131B",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "5530",
+        "item": "131C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "7500",
+        "item": "131C",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "2530",
+        "item": "230",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "230A",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "231",
+        "applicable_fields": [
+          "F_Pump_Material"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "232",
+        "applicable_fields": [
+          "F_Frame_Size"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "232A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "2530",
+        "item": "235",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "2530",
+        "item": "235A",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "CS",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1530",
+        "item": "CS",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "3000",
+        "item": "CS",
+        "applicable_fields": [
+          "F_CycloneSep",
+          "F_Flush"
+        ],
+        "applicable_field_count": 2
+      },
+      {
+        "series": "1500",
+        "item": "IFP",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "IFP",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "IFP",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "IFP",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "IFP",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "IFP",
+        "applicable_fields": [
+          "F_Flush"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1500",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "1530",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "1600",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "1630",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "2530",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "3000",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "5500",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "5530",
+        "item": "MT",
+        "applicable_fields": [
+          "F_Frame_Size",
+          "F_MotorHpRpm",
+          "F_MotorOption",
+          "F_Motor_Type",
+          "F_Paint_Upgrade",
+          "F_Shaft_Grounding"
+        ],
+        "applicable_field_count": 6
+      },
+      {
+        "series": "7500",
+        "item": "MT",
+        "applicable_fields": [],
+        "applicable_field_count": 0
+      },
+      {
+        "series": "1500",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "NP",
+        "applicable_fields": [
+          "F_NamePlate"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1500",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1530",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1600",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "1630",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "2530",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "3000",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5500",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "5530",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "7500",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
+      },
+      {
+        "series": "8500",
+        "item": "NP2",
+        "applicable_fields": [
+          "F_NamePlate2"
+        ],
+        "applicable_field_count": 1
       }
     ],
     "not_compiled": "Columns 66-88 (per-series item-code cross-reference block) - see module docstring. Row 1 of that block contains an explicit engineering warning that row position does not align items across series; not compiled here to avoid guessing at semantics that aren't fully clear yet."

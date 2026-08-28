@@ -35,6 +35,7 @@ def main() -> None:
     print(f"Fields compiled: {report.field_count}")
     print(f"Unique field options: {report.option_count}")
     print(f"Series-option relations: {report.relation_count}")
+    print(f"Standard (STD) defaults: {report.standard_count}")
     print(f"Issues recorded: {report.issue_count}")
 
     errors = [

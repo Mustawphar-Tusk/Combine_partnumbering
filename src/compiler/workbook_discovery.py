@@ -68,7 +68,9 @@ def discover_family(project_root: Path, manifest: FamilyManifest) -> tuple[Workb
     family_dir = project_root / "workbooks" / manifest.folder_name
     files = sorted(
         p for p in family_dir.iterdir()
-        if p.is_file() and p.suffix.lower() in SUPPORTED_EXTENSIONS
+        if p.is_file()
+        and p.suffix.lower() in SUPPORTED_EXTENSIONS
+        and not p.name.startswith("~$")  # skip Office temp lock files
     )
     records = []
     matched = set()

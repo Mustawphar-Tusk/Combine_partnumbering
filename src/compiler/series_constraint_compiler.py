@@ -16,6 +16,8 @@ class SeriesFieldOptionCandidate:
     field_code: str
     option_value: str
     series_code: str
+    selection_marker: str
+    is_standard: bool
     workbook_name: str
     worksheet_name: str
     source_row: int
@@ -39,6 +41,7 @@ class SeriesConstraintReport:
     field_count: int
     option_count: int
     relation_count: int
+    standard_count: int
     issue_count: int
     candidates: tuple[SeriesFieldOptionCandidate, ...]
     issues: tuple[SeriesFieldOptionIssue, ...]
@@ -178,6 +181,14 @@ def compile_series_constraints(
                 relation_found = True
                 series_code = configured_series
 
+                # Rev0.3 Selections marker semantics:
+                #   "STD"  -> standard/default selection for this series
+                #   "X"    -> selectable (non-default) option for this series
+                #   blank  -> not selectable (skipped above via marker is None)
+                # A legacy per-series numeric marker (matching a series code)
+                # is still tolerated for backward compatibility.
+                is_standard = marker.strip().upper() == "STD"
+
                 if marker.isdigit() and marker != configured_series:
                     issues.append(
                         SeriesFieldOptionIssue(
@@ -211,6 +222,8 @@ def compile_series_constraints(
                         field_code=field_code,
                         option_value=option_value,
                         series_code=series_code,
+                        selection_marker=marker,
+                        is_standard=is_standard,
                         workbook_name=workbook_path.name,
                         worksheet_name=sheet_name,
                         source_row=row,
@@ -249,6 +262,7 @@ def compile_series_constraints(
             }
         ),
         relation_count=len(candidates),
+        standard_count=sum(1 for row in candidates if row.is_standard),
         issue_count=len(issues),
         candidates=tuple(candidates),
         issues=tuple(issues),

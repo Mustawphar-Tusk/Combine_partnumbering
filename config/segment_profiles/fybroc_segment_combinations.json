@@ -1,13 +1,14 @@
 {
   "family_code": "FYBROC",
   "workbook_role": "configuration_and_hex_mapping",
+  "_migration_note": "Repointed from legacy 'Fybroc Nomenclature_V5.xlsm' single-flow sheets (Pump Options, Seal Assembly, Options) to authoritative 'Nomenclature_V6.xlsm' horizontal-orientation sheets, which V6 split into Horizontal/Vertical variants. V6 has NO 'Pump Options'/'Seal Assembly'/'Options' sheets - only '<name> - Horizontal' and '<name> - Vertical'. This profile compiles the HORIZONTAL flow. ' Motor Assy' (leading space) kept its name. Segment token = base36(numeric ID) zero-padded to expected_width; id_column points at the numeric ID column, combination_key_column at the concatenated key (col C). Column layouts verified against scripts/compile_fybroc_v6_*.py. Vertical-only segments (Setting-Length-Vertical) are handled separately by load_vertical_data.py.",
   "segments": [
     {
       "segment_code": "PUMP_OPTIONS",
       "segment_name": "Pump Options",
-      "worksheet_name": "Pump Options",
-      "row_from": 15,
-      "row_to": 138254,
+      "worksheet_name": "Pump Options - Horizontal",
+      "row_from": 12,
+      "row_to": 138251,
       "max_consecutive_blank_ids": 100,
       "combination_key_column": "C",
       "id_column": "Q",
@@ -30,9 +31,9 @@
     {
       "segment_code": "SEAL_ASSEMBLY",
       "segment_name": "Seal Assembly",
-      "worksheet_name": "Seal Assembly",
+      "worksheet_name": "Seal Assembly - Horizontal",
       "row_from": 14,
-      "row_to": 100000,
+      "row_to": 80,
       "max_consecutive_blank_ids": 100,
       "combination_key_column": "C",
       "id_column": "J",
@@ -48,19 +49,20 @@
     {
       "segment_code": "OPTIONS",
       "segment_name": "Options",
-      "worksheet_name": "Options",
+      "worksheet_name": "Options - Horizontal",
       "row_from": 12,
-      "row_to": 100000,
+      "row_to": 203,
       "max_consecutive_blank_ids": 100,
       "combination_key_column": "C",
-      "id_column": "J",
+      "id_column": "K",
       "expected_width": 2,
       "selection_columns": {
         "COUPLING_OPTION": "D",
         "COUPLING_GUARD": "E",
         "BASEPLATE_OPTION": "F",
         "BASEPLATE_HARDWARE": "G",
-        "NAMEPLATE": "H"
+        "NAMEPLATE": "H",
+        "C_FACE_ADAPTER": "I"
       }
     },
     {

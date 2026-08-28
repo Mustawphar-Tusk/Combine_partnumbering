@@ -74,7 +74,13 @@ WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx"
 
 ITEMS_HEADER_ROW = 2
 ITEMS_DATA_START_ROW = 3
-ITEMS_DATA_END_ROW = 99  # verified: last populated row in the main table
+# The main Items table is much longer than an earlier fixed cap of 99 assumed.
+# It runs continuously (col A = "{series}_{item}" key) to row 469 (467 rows).
+# The 99 cap dropped ~370 item records, skewing per-series coverage. We now
+# read dynamically: stop at the first blank key cell in col A, bounded only by
+# a generous safety limit.
+ITEMS_KEY_COL = 1  # col A: "{series}_{item}" composite key marks a real row
+ITEMS_MAX_SCAN_ROW = 20000  # safety bound; real table ends at a blank key well before this
 ITEMS_MAIN_TABLE_LAST_COL = 39  # verified: F_Vapor_Seal is the last field-flag column
 
 HIERARCHY_GROUPS = [
@@ -115,7 +121,12 @@ def compile_items(ws) -> dict[str, Any]:
 
     rows = []
     series_seen: set[str] = set()
-    for row in range(ITEMS_DATA_START_ROW, ITEMS_DATA_END_ROW + 1):
+    for row in range(ITEMS_DATA_START_ROW, ITEMS_MAX_SCAN_ROW + 1):
+        # The composite key in col A marks a real item row; a blank key is the
+        # true end of the main table.
+        key = ws.cell(row=row, column=ITEMS_KEY_COL).value
+        if key is None or str(key).strip() == "":
+            break
         series = ws.cell(row=row, column=2).value
         item = ws.cell(row=row, column=3).value
         if series is None or item is None:

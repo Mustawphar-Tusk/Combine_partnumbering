@@ -1,30 +1,25 @@
 {
   "family_code": "FYBROC",
-  "attributes_constraints_workbook": "workbooks/Fybroc/Fybroc Attributes and Constraints.xlsx",
-  "nomenclature_workbook": "workbooks/Fybroc/Fybroc Nomenclature_V5.xlsm",
+  "_migration_note": "Repointed legacy paths to authoritative sources. nomenclature_workbook -> Nomenclature_V6.xlsm (motor-mod Attributes columns shifted R/S -> S/T to match V6 layout; ' Motor Assy' layout unchanged). price_workbook unchanged (NewRules 5-2-23 and Mod Master List live in Price Estimator, not the nomenclature workbook). attributes_constraints_workbook -> Fybroc Configuration Rev0.3.xlsx. The 'trim' sub-block was reworked to read Rev0.3 ConstraintTable4 from the compiled constraint model (Rev0.3 has no legacy per-series sheets); it now emits series-independent (SIZE, IMPELLER_TRIM) allowed pairs. The former 'series_sheets' key was removed (no longer used by any compiler).",
+  "attributes_constraints_workbook": "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx",
+  "nomenclature_workbook": "workbooks/Fybroc/Nomenclature_V6.xlsm",
   "price_workbook": "workbooks/Fybroc/Price Estimator-Fybroc.xlsm",
-  "series_sheets": [
-    "1500",
-    "1530",
-    "1600",
-    "1630",
-    "2530",
-    "3000",
-    "5500"
-  ],
   "trim": {
-    "size_column": "C",
-    "series_trim_column": "Q",
-    "data_row_from": 3,
-    "size_pattern": "^\\d+(?:\\.\\d+)?x\\d+(?:\\.\\d+)?x\\d+(?:\\.\\d+)?$",
-    "minimum_matrix_size_headers": 3
+    "source": "constraint_table",
+    "_note": "Reworked to read the authoritative Rev0.3 ConstraintTable4 (Alt Size + ImpellerTrim + Allowed?) from the compiled constraint model, replacing the legacy per-series-sheet size x trim matrix that Rev0.3 no longer provides. ConstraintTable4 is series-independent: allowed trims are keyed on size only, so emitted (SIZE, IMPELLER_TRIM) pairs apply to any series that offers that size.",
+    "constraint_model_path": "docs/evidence/F120/FYBROC_CONSTRAINT_MODEL.json",
+    "constraint_table_name": "ConstraintTable4",
+    "size_header": "Alt Size",
+    "trim_header": "ImpellerTrim",
+    "allowed_header": "Allowed?",
+    "allowed_value": "Allowed"
   },
   "motor_modifications": {
     "attributes_sheet": "Attributes",
     "attribute_row_from": 8,
     "attribute_row_to": 38,
-    "description_column": "R",
-    "identifier_code_column": "S",
+    "description_column": "S",
+    "identifier_code_column": "T",
     "motor_sheet": " Motor Assy",
     "motor_row_from": 27,
     "motor_row_to": 728,

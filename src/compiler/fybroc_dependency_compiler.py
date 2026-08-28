@@ -128,128 +128,114 @@ def _compile_trim_dependencies(
     project_root: Path,
     profile: dict[str, Any],
 ) -> tuple[list[DependencyCandidate], list[DependencyIssue]]:
-    workbook_path = (
-        project_root / profile["attributes_constraints_workbook"]
-    )
-    workbook = load_workbook(
-        workbook_path,
-        read_only=False,
-        data_only=True,
-        keep_links=False,
-    )
+    """Compile allowed (SIZE, IMPELLER_TRIM) pairs from Rev0.3 ConstraintTable4.
 
+    Rev0.3 is the authoritative constraint source and does NOT have the legacy
+    per-series size x trim sheets. Its authoritative allowed-trim table is
+    ConstraintTable4 (Alt Size + ImpellerTrim + Allowed?), compiled into
+    FYBROC_CONSTRAINT_MODEL.json. ConstraintTable4 is series-independent, so
+    each allowed (size, trim) pair applies to any series that offers that size;
+    series_code is left None on the emitted candidate to reflect that.
+    """
     settings = profile["trim"]
-    size_pattern = re.compile(settings["size_pattern"])
     candidates: list[DependencyCandidate] = []
     issues: list[DependencyIssue] = []
 
-    try:
-        for series_code in profile["series_sheets"]:
-            if series_code not in workbook.sheetnames:
-                issues.append(
-                    DependencyIssue(
-                        severity="Error",
-                        issue_code="SERIES_SHEET_MISSING",
-                        message=f"Series worksheet {series_code} was not found.",
-                    )
-                )
-                continue
-
-            worksheet = workbook[series_code]
-            row_from = int(settings["data_row_from"])
-            size_column = settings["size_column"]
-            trim_column = settings["series_trim_column"]
-
-            sizes = []
-            for row_number in range(row_from, worksheet.max_row + 1):
-                value = _text(
-                    worksheet[f"{size_column}{row_number}"].value
-                )
-                if value and size_pattern.match(value):
-                    sizes.append(value)
-
-            global_trims = {
-                trim
-                for row_number in range(row_from, worksheet.max_row + 1)
-                if (
-                    trim := _format_trim(
-                        worksheet[f"{trim_column}{row_number}"].value
-                    )
-                )
-            }
-
-            matrix = _find_trim_matrix(
-                worksheet,
-                size_pattern=size_pattern,
-                minimum_headers=int(
-                    settings["minimum_matrix_size_headers"]
+    model_path = project_root / settings["constraint_model_path"]
+    if not model_path.exists():
+        issues.append(
+            DependencyIssue(
+                severity="Error",
+                issue_code="CONSTRAINT_MODEL_MISSING",
+                message=(
+                    f"Constraint model not found: {settings['constraint_model_path']}. "
+                    "Run scripts/compile_fybroc_constraint_model.py first."
                 ),
             )
-            matrix_values: dict[str, set[str]] = {}
+        )
+        return candidates, issues
 
-            if matrix is not None:
-                header_row, headers = matrix
+    model = json.loads(model_path.read_text(encoding="utf-8"))
 
-                for column_number, size_value in headers:
-                    values = {
-                        trim
-                        for row_number in range(
-                            header_row + 1,
-                            worksheet.max_row + 1,
-                        )
-                        if (
-                            trim := _format_trim(
-                                worksheet.cell(
-                                    row=row_number,
-                                    column=column_number,
-                                ).value
-                            )
-                        )
-                    }
-                    if values:
-                        matrix_values[size_value] = values
+    table_name = settings["constraint_table_name"]
+    resolved = None
+    for entry in model.get("constraint_index", []):
+        if entry.get("table_name") == table_name and entry.get("resolved_table"):
+            resolved = entry["resolved_table"]
+            break
 
-            for size_value in sizes:
-                allowed = matrix_values.get(size_value, global_trims)
+    if resolved is None:
+        issues.append(
+            DependencyIssue(
+                severity="Error",
+                issue_code="CONSTRAINT_TABLE_MISSING",
+                message=(
+                    f"{table_name} was not found (resolved) in the constraint model."
+                ),
+                source_reference=str(model_path.name),
+            )
+        )
+        return candidates, issues
 
-                if not allowed:
-                    issues.append(
-                        DependencyIssue(
-                            severity="Error",
-                            issue_code="NO_TRIMS_FOR_SIZE",
-                            message=(
-                                f"No trims were compiled for "
-                                f"{series_code}/{size_value}."
-                            ),
-                            source_reference=worksheet.title,
-                        )
-                    )
-                    continue
+    size_header = settings["size_header"]
+    trim_header = settings["trim_header"]
+    allowed_header = settings["allowed_header"]
+    allowed_value = settings["allowed_value"].strip().casefold()
 
-                for trim in sorted(allowed, key=float):
-                    candidates.append(
-                        DependencyCandidate(
-                            family_code=profile["family_code"],
-                            dependency_code="SERIES_SIZE_IMPELLER_TRIM",
-                            target_field_code="IMPELLER_TRIM",
-                            target_display_value=trim,
-                            target_identifier_code=None,
-                            series_code=series_code,
-                            context_json=json.dumps(
-                                {"SIZE": size_value},
-                                sort_keys=True,
-                                separators=(",", ":"),
-                            ),
-                            source_workbook=workbook_path.name,
-                            source_worksheet=worksheet.title,
-                            source_reference=(
-                                f"{worksheet.title}:{size_value}"
-                            ),
-                        )
-                    )
+    # Deduplicate (size, trim) while preserving deterministic output.
+    seen: set[tuple[str, str]] = set()
+    per_size: dict[str, set[str]] = {}
 
-    finally:
-        workbook.close()
+    for row in resolved.get("rows", []):
+        size_value = _text(row.get(size_header))
+        trim_value = _format_trim(row.get(trim_header))
+        verdict = _text(row.get(allowed_header))
+
+        if not size_value or not trim_value:
+            continue
+        # Only emit ALLOWED pairs (skip explicit "Not Allowed" rows).
+        if verdict is not None and verdict.strip().casefold() != allowed_value:
+            continue
+
+        key = (size_value, trim_value)
+        if key in seen:
+            continue
+        seen.add(key)
+        per_size.setdefault(size_value, set()).add(trim_value)
+
+    if not per_size:
+        issues.append(
+            DependencyIssue(
+                severity="Error",
+                issue_code="NO_TRIMS_FOR_SIZE",
+                message=(
+                    f"{table_name} produced no allowed (size, trim) pairs."
+                ),
+                source_reference=table_name,
+            )
+        )
+        return candidates, issues
+
+    for size_value in sorted(per_size):
+        for trim in sorted(per_size[size_value], key=float):
+            candidates.append(
+                DependencyCandidate(
+                    family_code=profile["family_code"],
+                    dependency_code="SIZE_IMPELLER_TRIM",
+                    target_field_code="IMPELLER_TRIM",
+                    target_display_value=trim,
+                    target_identifier_code=None,
+                    series_code=None,
+                    context_json=json.dumps(
+                        {"SIZE": size_value},
+                        sort_keys=True,
+                        separators=(",", ":"),
+                    ),
+                    source_workbook="Fybroc Configuration Rev0.3.xlsx",
+                    source_worksheet="Feasible Constraints",
+                    source_reference=f"{table_name}:{size_value}",
+                )
+            )
 
     return candidates, issues
 

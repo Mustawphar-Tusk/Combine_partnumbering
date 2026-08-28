@@ -72,6 +72,10 @@
         let selections = {};
         let resolvedCodes = {};
         let allFieldOptions = {};  // ALL fields and their options for this series
+        let standardDefaults = {}; // field_code -> STD default option value (Rev0.3)
+        let hierarchyOrder = [];   // server-authoritative field order
+        let hierarchyStatus = {};  // field_code -> "selected" | "current" | "locked"
+        let currentField = null;   // the single field the user may edit now
 
         function setStatus(msg, type) {
             const el = document.getElementById('status');
@@ -84,6 +88,10 @@
             selections = {};
             resolvedCodes = {};
             allFieldOptions = {};
+            standardDefaults = {};
+            hierarchyOrder = [];
+            hierarchyStatus = {};
+            currentField = null;
             document.getElementById('series').value = '';
             document.getElementById('fieldsGrid').innerHTML = '';
             document.getElementById('resultPanel').style.display = 'none';
@@ -119,8 +127,20 @@
         window.addEventListener('load', loadSeriesList);
 
         async function onSeriesChange() {
+            // Clear ALL derived state (not just selections) before the async
+            // evaluate() so no field/option/hierarchy data from the previously
+            // selected series can linger in the DOM during the in-flight fetch.
+            // Series differ in which fields apply (e.g. Wetted Hardware exists
+            // only for 5500), so stale state could render a field the new
+            // series does not have, showing as an empty dropdown.
             selections = {};
             resolvedCodes = {};
+            allFieldOptions = {};
+            hierarchyOrder = [];
+            hierarchyStatus = {};
+            currentField = null;
+            standardDefaults = {};
+            document.getElementById('fieldsGrid').innerHTML = '';
             document.getElementById('resultPanel').style.display = 'none';
             await evaluate();
         }
@@ -136,10 +156,12 @@
         }
 
         function clearField(fieldCode) {
+            // Changing/clearing a field sends the reduced selection set to the
+            // server, which enforces reset-on-upstream-change: every downstream
+            // selection is dropped and the current step moves back to this field.
             delete selections[fieldCode];
             document.getElementById('resultPanel').style.display = 'none';
-            renderAllFields();  // Immediately re-render without waiting for API
-            evaluate();  // Then refresh allowable options in background
+            evaluate();  // server prunes downstream + returns the new hierarchy state
         }
 
         async function evaluate() {
@@ -166,6 +188,25 @@
                     }
                 }
                 resolvedCodes = data.resolved_codes || {};
+                // STANDARD (STD) defaults per Rev0.3 Selections. The API returns
+                // the standard default value per unselected field; the UI marks
+                // it as the pre-selected default in each dropdown.
+                standardDefaults = data.standard_defaults || {};
+
+                // HIERARCHY: the server is the authority. It returns the ordered
+                // fields, per-field status (selected/current/locked), the current
+                // step, and the EFFECTIVE selections after reset-on-upstream-change.
+                hierarchyOrder = data.ordered_fields || [];
+                hierarchyStatus = {};
+                for (const h of (data.hierarchy || [])) {
+                    hierarchyStatus[h.field_code] = h.status;
+                }
+                currentField = data.current_field || null;
+
+                // Sync local selections to the server's effective set. If the
+                // server dropped downstream selections (because an upstream step
+                // changed), reflect that here so the UI never shows stale picks.
+                selections = { ...(data.effective_selections || {}) };
 
                 renderAllFields();
                 document.getElementById('resolveBtn').disabled = Object.keys(selections).length === 0;
@@ -179,92 +220,63 @@
             const grid = document.getElementById('fieldsGrid');
             grid.innerHTML = '';
 
-            // AUTHORITATIVE engineering hierarchy (from Rev0.3 Constraints/To Do sheet)
-            const FIELD_ORDER = [
-                // Primary configuration
-                'ALT_SIZE', 'PUMP_MATERIAL', 'FLANGE_TYPE',
-                // Pump Options group (horizontal)
-                'SHAFT_MATERIAL', 'CASING_DRAINS', 'SUCTION_DISCHARGE_TAPS', 'SLEEVE',
-                'PUMP_ELASTOMERS', 'GLAND_HARDWARE', 'FLUSH', 'FLUSH_MATERIAL',
-                'CYCLONE_SEPERATOR', 'IMPELLER_BALANCE',
-                'CASING_HARDWARE', 'BEARING_OPTION', 'POWER_FRAME_HARDWARE',
-                // Pump Options group (vertical-specific)
-                'WETTED_HARDWARE', 'WETTED_HARDWARE_SELECTION',
-                'FLUSH_OPTIONS', 'VAPOR_SEAL', 'STRAINER',
-                // Seal Assembly group (in order)
-                'SEAL_OPTION', 'SEAL_TYPE', 'SEAL_MATERIALS', 'SEAL_ELASTOMERS', 'SEAL_GUARD', 'SEAL_MFG',
-                // Options group
-                'COUPLING_OPTION', 'COUPLING_GUARD', 'BASEPLATE_OPTION', 'BASEPLATEHARDWARE',
-                'MOUNTING_PLATE_OPTION',
-                // Impeller
-                'IMPELLER_TRIM', 'DYNAMIC_IMPELLER',
-                // Vertical-specific
-                'SETTING', 'SETTING/LENGTH', 'LENGTH', 'TAILPIPE_OPTION', 'TAILPIPE_LENGTH',
-                // Motor group
-                'MOTOR_OPTION', 'MOTOR_CONTROL', 'MOTOR_HP', 'MOTOR_RPM',
-                'MOTOR_VOLTAGE', 'MOTOR_HERTZ', 'FRAME_SIZE',
-                'MOTOR_ENCLOSURE', 'MOTOR_EFFICIENCY', 'MOTOR_MFG',
-                // Testing/Other
-                'PERFORMANCE_TESTING', 'HYDROTEST_CERTIFICATE', 'VIBRATION_TESTING', 'SOUND_LEVEL_TESTING',
-                'NAMEPLATE', 'CUSTOMER_NAMEPLATE', 'PAINT_UPGRADE', 'SHAFT_GROUNDING', 'C_FACE_ADAPTOR',
-            ];
+            // The SERVER is the hierarchy authority. Render fields in the
+            // server-provided order and use its per-field status:
+            //   selected -> show value + Change button
+            //   current  -> the single editable dropdown (only reachable step)
+            //   locked   -> disabled until predecessors are completed
+            // Only the CURRENT field is editable, enforcing "no skipping ahead".
+            const order = hierarchyOrder.length ? hierarchyOrder
+                : Object.keys(allFieldOptions);
 
-            // Determine which fields are unlocked based on hierarchy
-            // A field is unlocked if ALL preceding fields in the hierarchy are either:
-            //   - already selected, OR
-            //   - not available for this series (not in allFieldOptions)
-            function isFieldUnlocked(fieldCode) {
-                const idx = FIELD_ORDER.indexOf(fieldCode);
-                if (idx <= 0) return true; // First field always unlocked
-                
-                // Check all preceding fields in hierarchy
-                for (let i = 0; i < idx; i++) {
-                    const prevField = FIELD_ORDER[i];
-                    // If prev field exists in options but is NOT selected, this field is locked
-                    if (allFieldOptions[prevField] && !selections[prevField]) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            // Sort fields by hierarchy
-            const sorted = Object.entries(allFieldOptions).sort((a, b) => {
-                const aIdx = FIELD_ORDER.indexOf(a[0]);
-                const bIdx = FIELD_ORDER.indexOf(b[0]);
-                const aOrder = aIdx >= 0 ? aIdx : 999;
-                const bOrder = bIdx >= 0 ? bIdx : 999;
-                if (aOrder !== bOrder) return aOrder - bOrder;
-                return a[0].localeCompare(b[0]);
-            });
-
-            for (const [fieldCode, options] of sorted) {
-                const isSelected = fieldCode in selections;
-                const unlocked = isFieldUnlocked(fieldCode);
+            for (const fieldCode of order) {
+                const status = hierarchyStatus[fieldCode]
+                    || (fieldCode in selections ? 'selected'
+                        : (fieldCode === currentField ? 'current' : 'locked'));
+                const options = allFieldOptions[fieldCode] || [];
                 const card = document.createElement('div');
-                card.className = 'field-card' + (isSelected ? ' selected' : '') + (!unlocked && !isSelected ? ' locked' : '');
 
-                if (isSelected) {
+                if (status === 'selected') {
                     const code = resolvedCodes[fieldCode];
+                    card.className = 'field-card selected';
                     card.innerHTML = `
                         <label>${fieldCode.replace(/_/g, ' ')}</label>
                         <div style="font-size:14px;font-weight:600;padding:4px 0">${selections[fieldCode]}</div>
                         ${code ? `<div class="code">→ ${code}</div>` : ''}
                         <button class="btn btn-sm change-btn" onclick="clearField('${fieldCode}')">Change</button>
                     `;
-                } else if (!unlocked) {
+                } else if (status === 'current') {
+                    const stdDefault = standardDefaults[fieldCode];
+                    // The current step always starts on an explicit placeholder
+                    // and requires the user to actively choose - the UI never
+                    // pre-selects or auto-commits a value on the user's behalf, so
+                    // the flow neither advances without input nor stalls on a
+                    // value that only LOOKS chosen. The standard default is shown
+                    // as a hint (in the placeholder and marked "(standard)"), but
+                    // must still be picked to commit. onchange fires for any real
+                    // option (blank placeholder has value="" and is ignored).
+                    const placeholder = stdDefault
+                        ? `-- Select (default: ${stdDefault}) --`
+                        : '-- Select --';
+                    card.className = 'field-card';
+                    card.innerHTML = `
+                        <label>${fieldCode.replace(/_/g, ' ')} <span style="color:#4a90d9">(current step)</span></label>
+                        <select onchange="onFieldChange('${fieldCode}', this.value)">
+                            <option value="" selected>${placeholder}</option>
+                            ${options.map(o => {
+                                const isStd = stdDefault && o === stdDefault;
+                                return `<option value="${o}">${o}${isStd ? ' (standard)' : ''}</option>`;
+                            }).join('')}
+                        </select>
+                        ${stdDefault ? `<div class="code" style="color:#28a745">standard: ${stdDefault}</div>` : ''}
+                    `;
+                } else {
+                    // locked
+                    card.className = 'field-card locked';
                     card.innerHTML = `
                         <label>${fieldCode.replace(/_/g, ' ')}</label>
                         <select disabled style="opacity:0.5;cursor:not-allowed">
                             <option>-- Complete previous steps --</option>
-                        </select>
-                    `;
-                } else {
-                    card.innerHTML = `
-                        <label>${fieldCode.replace(/_/g, ' ')}</label>
-                        <select onchange="onFieldChange('${fieldCode}', this.value)">
-                            <option value="">-- Select --</option>
-                            ${options.map(o => `<option value="${o}">${o}</option>`).join('')}
                         </select>
                     `;
                 }

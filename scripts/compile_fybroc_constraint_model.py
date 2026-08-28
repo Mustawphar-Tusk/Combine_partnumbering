@@ -88,9 +88,12 @@ CI_COL_TABLE = 6
 CI_COL_DESC = 7
 
 # Feasible Constraints sheet layout
-FC_TABLE_NAME_ROW = 4              # table names
-FC_HEADER_ROW = 5                  # column headers for each table block
+FC_TABLE_NAME_ROW = 4              # first table-name anchor row (row 4)
+FC_HEADER_ROW = 5                  # column headers for a top-row table block
 FC_DATA_START = 6
+# Tables are stacked in column groups; all anchors live in the top band.
+# Verified max anchor row is 37 - scan a small margin beyond it.
+FC_ANCHOR_SCAN_LAST_ROW = 60
 
 
 def git_info(repo_root: Path) -> tuple[str, bool]:
@@ -241,32 +244,53 @@ def compile_constraint_index(ws_ci) -> list[dict[str, Any]]:
 
 def compile_feasible_constraints(ws_fc) -> dict[str, dict[str, Any]]:
     """
-    Compile all ConstraintTable blocks from the Feasible Constraints sheet.
+    Compile ALL ConstraintTable blocks from the Feasible Constraints sheet.
 
-    Returns a dict keyed by table_name -> {headers, rows}.
-    Each table block in row 4 anchors a column group.
-    Row 5 contains column headers for that group.
-    Data runs from row 6 until all columns in the group are None.
+    Layout (verified against Rev0.3): tables are arranged in column GROUPS,
+    and within a single column group multiple tables can be STACKED vertically
+    (e.g. col 2 holds ConstraintTable1 at row 4, ConstraintTable2 at row 10,
+    ConstraintTable3 at row 15). An earlier version only scanned row 4 for
+    anchors and therefore silently dropped every "second/third table in a
+    column" (9 of the 29 tables). This scans the whole sheet for anchors.
+
+    For each anchor cell "ConstraintTableN":
+      - column headers are on anchor_row + 1
+      - data starts at anchor_row + 2
+      - the column span is the contiguous non-empty header columns
+      - data ends at the next anchor row IN THE SAME COLUMN GROUP, or at the
+        first fully-blank row across the table's own columns, whichever comes first
     """
-    # Find all table name anchors in row 4
-    table_anchors: list[tuple[int, str]] = []
-    for c in range(1, ws_fc.max_column + 1):
-        v = _str(ws_fc.cell(row=FC_TABLE_NAME_ROW, column=c).value)
-        if v and v.startswith("ConstraintTable"):
-            table_anchors.append((c, v))
+    # Scan the header band for ConstraintTable anchors: (row, col, name).
+    # All anchors live in the top rows (verified rows 4-37); scanning a bounded
+    # band with bulk iter_rows keeps this fast on the large sheet.
+    anchors: list[tuple[int, int, str]] = []
+    anchor_scan_last_row = min(ws_fc.max_row, FC_ANCHOR_SCAN_LAST_ROW)
+    for row_cells in ws_fc.iter_rows(
+        min_row=1, max_row=anchor_scan_last_row, values_only=False
+    ):
+        for cell in row_cells:
+            v = _str(cell.value)
+            if v and v.startswith("ConstraintTable"):
+                anchors.append((cell.row, cell.column, v))
+
+    # Index anchors by their starting column so we can find the next stacked
+    # table below within the same column band.
+    anchors_by_col: dict[int, list[int]] = {}
+    for (r, c, _name) in anchors:
+        anchors_by_col.setdefault(c, []).append(r)
+    for c in anchors_by_col:
+        anchors_by_col[c].sort()
 
     tables: dict[str, dict[str, Any]] = {}
 
-    for idx, (start_col, table_name) in enumerate(table_anchors):
-        # Determine the end column: next anchor - 1, or max_column
-        end_col = (table_anchors[idx + 1][0] - 1
-                   if idx + 1 < len(table_anchors)
-                   else ws_fc.max_column)
+    for (anchor_row, start_col, table_name) in anchors:
+        header_row = anchor_row + 1
+        data_start = anchor_row + 2
 
-        # Read column headers from row 5
+        # Contiguous header columns starting at the anchor column.
         headers = []
-        for c in range(start_col, end_col + 1):
-            h = _str(ws_fc.cell(row=FC_HEADER_ROW, column=c).value)
+        for c in range(start_col, ws_fc.max_column + 1):
+            h = _str(ws_fc.cell(row=header_row, column=c).value)
             if h:
                 headers.append((c, h))
             else:
@@ -278,10 +302,22 @@ def compile_feasible_constraints(ws_fc) -> dict[str, dict[str, Any]]:
         header_cols = [c for c, _ in headers]
         header_names = [h for _, h in headers]
 
-        # Read data rows
+        # Lower bound for this table's data: the next stacked anchor in the
+        # same starting column (its anchor row), else the sheet end.
+        same_col_anchor_rows = anchors_by_col.get(start_col, [])
+        next_anchor_rows = [ar for ar in same_col_anchor_rows if ar > anchor_row]
+        row_limit = (next_anchor_rows[0] - 1) if next_anchor_rows else ws_fc.max_row
+
+        # Read data rows (bulk) until a fully-blank row across this table's
+        # columns or the row_limit. header_cols are contiguous from start_col.
+        min_c, max_c = header_cols[0], header_cols[-1]
+        offset = min_c  # map absolute col -> tuple index
         data_rows = []
-        for r in range(FC_DATA_START, ws_fc.max_row + 1):
-            row_vals = [_str(ws_fc.cell(row=r, column=c).value) for c in header_cols]
+        for row_tuple in ws_fc.iter_rows(
+            min_row=data_start, max_row=row_limit,
+            min_col=min_c, max_col=max_c, values_only=True,
+        ):
+            row_vals = [_str(row_tuple[c - offset]) for c in header_cols]
             if all(v is None for v in row_vals):
                 break
             if any(v is not None for v in row_vals):
@@ -289,6 +325,8 @@ def compile_feasible_constraints(ws_fc) -> dict[str, dict[str, Any]]:
 
         tables[table_name] = {
             "start_col": start_col,
+            "anchor_row": anchor_row,
+            "header_row": header_row,
             "headers": header_names,
             "row_count": len(data_rows),
             "rows": data_rows,

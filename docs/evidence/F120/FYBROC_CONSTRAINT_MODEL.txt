@@ -2,14 +2,14 @@
 F120.3 - FYBROC CONSTRAINT MODEL (Combination Matrix + Constraint Index + Feasible Tables)
 ============================================================================================================================================
 
-Git commit  : d4c26505e6cecf9d114da709b98cbacfa501257f
+Git commit  : fb3eb996d6f970bef0a0ac43bbd92aa4d5143402
 Git clean   : False
 
 Series codes       : 1500, 1530, 1600, 1630, 2530, 3000, 5500, 5530
 Distinct sizes     : 80
 Combination fields : 34
 Constraint index   : 34 entries
-Feasible tables    : 20 tables
+Feasible tables    : 29 tables
 
 ============================================================================================================================================
 COMBINATION MATRIX
@@ -57,10 +57,10 @@ CONSTRAINT INDEX
   ConstraintTable1          Alt Size x CouplingGuard  [3 rows]
     Group 3 couplings guards in Aluminum (Non-Sparking) are Not Allowed.
 
-  ConstraintTable2          Alt Size x Flange Type  [NOT RESOLVED]
+  ConstraintTable2          Alt Size x Flange Type  [1 rows]
     Cannot make a 2x3x13 1500 or 1530 in ISO nor JIS
 
-  ConstraintTable3          Alt Size x Flush  [NOT RESOLVED]
+  ConstraintTable3          Alt Size x Flush  [3 rows]
     5500 ONLY, Group 3 Internal flush not allowed
 
   NO TABLE (series-derived) Alt Size x Frame Size  [NOT RESOLVED]
@@ -75,7 +75,7 @@ CONSTRAINT INDEX
   ConstraintTable5          Alt Size x Pump Material  [16 rows]
     We cannot make pumps in some materials. This can change on a case by case basis, some parts can be made in certain materials where as some parts can't be made in certain materials.
 
-  ConstraintTable6          Alt Size x Shaft Material  [NOT RESOLVED]
+  ConstraintTable6          Alt Size x Shaft Material  [6 rows]
     5500 ONLY, Group 3 pumps with a wrapped shaft not allowed.
 
   ConstraintTable7          Casing Drains x Pump Material  [1 rows]
@@ -96,25 +96,25 @@ CONSTRAINT INDEX
   ConstraintTable10         MotorOption x Paint Upgrade  [2 rows]
     We can not supply Paint Upgrade if the motor is being supplied by the customer.
 
-  ConstraintTable11         MotorOption x Shaft Grounding  [NOT RESOLVED]
+  ConstraintTable11         MotorOption x Shaft Grounding  [2 rows]
     We can not supply Shaft Grounding Rings if the motor is being supplied by the customer.
 
   ConstraintTable12         Pump Material x Setting  [15 rows]
     Verticals, No intermediate bearing material for EY-2, therefore only settings 1-4 are allowed.
 
-  ConstraintTable13         Pump Material x Shaft Material  [NOT RESOLVED]
+  ConstraintTable13         Pump Material x Shaft Material  [2 rows]
     5500 ONLY, EY-2 and Wrapped Shafts are Now Allowed.
 
-  ConstraintTable14         Pump Material x Sleeve  [NOT RESOLVED]
+  ConstraintTable14         Pump Material x Sleeve  [2 rows]
     We do not make Separate Sleeve in EY-2, not VR-1V. Those are two materials that require the all FRP parts match due to chemical compatability.
 
-  ConstraintTable15         Pump Material x Suction Discharge Taps  [NOT RESOLVED]
+  ConstraintTable15         Pump Material x Suction Discharge Taps  [1 rows]
     Casings in VR-1V are not permitted to have taps. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.
 
   ConstraintTable16         Seal Guard x Seal Option  [1 rows]
     If there is no gland, then we cannot supply a seal guard.
 
-  ConstraintTable17         Seal Option x Seal Type  [NOT RESOLVED]
+  ConstraintTable17         Seal Option x Seal Type  [5 rows]
     Must get a matching gland with seal.
 
   ConstraintTable18         Setting x Shaft Material  [8 rows]
@@ -141,7 +141,7 @@ CONSTRAINT INDEX
   ConstraintTable25         Seal Mfg x Seal Type  [30 rows]
     Seal Type must match Seal Manufacturer selected.
 
-  ConstraintTable26         Seal Option x Seal Mfg  [NOT RESOLVED]
+  ConstraintTable26         Seal Option x Seal Mfg  [25 rows]
     Seal Manufacturer depends on if Supplied by Fybroc or Installed by Fybroc is selected.
 
   ConstraintTable27         Wetted Hardware x Wetted Hardware Selection  [10 rows]
@@ -180,3 +180,12 @@ FEASIBLE CONSTRAINT TABLES
   ConstraintTable27         headers=['Wetted Hardware', 'Wetted Hardware Selection', 'Allowed?']  rows=10
   ConstraintTable28         headers=['Flush Material', 'Flush', 'Allowed?']  rows=18
   ConstraintTable29         headers=['Alt Size', 'C-Face Adapter', 'Allowed?']  rows=3
+  ConstraintTable17         headers=['Seal Option', 'Seal Type', 'Allowed?']  rows=5
+  ConstraintTable11         headers=['MotorOption', 'Shaft Grounding', 'Allowed?']  rows=2
+  ConstraintTable2          headers=['Alt Size', 'Flange Type', 'Allowed?']  rows=1
+  ConstraintTable3          headers=['Alt Size', 'Flush', 'Allowed?']  rows=3
+  ConstraintTable13         headers=['Pump Material', 'Shaft Material', 'Allowed?']  rows=2
+  ConstraintTable6          headers=['Alt Size', 'Shaft Material', 'Allowed?']  rows=6
+  ConstraintTable14         headers=['Pump Material', 'Sleeve', 'Allowed?']  rows=2
+  ConstraintTable15         headers=['Pump Material', 'Suction Discharge Taps', 'Allowed?']  rows=1
+  ConstraintTable26         headers=['Seal Option', 'Seal Mfg', 'Allowed?']  rows=25

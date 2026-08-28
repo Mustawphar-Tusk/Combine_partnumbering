@@ -1,0 +1,1891 @@
+{
+  "artifact": "FYBROC_FORMULA_INVENTORY",
+  "generated_utc": "2026-08-28T14:36:09.632721+00:00",
+  "git_commit": "fb3eb996d6f970bef0a0ac43bbd92aa4d5143402",
+  "git_working_tree_clean": false,
+  "note": "Authoritative formula/logic inventory for constraint-building. Formulas deduped by normalized shape (cell refs -> '#'). Data rows scanned to 260; logic lives in the top band.",
+  "workbooks": {
+    "Rev0.3": {
+      "file": "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx",
+      "defined_names": [
+        {
+          "name": "DUPLICATES",
+          "kind": "lambda",
+          "definition": "_xlfn.LAMBDA(_xlpm.array,_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.array,COUNTIF(_xlpm.array,_xlpm.array)>1)))"
+        },
+        {
+          "name": "fourfilter",
+          "kind": "lambda",
+          "definition": "_xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.list3,_xlpm.value3,_xlpm.list4,_xlpm.value4,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list2=_xlpm.value2)*(_xlpm.list3=_xlpm.value3)*(_xlpm.list4=_xlpm.value4)),1,_xlpm.col))"
+        },
+        {
+          "name": "ItemQuestions",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$M$474)"
+        },
+        {
+          "name": "ItemQuestions1500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$Q$474)"
+        },
+        {
+          "name": "ItemQuestions1530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$T$474)"
+        },
+        {
+          "name": "ItemQuestions1600",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$W$474)"
+        },
+        {
+          "name": "ItemQuestions1630",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$Z$474)"
+        },
+        {
+          "name": "ItemQuestions2530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$AC$474)"
+        },
+        {
+          "name": "ItemQuestions3000",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$AF$474)"
+        },
+        {
+          "name": "ItemQuestions5500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$AI$474)"
+        },
+        {
+          "name": "ItemQuestions5530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$AL$474)"
+        },
+        {
+          "name": "Items1500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CA$4)"
+        },
+        {
+          "name": "Items1530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CB$4)"
+        },
+        {
+          "name": "Items1600",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CC$4)"
+        },
+        {
+          "name": "Items1630",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CD$4)"
+        },
+        {
+          "name": "Items2530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CE$4)"
+        },
+        {
+          "name": "Items3000",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CF$4)"
+        },
+        {
+          "name": "Items5500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CG$4)"
+        },
+        {
+          "name": "Items5530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CH$4)"
+        },
+        {
+          "name": "Items7500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CI$4)"
+        },
+        {
+          "name": "Items8500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Items!$CJ$4)"
+        },
+        {
+          "name": "onefilter",
+          "kind": "lambda",
+          "definition": "_xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,_xlpm.list1=_xlpm.value1),1,_xlpm.col))"
+        },
+        {
+          "name": "Questions",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$Q$2)"
+        },
+        {
+          "name": "Questions1500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$R$2)"
+        },
+        {
+          "name": "Questions1530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$S$2)"
+        },
+        {
+          "name": "Questions1600",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$T$2)"
+        },
+        {
+          "name": "Questions1630",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$U$2)"
+        },
+        {
+          "name": "Questions2530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$V$2)"
+        },
+        {
+          "name": "Questions3000",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$W$2)"
+        },
+        {
+          "name": "Questions5500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$X$2)"
+        },
+        {
+          "name": "Questions5530",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$Y$2)"
+        },
+        {
+          "name": "Questions7500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$Z$2)"
+        },
+        {
+          "name": "Questions8500",
+          "kind": "spill_anchor",
+          "definition": "_xlfn.ANCHORARRAY(Selections!$AA$2)"
+        },
+        {
+          "name": "threefilter",
+          "kind": "lambda",
+          "definition": "_xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.list3,_xlpm.value3,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list2=_xlpm.value2)*(_xlpm.list3=_xlpm.value3)),1,_xlpm.col))"
+        },
+        {
+          "name": "twofilter",
+          "kind": "lambda",
+          "definition": "_xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list2=_xlpm.value2)),1,_xlpm.col))"
+        },
+        {
+          "name": "twolists",
+          "kind": "lambda",
+          "definition": "_xlfn.LAMBDA(_xlpm.list1,_xlpm.list2,_xlfn.LET(_xlpm.x,COUNTA(_xlpm.list1),_xlpm.y,COUNTA(_xlpm.list2),_xlpm.total,_xlpm.x*_xlpm.y,_xlpm.seq,_xlfn.SEQUENCE(_xlpm.total),_xlfn.HSTACK(_xlfn.XLOOKUP(_xlpm.seq,_xlfn.SCAN(0,IF(_xlfn.SEQUENCE(_xlpm.x,,1,0),_xlpm.y),_xlfn.LAMBDA(_xlpm.a,_xlpm.v,_xlpm.a+_xlpm.v)),_xlpm.list1,,1),INDEX(_xlpm.list2,MOD(_xlpm.seq-1,_xlpm.y)+1))))"
+        }
+      ],
+      "sheets": {
+        "To do": {
+          "max_row": 63,
+          "max_column": 11,
+          "scanned_rows": 63,
+          "distinct_formula_shapes": 0,
+          "formulas": [],
+          "data_validations": [],
+          "tables": []
+        },
+        "Main Page": {
+          "max_row": 71,
+          "max_column": 39,
+          "scanned_rows": 71,
+          "distinct_formula_shapes": 15,
+          "formulas": [
+            {
+              "example_cell": "B13",
+              "example_formula": "=IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(B16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(C16)),\"Match\",\"Lists do not match\")",
+              "functions": [
+                "ANCHORARRAY",
+                "CONCAT",
+                "IF"
+              ],
+              "count": 12
+            },
+            {
+              "example_cell": "H16",
+              "example_formula": "=_xlfn.ANCHORARRAY(Items!BB4)",
+              "functions": [
+                "ANCHORARRAY"
+              ],
+              "count": 10
+            },
+            {
+              "example_cell": "B16",
+              "example_formula": "=_xlfn.UNIQUE(QATable[Question])",
+              "functions": [
+                "UNIQUE"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "C16",
+              "example_formula": "=TRANSPOSE(_xlfn.CHOOSECOLS(Table1[#Headers],_xlfn.SEQUENCE(1,COLUMNS(Table1[#Headers])-2,3)))",
+              "functions": [
+                "CHOOSECOLS",
+                "COLUMNS",
+                "SEQUENCE",
+                "TRANSPOSE"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "D16",
+              "example_formula": "=Constraints!B5:B39",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "G16",
+              "example_formula": "=Questions1500",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "I16",
+              "example_formula": "=Questions1530",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "K16",
+              "example_formula": "=Questions1600",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "M16",
+              "example_formula": "=Questions1630",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "O16",
+              "example_formula": "=Questions2530",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "Q16",
+              "example_formula": "=Questions3000",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "S16",
+              "example_formula": "=Questions5500",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "U16",
+              "example_formula": "=Questions5530",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "W16",
+              "example_formula": "=Questions7500",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "Y16",
+              "example_formula": "=Questions8500",
+              "functions": [],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        "Items": {
+          "max_row": 17285,
+          "max_column": 92,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 9,
+          "formulas": [
+            {
+              "example_cell": "BN4",
+              "example_formula": "=",
+              "functions": [],
+              "count": 1770
+            },
+            {
+              "example_cell": "AP4",
+              "example_formula": "=IFERROR(IF(MATCH(\"X\",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers],0))=\"X\")*(Table1[Series]=AP$3)),MATCH($AO4,Table1[#Headers],0)))>0,\"X\",\"\"),\"\")",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER",
+                "IF",
+                "IFERROR",
+                "MATCH"
+              ],
+              "count": 506
+            },
+            {
+              "example_cell": "A3",
+              "example_formula": "=_xlfn.CONCAT(Table1[[#This Row],[Series]],\"_\",Table1[[#This Row],[Item]])",
+              "functions": [
+                "CONCAT"
+              ],
+              "count": 258
+            },
+            {
+              "example_cell": "BN3",
+              "example_formula": "=IF(COUNTIFS(INDIRECT(BN2),_xlfn.ANCHORARRAY(BM3))>0,\"X\",\"\")",
+              "functions": [
+                "ANCHORARRAY",
+                "COUNTIFS",
+                "IF",
+                "INDIRECT"
+              ],
+              "count": 10
+            },
+            {
+              "example_cell": "BB4",
+              "example_formula": "=_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER($AO$4:$AY$50,AP4:AP50=\"X\"),1)",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER"
+              ],
+              "count": 10
+            },
+            {
+              "example_cell": "CA4",
+              "example_formula": "=_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],Table1[Series]=CA3),2)",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER"
+              ],
+              "count": 10
+            },
+            {
+              "example_cell": "AP3",
+              "example_formula": "=TRANSPOSE(_xlfn._xlws.SORT(_xlfn.UNIQUE(Table1[Series])))",
+              "functions": [
+                "SORT",
+                "TRANSPOSE",
+                "UNIQUE"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "BM3",
+              "example_formula": "=_xlfn.UNIQUE(Table1[Item])",
+              "functions": [
+                "UNIQUE"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "AO4",
+              "example_formula": "=TRANSPOSE(_xlfn.CHOOSECOLS(Table1[#Headers],_xlfn.SEQUENCE(1,COLUMNS(Table1[#Headers])-2,3)))",
+              "functions": [
+                "CHOOSECOLS",
+                "COLUMNS",
+                "SEQUENCE",
+                "TRANSPOSE"
+              ],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "Table1",
+              "ref": "B2:AM469"
+            }
+          ]
+        },
+        "Constraints": {
+          "max_row": 1230,
+          "max_column": 153,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 8,
+          "formulas": [
+            {
+              "example_cell": "AV6",
+              "example_formula": "=",
+              "functions": [],
+              "count": 4050
+            },
+            {
+              "example_cell": "N6",
+              "example_formula": "=IF(OR(F6=\"Yes\",G6=\"Yes\",H6=\"Yes\",I6=\"Yes\",J6=\"Yes\",K6=\"Yes\",L6=\"Yes\",M6=\"Yes\"),\"Yes\",\"No\")",
+              "functions": [
+                "IF",
+                "OR"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "O6",
+              "example_formula": "=IF(AND(F6=\"No Combination\",G6=\"No Combination\",H6=\"No Combination\",I6=\"No Combination\",J6=\"No Combination\",K6=\"No Combination\",L6=\"No Combination\",M6=\"No Combination\"),\"Yes\",\"No\")",
+              "functions": [
+                "AND",
+                "IF"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "P6",
+              "example_formula": "=IF(OR(COUNTIF(D6:D1094,E6)=0,D6=E6),\"Ignore\",\"\")",
+              "functions": [
+                "COUNTIF",
+                "IF",
+                "OR"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "Q6",
+              "example_formula": "=IF(R6=\"\",\"No Combination\",\"Combination exists\")",
+              "functions": [
+                "IF"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "R6",
+              "example_formula": "=IFERROR(_xlfn.UNIQUE(DUPLICATES(_xlfn.ANCHORARRAY(AU6)),1),\"\")",
+              "functions": [
+                "ANCHORARRAY",
+                "DUPLICATES",
+                "IFERROR",
+                "UNIQUE"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "AU6",
+              "example_formula": "=TRANSPOSE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(INDIRECT($Q$2),(_xlfn.CHOOSECOLS(INDIRECT($Q$2),2)=D6)+(_xlfn.CHOOSECOLS(INDIRECT($Q$2),2)=E6)),1))",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER",
+                "INDIRECT",
+                "TRANSPOSE"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "D6",
+              "example_formula": "=twolists(B5:B39,B5:B39)",
+              "functions": [],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        "Hierarchy": {
+          "max_row": 14,
+          "max_column": 23,
+          "scanned_rows": 14,
+          "distinct_formula_shapes": 0,
+          "formulas": [],
+          "data_validations": [],
+          "tables": []
+        },
+        "Combine Variables": {
+          "max_row": 120,
+          "max_column": 36,
+          "scanned_rows": 120,
+          "distinct_formula_shapes": 3,
+          "formulas": [
+            {
+              "example_cell": "F4",
+              "example_formula": "=_xlfn.TEXTBEFORE(E4,\"-\")",
+              "functions": [
+                "TEXTBEFORE"
+              ],
+              "count": 56
+            },
+            {
+              "example_cell": "G4",
+              "example_formula": "=_xlfn.TEXTAFTER(E4,\"-\")",
+              "functions": [
+                "TEXTAFTER"
+              ],
+              "count": 56
+            },
+            {
+              "example_cell": "S4",
+              "example_formula": "=_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],QATable[Question]=S3),2)",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER"
+              ],
+              "count": 4
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        "Selections": {
+          "max_row": 678,
+          "max_column": 28,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 2,
+          "formulas": [
+            {
+              "example_cell": "R2",
+              "example_formula": "=_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(R1,QATable[#Headers],0))=\"X\")+(_xlfn.CHOOSECOLS(QATable[],MATCH(R1,QATable[#Headers],0))=\"STD\")),1))",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER",
+                "MATCH",
+                "UNIQUE"
+              ],
+              "count": 10
+            },
+            {
+              "example_cell": "Q2",
+              "example_formula": "=_xlfn.UNIQUE(QATable[Question])",
+              "functions": [
+                "UNIQUE"
+              ],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "QATable",
+              "ref": "B1:M678"
+            }
+          ]
+        },
+        "Constraint Index": {
+          "max_row": 49,
+          "max_column": 19,
+          "scanned_rows": 49,
+          "distinct_formula_shapes": 0,
+          "formulas": [],
+          "data_validations": [],
+          "tables": []
+        },
+        "Pricing Index": {
+          "max_row": 60,
+          "max_column": 7,
+          "scanned_rows": 60,
+          "distinct_formula_shapes": 0,
+          "formulas": [],
+          "data_validations": [],
+          "tables": []
+        },
+        "Feasible Constraints": {
+          "max_row": 3482,
+          "max_column": 81,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 0,
+          "formulas": [],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "ConstraintTable1",
+              "ref": "B5:D8"
+            },
+            {
+              "name": "ConstraintTable2",
+              "ref": "B11:D12"
+            },
+            {
+              "name": "Table6",
+              "ref": "B16:D19"
+            },
+            {
+              "name": "ConstraintTable4",
+              "ref": "F5:H522"
+            },
+            {
+              "name": "ConstraintTable5",
+              "ref": "J5:L21"
+            },
+            {
+              "name": "ConstraintTable6",
+              "ref": "J25:L31"
+            },
+            {
+              "name": "ConstraintTable7",
+              "ref": "N5:P6"
+            },
+            {
+              "name": "ConstraintTable8",
+              "ref": "R5:T11"
+            },
+            {
+              "name": "ConstraintTable9",
+              "ref": "V5:X8"
+            },
+            {
+              "name": "ConstraintTable10",
+              "ref": "Z5:AB7"
+            },
+            {
+              "name": "ConstraintTable11",
+              "ref": "Z10:AB12"
+            },
+            {
+              "name": "ConstraintTable13",
+              "ref": "AD23:AF25"
+            },
+            {
+              "name": "ConstraintTable12",
+              "ref": "AD5:AF20"
+            },
+            {
+              "name": "ConstraintTable14",
+              "ref": "AD28:AF30"
+            },
+            {
+              "name": "ConstraintTable15",
+              "ref": "AD33:AF34"
+            },
+            {
+              "name": "ConstraintTable16",
+              "ref": "AH5:AJ6"
+            },
+            {
+              "name": "ConstraintTable17",
+              "ref": "AH9:AJ14"
+            },
+            {
+              "name": "ConstraintTable18",
+              "ref": "AL5:AN13"
+            },
+            {
+              "name": "ConstraintTable19",
+              "ref": "AP5:AR17"
+            },
+            {
+              "name": "ConstraintTable20",
+              "ref": "AT5:AV6"
+            },
+            {
+              "name": "ConstraintTable21",
+              "ref": "AX5:BA3482"
+            },
+            {
+              "name": "ConstraintTable22",
+              "ref": "BC5:BE188"
+            },
+            {
+              "name": "ConstraintTable23",
+              "ref": "BG5:BI24"
+            },
+            {
+              "name": "ConstraintTable24",
+              "ref": "BK5:BM120"
+            },
+            {
+              "name": "ConstraintTable25",
+              "ref": "BO5:BQ35"
+            },
+            {
+              "name": "ConstraintTable26",
+              "ref": "BO38:BQ63"
+            },
+            {
+              "name": "ConstraintTable27",
+              "ref": "BS5:BU15"
+            },
+            {
+              "name": "ConstraintTable28",
+              "ref": "BW5:BY23"
+            },
+            {
+              "name": "ConstraintTable29",
+              "ref": "CA5:CC8"
+            }
+          ]
+        },
+        "Motor Constraints": {
+          "max_row": 955,
+          "max_column": 86,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 0,
+          "formulas": [],
+          "data_validations": [],
+          "tables": []
+        },
+        "1500 Pricing": {
+          "max_row": 2854,
+          "max_column": 127,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 1,
+          "formulas": [
+            {
+              "example_cell": "N6",
+              "example_formula": "=E6-_xlfn.XLOOKUP(L6,$H$6:$H$24,$I$6:$I$24)",
+              "functions": [
+                "XLOOKUP"
+              ],
+              "count": 114
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        "5500 Pricing": {
+          "max_row": 52445,
+          "max_column": 71,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 5,
+          "formulas": [
+            {
+              "example_cell": "AU6",
+              "example_formula": "=_xlfn.XLOOKUP(AQ6,$BG$6:$BG$11,$BH$6:$BH$11)",
+              "functions": [
+                "XLOOKUP"
+              ],
+              "count": 510
+            },
+            {
+              "example_cell": "D6",
+              "example_formula": "=_xlfn.CONCAT(B6,\"+\",C6)",
+              "functions": [
+                "CONCAT"
+              ],
+              "count": 255
+            },
+            {
+              "example_cell": "AW6",
+              "example_formula": "=threefilter($BG$20:$BJ$171,$BG$20:$BG$171,AP6,$BH$20:$BH$171,AR6,$BI$20:$BI$171,AU6,4)",
+              "functions": [],
+              "count": 255
+            },
+            {
+              "example_cell": "AX6",
+              "example_formula": "=twofilter($BL$20:$BN$57,$BL$20:$BL$57,AP6,$BM$20:$BM$57,AU6,3)",
+              "functions": [],
+              "count": 255
+            },
+            {
+              "example_cell": "AY6",
+              "example_formula": "=(AX6*AV6)+AW6",
+              "functions": [],
+              "count": 255
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        "Sheet3": {
+          "max_row": 99,
+          "max_column": 47,
+          "scanned_rows": 99,
+          "distinct_formula_shapes": 2,
+          "formulas": [
+            {
+              "example_cell": "B3",
+              "example_formula": "=_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]=\"X\")+(QATable[1500]=\"STD\"))*(QATable[Question]=B2)),2)",
+              "functions": [
+                "CHOOSECOLS",
+                "FILTER"
+              ],
+              "count": 45
+            },
+            {
+              "example_cell": "B2",
+              "example_formula": "=TRANSPOSE(Questions1500)",
+              "functions": [
+                "TRANSPOSE"
+              ],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        }
+      }
+    },
+    "V6": {
+      "file": "workbooks/Fybroc/Nomenclature_V6.xlsm",
+      "defined_names": [
+        {
+          "name": "Baseplate_Option",
+          "kind": "range_or_formula",
+          "definition": "'Options - Horizontal'!$F$3:$F$4"
+        },
+        {
+          "name": "BaseplateHardware",
+          "kind": "range_or_formula",
+          "definition": "'Options - Horizontal'!$G$3:$G$5"
+        },
+        {
+          "name": "Bearing_Option",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$J$3:$J$5"
+        },
+        {
+          "name": "Casing_Drains",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$D$3:$D$4"
+        },
+        {
+          "name": "Casing_Hardware",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$H$3:$H$4"
+        },
+        {
+          "name": "CFace_Adapter",
+          "kind": "range_or_formula",
+          "definition": "'Options - Horizontal'!$I$3:$I$4"
+        },
+        {
+          "name": "Coupling_Guard",
+          "kind": "range_or_formula",
+          "definition": "'Options - Horizontal'!$E$3:$E$6"
+        },
+        {
+          "name": "Coupling_Option",
+          "kind": "range_or_formula",
+          "definition": "'Options - Horizontal'!$D$3:$D$4"
+        },
+        {
+          "name": "CycloneSep",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$N$3:$N$4"
+        },
+        {
+          "name": "Dynamic_Impeller",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$O$3:$O$4"
+        },
+        {
+          "name": "Efficiency",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$M$3:$M$4"
+        },
+        {
+          "name": "Enclosure",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$L$3:$L$6"
+        },
+        {
+          "name": "Flush",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$M$3:$M$8"
+        },
+        {
+          "name": "Frame_Code_Mtr",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$K$3:$K$21"
+        },
+        {
+          "name": "Gland_Hardware",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$L$3:$L$7"
+        },
+        {
+          "name": "Hertz",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$J$3:$J$4"
+        },
+        {
+          "name": "Horsepower_Mtr",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$G$3:$G$21"
+        },
+        {
+          "name": "Hydrotest",
+          "kind": "range_or_formula",
+          "definition": "Testing!$I$3:$I$5"
+        },
+        {
+          "name": "Impeller_Sleeve",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$G$3:$G$8"
+        },
+        {
+          "name": "Length",
+          "kind": "range_or_formula",
+          "definition": "'Setting-Length-Vertical'!$K$5:$K$187"
+        },
+        {
+          "name": "Motor_Class",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$E$3:$E$5"
+        },
+        {
+          "name": "Motor_Frame",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$Z$3:$Z$52"
+        },
+        {
+          "name": "Motor_Manufacturer",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$N$3:$N$7"
+        },
+        {
+          "name": "Motor_Modifications",
+          "kind": "range_or_formula",
+          "definition": "Attributes!$S$8:$S$38"
+        },
+        {
+          "name": "Motor_Option",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$D$3:$D$5"
+        },
+        {
+          "name": "Motor_Orientation",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$F$3:$F$5"
+        },
+        {
+          "name": "NamePlate2",
+          "kind": "range_or_formula",
+          "definition": "'Options - Horizontal'!$H$3:$H$4"
+        },
+        {
+          "name": "Performance_Testing",
+          "kind": "range_or_formula",
+          "definition": "Testing!$H$3:$H$7"
+        },
+        {
+          "name": "Power_Frame_Hardware",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$K$3:$K$4"
+        },
+        {
+          "name": "Pump_Elastomers",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$I$3:$I$5"
+        },
+        {
+          "name": "RPM",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$H$3:$H$6"
+        },
+        {
+          "name": "Seal_Elastomers",
+          "kind": "range_or_formula",
+          "definition": "'Seal Assembly - Horizontal'!$G$3:$G$6"
+        },
+        {
+          "name": "Seal_Guard",
+          "kind": "range_or_formula",
+          "definition": "'Seal Assembly - Horizontal'!$H$3:$H$4"
+        },
+        {
+          "name": "Seal_Materials",
+          "kind": "range_or_formula",
+          "definition": "'Seal Assembly - Horizontal'!$F$3:$F$5"
+        },
+        {
+          "name": "Seal_Option",
+          "kind": "range_or_formula",
+          "definition": "'Seal Assembly - Horizontal'!$D$3:$D$7"
+        },
+        {
+          "name": "Seal_Type",
+          "kind": "range_or_formula",
+          "definition": "'Seal Assembly - Horizontal'!$E$3:$E$8"
+        },
+        {
+          "name": "Series_Horizontal",
+          "kind": "range_or_formula",
+          "definition": "Attributes!$F$8:$F$13"
+        },
+        {
+          "name": "Series_Vertical",
+          "kind": "range_or_formula",
+          "definition": "Attributes!$F$15:$F$20"
+        },
+        {
+          "name": "Setting",
+          "kind": "range_or_formula",
+          "definition": "'Setting-Length-Vertical'!$J$5:$J$23"
+        },
+        {
+          "name": "Shaft_Material",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$F$3:$F$4"
+        },
+        {
+          "name": "Sound_Test",
+          "kind": "range_or_formula",
+          "definition": "Testing!$K$3:$K$4"
+        },
+        {
+          "name": "Suction_Discharge",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Horizontal'!$E$3:$E$4"
+        },
+        {
+          "name": "ValidTrim",
+          "kind": "range_or_formula",
+          "definition": "Attributes!$AR$7:$AR$46"
+        },
+        {
+          "name": "Vapor_Protection",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$K$3:$K$4"
+        },
+        {
+          "name": "Vertical_Coupling_Guard",
+          "kind": "range_or_formula",
+          "definition": "'Options - Vertical'!$E$3:$E$6"
+        },
+        {
+          "name": "Vertical_Coupling_Option",
+          "kind": "range_or_formula",
+          "definition": "'Options - Vertical'!$D$3:$D$4"
+        },
+        {
+          "name": "Vertical_Customer_Nameplate",
+          "kind": "range_or_formula",
+          "definition": "'Options - Vertical'!$G$3:$G$4"
+        },
+        {
+          "name": "Vertical_Flush",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$H$3:$H$6"
+        },
+        {
+          "name": "Vertical_Flush_Options",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$I$3:$I$4"
+        },
+        {
+          "name": "Vertical_Impeller_Balance",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$J$3:$J$4"
+        },
+        {
+          "name": "Vertical_Mounting_Plate",
+          "kind": "range_or_formula",
+          "definition": "'Options - Vertical'!$F$3:$F$4"
+        },
+        {
+          "name": "Vertical_Pump_Elastomers",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$G$3:$G$5"
+        },
+        {
+          "name": "Vertical_Setting_L_Dimension",
+          "kind": "range_or_formula",
+          "definition": "'Setting-Length-Vertical'!$E$5:$E$206"
+        },
+        {
+          "name": "Vertical_Shaft_Material",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$D$3:$D$9"
+        },
+        {
+          "name": "Vertical_Sleeve",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$E$3:$E$6"
+        },
+        {
+          "name": "Vertical_Strainer",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$L$3:$L$5"
+        },
+        {
+          "name": "Vertical_Wetted_Hardware",
+          "kind": "range_or_formula",
+          "definition": "'Pump Options - Vertical'!$F$3:$F$7"
+        },
+        {
+          "name": "Vibration_Test",
+          "kind": "range_or_formula",
+          "definition": "Testing!$J$3:$J$4"
+        },
+        {
+          "name": "Voltage",
+          "kind": "range_or_formula",
+          "definition": "' Motor Assy'!$I$3:$I$5"
+        }
+      ],
+      "sheets": {
+        "Smart Number": {
+          "max_row": 55,
+          "max_column": 31,
+          "scanned_rows": 55,
+          "distinct_formula_shapes": 19,
+          "formulas": [
+            {
+              "example_cell": "D13",
+              "example_formula": "=VLOOKUP(D14,Attributes!$C$8:$D$9,2,FALSE)",
+              "functions": [
+                "VLOOKUP"
+              ],
+              "count": 8
+            },
+            {
+              "example_cell": "C5",
+              "example_formula": "=LEN(D5)",
+              "functions": [
+                "LEN"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "D5",
+              "example_formula": "=D13&E13&G13&H13&\"-\"&I13&\"-\"&K13&\"-\"&O13&P13&\"-\"&S13&\"-\"&W13&\"-\"&Z13&\"-\"&AC13",
+              "functions": [],
+              "count": 2
+            },
+            {
+              "example_cell": "E13",
+              "example_formula": "=_xlfn.XLOOKUP(1,(Attributes!F23:F42=F14)*(Attributes!G23:G42=F15),Attributes!H23:H42)",
+              "functions": [
+                "XLOOKUP"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "V13",
+              "example_formula": "=VLOOKUP(V14,Table_Motor_Frame[],5,FALSE)",
+              "functions": [
+                "VLOOKUP"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "W13",
+              "example_formula": "=IFERROR(VLOOKUP(X14&X15&X16&X17&X18&X19&X20&X21&X22&X23&X24,' Motor Assy'!$C$27:$O$728,13,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "Z13",
+              "example_formula": "=IFERROR(VLOOKUP(AA14,Attributes!$S$8:$T$38,2,FALSE)&VLOOKUP(AA15,Attributes!$S$8:$T$38,2,FALSE)&VLOOKUP(AA16,Attributes!$S$8:$T$38,2,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "AC13",
+              "example_formula": "=IFERROR(VLOOKUP(AD14&AD15&AD16&AD17,Testing_Table[],6,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "O38",
+              "example_formula": "=IFERROR(VLOOKUP(P39&\"*\"&P40,'Setting-Length-Vertical'!C5:G206,5,FALSE),\"Confirm Selection\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 2
+            },
+            {
+              "example_cell": "W51",
+              "example_formula": "=X39&X40&X41&X42&X43&X44&X45&X46&X47&X48&X49",
+              "functions": [],
+              "count": 2
+            },
+            {
+              "example_cell": "D8",
+              "example_formula": "=\"PUMP, \"&D14&\", \"&F14&\", \"&G14&\", \"&IF(H14=\"VR-1\",\"VR-1\",H14)&\", \"&I14&\" TRIM, \"&VLOOKUP(K13,'Pump Options - Horizontal'!$P$12:$T$138251,4,FALSE)&\", \"&VLOOKUP(K13,'Pump Options - Horizontal'!$P$12:$T$138251,5,FALSE)&\", \"&VLOOKUP(P13,'Seal Assembly - Horizontal'!$I$14:$N$80,5,FALSE)&\"-\"&VLOOKUP(P13,'Seal Assembly - Horizontal'!$I$14:$N$80,6,FALSE)",
+              "functions": [
+                "IF",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "D9",
+              "example_formula": "=D13&E13&G13&H13&I13&\"-\"&K13&\"-\"&O13&P13&\"-\"&S13&\"-\"&W13&Z13&\"-\"&AC13",
+              "functions": [],
+              "count": 1
+            },
+            {
+              "example_cell": "K13",
+              "example_formula": "=IFERROR(VLOOKUP(M14&M15&M16&M17&M18&M19&M20&M21&M22&M23&M25&M26,PumpOptionsH[],14,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "O13",
+              "example_formula": "=VLOOKUP(O14,'Seal Assembly - Horizontal'!M3:N6,2,FALSE)",
+              "functions": [
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "P13",
+              "example_formula": "=IFERROR(VLOOKUP(Q14&Q15&Q16&Q17&Q18,SealAssembly[],7,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "S13",
+              "example_formula": "=IFERROR(VLOOKUP(T14&T15&T16&T17&T18&T19,OptionsH[],8,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "K38",
+              "example_formula": "=IFERROR(VLOOKUP(M39&M40&M41&M42&M43&M44&M45&M46&M47,V_Pump_Options[],11,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "S38",
+              "example_formula": "=IFERROR(VLOOKUP(T39&T40&T41&T42,'Options - Vertical'!C12:H107,6,FALSE),\"Not Valid\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "AE55",
+              "example_formula": "=IF(LEN(_xlfn.BASE(AF55,36))=1,\"00\"&_xlfn.BASE(AF55,36),IF(LEN(_xlfn.BASE(AF55,36))=2,\"0\"&_xlfn.BASE(AF55,36),IF(LEN(_xlfn.BASE(AF55,36))=3,\"\"&_xlfn.BASE(AF55,36))))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 1
+            }
+          ],
+          "data_validations": [
+            {
+              "type": "list",
+              "formula1": "Casing_Drains",
+              "ranges": "M14:N14"
+            },
+            {
+              "type": "list",
+              "formula1": "Suction_Discharge",
+              "ranges": "M15:N15"
+            },
+            {
+              "type": "list",
+              "formula1": "Impeller_Sleeve",
+              "ranges": "M17:N17"
+            },
+            {
+              "type": "list",
+              "formula1": "Casing_Hardware",
+              "ranges": "M18:N18"
+            },
+            {
+              "type": "list",
+              "formula1": "Pump_Elastomers",
+              "ranges": "M19:N19"
+            },
+            {
+              "type": "list",
+              "formula1": "Bearing_Option",
+              "ranges": "M20:N20"
+            },
+            {
+              "type": "list",
+              "formula1": "Power_Frame_Hardware",
+              "ranges": "M21:N21"
+            },
+            {
+              "type": "list",
+              "formula1": "Gland_Hardware",
+              "ranges": "M22:N22"
+            },
+            {
+              "type": "list",
+              "formula1": "Flush",
+              "ranges": "M23:N24"
+            },
+            {
+              "type": "list",
+              "formula1": "CycloneSep",
+              "ranges": "M25:N25"
+            },
+            {
+              "type": "list",
+              "formula1": "Dynamic_Impeller",
+              "ranges": "M26:N26"
+            },
+            {
+              "type": "list",
+              "formula1": "Seal_Option",
+              "ranges": "Q14"
+            },
+            {
+              "type": "list",
+              "formula1": "Seal_Type",
+              "ranges": "Q15"
+            },
+            {
+              "type": "list",
+              "formula1": "Seal_Materials",
+              "ranges": "Q16"
+            },
+            {
+              "type": "list",
+              "formula1": "Seal_Elastomers",
+              "ranges": "Q17"
+            },
+            {
+              "type": "list",
+              "formula1": "Motor_Modifications",
+              "ranges": "AA14:AB16 AA39:AB41"
+            },
+            {
+              "type": "list",
+              "formula1": "Sound_Test",
+              "ranges": "AD17 AD42"
+            },
+            {
+              "type": "list",
+              "formula1": "Shaft_Material",
+              "ranges": "M16:N16"
+            },
+            {
+              "type": "list",
+              "formula1": "Coupling_Option",
+              "ranges": "T14:U14"
+            },
+            {
+              "type": "list",
+              "formula1": "Coupling_Guard",
+              "ranges": "T15:U15"
+            },
+            {
+              "type": "list",
+              "formula1": "Baseplate_Option",
+              "ranges": "T16:U16"
+            },
+            {
+              "type": "list",
+              "formula1": "BaseplateHardware",
+              "ranges": "T17:U17"
+            },
+            {
+              "type": "list",
+              "formula1": "NamePlate2",
+              "ranges": "T18:U18"
+            },
+            {
+              "type": "list",
+              "formula1": "Motor_Option",
+              "ranges": "X14:Y14 X39:Y39"
+            },
+            {
+              "type": "list",
+              "formula1": "Motor_Class",
+              "ranges": "X15:Y15 X40:Y40"
+            },
+            {
+              "type": "list",
+              "formula1": "Motor_Orientation",
+              "ranges": "X16:Y16 X41:Y41"
+            },
+            {
+              "type": "list",
+              "formula1": "Horsepower_Mtr",
+              "ranges": "X17:Y17 X42:Y42"
+            },
+            {
+              "type": "list",
+              "formula1": "RPM",
+              "ranges": "X18:Y18 X43:Y43"
+            },
+            {
+              "type": "list",
+              "formula1": "Voltage",
+              "ranges": "X19:Y19 X44:Y44"
+            },
+            {
+              "type": "list",
+              "formula1": "Hertz",
+              "ranges": "X20:Y20 X45:Y45"
+            },
+            {
+              "type": "list",
+              "formula1": "Frame_Code_Mtr",
+              "ranges": "X21:Y21 X46:Y46"
+            },
+            {
+              "type": "list",
+              "formula1": "Enclosure",
+              "ranges": "X22:Y22 X47:Y47"
+            },
+            {
+              "type": "list",
+              "formula1": "Efficiency",
+              "ranges": "X23:Y23 X48:Y48"
+            },
+            {
+              "type": "list",
+              "formula1": "Motor_Manufacturer",
+              "ranges": "X24:Y24 X49:Y49"
+            },
+            {
+              "type": "list",
+              "formula1": "Seal_Guard",
+              "ranges": "Q18"
+            },
+            {
+              "type": "list",
+              "formula1": "ValidTrim",
+              "ranges": "I14:J14 I39:J39"
+            },
+            {
+              "type": "list",
+              "formula1": "INDIRECT(P39)",
+              "ranges": "P40"
+            },
+            {
+              "type": "list",
+              "formula1": "CFace_Adapter",
+              "ranges": "T19:U19"
+            },
+            {
+              "type": "list",
+              "formula1": "Performance_Testing",
+              "ranges": "AD14 AD39"
+            },
+            {
+              "type": "list",
+              "formula1": "Hydrotest",
+              "ranges": "AD15 AD40"
+            },
+            {
+              "type": "list",
+              "formula1": "Vibration_Test",
+              "ranges": "AD16 AD41"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Shaft_Material",
+              "ranges": "M39:N39"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Sleeve",
+              "ranges": "M40:N40"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Pump_Elastomers",
+              "ranges": "M42:N42"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Flush",
+              "ranges": "M43:N43"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Flush_Options",
+              "ranges": "M44"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Impeller_Balance",
+              "ranges": "M45"
+            },
+            {
+              "type": "list",
+              "formula1": "Vapor_Protection",
+              "ranges": "M46"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Strainer",
+              "ranges": "M47"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Wetted_Hardware",
+              "ranges": "M41:N41"
+            },
+            {
+              "type": "list",
+              "formula1": "Series_Horizontal",
+              "ranges": "F14"
+            },
+            {
+              "type": "list",
+              "formula1": "Series_Vertical",
+              "ranges": "F39"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Coupling_Option",
+              "ranges": "T39:U39"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Coupling_Guard",
+              "ranges": "T40:U40"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Mounting_Plate",
+              "ranges": "T41:U41"
+            },
+            {
+              "type": "list",
+              "formula1": "Vertical_Customer_Nameplate",
+              "ranges": "T42:U42"
+            },
+            {
+              "type": "list",
+              "formula1": "Motor_Frame",
+              "ranges": "V14 V39"
+            }
+          ],
+          "tables": []
+        },
+        "Attributes": {
+          "max_row": 523,
+          "max_column": 48,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 4,
+          "formulas": [
+            {
+              "example_cell": "AF7",
+              "example_formula": "=AG7&AH7",
+              "functions": [],
+              "count": 51
+            },
+            {
+              "example_cell": "AR4",
+              "example_formula": "=IFERROR(VLOOKUP('Smart Number'!I14,ValidTrim,1,FALSE),\"Error\")",
+              "functions": [
+                "IFERROR",
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "AV4",
+              "example_formula": "=VLOOKUP('Smart Number'!$F$14,AU7:AV18,2,FALSE)",
+              "functions": [
+                "VLOOKUP"
+              ],
+              "count": 1
+            },
+            {
+              "example_cell": "AR7",
+              "example_formula": "=_xlfn.UNIQUE(_xlfn._xlws.FILTER(Trim[SF1_ImpellerTrim],Trim[Size]='Smart Number'!$G$14))",
+              "functions": [
+                "FILTER",
+                "UNIQUE"
+              ],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "Trim",
+              "ref": "AO6:AP523"
+            }
+          ]
+        },
+        "Pump Options - Horizontal": {
+          "max_row": 138251,
+          "max_column": 20,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 3,
+          "formulas": [
+            {
+              "example_cell": "C12",
+              "example_formula": "=D12&E12&F12&G12&H12&I12&J12&K12&L12&M12&N12&O12",
+              "functions": [],
+              "count": 249
+            },
+            {
+              "example_cell": "P12",
+              "example_formula": "=IF(LEN(_xlfn.BASE(Q12,36))=1,\"000\"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=2,\"00\"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=3,\"0\"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=4,_xlfn.BASE(Q12,36),FALSE))))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 249
+            },
+            {
+              "example_cell": "C10",
+              "example_formula": "=LEN(C12)",
+              "functions": [
+                "LEN"
+              ],
+              "count": 1
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "PumpOptionsH",
+              "ref": "C11:Q138251"
+            }
+          ]
+        },
+        "Pump Options - Vertical": {
+          "max_row": 23053,
+          "max_column": 17,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 2,
+          "formulas": [
+            {
+              "example_cell": "C14",
+              "example_formula": "=D14&E14&F14&G14&H14&I14&J14&K14&L14",
+              "functions": [],
+              "count": 247
+            },
+            {
+              "example_cell": "M14",
+              "example_formula": "=IF(LEN(_xlfn.BASE(N14,36))=1,\"000\"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=2,\"00\"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=3,\"0\"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=4,_xlfn.BASE(N14,36),FALSE))))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 247
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "V_Pump_Options",
+              "ref": "C13:N23053"
+            }
+          ]
+        },
+        "Seal Assembly - Horizontal": {
+          "max_row": 80,
+          "max_column": 14,
+          "scanned_rows": 80,
+          "distinct_formula_shapes": 2,
+          "formulas": [
+            {
+              "example_cell": "C14",
+              "example_formula": "=D14&E14&F14&G14&H14",
+              "functions": [],
+              "count": 67
+            },
+            {
+              "example_cell": "I14",
+              "example_formula": "=IF(LEN(_xlfn.BASE(J14,36))=1,\"0\"&_xlfn.BASE(J14,36),IF(LEN(_xlfn.BASE(J14,36))=2,\"\"&_xlfn.BASE(J14,36)))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 67
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "SealAssembly",
+              "ref": "C13:J80"
+            }
+          ]
+        },
+        "Setting-Length-Vertical": {
+          "max_row": 684,
+          "max_column": 22,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 5,
+          "formulas": [
+            {
+              "example_cell": "C5",
+              "example_formula": "=D5&\"*\"&'Setting-Length-Vertical'!$E5",
+              "functions": [],
+              "count": 202
+            },
+            {
+              "example_cell": "G24",
+              "example_formula": "=_xlfn.LET(\n_xlpm.n,F24-20,\n_xlpm.chars,\"0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ\",\nMID(\"ABCDEFGHIJKLMNPQRSTUVWXYZ\",INT(_xlpm.n/35)+1,1) &\nMID(_xlpm.chars,MOD(_xlpm.n,35)+1,1)\n)",
+              "functions": [
+                "INT",
+                "LET",
+                "MID",
+                "MOD"
+              ],
+              "count": 183
+            },
+            {
+              "example_cell": "O5",
+              "example_formula": "=P5&Q5",
+              "functions": [],
+              "count": 116
+            },
+            {
+              "example_cell": "G5",
+              "example_formula": "=TEXT(F5,\"00\")",
+              "functions": [
+                "TEXT"
+              ],
+              "count": 19
+            },
+            {
+              "example_cell": "S5",
+              "example_formula": "=IF(LEN(_xlfn.BASE(R5,36))=1,\"0\"&_xlfn.BASE(R5,36),IF(LEN(_xlfn.BASE(R5,36))=2,\"\"&_xlfn.BASE(R5,36)))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 5
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        "Options - Horizontal": {
+          "max_row": 203,
+          "max_column": 11,
+          "scanned_rows": 203,
+          "distinct_formula_shapes": 2,
+          "formulas": [
+            {
+              "example_cell": "J9",
+              "example_formula": "=IF(LEN(_xlfn.BASE(K9,36))=1,\"0\"&_xlfn.BASE(K9,36),IF(LEN(_xlfn.BASE(K9,36))=2,\"\"&_xlfn.BASE(K9,36)))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 193
+            },
+            {
+              "example_cell": "C12",
+              "example_formula": "=D12&E12&F12&G12&H12&I12",
+              "functions": [],
+              "count": 192
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "OptionsH",
+              "ref": "C11:K203"
+            }
+          ]
+        },
+        "Options - Vertical": {
+          "max_row": 107,
+          "max_column": 9,
+          "scanned_rows": 107,
+          "distinct_formula_shapes": 2,
+          "formulas": [
+            {
+              "example_cell": "H9",
+              "example_formula": "=IF(LEN(_xlfn.BASE(I9,36))=1,\"0\"&_xlfn.BASE(I9,36),IF(LEN(_xlfn.BASE(I9,36))=2,\"\"&_xlfn.BASE(I9,36)))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 97
+            },
+            {
+              "example_cell": "C12",
+              "example_formula": "=D12&E12&F12&G12",
+              "functions": [],
+              "count": 96
+            }
+          ],
+          "data_validations": [],
+          "tables": []
+        },
+        " Motor Assy": {
+          "max_row": 728,
+          "max_column": 30,
+          "scanned_rows": 260,
+          "distinct_formula_shapes": 3,
+          "formulas": [
+            {
+              "example_cell": "C27",
+              "example_formula": "=D27&E27&F27&G27&H27&I27&J27&K27&L27&M27&N27",
+              "functions": [],
+              "count": 234
+            },
+            {
+              "example_cell": "O27",
+              "example_formula": "=IF(LEN(_xlfn.BASE(P27,36))=1,\"00\"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=2,\"0\"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=3,\"\"&_xlfn.BASE(P27,36))))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 234
+            },
+            {
+              "example_cell": "AD3",
+              "example_formula": "=IF(LEN(_xlfn.BASE(AC3,36))=1,\"0\"&_xlfn.BASE(AC3,36),IF(LEN(_xlfn.BASE(AC3,36))=2,\"\"&_xlfn.BASE(AC3,36)))",
+              "functions": [
+                "BASE",
+                "IF",
+                "LEN"
+              ],
+              "count": 50
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "Table_Motor_Frame",
+              "ref": "Z2:AD52"
+            }
+          ]
+        },
+        "Testing": {
+          "max_row": 70,
+          "max_column": 14,
+          "scanned_rows": 70,
+          "distinct_formula_shapes": 1,
+          "formulas": [
+            {
+              "example_cell": "G10",
+              "example_formula": "=H10&I10&J10&K10",
+              "functions": [],
+              "count": 60
+            }
+          ],
+          "data_validations": [],
+          "tables": [
+            {
+              "name": "Testing_Table",
+              "ref": "G9:M69"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

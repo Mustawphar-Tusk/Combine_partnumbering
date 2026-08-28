@@ -1,0 +1,162 @@
+====================================================================================================
+FYBROC AUTHORITATIVE FORMULA INVENTORY
+====================================================================================================
+
+Git commit: fb3eb996d6f970bef0a0ac43bbd92aa4d5143402  clean=False
+
+====================================================================================================
+WORKBOOK: Rev0.3  (workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx)
+====================================================================================================
+
+Defined names: 36  (LAMBDAs: 6)
+  LAMBDA DUPLICATES: _xlfn.LAMBDA(_xlpm.array,_xlfn.UNIQUE(_xlfn._xlws.FILTER(_xlpm.array,COUNTIF(_xlpm.array,_xlpm.array)>1)))
+  LAMBDA fourfilter: _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.list3,_xlpm.value3,_xlpm.list4,_xlpm.value4,_xlpm.col,INDEX(_xlfn._xlws.FILTER(
+  LAMBDA onefilter: _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,_xlpm.list1=_xlpm.value1),1,_xlpm.col))
+  LAMBDA threefilter: _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.list3,_xlpm.value3,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=
+  LAMBDA twofilter: _xlfn.LAMBDA(_xlpm.array,_xlpm.list1,_xlpm.value1,_xlpm.list2,_xlpm.value2,_xlpm.col,INDEX(_xlfn._xlws.FILTER(_xlpm.array,(_xlpm.list1=_xlpm.value1)*(_xlpm.list
+  LAMBDA twolists: _xlfn.LAMBDA(_xlpm.list1,_xlpm.list2,_xlfn.LET(_xlpm.x,COUNTA(_xlpm.list1),_xlpm.y,COUNTA(_xlpm.list2),_xlpm.total,_xlpm.x*_xlpm.y,_xlpm.seq,_xlfn.SEQUENCE(_xlp
+
+--- [Rev0.3] Main Page  (71x39, 15 formula shapes) ---
+    [12x] B13: =IF(_xlfn.CONCAT(_xlfn.ANCHORARRAY(B16))=_xlfn.CONCAT(_xlfn.ANCHORARRAY(C16)),"Match","Lists do not match")
+    [10x] H16: =_xlfn.ANCHORARRAY(Items!BB4)
+    [1x] B16: =_xlfn.UNIQUE(QATable[Question])
+    [1x] C16: =TRANSPOSE(_xlfn.CHOOSECOLS(Table1[#Headers],_xlfn.SEQUENCE(1,COLUMNS(Table1[#Headers])-2,3)))
+    [1x] D16: =Constraints!B5:B39
+    [1x] G16: =Questions1500
+    [1x] I16: =Questions1530
+    [1x] K16: =Questions1600
+    [1x] M16: =Questions1630
+    [1x] O16: =Questions2530
+    [1x] Q16: =Questions3000
+    [1x] S16: =Questions5500
+
+--- [Rev0.3] Items  (17285x92, 9 formula shapes) ---
+    [1770x] BN4: =
+    [506x] AP4: =IFERROR(IF(MATCH("X",_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],(_xlfn.CHOOSECOLS(Table1[],MATCH($AO4,Table1[#Headers
+    [258x] A3: =_xlfn.CONCAT(Table1[[#This Row],[Series]],"_",Table1[[#This Row],[Item]])
+    [10x] BN3: =IF(COUNTIFS(INDIRECT(BN2),_xlfn.ANCHORARRAY(BM3))>0,"X","")
+    [10x] BB4: =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER($AO$4:$AY$50,AP4:AP50="X"),1)
+    [10x] CA4: =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(Table1[],Table1[Series]=CA3),2)
+    [1x] AP3: =TRANSPOSE(_xlfn._xlws.SORT(_xlfn.UNIQUE(Table1[Series])))
+    [1x] BM3: =_xlfn.UNIQUE(Table1[Item])
+    [1x] AO4: =TRANSPOSE(_xlfn.CHOOSECOLS(Table1[#Headers],_xlfn.SEQUENCE(1,COLUMNS(Table1[#Headers])-2,3)))
+    tables: Table1
+
+--- [Rev0.3] Constraints  (1230x153, 8 formula shapes) ---
+    [4050x] AV6: =
+    [255x] N6: =IF(OR(F6="Yes",G6="Yes",H6="Yes",I6="Yes",J6="Yes",K6="Yes",L6="Yes",M6="Yes"),"Yes","No")
+    [255x] O6: =IF(AND(F6="No Combination",G6="No Combination",H6="No Combination",I6="No Combination",J6="No Combination",K6="No Combi
+    [255x] P6: =IF(OR(COUNTIF(D6:D1094,E6)=0,D6=E6),"Ignore","")
+    [255x] Q6: =IF(R6="","No Combination","Combination exists")
+    [255x] R6: =IFERROR(_xlfn.UNIQUE(DUPLICATES(_xlfn.ANCHORARRAY(AU6)),1),"")
+    [255x] AU6: =TRANSPOSE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(INDIRECT($Q$2),(_xlfn.CHOOSECOLS(INDIRECT($Q$2),2)=D6)+(_xlfn.CHOOSECOLS(
+    [1x] D6: =twolists(B5:B39,B5:B39)
+
+--- [Rev0.3] Combine Variables  (120x36, 3 formula shapes) ---
+    [56x] F4: =_xlfn.TEXTBEFORE(E4,"-")
+    [56x] G4: =_xlfn.TEXTAFTER(E4,"-")
+    [4x] S4: =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],QATable[Question]=S3),2)
+
+--- [Rev0.3] Selections  (678x28, 2 formula shapes) ---
+    [10x] R2: =_xlfn.UNIQUE(_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],(_xlfn.CHOOSECOLS(QATable[],MATCH(R1,QATable[#Headers],0))="
+    [1x] Q2: =_xlfn.UNIQUE(QATable[Question])
+    tables: QATable
+
+--- [Rev0.3] Feasible Constraints  (3482x81, 0 formula shapes) ---
+    tables: ConstraintTable1, ConstraintTable2, Table6, ConstraintTable4, ConstraintTable5, ConstraintTable6, ConstraintTable7, ConstraintTable8, ConstraintTable9, ConstraintTable10, ConstraintTable11, ConstraintTable13, ConstraintTable12, ConstraintTable14, ConstraintTable15, ConstraintTable16, ConstraintTable17, ConstraintTable18, ConstraintTable19, ConstraintTable20, ConstraintTable21, ConstraintTable22, ConstraintTable23, ConstraintTable24, ConstraintTable25, ConstraintTable26, ConstraintTable27, ConstraintTable28, ConstraintTable29
+
+--- [Rev0.3] 1500 Pricing  (2854x127, 1 formula shapes) ---
+    [114x] N6: =E6-_xlfn.XLOOKUP(L6,$H$6:$H$24,$I$6:$I$24)
+
+--- [Rev0.3] 5500 Pricing  (52445x71, 5 formula shapes) ---
+    [510x] AU6: =_xlfn.XLOOKUP(AQ6,$BG$6:$BG$11,$BH$6:$BH$11)
+    [255x] D6: =_xlfn.CONCAT(B6,"+",C6)
+    [255x] AW6: =threefilter($BG$20:$BJ$171,$BG$20:$BG$171,AP6,$BH$20:$BH$171,AR6,$BI$20:$BI$171,AU6,4)
+    [255x] AX6: =twofilter($BL$20:$BN$57,$BL$20:$BL$57,AP6,$BM$20:$BM$57,AU6,3)
+    [255x] AY6: =(AX6*AV6)+AW6
+
+--- [Rev0.3] Sheet3  (99x47, 2 formula shapes) ---
+    [45x] B3: =_xlfn.CHOOSECOLS(_xlfn._xlws.FILTER(QATable[],((QATable[1500]="X")+(QATable[1500]="STD"))*(QATable[Question]=B2)),2)
+    [1x] B2: =TRANSPOSE(Questions1500)
+
+====================================================================================================
+WORKBOOK: V6  (workbooks/Fybroc/Nomenclature_V6.xlsm)
+====================================================================================================
+
+Defined names: 59  (LAMBDAs: 0)
+
+--- [V6] Smart Number  (55x31, 19 formula shapes) ---
+    [8x] D13: =VLOOKUP(D14,Attributes!$C$8:$D$9,2,FALSE)
+    [2x] C5: =LEN(D5)
+    [2x] D5: =D13&E13&G13&H13&"-"&I13&"-"&K13&"-"&O13&P13&"-"&S13&"-"&W13&"-"&Z13&"-"&AC13
+    [2x] E13: =_xlfn.XLOOKUP(1,(Attributes!F23:F42=F14)*(Attributes!G23:G42=F15),Attributes!H23:H42)
+    [2x] V13: =VLOOKUP(V14,Table_Motor_Frame[],5,FALSE)
+    [2x] W13: =IFERROR(VLOOKUP(X14&X15&X16&X17&X18&X19&X20&X21&X22&X23&X24,' Motor Assy'!$C$27:$O$728,13,FALSE),"Not Valid")
+    [2x] Z13: =IFERROR(VLOOKUP(AA14,Attributes!$S$8:$T$38,2,FALSE)&VLOOKUP(AA15,Attributes!$S$8:$T$38,2,FALSE)&VLOOKUP(AA16,Attributes
+    [2x] AC13: =IFERROR(VLOOKUP(AD14&AD15&AD16&AD17,Testing_Table[],6,FALSE),"Not Valid")
+    [2x] O38: =IFERROR(VLOOKUP(P39&"*"&P40,'Setting-Length-Vertical'!C5:G206,5,FALSE),"Confirm Selection")
+    [2x] W51: =X39&X40&X41&X42&X43&X44&X45&X46&X47&X48&X49
+    [1x] D8: ="PUMP, "&D14&", "&F14&", "&G14&", "&IF(H14="VR-1","VR-1",H14)&", "&I14&" TRIM, "&VLOOKUP(K13,'Pump Options - Horizontal
+    [1x] D9: =D13&E13&G13&H13&I13&"-"&K13&"-"&O13&P13&"-"&S13&"-"&W13&Z13&"-"&AC13
+    data validations: 57
+      M14:N14 <- Casing_Drains
+      M15:N15 <- Suction_Discharge
+      M17:N17 <- Impeller_Sleeve
+      M18:N18 <- Casing_Hardware
+      M19:N19 <- Pump_Elastomers
+      M20:N20 <- Bearing_Option
+      M21:N21 <- Power_Frame_Hardware
+      M22:N22 <- Gland_Hardware
+
+--- [V6] Attributes  (523x48, 4 formula shapes) ---
+    [51x] AF7: =AG7&AH7
+    [1x] AR4: =IFERROR(VLOOKUP('Smart Number'!I14,ValidTrim,1,FALSE),"Error")
+    [1x] AV4: =VLOOKUP('Smart Number'!$F$14,AU7:AV18,2,FALSE)
+    [1x] AR7: =_xlfn.UNIQUE(_xlfn._xlws.FILTER(Trim[SF1_ImpellerTrim],Trim[Size]='Smart Number'!$G$14))
+    tables: Trim
+
+--- [V6] Pump Options - Horizontal  (138251x20, 3 formula shapes) ---
+    [249x] C12: =D12&E12&F12&G12&H12&I12&J12&K12&L12&M12&N12&O12
+    [249x] P12: =IF(LEN(_xlfn.BASE(Q12,36))=1,"000"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn.BASE(Q12,36))=2,"00"&_xlfn.BASE(Q12,36),IF(LEN(_xlfn
+    [1x] C10: =LEN(C12)
+    tables: PumpOptionsH
+
+--- [V6] Pump Options - Vertical  (23053x17, 2 formula shapes) ---
+    [247x] C14: =D14&E14&F14&G14&H14&I14&J14&K14&L14
+    [247x] M14: =IF(LEN(_xlfn.BASE(N14,36))=1,"000"&_xlfn.BASE(N14,36),IF(LEN(_xlfn.BASE(N14,36))=2,"00"&_xlfn.BASE(N14,36),IF(LEN(_xlfn
+    tables: V_Pump_Options
+
+--- [V6] Seal Assembly - Horizontal  (80x14, 2 formula shapes) ---
+    [67x] C14: =D14&E14&F14&G14&H14
+    [67x] I14: =IF(LEN(_xlfn.BASE(J14,36))=1,"0"&_xlfn.BASE(J14,36),IF(LEN(_xlfn.BASE(J14,36))=2,""&_xlfn.BASE(J14,36)))
+    tables: SealAssembly
+
+--- [V6] Setting-Length-Vertical  (684x22, 5 formula shapes) ---
+    [202x] C5: =D5&"*"&'Setting-Length-Vertical'!$E5
+    [183x] G24: =_xlfn.LET(
+_xlpm.n,F24-20,
+_xlpm.chars,"0123456789ABCDEFGHIJKLMNPQRSTUVWXYZ",
+MID("ABCDEFGHIJKLMNPQRSTUVWXYZ",INT(_xlpm
+    [116x] O5: =P5&Q5
+    [19x] G5: =TEXT(F5,"00")
+    [5x] S5: =IF(LEN(_xlfn.BASE(R5,36))=1,"0"&_xlfn.BASE(R5,36),IF(LEN(_xlfn.BASE(R5,36))=2,""&_xlfn.BASE(R5,36)))
+
+--- [V6] Options - Horizontal  (203x11, 2 formula shapes) ---
+    [193x] J9: =IF(LEN(_xlfn.BASE(K9,36))=1,"0"&_xlfn.BASE(K9,36),IF(LEN(_xlfn.BASE(K9,36))=2,""&_xlfn.BASE(K9,36)))
+    [192x] C12: =D12&E12&F12&G12&H12&I12
+    tables: OptionsH
+
+--- [V6] Options - Vertical  (107x9, 2 formula shapes) ---
+    [97x] H9: =IF(LEN(_xlfn.BASE(I9,36))=1,"0"&_xlfn.BASE(I9,36),IF(LEN(_xlfn.BASE(I9,36))=2,""&_xlfn.BASE(I9,36)))
+    [96x] C12: =D12&E12&F12&G12
+
+--- [V6]  Motor Assy  (728x30, 3 formula shapes) ---
+    [234x] C27: =D27&E27&F27&G27&H27&I27&J27&K27&L27&M27&N27
+    [234x] O27: =IF(LEN(_xlfn.BASE(P27,36))=1,"00"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.BASE(P27,36))=2,"0"&_xlfn.BASE(P27,36),IF(LEN(_xlfn.B
+    [50x] AD3: =IF(LEN(_xlfn.BASE(AC3,36))=1,"0"&_xlfn.BASE(AC3,36),IF(LEN(_xlfn.BASE(AC3,36))=2,""&_xlfn.BASE(AC3,36)))
+    tables: Table_Motor_Frame
+
+--- [V6] Testing  (70x14, 1 formula shapes) ---
+    [60x] G10: =H10&I10&J10&K10
+    tables: Testing_Table
+

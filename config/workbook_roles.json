@@ -28,16 +28,64 @@
       }
     },
     "FYBROC": {
+      "_note": "Documentation/metadata only - this file is NOT consumed by the compiler pipeline (role resolution is driven by config/workbook_manifests/fybroc.json). As of the Rev0.3/V6 cutover, 'Fybroc Configuration Rev0.3.xlsx' is authoritative for configuration/constraints and 'Nomenclature_V6.xlsm' for hex mapping. The two legacy workbooks below are SUPERSEDED and retained for reference/diffs only.",
       "workbooks": {
+        "Fybroc Configuration Rev0.3.xlsx": {
+          "status": "AUTHORITATIVE",
+          "roles": ["attributes", "series_constraints", "allowed_combinations", "selections"],
+          "authoritative_sheets": {
+            "Constraints": "series_constraint_definitions_and_combination_matrix",
+            "Constraint Index": "named_constraint_table_catalog",
+            "Feasible Constraints": "allowed_and_disallowed_lookup_tables",
+            "Selections": "per_question_per_answer_per_series_validity",
+            "Items": "series_field_applicability",
+            "Hierarchy": "field_grouping_hierarchy"
+          }
+        },
+        "Nomenclature_V6.xlsm": {
+          "status": "AUTHORITATIVE",
+          "roles": ["configuration_workflow", "hex_mapping"],
+          "authoritative_sheets": {
+            "Smart Number": "ordered_dynamic_configuration_workflow_horizontal_and_vertical",
+            "Attributes": "attribute_hex_mapping",
+            "Pump Options - Horizontal": "pump_option_hex_mapping_horizontal",
+            "Pump Options - Vertical": "pump_option_hex_mapping_vertical",
+            "Seal Assembly - Horizontal": "seal_assembly_hex_mapping",
+            "Setting-Length-Vertical": "vertical_setting_length_mapping",
+            "Options - Horizontal": "option_hex_mapping_horizontal",
+            "Options - Vertical": "option_hex_mapping_vertical",
+            "Motor Assy": "motor_assembly_hex_mapping",
+            "Testing": "testing_hex_mapping"
+          },
+          "smart_number_columns_horizontal": [
+            {"section": "Brand", "columns": "D"},
+            {"section": "Series", "columns": "E"},
+            {"section": "Size", "columns": "G"},
+            {"section": "Pump Material", "columns": "H"},
+            {"section": "Impeller Trim", "columns": "I"},
+            {"section": "Pump Options", "columns": "K"},
+            {"section": "Seal Manufacturer", "columns": "O"},
+            {"section": "Complete Seal Assy", "columns": "P"},
+            {"section": "Options", "columns": "S"},
+            {"section": "Frame Size", "columns": "V"},
+            {"section": "Motor Assy", "columns": "W"},
+            {"section": "Motor Modifications", "columns": "Z"},
+            {"section": "Testing", "columns": "AC"}
+          ],
+          "part_number_cell_horizontal": "D9",
+          "part_number_cell_vertical": "D34"
+        },
         "Fybroc Attributes and Constraints.xlsx": {
-          "roles": ["attributes", "series_constraints", "allowed_combinations"],
+          "status": "SUPERSEDED_BY_Rev0.3",
+          "roles": ["legacy_reference"],
           "authoritative_sheets": {
             "Constraints": "series_constraint_definitions",
             "FullList": "allowed_and_disallowed_configurations"
           }
         },
         "Fybroc Nomenclature_V5.xlsm": {
-          "roles": ["configuration_workflow", "hex_mapping"],
+          "status": "SUPERSEDED_BY_V6",
+          "roles": ["legacy_reference"],
           "authoritative_sheets": {
             "SmartNumber": "ordered_dynamic_configuration_workflow",
             "Attributes": "attribute_hex_mapping",

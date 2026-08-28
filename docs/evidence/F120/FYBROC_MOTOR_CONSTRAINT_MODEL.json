@@ -3,8 +3,8 @@
   "step": "F120.4",
   "roadmap_version": "1.0",
   "milestone": "F120",
-  "generated_utc": "2026-08-21T17:08:56.765500+00:00",
-  "git_commit": "33cbacf5162365c98feb512f2cac492704f23c5b",
+  "generated_utc": "2026-08-28T14:55:08.740265+00:00",
+  "git_commit": "fb3eb996d6f970bef0a0ac43bbd92aa4d5143402",
   "git_working_tree_clean": false,
   "motor_constraint_block_count": 19,
   "motor_constraint_blocks": [
@@ -12,7 +12,7 @@
       "series_scope": "1500 and 1600",
       "dimension1": "Alt_Size",
       "dimension2": "F_Frame_Size",
-      "row_count": 205,
+      "row_count": 282,
       "rows": [
         {
           "Alt_Size": "1x1.5x6",
@@ -1038,6 +1038,391 @@
           "Alt_Size": "4x6x10",
           "F_Frame_Size": "254T",
           "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "256T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "182T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "184T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "213T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "215T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "254T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "256T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "182T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "184T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "213T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "215T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "254T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "256T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "182T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "184T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "213T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "215T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "254T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "256T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "254T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "256T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "404T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "405T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "444T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_Frame_Size": "445T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "254T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "256T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "404T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "405T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "444T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_Frame_Size": "445T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "284T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "286T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "324T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "326T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "364T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "365T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "404T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "405T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "444T",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_Frame_Size": "445T",
+          "Allowed?": "Allowed"
         }
       ]
     },
@@ -1045,7 +1430,7 @@
       "series_scope": "1500 and 1600",
       "dimension1": "Alt_Size",
       "dimension2": "F_MotorHpRpm",
-      "row_count": 205,
+      "row_count": 525,
       "rows": [
         {
           "Alt_Size": "1x1.5x6",
@@ -2070,6 +2455,1606 @@
         {
           "Alt_Size": "1.5x3x10",
           "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "60-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "75-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "1.5x3x10",
+          "F_MotorHpRpm": "100-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "60-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "75-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "100-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "60-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "75-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "100-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "60-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "75-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "100-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "60-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "75-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "100-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "100-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "125-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "125-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "150-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "60-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "75-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "100-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "100-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "125-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "125-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "150-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "60-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "75-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "100-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "125-1200",
           "Allowed?": "Allowed"
         }
       ]
@@ -3987,7 +5972,7 @@
       "series_scope": "1530 and 1630",
       "dimension1": "Alt_Size",
       "dimension2": "F_MotorHpRpm",
-      "row_count": 205,
+      "row_count": 375,
       "rows": [
         {
           "Alt_Size": "1x1.5x6",
@@ -5012,6 +6997,856 @@
         {
           "Alt_Size": "2x3x10",
           "F_MotorHpRpm": "1-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "50-1800",
           "Allowed?": "Allowed"
         }
       ]
@@ -9009,7 +11844,7 @@
       "series_scope": "5500",
       "dimension1": "Alt_Size",
       "dimension2": "F_MotorHpRpm",
-      "row_count": 205,
+      "row_count": 417,
       "rows": [
         {
           "Alt_Size": "1x1.5x6",
@@ -10034,6 +12869,1066 @@
         {
           "Alt_Size": "3x4x10",
           "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "60-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "75-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "100-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "100-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "125-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "125-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "150-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "150-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "6x8x13",
+          "F_MotorHpRpm": "200-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "40-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "50-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "60-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "60-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "75-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "75-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "100-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "100-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "125-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "125-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "150-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "150-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "8x10x15",
+          "F_MotorHpRpm": "200-1800",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "25-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "30-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "40-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "50-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "60-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "75-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "100-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "125-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "150-1200",
+          "Allowed?": "Allowed"
+        },
+        {
+          "Alt_Size": "10x12x16",
+          "F_MotorHpRpm": "200-1800",
           "Allowed?": "Allowed"
         }
       ]
@@ -10978,7 +14873,7 @@
       "series_scope": "5530",
       "dimension1": "Alt_Size",
       "dimension2": "F_MotorHpRpm",
-      "row_count": 205,
+      "row_count": 303,
       "rows": [
         {
           "Alt_Size": "1x1.5x6",
@@ -12003,6 +15898,496 @@
         {
           "Alt_Size": "3x4x10",
           "F_MotorHpRpm": "10-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "40-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x4x10",
+          "F_MotorHpRpm": "50-3600",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x10",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "2x3x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "3x4x13",
+          "F_MotorHpRpm": "30-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "1.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "2-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "3-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "7.5-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "10-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "15-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "20-1200",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "25-1800",
+          "Allowed?": "X"
+        },
+        {
+          "Alt_Size": "4x6x13",
+          "F_MotorHpRpm": "30-1800",
           "Allowed?": "X"
         }
       ]
@@ -12166,7 +16551,7 @@
       ]
     }
   ],
-  "combine_variable_table_count": 4,
+  "combine_variable_table_count": 1,
   "combine_variable_tables": [
     {
       "table": "MotorHpRpm_to_HpAndRpm",
@@ -12458,108 +16843,144 @@
           "MotorRPM": "3600"
         }
       ]
-    },
+    }
+  ],
+  "combine_value_domain_table_count": 3,
+  "combine_value_domain_tables": [
     {
-      "table": "MotorType_decomposition",
-      "key_field": "MotorType",
-      "value_fields": [
-        "F_MotorEnclosure",
-        "F_MotorEfficiency",
-        "F_MotorVoltage",
-        "F_MotorHertz",
-        "F_MotorHp",
-        "F_MotorRPM"
-      ],
-      "row_count": 5,
-      "rows": [
+      "table": "MotorType_domains",
+      "attribute_count": 7,
+      "domains": [
         {
-          "key": "TEFC_PE_230/460-3-60",
-          "F_MotorEnclosure": "TEFC",
-          "F_MotorEfficiency": "PE",
-          "F_MotorVoltage": "230",
-          "F_MotorHertz": "3ph - 50 hz",
-          "F_MotorHp": "1",
-          "F_MotorRPM": "900"
+          "attribute": "MotorType",
+          "value_count": 5,
+          "values": [
+            "TEFC_PE_230/460-3-60",
+            "TEFC_PE_SD_230/460-3-60",
+            "TEFC_PE_460-3-60",
+            "TEFC_PE_SD_460-3-60",
+            "TEFC_PE_IEEE_841_460-3-60"
+          ]
         },
         {
-          "key": "TEFC_PE_SD_230/460-3-60",
-          "F_MotorEnclosure": "TEFC_SD",
-          "F_MotorEfficiency": null,
-          "F_MotorVoltage": "230/460",
-          "F_MotorHertz": "3ph - 60 hz",
-          "F_MotorHp": "1.5",
-          "F_MotorRPM": "1200"
+          "attribute": "F_MotorEnclosure",
+          "value_count": 3,
+          "values": [
+            "TEFC",
+            "TEFC_SD",
+            "IEEE_841"
+          ]
         },
         {
-          "key": "TEFC_PE_460-3-60",
-          "F_MotorEnclosure": "IEEE_841",
-          "F_MotorEfficiency": null,
-          "F_MotorVoltage": "460",
-          "F_MotorHertz": null,
-          "F_MotorHp": "2",
-          "F_MotorRPM": "1800"
+          "attribute": "F_MotorEfficiency",
+          "value_count": 1,
+          "values": [
+            "PE"
+          ]
         },
         {
-          "key": "TEFC_PE_SD_460-3-60",
-          "F_MotorEnclosure": null,
-          "F_MotorEfficiency": null,
-          "F_MotorVoltage": null,
-          "F_MotorHertz": null,
-          "F_MotorHp": "3",
-          "F_MotorRPM": "3600"
+          "attribute": "F_MotorVoltage",
+          "value_count": 3,
+          "values": [
+            "230",
+            "230/460",
+            "460"
+          ]
         },
         {
-          "key": "TEFC_PE_IEEE_841_460-3-60",
-          "F_MotorEnclosure": null,
-          "F_MotorEfficiency": null,
-          "F_MotorVoltage": null,
-          "F_MotorHertz": null,
-          "F_MotorHp": "5",
-          "F_MotorRPM": null
+          "attribute": "F_MotorHertz",
+          "value_count": 2,
+          "values": [
+            "3ph - 50 hz",
+            "3ph - 60 hz"
+          ]
+        },
+        {
+          "attribute": "F_MotorHp",
+          "value_count": 19,
+          "values": [
+            "1",
+            "1.5",
+            "2",
+            "3",
+            "5",
+            "7.5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            "40",
+            "50",
+            "60",
+            "75",
+            "100",
+            "125",
+            "150",
+            "200"
+          ]
+        },
+        {
+          "attribute": "F_MotorRPM",
+          "value_count": 4,
+          "values": [
+            "900",
+            "1200",
+            "1800",
+            "3600"
+          ]
         }
       ]
     },
     {
-      "table": "MotorMfg_to_MotorOption",
-      "key_field": "Motor Mfg",
-      "value_fields": [
-        "Motor Option"
-      ],
-      "row_count": 4,
-      "rows": [
+      "table": "MotorMfgOption_domains",
+      "attribute_count": 2,
+      "domains": [
         {
-          "key": "Standard Offering",
-          "Motor Option": "Supplied by Fybroc"
+          "attribute": "Motor Mfg",
+          "value_count": 4,
+          "values": [
+            "Standard Offering",
+            "Baldor",
+            "TECO",
+            "Toshiba"
+          ]
         },
         {
-          "key": "Baldor",
-          "Motor Option": "Installed by Fybroc"
-        },
-        {
-          "key": "TECO",
-          "Motor Option": "By Others"
-        },
-        {
-          "key": "Toshiba",
-          "Motor Option": null
+          "attribute": "Motor Option",
+          "value_count": 3,
+          "values": [
+            "Supplied by Fybroc",
+            "Installed by Fybroc",
+            "By Others"
+          ]
         }
       ]
     },
     {
-      "table": "WettedHardware_to_ShaftMaterial",
-      "key_field": "Wetted Hardware",
-      "value_fields": [
-        "Shaft Material"
-      ],
-      "row_count": 2,
-      "rows": [
+      "table": "WettedHardwareShaft_domains",
+      "attribute_count": 2,
+      "domains": [
         {
-          "key": "Match Shaft Material",
-          "Shaft Material": "303 SS"
+          "attribute": "Wetted Hardware",
+          "value_count": 2,
+          "values": [
+            "Match Shaft Material",
+            "Select Material"
+          ]
         },
         {
-          "key": "Select Material",
-          "Shaft Material": "316 SS"
+          "attribute": "Shaft Material",
+          "value_count": 7,
+          "values": [
+            "303 SS",
+            "316 SS",
+            "Carp-20",
+            "Hastelloy C",
+            "Titanium",
+            "FRP Wrapped Shaft (303SS Core)",
+            "FRP Wrapped Shaft (316SS Core)"
+          ]
         }
       ]
     }

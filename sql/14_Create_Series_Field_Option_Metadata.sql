@@ -76,6 +76,8 @@ BEGIN
         SourceFieldCell varchar(30) NOT NULL,
         SourceValueCell varchar(30) NOT NULL,
         SourceSeriesCell varchar(30) NOT NULL,
+        SelectionMarker varchar(10) NOT NULL DEFAULT 'X',
+        IsStandard bit NOT NULL DEFAULT 0,
         IsActive bit NOT NULL DEFAULT 1,
         CreatedAt datetime2(0) NOT NULL DEFAULT SYSUTCDATETIME(),
         CONSTRAINT FK_SeriesFieldOption_Publication
@@ -110,5 +112,21 @@ BEGIN
         )
         INCLUDE (OptionValue)
         WHERE IsActive = 1;
+END;
+GO
+
+-- Rev0.3 Selections three-state marker support (STD / X / blank).
+-- Idempotent add for databases created before the STD propagation.
+IF COL_LENGTH('cfg.SeriesFieldOption', 'SelectionMarker') IS NULL
+BEGIN
+    ALTER TABLE cfg.SeriesFieldOption
+        ADD SelectionMarker varchar(10) NOT NULL CONSTRAINT DF_SeriesFieldOption_SelectionMarker DEFAULT 'X';
+END;
+GO
+
+IF COL_LENGTH('cfg.SeriesFieldOption', 'IsStandard') IS NULL
+BEGIN
+    ALTER TABLE cfg.SeriesFieldOption
+        ADD IsStandard bit NOT NULL CONSTRAINT DF_SeriesFieldOption_IsStandard DEFAULT 0;
 END;
 GO

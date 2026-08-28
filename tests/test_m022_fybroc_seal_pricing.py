@@ -23,7 +23,7 @@ def compile_report():
         ROOT
         / "workbooks"
         / "Fybroc"
-        / "Fybroc Nomenclature_V5.xlsm",
+        / "Nomenclature_V6.xlsm",
         ROOT
         / "exports"
         / "fybroc_base_pump_pricing.json",
@@ -144,16 +144,10 @@ def test_m0224b_1530_group1_standard_seal_prices():
     fkm = find_candidate(
         series="1530 (ANSI)",
         size="1x1.5x6",
-        seal_option=(
-            "Mechanical Seal Included*"
-        ),
-        seal_type=(
-            "8B2 Single Outside*"
-        ),
-        materials=(
-            "Carbon vs. Ceramic*"
-        ),
-        elastomers="FKM*",
+        seal_option="Supplied by Fybroc",
+        seal_type="8B2 Single Outside",
+        materials="Carbon vs Ceramic",
+        elastomers="FKM",
     )
 
     assert fkm.amount == 749.0
@@ -167,15 +161,9 @@ def test_m0224b_1530_group1_standard_seal_prices():
     epr = find_candidate(
         series="1530 (ANSI)",
         size="1x1.5x6",
-        seal_option=(
-            "Mechanical Seal Included*"
-        ),
-        seal_type=(
-            "8B2 Single Outside*"
-        ),
-        materials=(
-            "Carbon vs. Ceramic*"
-        ),
+        seal_option="Supplied by Fybroc",
+        seal_type="8B2 Single Outside",
+        materials="Carbon vs Ceramic",
         elastomers="EPR",
     )
 
@@ -187,15 +175,9 @@ def test_m0224b_ptfe_table137_and_call_for_price():
     found = find_candidate(
         series="1530 (ANSI)",
         size="1x1.5x6",
-        seal_option=(
-            "Mechanical Seal Included*"
-        ),
-        seal_type=(
-            "8B2 Single Outside*"
-        ),
-        materials=(
-            "Carbon vs. Ceramic*"
-        ),
+        seal_option="Supplied by Fybroc",
+        seal_type="8B2 Single Outside",
+        materials="Carbon vs Ceramic",
         elastomers="PTFE",
     )
 
@@ -210,15 +192,9 @@ def test_m0224b_ptfe_table137_and_call_for_price():
     cfp = find_candidate(
         series="1530 (ANSI)",
         size="1x1.5x6",
-        seal_option=(
-            "Mechanical Seal Included*"
-        ),
-        seal_type=(
-            "RAC Single Outside"
-        ),
-        materials=(
-            "Carbon vs. Ceramic*"
-        ),
+        seal_option="Supplied by Fybroc",
+        seal_type="RAC Single Outside",
+        materials="Carbon vs Ceramic",
         elastomers="PTFE",
     )
 
@@ -258,9 +234,9 @@ def test_m0224b_customer_supplied_is_cfp():
 
 def test_m0224b_all_no_seal_variants_are_zero():
     options = (
-        "No Seal (Single Seal Gland by Fyboc)",
-        "No Seal (Double Seal Gland by Fyboc)",
-        "No Seal (No Seal Gland)",
+        "NoSeal Single Seal Gland",
+        "NoSeal Double Seal Gland",
+        "NoSeal No Seal Gland",
     )
 
     for option in options:
@@ -296,7 +272,7 @@ def test_m0224b_option_counts():
     )
 
     assert counts[
-        "Mechanical Seal Included*"
+        "Supplied by Fybroc"
     ] == 2160
 
     assert counts[
@@ -304,15 +280,15 @@ def test_m0224b_option_counts():
     ] == 72
 
     assert counts[
-        "No Seal (Single Seal Gland by Fyboc)"
+        "NoSeal Single Seal Gland"
     ] == 72
 
     assert counts[
-        "No Seal (Double Seal Gland by Fyboc)"
+        "NoSeal Double Seal Gland"
     ] == 72
 
     assert counts[
-        "No Seal (No Seal Gland)"
+        "NoSeal No Seal Gland"
     ] == 72
 
 

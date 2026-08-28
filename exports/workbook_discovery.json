@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-08-04T18:10:33.995004+00:00",
-  "workbook_root": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering\\workbooks",
-  "workbook_count": 5,
+  "generated_utc": "2026-08-27T14:12:35.640394+00:00",
+  "workbook_root": "C:\\Users\\makorede\\Downloads\\Combine_partnumbering - Claude\\workbooks",
+  "workbook_count": 9,
   "family_count": 2,
   "records": [
     {
@@ -171,68 +171,164 @@
       "discovery_messages": []
     },
     {
+      "family_code": "DEAN",
+      "family_name": "Dean Pump",
+      "role": "motor_numbering_and_pricing_candidate",
+      "processing_order": 30,
+      "required": false,
+      "file_name": "Copy of Motor Numbering.xlsm",
+      "relative_path": "workbooks\\Dean\\Copy of Motor Numbering.xlsm",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 3980814,
+      "modified_utc": "2026-08-13T19:51:45.420452+00:00",
+      "sha256": "f5acc4ab8d76957a30ecf7f3626b7fe2454b578738ccb7ac1af19c8a8865a79b",
+      "worksheets": [
+        {
+          "name": "Constraints",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Numbering",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Pricing",
+          "state": "visible",
+          "index": 3
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "DEAN",
+      "family_name": "Dean Pump",
+      "role": "pricing_matrix_candidate",
+      "processing_order": 40,
+      "required": false,
+      "file_name": "Dean Pricing Matrix.xlsx",
+      "relative_path": "workbooks\\Dean\\Dean Pricing Matrix.xlsx",
+      "extension": ".xlsx",
+      "macro_enabled": false,
+      "size_bytes": 299074,
+      "modified_utc": "2026-08-13T19:50:43.142234+00:00",
+      "sha256": "cd390b55a6686ffb1fcc5fb493d9d541922bc1cd3f83c3c5c62d5cca9aa5a3e5",
+      "worksheets": [
+        {
+          "name": "Std Options",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "COUPLINGS",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Base Plates",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "Shaft Configuration",
+          "state": "visible",
+          "index": 4
+        },
+        {
+          "name": "Sheet2",
+          "state": "visible",
+          "index": 5
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
       "family_code": "FYBROC",
       "family_name": "Fybroc Pump",
       "role": "attributes_and_constraints",
       "processing_order": 10,
       "required": true,
-      "file_name": "Fybroc Attributes and Constraints.xlsx",
-      "relative_path": "workbooks\\Fybroc\\Fybroc Attributes and Constraints.xlsx",
+      "file_name": "Fybroc Configuration Rev0.3.xlsx",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Configuration Rev0.3.xlsx",
       "extension": ".xlsx",
       "macro_enabled": false,
-      "size_bytes": 93062,
-      "modified_utc": "2026-06-09T13:30:27.593359+00:00",
-      "sha256": "61a2c26b47db30792b9970748884ecb6d57cc4431c826b9099d63ccc35ead8f3",
+      "size_bytes": 6820637,
+      "modified_utc": "2026-08-13T19:57:19.483257+00:00",
+      "sha256": "9eaa9e25ef9533a7425368e1ce646980388f01b675fc4d06429ca21842a88edb",
       "worksheets": [
         {
-          "name": "MAIN",
+          "name": "To do",
           "state": "visible",
           "index": 1
         },
         {
-          "name": "Constraints",
+          "name": "Main Page",
           "state": "visible",
           "index": 2
         },
         {
-          "name": "FULL LIST",
-          "state": "visible",
+          "name": "Items",
+          "state": "hidden",
           "index": 3
         },
         {
-          "name": "1500",
-          "state": "visible",
+          "name": "Constraints",
+          "state": "hidden",
           "index": 4
         },
         {
-          "name": "1530",
+          "name": "Hierarchy",
           "state": "visible",
           "index": 5
         },
         {
-          "name": "1600",
+          "name": "Combine Variables",
           "state": "visible",
           "index": 6
         },
         {
-          "name": "1630",
+          "name": "Selections",
           "state": "visible",
           "index": 7
         },
         {
-          "name": "2530",
+          "name": "Constraint Index",
           "state": "visible",
           "index": 8
         },
         {
-          "name": "3000",
+          "name": "Pricing Index",
           "state": "visible",
           "index": 9
         },
         {
-          "name": "5500",
+          "name": "Feasible Constraints",
           "state": "visible",
           "index": 10
+        },
+        {
+          "name": "Motor Constraints",
+          "state": "visible",
+          "index": 11
+        },
+        {
+          "name": "1500 Pricing",
+          "state": "visible",
+          "index": 12
+        },
+        {
+          "name": "5500 Pricing",
+          "state": "visible",
+          "index": 13
+        },
+        {
+          "name": "Sheet3",
+          "state": "visible",
+          "index": 14
         }
       ],
       "discovery_status": "discovered",
@@ -244,13 +340,13 @@
       "role": "configuration_and_hex_mapping",
       "processing_order": 20,
       "required": true,
-      "file_name": "Fybroc Nomenclature_V5.xlsm",
-      "relative_path": "workbooks\\Fybroc\\Fybroc Nomenclature_V5.xlsm",
+      "file_name": "Nomenclature_V6.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Nomenclature_V6.xlsm",
       "extension": ".xlsm",
       "macro_enabled": true,
-      "size_bytes": 12971090,
-      "modified_utc": "2026-06-21T23:23:59.202104+00:00",
-      "sha256": "5c41be2223b72747eb7e14970c64db94aaa13299be9211072ec145dac27b419c",
+      "size_bytes": 14577747,
+      "modified_utc": "2026-08-13T19:55:30.947354+00:00",
+      "sha256": "fb06512ec977d27ec733f1c34c3670c0c60b834ae5b5200a19efdf0b469f4507",
       "worksheets": [
         {
           "name": "Smart Number",
@@ -263,24 +359,44 @@
           "index": 2
         },
         {
-          "name": "Pump Options",
+          "name": "Pump Options - Horizontal",
           "state": "visible",
           "index": 3
         },
         {
-          "name": "Seal Assembly",
+          "name": "Pump Options - Vertical",
           "state": "visible",
           "index": 4
         },
         {
-          "name": "Options",
+          "name": "Seal Assembly - Horizontal",
           "state": "visible",
           "index": 5
         },
         {
-          "name": " Motor Assy",
+          "name": "Setting-Length-Vertical",
           "state": "visible",
           "index": 6
+        },
+        {
+          "name": "Options - Horizontal",
+          "state": "visible",
+          "index": 7
+        },
+        {
+          "name": "Options - Vertical",
+          "state": "visible",
+          "index": 8
+        },
+        {
+          "name": " Motor Assy",
+          "state": "visible",
+          "index": 9
+        },
+        {
+          "name": "Testing",
+          "state": "visible",
+          "index": 10
         }
       ],
       "discovery_status": "discovered",
@@ -469,6 +585,122 @@
           "name": "Sheet1",
           "state": "hidden",
           "index": 34
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "FYBROC",
+      "family_name": "Fybroc Pump",
+      "role": "legacy_attributes_and_constraints_reference",
+      "processing_order": 40,
+      "required": false,
+      "file_name": "Fybroc Attributes and Constraints.xlsx",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Attributes and Constraints.xlsx",
+      "extension": ".xlsx",
+      "macro_enabled": false,
+      "size_bytes": 93062,
+      "modified_utc": "2026-06-09T13:30:27.593359+00:00",
+      "sha256": "61a2c26b47db30792b9970748884ecb6d57cc4431c826b9099d63ccc35ead8f3",
+      "worksheets": [
+        {
+          "name": "MAIN",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Constraints",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "FULL LIST",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "1500",
+          "state": "visible",
+          "index": 4
+        },
+        {
+          "name": "1530",
+          "state": "visible",
+          "index": 5
+        },
+        {
+          "name": "1600",
+          "state": "visible",
+          "index": 6
+        },
+        {
+          "name": "1630",
+          "state": "visible",
+          "index": 7
+        },
+        {
+          "name": "2530",
+          "state": "visible",
+          "index": 8
+        },
+        {
+          "name": "3000",
+          "state": "visible",
+          "index": 9
+        },
+        {
+          "name": "5500",
+          "state": "visible",
+          "index": 10
+        }
+      ],
+      "discovery_status": "discovered",
+      "discovery_messages": []
+    },
+    {
+      "family_code": "FYBROC",
+      "family_name": "Fybroc Pump",
+      "role": "legacy_configuration_and_hex_mapping_reference",
+      "processing_order": 50,
+      "required": false,
+      "file_name": "Fybroc Nomenclature_V5.xlsm",
+      "relative_path": "workbooks\\Fybroc\\Fybroc Nomenclature_V5.xlsm",
+      "extension": ".xlsm",
+      "macro_enabled": true,
+      "size_bytes": 12971090,
+      "modified_utc": "2026-06-21T23:23:59.202104+00:00",
+      "sha256": "5c41be2223b72747eb7e14970c64db94aaa13299be9211072ec145dac27b419c",
+      "worksheets": [
+        {
+          "name": "Smart Number",
+          "state": "visible",
+          "index": 1
+        },
+        {
+          "name": "Attributes",
+          "state": "visible",
+          "index": 2
+        },
+        {
+          "name": "Pump Options",
+          "state": "visible",
+          "index": 3
+        },
+        {
+          "name": "Seal Assembly",
+          "state": "visible",
+          "index": 4
+        },
+        {
+          "name": "Options",
+          "state": "visible",
+          "index": 5
+        },
+        {
+          "name": " Motor Assy",
+          "state": "visible",
+          "index": 6
         }
       ],
       "discovery_status": "discovered",

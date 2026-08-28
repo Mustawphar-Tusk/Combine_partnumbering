@@ -2,6 +2,7 @@
   "family_code": "FYBROC",
   "workbook_role": "configuration_and_hex_mapping",
   "worksheet_name": "Smart Number",
+  "_migration_note": "Repointed from legacy 'Fybroc Nomenclature_V5.xlsm' Smart Number to authoritative 'Nomenclature_V6.xlsm' Smart Number (HORIZONTAL flow, part-number cell D9, 13 segments). V6 splits into horizontal (row 14 inputs) and vertical (row 34 inputs) flows; this profile encodes the horizontal segment column workflow. V6 inserts a Seal Manufacturer segment (col O) before Seal Assembly (col P) and shifts columns vs legacy. Vertical flow (Setting/Length, Vertical Options) is handled separately. Columns verified against docs/evidence/F110/FYBROC_V6_SMART_NUMBER.json.",
   "strategy": {
     "type": "column_workflow",
     "sections": [
@@ -21,7 +22,7 @@
             "field_code": "SIZE",
             "field_name": "Size",
             "columns": [
-              "F"
+              "G"
             ],
             "display_order": 20
           },
@@ -29,7 +30,7 @@
             "field_code": "PUMP_MATERIAL",
             "field_name": "Pump Material",
             "columns": [
-              "G"
+              "H"
             ],
             "display_order": 30
           },
@@ -37,7 +38,6 @@
             "field_code": "IMPELLER_TRIM",
             "field_name": "Impeller Trim",
             "columns": [
-              "H",
               "I"
             ],
             "display_order": 40
@@ -52,10 +52,7 @@
             "field_code": "PUMP_OPTIONS",
             "field_name": "Pump Options",
             "columns": [
-              "J",
-              "K",
-              "L",
-              "M"
+              "K"
             ],
             "display_order": 50
           }
@@ -66,13 +63,20 @@
         "section_name": "Complete Seal Assembly",
         "fields": [
           {
-            "field_code": "COMPLETE_SEAL_ASSEMBLY",
-            "field_name": "Complete Seal Assembly",
+            "field_code": "SEAL_MANUFACTURER",
+            "field_name": "Seal Manufacturer",
             "columns": [
-              "N",
               "O"
             ],
             "display_order": 60
+          },
+          {
+            "field_code": "COMPLETE_SEAL_ASSEMBLY",
+            "field_name": "Complete Seal Assembly",
+            "columns": [
+              "P"
+            ],
+            "display_order": 70
           }
         ]
       },
@@ -84,10 +88,9 @@
             "field_code": "OPTIONS",
             "field_name": "Options",
             "columns": [
-              "P",
-              "Q"
+              "S"
             ],
-            "display_order": 70
+            "display_order": 80
           }
         ]
       },
@@ -96,14 +99,20 @@
         "section_name": "Motor Assembly",
         "fields": [
           {
+            "field_code": "MOTOR_FRAME",
+            "field_name": "Frame Size",
+            "columns": [
+              "V"
+            ],
+            "display_order": 90
+          },
+          {
             "field_code": "MOTOR_ASSEMBLY",
             "field_name": "Motor Assembly",
             "columns": [
-              "R",
-              "S",
-              "T"
+              "W"
             ],
-            "display_order": 80
+            "display_order": 100
           }
         ]
       },
@@ -115,26 +124,23 @@
             "field_code": "MOTOR_MODIFICATIONS",
             "field_name": "Motor Modifications",
             "columns": [
-              "U",
-              "V",
-              "W"
+              "Z"
             ],
-            "display_order": 90
+            "display_order": 110
           }
         ]
       },
       {
         "section_code": "TEST",
-        "section_name": "Test",
+        "section_name": "Testing",
         "fields": [
           {
-            "field_code": "TEST",
-            "field_name": "Test",
+            "field_code": "TESTING",
+            "field_name": "Testing",
             "columns": [
-              "X",
-              "Y"
+              "AC"
             ],
-            "display_order": 100
+            "display_order": 120
           }
         ]
       }

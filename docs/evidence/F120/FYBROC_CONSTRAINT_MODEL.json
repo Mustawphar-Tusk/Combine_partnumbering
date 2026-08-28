@@ -3,8 +3,8 @@
   "step": "F120.3",
   "roadmap_version": "1.0",
   "milestone": "F120",
-  "generated_utc": "2026-08-21T20:08:52.910952+00:00",
-  "git_commit": "d4c26505e6cecf9d114da709b98cbacfa501257f",
+  "generated_utc": "2026-08-27T17:29:36.428421+00:00",
+  "git_commit": "fb3eb996d6f970bef0a0ac43bbd92aa4d5143402",
   "git_working_tree_clean": false,
   "combination_matrix": {
     "series_codes": [
@@ -3581,6 +3581,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 2,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Alt Size",
           "CouplingGuard",
@@ -3613,7 +3615,24 @@
       "table_name": "ConstraintTable2",
       "description": "Cannot make a 2x3x13 1500 or 1530 in ISO nor JIS",
       "series_applicability": "ALL_SERIES",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 2,
+        "anchor_row": 10,
+        "header_row": 11,
+        "headers": [
+          "Alt Size",
+          "Flange Type",
+          "Allowed?"
+        ],
+        "row_count": 1,
+        "rows": [
+          {
+            "Alt Size": "2x3x13",
+            "Flange Type": "DIN/ISO Flange",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Alt Size",
@@ -3622,7 +3641,34 @@
       "table_name": "ConstraintTable3",
       "description": "5500 ONLY, Group 3 Internal flush not allowed",
       "series_applicability": "5500_ONLY",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 2,
+        "anchor_row": 15,
+        "header_row": 16,
+        "headers": [
+          "Alt Size",
+          "Flush",
+          "Allowed?"
+        ],
+        "row_count": 3,
+        "rows": [
+          {
+            "Alt Size": "6x8x13",
+            "Flush": "Internal Flush",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "8x10x15",
+            "Flush": "Internal Flush",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "10x12x16",
+            "Flush": "Internal Flush",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Alt Size",
@@ -3642,6 +3688,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 6,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Alt Size",
           "ImpellerTrim",
@@ -6255,6 +6303,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 10,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Alt Size",
           "Pump Material",
@@ -6352,7 +6402,49 @@
       "table_name": "ConstraintTable6",
       "description": "5500 ONLY, Group 3 pumps with a wrapped shaft not allowed.",
       "series_applicability": "5500_ONLY",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 10,
+        "anchor_row": 24,
+        "header_row": 25,
+        "headers": [
+          "Alt Size",
+          "Shaft Material",
+          "Allowed?"
+        ],
+        "row_count": 6,
+        "rows": [
+          {
+            "Alt Size": "6x8x13",
+            "Shaft Material": "FRP Wrapped Shaft (303SS Core)",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "8x10x15",
+            "Shaft Material": "FRP Wrapped Shaft (303SS Core)",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "10x12x16",
+            "Shaft Material": "FRP Wrapped Shaft (303SS Core)",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "6x8x13",
+            "Shaft Material": "FRP Wrapped Shaft (316SS Core)",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "8x10x15",
+            "Shaft Material": "FRP Wrapped Shaft (316SS Core)",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Alt Size": "10x12x16",
+            "Shaft Material": "FRP Wrapped Shaft (316SS Core)",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Casing Drains",
@@ -6363,6 +6455,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 14,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Casing Drains",
           "Pump Material",
@@ -6387,6 +6481,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 18,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "CycloneSep",
           "Flush",
@@ -6436,6 +6532,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 22,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Flush",
           "Pump Material",
@@ -6488,6 +6586,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 26,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "MotorOption",
           "Paint Upgrade",
@@ -6515,7 +6615,29 @@
       "table_name": "ConstraintTable11",
       "description": "We can not supply Shaft Grounding Rings if the motor is being supplied by the customer.",
       "series_applicability": "ALL_SERIES",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 26,
+        "anchor_row": 9,
+        "header_row": 10,
+        "headers": [
+          "MotorOption",
+          "Shaft Grounding",
+          "Allowed?"
+        ],
+        "row_count": 2,
+        "rows": [
+          {
+            "MotorOption": "Installed by Fybroc",
+            "Shaft Grounding": "Supplied by Fybroc",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "MotorOption": "By Others",
+            "Shaft Grounding": "Supplied by Fybroc",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Pump Material",
@@ -6526,6 +6648,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 30,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Pump Material",
           "Setting",
@@ -6618,7 +6742,29 @@
       "table_name": "ConstraintTable13",
       "description": "5500 ONLY, EY-2 and Wrapped Shafts are Now Allowed.",
       "series_applicability": "5500_ONLY",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 30,
+        "anchor_row": 22,
+        "header_row": 23,
+        "headers": [
+          "Pump Material",
+          "Shaft Material",
+          "Allowed?"
+        ],
+        "row_count": 2,
+        "rows": [
+          {
+            "Pump Material": "EY-2",
+            "Shaft Material": "FRP Wrapped Shaft (303SS Core)",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Pump Material": "EY-2",
+            "Shaft Material": "FRP Wrapped Shaft (316SS Core)",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Pump Material",
@@ -6627,7 +6773,29 @@
       "table_name": "ConstraintTable14",
       "description": "We do not make Separate Sleeve in EY-2, not VR-1V. Those are two materials that require the all FRP parts match due to chemical compatability.",
       "series_applicability": "ALL_SERIES",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 30,
+        "anchor_row": 27,
+        "header_row": 28,
+        "headers": [
+          "Pump Material",
+          "Sleeve",
+          "Allowed?"
+        ],
+        "row_count": 2,
+        "rows": [
+          {
+            "Pump Material": "EY-2",
+            "Sleeve": "Separate FRP",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Pump Material": "VR-1V",
+            "Sleeve": "Separate FRP",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Pump Material",
@@ -6636,7 +6804,24 @@
       "table_name": "ConstraintTable15",
       "description": "Casings in VR-1V are not permitted to have taps. Purpose of VR-1V is to prevent fiberglass from being exposed to fluid.",
       "series_applicability": "ALL_SERIES",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 30,
+        "anchor_row": 32,
+        "header_row": 33,
+        "headers": [
+          "Pump Material",
+          "Suction Discharge Taps",
+          "Allowed?"
+        ],
+        "row_count": 1,
+        "rows": [
+          {
+            "Pump Material": "VR-1V",
+            "Suction Discharge Taps": "Suction Discharge Taps",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Seal Guard",
@@ -6647,6 +6832,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 34,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Seal Guard",
           "Seal Option",
@@ -6669,7 +6856,44 @@
       "table_name": "ConstraintTable17",
       "description": "Must get a matching gland with seal.",
       "series_applicability": "ALL_SERIES",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 34,
+        "anchor_row": 8,
+        "header_row": 9,
+        "headers": [
+          "Seal Option",
+          "Seal Type",
+          "Allowed?"
+        ],
+        "row_count": 5,
+        "rows": [
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Type": "8-1T Double Inside",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Type": "CRO Double Inside",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Type": "RXO Double Inside",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Type": "8B2 Single Outside",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Type": "RAC Single Outside",
+            "Allowed?": "Not Allowed"
+          }
+        ]
+      }
     },
     {
       "option1": "Setting",
@@ -6680,6 +6904,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 38,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Setting",
           "Shaft Material",
@@ -6739,6 +6965,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 42,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Shaft Material",
           "Sleeve",
@@ -6818,6 +7046,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 46,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Motor Control",
           "Shaft Grounding",
@@ -6842,6 +7072,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 50,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Alt Size",
           "Pump Material",
@@ -27724,6 +27956,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 55,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Setting/Length",
           "Length",
@@ -28658,6 +28892,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 59,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Setting/Length",
           "Setting",
@@ -28772,6 +29008,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 63,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Tailpipe Option",
           "Tailpipe Length",
@@ -29366,6 +29604,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 67,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Seal Mfg",
           "Seal Type",
@@ -29533,7 +29773,144 @@
       "table_name": "ConstraintTable26",
       "description": "Seal Manufacturer depends on if Supplied by Fybroc or Installed by Fybroc is selected.",
       "series_applicability": "ALL_SERIES",
-      "resolved_table": null
+      "resolved_table": {
+        "start_col": 67,
+        "anchor_row": 37,
+        "header_row": 38,
+        "headers": [
+          "Seal Option",
+          "Seal Mfg",
+          "Allowed?"
+        ],
+        "row_count": 25,
+        "rows": [
+          {
+            "Seal Option": "Supplied by Fybroc",
+            "Seal Mfg": "Standard Offering",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Supplied by Fybroc",
+            "Seal Mfg": "John Crane",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Supplied by Fybroc",
+            "Seal Mfg": "Flowserve",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Supplied by Fybroc",
+            "Seal Mfg": "Flex-a-seal",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Supplied by Fybroc",
+            "Seal Mfg": "Custom Seal Mfg",
+            "Allowed?": null
+          },
+          {
+            "Seal Option": "Installed by Fybroc",
+            "Seal Mfg": "Standard Offering",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Installed by Fybroc",
+            "Seal Mfg": "John Crane",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Installed by Fybroc",
+            "Seal Mfg": "Flowserve",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Installed by Fybroc",
+            "Seal Mfg": "Flex-a-seal",
+            "Allowed?": "Allowed"
+          },
+          {
+            "Seal Option": "Installed by Fybroc",
+            "Seal Mfg": "Custom Seal Mfg",
+            "Allowed?": null
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Mfg": "Standard Offering",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Mfg": "John Crane",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Mfg": "Flowserve",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Mfg": "Flex-a-seal",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Single Seal Gland",
+            "Seal Mfg": "Custom Seal Mfg",
+            "Allowed?": null
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Mfg": "Standard Offering",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Mfg": "John Crane",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Mfg": "Flowserve",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Mfg": "Flex-a-seal",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal Double Seal Gland",
+            "Seal Mfg": "Custom Seal Mfg",
+            "Allowed?": null
+          },
+          {
+            "Seal Option": "NoSeal NoSealGland",
+            "Seal Mfg": "Standard Offering",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal NoSealGland",
+            "Seal Mfg": "John Crane",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal NoSealGland",
+            "Seal Mfg": "Flowserve",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal NoSealGland",
+            "Seal Mfg": "Flex-a-seal",
+            "Allowed?": "Not Allowed"
+          },
+          {
+            "Seal Option": "NoSeal NoSealGland",
+            "Seal Mfg": "Custom Seal Mfg",
+            "Allowed?": null
+          }
+        ]
+      }
     },
     {
       "option1": "Wetted Hardware",
@@ -29544,6 +29921,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 71,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Wetted Hardware",
           "Wetted Hardware Selection",
@@ -29613,6 +29992,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 75,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Flush Material",
           "Flush",
@@ -29722,6 +30103,8 @@
       "series_applicability": "ALL_SERIES",
       "resolved_table": {
         "start_col": 79,
+        "anchor_row": 4,
+        "header_row": 5,
         "headers": [
           "Alt Size",
           "C-Face Adapter",
@@ -29918,6 +30301,78 @@
         "Allowed?"
       ],
       "row_count": 3
+    },
+    "ConstraintTable17": {
+      "headers": [
+        "Seal Option",
+        "Seal Type",
+        "Allowed?"
+      ],
+      "row_count": 5
+    },
+    "ConstraintTable11": {
+      "headers": [
+        "MotorOption",
+        "Shaft Grounding",
+        "Allowed?"
+      ],
+      "row_count": 2
+    },
+    "ConstraintTable2": {
+      "headers": [
+        "Alt Size",
+        "Flange Type",
+        "Allowed?"
+      ],
+      "row_count": 1
+    },
+    "ConstraintTable3": {
+      "headers": [
+        "Alt Size",
+        "Flush",
+        "Allowed?"
+      ],
+      "row_count": 3
+    },
+    "ConstraintTable13": {
+      "headers": [
+        "Pump Material",
+        "Shaft Material",
+        "Allowed?"
+      ],
+      "row_count": 2
+    },
+    "ConstraintTable6": {
+      "headers": [
+        "Alt Size",
+        "Shaft Material",
+        "Allowed?"
+      ],
+      "row_count": 6
+    },
+    "ConstraintTable14": {
+      "headers": [
+        "Pump Material",
+        "Sleeve",
+        "Allowed?"
+      ],
+      "row_count": 2
+    },
+    "ConstraintTable15": {
+      "headers": [
+        "Pump Material",
+        "Suction Discharge Taps",
+        "Allowed?"
+      ],
+      "row_count": 1
+    },
+    "ConstraintTable26": {
+      "headers": [
+        "Seal Option",
+        "Seal Mfg",
+        "Allowed?"
+      ],
+      "row_count": 25
     }
   }
 }

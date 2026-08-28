@@ -1,0 +1,22 @@
+﻿family_code,severity,issue_code,message,field_code,source_reference
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 8 is missing display value or identifier code.,SERIES,Attributes!8
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 9 is missing display value or identifier code.,SERIES,Attributes!9
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 10 is missing display value or identifier code.,SERIES,Attributes!10
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 11 is missing display value or identifier code.,SERIES,Attributes!11
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 12 is missing display value or identifier code.,SERIES,Attributes!12
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 13 is missing display value or identifier code.,SERIES,Attributes!13
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 14 is missing display value or identifier code.,SERIES,Attributes!14
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 15 is missing display value or identifier code.,SERIES,Attributes!15
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 16 is missing display value or identifier code.,SERIES,Attributes!16
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 17 is missing display value or identifier code.,SERIES,Attributes!17
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 18 is missing display value or identifier code.,SERIES,Attributes!18
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 19 is missing display value or identifier code.,SERIES,Attributes!19
+FYBROC,Warning,INCOMPLETE_ATTRIBUTE_ROW,SERIES row 20 is missing display value or identifier code.,SERIES,Attributes!20
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1500' for SERIES.,SERIES,Attributes!F31
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1530' for SERIES.,SERIES,Attributes!F32
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1600' for SERIES.,SERIES,Attributes!F33
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1630' for SERIES.,SERIES,Attributes!F34
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1500' for SERIES.,SERIES,Attributes!F35
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1530' for SERIES.,SERIES,Attributes!F36
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1600' for SERIES.,SERIES,Attributes!F37
+FYBROC,Warning,DUPLICATE_DISPLAY_VALUE,Duplicate display value '1630' for SERIES.,SERIES,Attributes!F38

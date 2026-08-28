@@ -6,13 +6,15 @@
   },
   "model_reference": {
     "workbook_role": "attributes_and_constraints",
-    "worksheet_name": "FULL LIST",
+    "worksheet_name": "Items",
     "row_from": 3,
+    "row_to": 99,
     "columns": {
-      "series": "A",
+      "series": "B",
       "size": "C"
     },
-    "model_identifier_source": "series"
+    "model_identifier_source": "series",
+    "_migration_note": "Repointed from legacy 'Fybroc Attributes and Constraints.xlsx' FULL LIST sheet to authoritative 'Fybroc Configuration Rev0.3.xlsx' Items sheet (header row 2, data from row 3). Items col B=Series, col C=Item. Base identifier is F{series} via model_identifier_source=series; the size column is used only as a per-model dedup key, so the Item number serves that role. See scripts/compile_fybroc_items_hierarchy_model.py and docs/evidence/F120/FYBROC_ITEMS_HIERARCHY_MODEL.json."
   },
   "identifier_formats": [
     {

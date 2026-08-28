@@ -1,6 +1,7 @@
 {
   "family_code": "FYBROC",
   "workbook_role": "attributes_and_constraints",
+  "_migration_note": "Role 'attributes_and_constraints' now resolves to 'Fybroc Configuration Rev0.3.xlsx' (was legacy 'Fybroc Attributes and Constraints.xlsx'). The 'Constraints' worksheet exists in Rev0.3 with the same name, so this dependency source remains valid. The detailed allowed/not-allowed matrix is compiled separately by scripts/compile_fybroc_constraint_model.py from Rev0.3 Constraints/Constraint Index/Feasible Constraints.",
   "option_sources": [],
   "dependency_sources": [
     {

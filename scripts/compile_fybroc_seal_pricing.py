@@ -33,7 +33,7 @@ nomenclature_workbook = (
     ROOT
     / "workbooks"
     / "Fybroc"
-    / "Fybroc Nomenclature_V5.xlsm"
+    / "Nomenclature_V6.xlsm"
 )
 
 base_pump_compilation = (

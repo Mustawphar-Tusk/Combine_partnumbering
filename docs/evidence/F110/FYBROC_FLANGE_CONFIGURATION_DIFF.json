@@ -1,0 +1,190 @@
+{
+  "step": "F110.2c",
+  "title": "Fybroc Flange Configuration Difference: Nomenclature V5 vs V6",
+  "description": "Documents the structural difference in how flange type is represented between Nomenclature V5 and V6 workbooks.",
+  "source_workbooks": {
+    "v5": "workbooks/Fybroc/Fybroc Nomenclature_V5.xlsm",
+    "v6": "workbooks/Fybroc/Nomenclature_V6.xlsm"
+  },
+  "structural_change_summary": {
+    "v5_approach": "Combined single field: Series encodes both pump series AND flange type as one composite value (e.g. '1500 (ANSI)') mapped to a single hex letter.",
+    "v6_approach": "Split into two independent fields: 'Series' (bare number, e.g. '1500') and 'Flange Type' (descriptor, e.g. 'ANSI'). The hex code is derived from the combination lookup in the Attributes sheet.",
+    "impact": "V6 enables independent selection of series and flange type, allowing the same series to support multiple flange standards without duplicating series entries.",
+    "classification": "STRUCTURAL_REDESIGN"
+  },
+  "v5_series_field": {
+    "field_name": "Series",
+    "sheet": "Attributes",
+    "encoding": "COMPOSITE",
+    "description": "Single field that combines series number + flange standard into one value, mapped to a single hex code.",
+    "values": [
+      { "display_value": "1500 (ANSI)", "hex_code": "A" },
+      { "display_value": "1530 (ANSI)", "hex_code": "B" },
+      { "display_value": "1600 (ANSI)", "hex_code": "C" },
+      { "display_value": "1630 (ANSI)", "hex_code": "D" },
+      { "display_value": "2530 (ANSI)", "hex_code": "E" },
+      { "display_value": "3000 (ANSI)", "hex_code": "F" },
+      { "display_value": "5500 (ANSI)", "hex_code": "G" },
+      { "display_value": "5530 (ANSI)", "hex_code": "H" },
+      { "display_value": "1500 (DIN)", "hex_code": "I" },
+      { "display_value": "1530 (DIN)", "hex_code": "J" },
+      { "display_value": "1600 (DIN)", "hex_code": "K" },
+      { "display_value": "1630 (DIN)", "hex_code": "L" },
+      { "display_value": "1500 (JIS)", "hex_code": "M" },
+      { "display_value": "1530 (JIS)", "hex_code": "N" },
+      { "display_value": "1600 (JIS)", "hex_code": "O" },
+      { "display_value": "1630 (JIS)", "hex_code": "P" },
+      { "display_value": "6000 (ANSI)", "hex_code": "Q" },
+      { "display_value": "7500 (ANSI)", "hex_code": "R" },
+      { "display_value": "7530 (ANSI)", "hex_code": "S" },
+      { "display_value": "8500 (ANSI)", "hex_code": "T" }
+    ],
+    "total_entries": 20,
+    "flange_types_embedded": ["ANSI", "DIN", "JIS"]
+  },
+  "v6_authoritative_flange_logic": {
+    "source": "Verified directly from Nomenclature_V6.xlsm formulas and defined names (not inferred).",
+    "flange_types": ["ANSI", "DIN", "JIS"],
+    "flange_option_list_cell": "Attributes!G8:G10",
+    "default_flange": "ANSI",
+    "default_evidence": "Smart Number input cell F15 (horizontal) / F40 (vertical) is pre-populated with 'ANSI'.",
+    "series_input_cell": {"horizontal": "Smart Number!F14", "vertical": "Smart Number!F39"},
+    "flange_input_cell": {"horizontal": "Smart Number!F15", "vertical": "Smart Number!F40"},
+    "flange_input_has_data_validation": false,
+    "series_code_derivation": {
+      "cell": "Smart Number!E13 (horizontal), E38 (vertical)",
+      "formula": "=XLOOKUP(1,(Attributes!F23:F42=<series>)*(Attributes!G23:G42=<flange>),Attributes!H23:H42)",
+      "explanation": "Two-axis exact match on BOTH series AND flange type against the Attributes Series+Flange->Code table (rows 23-42), returning the single-letter code from column H.",
+      "lookup_table_range": "Attributes!F23:H42"
+    },
+    "constraint_enforcement": "There is NO data validation restricting the flange cell. The valid series+flange combinations are enforced implicitly by the XLOOKUP table: only series 1500/1530/1600/1630 have DIN (codes I-L) and JIS (codes M-P) rows. All other series (2530, 3000, 5500, 5530, 6000, 7500, 7530, 8500) have ANSI rows only. Selecting an unsupported series+flange pair (e.g. 5500 + DIN) yields no XLOOKUP match (#N/A), which is how the workbook rejects it.",
+    "configurator_implementation_rule": "Flange defaults to ANSI. Offer DIN/JIS only for series 1500/1530/1600/1630; for all other series, ANSI is the only valid flange. Derive the series segment code by exact (series, flange) match against the Attributes Series+Flange table - never by series alone."
+  },
+  "rev03_v6_flange_source_resolution": {
+    "authority_model": "V6 and Rev0.3 are TIED TOGETHER, not competing. Rev0.3 BUILDS the configurator (field hierarchy, per-series option availability, selection flow/constraints the user navigates). V6 is the authoritative list of ALL allowable selections and their HEX MAPPING (which codes exist, which combinations are valid, part-number generation). A configuration is valid only when BOTH agree: Rev0.3 says it is selectable AND V6 has a hex code for it.",
+    "v6_hex_gate": "The V6 Attributes Series+Flange->Code table (rows 23-42, codes A-T) is the complete universe of series+flange combinations that can produce a part number. DIN codes (I-L) and JIS codes (M-P) exist ONLY for series 1500, 1530, 1600, 1630. All other series are ANSI-only.",
+    "din_jis_selectable_series": ["1500", "1530", "1600", "1630"],
+    "ansi_only_series": ["2530", "3000", "5500", "5530", "6000", "7500", "7530", "8500"],
+    "intersection_rule": "Rev0.3 Selections marks DIN/ISO and JIS selectable for 2530 and 5500, but V6 has no hex code for those combinations - so they cannot generate a part number and are therefore not truly valid. Applying the both-must-agree rule, DIN/JIS are offered only for 1500/1530/1600/1630 (the intersection). No new part-number codes are invented; V6's hex mapping is the gate on buildable configurations.",
+    "configurator_rule": "Flange defaults to ANSI (Rev0.3 STD marker + V6 F15 default). Offer DIN/JIS only where V6 has a hex code: series 1500/1530/1600/1630. For every other series, ANSI is the only flange offered."
+  },
+  "v6_flange_configuration": {
+    "series_field": {
+      "field_name": "Series",
+      "sheet": "Attributes",
+      "encoding": "BARE_NUMBER",
+      "description": "Pure series number without flange information. Used as one axis of the series+flange code lookup.",
+      "values": ["1500", "1530", "1600", "1630", "2530", "3000", "5500", "5530", "6000", "7500", "7530", "8500"],
+      "total_entries": 12
+    },
+    "flange_type_field": {
+      "field_name": "Flange Type",
+      "sheet": "Attributes (Series+Flange lookup table) and Smart Number (segment derivation)",
+      "encoding": "DESCRIPTOR",
+      "description": "Independent flange standard field. Selected separately from series. Combined with series to derive the hex code.",
+      "values": ["ANSI", "DIN", "JIS"],
+      "total_entries": 3
+    },
+    "combined_lookup_table": {
+      "table_name": "Series+Flange Code Lookup",
+      "sheet": "Attributes",
+      "description": "Two-axis lookup: (Series, Flange Type) -> single hex code. Produces the same hex codes as V5 but via a structured join rather than a composite string.",
+      "entries": [
+        { "series": "1500", "flange_type": "ANSI", "code": "A" },
+        { "series": "1530", "flange_type": "ANSI", "code": "B" },
+        { "series": "1600", "flange_type": "ANSI", "code": "C" },
+        { "series": "1630", "flange_type": "ANSI", "code": "D" },
+        { "series": "2530", "flange_type": "ANSI", "code": "E" },
+        { "series": "3000", "flange_type": "ANSI", "code": "F" },
+        { "series": "5500", "flange_type": "ANSI", "code": "G" },
+        { "series": "5530", "flange_type": "ANSI", "code": "H" },
+        { "series": "1500", "flange_type": "DIN", "code": "I" },
+        { "series": "1530", "flange_type": "DIN", "code": "J" },
+        { "series": "1600", "flange_type": "DIN", "code": "K" },
+        { "series": "1630", "flange_type": "DIN", "code": "L" },
+        { "series": "1500", "flange_type": "JIS", "code": "M" },
+        { "series": "1530", "flange_type": "JIS", "code": "N" },
+        { "series": "1600", "flange_type": "JIS", "code": "O" },
+        { "series": "1630", "flange_type": "JIS", "code": "P" },
+        { "series": "6000", "flange_type": "ANSI", "code": "Q" },
+        { "series": "7500", "flange_type": "ANSI", "code": "R" },
+        { "series": "7530", "flange_type": "ANSI", "code": "S" },
+        { "series": "8500", "flange_type": "ANSI", "code": "T" }
+      ],
+      "total_entries": 20
+    }
+  },
+  "flange_coverage_by_series": {
+    "description": "Which flange types are available for each series across V5 and V6. Coverage is identical - V6 did not add or remove any series+flange combinations.",
+    "matrix": [
+      { "series": "1500", "flange_types": ["ANSI", "DIN", "JIS"], "codes": ["A", "I", "M"] },
+      { "series": "1530", "flange_types": ["ANSI", "DIN", "JIS"], "codes": ["B", "J", "N"] },
+      { "series": "1600", "flange_types": ["ANSI", "DIN", "JIS"], "codes": ["C", "K", "O"] },
+      { "series": "1630", "flange_types": ["ANSI", "DIN", "JIS"], "codes": ["D", "L", "P"] },
+      { "series": "2530", "flange_types": ["ANSI"], "codes": ["E"] },
+      { "series": "3000", "flange_types": ["ANSI"], "codes": ["F"] },
+      { "series": "5500", "flange_types": ["ANSI"], "codes": ["G"] },
+      { "series": "5530", "flange_types": ["ANSI"], "codes": ["H"] },
+      { "series": "6000", "flange_types": ["ANSI"], "codes": ["Q"] },
+      { "series": "7500", "flange_types": ["ANSI"], "codes": ["R"] },
+      { "series": "7530", "flange_types": ["ANSI"], "codes": ["S"] },
+      { "series": "8500", "flange_types": ["ANSI"], "codes": ["T"] }
+    ]
+  },
+  "smart_number_impact": {
+    "v5": {
+      "segment_position": "Column E (position 2 in part number after Brand)",
+      "derivation": "Direct hex lookup from the composite Series field value.",
+      "example": "'1500 (ANSI)' -> code 'A' -> part number position 2 = 'A'"
+    },
+    "v6": {
+      "segment_position": "Column E (position 2 in part number after Brand)",
+      "derivation": "Two-field lookup: user selects Series='1500' and Flange Type='ANSI' independently, then the Attributes table resolves the combination to code 'A'.",
+      "example": "Series='1500' + Flange Type='ANSI' -> lookup -> code 'A' -> part number position 2 = 'A'"
+    },
+    "hex_code_compatibility": "FULLY_COMPATIBLE - same 20 codes, same meaning, same position in part number."
+  },
+  "api_implementation_note": {
+    "field_name_in_api": "FLANGE_TYPE",
+    "series_field_in_api": "SERIES",
+    "lookup_logic": "API receives SERIES (bare number) and FLANGE_TYPE separately. The identifier generation function concatenates them as CONCAT(Series, ' (', Flange, ')') to perform the legacy-format lookup against cfg.fn_LookupIdentifierCode. This maintains backward compatibility with the SQL metadata which still stores the V5-format composite key.",
+    "reference_script": "scripts/apply_f150_identifier_generation.py"
+  },
+  "key_differences": [
+    {
+      "aspect": "Field count",
+      "v5": "1 field (Series = series + flange combined)",
+      "v6": "2 fields (Series + Flange Type, independent)"
+    },
+    {
+      "aspect": "User selection model",
+      "v5": "User picks from 20 composite options (e.g. '1500 (ANSI)')",
+      "v6": "User picks series (12 options) then flange type (up to 3 options depending on series)"
+    },
+    {
+      "aspect": "Extensibility",
+      "v5": "Adding a new flange type requires a new composite entry per series",
+      "v6": "Adding a new flange type only requires adding it to the Flange Type list and adding lookup rows"
+    },
+    {
+      "aspect": "Hex code output",
+      "v5": "Direct single-field lookup",
+      "v6": "Two-field combination lookup (same result)"
+    },
+    {
+      "aspect": "DIN/JIS availability",
+      "v5": "Only 1500, 1530, 1600, 1630 have DIN/JIS variants",
+      "v6": "Same constraint - only 1500, 1530, 1600, 1630 have DIN/JIS in the lookup table"
+    },
+    {
+      "aspect": "Series without non-ANSI flanges",
+      "v5": "2530, 3000, 5500, 5530, 6000, 7500, 7530, 8500 — ANSI only",
+      "v6": "Same — ANSI only for these series (no DIN/JIS rows in lookup table)"
+    }
+  ],
+  "engineering_notes": [
+    "V6's split design makes it possible to validate flange type independently of series (e.g., reject DIN for 5500 at the field constraint level rather than relying on the absence of a composite value).",
+    "The hex codes are 100% preserved between V5 and V6 — no migration of existing part numbers required.",
+    "The API bridges both worlds: it accepts the V6-style separate fields but reconstructs the V5-style composite key for SQL lookup compatibility."
+  ]
+}

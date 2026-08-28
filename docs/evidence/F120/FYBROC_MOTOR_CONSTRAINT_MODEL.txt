@@ -2,17 +2,17 @@
 F120.4 - FYBROC MOTOR CONSTRAINT + COMBINE VARIABLES MODEL
 ============================================================================================================================================
 
-Git commit  : 33cbacf5162365c98feb512f2cac492704f23c5b
+Git commit  : fb3eb996d6f970bef0a0ac43bbd92aa4d5143402
 Git clean   : False
 
 Motor constraint blocks : 19
-Combine variable tables : 4
+Combine variable tables : 1
 
 ============================================================================================================================================
 MOTOR CONSTRAINTS
 ============================================================================================================================================
 
-[1500 and 1600] Alt_Size x F_Frame_Size (205 rows)
+[1500 and 1600] Alt_Size x F_Frame_Size (282 rows)
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '143T', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '145T', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '182T', 'Allowed?': 'Allowed'}
@@ -21,9 +21,9 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '215T', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '254T', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '256T', 'Allowed?': 'Allowed'}
-    ... (197 more rows, see JSON)
+    ... (274 more rows, see JSON)
 
-[1500 and 1600] Alt_Size x F_MotorHpRpm (205 rows)
+[1500 and 1600] Alt_Size x F_MotorHpRpm (525 rows)
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
@@ -32,7 +32,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-1800', 'Allowed?': 'Allowed'}
-    ... (197 more rows, see JSON)
+    ... (517 more rows, see JSON)
 
 [1500 and 1600] F_Frame_Size x F_MotorHpRpm (55 rows)
     {'F_Frame_Size': '145T', 'F_MotorHpRpm': '1-1200', 'Allowed?': 'Allowed'}
@@ -67,7 +67,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1.5x3x6', 'F_Frame_Size': '145JM', 'Allowed?': 'Allowed'}
     ... (144 more rows, see JSON)
 
-[1530 and 1630] Alt_Size x F_MotorHpRpm (205 rows)
+[1530 and 1630] Alt_Size x F_MotorHpRpm (375 rows)
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
@@ -76,7 +76,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-1800', 'Allowed?': 'Allowed'}
-    ... (197 more rows, see JSON)
+    ... (367 more rows, see JSON)
 
 [1530 and 1630] F_Frame_Size x F_MotorHpRpm (38 rows)
     {'F_Frame_Size': '143JM', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
@@ -166,7 +166,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '256TC', 'Allowed?': 'Allowed'}
     ... (193 more rows, see JSON)
 
-[5500] Alt_Size x F_MotorHpRpm (205 rows)
+[5500] Alt_Size x F_MotorHpRpm (417 rows)
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'Allowed'}
@@ -175,7 +175,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'Allowed'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-3600', 'Allowed?': 'Allowed'}
-    ... (197 more rows, see JSON)
+    ... (409 more rows, see JSON)
 
 [5500] F_Frame_Size x F_MotorHpRpm (50 rows)
     {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
@@ -199,7 +199,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_Frame_Size': '256TC', 'Allowed?': 'X'}
     ... (126 more rows, see JSON)
 
-[5530] Alt_Size x F_MotorHpRpm (205 rows)
+[5530] Alt_Size x F_MotorHpRpm (303 rows)
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'X'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-3600', 'Allowed?': 'X'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '1.5-1800', 'Allowed?': 'X'}
@@ -208,7 +208,7 @@ MOTOR CONSTRAINTS
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-3600', 'Allowed?': 'X'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '3-1800', 'Allowed?': 'X'}
     {'Alt_Size': '1x1.5x6', 'F_MotorHpRpm': '5-3600', 'Allowed?': 'X'}
-    ... (197 more rows, see JSON)
+    ... (295 more rows, see JSON)
 
 [5530] F_Frame_Size x F_MotorHpRpm (30 rows)
     {'F_Frame_Size': '143TC', 'F_MotorHpRpm': '1-1800', 'Allowed?': 'Allowed'}
@@ -222,7 +222,7 @@ MOTOR CONSTRAINTS
     ... (22 more rows, see JSON)
 
 ============================================================================================================================================
-COMBINE VARIABLES (reference lookups, not authoritative constraints)
+COMBINE VARIABLES - key->value lookups (composite key decomposition)
 ============================================================================================================================================
 
 [MotorHpRpm_to_HpAndRpm] F_MotorHpRPM -> ['MotorHp', 'MotorRPM'] (56 rows)
@@ -236,20 +236,24 @@ COMBINE VARIABLES (reference lookups, not authoritative constraints)
     {'key': '2-3600', 'MotorHp': '2', 'MotorRPM': '3600'}
     ... (48 more rows, see JSON)
 
-[MotorType_decomposition] MotorType -> ['F_MotorEnclosure', 'F_MotorEfficiency', 'F_MotorVoltage', 'F_MotorHertz', 'F_MotorHp', 'F_MotorRPM'] (5 rows)
-    {'key': 'TEFC_PE_230/460-3-60', 'F_MotorEnclosure': 'TEFC', 'F_MotorEfficiency': 'PE', 'F_MotorVoltage': '230', 'F_MotorHertz': '3ph - 50 hz', 'F_MotorHp': '1', 'F_MotorRPM': '900'}
-    {'key': 'TEFC_PE_SD_230/460-3-60', 'F_MotorEnclosure': 'TEFC_SD', 'F_MotorEfficiency': None, 'F_MotorVoltage': '230/460', 'F_MotorHertz': '3ph - 60 hz', 'F_MotorHp': '1.5', 'F_MotorRPM': '1200'}
-    {'key': 'TEFC_PE_460-3-60', 'F_MotorEnclosure': 'IEEE_841', 'F_MotorEfficiency': None, 'F_MotorVoltage': '460', 'F_MotorHertz': None, 'F_MotorHp': '2', 'F_MotorRPM': '1800'}
-    {'key': 'TEFC_PE_SD_460-3-60', 'F_MotorEnclosure': None, 'F_MotorEfficiency': None, 'F_MotorVoltage': None, 'F_MotorHertz': None, 'F_MotorHp': '3', 'F_MotorRPM': '3600'}
-    {'key': 'TEFC_PE_IEEE_841_460-3-60', 'F_MotorEnclosure': None, 'F_MotorEfficiency': None, 'F_MotorVoltage': None, 'F_MotorHertz': None, 'F_MotorHp': '5', 'F_MotorRPM': None}
+============================================================================================================================================
+COMBINE VARIABLES - value domains (independent per-attribute value lists)
+============================================================================================================================================
 
-[MotorMfg_to_MotorOption] Motor Mfg -> ['Motor Option'] (4 rows)
-    {'key': 'Standard Offering', 'Motor Option': 'Supplied by Fybroc'}
-    {'key': 'Baldor', 'Motor Option': 'Installed by Fybroc'}
-    {'key': 'TECO', 'Motor Option': 'By Others'}
-    {'key': 'Toshiba', 'Motor Option': None}
+[MotorType_domains] 7 attribute domains
+    MotorType (5): TEFC_PE_230/460-3-60, TEFC_PE_SD_230/460-3-60, TEFC_PE_460-3-60, TEFC_PE_SD_460-3-60, TEFC_PE_IEEE_841_460-3-60
+    F_MotorEnclosure (3): TEFC, TEFC_SD, IEEE_841
+    F_MotorEfficiency (1): PE
+    F_MotorVoltage (3): 230, 230/460, 460
+    F_MotorHertz (2): 3ph - 50 hz, 3ph - 60 hz
+    F_MotorHp (19): 1, 1.5, 2, 3, 5, 7.5, 10, 15, 20, 25 ... (+9 more)
+    F_MotorRPM (4): 900, 1200, 1800, 3600
 
-[WettedHardware_to_ShaftMaterial] Wetted Hardware -> ['Shaft Material'] (2 rows)
-    {'key': 'Match Shaft Material', 'Shaft Material': '303 SS'}
-    {'key': 'Select Material', 'Shaft Material': '316 SS'}
+[MotorMfgOption_domains] 2 attribute domains
+    Motor Mfg (4): Standard Offering, Baldor, TECO, Toshiba
+    Motor Option (3): Supplied by Fybroc, Installed by Fybroc, By Others
+
+[WettedHardwareShaft_domains] 2 attribute domains
+    Wetted Hardware (2): Match Shaft Material, Select Material
+    Shaft Material (7): 303 SS, 316 SS, Carp-20, Hastelloy C, Titanium, FRP Wrapped Shaft (303SS Core), FRP Wrapped Shaft (316SS Core)
 

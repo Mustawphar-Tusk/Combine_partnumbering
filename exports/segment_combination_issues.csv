@@ -1,0 +1,2 @@
+﻿family_code,severity,issue_code,message,worksheet_name,source_reference
+FYBROC,Error,DUPLICATE_COMBINATION_KEY,Duplicate combination key for segment MOTOR_ASSEMBLY., Motor Assy,C53

@@ -1,0 +1,3 @@
+﻿family_code,severity,issue_code,message,source_reference
+FYBROC,Warning,INCOMPLETE_MATRIX_ROW,Row 415 is missing field code or option value.,Selections!415
+FYBROC,Warning,NO_SERIES_RELATION,No series applicability marker was found for Motor RPM='Custom'.,Selections!452

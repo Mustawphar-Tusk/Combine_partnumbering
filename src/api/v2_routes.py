@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import time
 from functools import lru_cache
 from typing import Any
@@ -93,6 +94,146 @@ def _get_active_publication(conn_str: str) -> tuple[int, str]:
 
 
 # ---------------------------------------------------------------------------
+# Authoritative configuration hierarchy (Fybroc)
+# ---------------------------------------------------------------------------
+# The engineering hierarchy from the Rev0.3 Constraints / To Do ordering.
+# Configuration constraints are hierarchical: a field becomes reachable only
+# after every preceding APPLICABLE field is selected. This order is the single
+# server-side authority for progressive gating and reset-on-upstream-change;
+# the UI consumes the server's decision rather than re-deriving it.
+FYBROC_FIELD_HIERARCHY: tuple[str, ...] = (
+    # Primary configuration
+    "ALT_SIZE", "PUMP_MATERIAL", "FLANGE_TYPE",
+    # Pump Options group (horizontal)
+    "SHAFT_MATERIAL", "CASING_DRAINS", "SUCTION_DISCHARGE_TAPS", "SLEEVE",
+    "PUMP_ELASTOMERS", "GLAND_HARDWARE", "FLUSH", "FLUSH_MATERIAL",
+    "CYCLONE_SEPERATOR", "IMPELLER_BALANCE",
+    "CASING_HARDWARE", "BEARING_OPTION", "POWER_FRAME_HARDWARE",
+    # Pump Options group (vertical-specific)
+    "WETTED_HARDWARE", "WETTED_HARDWARE_SELECTION",
+    "FLUSH_OPTIONS", "VAPOR_SEAL", "STRAINER",
+    # Seal Assembly group (in order)
+    "SEAL_OPTION", "SEAL_TYPE", "SEAL_MATERIALS", "SEAL_ELASTOMERS",
+    "SEAL_GUARD", "SEAL_MFG",
+    # Options group
+    "COUPLING_OPTION", "COUPLING_GUARD", "BASEPLATE_OPTION", "BASEPLATEHARDWARE",
+    "MOUNTING_PLATE_OPTION",
+    # Impeller
+    "IMPELLER_TRIM", "DYNAMIC_IMPELLER",
+    # Vertical-specific
+    "SETTING", "SETTING/LENGTH", "LENGTH", "TAILPIPE_OPTION", "TAILPIPE_LENGTH",
+    # Motor group
+    "MOTOR_OPTION", "MOTOR_CONTROL", "MOTOR_HP", "MOTOR_RPM",
+    "MOTOR_VOLTAGE", "MOTOR_HERTZ", "FRAME_SIZE",
+    "MOTOR_ENCLOSURE", "MOTOR_EFFICIENCY", "MOTOR_MFG",
+    # Testing / Other
+    "PERFORMANCE_TESTING", "HYDROTEST_CERTIFICATE", "VIBRATION_TESTING",
+    "SOUND_LEVEL_TESTING", "NAMEPLATE", "CUSTOMER_NAMEPLATE", "PAINT_UPGRADE",
+    "SHAFT_GROUNDING", "C_FACE_ADAPTOR",
+)
+
+# Fields not in the explicit hierarchy sort after it, alphabetically, so an
+# unknown/new field is still ordered deterministically (never silently first).
+_HIERARCHY_INDEX = {fc: i for i, fc in enumerate(FYBROC_FIELD_HIERARCHY)}
+
+
+def _hierarchy_rank(field_code: str) -> tuple[int, str]:
+    fc = field_code.upper()
+    return (_HIERARCHY_INDEX.get(fc, len(FYBROC_FIELD_HIERARCHY)), fc)
+
+
+def _order_fields(field_codes) -> list[str]:
+    """Return field codes sorted by the authoritative hierarchy."""
+    return sorted(field_codes, key=_hierarchy_rank)
+
+
+# Fields whose option values are numeric and must be presented in ASCENDING
+# NUMERIC order (not string order, which mixes "1, 1.5, 10, 100, 15, 2, ...").
+NUMERIC_OPTION_FIELDS = {"MOTOR_HP", "MOTOR_RPM", "MOTOR_HERTZ", "MOTOR_VOLTAGE"}
+
+# DIMENSIONAL fields whose option values are compound sizes like "10x12x16"
+# (suction x discharge x impeller). Plain string order mis-sorts these
+# ("10x12x16" before "2x3x6" because '1' < '2'); they must sort by the tuple of
+# their numeric parts so the UI shows an ascending, logical progression.
+DIMENSIONAL_OPTION_FIELDS = {"ALT_SIZE"}
+
+_DIM_SPLIT = re.compile(r"\s*x\s*", re.IGNORECASE)
+
+
+def _numeric_option_key(value: str):
+    """Sort key that orders numeric option strings by value, text last.
+
+    Returns (0, number) for parseable numerics and (1, lowercased text) for
+    non-numeric values, so numbers sort ascending and any stray text sorts
+    after them deterministically.
+    """
+    try:
+        return (0, float(str(value).strip()))
+    except (TypeError, ValueError):
+        return (1, str(value).strip().lower())
+
+
+def _dimensional_option_key(value: str):
+    """Sort key for compound "NxNxN" sizes by their numeric parts.
+
+    "1x1.5x6" -> (0, (1.0, 1.5, 6.0)). Values that do not parse as all-numeric
+    parts sort last as (1, lowercased text), deterministically.
+    """
+    parts = _DIM_SPLIT.split(str(value).strip())
+    try:
+        return (0, tuple(float(p) for p in parts))
+    except (TypeError, ValueError):
+        return (1, str(value).strip().lower())
+
+
+def _sort_field_options(field_code: str, options: list[str]) -> list[str]:
+    """Order a field's options for presentation.
+
+    Numeric fields (e.g. MOTOR_HP) sort ascending by numeric value; dimensional
+    fields (e.g. ALT_SIZE "10x12x16") sort ascending by their numeric parts;
+    all other fields keep their existing (SQL string) order. Presentation only -
+    the option data itself is unchanged.
+    """
+    fc = field_code.upper()
+    if fc in NUMERIC_OPTION_FIELDS:
+        return sorted(options, key=_numeric_option_key)
+    if fc in DIMENSIONAL_OPTION_FIELDS:
+        return sorted(options, key=_dimensional_option_key)
+    return options
+
+
+def _prune_to_prefix(
+    ordered_fields: list[str],
+    selections: dict[str, str],
+) -> tuple[dict[str, str], set[str]]:
+    """Enforce reset-on-upstream-change.
+
+    Walk the applicable fields in hierarchy order. Keep a selection only while
+    every preceding applicable field is also selected (a contiguous completed
+    prefix). Once the first unselected applicable field is hit, every later
+    selection is dropped - so changing/clearing an upstream step forces the
+    user to re-progress from that step and cannot skip ahead.
+
+    Returns (effective_selections, dropped_field_codes).
+    """
+    sel_upper = {k.upper(): v for k, v in selections.items()}
+    effective: dict[str, str] = {}
+    dropped: set[str] = set()
+    broken = False  # becomes True at the first incomplete step
+    for fc in ordered_fields:
+        if broken:
+            if fc in sel_upper:
+                dropped.add(fc)
+            continue
+        if fc in sel_upper:
+            effective[fc] = sel_upper[fc]
+        else:
+            # First incomplete applicable step: everything after is downstream.
+            broken = True
+    return effective, dropped
+
+
+# ---------------------------------------------------------------------------
 # Request/Response models
 # ---------------------------------------------------------------------------
 
@@ -110,12 +251,33 @@ class EvaluateRequest(BaseModel):
     selections: dict[str, str] = Field(default_factory=dict)
 
 
+class FieldHierarchyState(BaseModel):
+    field_code: str
+    order: int
+    status: str  # "selected" | "current" | "locked"
+
+
 class EvaluateResponse(BaseModel):
     family: str
     series: str
     valid: bool
     allowable_options: dict[str, list[str]]
+    # Field-code -> the STANDARD (STD) default option value for this series,
+    # per Rev0.3 Selections. Additive; clients that ignore it are unaffected.
+    # The configurator/UI should pre-select these when a field is unset.
+    standard_defaults: dict[str, str] = Field(default_factory=dict)
     resolved_codes: dict[str, str | None]
+    # Hierarchy enforcement (server is the authority):
+    #  - ordered_fields: applicable fields in authoritative hierarchy order
+    #  - hierarchy: per-field status (selected / current / locked)
+    #  - current_field: the single next field the user may edit (or None if done)
+    #  - effective_selections: selections after reset-on-upstream-change pruning
+    #  - dropped_selections: selections removed because an upstream step changed
+    ordered_fields: list[str] = Field(default_factory=list)
+    hierarchy: list[FieldHierarchyState] = Field(default_factory=list)
+    current_field: str | None = None
+    effective_selections: dict[str, str] = Field(default_factory=dict)
+    dropped_selections: list[str] = Field(default_factory=list)
     errors: list[str] = Field(default_factory=list)
 
 
@@ -269,7 +431,7 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
 
         # Get ALL options for this series (searching across all publications for this family)
         rows = cursor.execute(
-            "SELECT FieldCode, OptionValue FROM cfg.SeriesFieldOption "
+            "SELECT FieldCode, OptionValue, IsStandard FROM cfg.SeriesFieldOption "
             "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
             "ORDER BY FieldCode, OptionValue",
             pub_id, body.series,
@@ -282,23 +444,69 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
                 series=body.series,
                 valid=False,
                 allowable_options={},
+                standard_defaults={},
                 resolved_codes={},
                 errors=[f"No configuration options found for {family_upper} series {body.series}. Metadata may not be loaded for this family."],
             )
 
         all_options: dict[str, list[str]] = {}
-        for field_code, option_value in rows:
+        # Field-code -> STANDARD (STD) default option value for this series.
+        standard_defaults: dict[str, str] = {}
+        for field_code, option_value, is_standard in rows:
             all_options.setdefault(field_code, []).append(option_value)
+            if is_standard:
+                standard_defaults[field_code] = option_value
+
+        # Present numeric-valued fields (MOTOR_HP, etc.) in ascending numeric
+        # order rather than the SQL string order (which mixes 1, 1.5, 10, 100,
+        # 15, 2, ...). Value data is unchanged - this is presentation ordering.
+        for field_code in all_options:
+            all_options[field_code] = _sort_field_options(
+                field_code, all_options[field_code]
+            )
+
+        # HIERARCHY ENFORCEMENT (server is the authority).
+        # Applicable fields for this series, in authoritative hierarchy order.
+        ordered_fields = _order_fields(all_options.keys())
+        # CONDITIONAL FIELD APPLICABILITY (Rev0.3 dependent fields).
+        # Some fields apply only when a controlling field holds a specific value.
+        # WETTED_HARDWARE_SELECTION applies ONLY when WETTED_HARDWARE ==
+        # "select material". When WETTED_HARDWARE == "match shaft material" the
+        # wetted hardware inherits the already-chosen Shaft Material, so there is
+        # no separate material to pick - the selection field must be SKIPPED (not
+        # shown as an empty dead-end step). Removing it from ordered_fields drops
+        # it from the required-step walk, current-field computation, pruning, and
+        # the returned field set. If WETTED_HARDWARE is not yet chosen we leave
+        # the selection field in place (hierarchy gating hides it until then).
+        _sel_upper_raw = {k.upper(): str(v).strip().lower()
+                          for k, v in body.selections.items()}
+        _wh = _sel_upper_raw.get("WETTED_HARDWARE")
+        if _wh is not None and _wh != "select material":
+            ordered_fields = [fc for fc in ordered_fields
+                              if fc != "WETTED_HARDWARE_SELECTION"]
+            all_options.pop("WETTED_HARDWARE_SELECTION", None)
+        # Reset-on-upstream-change: keep only the contiguous completed prefix of
+        # selections. Any selection after the first incomplete step is dropped,
+        # so changing/clearing an earlier step forces re-progression and never
+        # skips ahead. Constraint enforcement then runs on the effective set.
+        effective_selections, dropped = _prune_to_prefix(ordered_fields, body.selections)
+        selected_upper = set(effective_selections)
+        # The current step = first applicable field not yet selected.
+        current_field = next(
+            (fc for fc in ordered_fields if fc not in selected_upper),
+            None,
+        )
 
         # Filter out fields already selected — return only what's still chooseable
         allowable = {
             fc: opts for fc, opts in all_options.items()
-            if fc.upper() not in {k.upper() for k in body.selections}
+            if fc.upper() not in selected_upper
         }
 
         # CONSTRAINT ENFORCEMENT: Apply FeasibleConstraint rules
-        # For each user selection, find constraints and remove disallowed values
-        for sel_field, sel_value in body.selections.items():
+        # For each user selection (effective/pruned), find constraints and
+        # remove disallowed values.
+        for sel_field, sel_value in effective_selections.items():
             # Find the constraint field name for this SFO field
             constraint_field_row = cursor.execute(
                 "SELECT ConstraintFieldName FROM cfg.ConstraintFieldMap WHERE SFOFieldCode = ?",
@@ -333,21 +541,118 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
                         if not_allowed_value.lower().strip() not in v.lower()
                     ]
 
-        # Resolve identifier codes for already-selected fields
+        # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint — an ALLOW-LIST).
+        # Unlike FeasibleConstraint (which removes "Not Allowed" values), Motor
+        # Constraints list the ALLOWED pairs. When the user selects a driving
+        # dimension (Alt_Size), restrict the dependent motor field (Frame Size)
+        # to only the values the workbook allows for that (series-scope, size).
+        # SFO field  -> MotorConstraint dimension field:
+        MOTOR_DIM_FIELD = {
+            "ALT_SIZE": "Alt_Size",
+            "FRAME_SIZE": "F_Frame_Size",
+        }
+        # Which series scope does the requested series belong to?
+        scope_row = cursor.execute(
+            "SELECT DISTINCT SeriesScope FROM cfg.MotorConstraint "
+            "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
+            "AND (SeriesScope = ? OR SeriesScope LIKE ?)",
+            pub_id, family_id, body.series, f"%{body.series}%",
+        ).fetchone()
+        motor_scope = scope_row[0] if scope_row else None
+
+        if motor_scope and "ALT_SIZE" in effective_selections:
+            size_value = effective_selections.get("ALT_SIZE")
+            if size_value and "FRAME_SIZE" in allowable:
+                allowed_frames = cursor.execute(
+                    "SELECT Dimension2Value FROM cfg.MotorConstraint "
+                    "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
+                    "AND Dimension1Field='Alt_Size' AND Dimension2Field='F_Frame_Size' "
+                    "AND LOWER(Dimension1Value)=LOWER(?)",
+                    pub_id, family_id, motor_scope, size_value,
+                ).fetchall()
+                allowed_set = {r[0].strip().lower() for r in allowed_frames}
+                if allowed_set:
+                    allowable["FRAME_SIZE"] = [
+                        v for v in allowable["FRAME_SIZE"]
+                        if v.strip().lower() in allowed_set
+                    ]
+
+        # MOTOR Hp -> RPM ENFORCEMENT (Rev0.3 Combine Variables MotorHpRpm table).
+        # The valid (Hp, RPM) pairs are enumerated by the composite F_MotorHpRPM
+        # key (e.g. "1-1200"): 1 HP allows only 1200/1800 RPM (no 3600), while
+        # 1.5 HP and up allow 1200/1800/3600. When MOTOR_HP is selected, restrict
+        # MOTOR_RPM to the RPMs the workbook pairs with that Hp.
+        if "MOTOR_HP" in effective_selections and "MOTOR_RPM" in allowable:
+            hp_value = str(effective_selections["MOTOR_HP"]).strip()
+            allowed_rpms = cursor.execute(
+                "SELECT cv_rpm.ValueValue "
+                "FROM cfg.CombineVariable cv_hp "
+                "JOIN cfg.CombineVariable cv_rpm "
+                "  ON cv_rpm.MetadataPublicationId = cv_hp.MetadataPublicationId "
+                " AND cv_rpm.PumpFamilyId = cv_hp.PumpFamilyId "
+                " AND cv_rpm.TableName = cv_hp.TableName "
+                " AND cv_rpm.KeyValue = cv_hp.KeyValue "
+                "WHERE cv_hp.MetadataPublicationId = ? AND cv_hp.PumpFamilyId = ? "
+                "  AND cv_hp.TableName = 'MotorHpRpm_to_HpAndRpm' "
+                "  AND cv_hp.ValueField = 'MotorHp' AND LOWER(cv_hp.ValueValue) = LOWER(?) "
+                "  AND cv_rpm.ValueField = 'MotorRPM'",
+                pub_id, family_id, hp_value,
+            ).fetchall()
+            allowed_rpm_set = {
+                str(r[0]).strip().lower() for r in allowed_rpms if r[0] is not None
+            }
+            if allowed_rpm_set:
+                allowable["MOTOR_RPM"] = [
+                    v for v in allowable["MOTOR_RPM"]
+                    if str(v).strip().lower() in allowed_rpm_set
+                ]
+
+        # Resolve identifier codes for the effective (pruned) selections.
         resolved = {}
-        for field, value in body.selections.items():
+        for field, value in effective_selections.items():
             code_row = cursor.execute(
                 "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
                 pub_id, family_id, field.upper(), value,
             ).fetchone()
             resolved[field] = code_row[0] if code_row and code_row[0] else None
 
+        # Expose STD default only for the CURRENT field (the one the user may
+        # edit now) where the default survived constraint filtering. Downstream
+        # fields are locked, so their defaults are not surfaced yet.
+        exposed_defaults = {}
+        if current_field and current_field in allowable:
+            dv = standard_defaults.get(current_field)
+            if dv and dv in allowable[current_field]:
+                exposed_defaults[current_field] = dv
+
+        # Build per-field hierarchy status:
+        #   selected -> already chosen (in the effective/pruned prefix)
+        #   current  -> the single next field the user may edit
+        #   locked   -> a later field, gated until its predecessors are chosen
+        hierarchy_state: list[FieldHierarchyState] = []
+        for i, fc in enumerate(ordered_fields):
+            if fc in selected_upper:
+                status = "selected"
+            elif fc == current_field:
+                status = "current"
+            else:
+                status = "locked"
+            hierarchy_state.append(
+                FieldHierarchyState(field_code=fc, order=i, status=status)
+            )
+
         return EvaluateResponse(
             family=family_upper,
             series=body.series,
             valid=True,
             allowable_options=allowable,
+            standard_defaults=exposed_defaults,
             resolved_codes=resolved,
+            ordered_fields=ordered_fields,
+            hierarchy=hierarchy_state,
+            current_field=current_field,
+            effective_selections=effective_selections,
+            dropped_selections=sorted(dropped),
         )
     finally:
         conn.close()
@@ -825,26 +1130,75 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 return row[0] if row else "X"
             motor_mods = get_mod_code(mod1) + get_mod_code(mod2) + get_mod_code(mod3)
 
-        # Testing — lookup from TESTING combination table
+        # Testing — lookup the 2-char base-36 code from the V6 Testing table
+        # (cfg.vw_SegmentCombinationLookup SegmentCode='TESTING', 60 rows). This
+        # code is the testing segment of the part number.
+        #
+        # The stored SelectionsJson uses the workbook's PREFIXED test tokens and
+        # 'none' for "no test", e.g.:
+        #   {"PERFORMANCE_TESTING":"1d-wit perf test","HYDROTEST":"none",
+        #    "VIBRATION":"none","SOUND_LEVEL":"4b-sound level test"}
+        # The user's selections come from cfg.SeriesFieldOption in a DIFFERENT
+        # vocabulary (no numeric prefix; "not included" instead of "none";
+        # "certificate"/"testing" suffixes). Prior code matched with fuzzy LIKE
+        # and skipped "not included", so almost every combination failed and the
+        # code defaulted to "00" - which is why testing never appeared in the
+        # part number. We normalize each selection to the stored token and match
+        # all four fields EXACTLY.
         testing = "00"
-        perf = body.selections.get("PERFORMANCE_TESTING", "")
-        hydro = body.selections.get("HYDROTEST_CERTIFICATE", "")
-        vib = body.selections.get("VIBRATION_TESTING", "")
-        sound = body.selections.get("SOUND_LEVEL_TESTING", "")
-        # Use shorter distinctive keywords (strip "testing"/"certificate" suffixes)
-        test_keywords = []
-        for v in [perf, hydro, vib, sound]:
-            if v and len(v) > 3 and v.lower() not in ("none", ""):
-                # Take first 15 chars max to avoid suffix mismatches
-                kw = v.lower().replace(" testing", " test").replace(" certificate", "")[:20]
-                test_keywords.append(kw)
-        if test_keywords:
-            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * min(len(test_keywords), 4))
-            params = ["TESTING"] + [f"%{k}%" for k in test_keywords[:4]]
-            try:
-                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
-                if row: testing = row[0]
-            except: pass
+
+        def _norm_test(field_code: str) -> str:
+            raw = str(body.selections.get(field_code, "")).strip().lower()
+            # No selection / explicit not-included -> the stored "none" token.
+            if raw in ("", "none", "not included", "not supplied by fybroc"):
+                return "none"
+            # Vibration and Sound Level have a single non-none token regardless
+            # of witnessed/non-witnessed in the V6 Testing table.
+            if field_code == "VIBRATION_TESTING":
+                return "5b-vibration test"
+            if field_code == "SOUND_LEVEL_TESTING":
+                return "4b-sound level test"
+            # Performance / Hydrotest: map the SFO wording to the prefixed token.
+            core = raw.replace(" certificate", "").replace(" testing", " test").strip()
+            perf_map = {
+                "non-wit perf test": "1c-non-wit perf test",
+                "wit perf test": "1d-wit perf test",
+                "non-wit perf test npshr": "1e-non-wit perf test npshr",
+                "wit perf test npshr": "1f-wit perf test npshr",
+            }
+            hydro_map = {
+                "non-wit hydro test": "2a-non-wit hydro test",
+                "wit hydro test": "2b-wit hydro test",
+            }
+            if field_code == "PERFORMANCE_TESTING":
+                return perf_map.get(core, "none")
+            if field_code == "HYDROTEST_CERTIFICATE":
+                return hydro_map.get(core, "none")
+            return "none"
+
+        perf_t = _norm_test("PERFORMANCE_TESTING")
+        hydro_t = _norm_test("HYDROTEST_CERTIFICATE")
+        vib_t = _norm_test("VIBRATION_TESTING")
+        sound_t = _norm_test("SOUND_LEVEL_TESTING")
+        # Exact per-field match against the stored JSON tokens (JSON keys are
+        # PERFORMANCE_TESTING / HYDROTEST / VIBRATION / SOUND_LEVEL).
+        try:
+            row = cursor.execute(
+                "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
+                "WHERE SegmentCode='TESTING' "
+                "  AND LOWER(SelectionsJson) LIKE ? "
+                "  AND LOWER(SelectionsJson) LIKE ? "
+                "  AND LOWER(SelectionsJson) LIKE ? "
+                "  AND LOWER(SelectionsJson) LIKE ?",
+                f'%"performance_testing": "{perf_t}"%',
+                f'%"hydrotest": "{hydro_t}"%',
+                f'%"vibration": "{vib_t}"%',
+                f'%"sound_level": "{sound_t}"%',
+            ).fetchone()
+            if row:
+                testing = row[0]
+        except Exception:
+            pass
 
         # Frame size from selection
         import re
