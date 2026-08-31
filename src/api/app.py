@@ -84,12 +84,30 @@ def create_app(
                 project_root=PROJECT_ROOT
             )
         )
-        resolved_registry = (
-            runtime_registry
-            or build_runtime_registry(
-                resolved_settings
-            )
-        )
+        # Build the runtime registry, but DO NOT let a failure here prevent the
+        # app from starting and binding its port. build_runtime_registry opens
+        # SQL connections at boot; when the database is unreachable (e.g. the
+        # ngrok tunnel is down or its address just rotated) that would raise and
+        # crash startup, so the platform reports "no open ports" and the service
+        # never goes live. The v2 routes connect to SQL per-request and do not
+        # need this registry, so degrade gracefully: log and continue with a
+        # None registry. The older token-based routes that DO use it will surface
+        # a clear error per-request instead of taking down the whole service.
+        resolved_registry = runtime_registry
+        if resolved_registry is None:
+            try:
+                resolved_registry = build_runtime_registry(
+                    resolved_settings
+                )
+            except Exception as exc:  # noqa: BLE001 - must not crash startup
+                import logging
+
+                logging.getLogger("uvicorn.error").warning(
+                    "Runtime registry build failed at startup "
+                    "(continuing without it; DB may be unreachable): %s",
+                    exc,
+                )
+                resolved_registry = None
 
         application.state.settings = (
             resolved_settings
