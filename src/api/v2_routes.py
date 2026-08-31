@@ -77,9 +77,31 @@ def _get_conn_str(request: Request) -> str:
     return settings.connection_string
 
 
-def _get_active_publication(conn_str: str) -> tuple[int, str]:
-    """Returns (publication_id, version_code) for the active publication."""
-    conn = pyodbc.connect(conn_str, autocommit=True)
+# Short-lived cache of the active publication. It changes only when a new
+# metadata publication is activated (rare), so caching it avoids an extra DB
+# round-trip on every request - which matters a lot when the DB is reached over
+# a remote tunnel (e.g. ngrok) where each query has real network latency.
+_ACTIVE_PUB_CACHE: dict[str, object] = {"value": None, "expires": 0.0}
+_ACTIVE_PUB_TTL_SECONDS = 60.0
+
+
+def _get_active_publication(
+    conn_str: str, conn: "pyodbc.Connection | None" = None
+) -> tuple[int, str]:
+    """Return (publication_id, version_code) for the active publication.
+
+    Reuses the caller's open connection when provided (avoids a second
+    TCP+TLS+login handshake per request), and caches the result for a short TTL
+    since the active publication rarely changes.
+    """
+    now = time.monotonic()
+    cached = _ACTIVE_PUB_CACHE["value"]
+    if cached is not None and now < float(_ACTIVE_PUB_CACHE["expires"]):
+        return cached  # type: ignore[return-value]
+
+    owns_conn = conn is None
+    if owns_conn:
+        conn = pyodbc.connect(conn_str, autocommit=True)
     try:
         row = conn.cursor().execute(
             "SELECT TOP 1 MetadataPublicationId, VersionCode "
@@ -88,9 +110,13 @@ def _get_active_publication(conn_str: str) -> tuple[int, str]:
         ).fetchone()
         if row is None:
             raise RuntimeError("No active metadata publication")
-        return int(row[0]), str(row[1])
+        result = (int(row[0]), str(row[1]))
+        _ACTIVE_PUB_CACHE["value"] = result
+        _ACTIVE_PUB_CACHE["expires"] = now + _ACTIVE_PUB_TTL_SECONDS
+        return result
     finally:
-        conn.close()
+        if owns_conn:
+            conn.close()
 
 
 # ---------------------------------------------------------------------------
@@ -414,10 +440,11 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
     NOT cached (input-dependent).
     """
     conn_str = _get_conn_str(request)
-    pub_id, _ = _get_active_publication(conn_str)
 
     conn = pyodbc.connect(conn_str, autocommit=True)
     try:
+        # Reuse this connection for the publication lookup (no second handshake).
+        pub_id, _ = _get_active_publication(conn_str, conn)
         cursor = conn.cursor()
         family_upper = family.upper()
 
@@ -668,10 +695,10 @@ async def validate_configuration(family: str, body: ValidateRequest, request: Re
     NOT cached (input-dependent).
     """
     conn_str = _get_conn_str(request)
-    pub_id, _ = _get_active_publication(conn_str)
 
     conn = pyodbc.connect(conn_str, autocommit=True)
     try:
+        pub_id, _ = _get_active_publication(conn_str, conn)
         cursor = conn.cursor()
         violations = []
 
@@ -723,7 +750,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
     conn = pyodbc.connect(conn_str, autocommit=True)
     try:
         cursor = conn.cursor()
-        pub_id, _ = _get_active_publication(conn_str)
+        pub_id, _ = _get_active_publication(conn_str, conn)
         family_upper = family.upper()
 
         family_row = cursor.execute(
