@@ -2,8 +2,7 @@
   "buildCommand": null,
   "outputDirectory": "ui",
   "framework": null,
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/configurator.html" }
+  "redirects": [
+    { "source": "/", "destination": "/configurator.html", "permanent": false }
   ]
 }
