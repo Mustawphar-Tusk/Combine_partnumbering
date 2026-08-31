@@ -11,4 +11,4 @@
 //
 // For Vercel, override this value at deploy time (see DEPLOYMENT.md) so the
 // static UI knows where the backend lives.
-window.API_BASE = "";
+window.API_BASE = "https://pump-configurator-api.onrender.com";
