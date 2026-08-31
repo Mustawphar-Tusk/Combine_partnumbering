@@ -1,8 +1,39 @@
-# Resume Point — 2026-08-25
+# Resume Point — 2026-08-27
 
 ## Current State
 
-**All 10 Fybroc series fully resolve Part Numbers at 100%.** Pricing hits 100% for 8 of 10 series (7500 and 8500 lack pricing rules in the Pricebook — engineering decision needed). Motor assembly, seal assembly, pump options, and all other segments resolved. Bulk testing confirms.
+**Live test environment deployed and verified end-to-end.** The configurator is
+shareable via a Vercel URL, backed by a FastAPI service on Render (Docker +
+ODBC Driver 18), connecting to the local SQL Server through an ngrok TCP tunnel.
+Full chain verified: series list, constrained evaluate, and part-number resolve.
+
+- UI (Vercel):  https://combine-partnumbering-claude.vercel.app
+- API (Render): https://pump-configurator-api.onrender.com
+- Repo:         github.com/Mustawphar-Tusk/Combine_partnumbering_Claude
+- Details:      docs/evidence/DEPLOYMENT_MILESTONE.md ; setup: DEPLOYMENT.md
+
+To run: SQL Server up + `ngrok tcp 1433` + Render `DB_SERVER` matching the current
+ngrok host,port (free-tier address rotates each restart — see DEPLOYMENT.md).
+The URL only works while these are live (coordinated test window, not 24/7). For
+unattended access, move the DB to Azure SQL (removes ngrok + local-PC dependency).
+
+## Deployment session (2026-08-27) — What Was Done
+
+- Created deployment artifacts: `Dockerfile`, `.dockerignore`, `render.yaml`,
+  `vercel.json`, `ui/config.js` (window.API_BASE), `DEPLOYMENT.md`.
+- Parameterized the UI API base so the Vercel UI calls the Render API cross-origin
+  (default `""` keeps local same-origin dev working).
+- Bring-up fixes: guarded `pywin32` for Linux build; fixed Vercel root 404 (redirect
+  to /configurator.html); per-request DB latency (one connection + 60s publication
+  cache instead of two connections per request).
+- Machine prep: confirmed SQL Server TCP/IP + mixed-mode auth; created
+  least-privilege login `configurator_test`; registered ngrok authtoken.
+- Pushed all work to the `Combine_partnumbering_Claude` repo (through commit for the
+  ngrok restart docs).
+
+## Prior State (feature work — still current)
+
+**All 10 Fybroc series fully resolve Part Numbers at 100%.** Pricing hits 100% for 8 of 10 series (7500 and 8500 lack pricing rules in the Pricebook — engineering decision needed). Motor assembly, seal assembly, pump options, and all other segments resolved. Bulk testing confirms. Recent feature work also fixed the testing part-number segment, corrected the V6 Motor Assy 5-region extraction, added the Wetted Hardware conditional skip and ALT_SIZE ascending sort, and audited constraints (blank=not-allowed, V6 flange authority) — see docs/evidence/F120/FYBROC_CONSTRAINT_EXTRACTION_ALIGNMENT.md.
 
 ## What's Working
 
