@@ -1,0 +1,38 @@
+# Render Blueprint for the Pump Configurator FastAPI backend.
+#
+# Deploys the Dockerfile as a web service. The backend connects to SQL Server
+# through the DB_* env vars - for the test environment these point at an ngrok
+# TCP tunnel to your local SQL Server (see DEPLOYMENT.md).
+#
+# Secrets (DB_PASSWORD, CONFIGURATION_TOKEN_SECRET) and the rotating ngrok host
+# (DB_SERVER) are marked sync:false so you set them in the Render dashboard and
+# they are NOT stored in git.
+services:
+  - type: web
+    name: pump-configurator-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /docs
+    envVars:
+      # ODBC driver name baked into the image
+      - key: DB_DRIVER
+        value: ODBC Driver 18 for SQL Server
+      # SQL Server database name
+      - key: DB_DATABASE
+        value: PumpConfiguratorDB
+      # ngrok TCP tunnel host,port to your local SQL Server, e.g.
+      #   0.tcp.ngrok.io,17654
+      # (set/update in the dashboard each time ngrok restarts on the free tier)
+      - key: DB_SERVER
+        sync: false
+      # SQL Server login (mixed-mode auth) - Trusted auth cannot cross the tunnel
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      # Token signing secret (>= 32 chars) required by ApiSettings
+      - key: CONFIGURATION_TOKEN_SECRET
+        sync: false
+      - key: API_ENVIRONMENT
+        value: test

@@ -1,0 +1,9 @@
+{
+  "buildCommand": null,
+  "outputDirectory": "ui",
+  "framework": null,
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/configurator.html" }
+  ]
+}

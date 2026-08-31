@@ -1,0 +1,47 @@
+# Keep the backend image small and free of secrets / non-runtime files.
+
+# Virtualenv and Python caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets and local env
+.env
+.env.*
+*secret*
+*session*.json
+.db
+
+# Proprietary Excel sources and generated workbooks (NOT needed at runtime;
+# the runtime reads from SQL Server, not the workbooks)
+workbooks/
+output/
+artifacts/
+*.xlsm
+*.xlsx
+*.xlsb
+~$*
+
+# VCS / IDE / OS
+.git/
+.github/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Logs, backups, temp, docs, tests, migrations not needed in the runtime image
+logs/
+backups/
+temp/
+*.log
+*.zip
+*.bak
+*.bak-*
+docs/
+tests/
+migrations/
+vba/

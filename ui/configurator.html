@@ -67,8 +67,17 @@
         </div>
     </div>
 
+    <!-- Deployment config: sets window.API_BASE for the backend origin.
+         Local dev / same-origin: leave API_BASE empty (default below).
+         Vercel-hosted UI -> Render-hosted API: config.js sets the absolute
+         backend URL, e.g. window.API_BASE = "https://your-api.onrender.com".
+         config.js is optional; if absent, same-origin '' is used. -->
+    <script src="config.js"></script>
     <script>
-        const API = '/api/v2';
+        // API_BASE is the backend origin (no trailing slash). Empty string means
+        // same-origin (relative), which is how the API is served locally at /ui.
+        const API_BASE = (window.API_BASE || '').replace(/\/+$/, '');
+        const API = API_BASE + '/api/v2';
         let selections = {};
         let resolvedCodes = {};
         let allFieldOptions = {};  // ALL fields and their options for this series
