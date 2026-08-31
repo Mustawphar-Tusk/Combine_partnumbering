@@ -144,3 +144,31 @@ backend URL via `window.API_BASE`.
   git-ignored and docker-ignored.
 - For anything beyond short-lived testing, prefer Azure SQL (a hosted database)
   over the ngrok-to-local-DB approach - seed it with the loaders in `scripts/`.
+
+## Restarting the ngrok tunnel (after shutdown / reboot)
+
+On the free ngrok tier the tunnel address CHANGES every restart, so Render's
+`DB_SERVER` must be updated to match. Routine:
+
+1. **Start the tunnel** (leave the window running):
+   ```
+   ngrok tcp 1433
+   ```
+2. **Read the new address** (host,port form Render needs):
+   ```powershell
+   (Invoke-RestMethod http://127.0.0.1:4040/api/tunnels).tunnels[0].public_url
+   ```
+   `tcp://5.tcp.ngrok.io:12345`  ->  `DB_SERVER = 5.tcp.ngrok.io,12345`
+   (comma, not colon)
+3. **Update Render**: dashboard -> service `pump-configurator-api` -> Environment
+   tab -> edit `DB_SERVER` -> paste new host,port -> Save Changes. Saving
+   triggers a redeploy; wait for Live.
+4. **Wake Render** (first request after idle takes ~30-60s): open the UI or
+   `<render-url>/docs`.
+
+Only `DB_SERVER` changes each restart. `DB_USERNAME`, `DB_PASSWORD`,
+`CONFIGURATION_TOKEN_SECRET`, and the Vercel URL all stay the same. Ensure SQL
+Server is running too (it normally auto-starts with Windows).
+
+To avoid this manual step entirely: use a reserved ngrok TCP address (paid) so
+the address never changes, or move to Azure SQL (hosted DB, no tunnel).
