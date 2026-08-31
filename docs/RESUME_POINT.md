@@ -10,7 +10,7 @@ Full chain verified: series list, constrained evaluate, and part-number resolve.
 - UI (Vercel):  https://combine-partnumbering-claude.vercel.app
 - API (Render): https://pump-configurator-api.onrender.com
 - Repo:         github.com/Mustawphar-Tusk/Combine_partnumbering_Claude
-- Details:      docs/evidence/DEPLOYMENT_MILESTONE.md ; setup: DEPLOYMENT.md
+- Details:      docs/evidence/DEPLOYMENT_MILESTONE.md ; setup: external_testing/DEPLOYMENT.md (index: external_testing/README.md)
 
 To run: SQL Server up + `ngrok tcp 1433` + Render `DB_SERVER` matching the current
 ngrok host,port (free-tier address rotates each restart — see DEPLOYMENT.md).

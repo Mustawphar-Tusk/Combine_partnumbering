@@ -40,7 +40,7 @@ long-lived process). So the split is:
 | `vercel.json` | Serves `ui/` static folder; redirects `/` -> `/configurator.html` |
 | `ui/config.js` | Sets `window.API_BASE` (backend origin); default `""` = same-origin |
 | `ui/configurator.html` | API base parameterized via `window.API_BASE` |
-| `DEPLOYMENT.md` | Full setup + ngrok restart guide |
+| `external_testing/DEPLOYMENT.md` | Full setup + ngrok restart guide (indexed by `external_testing/README.md`) |
 
 ## Fixes made during bring-up
 
