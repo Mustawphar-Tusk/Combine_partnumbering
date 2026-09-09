@@ -175,7 +175,8 @@ def _order_fields(field_codes) -> list[str]:
 
 # Fields whose option values are numeric and must be presented in ASCENDING
 # NUMERIC order (not string order, which mixes "1, 1.5, 10, 100, 15, 2, ...").
-NUMERIC_OPTION_FIELDS = {"MOTOR_HP", "MOTOR_RPM", "MOTOR_HERTZ", "MOTOR_VOLTAGE"}
+NUMERIC_OPTION_FIELDS = {"MOTOR_HP", "MOTOR_RPM", "MOTOR_HERTZ", "MOTOR_VOLTAGE",
+                         "IMPELLER_TRIM"}
 
 # DIMENSIONAL fields whose option values are compound sizes like "10x12x16"
 # (suction x discharge x impeller). Plain string order mis-sorts these
@@ -546,37 +547,57 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
         # marker (e.g. '5500_ONLY'). A scoped row applies only when the requested
         # series matches.
 
-        # constraint field label -> SFO field code, and reverse
-        _cfmap = cursor.execute(
-            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
-        ).fetchall()
-        label_to_sfo = {r[0]: r[1] for r in _cfmap}
+        # The tables come in three shapes and this logic handles all three,
+        # data-driven, per table + per selected context:
+        #   NOT-ALLOWED (e.g. Alt Size x Coupling Guard): remove the listed
+        #       target values.
+        #   ALLOW-LIST  (e.g. Alt Size x Impeller Trim): only the listed target
+        #       values are valid for that context -> keep ONLY those.
+        #   MIXED       (e.g. Wetted Hardware x Selection): keep the Allowed set
+        #       and drop the Not-Allowed set.
+        # For a given constraint table, a given target field, and a given fully-
+        # selected+matched context, we collect that context's Allowed and
+        # Not-Allowed target values. If there is at least one Allowed row, the
+        # target is restricted to (Allowed - NotAllowed); otherwise the
+        # Not-Allowed values are removed. When the current context has NO rows in
+        # a table, that table does not constrain the target (no filtering), so
+        # unrelated sizes are never blanked.
+
+        # constraint field label -> SFO field code
+        label_to_sfo = {
+            r[0]: r[1] for r in cursor.execute(
+                "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
+            ).fetchall()
+        }
 
         def _series_in_scope(scope: str) -> bool:
             s = (scope or "ALL_SERIES").strip().upper()
             if s == "ALL_SERIES":
                 return True
-            # scoped markers embed the series code, e.g. "5500_ONLY"
-            return body.series.upper() in s
+            return body.series.upper() in s  # e.g. "5500_ONLY"
 
-        # Pull all Not-Allowed rows in one query (small table, ~4.5k rows).
-        not_allowed = cursor.execute(
-            "SELECT Option1Field, Option1Value, Option2Field, Option2Value, "
-            "       Option3Field, Option3Value, SeriesApplicability "
-            "FROM cfg.FeasibleConstraint "
-            "WHERE LOWER(Allowed) = 'not allowed'"
+        all_rows = cursor.execute(
+            "SELECT TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
+            "       Option3Field, Option3Value, Allowed, SeriesApplicability "
+            "FROM cfg.FeasibleConstraint"
         ).fetchall()
 
-        # Effective selections, case-normalized by SFO field code, for matching.
         _sel_norm = {
             k.upper(): str(v).strip().lower()
             for k, v in effective_selections.items()
         }
 
-        for (o1f, o1v, o2f, o2v, o3f, o3v, scope) in not_allowed:
+        # Accumulate, per (table, target_field), the Allowed and Not-Allowed
+        # target values whose CONTEXT legs are all selected and match. Grouping
+        # by table keeps allow-list semantics scoped to that one table, so a
+        # value allowed by table A is not wrongly required by table B.
+        import collections as _collections
+        allowed_by = _collections.defaultdict(set)      # (table, tgt_field) -> {values}
+        notallowed_by = _collections.defaultdict(set)   # (table, tgt_field) -> {values}
+
+        for (tname, o1f, o1v, o2f, o2v, o3f, o3v, allowed_flag, scope) in all_rows:
             if not _series_in_scope(scope):
                 continue
-            # Assemble the row's legs as (sfo_field_code, value) pairs.
             legs = []
             ok = True
             for label, value in ((o1f, o1v), (o2f, o2v), (o3f, o3v)):
@@ -584,60 +605,143 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
                     continue
                 sfo = label_to_sfo.get(str(label).strip())
                 if not sfo:
-                    ok = False  # unmapped field -> skip this row safely
+                    ok = False
                     break
                 legs.append((sfo.upper(), str(value).strip().lower()))
             if not ok or len(legs) < 2:
                 continue
-
-            # For each leg, treat it as the "target" and the others as "context".
-            # If every context leg is selected and matches, the target value is
-            # illegal -> remove it from that field's allowable options.
+            is_not_allowed = str(allowed_flag).strip().lower() == "not allowed"
             for ti in range(len(legs)):
                 target_field, target_value = legs[ti]
                 context = [legs[i] for i in range(len(legs)) if i != ti]
+                # Only act when every context leg is selected AND matches.
                 if all(_sel_norm.get(cf) == cv for cf, cv in context):
-                    if target_field in allowable:
-                        allowable[target_field] = [
-                            v for v in allowable[target_field]
-                            if str(v).strip().lower() != target_value
-                        ]
+                    key = (tname, target_field)
+                    if is_not_allowed:
+                        notallowed_by[key].add(target_value)
+                    else:
+                        allowed_by[key].add(target_value)
 
-        # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint — an ALLOW-LIST).
-        # Unlike FeasibleConstraint (which removes "Not Allowed" values), Motor
-        # Constraints list the ALLOWED pairs. When the user selects a driving
-        # dimension (Alt_Size), restrict the dependent motor field (Frame Size)
-        # to only the values the workbook allows for that (series-scope, size).
-        # SFO field  -> MotorConstraint dimension field:
-        MOTOR_DIM_FIELD = {
-            "ALT_SIZE": "Alt_Size",
-            "FRAME_SIZE": "F_Frame_Size",
-        }
-        # Which series scope does the requested series belong to?
+        # Apply per (table, target_field): allow-list restriction when the table
+        # provided any Allowed rows for the context, plus Not-Allowed removal.
+        _targets = set(allowed_by) | set(notallowed_by)
+        for (tname, target_field) in _targets:
+            if target_field not in allowable:
+                continue
+            allow_set = allowed_by.get((tname, target_field), set())
+            deny_set = notallowed_by.get((tname, target_field), set())
+            if allow_set:
+                allowable[target_field] = [
+                    v for v in allowable[target_field]
+                    if str(v).strip().lower() in allow_set
+                    and str(v).strip().lower() not in deny_set
+                ]
+            elif deny_set:
+                allowable[target_field] = [
+                    v for v in allowable[target_field]
+                    if str(v).strip().lower() not in deny_set
+                ]
+
+        # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint - ALLOW-LISTs).
+        # Motor Constraints list the ALLOWED dimension pairs per series scope.
+        # F_MotorHpRpm is a COMPOSITE key "HP-RPM" (e.g. "1-1800"); the runtime
+        # exposes HP and RPM as separate SFO fields (MOTOR_HP, MOTOR_RPM), so we
+        # decompose the composite. The four relationships in the sheet:
+        #   Alt_Size x F_Frame_Size      -> restrict FRAME_SIZE by size
+        #   Alt_Size x F_MotorHpRpm      -> restrict MOTOR_HP by size, then
+        #                                   MOTOR_RPM by (size, HP)
+        #   F_Frame_Size x F_MotorHpRpm  -> restrict FRAME_SIZE by (HP, RPM)
+        #   F_MotorHpRpm x F_Motor Type  -> constrains the DERIVED MotorType
+        #       (Enclosure+Efficiency+Voltage+Hertz), which is not a single
+        #       selectable field, so it is governed at part-number assembly, not
+        #       as a dropdown filter here.
+        #
+        # Series scope is a group label like '1500 and 1600'. Match by exact
+        # equality OR series appearing as a whole token in the scope, so e.g.
+        # '1600' does not accidentally match some unrelated substring.
         scope_row = cursor.execute(
             "SELECT DISTINCT SeriesScope FROM cfg.MotorConstraint "
             "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
-            "AND (SeriesScope = ? OR SeriesScope LIKE ?)",
-            pub_id, family_id, body.series, f"%{body.series}%",
+            "AND (SeriesScope = ? OR SeriesScope LIKE ? OR SeriesScope LIKE ? "
+            "     OR SeriesScope LIKE ?)",
+            pub_id, family_id, body.series,
+            f"{body.series} %", f"% {body.series}", f"% {body.series} %",
         ).fetchone()
         motor_scope = scope_row[0] if scope_row else None
 
-        if motor_scope and "ALT_SIZE" in effective_selections:
-            size_value = effective_selections.get("ALT_SIZE")
-            if size_value and "FRAME_SIZE" in allowable:
-                allowed_frames = cursor.execute(
-                    "SELECT Dimension2Value FROM cfg.MotorConstraint "
-                    "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
-                    "AND Dimension1Field='Alt_Size' AND Dimension2Field='F_Frame_Size' "
-                    "AND LOWER(Dimension1Value)=LOWER(?)",
-                    pub_id, family_id, motor_scope, size_value,
-                ).fetchall()
-                allowed_set = {r[0].strip().lower() for r in allowed_frames}
-                if allowed_set:
-                    allowable["FRAME_SIZE"] = [
-                        v for v in allowable["FRAME_SIZE"]
-                        if v.strip().lower() in allowed_set
+        def _mc_allowed(dim1_field, dim1_value, dim2_field):
+            """Allowed Dimension2Value set for a (scope, dim1) in a MotorConstraint block."""
+            if not motor_scope or dim1_value is None:
+                return set()
+            rows = cursor.execute(
+                "SELECT Dimension2Value FROM cfg.MotorConstraint "
+                "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
+                "AND Dimension1Field=? AND Dimension2Field=? "
+                "AND LOWER(Dimension1Value)=LOWER(?)",
+                pub_id, family_id, motor_scope, dim1_field, dim2_field, str(dim1_value),
+            ).fetchall()
+            return {str(r[0]).strip().lower() for r in rows if r[0] is not None}
+
+        size_value = effective_selections.get("ALT_SIZE")
+        hp_sel = effective_selections.get("MOTOR_HP")
+        rpm_sel = effective_selections.get("MOTOR_RPM")
+
+        # (1) Alt_Size -> Frame_Size
+        if size_value and "FRAME_SIZE" in allowable:
+            frames = _mc_allowed("Alt_Size", size_value, "F_Frame_Size")
+            if frames:
+                allowable["FRAME_SIZE"] = [
+                    v for v in allowable["FRAME_SIZE"]
+                    if v.strip().lower() in frames
+                ]
+
+        # (2) Alt_Size -> F_MotorHpRpm, decomposed:
+        #     the allowed composites for this size give the allowed HP set, and
+        #     (once HP is chosen) the allowed RPM set for that HP.
+        if size_value:
+            hprpm_for_size = _mc_allowed("Alt_Size", size_value, "F_MotorHpRpm")
+            if hprpm_for_size:
+                # decompose "HP-RPM"
+                pairs = []
+                for c in hprpm_for_size:
+                    if "-" in c:
+                        hp_p, rpm_p = c.split("-", 1)
+                        pairs.append((hp_p.strip(), rpm_p.strip()))
+                allowed_hp = {hp for hp, _ in pairs}
+                if allowed_hp and "MOTOR_HP" in allowable:
+                    allowable["MOTOR_HP"] = [
+                        v for v in allowable["MOTOR_HP"]
+                        if str(v).strip().lower() in allowed_hp
                     ]
+                # (3) size + HP -> RPM
+                if hp_sel is not None and "MOTOR_RPM" in allowable:
+                    hp_l = str(hp_sel).strip().lower()
+                    allowed_rpm = {rpm for hp, rpm in pairs if hp == hp_l}
+                    if allowed_rpm:
+                        allowable["MOTOR_RPM"] = [
+                            v for v in allowable["MOTOR_RPM"]
+                            if str(v).strip().lower() in allowed_rpm
+                        ]
+
+        # (4) Frame_Size <-> F_MotorHpRpm: once HP and RPM are both chosen,
+        #     tighten FRAME_SIZE to frames that pair with that HP-RPM composite.
+        if hp_sel is not None and rpm_sel is not None and "FRAME_SIZE" in allowable:
+            composite = f"{str(hp_sel).strip()}-{str(rpm_sel).strip()}"
+            # F_Frame_Size x F_MotorHpRpm lists frame(dim1) -> hprpm(dim2); we
+            # need frames whose allowed hprpm set includes this composite.
+            rows = cursor.execute(
+                "SELECT Dimension1Value FROM cfg.MotorConstraint "
+                "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
+                "AND Dimension1Field='F_Frame_Size' AND Dimension2Field='F_MotorHpRpm' "
+                "AND LOWER(Dimension2Value)=LOWER(?)",
+                pub_id, family_id, motor_scope, composite,
+            ).fetchall()
+            frames_for_hprpm = {str(r[0]).strip().lower() for r in rows if r[0] is not None}
+            if frames_for_hprpm:
+                allowable["FRAME_SIZE"] = [
+                    v for v in allowable["FRAME_SIZE"]
+                    if v.strip().lower() in frames_for_hprpm
+                ]
 
         # MOTOR Hp -> RPM ENFORCEMENT (Rev0.3 Combine Variables MotorHpRpm table).
         # The valid (Hp, RPM) pairs are enumerated by the composite F_MotorHpRPM
