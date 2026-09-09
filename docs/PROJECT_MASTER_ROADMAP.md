@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.7  
-**Roadmap Date:** 2026-08-25  
+**Roadmap Version:** 1.8  
+**Roadmap Date:** 2026-08-28  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** T110 — Azure TEST Environment  
+**Current Milestone:** F150 — SQL Fybroc Identifier Authority (F140 exited 2026-08-28)  
 
 ---
 
@@ -973,32 +973,32 @@ F100	Fybroc source inventory	COMPLETE
 F110	V5/V6 nomenclature reconciliation	COMPLETE
 F120	Rev0.3 configuration model	COMPLETE
 F130	Fybroc pricing/adders	COMPLETE
-F140	Fybroc metadata corrections	COMPLETE
-F150	SQL Fybroc identifier	COMPLETE
-F160	Fybroc Excel Oracle	COMPLETE
-F170	Fybroc exhaustive regression	COMPLETE
-F180	Fybroc signoff	COMPLETE
-D100	Dean source reconciliation	COMPLETE
-D110	Dean configuration completion	COMPLETE
-D120	Dean pricing/adders	COMPLETE
-D130	SQL Dean identifier	COMPLETE
-D140	Dean Excel Oracle	COMPLETE
-D150	Dean exhaustive regression	COMPLETE
-D160	Dean signoff	COMPLETE
-U100	canonical product model	COMPLETE
-U110	unified configuration dictionary	COMPLETE
-U120	FastAPI V2	COMPLETE
-U130	reusable BOM	COMPLETE
-U140	quote engine	COMPLETE
-U150	Excel V2	COMPLETE
-U160	React UI	COMPLETE
-U170	security/audit	COMPLETE
-T100	CI/CD	COMPLETE
-T110	Azure TEST	READY (infrastructure defined)
-T120	Telford UAT	READY (awaiting deployment)
-T130	Indianapolis UAT	READY (awaiting deployment)
-T140	cross-family UAT	READY (awaiting deployment)
-T150	UAT corrections	READY (awaiting UAT feedback)
+F140	Fybroc metadata corrections	COMPLETE (exited 2026-08-28)
+F150	SQL Fybroc identifier	CURRENT — needs verification vs exit gate
+F160	Fybroc Excel Oracle	NEEDS RE-VERIFICATION
+F170	Fybroc exhaustive regression	NEEDS RE-VERIFICATION
+F180	Fybroc signoff	NOT COMPLETE
+D100	Dean source reconciliation	NOT STARTED (only inventory docs exist)
+D110	Dean configuration completion	NOT STARTED
+D120	Dean pricing/adders	NOT STARTED
+D130	SQL Dean identifier	NOT STARTED
+D140	Dean Excel Oracle	NOT STARTED
+D150	Dean exhaustive regression	NOT STARTED
+D160	Dean signoff	NOT STARTED
+U100	canonical product model	PARTIAL — needs re-verification
+U110	unified configuration dictionary	PARTIAL — needs re-verification
+U120	FastAPI V2	OPERATIONAL (V2 endpoints live)
+U130	reusable BOM	NEEDS RE-VERIFICATION
+U140	quote engine	NEEDS RE-VERIFICATION
+U150	Excel V2	NEEDS RE-VERIFICATION
+U160	React UI	NOT BUILT (HTML configurator serves as UI)
+U170	security/audit	NOT COMPLETE (no Entra auth yet)
+T100	CI/CD	PARTIAL (CI workflow exists)
+T110	Azure TEST	NOT STARTED (preview env on Render/Vercel/ngrok instead)
+T120	Telford UAT	NOT STARTED
+T130	Indianapolis UAT	NOT STARTED
+T140	cross-family UAT	NOT STARTED
+T150	UAT corrections	NOT STARTED
 P100	performance	PENDING
 P110	recovery	PENDING
 P120	monitoring	PENDING
@@ -1014,32 +1014,59 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.6
+Version:            1.8
 
-Current Phase:      T — Central Testing & UAT
-Current Milestone:  T110 (Azure TEST Environment)
-Status:             READY — awaiting deployment infrastructure
+Current Phase:      F — Fybroc Completion
+Current Milestone:  F150 (SQL Fybroc Identifier Authority)  [NEXT]
+Status:             F140 EXITED 2026-08-28 — awaiting engineering UAT feedback
 
-Current Objective:
-Deploy central TEST environment to Azure for shared Telford/Indianapolis access.
+CORRECTION (v1.8): The v1.6/1.7 checkpoint had advanced to T110 and marked
+F100-F180, D100-D160, U100-U170 all COMPLETE. Hands-on testing (ours + engineering
+on the deployed preview) showed Fybroc constraint enforcement was NOT actually
+working, so per governance the true position was F140. F140 has now been genuinely
+completed and exited (see docs/evidence/F140/FYBROC_F140_EXIT.md). Downstream
+milestones previously marked complete must be re-verified against their own exit
+gates, not assumed done — especially the Dean phase (D100-D160), which has NOT been
+built to Fybroc parity.
 
-Current Exit Gate:
-FastAPI + React deployed on Azure with Entra authentication and SQL connectivity.
+Current Objective (F150):
+Move configured-product identity authority (Part Number, SKU V2, signature, reuse)
+into SQL Server, with the Python engine kept as a parity oracle until SQL passes
+regression.
+
+Current Exit Gate (F150):
+For all approved Fybroc regression cases, SQL Part Number = approved workbook Part
+Number; SKU V2 deterministic and collision-protected.
 
 Next Permitted Milestone:
-T120 — Telford UAT
+F160 — Excel Oracle Harness
 
-Completed (through 2026-08-25):
-F100-F180   Fybroc phase complete                   COMPLETE (f180-fybroc-complete)
-D100-D160   Dean phase complete                     COMPLETE (d160-dean-complete)
-U100-U170   Unified application complete            COMPLETE (u170-unified-complete)
-T100        CI/CD pipeline defined                  COMPLETE
+Deployment note (parallel to roadmap, NOT milestone T110):
+A PREVIEW test environment is live for engineering feedback — static UI on Vercel,
+FastAPI backend on Render (Docker + ODBC 18), reaching the local SQL Server via an
+ngrok TCP tunnel. This is a feedback surface for the current work, not the roadmap's
+central Azure TEST environment (T110). See external_testing/ and
+docs/evidence/DEPLOYMENT_MILESTONE.md. The environment-aware UI (ui/config.js) lets
+the same build serve local testing (localhost) and engineering (Vercel/Render)
+simultaneously.
+
+F140 completion (2026-08-28) — what was actually fixed:
+- Feasible Constraints were LOADED but NEVER ENFORCED (missing cfg.ConstraintFieldMap).
+  Created + seeded the map (28); rewrote enforcement to handle NOT-ALLOWED,
+  ALLOW-LIST, and MIXED tables (bidirectional, triples, series scope, exact match).
+- Motor Constraints: only Alt_Size->Frame_Size was enforced; wired in Alt_Size->HP,
+  Alt_Size+HP->RPM, and Frame<->HpRpm (bulk audit 91/91 across 7 series).
+- Fixed testing part-number segment, V6 Motor Assy extraction, Combine Variables
+  fabricated pairs, ConstraintTable21 triple loader, ALT_SIZE/IMPELLER_TRIM ordering.
+- DB reflects all: cfg.ConstraintFieldMap=28, cfg.FeasibleConstraint=4487 (29 tables),
+  cfg.MotorConstraint=3278. Re-runnable audits: scripts/audit_selections_vs_db.py,
+  scripts/audit_motor_constraints.py.
 
 Active work:
-- End-to-end UI testing of all Fybroc series via configurator
-- 6/10 configurable series FULLY COMPLETE (all horizontal)
-- 4/10 vertical series OPERATIONAL (minor motor_assy lookup gaps)
-- 2/12 total series have NO CONFIG DATA (6000, 7530 — engineering decision needed)
+- Awaiting engineering UAT feedback on the deployed preview environment.
+- F140 deferred items (see F140 exit record): allow-list "unmentioned context"
+  semantics for conditional tables; MotorHpRpm->MotorType (assembly-stage, not a
+  dropdown filter); series 6000/7530 (no config data); 7500/8500 (no pricing).
 
 Key Technical State:
 - FastAPI V2: 4 endpoints (dictionary, evaluate, validate, resolve)

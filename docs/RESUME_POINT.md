@@ -1,11 +1,43 @@
 # Resume Point — 2026-08-27
+# Resume Point — 2026-08-28
 
 ## Current State
+
+**F140 (Fybroc Metadata Corrections) EXITED.** Constraint enforcement is now
+genuinely working — this was the real gap (constraints were loaded but not
+enforced). Next milestone: **F150 — SQL Fybroc Identifier Authority**. Currently
+awaiting engineering UAT feedback on the deployed preview environment.
+
+- F140 exit record: docs/evidence/F140/FYBROC_F140_EXIT.md
+- Roadmap corrected to v1.8 (see docs/Project_master_roadmap.md §12): the prior
+  checkpoint over-reported completion (T110, F/D/U all "COMPLETE"); true position
+  was F140. Dean phase (D100-D160) is NOT built to Fybroc parity — NOT STARTED.
+
+### F140 completion (2026-08-28)
+- Feasible Constraints: were loaded but NEVER enforced (missing cfg.ConstraintFieldMap).
+  Created+seeded the map (28); rewrote enforcement for NOT-ALLOWED / ALLOW-LIST /
+  MIXED tables (bidirectional, triples, series scope, exact match). Fail-closed
+  verified (6x8x13->no Non Sparking; 2x3x13->no DIN/ISO; 5500->no Internal Flush;
+  VR-1V->no Casing Drains Supplied). ConstraintTable4 allow-list restricts Impeller
+  Trim to per-size valid set.
+- Motor Constraints: only Alt_Size->Frame was enforced; wired in Alt_Size->HP,
+  Alt_Size+HP->RPM, Frame<->HpRpm. Bulk audit 91/91 across 7 series.
+- Ordering: ALT_SIZE + IMPELLER_TRIM ascending numeric/dimensional.
+- DB reflects all: cfg.ConstraintFieldMap=28, cfg.FeasibleConstraint=4487 (29 tables),
+  cfg.MotorConstraint=3278. Audits: scripts/audit_selections_vs_db.py,
+  scripts/audit_motor_constraints.py.
+- Deferred (to UAT feedback): allow-list "unmentioned context" semantics for
+  conditional tables; MotorHpRpm->MotorType (assembly-stage, not a filter);
+  series 6000/7530 (no config); 7500/8500 (no pricing).
+
+## Preview deployment (test surface, NOT roadmap T110)
 
 **Live test environment deployed and verified end-to-end.** The configurator is
 shareable via a Vercel URL, backed by a FastAPI service on Render (Docker +
 ODBC Driver 18), connecting to the local SQL Server through an ngrok TCP tunnel.
 Full chain verified: series list, constrained evaluate, and part-number resolve.
+Environment-aware ui/config.js serves local testing (localhost) and engineering
+(Vercel/Render) from the same build simultaneously.
 
 - UI (Vercel):  https://combine-partnumbering-claude.vercel.app
 - API (Render): https://pump-configurator-api.onrender.com
