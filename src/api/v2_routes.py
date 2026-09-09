@@ -530,43 +530,78 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             if fc.upper() not in selected_upper
         }
 
-        # CONSTRAINT ENFORCEMENT: Apply FeasibleConstraint rules
-        # For each user selection (effective/pruned), find constraints and
-        # remove disallowed values.
-        for sel_field, sel_value in effective_selections.items():
-            # Find the constraint field name for this SFO field
-            constraint_field_row = cursor.execute(
-                "SELECT ConstraintFieldName FROM cfg.ConstraintFieldMap WHERE SFOFieldCode = ?",
-                sel_field.upper()
-            ).fetchone()
-            if not constraint_field_row:
+        # FEASIBLE-CONSTRAINT ENFORCEMENT (Rev0.3 Feasible Constraints sheet).
+        # cfg.FeasibleConstraint holds "Not Allowed" combinations across 2 or 3
+        # fields (e.g. Alt Size + Non Sparking Coupling Guard; Casing Drains
+        # Supplied + VR-1V Pump Material; Alt Size + Pump Material + Length).
+        # A row's fields are its "legs". Rule: if EVERY leg except one is already
+        # selected and matches (case-insensitive, exact), the remaining leg's
+        # value is illegal in that context and is removed from its allowable
+        # options. This handles pairs BIDIRECTIONALLY (either field selected
+        # first blocks the other) and TRIPLES (two selected -> filter the third),
+        # and it makes invalid options fail closed. cfg.ConstraintFieldMap bridges
+        # the constraint field LABELS to SFO FieldCodes.
+        #
+        # Series scoping: SeriesApplicability is 'ALL_SERIES' or a series-scoped
+        # marker (e.g. '5500_ONLY'). A scoped row applies only when the requested
+        # series matches.
+
+        # constraint field label -> SFO field code, and reverse
+        _cfmap = cursor.execute(
+            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
+        ).fetchall()
+        label_to_sfo = {r[0]: r[1] for r in _cfmap}
+
+        def _series_in_scope(scope: str) -> bool:
+            s = (scope or "ALL_SERIES").strip().upper()
+            if s == "ALL_SERIES":
+                return True
+            # scoped markers embed the series code, e.g. "5500_ONLY"
+            return body.series.upper() in s
+
+        # Pull all Not-Allowed rows in one query (small table, ~4.5k rows).
+        not_allowed = cursor.execute(
+            "SELECT Option1Field, Option1Value, Option2Field, Option2Value, "
+            "       Option3Field, Option3Value, SeriesApplicability "
+            "FROM cfg.FeasibleConstraint "
+            "WHERE LOWER(Allowed) = 'not allowed'"
+        ).fetchall()
+
+        # Effective selections, case-normalized by SFO field code, for matching.
+        _sel_norm = {
+            k.upper(): str(v).strip().lower()
+            for k, v in effective_selections.items()
+        }
+
+        for (o1f, o1v, o2f, o2v, o3f, o3v, scope) in not_allowed:
+            if not _series_in_scope(scope):
                 continue
-            constraint_field = constraint_field_row[0]
-
-            # Find all "Not Allowed" constraints where this field+value is Option1
-            not_allowed_rows = cursor.execute(
-                "SELECT Option2Field, Option2Value FROM cfg.FeasibleConstraint "
-                "WHERE Option1Field = ? AND LOWER(Option1Value) LIKE ? AND LOWER(Allowed) LIKE '%not allowed%'",
-                constraint_field, f"%{sel_value.lower()[:20]}%"
-            ).fetchall()
-
-            for target_constraint_field, not_allowed_value in not_allowed_rows:
-                # Map the target constraint field back to SFO field code
-                target_sfo_row = cursor.execute(
-                    "SELECT SFOFieldCode FROM cfg.ConstraintFieldMap WHERE ConstraintFieldName = ?",
-                    target_constraint_field
-                ).fetchone()
-                if not target_sfo_row:
+            # Assemble the row's legs as (sfo_field_code, value) pairs.
+            legs = []
+            ok = True
+            for label, value in ((o1f, o1v), (o2f, o2v), (o3f, o3v)):
+                if not label:
                     continue
-                target_sfo_field = target_sfo_row[0]
+                sfo = label_to_sfo.get(str(label).strip())
+                if not sfo:
+                    ok = False  # unmapped field -> skip this row safely
+                    break
+                legs.append((sfo.upper(), str(value).strip().lower()))
+            if not ok or len(legs) < 2:
+                continue
 
-                # Remove the not-allowed value from allowable options
-                if target_sfo_field in allowable:
-                    original_count = len(allowable[target_sfo_field])
-                    allowable[target_sfo_field] = [
-                        v for v in allowable[target_sfo_field]
-                        if not_allowed_value.lower().strip() not in v.lower()
-                    ]
+            # For each leg, treat it as the "target" and the others as "context".
+            # If every context leg is selected and matches, the target value is
+            # illegal -> remove it from that field's allowable options.
+            for ti in range(len(legs)):
+                target_field, target_value = legs[ti]
+                context = [legs[i] for i in range(len(legs)) if i != ti]
+                if all(_sel_norm.get(cf) == cv for cf, cv in context):
+                    if target_field in allowable:
+                        allowable[target_field] = [
+                            v for v in allowable[target_field]
+                            if str(v).strip().lower() != target_value
+                        ]
 
         # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint — an ALLOW-LIST).
         # Unlike FeasibleConstraint (which removes "Not Allowed" values), Motor

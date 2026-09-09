@@ -52,22 +52,49 @@ def main():
         if not table_name or not resolved:
             continue
 
-        opt1_field = entry.get("option1", "")
-        opt2_field = entry.get("option2", "")
-        opt3_field = entry.get("option3", "")
+        # Field NAMES are taken from the table headers (below), NOT from the
+        # constraint-index option1/2/3 - those can be in a different order than
+        # the headers (e.g. ConstraintTable21 index says Pump Material/Length/
+        # Alt Size but headers are Alt Size/Pump Material/Length), which would
+        # mislabel every value. Deriving both name and value from the headers
+        # keeps Option-field aligned with its Option-value.
         description = entry.get("description", "")
         series_app = entry.get("series_applicability", "ALL_SERIES")
 
         headers = resolved.get("headers", [])
         rows = resolved.get("rows", [])
 
+        # Identify the "Allowed?" column by HEADER NAME, not position. Tables
+        # have either [Opt1, Opt2, Allowed?] (2-field) or
+        # [Opt1, Opt2, Opt3, Allowed?] (3-field, e.g. ConstraintTable21). A prior
+        # positional parse mislabeled the 3-field case: it stored the Opt3
+        # (Length) value as "Allowed" and the "Allowed?" text as Opt3Value. The
+        # option-VALUE columns are all header columns except the Allowed one, in
+        # order, so Option1/2/3 map correctly regardless of arity.
+        allowed_idx = next(
+            (i for i, h in enumerate(headers)
+             if str(h).strip().lower().rstrip("?") == "allowed"),
+            len(headers) - 1,  # fallback: last column
+        )
+        value_header_idxs = [i for i in range(len(headers)) if i != allowed_idx]
+        # Field labels come from the headers at those same indexes, so name and
+        # value stay aligned (Option1Field is headers[value_header_idxs[0]], etc.)
+        opt_fields = [str(headers[i]).strip() for i in value_header_idxs]
+        opt1_field = opt_fields[0] if len(opt_fields) > 0 else ""
+        opt2_field = opt_fields[1] if len(opt_fields) > 1 else ""
+        opt3_field = opt_fields[2] if len(opt_fields) > 2 else ""
+
         for row in rows:
-            # Get values by header position
             vals = list(row.values())
-            opt1_val = vals[0] if len(vals) > 0 else ""
-            opt2_val = vals[1] if len(vals) > 1 else ""
-            allowed = vals[2] if len(vals) > 2 else "Allowed"
-            opt3_val = vals[3] if len(vals) > 3 else None
+
+            def _v(i):
+                return vals[i] if 0 <= i < len(vals) else None
+
+            opt_vals = [_v(i) for i in value_header_idxs]
+            opt1_val = opt_vals[0] if len(opt_vals) > 0 else ""
+            opt2_val = opt_vals[1] if len(opt_vals) > 1 else ""
+            opt3_val = opt_vals[2] if len(opt_vals) > 2 else None
+            allowed = _v(allowed_idx)
 
             if opt1_val:
                 cursor.execute(
