@@ -1410,20 +1410,52 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "failed_segments": failed,
         }
 
-        # Generate SKU
-        cursor.execute(
-            "DECLARE @SKU varchar(100); "
-            "EXEC cfg.usp_GenerateSKU @FamilyCode=?, @SeriesCode=?, @ConfigurationSignature=?, @SKU=@SKU OUTPUT; "
-            "SELECT @SKU;",
-            family_upper, body.series, signature,
-        )
-        sku = cursor.fetchone()[0]
+        # SQL-AUTHORITATIVE IDENTITY (F150, Option B).
+        # SQL now owns the authoritative assembly, signature, SKU, reuse, and
+        # persistence. The Python-assembled `pn` above is retained only as a
+        # PARITY ORACLE: we resolve the composite segments in Python (which
+        # respects all constraint corrections), hand the resolved segment codes
+        # to cfg.usp_AssembleConfiguredProduct, and use SQL's returned values as
+        # authoritative. If Python's PN diverges from SQL's, we log it (a signal
+        # the two assemblers disagree) but SQL wins.
+        segments_payload = json.dumps({
+            "brand": brand,
+            "series_code": series_code,
+            "size_code": size_code,
+            "material_code": material_code,
+            "trim_code": trim_code,
+            "pump_options": pump_opts,
+            "seal_mfg": seal_mfg,
+            "seal_assy": seal_assy,
+            "options": options_code,
+            "frame_size": frame_size,
+            "motor_assy": motor_assy,
+            "motor_mods": motor_mods,
+            "testing": testing,
+        })
+        py_pn = pn  # Python parity-oracle assembly (computed above)
 
-        # Check for existing (reuse)
-        existing = cursor.execute(
-            "SELECT ConfiguredProductId FROM cfg.ConfiguredProduct WHERE ConfigurationSignature = ?",
-            signature,
+        sql_row = cursor.execute(
+            "EXEC cfg.usp_AssembleConfiguredProduct "
+            "@FamilyCode=?, @SeriesCode=?, @IsVertical=?, "
+            "@SegmentsJson=?, @CanonicalJson=?, @RequestedBy=?, @Persist=1;",
+            family_upper, body.series, 1 if is_vertical else 0,
+            segments_payload, config_json, body.requested_by,
         ).fetchone()
+
+        # SQL is authoritative for PN, SKU, signature, and reuse.
+        pn = sql_row[0]
+        sku = sql_row[1]
+        signature = sql_row[2]
+
+        # Parity check: Python assembly vs SQL assembly must agree.
+        parity_ok = (py_pn == pn)
+        if not parity_ok:
+            import logging
+            logging.getLogger("uvicorn.error").warning(
+                "F150 PN parity divergence: python=%r sql=%r (series=%s)",
+                py_pn, pn, body.series,
+            )
 
         # Pricing lookup
         pricing = []
@@ -1506,8 +1538,10 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "part_number": pn,
             "sku": sku,
             "configuration_signature": signature,
-            "existing_configuration": existing is not None,
-            "configured_product_id": existing[0] if existing else None,
+            "existing_configuration": bool(sql_row[3]),
+            "configured_product_id": sql_row[4],
+            "identity_authority": "sql",
+            "parity_ok": parity_ok,
             "pricing": pricing,
             "total_price": total,
             "segment_debug": segment_debug,
