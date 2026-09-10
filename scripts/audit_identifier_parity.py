@@ -11,7 +11,7 @@ and asserts:
 
 Requires the API server on 127.0.0.1:8080. Exit code 0 if all pass, 1 otherwise.
 """
-import json, urllib.request, urllib.error, time, sys, re
+import json, urllib.request, urllib.error, time, sys, re, hashlib
 
 BASE = "http://127.0.0.1:8080/api/v2/families/FYBROC"
 HEX64 = re.compile(r"^[0-9A-Fa-f]{64}$")
@@ -70,6 +70,7 @@ def main():
         P[0] += cond; F[0] += (not cond)
         print(f"  [{'PASS' if cond else 'FAIL'}] {msg}")
 
+    pn_sku_pairs = []
     print("=== F150 identifier-authority parity ===")
     for series, extra in CASES:
         sel = build_full_config(series)
@@ -89,6 +90,11 @@ def main():
         ok(bool(pn) and "?" not in pn, f"{series}: part_number present + no '?' ({pn})")
         ok(bool(sku), f"{series}: sku present ({sku})")
         ok(bool(HEX64.match(sig)), f"{series}: signature is 64-hex")
+        # SKU is derived from the PN (SKU<->PN 1:1): token = first 8 hex of SHA-256(PN).
+        expected_token = hashlib.sha256(pn.encode()).hexdigest().upper()[:8] if pn else ""
+        ok(r1.get("sku_pn_ok") is True and expected_token in (sku or ""),
+           f"{series}: SKU derived from PN (token {expected_token} in {sku})")
+        pn_sku_pairs.append((pn, sku))
 
         # reuse
         try:
@@ -100,6 +106,17 @@ def main():
             ok(reuse_ok, f"{series}: reuse deterministic (existing=True, same PN/SKU/sig)")
         except urllib.error.HTTPError as e:
             ok(False, f"{series}: reuse resolve HTTP {e.code}")
+
+    # SKU <-> PN must be strictly 1:1 across every resolve this run:
+    # no PN with two SKUs, no SKU with two PNs.
+    pn_to_skus, sku_to_pns = {}, {}
+    for pn, sku in pn_sku_pairs:
+        pn_to_skus.setdefault(pn, set()).add(sku)
+        sku_to_pns.setdefault(sku, set()).add(pn)
+    ok(all(len(s) == 1 for s in pn_to_skus.values()),
+       f"no PN maps to >1 SKU ({sum(len(s) > 1 for s in pn_to_skus.values())} violations)")
+    ok(all(len(p) == 1 for p in sku_to_pns.values()),
+       f"no SKU maps to >1 PN ({sum(len(p) > 1 for p in sku_to_pns.values())} violations)")
 
     print(f"\n=== RESULT: {P[0]} passed, {F[0]} failed ===")
     return 0 if F[0] == 0 else 1

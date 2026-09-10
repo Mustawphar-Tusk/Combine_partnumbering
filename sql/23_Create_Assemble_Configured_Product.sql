@@ -83,20 +83,48 @@ BEGIN
         CONVERT(char(64),
             HASHBYTES('SHA2_256', CONVERT(varbinary(max), @CanonicalJson)), 2);
 
-    /* --- SKU (reuse the existing generator) --- */
+    /* --- SKU (PN-DERIVED: SKU <-> PN is 1:1) --- */
     DECLARE @SKU varchar(100);
     EXEC cfg.usp_GenerateSKU
         @FamilyCode = @FamilyCode,
         @SeriesCode = @SeriesCode,
-        @ConfigurationSignature = @Signature,
-        @SKU = @SKU OUTPUT;
+        @PartNumber = @PartNumber,
+        @SKU = @SKU OUTPUT,
+        @ConfigurationSignature = @Signature;
 
-    /* --- reuse + persist (single store: cfg.ConfiguredProduct) --- */
+    /* --- reuse + persist (single store: cfg.ConfiguredProduct) ---
+       IDENTITY RULE: reuse is keyed on the PART NUMBER. The Part Number is the
+       product identity; the SKU is 1:1 with it. So if this PN already exists we
+       return that row (existing=True) with its stored PN/SKU/signature, and we
+       NEVER attempt a second insert for the same PN (which would violate
+       UNIQUE(PartNumber)). Two configurations that resolve to the same PN are,
+       by definition of the Part Number, the same configured product. */
     DECLARE @ExistingId bigint = NULL, @Existing bit = 0;
 
-    IF @Persist = 1
+    -- PN-based reuse: does this Part Number already exist?
+    DECLARE @StoredSig char(64) = NULL;
+    SELECT @ExistingId = ConfiguredProductId,
+           @SKU        = SKUCode,       -- return the PN's canonical SKU
+           @StoredSig  = ConfigurationSignature
+    FROM cfg.ConfiguredProduct
+    WHERE PumpFamilyId = (SELECT PumpFamilyId FROM cfg.PumpFamily
+                          WHERE FamilyCode = @FamilyCode AND IsActive = 1)
+      AND PartNumber = @PartNumber;
+
+    IF @ExistingId IS NOT NULL
     BEGIN
-        -- get-or-create returns a result set; capture it into a temp table.
+        -- Reuse the stored product. Report its stored signature (the signature
+        -- is a detail/audit field; the PN is the identity).
+        SET @Existing = 1;
+        SET @Signature = @StoredSig;
+    END
+    ELSE IF @Persist = 1
+    BEGIN
+        -- New Part Number: create it. get-or-create keys on signature but since
+        -- the PN is new (checked above), this is an insert. Pass @SeriesCode=NULL
+        -- (cfg.ConfiguredProduct.PumpSeriesId is a nullable FK and cfg.PumpSeries
+        -- is not fully populated for every Fybroc series; the series is already
+        -- captured in the canonical JSON, Part Number, and SKU).
         DECLARE @res TABLE (
             ConfiguredProductId bigint,
             PartNumber varchar(200),
@@ -104,12 +132,6 @@ BEGIN
             ConfigurationSignature char(64),
             ExistingConfiguration bit
         );
-        -- Pass @SeriesCode=NULL to the persister: cfg.ConfiguredProduct.PumpSeriesId
-        -- is a nullable FK and cfg.PumpSeries is not fully populated for every
-        -- Fybroc series. The series is already captured in the canonical JSON,
-        -- Part Number, and SKU, so a NULL series link does not lose information
-        -- and avoids a spurious "pump series was not found" failure. (If/when
-        -- cfg.PumpSeries is fully populated, this can pass @SeriesCode through.)
         INSERT INTO @res
         EXEC cfg.usp_GetOrCreateConfiguredProduct
             @FamilyCode = @FamilyCode,
@@ -123,16 +145,9 @@ BEGIN
         SELECT TOP 1
             @ExistingId = ConfiguredProductId,
             @Existing = ExistingConfiguration,
-            @PartNumber = PartNumber,   -- if reused, return the stored PN/SKU
+            @PartNumber = PartNumber,
             @SKU = SKUCode
         FROM @res;
-    END
-    ELSE
-    BEGIN
-        SELECT @ExistingId = ConfiguredProductId, @Existing = 1
-        FROM cfg.ConfiguredProduct
-        WHERE ConfigurationSignature = @Signature;
-        SET @Existing = CASE WHEN @ExistingId IS NULL THEN 0 ELSE 1 END;
     END;
 
     /* --- authoritative result --- */

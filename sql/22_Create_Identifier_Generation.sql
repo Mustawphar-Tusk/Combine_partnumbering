@@ -162,41 +162,51 @@ GO
 CREATE OR ALTER PROCEDURE cfg.usp_GenerateSKU
     @FamilyCode varchar(50),
     @SeriesCode varchar(100),
-    @ConfigurationSignature char(64),
-    @SKU varchar(100) OUTPUT
+    @PartNumber varchar(200),
+    @SKU varchar(100) OUTPUT,
+    @ConfigurationSignature char(64) = NULL  -- retained for back-compat; unused
 AS
 BEGIN
     SET NOCOUNT ON;
-    
-    -- SKU V2 format: F<Series>-V<Version>-<8-char token>
-    -- Version is always 1 for initial creation (incremented on re-configuration)
-    -- 8-char token is derived deterministically from the SHA-256 signature
-    
+
+    -- IDENTITY RULE: the SKU is DERIVED FROM THE PART NUMBER, so SKU <-> PN is
+    -- strictly 1:1 -- the same Part Number always yields the same SKU, and no
+    -- two SKUs can ever point to the same Part Number. (Previously the SKU was
+    -- derived from the configuration signature, which is a finer-grained key
+    -- than the PN; that allowed two configurations with the same PN but
+    -- different signatures to get DIFFERENT SKUs, violating the rule.)
+    --
+    -- SKU format: <FamilyPrefix><Series>-<8-hex token><VersionLetter>
+    --   token   = first 8 hex chars of SHA2_256(PartNumber) (deterministic)
+    --   version = A for the first (and, under 1:1, only) SKU of this PN
     DECLARE @Version int = 1,
+            @VersionLetter char(1),
             @Token varchar(8),
-            @BaseIdentifier varchar(20);
-    
-    -- Check if this signature already exists (reuse)
-    IF EXISTS (
-        SELECT 1 FROM cfg.ConfiguredProduct
-        WHERE ConfigurationSignature = @ConfigurationSignature
-    )
+            @FamilyPrefix char(1);
+
+    SET @FamilyPrefix = CASE
+        WHEN @FamilyCode = 'FYBROC' THEN 'F'
+        WHEN @FamilyCode = 'DEAN'   THEN 'D'
+        ELSE LEFT(@FamilyCode, 1)
+    END;
+
+    -- Reuse: if this Part Number is already stored, return its existing SKU.
+    -- This is what guarantees "same PN -> same SKU" and prevents a second SKU
+    -- ever being minted for a PN that already has one.
+    IF EXISTS (SELECT 1 FROM cfg.ConfiguredProduct WHERE PartNumber = @PartNumber)
     BEGIN
-        SELECT @SKU = SKUCode
-        FROM cfg.ConfiguredProduct
-        WHERE ConfigurationSignature = @ConfigurationSignature;
+        SELECT @SKU = SKUCode FROM cfg.ConfiguredProduct WHERE PartNumber = @PartNumber;
         RETURN;
     END;
-    
-    -- Generate 8-char deterministic token from signature
-    -- Use first 8 chars of the hex signature, converted to Base-36 uppercase
-    SET @Token = UPPER(SUBSTRING(@ConfigurationSignature, 1, 8));
-    
-    -- Build base identifier
-    SET @BaseIdentifier = CONCAT('F', @SeriesCode);
-    
-    -- Build SKU
-    SET @SKU = CONCAT(@BaseIdentifier, '-V', @Version, '-', @Token);
+
+    -- Deterministic 8-hex token from the Part Number (not the signature).
+    SET @Token = UPPER(CONVERT(char(64),
+        HASHBYTES('SHA2_256', CONVERT(varbinary(max), @PartNumber)), 2));
+    SET @Token = LEFT(@Token, 8);
+
+    SET @VersionLetter = CHAR(64 + @Version);  -- 65='A'
+
+    SET @SKU = CONCAT(@FamilyPrefix, @SeriesCode, '-', @Token, @VersionLetter);
 END;
 GO
 
@@ -258,8 +268,9 @@ BEGIN
     EXEC cfg.usp_GenerateSKU
         @FamilyCode = @FamilyCode,
         @SeriesCode = @SeriesCode,
-        @ConfigurationSignature = @ConfigurationSignature,
-        @SKU = @SKU OUTPUT;
+        @PartNumber = @PartNumber,
+        @SKU = @SKU OUTPUT,
+        @ConfigurationSignature = @ConfigurationSignature;
     
     -- Persist
     EXEC cfg.usp_GetOrCreateConfiguredProduct

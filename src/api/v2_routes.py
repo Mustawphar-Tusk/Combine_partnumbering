@@ -920,15 +920,27 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         # Build Part Number from resolved attribute codes
         brand = "F" if family_upper == "FYBROC" else "D"
 
-        # Look up each code
+        # Look up each identifier code.
+        #
+        # The identifier table (cfg.AttributeValue) stores STANDARD/DEFAULT
+        # option values with a trailing '*' marker (e.g. the standard material
+        # "VR-1" is stored as "VR-1*"). Selections coming off the configuration
+        # walk carry the plain value ("vr-1"), so an exact lookup misses the
+        # standard row and the segment resolves to '?'. We therefore try the
+        # value as-is and, if that misses, the '*'-suffixed (standard) form. This
+        # keeps the Python parity oracle faithful to how identity treats
+        # standard defaults; it does not change any authoritative value.
         def lookup(field, value):
             if not value:
                 return None
-            row = cursor.execute(
-                "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
-                pub_id, family_id, field, value
-            ).fetchone()
-            return row[0] if row and row[0] else None
+            for candidate in (value, f"{value}*"):
+                row = cursor.execute(
+                    "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
+                    pub_id, family_id, field, candidate
+                ).fetchone()
+                if row and row[0]:
+                    return row[0]
+            return None
 
         series_val = body.selections.get("SERIES", body.series)
         flange_val = body.selections.get("FLANGE_TYPE", "")
@@ -1466,13 +1478,26 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         sku = sql_row[1]
         signature = sql_row[2]
 
-        # Parity check: Python assembly vs SQL assembly must agree.
+        # Parity check: Python assembly vs SQL assembly must agree on the PN.
         parity_ok = (py_pn == pn)
         if not parity_ok:
             import logging
             logging.getLogger("uvicorn.error").warning(
                 "F150 PN parity divergence: python=%r sql=%r (series=%s)",
                 py_pn, pn, body.series,
+            )
+
+        # SKU<->PN 1:1 invariant (independent of the Python PN oracle): the SKU
+        # must carry the PN-derived token = first 8 hex of SHA-256(PartNumber).
+        # SQL derives the SKU from the PN; we recompute and expose the check so a
+        # divergence is visible even though SQL is authoritative for the SKU.
+        sku_token_expected = hashlib.sha256(pn.encode()).hexdigest().upper()[:8] if pn else ""
+        sku_pn_ok = bool(sku) and (sku_token_expected in sku)
+        if not sku_pn_ok:
+            import logging
+            logging.getLogger("uvicorn.error").warning(
+                "SKU<->PN divergence: pn=%r expected_token=%r sku=%r (series=%s)",
+                pn, sku_token_expected, sku, body.series,
             )
 
         # Pricing lookup
@@ -1560,6 +1585,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "configured_product_id": sql_row[4],
             "identity_authority": "sql",
             "parity_ok": parity_ok,
+            "sku_pn_ok": sku_pn_ok,
             "pricing": pricing,
             "total_price": total,
             "segment_debug": segment_debug,
