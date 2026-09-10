@@ -1576,6 +1576,89 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         total = sum(p["amount"] for p in pricing)
 
+        # ---- U130: BOM generation (grounded, deterministic from configuration) ----
+        # The BOM is the physical-build identity: same BOM -> same PN -> same SKU.
+        # We generate it in SQL from the resolved segments, merging the priced
+        # components (BASE_PUMP, SEAL) we just looked up (real cost + lineage).
+        # The BOM signature is computed over STRUCTURAL line identity only
+        # (component code + attributes + qty + uom), price EXCLUDED. Python
+        # recomputes the same signature as a parity oracle.
+        configured_product_id = sql_row[4]
+
+        # Priced lines for SQL to merge onto matching structural lines.
+        priced_payload = []
+        for p in pricing:
+            comp = p.get("component", "")
+            if comp.startswith("Base Pump"):
+                code = "BASE_PUMP"
+            elif comp == "Seal":
+                code = "SEAL"
+            else:
+                continue
+            priced_payload.append({
+                "component_code": code,
+                "unit_cost": p.get("amount"),
+                "source_reference": str(p.get("detail") or "")[:200],
+            })
+
+        # Structural lines (must mirror cfg.usp_GenerateBOM exactly).
+        def _line(code, attrs, desc, qty=1, uom="EA"):
+            return {"component_code": code, "attributes": attrs,
+                    "description": desc, "quantity": qty, "uom": uom}
+        bom_lines = [
+            _line("PUMP_ASSEMBLY", f"{series_code}{size_code}{material_code}{trim_code}",
+                  f"Pump assembly {series_code}{size_code}{material_code}{trim_code}"),
+            _line("PUMP_OPTIONS", pump_opts, f"Pump options {pump_opts}"),
+        ]
+        if not is_vertical:
+            bom_lines.append(_line("SEAL_ASSEMBLY", f"{seal_mfg}{seal_assy}",
+                                   f"Seal assembly {seal_mfg}{seal_assy}"))
+        bom_lines += [
+            _line("OPTIONS", options_code, f"Options {options_code}"),
+            _line("MOTOR_ASSEMBLY", f"{frame_size}{motor_assy}",
+                  f"Motor assembly {frame_size}{motor_assy}"),
+            _line("MOTOR_MODS", motor_mods, f"Motor modifications {motor_mods}"),
+            _line("TESTING", testing, f"Testing {testing}"),
+        ]
+        # Canonical BOM signature (parity oracle): sorted lower('code|attrs|qty|uom'),
+        # joined by newline, SHA-256 hex upper. Must match cfg.usp_GenerateBOM.
+        def _fmt_qty(q):
+            return f"{q:.3f}"
+        line_keys = sorted(
+            f"{l['component_code']}|{l['attributes']}|{_fmt_qty(l['quantity'])}|{l['uom']}".lower()
+            for l in bom_lines
+        )
+        py_bom_signature = hashlib.sha256("\n".join(line_keys).encode()).hexdigest().upper()
+
+        bom = None
+        if configured_product_id is not None:
+            try:
+                bom_row = cursor.execute(
+                    "EXEC cfg.usp_GenerateBOM @ConfiguredProductId=?, @IsVertical=?, "
+                    "@SegmentsJson=?, @PricedJson=?, @CreatedBy=?;",
+                    configured_product_id, 1 if is_vertical else 0,
+                    segments_payload, json.dumps(priced_payload), body.requested_by,
+                ).fetchone()
+                sql_bom_signature = bom_row[1]
+                bom_parity_ok = (py_bom_signature == sql_bom_signature)
+                if not bom_parity_ok:
+                    import logging
+                    logging.getLogger("uvicorn.error").warning(
+                        "BOM signature parity divergence: py=%r sql=%r (pn=%s)",
+                        py_bom_signature, sql_bom_signature, pn,
+                    )
+                bom = {
+                    "bom_header_id": bom_row[0],
+                    "bom_signature": sql_bom_signature,
+                    "existing_bom": bool(bom_row[2]),
+                    "line_count": bom_row[3],
+                    "bom_parity_ok": bom_parity_ok,
+                    "lines": bom_lines,
+                }
+            except Exception as e:
+                import logging
+                logging.getLogger("uvicorn.error").warning("BOM generation failed: %s", e)
+
         return {
             "family": family_upper,
             "part_number": pn,
@@ -1586,6 +1669,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "identity_authority": "sql",
             "parity_ok": parity_ok,
             "sku_pn_ok": sku_pn_ok,
+            "bom": bom,
             "pricing": pricing,
             "total_price": total,
             "segment_debug": segment_debug,
