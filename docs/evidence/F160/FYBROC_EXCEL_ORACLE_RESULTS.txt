@@ -1,32 +1,40 @@
-========================================================================================================================
+====================================================================================================
 F160.1 - FYBROC EXCEL ORACLE RESULTS
-========================================================================================================================
+====================================================================================================
 
-Git commit  : 629f4006b538460e6f371edc80b6ee24211d3990
-Source      : workbooks/Fybroc/Nomenclature_V6.xlsm
-Tests       : 3
-Passed      : 3
-Failed      : 0
-Errors      : 0
+Git commit : 652ed4c7db3564c80e140bc1f71105291b9543bb
+Source     : workbooks/Fybroc/Nomenclature_V6.xlsm
+Compares   : PN leading identity + identity segment codes (series/size/material/trim)
+Safety     : disposable copy only; dedicated Excel (DispatchEx); source workbook never modified
+Tests      : 6   Computed: 6   Errored: 0
 
-  [PASS] Default config (already in workbook)
-    Inputs: {}
-    Excel PN: FA35FC-1VC1-S03-3G-04XXXX-00
-    Expected: FA35FC-1VC1-S03-3G-04XXXX-00
-    Segments: {'brand': 'F', 'series': 'A', 'size': '3.0', 'material': '5.0', 'trim': 'FC', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
-    Description: PUMP, FYBR, 1500, 1x2x10, VR-1A, 9.250 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR
+  [OK ] 1500/ANSI/1x1.5x6/VR-1/6.000 (horizontal)
+     Excel leading : FA11CA
+     Excel compact : FA11CA-1VC1-S03-3G-04XXXX-00
+     Segments      : {'brand': 'F', 'series': 'A', 'size': '1', 'material': '1', 'trim': 'CA', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
 
-  [PASS] Change Size to 1.5x3x6 and Trim to 5.500 (valid per CT4)
-    Inputs: {'SIZE': '1.5x3x6', 'IMPELLER_TRIM': '5.500'}
-    Excel PN: FA55BE-1VC1-S03-3G-04XXXX-00
-    Expected prefix: FA55BE  Actual: FA55BE
-    Segments: {'brand': 'F', 'series': 'A', 'size': '5.0', 'material': '5.0', 'trim': 'BE', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
-    Description: PUMP, FYBR, 1500, 1.5x3x6, VR-1A, 5.500 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR
+  [OK ] 1500/ANSI/1x2x10/VR-1A/9.250 (horizontal)
+     Excel leading : FA35FC
+     Excel compact : FA35FC-1VC1-S03-3G-04XXXX-00
+     Segments      : {'brand': 'F', 'series': 'A', 'size': '3', 'material': '5', 'trim': 'FC', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
 
-  [PASS] Change material to VR-1
-    Inputs: {'PUMP_MATERIAL': 'VR-1'}
-    Excel PN: FA51BE-1VC1-S03-3G-04XXXX-00
-    Expected prefix: FA51BE  Actual: FA51BE
-    Segments: {'brand': 'F', 'series': 'A', 'size': '5.0', 'material': '1.0', 'trim': 'BE', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
-    Description: PUMP, FYBR, 1500, 1.5x3x6, VR-1, 5.500 TRIM, 303 SHAFT, BP TAP/DIS, 8-1T-C/CR
+  [OK ] 1530/ANSI/1.5x3x8/VR-1/7.000 (horizontal)
+     Excel leading : FB61DA
+     Excel compact : FB61DA-1VC1-S03-3G-04XXXX-00
+     Segments      : {'brand': 'F', 'series': 'B', 'size': '6', 'material': '1', 'trim': 'DA', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
+
+  [OK ] 1600/ANSI/2x3x6/VR-1/5.500 (horizontal)
+     Excel leading : FC71BE
+     Excel compact : FC71BE-1VC1-S03-3G-04XXXX-00
+     Segments      : {'brand': 'F', 'series': 'C', 'size': '7', 'material': '1', 'trim': 'BE', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
+
+  [OK ] 3000/ANSI/1x1.5x6/VR-1/6.000 (horizontal)
+     Excel leading : FF11CA
+     Excel compact : FF11CA-1VC1-S03-3G-04XXXX-00
+     Segments      : {'brand': 'F', 'series': 'F', 'size': '1', 'material': '1', 'trim': 'CA', 'pump_options': '1VC1', 'seal_mfg': 'S', 'seal_assy': '03', 'options': '3G', 'frame_size': '05', 'motor_assy': '04X', 'motor_mods': 'XXX', 'testing': '00'}
+
+  [OK ] 5500/ANSI/1x2x10/VR-1/8.000 (vertical)
+     Excel leading : FG31EA
+     Excel compact : FG31-EA-07PP-0700-0C-09V-XXX-00
+     Segments      : {'brand': 'F', 'series': 'G', 'size': '3', 'material': '1', 'trim': 'EA', 'pump_options': '07PP', 'seal_mfg': '07', 'seal_assy': '', 'options': '0C', 'frame_size': '08', 'motor_assy': '09V', 'motor_mods': 'XXX', 'testing': '00'}
 

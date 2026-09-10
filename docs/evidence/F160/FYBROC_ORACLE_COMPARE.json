@@ -1,0 +1,173 @@
+{
+  "artifact": "FYBROC_ORACLE_COMPARE",
+  "milestone": "F160",
+  "generated_utc": "2026-09-10T15:47:03.798316+00:00",
+  "compares": "PN leading identity + identity segment codes (Excel oracle vs API/SQL)",
+  "test_count": 6,
+  "passed": 6,
+  "failed": 0,
+  "results": [
+    {
+      "series": "1500",
+      "flange": "ANSI",
+      "size": "1x1.5x6",
+      "material": "VR-1",
+      "trim": "6.000",
+      "orientation": "horizontal",
+      "excel_leading": "FA11CA",
+      "api_leading": "FA11CA",
+      "excel_compact_pn": "FA11CA-1VC1-S03-3G-04XXXX-00",
+      "api_part_number": "FA11CA-0001-S03-01-1400S-XXX-00",
+      "excel_identity": {
+        "series": "A",
+        "size": "1",
+        "material": "1",
+        "trim": "CA"
+      },
+      "api_identity": {
+        "series_code": "A",
+        "size_code": "1",
+        "material_code": "1",
+        "trim_code": "CA"
+      },
+      "leading_match": true,
+      "segment_mismatch": {},
+      "match": true
+    },
+    {
+      "series": "1500",
+      "flange": "ANSI",
+      "size": "1x2x10",
+      "material": "VR-1A",
+      "trim": "9.250",
+      "orientation": "horizontal",
+      "excel_leading": "FA35FC",
+      "api_leading": "FA35FC",
+      "excel_compact_pn": "FA35FC-1VC1-S03-3G-04XXXX-00",
+      "api_part_number": "FA35FC-0001-S03-01-1401L-XXX-00",
+      "excel_identity": {
+        "series": "A",
+        "size": "3",
+        "material": "5",
+        "trim": "FC"
+      },
+      "api_identity": {
+        "series_code": "A",
+        "size_code": "3",
+        "material_code": "5",
+        "trim_code": "FC"
+      },
+      "leading_match": true,
+      "segment_mismatch": {},
+      "match": true
+    },
+    {
+      "series": "1530",
+      "flange": "ANSI",
+      "size": "1.5x3x8",
+      "material": "VR-1",
+      "trim": "7.000",
+      "orientation": "horizontal",
+      "excel_leading": "FB61DA",
+      "api_leading": "FB61DA",
+      "excel_compact_pn": "FB61DA-1VC1-S03-3G-04XXXX-00",
+      "api_part_number": "FB61DA-0001-S03-01-1400S-XXX-00",
+      "excel_identity": {
+        "series": "B",
+        "size": "6",
+        "material": "1",
+        "trim": "DA"
+      },
+      "api_identity": {
+        "series_code": "B",
+        "size_code": "6",
+        "material_code": "1",
+        "trim_code": "DA"
+      },
+      "leading_match": true,
+      "segment_mismatch": {},
+      "match": true
+    },
+    {
+      "series": "1600",
+      "flange": "ANSI",
+      "size": "2x3x6",
+      "material": "VR-1",
+      "trim": "5.500",
+      "orientation": "horizontal",
+      "excel_leading": "FC71BE",
+      "api_leading": "FC71BE",
+      "excel_compact_pn": "FC71BE-1VC1-S03-3G-04XXXX-00",
+      "api_part_number": "FC71BE-0001-S03-01-1400S-XXX-00",
+      "excel_identity": {
+        "series": "C",
+        "size": "7",
+        "material": "1",
+        "trim": "BE"
+      },
+      "api_identity": {
+        "series_code": "C",
+        "size_code": "7",
+        "material_code": "1",
+        "trim_code": "BE"
+      },
+      "leading_match": true,
+      "segment_mismatch": {},
+      "match": true
+    },
+    {
+      "series": "3000",
+      "flange": "ANSI",
+      "size": "1x1.5x6",
+      "material": "VR-1",
+      "trim": "6.000",
+      "orientation": "horizontal",
+      "excel_leading": "FF11CA",
+      "api_leading": "FF11CA",
+      "excel_compact_pn": "FF11CA-1VC1-S03-3G-04XXXX-00",
+      "api_part_number": "FF11CA-0015-S03-01-1401L-XXX-00",
+      "excel_identity": {
+        "series": "F",
+        "size": "1",
+        "material": "1",
+        "trim": "CA"
+      },
+      "api_identity": {
+        "series_code": "F",
+        "size_code": "1",
+        "material_code": "1",
+        "trim_code": "CA"
+      },
+      "leading_match": true,
+      "segment_mismatch": {},
+      "match": true
+    },
+    {
+      "series": "5500",
+      "flange": "ANSI",
+      "size": "1x2x10",
+      "material": "VR-1",
+      "trim": "8.000",
+      "orientation": "vertical",
+      "excel_leading": "FG31EA",
+      "api_leading": "FG31EA",
+      "excel_compact_pn": "FG31-EA-07PP-0700-0C-09V-XXX-00",
+      "api_part_number": "FG31EA-0001-01-1401L-XXX-00",
+      "excel_identity": {
+        "series": "G",
+        "size": "3",
+        "material": "1",
+        "trim": "EA"
+      },
+      "api_identity": {
+        "series_code": "G",
+        "size_code": "3",
+        "material_code": "1",
+        "trim_code": "EA"
+      },
+      "leading_match": true,
+      "segment_mismatch": {},
+      "match": true
+    }
+  ]
+}

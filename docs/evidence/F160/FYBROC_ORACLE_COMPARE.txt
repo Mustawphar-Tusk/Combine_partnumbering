@@ -1,0 +1,31 @@
+====================================================================================================
+F160 - EXCEL ORACLE vs API/SQL IDENTITY COMPARISON
+====================================================================================================
+
+Compares : PN leading identity + identity segment codes (Excel oracle vs API/SQL)
+Tests    : 6   Passed: 6   Failed: 0
+
+  [PASS] 1500/ANSI/1x1.5x6/VR-1/6.000
+     Excel leading: FA11CA   API leading: FA11CA
+     Excel PN: FA11CA-1VC1-S03-3G-04XXXX-00   API PN: FA11CA-0001-S03-01-1400S-XXX-00
+
+  [PASS] 1500/ANSI/1x2x10/VR-1A/9.250
+     Excel leading: FA35FC   API leading: FA35FC
+     Excel PN: FA35FC-1VC1-S03-3G-04XXXX-00   API PN: FA35FC-0001-S03-01-1401L-XXX-00
+
+  [PASS] 1530/ANSI/1.5x3x8/VR-1/7.000
+     Excel leading: FB61DA   API leading: FB61DA
+     Excel PN: FB61DA-1VC1-S03-3G-04XXXX-00   API PN: FB61DA-0001-S03-01-1400S-XXX-00
+
+  [PASS] 1600/ANSI/2x3x6/VR-1/5.500
+     Excel leading: FC71BE   API leading: FC71BE
+     Excel PN: FC71BE-1VC1-S03-3G-04XXXX-00   API PN: FC71BE-0001-S03-01-1400S-XXX-00
+
+  [PASS] 3000/ANSI/1x1.5x6/VR-1/6.000
+     Excel leading: FF11CA   API leading: FF11CA
+     Excel PN: FF11CA-1VC1-S03-3G-04XXXX-00   API PN: FF11CA-0015-S03-01-1401L-XXX-00
+
+  [PASS] 5500/ANSI/1x2x10/VR-1/8.000
+     Excel leading: FG31EA   API leading: FG31EA
+     Excel PN: FG31-EA-07PP-0700-0C-09V-XXX-00   API PN: FG31EA-0001-01-1401L-XXX-00
+

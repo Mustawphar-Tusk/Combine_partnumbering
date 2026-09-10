@@ -877,13 +877,31 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
     """
     conn_str = _get_conn_str(request)
 
-    # Build configuration JSON for SQL procedures
-    config_json = json.dumps({
-        **body.selections,
-        **{f"{k}_CODE": v for k, v in body.segment_codes.items()},
-    })
+    # Build the CANONICAL configuration JSON for SQL procedures.
+    #
+    # This JSON is the single source of the configuration signature (hashed here
+    # AND in SQL, which must match), and the signature is what drives reuse and
+    # the SKU. It MUST be a deterministic function of the configuration CONTENT
+    # only: the same pump configuration has to produce the same bytes (and thus
+    # the same signature / SKU / reused Part Number) no matter what order the
+    # client happened to assemble the selections in.
+    #
+    # sort_keys=True + fixed separators canonicalize the JSON so identical
+    # selections always hash identically. (Before this, key order leaked into
+    # the signature: the same config sent with a different key order produced a
+    # different signature, missed reuse, and then collided with the existing
+    # row's UNIQUE(PartNumber) - surfacing as a spurious HTTP 503. See F160.)
+    config_json = json.dumps(
+        {
+            **body.selections,
+            **{f"{k}_CODE": v for k, v in body.segment_codes.items()},
+        },
+        sort_keys=True,
+        separators=(",", ":"),
+    )
 
-    # Generate signature
+    # Generate signature (Python parity oracle; SQL recomputes over the SAME
+    # canonical bytes via HASHBYTES so the two signatures always agree).
     signature = hashlib.sha256(config_json.encode()).hexdigest().upper()
 
     conn = pyodbc.connect(conn_str, autocommit=True)
