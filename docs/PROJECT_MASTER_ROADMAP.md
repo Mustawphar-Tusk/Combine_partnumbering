@@ -111,6 +111,16 @@ The following rules apply throughout the project.
 - Git checkpoint
 - Failed exit gates keep the project in the same milestone.
 - Every configured engineering result must retain source/version lineage.
+- CORRECTIONS ARE PERMANENT AND MUST NOT REGRESS. Every correction made in a
+  milestone is guarded by a re-runnable audit. The consolidated regression
+  runner `scripts/run_all_fybroc_audits.py` must pass (exit 0, "ALL CORRECTIONS
+  INTACT") before any milestone is declared done and before starting the next
+  milestone. If a later change makes it fail, that change conflicts with an
+  established correction and must be reconciled — never override the correction.
+  Current guarded corrections: Selections X/STD applicability + V6 flange
+  authority (audit_selections_vs_db.py); Feasible Constraint fail-closed +
+  allow-list ordering (audit_feasible_constraints.py); all four Motor Constraint
+  relationships (audit_motor_constraints.py).
 
 
 
