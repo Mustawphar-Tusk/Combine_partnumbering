@@ -1676,3 +1676,247 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         }
     finally:
         conn.close()
+
+
+# ===========================================================================
+# U140 - QUOTE ENGINE
+# ---------------------------------------------------------------------------
+# A quote is a header + lines. Each line is anchored to a configured product
+# (cfg.ConfiguredProduct) and its Active BOM (cfg.BOMHeader), and persists
+# everything needed to reproduce the quote (PN, SKU, ConfigurationJson, BOM
+# signature, qty, unit/extended price, pricing + publication lineage).
+#
+# The add-line endpoint reuses resolve_configured_product so the line's
+# identity, BOM, and price all come from the one authoritative resolve flow.
+# Unit price = the base+seal total we can price today; PricingStatus records
+# whether the line is fully priced, partial, or call_for_price (honest about
+# the components not yet priced). Rendering is a deterministic structured
+# document (Excel formal-quote template is a later milestone).
+# ===========================================================================
+
+
+class CreateQuoteRequest(BaseModel):
+    site_code: str
+    customer_name: str | None = None
+    customer_account: str | None = None
+    currency_code: str = "USD"
+    created_by: str | None = None
+    quote_number: str | None = None
+
+
+class AddQuoteLineRequest(BaseModel):
+    series: str
+    selections: dict[str, str]
+    segment_codes: dict[str, str] = Field(default_factory=dict)
+    quantity: int = 1
+    requested_by: str | None = None
+
+
+def _pricing_status(pricing: list[dict], selections: dict[str, str], is_vertical: bool) -> str:
+    """Honest pricing status for a line given the components we can price today.
+
+    We price BASE_PUMP always (pump identity) and SEAL when a mechanical seal is
+    configured. 'found' = all expected priceable components resolved; 'partial' =
+    some resolved but at least one expected component is missing; 'call_for_price'
+    = nothing priced. Full component pricing is a later milestone, so a fully
+    resolved base(+seal) is reported as 'found' for what is currently priceable.
+    """
+    have_base = any(p.get("component", "").startswith("Base Pump") for p in pricing)
+    seal_expected = bool(selections.get("SEAL_TYPE")) and not is_vertical
+    have_seal = any(p.get("component") == "Seal" for p in pricing)
+    if not have_base and not have_seal:
+        return "call_for_price"
+    if seal_expected and not have_seal:
+        return "partial"
+    if not have_base:
+        return "partial"
+    return "found"
+
+
+@router_v2.post("/families/{family}/quotes")
+async def create_quote(family: str, body: CreateQuoteRequest, request: Request):
+    """Create a quote header. Returns the quote id + number."""
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        row = conn.cursor().execute(
+            "EXEC quote.usp_CreateQuote @SiteCode=?, @CustomerName=?, "
+            "@CustomerAccount=?, @CurrencyCode=?, @CreatedBy=?, @QuoteNumber=?;",
+            body.site_code, body.customer_name, body.customer_account,
+            body.currency_code, body.created_by, body.quote_number,
+        ).fetchone()
+        result = {
+            "quote_header_id": row[0], "quote_number": row[1], "site_code": row[2],
+            "currency_code": row[3], "status": row[4], "created_at": str(row[5]),
+        }
+    finally:
+        conn.close()
+
+    try:
+        from src.api.audit import log_audit_event  # optional; best-effort
+        from src.api.auth import AuthenticatedUser
+        _who = body.created_by or "system"
+        log_audit_event(
+            connection_string=conn_str,
+            user=AuthenticatedUser(user_id=_who, display_name=_who, email="", roles=[]),
+            action="create_quote", resource_type="quote",
+            resource_id=str(result["quote_header_id"]),
+            details={"quote_number": result["quote_number"], "site": body.site_code},
+        )
+    except Exception:
+        pass
+    return result
+
+
+@router_v2.post("/families/{family}/quotes/{quote_header_id}/lines")
+async def add_quote_line(family: str, quote_header_id: int,
+                         body: AddQuoteLineRequest, request: Request):
+    """Add a line to a quote from a configuration.
+
+    Resolves the configuration through the authoritative resolve flow (identity +
+    BOM + pricing), then persists a quote line anchored to the configured product
+    and its Active BOM, with unit price = the base+seal total and an honest
+    pricing status.
+    """
+    conn_str = _get_conn_str(request)
+
+    # Reuse the one authoritative resolve flow.
+    resolve_body = ResolveRequest(
+        series=body.series, selections=body.selections,
+        segment_codes=body.segment_codes, requested_by=body.requested_by,
+    )
+    resolved = await resolve_configured_product(family, resolve_body, request)
+
+    configured_product_id = resolved.get("configured_product_id")
+    unit_price = float(resolved.get("total_price") or 0.0)
+    pricing = resolved.get("pricing", [])
+    is_vertical = bool((resolved.get("segment_debug") or {}).get("is_vertical"))
+    status = _pricing_status(pricing, body.selections, is_vertical)
+
+    # Pricing + publication lineage persisted with the line for reproducibility.
+    pricing_lineage = json.dumps({
+        "components": pricing,
+        "total_price": unit_price,
+        "configuration_signature": resolved.get("configuration_signature"),
+        "bom_signature": (resolved.get("bom") or {}).get("bom_signature"),
+    }, sort_keys=True, separators=(",", ":"))
+
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        pub_id, pub_version = _get_active_publication(conn_str, conn)
+        row = conn.cursor().execute(
+            "EXEC quote.usp_AddQuoteLine @QuoteHeaderId=?, @ConfiguredProductId=?, "
+            "@SKU=?, @Quantity=?, @UnitPrice=?, @PricingStatus=?, @PricingLineage=?, "
+            "@PublicationVersion=?, @PriceBookVersion=?;",
+            quote_header_id, configured_product_id, resolved.get("sku"),
+            body.quantity, unit_price, status, pricing_lineage,
+            str(pub_version), None,
+        ).fetchone()
+        line = {
+            "quote_line_id": row[0], "line_number": row[1], "part_number": row[2],
+            "sku": row[3], "bom_header_id": row[4], "bom_signature": row[5],
+            "quantity": row[6], "unit_price": float(row[7]),
+            "extended_price": float(row[8]), "pricing_status": row[9],
+        }
+    finally:
+        conn.close()
+
+    try:
+        from src.api.audit import log_audit_event
+        from src.api.auth import AuthenticatedUser
+        _who = body.requested_by or "system"
+        log_audit_event(
+            connection_string=conn_str,
+            user=AuthenticatedUser(user_id=_who, display_name=_who, email="", roles=[]),
+            action="add_quote_line", resource_type="quote_line",
+            resource_id=str(line["quote_line_id"]),
+            details={"quote": quote_header_id, "sku": line["sku"], "pn": line["part_number"]},
+        )
+    except Exception:
+        pass
+    return line
+
+
+def _fetch_quote(conn, quote_header_id: int) -> dict:
+    """Fetch a quote (header + lines) via quote.usp_GetQuote into a dict."""
+    cur = conn.cursor()
+    cur.execute("EXEC quote.usp_GetQuote @QuoteHeaderId=?;", quote_header_id)
+    hcols = [c[0] for c in cur.description]
+    hrow = cur.fetchone()
+    if hrow is None:
+        return {}
+    header = dict(zip(hcols, hrow))
+    cur.nextset()
+    lcols = [c[0] for c in cur.description]
+    lines = [dict(zip(lcols, r)) for r in cur.fetchall()]
+    return {"header": header, "lines": lines}
+
+
+def _quote_to_document(quote: dict) -> dict:
+    """Build the deterministic, reproducible quote document (structured + text).
+
+    Same persisted quote -> same document. No Excel/COM. The Excel formal-quote
+    template render is a later milestone.
+    """
+    h = quote["header"]
+    currency = h.get("CurrencyCode") or "USD"
+    lines_out = []
+    total = 0.0
+    for ln in quote["lines"]:
+        ext = float(ln.get("ExtendedPrice") or 0.0)
+        total += ext
+        lines_out.append({
+            "line_number": ln.get("LineNumber"),
+            "part_number": ln.get("PartNumber"),
+            "sku": ln.get("SKU"),
+            "family": ln.get("FamilyCode"),
+            "quantity": ln.get("Quantity"),
+            "unit_price": float(ln.get("UnitPrice") or 0.0),
+            "extended_price": ext,
+            "pricing_status": ln.get("PricingStatus"),
+            "bom_signature": ln.get("BOMSignature"),
+            "publication_version": ln.get("PublicationVersion"),
+        })
+
+    doc = {
+        "quote_number": h.get("QuoteNumber"),
+        "customer_name": h.get("CustomerName"),
+        "customer_account": h.get("CustomerAccount"),
+        "site_code": h.get("SiteCode"),
+        "currency": currency,
+        "status": h.get("Status"),
+        "lines": lines_out,
+        "total_price": total,
+        "line_count": len(lines_out),
+    }
+
+    # Deterministic plain-text rendering (stable field order, no timestamps).
+    txt = []
+    txt.append(f"QUOTE {doc['quote_number']}   Site: {doc['site_code']}   Currency: {currency}")
+    if doc["customer_name"]:
+        txt.append(f"Customer: {doc['customer_name']}"
+                   + (f" ({doc['customer_account']})" if doc["customer_account"] else ""))
+    txt.append("-" * 72)
+    txt.append(f"{'#':>2}  {'Part Number':<34} {'Qty':>4} {'Unit':>12} {'Ext':>12}  Status")
+    for l in lines_out:
+        txt.append(f"{l['line_number']:>2}  {l['part_number']:<34} {l['quantity']:>4} "
+                   f"{l['unit_price']:>12.2f} {l['extended_price']:>12.2f}  {l['pricing_status']}")
+    txt.append("-" * 72)
+    txt.append(f"{'TOTAL':>54} {total:>12.2f} {currency}")
+    doc["rendered_text"] = "\n".join(txt)
+    return doc
+
+
+@router_v2.get("/families/{family}/quotes/{quote_header_id}")
+async def get_quote(family: str, quote_header_id: int, request: Request):
+    """Return the persisted quote as a structured, rendered document."""
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        quote = _fetch_quote(conn, quote_header_id)
+    finally:
+        conn.close()
+    if not quote:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail="Quote not found")
+    return _quote_to_document(quote)

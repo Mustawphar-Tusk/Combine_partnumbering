@@ -212,23 +212,12 @@ CREATE TABLE quote.QuoteTemplateMapping(
  IsRequired bit NOT NULL DEFAULT 0,
  CONSTRAINT UQ_QuoteTemplateMapping UNIQUE(QuoteTemplateId,OutputKey)
 );
-CREATE TABLE quote.QuoteHeader(
- QuoteId bigint IDENTITY PRIMARY KEY,
- QuoteNumber AS('Q-'+RIGHT('000000'+CONVERT(varchar(20),QuoteId),6)) PERSISTED,
- CustomerName nvarchar(300) NULL,
- CurrencyCode char(3) NOT NULL DEFAULT 'USD',
- CreatedAt datetime2 NOT NULL DEFAULT SYSUTCDATETIME(),
- CreatedBy nvarchar(200) NULL
-);
-CREATE TABLE quote.QuoteLine(
- QuoteLineId bigint IDENTITY PRIMARY KEY,
- QuoteId bigint NOT NULL REFERENCES quote.QuoteHeader(QuoteId),
- ConfiguredProductId bigint NOT NULL REFERENCES cfg.ConfiguredProduct(ConfiguredProductId),
- Quantity decimal(18,4) NOT NULL DEFAULT 1,
- UnitPrice decimal(19,4) NOT NULL DEFAULT 0,
- ExtendedPrice AS(Quantity*UnitPrice) PERSISTED,
- PricingStatus varchar(30) NOT NULL DEFAULT 'not_found'
-);
+-- NOTE (U140): quote.QuoteHeader and quote.QuoteLine are defined authoritatively
+-- in sql/24_Create_Quote_Engine.sql (the single canonical quote schema). They were
+-- previously ALSO defined here with an incompatible shape (QuoteId PK, computed
+-- columns), which collided with sql/24 depending on deploy order. Removed from
+-- here to make sql/24 the one source of truth. QuoteTemplate / QuoteTemplateMapping
+-- (the Excel render target) remain defined above.
 
 CREATE TABLE stg.ImportBatch(
  ImportBatchId bigint IDENTITY PRIMARY KEY,

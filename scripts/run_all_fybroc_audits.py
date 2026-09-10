@@ -34,7 +34,8 @@ API_HEALTH = "http://127.0.0.1:8080/docs"
 
 DB_ONLY_AUDITS = ["audit_selections_vs_db.py"]
 API_AUDITS = ["audit_feasible_constraints.py", "audit_motor_constraints.py",
-              "audit_identifier_parity.py", "audit_bom_engine.py"]
+              "audit_identifier_parity.py", "audit_bom_engine.py",
+              "audit_quote_engine.py"]
 
 
 def _api_up() -> bool:
