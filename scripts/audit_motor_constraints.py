@@ -102,3 +102,8 @@ for series in SERIES:
 print(f"\n=== RESULT: {P[0]} passed, {F[0]} failed ===")
 for d in details[:15]: print("  FAIL:", d)
 cn.close()
+
+# Non-zero exit on any failure so orchestration (run_all_fybroc_audits.py) can
+# gate on it.
+import sys as _sys
+_sys.exit(0 if F[0] == 0 else 1)
