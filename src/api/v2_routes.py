@@ -1637,6 +1637,102 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             if priced is not None:
                 pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
 
+        # ---- Rev0.4 Phase B: MULTI-CONDITION components (MOTOR/COUPLING/
+        # BASEPLATE/TAILPIPE) ----
+        # These price tables are keyed by several selection fields at once, stored
+        # as one price.PriceCondition row per field. A rule prices the config only
+        # if EVERY one of its conditions is satisfied by the resolved selections.
+        # We resolve each condition's value from the selections (with a couple of
+        # derived fields), case/space-insensitive. A miss => the component is not
+        # priced for this config (Contact Factory / not-yet-determined) and is
+        # skipped, which is the runtime default.
+        def _norm(v) -> str:
+            return str(v or "").strip().lower().replace("_", " ")
+
+        def _derived_selection(field_code: str) -> str | None:
+            """Resolve a condition FieldCode to a value from the selections,
+            including derived fields the price tables use."""
+            sels = body.selections
+            fc = field_code.upper()
+            if fc == "SIZE":
+                return sels.get("ALT_SIZE") or sels.get("SIZE")
+            if fc in ("F_MOTORHPRPM",):
+                hp = sels.get("MOTOR_HP"); rpm = sels.get("MOTOR_RPM")
+                return f"{hp}-{rpm}" if hp and rpm else None
+            if fc in ("F_FRAME_SIZE",):
+                return sels.get("FRAME_SIZE")
+            if fc in ("F_COUPLING_OPTION",):
+                return sels.get("COUPLING_OPTION")
+            # default: same-named selection field
+            return sels.get(fc)
+
+        def _price_multi_condition(component_code: str, label: str, cond_fields: list[str]):
+            """Find a current PriceRule for this component+series whose EVERY
+            condition matches the resolved selections; return (amount, detail).
+
+            The match is done entirely in SQL (no per-rule IN list, which would
+            overflow the 2100-parameter limit for large tables like TAILPIPE).
+            We pass the resolved (field, normalized-value) selections as a JSON
+            array; a rule matches iff it has NO condition whose normalized value
+            is absent from that array. Values are normalized the same way both
+            sides (lower, trim, '_'->' ')."""
+            # Build the resolved selection values for this component's condition
+            # fields (skip any the config doesn't supply -> no match possible).
+            sel_pairs = []
+            for fc in cond_fields:
+                v = _derived_selection(fc)
+                if v is None or str(v).strip() == "":
+                    # A required condition field has no selection value -> this
+                    # component cannot be priced for this config.
+                    return None
+                sel_pairs.append({"f": fc.upper(), "v": _norm(v)})
+            sel_json = json.dumps(sel_pairs)
+            size_v = (body.selections.get("ALT_SIZE") or body.selections.get("SIZE") or "").upper()
+            row = cursor.execute("""
+                SELECT TOP 1 pr.Amount, pr.SourceOptionValue
+                FROM price.PriceRule pr
+                JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                WHERE pr.ComponentCode = ? AND pr.IsActive = 1 AND pr.PricingStatus = 'found'
+                  AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
+                  AND (pr.SourceSizeValue IS NULL OR UPPER(pr.SourceSizeValue) = ? OR UPPER(pr.SourceSizeValue) LIKE ?)
+                  AND NOT EXISTS (
+                      SELECT 1 FROM price.PriceCondition pc
+                      WHERE pc.PriceRuleId = pr.PriceRuleId
+                        AND NOT EXISTS (
+                            SELECT 1 FROM OPENJSON(?) WITH (f varchar(100) '$.f', v nvarchar(400) '$.v') s
+                            WHERE s.f = UPPER(pc.FieldCode)
+                              AND s.v = LOWER(REPLACE(LTRIM(RTRIM(pc.ComparisonValue)), '_', ' '))
+                        )
+                  )
+                ORDER BY pr.Priority
+            """, component_code, body.series, f"{body.series}%",
+                 size_v, f"{size_v}%", sel_json).fetchone()
+            if row and row[0] is not None:
+                return float(row[0]), row[1]
+            return None
+
+        # (component, label, [condition field sets to try]). Some components have
+        # more than one condition shape (e.g. COUPLING: horizontal vs 5500).
+        MULTI_COMPONENTS = [
+            ("MOTOR", "Motor", [[
+                "MOTOR_ENCLOSURE", "MOTOR_EFFICIENCY", "MOTOR_VOLTAGE", "MOTOR_HERTZ",
+                "MOTOR_HP", "MOTOR_RPM", "FRAME_SIZE", "MOTOR_MFG",
+                "SHAFT_GROUNDING", "PAINT_UPGRADE",
+            ]]),
+            ("COUPLING", "Coupling", [
+                ["SIZE", "F_MOTORHPRPM", "FRAME_SIZE", "COUPLING_OPTION"],       # horizontal
+                ["SIZE", "F_MOTORHPRPM", "F_FRAME_SIZE", "F_COUPLING_OPTION"],   # 5500
+            ]),
+            ("BASEPLATE", "Baseplate", [["SIZE", "FRAME_SIZE", "BASEPLATE_OPTION"]]),
+            ("TAILPIPE", "Tailpipe", [["SIZE", "PUMP_MATERIAL", "WETTED_HARDWARE", "TAILPIPE_LENGTH"]]),
+        ]
+        for comp_code, label, field_sets in MULTI_COMPONENTS:
+            for cond_fields in field_sets:
+                priced = _price_multi_condition(comp_code, label, cond_fields)
+                if priced is not None:
+                    pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
+                    break
+
         total = sum(p["amount"] for p in pricing)
 
         # ---- U130: BOM generation (grounded, deterministic from configuration) ----

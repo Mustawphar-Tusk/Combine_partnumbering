@@ -45,27 +45,33 @@ V3 preserved non-current).
 pricing layout (row-3 description, row-5 headers `[Series] Alt Size <fields> Price`,
 row-6+ data), the flat Motor tables, and the block→ComponentCode map.
 
-### 5. Runtime pricing (Phase B, partial)
-The resolve endpoint now prices, in addition to Base Pump + Seal, the single-option
-adder components from `price.PriceRule`: Sleeve, Shaft Material, Gland/Casing/Power-
-Frame/Baseplate hardware, Bearing, Coupling Guard, Flange Type, Cyclone Separator,
-Casing Drains, Suction/Discharge Taps, Seal Guard, Performance/Vibration/Sound
-testing, Pump Elastomers, Hydrotest, Impeller Balance. Each is keyed by
-series + size + its driving selection value; a miss is skipped (Contact-Factory /
-not-yet-determined = runtime default).
+### 5. Runtime pricing (Phase B — complete)
+The resolve endpoint prices, in addition to Base Pump + Seal:
 
-## Deliberately deferred (multi-condition components)
+**Single-option adders** (keyed by series + size + one selection value): Sleeve,
+Shaft Material, Gland/Casing/Power-Frame/Baseplate hardware, Bearing, Coupling
+Guard, Flange Type, Cyclone Separator, Casing Drains, Suction/Discharge Taps, Seal
+Guard, Performance/Vibration/Sound testing, Pump Elastomers, Hydrotest, Impeller
+Balance.
 
-MOTOR, COUPLING, BASEPLATE, and TAILPIPE are **multi-condition** price tables
-(e.g. motor = enclosure × efficiency × voltage × hertz × hp × rpm × frame × mfg;
-coupling = hp-rpm × frame × option; baseplate = frame × option; tailpipe =
-material × wetted-hardware × length). Their prices are published to
-`price.PriceRule` (+ `price.PriceCondition`) but the runtime does **not** yet price
-them, because they require multi-condition matching against `price.PriceCondition`
-rather than the single denormalized `SourceOptionValue`. This is the next runtime
-increment. (Note: MOTOR is 290 priced of ~294k combinations — the rest are
-Contact-Factory by engineering's own model, so most motor selections correctly
-resolve to call-for-price regardless.)
+**Multi-condition components** (matched against `price.PriceCondition` — every
+condition must equal the resolved selection): MOTOR (enclosure × efficiency ×
+voltage × hertz × hp × rpm × frame × mfg × shaft-grounding × paint), COUPLING
+(size × hp-rpm × frame × coupling-option; 5500 uses F_* variants), BASEPLATE
+(size × frame × baseplate-option), TAILPIPE (size × material × wetted-hardware ×
+length). Matching is done in SQL via `NOT EXISTS (a condition with no matching
+selection)` over an `OPENJSON` array of the resolved selections — no per-rule IN
+list, so it scales to the 46k-row TAILPIPE table. Derived condition fields are
+resolved at runtime (`F_MOTORHPRPM = MOTOR_HP-MOTOR_RPM`, `F_FRAME_SIZE`,
+`F_COUPLING_OPTION`). A config whose selections don't match any rule simply isn't
+priced for that component (Contact-Factory / not-yet-determined = runtime default).
+
+Verified against known workbook values: MOTOR 2779.48, BASEPLATE 2258, COUPLING
+771, TAILPIPE 4087 all flow through resolve correctly.
+
+Note: MOTOR is 290 priced of ~294k combinations — the rest are Contact-Factory by
+engineering's own model, so most motor selections correctly resolve to
+call-for-price.
 
 ## Verification
 - Correction gate `run_all_fybroc_audits.py`: **ALL CORRECTIONS INTACT**
