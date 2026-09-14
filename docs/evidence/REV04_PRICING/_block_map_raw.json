@@ -1,0 +1,782 @@
+{
+  "1500 Pricing": [
+    {
+      "start_col": "B",
+      "end_col": "E",
+      "description": "1500 Only - Base Price for a pump based on size",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Pump Material",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Pump Material": "VR-1",
+        "Price": "4987"
+      }
+    },
+    {
+      "start_col": "G",
+      "end_col": "I",
+      "description": "1500 Only - Base Price for a pump based on size",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "VR-1 Base Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "VR-1 Base Price": "4987"
+      }
+    },
+    {
+      "start_col": "K",
+      "end_col": "N",
+      "description": "1500 Only - Adder for pump material",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Pump Material",
+        "Adder"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Pump Material": "VR-1",
+        "Adder": "0"
+      }
+    },
+    {
+      "start_col": "P",
+      "end_col": "R",
+      "description": "1500 Only - Adder for Shaft Material",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Shaft Material"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Shaft Material": "303_SS"
+      }
+    },
+    {
+      "start_col": "U",
+      "end_col": "X",
+      "description": "1500 Only - Adder for Shaft Sleeve",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Sleeve",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Sleeve": "Integral",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "Z",
+      "end_col": "AC",
+      "description": "1500 Only - Adder for Gland Hardware",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Gland Hardware",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Gland Hardware": "303_SS",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AE",
+      "end_col": "AH",
+      "description": "1500 Only - Adder for Power Frame Hardware",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Power Frame Hardware",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Power Frame Hardware": "303_SS",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AJ",
+      "end_col": "AM",
+      "description": "1500 Only - Adder for Bearing Option",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Bearing Option",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Bearing Option": "Oil_Bath_Lubrication",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AO",
+      "end_col": "AR",
+      "description": "1500 Only - Adder for Casing Hardware",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Casing Hardware",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Casing Hardware": "303_SS",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AT",
+      "end_col": "AW",
+      "description": "1500 Only - Coupling Guard Pricing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Coupling Guard",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Coupling Guard": "Steel",
+        "Price": "447"
+      }
+    },
+    {
+      "start_col": "AY",
+      "end_col": "BC",
+      "description": "1500 Only - Baseplate pricing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Frame Size",
+        "Baseplate Option",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Frame Size": "143T",
+        "Baseplate Option": "Supplied_by_Fybroc",
+        "Price": "1432"
+      }
+    },
+    {
+      "start_col": "BE",
+      "end_col": "BH",
+      "description": "1500 - Adder for Baseplate Hardware",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Baseplate Hardware",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Baseplate Hardware": "303_SS",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "BJ",
+      "end_col": "BP",
+      "description": "Mechanical Seal Pricing",
+      "headers": [
+        "Alt Size",
+        "Seal Mfg",
+        "Seal Option",
+        "Seal Type",
+        "Seal Materials",
+        "Seal Elastomers",
+        "Price"
+      ],
+      "sample": {
+        "Alt Size": "1x1.5x6",
+        "Seal Mfg": "Standard Offering",
+        "Seal Option": "Supplied by Fybroc",
+        "Seal Type": "8B2 Single Outside",
+        "Seal Materials": "Carbon vs Ceramic",
+        "Seal Elastomers": "FKM",
+        "Price": "749"
+      }
+    },
+    {
+      "start_col": "BR",
+      "end_col": "BW",
+      "description": "1500 - Coupling Pricing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "F_MotorHpRpm",
+        "Frame Size",
+        "Coupling Option",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "F_MotorHpRpm": "1-1800",
+        "Frame Size": "143T",
+        "Coupling Option": "Supplied_by_Fybroc",
+        "Price": "409"
+      }
+    },
+    {
+      "start_col": "BY",
+      "end_col": "CB",
+      "description": "1500 - Adder for Flange Type",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Flange Type",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Flange Type": "ANSI Flange",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "CD",
+      "end_col": "CG",
+      "description": "1500 - Adder for Cyclone Separator",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Cyclone Seperator",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Cyclone Seperator": "Not_Supplied_by_Fybroc",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "CI",
+      "end_col": "CL",
+      "description": "1500 - Flush Pricing",
+      "headers": [
+        "Alt_Size",
+        "Flush Material",
+        "Flush",
+        "Price"
+      ],
+      "sample": {
+        "Alt_Size": "1x1.5x6",
+        "Flush Material": "Not Applicable",
+        "Flush": "External_Flush",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "CN",
+      "end_col": "CQ",
+      "description": "1500 - Adder for Casing Drains",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Casing Drains",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Casing Drains": "Not_Supplied_by_Fybroc",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "CS",
+      "end_col": "CV",
+      "description": "1500 - Adder for Suction and Discharge Taps",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Suction Discharge Taps",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Suction Discharge Taps": "Not_Supplied_by_Fybroc",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "CX",
+      "end_col": "DA",
+      "description": "1500 - Adder for Seal Guard",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Seal Guard",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Seal Guard": "Not_Supplied_by_Fybroc",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "DC",
+      "end_col": "DF",
+      "description": "1500 - Adder for Performance Testing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Performance Testing",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Performance Testing": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "DH",
+      "end_col": "DK",
+      "description": "1500 - Adder for Vibration Testing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Vibration Testing",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Vibration Testing": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "DM",
+      "end_col": "DP",
+      "description": "1500 - Adder for Sound Level Testing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Vibration Testing",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Vibration Testing": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "DR",
+      "end_col": "DV",
+      "description": "1500 - Adder for C-Face Adaptor",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Frame Size",
+        "C-Face Adaptor",
+        "Price"
+      ],
+      "sample": {
+        "Series": "1500",
+        "Alt Size": "1x1.5x6",
+        "Frame Size": null,
+        "C-Face Adaptor": "Not Included",
+        "Price": "0"
+      }
+    }
+  ],
+  "5500 Pricing": [
+    {
+      "start_col": "B",
+      "end_col": "D",
+      "description": null,
+      "headers": [
+        "Alt Size",
+        "Setting",
+        "Combined"
+      ],
+      "sample": {
+        "Alt Size": "1x1.5x6",
+        "Setting": "1",
+        "Combined": "1x1.5x6+1"
+      }
+    },
+    {
+      "start_col": "F",
+      "end_col": "L",
+      "description": "5500 Only - Base Price (Base for 5500 means Size and Setting/Length)",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Length",
+        "Setting",
+        "Pump Material",
+        "Price conversion",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Length": "18",
+        "Setting": "1",
+        "Pump Material": "VR-1",
+        "Price conversion": "1-4",
+        "Price": "11245"
+      }
+    },
+    {
+      "start_col": "N",
+      "end_col": "Q",
+      "description": "5500 - Adder for Shaft Sleeve",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Sleeve",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Sleeve": "No Sleeve",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "S",
+      "end_col": "Z",
+      "description": "5500 - Adder for Shaft and Shaft Sleeve",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Setting",
+        "Shaft Material",
+        "Sleeve",
+        "Shaft Adder",
+        "Sleeve Adder",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Setting": "1-4",
+        "Shaft Material": "316 SS",
+        "Sleeve": "No Sleeve",
+        "Shaft Adder": "0",
+        "Sleeve Adder": "0",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AB",
+      "end_col": "AG",
+      "description": "5500 - Adder for Tailpipe",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Pump Material",
+        "Wetted Hardware",
+        "Tailpipe Length",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Pump Material": "VR-1",
+        "Wetted Hardware": "316 SS",
+        "Tailpipe Length": "6",
+        "Price": "1278"
+      }
+    },
+    {
+      "start_col": "AI",
+      "end_col": "AN",
+      "description": "5500 - Coupling Adder",
+      "headers": [
+        "Series",
+        "Alt_Size",
+        "F_MotorHpRpm",
+        "F_Frame_Size",
+        "F_Coupling_Option",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt_Size": "1x1.5x6",
+        "F_MotorHpRpm": "1-1800",
+        "F_Frame_Size": "143TC",
+        "F_Coupling_Option": "Supplied_by_Fybroc",
+        "Price": "465"
+      }
+    },
+    {
+      "start_col": "AP",
+      "end_col": "AS",
+      "description": "5500 - Flush Pricing",
+      "headers": [
+        "Alt_Size",
+        "Flush Material",
+        "Flush",
+        "Price"
+      ],
+      "sample": {
+        "Alt_Size": "1x1.5x6",
+        "Flush Material": "Not Applicable",
+        "Flush": "External_Flush",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AU",
+      "end_col": "AX",
+      "description": "5500 - Adder for Performance Testing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Performance Testing",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Performance Testing": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "AZ",
+      "end_col": "BC",
+      "description": "5500 - Adder for Vibration Testing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Vibration Testing",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Vibration Testing": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "BE",
+      "end_col": "BH",
+      "description": "5500 - Adder for Sound Level Testing",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Vibration Testing",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Vibration Testing": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "BJ",
+      "end_col": "BM",
+      "description": "5500 - Adder for Flange Type",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Flange Type",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Flange Type": "ANSI Flange",
+        "Price": "c/f"
+      }
+    },
+    {
+      "start_col": "BO",
+      "end_col": "BR",
+      "description": "5500 - Adder for Custom Mounting Plate",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Mounting Plate Option",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Mounting Plate Option": "Standard Offering",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "BT",
+      "end_col": "BY",
+      "description": "5500 - Adder for Wetted Hardware",
+      "headers": [
+        "Series",
+        "Alt Size",
+        "Wetted Hardware",
+        "Shaft Wetted Hardware",
+        "Wetted Hardware Selection",
+        "Price"
+      ],
+      "sample": {
+        "Series": "5500",
+        "Alt Size": "1x1.5x6",
+        "Wetted Hardware": "Match Shaft Material",
+        "Shaft Wetted Hardware": "316 SS",
+        "Wetted Hardware Selection": "316 SS",
+        "Price": "0"
+      }
+    }
+  ],
+  "All Series Pricing": [
+    {
+      "start_col": "B",
+      "end_col": "D",
+      "description": "Adder for Pump Elastomers",
+      "headers": [
+        "Alt Size",
+        "Pump Elastomers",
+        "Price"
+      ],
+      "sample": {
+        "Alt Size": "1x1.5x6",
+        "Pump Elastomers": "FKM",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "F",
+      "end_col": "H",
+      "description": "Adder for Hydrotest Certificate",
+      "headers": [
+        "Alt Size",
+        "Hydrotest Certificate",
+        "Price"
+      ],
+      "sample": {
+        "Alt Size": "1x1.5x6",
+        "Hydrotest Certificate": "Not Included",
+        "Price": "0"
+      }
+    },
+    {
+      "start_col": "J",
+      "end_col": "L",
+      "description": "Adder for Dynamically Balanced Impeller",
+      "headers": [
+        "Alt Size",
+        "Impeller Balance",
+        "Price"
+      ],
+      "sample": {
+        "Alt Size": "1x1.5x6",
+        "Impeller Balance": "Not_Supplied_by_Fybroc",
+        "Price": "0"
+      }
+    }
+  ],
+  "1500 Motors": {
+    "headers": [
+      "Motor Enclosure",
+      "Motor Efficiency",
+      "Motor Voltage",
+      "Motor Hertz",
+      "Motor Hp",
+      "Motor RPM",
+      "Frame Size",
+      "Motor Mfg",
+      "Shaft Grounding",
+      "Paint Upgrade",
+      "CPQ Conversion2",
+      "HpRPM",
+      "Price"
+    ],
+    "sample": {
+      "Motor Enclosure": "TEFC",
+      "Motor Efficiency": "PE",
+      "Motor Voltage": "230/460",
+      "Motor Hertz": "3ph - 60 hz",
+      "Motor Hp": "1",
+      "Motor RPM": "900",
+      "Frame Size": "143T",
+      "Motor Mfg": "Standard Offering",
+      "Shaft Grounding": "Not Included",
+      "Paint Upgrade": "Not Included",
+      "CPQ Conversion2": "TEFC---PE---230/460---3ph - 60 hz",
+      "HpRPM": "1-900",
+      "Price": "C/F"
+    },
+    "rows": 144002
+  },
+  "5500 Motors": {
+    "headers": [
+      "Motor Enclosure",
+      "Motor Efficiency",
+      "Motor Voltage",
+      "Motor Hertz",
+      "Motor Hp",
+      "Motor RPM",
+      "Frame Size",
+      "Motor Mfg",
+      "Shaft Grounding",
+      "Paint Upgrade",
+      "CPQ Conversion2",
+      "HpRPM",
+      "Price"
+    ],
+    "sample": {
+      "Motor Enclosure": "TEFC",
+      "Motor Efficiency": "PE",
+      "Motor Voltage": "230/460",
+      "Motor Hertz": "3ph - 60 hz",
+      "Motor Hp": "1",
+      "Motor RPM": "900",
+      "Frame Size": "143TC",
+      "Motor Mfg": "Standard Offering",
+      "Shaft Grounding": "Not Included",
+      "Paint Upgrade": "Not Included",
+      "CPQ Conversion2": "TEFC---PE---230/460---3ph - 60 hz",
+      "HpRPM": "1-900",
+      "Price": "C/F"
+    },
+    "rows": 150626
+  }
+}

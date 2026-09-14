@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "family_code": "FYBROC",
+  "source_workbook": "workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx",
+  "workbook_name": "Fybroc Configuration Rev0.4.xlsx",
+  "currency_code": "USD",
+  "_note": "Rev0.4 is the authoritative Fybroc pricing source (replaces Price Estimator). Pricing sheets use column-block layouts: row3 description, row5 headers [Series] Alt Size <option fields> Price, row6+ data. Block->component map: docs/evidence/REV04_PRICING/REV04_PRICING_MAP.md.",
+  "sheets": {
+    "horizontal": "1500 Pricing",
+    "vertical": "5500 Pricing",
+    "all_series": "All Series Pricing",
+    "motors_horizontal": "1500 Motors",
+    "motors_vertical": "5500 Motors"
+  },
+  "_phase_a_note": "Phase A keeps CURRENT runtime granularity: one base price per size+material. 5500 base varies by Setting/Length (68/78 combos), so we take the standard Setting==1 base price (78 combos, unambiguous). Full setting/length-aware 5500 base pricing is Phase B.",
+  "phase_a_blocks": [
+    {"sheet": "1500 Pricing", "description_contains": "Base Price", "component_code": "BASE_PUMP", "condition_fields": ["Pump Material"]},
+    {"sheet": "5500 Pricing", "description_contains": "Base Price", "component_code": "BASE_PUMP", "condition_fields": ["Pump Material"], "row_filter": {"Setting": "1"}},
+    {"sheet": "1500 Pricing", "description_contains": "Mechanical Seal Pricing", "component_code": "SEAL", "condition_fields": ["Seal Mfg", "Seal Option", "Seal Type", "Seal Materials", "Seal Elastomers"]}
+  ]
+}

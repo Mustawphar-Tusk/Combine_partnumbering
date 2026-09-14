@@ -1,4 +1,10 @@
 :setvar ExpectedVersionCode "FYBROC-CONFIG-20260807-V3"
+/* SUPERSEDED (Rev0.4 adoption): this harness fingerprints the Price-Estimator
+   publication FYBROC-CONFIG-20260807-V3, which is no longer the current pricing
+   publication (Fybroc Configuration Rev0.4.xlsx superseded it; V3 is preserved
+   non-current). It will THROW if run against the current DB and is retained only
+   for historical reference. The current publication is verified by
+   sql/25_Verify_Rev04_Pricing_Publication.sql. Not part of 00_Deploy_All.sql. */
 
 SET NOCOUNT ON;
 SET XACT_ABORT ON;
