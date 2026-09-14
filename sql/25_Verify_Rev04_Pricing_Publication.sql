@@ -1,18 +1,19 @@
 /* ================================================================
    REV0.4 PRICING PUBLICATION VERIFICATION
    ----------------------------------------------------------------
-   Fingerprints the CURRENT Fybroc pricing publication after adopting
-   Fybroc Configuration Rev0.4.xlsx as the authoritative source
-   (replacing Price Estimator-Fybroc.xlsm).
+   Fingerprints the CURRENT Fybroc pricing publication: the MERGED
+   Rev0.4 <-> Price-Estimator overlay (option 2b).
 
-   Phase A scope: BASE_PUMP + SEAL. Counts are the Phase-A publication
-   (FYBROC-REV04-20260914-V1). Phase B will re-publish with the full
-   component set and these constants will be regenerated then.
+   Model: Rev0.4 pricing adopted only for series 1500 & 5500 (Rev0.4
+   'found' prices); other series retain their Price-Estimator prices;
+   Rev0.4 C/F (Contact Factory) does not overwrite (retain PE where it
+   exists, else no priced row / call-for-price default). See
+   docs/evidence/REV04_PRICING/REV04_vs_PriceEstimator_DIFF.md.
 
-   Also asserts the Price-Estimator publication (FYBROC-CONFIG-20260807-V3)
+   Asserts the Price-Estimator publication (FYBROC-CONFIG-20260807-V3)
    is PRESERVED as non-current (non-destructive supersession).
    ================================================================ */
-:setvar ExpectedVersionCode "FYBROC-REV04-20260914-V1"
+:setvar ExpectedVersionCode "FYBROC-REV04-MERGE-20260914-V1"
 
 SET NOCOUNT ON;
 SET XACT_ABORT ON;
@@ -39,11 +40,13 @@ IF NOT EXISTS (SELECT 1 FROM price.PriceBookVersion
                  AND VersionCode = @ExpectedVersionCode)
     THROW 52271, 'Current FYBROC publication is not the expected Rev0.4 version.', 1;
 
--- Source workbook must be the Rev0.4 configuration workbook.
+-- Source workbook must reference the Rev0.4 configuration workbook (the merged
+-- publication records both sources: "Fybroc Configuration Rev0.4.xlsx + Price
+-- Estimator-Fybroc.xlsm (merged)").
 IF NOT EXISTS (SELECT 1 FROM price.PriceBookVersion
                WHERE PriceBookVersionId = @PriceBookVersionId
-                 AND SourceWorkbook = 'Fybroc Configuration Rev0.4.xlsx')
-    THROW 52272, 'Current FYBROC publication source is not Rev0.4.', 1;
+                 AND SourceWorkbook LIKE '%Rev0.4%')
+    THROW 52272, 'Current FYBROC publication source does not reference Rev0.4.', 1;
 
 SELECT @RuleCount = COUNT(*),
        @FoundCount = SUM(CASE WHEN PricingStatus = 'found' THEN 1 ELSE 0 END),
@@ -52,12 +55,11 @@ SELECT @RuleCount = COUNT(*),
        @SealRuleCount = SUM(CASE WHEN ComponentCode = 'SEAL' THEN 1 ELSE 0 END)
 FROM price.PriceRule WHERE PriceBookVersionId = @PriceBookVersionId;
 
-IF @RuleCount <> 7037
-    THROW 52273, 'Rev0.4 Phase A rule-count reconciliation failed (expected 7037).', 1;
-IF @BaseRuleCount <> 199 OR @SealRuleCount <> 6838
-    THROW 52274, 'Rev0.4 Phase A component rule-count reconciliation failed (BASE_PUMP=199, SEAL=6838).', 1;
-IF @FoundCount <> 2228 OR @CallForPriceCount <> 4809
-    THROW 52275, 'Rev0.4 Phase A found/call-for-price reconciliation failed (found=2228, c/f=4809).', 1;
+-- Merged (Rev0.4 overlay for 1500/5500 + retained Price-Estimator for other series).
+IF @RuleCount <> 56241
+    THROW 52273, 'Rev0.4 merged rule-count reconciliation failed (expected 56241).', 1;
+IF @FoundCount <> 56088 OR @CallForPriceCount <> 153
+    THROW 52275, 'Rev0.4 merged found/call-for-price reconciliation failed (found=56088, c/f=153).', 1;
 
 -- Non-destructive supersession: the Price-Estimator publication is preserved
 -- as non-current.

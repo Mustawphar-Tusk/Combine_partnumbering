@@ -1574,6 +1574,69 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             if seal_row:
                 pricing.append({"component": "Seal", "amount": float(seal_row[0]), "detail": seal_row[1]})
 
+        # ---- Rev0.4 Phase B: additional priced components (1500 & 5500) ----
+        # Each of these adder/component tables is keyed by series + size + one
+        # driving selection value; the published PriceRule denormalizes that
+        # driving value into SourceOptionValue. We look up the current price by
+        # ComponentCode + series + size + the selection value. A miss simply
+        # means the component isn't priced for this config (Contact Factory /
+        # not-yet-determined) and is skipped - the runtime default. Only series
+        # 1500 & 5500 have these priced (option 2b); other series no-op here.
+        #
+        # component_code -> (display label, selection field the price is keyed on)
+        ADDER_COMPONENTS = [
+            ("SLEEVE", "Sleeve", "IMPELLER_SLEEVE"),
+            ("SHAFT_MATERIAL", "Shaft Material", "SHAFT_MATERIAL"),
+            ("GLAND_HARDWARE", "Gland Hardware", "GLAND_HARDWARE"),
+            ("POWER_FRAME_HARDWARE", "Power Frame Hardware", "POWER_FRAME_HARDWARE"),
+            ("BEARING_OPTION", "Bearing Option", "BEARING_OPTION"),
+            ("CASING_HARDWARE", "Casing Hardware", "CASING_HARDWARE"),
+            ("COUPLING_GUARD", "Coupling Guard", "COUPLING_GUARD"),
+            ("BASEPLATE_HARDWARE", "Baseplate Hardware", "FRAME_HARDWARE"),
+            ("FLANGE_TYPE", "Flange Type", "FLANGE_TYPE"),
+            ("CYCLONE_SEPARATOR", "Cyclone Separator", "CYCLONE_SEPERATOR"),
+            ("CASING_DRAINS", "Casing Drains", "CASING_DRAINS"),
+            ("SUCTION_DISCHARGE_TAPS", "Suction/Discharge Taps", "SUCTION_DISCHARGE_TAPS"),
+            ("SEAL_GUARD", "Seal Guard", "SEAL_GUARD"),
+            ("PERFORMANCE_TESTING", "Performance Testing", "PERFORMANCE_TESTING"),
+            ("VIBRATION_TESTING", "Vibration Testing", "VIBRATION_TESTING"),
+            ("SOUND_LEVEL_TESTING", "Sound Level Testing", "SOUND_LEVEL_TESTING"),
+            ("PUMP_ELASTOMERS", "Pump Elastomers", "PUMP_ELASTOMERS"),
+            ("HYDROTEST_CERTIFICATE", "Hydrotest Certificate", "HYDROTEST_CERTIFICATE"),
+            ("IMPELLER_BALANCE", "Impeller Balance", "IMPELLER_BALANCE"),
+        ]
+
+        def _price_component(component_code: str, selection_value: str):
+            """Return (amount, detail) for a component priced by series+size+value,
+            or None. Matches on the denormalized SourceOptionValue (case-insensitive,
+            underscores/spaces normalized)."""
+            if not selection_value:
+                return None
+            v = selection_value.strip().lower()
+            # try exact-ish then space/underscore-insensitive LIKE
+            patterns = [v, v.replace(" ", "%"), v.replace("_", "%").replace(" ", "%")]
+            for pat in patterns:
+                row = cursor.execute("""
+                    SELECT TOP 1 pr.Amount, pr.SourceOptionValue
+                    FROM price.PriceRule pr
+                    JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                    WHERE pr.ComponentCode = ? AND pr.IsActive = 1 AND pr.PricingStatus = 'found'
+                      AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
+                      AND UPPER(pr.SourceSizeValue) LIKE ?
+                      AND LOWER(REPLACE(pr.SourceOptionValue,'_',' ')) LIKE ?
+                    ORDER BY pr.Priority
+                """, component_code, body.series, f"{body.series}%",
+                     f"{size_upper}%", pat.replace("_", " ")).fetchone()
+                if row and row[0] is not None:
+                    return float(row[0]), row[1]
+            return None
+
+        for comp_code, label, sel_field in ADDER_COMPONENTS:
+            sel_val = body.selections.get(sel_field, "")
+            priced = _price_component(comp_code, sel_val)
+            if priced is not None:
+                pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
+
         total = sum(p["amount"] for p in pricing)
 
         # ---- U130: BOM generation (grounded, deterministic from configuration) ----

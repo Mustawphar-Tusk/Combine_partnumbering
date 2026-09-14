@@ -147,11 +147,11 @@ def extract_block_candidates(
     """
     price_col = block.header_cols.get(price_header)
     if price_col is None:
-        # some blocks name the price column differently (e.g. 'Adder', 'VR-1 Base Price')
-        raise KeyError(
-            f"Block {block.description!r} has no {price_header!r} column "
-            f"(headers: {list(block.header_cols)})"
-        )
+        # Some blocks put the price in an UNLABELED column immediately after the
+        # last header (row 5 blank above it), e.g. the 1500 'Adder for Shaft
+        # Material' block: Series|Alt Size|Shaft Material| <price at end_col+1>.
+        # Fall back to that column.
+        price_col = block.end_col + 1
     size_col = block.header_cols.get(size_header) or block.header_cols.get("Alt_Size")
     series_col = block.header_cols.get(series_header)
     cond_cols = [(f, block.header_cols[f]) for f in condition_fields if f in block.header_cols]
@@ -233,6 +233,93 @@ def extract_block_candidates(
             "worksheet_name": block.worksheet,
             "table_name": block.description or f"{block.start_col_letter}block",
             "source_cell": f"{block.start_col_letter}{r}",
+            "conditions": conditions,
+        })
+        r += 1
+    return out
+
+
+def extract_motor_candidates(
+    ws,
+    *,
+    series: str,
+    workbook_name: str,
+    component_code: str = "MOTOR",
+    header_row: int = 2,
+    data_start_row: int = 3,
+    condition_headers: list[str] | None = None,
+    price_header: str = "Price",
+) -> list[dict[str, Any]]:
+    """Extract candidates from a FLAT motor table (header_row, then data rows).
+
+    The motor table has no Series/Alt Size columns; the caller supplies the
+    series. Each row's conditions = one EQ per condition header. Rows priced
+    'C/F' become call_for_price. This streams sequentially (the motor sheets are
+    ~150k rows) so it must be called against a worksheet that supports fast
+    row iteration (openpyxl read-only or the in-memory grid).
+    """
+    if condition_headers is None:
+        condition_headers = [
+            "Motor Enclosure", "Motor Efficiency", "Motor Voltage", "Motor Hertz",
+            "Motor Hp", "Motor RPM", "Frame Size", "Motor Mfg",
+            "Shaft Grounding", "Paint Upgrade",
+        ]
+    # locate columns from the header row
+    header_cols: dict[str, int] = {}
+    for c in range(1, ws.max_column + 1):
+        h = _s(ws.cell(row=header_row, column=c).value)
+        if h:
+            header_cols[h] = c
+    price_col = header_cols.get(price_header)
+    if price_col is None:
+        raise KeyError(f"Motor table has no {price_header!r} column: {list(header_cols)}")
+    cond_cols = [(h, header_cols[h]) for h in condition_headers if h in header_cols]
+
+    out: list[dict[str, Any]] = []
+    r = data_start_row
+    max_r = ws.max_row
+    blanks = 0
+    while r <= max_r:
+        price_raw = _s(ws.cell(row=r, column=price_col).value)
+        if price_raw is None and not any(_s(ws.cell(row=r, column=c).value) for _, c in cond_cols):
+            blanks += 1
+            if blanks > 5:
+                break
+            r += 1
+            continue
+        blanks = 0
+        amount, status = _amount_status(price_raw)
+        if status is None:
+            r += 1
+            continue
+        conditions = []
+        for seq, (h, c) in enumerate(cond_cols, start=1):
+            conditions.append({
+                "sequence_no": seq,
+                "field_code": _canonical_field(h),
+                "comparison_operator": "EQ",
+                "comparison_value": _s(ws.cell(row=r, column=c).value),
+            })
+        primary_field = _canonical_field(cond_cols[0][0])
+        primary_value = _s(ws.cell(row=r, column=cond_cols[0][1]).value)
+        out.append({
+            "family_code": "FYBROC",
+            "component_code": component_code,
+            "series_code": series,
+            "source_series_code": series,
+            "size_value": None,
+            "source_size_value": None,
+            "option_field_code": primary_field,
+            "option_value": primary_value,
+            "source_option_value": primary_value,
+            "amount": amount,
+            "pricing_status": status,
+            "source_price_value": price_raw,
+            "currency_code": CURRENCY,
+            "workbook_name": workbook_name,
+            "worksheet_name": ws.title,
+            "table_name": f"{series} Motors",
+            "source_cell": f"A{r}",
             "conditions": conditions,
         })
         r += 1

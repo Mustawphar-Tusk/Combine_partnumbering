@@ -27,6 +27,7 @@ import openpyxl
 from src.compiler.fybroc_rev04_pricing_compiler import (
     detect_blocks,
     extract_block_candidates,
+    extract_motor_candidates,
     find_block,
 )
 
@@ -83,6 +84,8 @@ SHEET_CAPS = {
     "1500 Pricing": (7000, 126),
     "5500 Pricing": (52500, 77),
     "All Series Pricing": (70, 12),
+    "1500 Motors": (145000, 14),
+    "5500 Motors": (151000, 14),
 }
 
 
@@ -116,6 +119,7 @@ def compile_blocks(wb, profile: dict, block_specs: list[dict]) -> list[dict]:
             condition_fields=spec["condition_fields"],
             workbook_name=workbook_name,
             row_filter=spec.get("row_filter"),
+            price_header=spec.get("price_header", "Price"),
         )
         print(f"  {sheet} :: {block.description!r} -> {spec['component_code']}: "
               f"{len(rows)} candidates")
@@ -127,6 +131,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--phase", choices=["a", "b"], default="a")
     ap.add_argument("--all", action="store_true", help="phase A + B")
+    ap.add_argument(
+        "--found-only", action="store_true",
+        help="write only priced (status='found') candidates. An unpriced combo "
+             "defaults to call_for_price at runtime, so explicit C/F rows carry "
+             "no pricing information; this keeps the publication lean (esp. the "
+             "MOTOR cross-product, which is ~99.9%% call_for_price).",
+    )
     a = ap.parse_args()
 
     profile = _load_profile()
@@ -144,6 +155,22 @@ def main():
             specs += list(profile.get("phase_b_blocks", []))
         print(f"Compiling {len(specs)} block spec(s) from {src.name} ...")
         candidates = compile_blocks(wb, profile, specs)
+
+        # Motor flat tables (Phase B only) - large; materialize sequentially.
+        if a.phase == "b" or a.all:
+            for mt in profile.get("phase_b_motor_tables", []):
+                sheet = mt["sheet"]
+                rmax, cmax = SHEET_CAPS.get(sheet, (151000, 14))
+                print(f"  [materialize motor] {sheet} ({rmax}x{cmax}) ...")
+                grid = materialize(wb[sheet], rmax, cmax)
+                rows = extract_motor_candidates(
+                    grid, series=mt["series"],
+                    workbook_name=profile["workbook_name"],
+                    component_code=mt["component_code"],
+                )
+                print(f"  {sheet} -> {mt['component_code']} ({mt['series']}): "
+                      f"{len(rows)} candidates")
+                candidates.extend(rows)
         wb.close()
     finally:
         shutil.rmtree(tdir, ignore_errors=True)
@@ -161,6 +188,12 @@ def main():
             continue
         unique[k] = c
     candidates = list(unique.values())
+
+    dropped_cf = 0
+    if a.found_only:
+        before = len(candidates)
+        candidates = [c for c in candidates if c["pricing_status"] == "found"]
+        dropped_cf = before - len(candidates)
 
     out = {
         "artifact": "FYBROC_REV04_PRICING",
@@ -180,7 +213,8 @@ def main():
     for c in candidates:
         by_comp[c["component_code"]] = by_comp.get(c["component_code"], 0) + 1
     print(f"\nWrote {out_path}")
-    print(f"  candidates: {len(candidates)}  duplicates_removed: {dupes}")
+    print(f"  candidates: {len(candidates)}  duplicates_removed: {dupes}"
+          + (f"  call_for_price_dropped: {dropped_cf}" if a.found_only else ""))
     print(f"  by component: {by_comp}")
 
 

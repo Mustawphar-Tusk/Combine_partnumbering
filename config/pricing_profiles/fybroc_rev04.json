@@ -17,5 +17,47 @@
     {"sheet": "1500 Pricing", "description_contains": "Base Price", "component_code": "BASE_PUMP", "condition_fields": ["Pump Material"]},
     {"sheet": "5500 Pricing", "description_contains": "Base Price", "component_code": "BASE_PUMP", "condition_fields": ["Pump Material"], "row_filter": {"Setting": "1"}},
     {"sheet": "1500 Pricing", "description_contains": "Mechanical Seal Pricing", "component_code": "SEAL", "condition_fields": ["Seal Mfg", "Seal Option", "Seal Type", "Seal Materials", "Seal Elastomers"]}
+  ],
+  "_phase_b_note": "Full component set. ComponentCode keyed off the row-3 description (robust to the Sound-Level block's mislabeled 'Vibration Testing' option header). 5500 base still Setting==1 (Phase A); full setting/length base pricing not modeled at runtime yet. Motor tables are flat (see phase_b_motor_tables).",
+  "phase_b_blocks": [
+    {"sheet": "1500 Pricing", "description_contains": "Adder for pump material", "component_code": "PUMP_MATERIAL_ADDER", "condition_fields": ["Pump Material"], "price_header": "Adder"},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Shaft Material", "component_code": "SHAFT_MATERIAL", "condition_fields": ["Shaft Material"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Shaft Sleeve", "component_code": "SLEEVE", "condition_fields": ["Sleeve"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Gland Hardware", "component_code": "GLAND_HARDWARE", "condition_fields": ["Gland Hardware"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Power Frame Hardware", "component_code": "POWER_FRAME_HARDWARE", "condition_fields": ["Power Frame Hardware"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Bearing Option", "component_code": "BEARING_OPTION", "condition_fields": ["Bearing Option"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Casing Hardware", "component_code": "CASING_HARDWARE", "condition_fields": ["Casing Hardware"]},
+    {"sheet": "1500 Pricing", "description_contains": "Coupling Guard Pricing", "component_code": "COUPLING_GUARD", "condition_fields": ["Coupling Guard"]},
+    {"sheet": "1500 Pricing", "description_contains": "Baseplate pricing", "component_code": "BASEPLATE", "condition_fields": ["Frame Size", "Baseplate Option"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Baseplate Hardware", "component_code": "BASEPLATE_HARDWARE", "condition_fields": ["Baseplate Hardware"]},
+    {"sheet": "1500 Pricing", "description_contains": "Coupling Pricing", "component_code": "COUPLING", "condition_fields": ["F_MotorHpRpm", "Frame Size", "Coupling Option"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Flange Type", "component_code": "FLANGE_TYPE", "condition_fields": ["Flange Type"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Cyclone Separator", "component_code": "CYCLONE_SEPARATOR", "condition_fields": ["Cyclone Seperator"]},
+    {"sheet": "1500 Pricing", "description_contains": "Flush Pricing", "component_code": "FLUSH", "condition_fields": ["Flush Material", "Flush"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Casing Drains", "component_code": "CASING_DRAINS", "condition_fields": ["Casing Drains"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Suction and Discharge Taps", "component_code": "SUCTION_DISCHARGE_TAPS", "condition_fields": ["Suction Discharge Taps"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Seal Guard", "component_code": "SEAL_GUARD", "condition_fields": ["Seal Guard"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Performance Testing", "component_code": "PERFORMANCE_TESTING", "condition_fields": ["Performance Testing"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Vibration Testing", "component_code": "VIBRATION_TESTING", "condition_fields": ["Vibration Testing"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for Sound Level Testing", "component_code": "SOUND_LEVEL_TESTING", "condition_fields": ["Vibration Testing"]},
+    {"sheet": "1500 Pricing", "description_contains": "Adder for C-Face Adaptor", "component_code": "C_FACE_ADAPTOR", "condition_fields": ["Frame Size", "C-Face Adaptor"]},
+
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Shaft Sleeve", "component_code": "SLEEVE", "condition_fields": ["Sleeve"]},
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Tailpipe", "component_code": "TAILPIPE", "condition_fields": ["Pump Material", "Wetted Hardware", "Tailpipe Length"]},
+    {"sheet": "5500 Pricing", "description_contains": "Coupling Adder", "component_code": "COUPLING", "condition_fields": ["F_MotorHpRpm", "F_Frame_Size", "F_Coupling_Option"]},
+    {"sheet": "5500 Pricing", "description_contains": "Flush Pricing", "component_code": "FLUSH", "condition_fields": ["Flush Material", "Flush"]},
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Performance Testing", "component_code": "PERFORMANCE_TESTING", "condition_fields": ["Performance Testing"]},
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Vibration Testing", "component_code": "VIBRATION_TESTING", "condition_fields": ["Vibration Testing"]},
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Sound Level Testing", "component_code": "SOUND_LEVEL_TESTING", "condition_fields": ["Vibration Testing"]},
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Flange Type", "component_code": "FLANGE_TYPE", "condition_fields": ["Flange Type"]},
+    {"sheet": "5500 Pricing", "description_contains": "Adder for Custom Mounting Plate", "component_code": "MOUNTING_PLATE", "condition_fields": ["Mounting Plate Option"]},
+
+    {"sheet": "All Series Pricing", "description_contains": "Adder for Pump Elastomers", "component_code": "PUMP_ELASTOMERS", "condition_fields": ["Pump Elastomers"]},
+    {"sheet": "All Series Pricing", "description_contains": "Adder for Hydrotest Certificate", "component_code": "HYDROTEST_CERTIFICATE", "condition_fields": ["Hydrotest Certificate"]},
+    {"sheet": "All Series Pricing", "description_contains": "Dynamically Balanced Impeller", "component_code": "IMPELLER_BALANCE", "condition_fields": ["Impeller Balance"]}
+  ],
+  "phase_b_motor_tables": [
+    {"sheet": "1500 Motors", "component_code": "MOTOR", "series": "1500"},
+    {"sheet": "5500 Motors", "component_code": "MOTOR", "series": "5500"}
   ]
 }
