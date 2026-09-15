@@ -251,10 +251,22 @@
                 resolvedCodes = { ...(data.resolved_codes || {}) };
                 orderedFields = data.ordered_fields || Object.keys(allowableOptions);
 
+                // Rendering runs AFTER a successful fetch. Guard it separately so
+                // a rendering bug is never mislabeled as a "fetch" error - the
+                // status will say exactly which field failed to render and the
+                // console will carry the full stack.
                 const reset = data.reset_fields || {};
                 const dropped = data.dropped_fields || [];
-                renderAllFields(reset, dropped);
-                renderNotice(reset, dropped);
+                try {
+                    renderAllFields(reset, dropped);
+                    renderNotice(reset, dropped);
+                } catch (renderErr) {
+                    console.error('render error after resolve-state:', renderErr,
+                                  { changedField, data });
+                    setStatus('Display error: ' + renderErr.message +
+                              ' (see console)', 'error');
+                    return;
+                }
 
                 document.getElementById('resolveBtn').disabled = false;
                 document.getElementById('stdBtn').disabled = false;
@@ -263,7 +275,10 @@
                 const setCount = orderedFields.filter(fc => fc in selections).length;
                 setStatus(`${setCount} of ${orderedFields.length} fields set`, 'success');
             } catch (e) {
-                setStatus('Error: ' + e.message, 'error');
+                if (mySeq !== reqSeq) return;  // stale failure, a newer call is active
+                console.error('resolve-state fetch error:', e, { changedField, sel });
+                setStatus('Could not reach the configuration service: ' + e.message,
+                          'error');
             }
         }
 
@@ -314,31 +329,41 @@
 
                 // Build options. Every field is ALWAYS editable. A "not set"
                 // choice is offered so a no-STD field can be cleared/left blank.
+                // Option values are HTML-escaped for the attribute so a value
+                // with special characters can never break the markup.
                 const optionHtml = [
                     `<option value=""${hasValue ? '' : ' selected'}>-- Not set --</option>`,
                     ...options.map(o => {
-                        const sel = hasValue && o === value ? ' selected' : '';
-                        const stdMark = (std !== undefined && o === std) ? ' (standard)' : '';
-                        return `<option value="${o}"${sel}>${o}${stdMark}</option>`;
+                        const sel = hasValue && String(o) === String(value) ? ' selected' : '';
+                        const stdMark = (std !== undefined && String(o) === String(std)) ? ' (standard)' : '';
+                        return `<option value="${escAttr(o)}"${sel}>${esc(o)}${stdMark}</option>`;
                     })
                 ];
                 // If the current value somehow isn't in the allowable list (should
                 // not happen — server keeps only valid), still show it so the UI
                 // never hides a persisted pick.
-                if (hasValue && !options.some(o => o === value)) {
-                    optionHtml.push(`<option value="${value}" selected>${value} (current)</option>`);
+                if (hasValue && !options.some(o => String(o) === String(value))) {
+                    optionHtml.push(`<option value="${escAttr(value)}" selected>${esc(value)} (current)</option>`);
                 }
 
                 const code = resolvedCodes[fieldCode];
+                // Bind the change handler via addEventListener (not an inline
+                // attribute) so field codes / values never need to be embedded
+                // in an HTML string, and 'this.value' is read straight off the
+                // element - immune to any character in the data.
                 card.innerHTML = `
-                    <label>${pretty(fieldCode)} ${tag}</label>
-                    <select onchange="onFieldChange('${fieldCode}', this.value)">
+                    <label>${esc(pretty(fieldCode))} ${tag}</label>
+                    <select data-field="${escAttr(fieldCode)}">
                         ${optionHtml.join('')}
                     </select>
-                    ${std !== undefined ? `<div class="std-line">standard: ${std}</div>` : ''}
+                    ${std !== undefined ? `<div class="std-line">standard: ${esc(std)}</div>` : ''}
                     ${flagged.has(fieldCode) ? `<div class="reset-line">${dropped.includes(fieldCode) ? 'cleared by your last change' : 'auto-adjusted by your last change'}</div>` : ''}
-                    ${code ? `<div class="code">→ ${code}</div>` : ''}
+                    ${code ? `<div class="code">→ ${esc(code)}</div>` : ''}
                 `;
+                const selectEl = card.querySelector('select');
+                selectEl.addEventListener('change', function () {
+                    onFieldChange(this.getAttribute('data-field'), this.value);
+                });
                 grid.appendChild(card);
             }
         }
@@ -396,6 +421,11 @@
         function esc(s) {
             return String(s == null ? '' : s)
                 .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        // Escape a value for use inside a double-quoted HTML attribute.
+        function escAttr(s) {
+            return esc(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
         // Render the COMPLETE per-component breakdown: every component this
