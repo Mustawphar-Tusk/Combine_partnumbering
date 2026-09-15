@@ -260,6 +260,190 @@ def _prune_to_prefix(
     return effective, dropped
 
 
+def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable):
+    """Apply the authoritative constraints (feasible + motor + combine HP->RPM)
+    to `allowable` in place, given the current `selections` as context.
+
+    This is the SINGLE authoritative constraint filter, shared by the linear-walk
+    /evaluate endpoint and the free-edit /configurations/resolve-state endpoint.
+    `selections` supplies the context (any field can be context for any other -
+    the feasible-constraint rows are omni-directional per leg); `allowable` is the
+    per-field option lists to filter (only fields present in `allowable` are
+    filtered, so a caller wanting to constrain an already-chosen field must
+    include that field in `allowable`).
+    """
+    import collections as _collections
+
+    # constraint field label -> SFO field code
+    label_to_sfo = {
+        r[0]: r[1] for r in cursor.execute(
+            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
+        ).fetchall()
+    }
+
+    def _series_in_scope(scope: str) -> bool:
+        s = (scope or "ALL_SERIES").strip().upper()
+        if s == "ALL_SERIES":
+            return True
+        return series.upper() in s  # e.g. "5500_ONLY"
+
+    all_rows = cursor.execute(
+        "SELECT TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
+        "       Option3Field, Option3Value, Allowed, SeriesApplicability "
+        "FROM cfg.FeasibleConstraint"
+    ).fetchall()
+
+    _sel_norm = {k.upper(): str(v).strip().lower() for k, v in selections.items()}
+
+    allowed_by = _collections.defaultdict(set)
+    notallowed_by = _collections.defaultdict(set)
+
+    for (tname, o1f, o1v, o2f, o2v, o3f, o3v, allowed_flag, scope) in all_rows:
+        if not _series_in_scope(scope):
+            continue
+        legs = []
+        ok = True
+        for label, value in ((o1f, o1v), (o2f, o2v), (o3f, o3v)):
+            if not label:
+                continue
+            sfo = label_to_sfo.get(str(label).strip())
+            if not sfo:
+                ok = False
+                break
+            legs.append((sfo.upper(), str(value).strip().lower()))
+        if not ok or len(legs) < 2:
+            continue
+        is_not_allowed = str(allowed_flag).strip().lower() == "not allowed"
+        for ti in range(len(legs)):
+            target_field, target_value = legs[ti]
+            context = [legs[i] for i in range(len(legs)) if i != ti]
+            if all(_sel_norm.get(cf) == cv for cf, cv in context):
+                key = (tname, target_field)
+                if is_not_allowed:
+                    notallowed_by[key].add(target_value)
+                else:
+                    allowed_by[key].add(target_value)
+
+    _targets = set(allowed_by) | set(notallowed_by)
+    for (tname, target_field) in _targets:
+        if target_field not in allowable:
+            continue
+        allow_set = allowed_by.get((tname, target_field), set())
+        deny_set = notallowed_by.get((tname, target_field), set())
+        if allow_set:
+            allowable[target_field] = [
+                v for v in allowable[target_field]
+                if str(v).strip().lower() in allow_set
+                and str(v).strip().lower() not in deny_set
+            ]
+        elif deny_set:
+            allowable[target_field] = [
+                v for v in allowable[target_field]
+                if str(v).strip().lower() not in deny_set
+            ]
+
+    # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint - ALLOW-LISTs).
+    scope_row = cursor.execute(
+        "SELECT DISTINCT SeriesScope FROM cfg.MotorConstraint "
+        "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
+        "AND (SeriesScope = ? OR SeriesScope LIKE ? OR SeriesScope LIKE ? "
+        "     OR SeriesScope LIKE ?)",
+        pub_id, family_id, series,
+        f"{series} %", f"% {series}", f"% {series} %",
+    ).fetchone()
+    motor_scope = scope_row[0] if scope_row else None
+
+    def _mc_allowed(dim1_field, dim1_value, dim2_field):
+        if not motor_scope or dim1_value is None:
+            return set()
+        rows = cursor.execute(
+            "SELECT Dimension2Value FROM cfg.MotorConstraint "
+            "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
+            "AND Dimension1Field=? AND Dimension2Field=? "
+            "AND LOWER(Dimension1Value)=LOWER(?)",
+            pub_id, family_id, motor_scope, dim1_field, dim2_field, str(dim1_value),
+        ).fetchall()
+        return {str(r[0]).strip().lower() for r in rows if r[0] is not None}
+
+    size_value = selections.get("ALT_SIZE")
+    hp_sel = selections.get("MOTOR_HP")
+    rpm_sel = selections.get("MOTOR_RPM")
+
+    if size_value and "FRAME_SIZE" in allowable:
+        frames = _mc_allowed("Alt_Size", size_value, "F_Frame_Size")
+        if frames:
+            allowable["FRAME_SIZE"] = [
+                v for v in allowable["FRAME_SIZE"] if v.strip().lower() in frames
+            ]
+
+    if size_value:
+        hprpm_for_size = _mc_allowed("Alt_Size", size_value, "F_MotorHpRpm")
+        if hprpm_for_size:
+            pairs = []
+            for c in hprpm_for_size:
+                if "-" in c:
+                    hp_p, rpm_p = c.split("-", 1)
+                    pairs.append((hp_p.strip(), rpm_p.strip()))
+            allowed_hp = {hp for hp, _ in pairs}
+            if allowed_hp and "MOTOR_HP" in allowable:
+                allowable["MOTOR_HP"] = [
+                    v for v in allowable["MOTOR_HP"]
+                    if str(v).strip().lower() in allowed_hp
+                ]
+            if hp_sel is not None and "MOTOR_RPM" in allowable:
+                hp_l = str(hp_sel).strip().lower()
+                allowed_rpm = {rpm for hp, rpm in pairs if hp == hp_l}
+                if allowed_rpm:
+                    allowable["MOTOR_RPM"] = [
+                        v for v in allowable["MOTOR_RPM"]
+                        if str(v).strip().lower() in allowed_rpm
+                    ]
+
+    if hp_sel is not None and rpm_sel is not None and "FRAME_SIZE" in allowable:
+        composite = f"{str(hp_sel).strip()}-{str(rpm_sel).strip()}"
+        rows = cursor.execute(
+            "SELECT Dimension1Value FROM cfg.MotorConstraint "
+            "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
+            "AND Dimension1Field='F_Frame_Size' AND Dimension2Field='F_MotorHpRpm' "
+            "AND LOWER(Dimension2Value)=LOWER(?)",
+            pub_id, family_id, motor_scope, composite,
+        ).fetchall()
+        frames_for_hprpm = {str(r[0]).strip().lower() for r in rows if r[0] is not None}
+        if frames_for_hprpm:
+            allowable["FRAME_SIZE"] = [
+                v for v in allowable["FRAME_SIZE"]
+                if v.strip().lower() in frames_for_hprpm
+            ]
+
+    # MOTOR Hp -> RPM (Combine Variables MotorHpRpm table).
+    if "MOTOR_HP" in selections and "MOTOR_RPM" in allowable:
+        hp_value = str(selections["MOTOR_HP"]).strip()
+        allowed_rpms = cursor.execute(
+            "SELECT cv_rpm.ValueValue "
+            "FROM cfg.CombineVariable cv_hp "
+            "JOIN cfg.CombineVariable cv_rpm "
+            "  ON cv_rpm.MetadataPublicationId = cv_hp.MetadataPublicationId "
+            " AND cv_rpm.PumpFamilyId = cv_hp.PumpFamilyId "
+            " AND cv_rpm.TableName = cv_hp.TableName "
+            " AND cv_rpm.KeyValue = cv_hp.KeyValue "
+            "WHERE cv_hp.MetadataPublicationId = ? AND cv_hp.PumpFamilyId = ? "
+            "  AND cv_hp.TableName = 'MotorHpRpm_to_HpAndRpm' "
+            "  AND cv_hp.ValueField = 'MotorHp' AND LOWER(cv_hp.ValueValue) = LOWER(?) "
+            "  AND cv_rpm.ValueField = 'MotorRPM'",
+            pub_id, family_id, hp_value,
+        ).fetchall()
+        allowed_rpm_set = {
+            str(r[0]).strip().lower() for r in allowed_rpms if r[0] is not None
+        }
+        if allowed_rpm_set:
+            allowable["MOTOR_RPM"] = [
+                v for v in allowable["MOTOR_RPM"]
+                if str(v).strip().lower() in allowed_rpm_set
+            ]
+
+    return allowable
+
+
 # ---------------------------------------------------------------------------
 # Request/Response models
 # ---------------------------------------------------------------------------
@@ -318,6 +502,56 @@ class ValidateResponse(BaseModel):
     series: str
     valid: bool
     violations: list[dict[str, str]] = Field(default_factory=list)
+
+
+class FreeConfigRequest(BaseModel):
+    """Request for the free-edit /configurations/resolve-state endpoint.
+
+    - series: the pump series (required).
+    - selections: current field selections. When empty, the endpoint seeds the
+      STANDARD (STD) value for every configurable field for the series.
+    - changed_field: the field the user just changed (optional). Informational -
+      the re-resolution is invalidation-based and does NOT depend on it, but it
+      lets the endpoint prefer keeping the just-changed field and re-resolve
+      everything else around it.
+    """
+    series: str
+    selections: dict[str, str] = Field(default_factory=dict)
+    changed_field: str | None = None
+
+
+class FreeConfigResponse(BaseModel):
+    """Response for the free-edit /configurations/resolve-state endpoint.
+
+    Unlike EvaluateResponse (linear-walk, one current field), this exposes a
+    COMPLETE configuration: every configurable field has a value (STD-seeded)
+    and its own constraint-correct allowable option list computed against every
+    OTHER selection (omni-directional). Upstream corrections are non-destructive:
+    still-valid selections are kept; only invalidated fields are re-resolved
+    (auto-reset to STD when STD is valid, else dropped) and reported.
+    """
+    family: str
+    series: str
+    valid: bool
+    # Final selection value for every configurable field (STD-seeded / kept /
+    # reset / minus any dropped field).
+    selections: dict[str, str] = Field(default_factory=dict)
+    # Per-field constraint-correct allowable options, computed for EVERY field
+    # given all the OTHER current selections (omni-directional, not top-down).
+    allowable_options: dict[str, list[str]] = Field(default_factory=dict)
+    # Field-code -> STANDARD default option value for this series (all fields).
+    standard_defaults: dict[str, str] = Field(default_factory=dict)
+    # Fields whose incoming value was invalidated by another selection and was
+    # AUTO-RESET to the STD value (field_code -> new STD value).
+    reset_fields: dict[str, str] = Field(default_factory=dict)
+    # Fields whose incoming value was invalidated AND whose STD was also invalid,
+    # so the field was dropped (has no value in the returned config).
+    dropped_fields: list[str] = Field(default_factory=list)
+    # Fields applicable in authoritative hierarchy order (for stable UI layout).
+    ordered_fields: list[str] = Field(default_factory=list)
+    # Identifier (PN segment) code for each final selection.
+    resolved_codes: dict[str, str | None] = Field(default_factory=dict)
+    errors: list[str] = Field(default_factory=list)
 
 
 class ResolveRequest(BaseModel):
@@ -563,215 +797,14 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
         # a table, that table does not constrain the target (no filtering), so
         # unrelated sizes are never blanked.
 
-        # constraint field label -> SFO field code
-        label_to_sfo = {
-            r[0]: r[1] for r in cursor.execute(
-                "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
-            ).fetchall()
-        }
-
-        def _series_in_scope(scope: str) -> bool:
-            s = (scope or "ALL_SERIES").strip().upper()
-            if s == "ALL_SERIES":
-                return True
-            return body.series.upper() in s  # e.g. "5500_ONLY"
-
-        all_rows = cursor.execute(
-            "SELECT TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
-            "       Option3Field, Option3Value, Allowed, SeriesApplicability "
-            "FROM cfg.FeasibleConstraint"
-        ).fetchall()
-
-        _sel_norm = {
-            k.upper(): str(v).strip().lower()
-            for k, v in effective_selections.items()
-        }
-
-        # Accumulate, per (table, target_field), the Allowed and Not-Allowed
-        # target values whose CONTEXT legs are all selected and match. Grouping
-        # by table keeps allow-list semantics scoped to that one table, so a
-        # value allowed by table A is not wrongly required by table B.
-        import collections as _collections
-        allowed_by = _collections.defaultdict(set)      # (table, tgt_field) -> {values}
-        notallowed_by = _collections.defaultdict(set)   # (table, tgt_field) -> {values}
-
-        for (tname, o1f, o1v, o2f, o2v, o3f, o3v, allowed_flag, scope) in all_rows:
-            if not _series_in_scope(scope):
-                continue
-            legs = []
-            ok = True
-            for label, value in ((o1f, o1v), (o2f, o2v), (o3f, o3v)):
-                if not label:
-                    continue
-                sfo = label_to_sfo.get(str(label).strip())
-                if not sfo:
-                    ok = False
-                    break
-                legs.append((sfo.upper(), str(value).strip().lower()))
-            if not ok or len(legs) < 2:
-                continue
-            is_not_allowed = str(allowed_flag).strip().lower() == "not allowed"
-            for ti in range(len(legs)):
-                target_field, target_value = legs[ti]
-                context = [legs[i] for i in range(len(legs)) if i != ti]
-                # Only act when every context leg is selected AND matches.
-                if all(_sel_norm.get(cf) == cv for cf, cv in context):
-                    key = (tname, target_field)
-                    if is_not_allowed:
-                        notallowed_by[key].add(target_value)
-                    else:
-                        allowed_by[key].add(target_value)
-
-        # Apply per (table, target_field): allow-list restriction when the table
-        # provided any Allowed rows for the context, plus Not-Allowed removal.
-        _targets = set(allowed_by) | set(notallowed_by)
-        for (tname, target_field) in _targets:
-            if target_field not in allowable:
-                continue
-            allow_set = allowed_by.get((tname, target_field), set())
-            deny_set = notallowed_by.get((tname, target_field), set())
-            if allow_set:
-                allowable[target_field] = [
-                    v for v in allowable[target_field]
-                    if str(v).strip().lower() in allow_set
-                    and str(v).strip().lower() not in deny_set
-                ]
-            elif deny_set:
-                allowable[target_field] = [
-                    v for v in allowable[target_field]
-                    if str(v).strip().lower() not in deny_set
-                ]
-
-        # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint - ALLOW-LISTs).
-        # Motor Constraints list the ALLOWED dimension pairs per series scope.
-        # F_MotorHpRpm is a COMPOSITE key "HP-RPM" (e.g. "1-1800"); the runtime
-        # exposes HP and RPM as separate SFO fields (MOTOR_HP, MOTOR_RPM), so we
-        # decompose the composite. The four relationships in the sheet:
-        #   Alt_Size x F_Frame_Size      -> restrict FRAME_SIZE by size
-        #   Alt_Size x F_MotorHpRpm      -> restrict MOTOR_HP by size, then
-        #                                   MOTOR_RPM by (size, HP)
-        #   F_Frame_Size x F_MotorHpRpm  -> restrict FRAME_SIZE by (HP, RPM)
-        #   F_MotorHpRpm x F_Motor Type  -> constrains the DERIVED MotorType
-        #       (Enclosure+Efficiency+Voltage+Hertz), which is not a single
-        #       selectable field, so it is governed at part-number assembly, not
-        #       as a dropdown filter here.
-        #
-        # Series scope is a group label like '1500 and 1600'. Match by exact
-        # equality OR series appearing as a whole token in the scope, so e.g.
-        # '1600' does not accidentally match some unrelated substring.
-        scope_row = cursor.execute(
-            "SELECT DISTINCT SeriesScope FROM cfg.MotorConstraint "
-            "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
-            "AND (SeriesScope = ? OR SeriesScope LIKE ? OR SeriesScope LIKE ? "
-            "     OR SeriesScope LIKE ?)",
-            pub_id, family_id, body.series,
-            f"{body.series} %", f"% {body.series}", f"% {body.series} %",
-        ).fetchone()
-        motor_scope = scope_row[0] if scope_row else None
-
-        def _mc_allowed(dim1_field, dim1_value, dim2_field):
-            """Allowed Dimension2Value set for a (scope, dim1) in a MotorConstraint block."""
-            if not motor_scope or dim1_value is None:
-                return set()
-            rows = cursor.execute(
-                "SELECT Dimension2Value FROM cfg.MotorConstraint "
-                "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
-                "AND Dimension1Field=? AND Dimension2Field=? "
-                "AND LOWER(Dimension1Value)=LOWER(?)",
-                pub_id, family_id, motor_scope, dim1_field, dim2_field, str(dim1_value),
-            ).fetchall()
-            return {str(r[0]).strip().lower() for r in rows if r[0] is not None}
-
-        size_value = effective_selections.get("ALT_SIZE")
-        hp_sel = effective_selections.get("MOTOR_HP")
-        rpm_sel = effective_selections.get("MOTOR_RPM")
-
-        # (1) Alt_Size -> Frame_Size
-        if size_value and "FRAME_SIZE" in allowable:
-            frames = _mc_allowed("Alt_Size", size_value, "F_Frame_Size")
-            if frames:
-                allowable["FRAME_SIZE"] = [
-                    v for v in allowable["FRAME_SIZE"]
-                    if v.strip().lower() in frames
-                ]
-
-        # (2) Alt_Size -> F_MotorHpRpm, decomposed:
-        #     the allowed composites for this size give the allowed HP set, and
-        #     (once HP is chosen) the allowed RPM set for that HP.
-        if size_value:
-            hprpm_for_size = _mc_allowed("Alt_Size", size_value, "F_MotorHpRpm")
-            if hprpm_for_size:
-                # decompose "HP-RPM"
-                pairs = []
-                for c in hprpm_for_size:
-                    if "-" in c:
-                        hp_p, rpm_p = c.split("-", 1)
-                        pairs.append((hp_p.strip(), rpm_p.strip()))
-                allowed_hp = {hp for hp, _ in pairs}
-                if allowed_hp and "MOTOR_HP" in allowable:
-                    allowable["MOTOR_HP"] = [
-                        v for v in allowable["MOTOR_HP"]
-                        if str(v).strip().lower() in allowed_hp
-                    ]
-                # (3) size + HP -> RPM
-                if hp_sel is not None and "MOTOR_RPM" in allowable:
-                    hp_l = str(hp_sel).strip().lower()
-                    allowed_rpm = {rpm for hp, rpm in pairs if hp == hp_l}
-                    if allowed_rpm:
-                        allowable["MOTOR_RPM"] = [
-                            v for v in allowable["MOTOR_RPM"]
-                            if str(v).strip().lower() in allowed_rpm
-                        ]
-
-        # (4) Frame_Size <-> F_MotorHpRpm: once HP and RPM are both chosen,
-        #     tighten FRAME_SIZE to frames that pair with that HP-RPM composite.
-        if hp_sel is not None and rpm_sel is not None and "FRAME_SIZE" in allowable:
-            composite = f"{str(hp_sel).strip()}-{str(rpm_sel).strip()}"
-            # F_Frame_Size x F_MotorHpRpm lists frame(dim1) -> hprpm(dim2); we
-            # need frames whose allowed hprpm set includes this composite.
-            rows = cursor.execute(
-                "SELECT Dimension1Value FROM cfg.MotorConstraint "
-                "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
-                "AND Dimension1Field='F_Frame_Size' AND Dimension2Field='F_MotorHpRpm' "
-                "AND LOWER(Dimension2Value)=LOWER(?)",
-                pub_id, family_id, motor_scope, composite,
-            ).fetchall()
-            frames_for_hprpm = {str(r[0]).strip().lower() for r in rows if r[0] is not None}
-            if frames_for_hprpm:
-                allowable["FRAME_SIZE"] = [
-                    v for v in allowable["FRAME_SIZE"]
-                    if v.strip().lower() in frames_for_hprpm
-                ]
-
-        # MOTOR Hp -> RPM ENFORCEMENT (Rev0.3 Combine Variables MotorHpRpm table).
-        # The valid (Hp, RPM) pairs are enumerated by the composite F_MotorHpRPM
-        # key (e.g. "1-1200"): 1 HP allows only 1200/1800 RPM (no 3600), while
-        # 1.5 HP and up allow 1200/1800/3600. When MOTOR_HP is selected, restrict
-        # MOTOR_RPM to the RPMs the workbook pairs with that Hp.
-        if "MOTOR_HP" in effective_selections and "MOTOR_RPM" in allowable:
-            hp_value = str(effective_selections["MOTOR_HP"]).strip()
-            allowed_rpms = cursor.execute(
-                "SELECT cv_rpm.ValueValue "
-                "FROM cfg.CombineVariable cv_hp "
-                "JOIN cfg.CombineVariable cv_rpm "
-                "  ON cv_rpm.MetadataPublicationId = cv_hp.MetadataPublicationId "
-                " AND cv_rpm.PumpFamilyId = cv_hp.PumpFamilyId "
-                " AND cv_rpm.TableName = cv_hp.TableName "
-                " AND cv_rpm.KeyValue = cv_hp.KeyValue "
-                "WHERE cv_hp.MetadataPublicationId = ? AND cv_hp.PumpFamilyId = ? "
-                "  AND cv_hp.TableName = 'MotorHpRpm_to_HpAndRpm' "
-                "  AND cv_hp.ValueField = 'MotorHp' AND LOWER(cv_hp.ValueValue) = LOWER(?) "
-                "  AND cv_rpm.ValueField = 'MotorRPM'",
-                pub_id, family_id, hp_value,
-            ).fetchall()
-            allowed_rpm_set = {
-                str(r[0]).strip().lower() for r in allowed_rpms if r[0] is not None
-            }
-            if allowed_rpm_set:
-                allowable["MOTOR_RPM"] = [
-                    v for v in allowable["MOTOR_RPM"]
-                    if str(v).strip().lower() in allowed_rpm_set
-                ]
+        # FEASIBLE + MOTOR + COMBINE constraint enforcement (single authoritative
+        # implementation, shared with /configurations/resolve-state). Filters the
+        # unselected fields' options in `allowable` given the effective (pruned)
+        # selections. See _apply_constraints for the full data-driven semantics
+        # (feasible allow/deny per table, motor allow-lists, HP->RPM pairs).
+        _apply_constraints(
+            cursor, pub_id, family_id, body.series, effective_selections, allowable
+        )
 
         # Resolve identifier codes for the effective (pruned) selections.
         resolved = {}
@@ -819,6 +852,230 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             current_field=current_field,
             effective_selections=effective_selections,
             dropped_selections=sorted(dropped),
+        )
+    finally:
+        conn.close()
+
+
+@router_v2.post(
+    "/families/{family}/configurations/resolve-state",
+    response_model=FreeConfigResponse,
+)
+async def resolve_configuration_state(
+    family: str, body: FreeConfigRequest, request: Request
+):
+    """
+    FREE-EDIT configuration state (omni-directional, non-destructive).
+
+    Unlike /configurations/evaluate (a strict top-down linear walk with a single
+    "current" field and blanket prefix pruning), this endpoint powers a UI where
+    EVERY configurable field is an editable dropdown at all times:
+
+      (a) STD auto-populate: when `selections` is empty, every configurable field
+          for the series is seeded with its STANDARD (STD) value, producing a
+          complete, valid starting configuration.
+
+      (b) Omni-directional allowable options: for EACH field, the allowable
+          option list is computed against every OTHER current selection (not just
+          upstream ones). This means a downstream selection can legitimately
+          narrow an upstream field's options, and an upstream field can still be
+          corrected after downstream picks - as long as the correction agrees
+          with the authoritative constraints given everything else selected.
+
+      (c) Non-destructive re-resolution: still-valid selections are ALWAYS kept.
+          Only fields whose value is invalidated by the current combination are
+          re-resolved - auto-reset to the STD value when STD is valid, otherwise
+          dropped. Both are reported (reset_fields / dropped_fields). The loop
+          iterates to a fixpoint because one reset can change what is valid for
+          another field.
+
+    The authoritative constraint filter (_apply_constraints: feasible + motor +
+    combine HP->RPM) is the SAME one /evaluate uses, so this endpoint can never
+    admit a combination the linear walk would reject.
+
+    NOT cached (input-dependent). The existing /evaluate endpoint is unchanged.
+    """
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        pub_id, _ = _get_active_publication(conn_str, conn)
+        cursor = conn.cursor()
+        family_upper = family.upper()
+
+        family_row = cursor.execute(
+            "SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode = ?",
+            family_upper,
+        ).fetchone()
+        if family_row is None:
+            raise RuntimeError(f"Family {family} not found")
+        family_id = family_row[0]
+
+        rows = cursor.execute(
+            "SELECT FieldCode, OptionValue, IsStandard FROM cfg.SeriesFieldOption "
+            "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
+            "ORDER BY FieldCode, OptionValue",
+            pub_id, body.series,
+        ).fetchall()
+
+        if not rows:
+            return FreeConfigResponse(
+                family=family_upper,
+                series=body.series,
+                valid=False,
+                errors=[
+                    f"No configuration options found for {family_upper} series "
+                    f"{body.series}. Metadata may not be loaded for this family."
+                ],
+            )
+
+        # Base option catalog + STD defaults for the series.
+        all_options: dict[str, list[str]] = {}
+        standard_defaults: dict[str, str] = {}
+        for field_code, option_value, is_standard in rows:
+            all_options.setdefault(field_code, []).append(option_value)
+            if is_standard:
+                standard_defaults[field_code] = option_value
+        for field_code in all_options:
+            all_options[field_code] = _sort_field_options(
+                field_code, all_options[field_code]
+            )
+
+        # Normalize incoming selections onto known field codes (upper-cased keys,
+        # keep only fields that exist for this series). SERIES pseudo-field is
+        # not a configurable option field, so it is ignored here.
+        incoming = {
+            k.upper(): v
+            for k, v in body.selections.items()
+            if k.upper() in all_options
+        }
+
+        # (a) STD seed when nothing selected: start every field at its STD.
+        if not incoming:
+            selections = {
+                fc: standard_defaults[fc]
+                for fc in all_options
+                if fc in standard_defaults
+            }
+        else:
+            selections = dict(incoming)
+
+        def _applicable_fields(sel: dict[str, str]) -> list[str]:
+            """Fields applicable in hierarchy order, honoring conditional
+            applicability. WETTED_HARDWARE_SELECTION applies ONLY when
+            WETTED_HARDWARE == 'select material'."""
+            fields = _order_fields(all_options.keys())
+            wh = sel.get("WETTED_HARDWARE")
+            if wh is not None and str(wh).strip().lower() != "select material":
+                fields = [fc for fc in fields if fc != "WETTED_HARDWARE_SELECTION"]
+            return fields
+
+        def _allowable_for(target: str, sel: dict[str, str]) -> list[str]:
+            """Constraint-correct options for `target` given every OTHER
+            selection as context (omni-directional)."""
+            context = {k: v for k, v in sel.items() if k != target}
+            box = {target: list(all_options.get(target, []))}
+            _apply_constraints(
+                cursor, pub_id, family_id, body.series, context, box
+            )
+            return box.get(target, [])
+
+        reset_fields: dict[str, str] = {}
+        dropped_fields: set[str] = set()
+
+        # (c) Invalidation-based re-resolution to a fixpoint. Each pass:
+        #   - drop any selection for a no-longer-applicable field (conditional),
+        #   - for every selected field, if its value is not in its allowable set
+        #     given the others, reset to STD if STD is valid, else drop it.
+        # Keep the just-changed field pinned when possible so a user's explicit
+        # correction is never silently overwritten by the fixpoint.
+        changed = body.changed_field.upper() if body.changed_field else None
+        for _ in range(64):
+            changed_this_pass = False
+
+            # Remove selections for fields no longer applicable (e.g. the wetted-
+            # hardware selection when the mode is not 'select material').
+            applicable = set(_applicable_fields(selections))
+            for fc in list(selections):
+                if fc not in applicable:
+                    del selections[fc]
+                    dropped_fields.add(fc)
+                    reset_fields.pop(fc, None)
+                    changed_this_pass = True
+
+            for fc in list(selections):
+                allowed = _allowable_for(fc, selections)
+                cur_val = selections[fc]
+                if any(str(cur_val).strip().lower() == str(a).strip().lower()
+                       for a in allowed):
+                    continue  # still valid, keep it (non-destructive)
+                # Invalidated. If this is the user's just-changed field, do not
+                # overwrite it here - instead the surrounding fields will adapt;
+                # only reset it if it is still invalid after others settle.
+                std = standard_defaults.get(fc)
+                std_valid = std is not None and any(
+                    str(std).strip().lower() == str(a).strip().lower()
+                    for a in allowed
+                )
+                if fc == changed and std_valid is False and allowed:
+                    # keep an explicit change pinned to a valid option if any
+                    selections[fc] = allowed[0]
+                    reset_fields[fc] = allowed[0]
+                    changed_this_pass = True
+                elif std_valid:
+                    if selections[fc] != std:
+                        selections[fc] = std
+                        reset_fields[fc] = std
+                        changed_this_pass = True
+                elif allowed:
+                    # STD invalid but some option is valid -> take first valid.
+                    selections[fc] = allowed[0]
+                    reset_fields[fc] = allowed[0]
+                    changed_this_pass = True
+                else:
+                    # Nothing valid for this field in this context -> drop it.
+                    del selections[fc]
+                    dropped_fields.add(fc)
+                    reset_fields.pop(fc, None)
+                    changed_this_pass = True
+
+            if not changed_this_pass:
+                break
+
+        # Final applicable field order for the settled selections.
+        ordered_fields = _applicable_fields(selections)
+
+        # Per-field allowable options for ALL applicable fields (omni-directional).
+        allowable_options = {
+            fc: _allowable_for(fc, selections) for fc in ordered_fields
+        }
+
+        # STD defaults limited to applicable fields (so the UI can offer a reset).
+        std_out = {
+            fc: standard_defaults[fc]
+            for fc in ordered_fields
+            if fc in standard_defaults
+        }
+
+        # Resolve identifier (PN segment) codes for the final selections.
+        resolved = {}
+        for field, value in selections.items():
+            code_row = cursor.execute(
+                "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
+                pub_id, family_id, field.upper(), value,
+            ).fetchone()
+            resolved[field] = code_row[0] if code_row and code_row[0] else None
+
+        return FreeConfigResponse(
+            family=family_upper,
+            series=body.series,
+            valid=True,
+            selections=selections,
+            allowable_options=allowable_options,
+            standard_defaults=std_out,
+            reset_fields=reset_fields,
+            dropped_fields=sorted(dropped_fields),
+            ordered_fields=ordered_fields,
+            resolved_codes=resolved,
         )
     finally:
         conn.close()

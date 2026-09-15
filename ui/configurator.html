@@ -15,16 +15,27 @@
         .btn { padding: 10px 20px; background: #4a90d9; color: #fff; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 600; }
         .btn:hover { background: #357abd; }
         .btn:disabled { background: #ccc; cursor: not-allowed; }
-        .btn-sm { padding: 4px 10px; font-size: 12px; background: #dc3545; border-radius: 4px; }
-        .btn-sm:hover { background: #c82333; }
+        .btn-sm { padding: 4px 10px; font-size: 12px; background: #6c757d; border-radius: 4px; }
+        .btn-sm:hover { background: #5a6268; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 20px; }
-        .field-card { background: #fff; padding: 14px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .field-card.selected { border: 2px solid #4a90d9; background: #f0f7ff; }
-        .field-card.locked { opacity: 0.5; border: 1px dashed #ccc; background: #f9f9f9; }
+        .field-card { background: #fff; padding: 14px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid #eee; }
+        /* A field holding its STANDARD (STD) default value. */
+        .field-card.is-std { border-left: 3px solid #28a745; }
+        /* A field the user has explicitly changed away from STD. */
+        .field-card.is-custom { border-left: 3px solid #4a90d9; background: #f0f7ff; }
+        /* A field with no value yet (no STD in the workbook — user must pick). */
+        .field-card.is-unset { border-left: 3px solid #f0ad4e; }
+        /* A field just auto-reset / dropped by an upstream correction. */
+        .field-card.is-flagged { box-shadow: 0 0 0 2px #ffc107; }
         .field-card label { display: block; font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px; }
-        .field-card select { width: 100%; padding: 6px 8px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; }
+        .field-card select { width: 100%; padding: 6px 8px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
         .field-card .code { font-size: 11px; color: #4a90d9; margin-top: 3px; font-weight: 600; }
-        .field-card .change-btn { margin-top: 4px; }
+        .field-card .tag { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .field-card .tag.std { background: #d4edda; color: #155724; }
+        .field-card .tag.custom { background: #cfe2ff; color: #084298; }
+        .field-card .tag.unset { background: #fff3cd; color: #856404; }
+        .field-card .std-line { font-size: 11px; color: #28a745; margin-top: 3px; }
+        .field-card .reset-line { font-size: 11px; color: #b8860b; margin-top: 3px; font-weight: 600; }
         .result-panel { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 16px; }
         .result-panel h2 { margin-bottom: 12px; color: #16213e; font-size: 18px; }
         .result-row { display: flex; gap: 12px; margin-bottom: 6px; align-items: baseline; }
@@ -34,6 +45,11 @@
         .status.loading { background: #fff3cd; color: #856404; }
         .status.error { background: #f8d7da; color: #721c24; }
         .status.success { background: #d4edda; color: #155724; }
+        .notice { padding: 10px 16px; border-radius: 4px; font-size: 13px; margin-bottom: 12px; background: #fff3cd; color: #7a5c00; border: 1px solid #ffe08a; }
+        .notice strong { color: #6a4f00; }
+        .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: #555; margin-bottom: 14px; }
+        .legend span { display: inline-flex; align-items: center; gap: 6px; }
+        .legend .swatch { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
         .pricing-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 13px; }
         .pricing-table th { text-align: left; padding: 6px 10px; background: #f8f9fa; border-bottom: 2px solid #dee2e6; }
         .pricing-table td { padding: 6px 10px; border-bottom: 1px solid #eee; }
@@ -48,13 +64,23 @@
         <div class="top-bar">
             <div><label>Family:</label><select id="family" onchange="reset()"><option value="FYBROC">Fybroc</option><option value="DEAN">Dean</option></select></div>
             <div><label>Series:</label><select id="series" onchange="onSeriesChange()"><option value="">-- Select --</option></select></div>
-            <button class="btn" onclick="resolve()" id="resolveBtn" disabled>Generate Part Number & SKU</button>
-            <button class="btn" style="background:#6c757d" onclick="reset()">Reset All</button>
+            <button class="btn" onclick="resolve()" id="resolveBtn" disabled>Generate Part Number &amp; SKU</button>
+            <button class="btn" style="background:#6c757d" onclick="resetToStandard()" id="stdBtn" disabled>Reset to Standard</button>
+            <button class="btn" style="background:#adb5bd" onclick="reset()">Clear</button>
         </div>
 
         <div id="status"></div>
+        <div id="notice"></div>
 
-        <!-- ALL fields shown together — selected ones show their value, unselected show dropdown -->
+        <div class="legend" id="legend" style="display:none">
+            <span><span class="swatch" style="background:#28a745"></span> Standard (STD) default</span>
+            <span><span class="swatch" style="background:#4a90d9"></span> Custom (you changed it)</span>
+            <span><span class="swatch" style="background:#f0ad4e"></span> Not set (choose a value)</span>
+        </div>
+
+        <!-- FREE-EDIT grid: every applicable field is an editable dropdown.
+             STD is pre-selected where the workbook defines one; every field can
+             be changed at any time (no linear-walk locking). -->
         <div class="grid" id="fieldsGrid"></div>
 
         <div id="resultPanel" class="result-panel" style="display:none">
@@ -78,13 +104,18 @@
         // same-origin (relative), which is how the API is served locally at /ui.
         const API_BASE = (window.API_BASE || '').replace(/\/+$/, '');
         const API = API_BASE + '/api/v2';
-        let selections = {};
-        let resolvedCodes = {};
-        let allFieldOptions = {};  // ALL fields and their options for this series
-        let standardDefaults = {}; // field_code -> STD default option value (Rev0.3)
-        let hierarchyOrder = [];   // server-authoritative field order
-        let hierarchyStatus = {};  // field_code -> "selected" | "current" | "locked"
-        let currentField = null;   // the single field the user may edit now
+
+        // FREE-EDIT model (server = authority). The /configurations/resolve-state
+        // endpoint returns a COMPLETE configuration: a value for every field that
+        // has a STANDARD default (STD-seeded), the constraint-correct allowable
+        // options for EVERY field (computed against all the OTHER selections, so
+        // both upstream and downstream fields stay editable), and a report of any
+        // field it had to auto-reset or drop because a change invalidated it.
+        let selections = {};        // field_code -> current value (may omit no-STD fields)
+        let allowableOptions = {};  // field_code -> constraint-correct option list
+        let standardDefaults = {};  // field_code -> STD default value for the series
+        let resolvedCodes = {};     // field_code -> PN segment code
+        let orderedFields = [];     // applicable fields in authoritative order
 
         function setStatus(msg, type) {
             const el = document.getElementById('status');
@@ -93,19 +124,26 @@
             el.style.display = msg ? 'block' : 'none';
         }
 
+        function setNotice(html) {
+            const el = document.getElementById('notice');
+            el.innerHTML = html || '';
+            el.style.display = html ? 'block' : 'none';
+        }
+
         function reset() {
             selections = {};
-            resolvedCodes = {};
-            allFieldOptions = {};
+            allowableOptions = {};
             standardDefaults = {};
-            hierarchyOrder = [];
-            hierarchyStatus = {};
-            currentField = null;
+            resolvedCodes = {};
+            orderedFields = [];
             document.getElementById('series').value = '';
             document.getElementById('fieldsGrid').innerHTML = '';
             document.getElementById('resultPanel').style.display = 'none';
             document.getElementById('resolveBtn').disabled = true;
+            document.getElementById('stdBtn').disabled = true;
+            document.getElementById('legend').style.display = 'none';
             setStatus('', '');
+            setNotice('');
             loadSeriesList();
         }
 
@@ -117,7 +155,6 @@
                 const resp = await fetch(`${API}/families/${family}/configuration-dictionary`);
                 if (!resp.ok) throw new Error(`${resp.status}`);
                 const data = await resp.json();
-                // Extract distinct series from the dictionary fields
                 const allSeries = new Set();
                 for (const field of data.fields) {
                     for (const s of Object.keys(field.series_options || {})) {
@@ -127,168 +164,166 @@
                 const sorted = [...allSeries].sort();
                 seriesSelect.innerHTML = '<option value="">-- Select Series --</option>' +
                     sorted.map(s => `<option value="${s}">${s}</option>`).join('');
-            } catch(e) {
+            } catch (e) {
                 seriesSelect.innerHTML = '<option value="">-- Error loading --</option>';
             }
         }
 
-        // Load series on page load
         window.addEventListener('load', loadSeriesList);
 
         async function onSeriesChange() {
-            // Clear ALL derived state (not just selections) before the async
-            // evaluate() so no field/option/hierarchy data from the previously
-            // selected series can linger in the DOM during the in-flight fetch.
-            // Series differ in which fields apply (e.g. Wetted Hardware exists
-            // only for 5500), so stale state could render a field the new
-            // series does not have, showing as an empty dropdown.
+            // Fresh series -> discard all prior state, then seed STD for the new
+            // series with an empty-selections resolve-state call.
             selections = {};
-            resolvedCodes = {};
-            allFieldOptions = {};
-            hierarchyOrder = [];
-            hierarchyStatus = {};
-            currentField = null;
+            allowableOptions = {};
             standardDefaults = {};
+            resolvedCodes = {};
+            orderedFields = [];
             document.getElementById('fieldsGrid').innerHTML = '';
             document.getElementById('resultPanel').style.display = 'none';
-            await evaluate();
+            setNotice('');
+            await resolveState(null, {});  // empty selections => STD seed
         }
 
+        // Reset every field back to its STANDARD default (empty selections seed).
+        async function resetToStandard() {
+            document.getElementById('resultPanel').style.display = 'none';
+            await resolveState(null, {});
+        }
+
+        // User changed a single field. Send the FULL current selection set plus
+        // the changed field to the server, which keeps every still-valid pick and
+        // only re-resolves what the change invalidated (non-destructive).
         async function onFieldChange(fieldCode, value) {
+            const next = { ...selections };
             if (value) {
-                selections[fieldCode] = value;
+                next[fieldCode] = value;
             } else {
-                delete selections[fieldCode];
+                delete next[fieldCode];  // "Not set" chosen -> clear this field
             }
             document.getElementById('resultPanel').style.display = 'none';
-            await evaluate();
+            await resolveState(fieldCode, next);
         }
 
-        function clearField(fieldCode) {
-            // Changing/clearing a field sends the reduced selection set to the
-            // server, which enforces reset-on-upstream-change: every downstream
-            // selection is dropped and the current step moves back to this field.
-            delete selections[fieldCode];
-            document.getElementById('resultPanel').style.display = 'none';
-            evaluate();  // server prunes downstream + returns the new hierarchy state
-        }
-
-        async function evaluate() {
+        // Core call to the free-edit endpoint. `changedField` is informational
+        // (lets the server prefer pinning the user's explicit change); `sel` is
+        // the full desired selection set (empty => STD seed).
+        async function resolveState(changedField, sel) {
             const family = document.getElementById('family').value;
             const series = document.getElementById('series').value;
             if (!series) return;
 
-            setStatus('Evaluating...', 'loading');
+            setStatus('Resolving configuration...', 'loading');
             try {
-                const resp = await fetch(`${API}/families/${family}/configurations/evaluate`, {
+                const body = { series, selections: sel };
+                if (changedField) body.changed_field = changedField;
+                const resp = await fetch(`${API}/families/${family}/configurations/resolve-state`, {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ series, selections })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
                 });
                 if (!resp.ok) throw new Error(`API ${resp.status}`);
                 const data = await resp.json();
 
-                // Merge: allowable_options has unselected fields, we keep selected ones too
-                allFieldOptions = { ...data.allowable_options };
-                // Add back selected fields with their full option list (for change capability)
-                for (const [fc, val] of Object.entries(selections)) {
-                    if (!allFieldOptions[fc]) {
-                        allFieldOptions[fc] = [val]; // At minimum show current value
-                    }
+                if (!data.valid) {
+                    setStatus((data.errors || ['Configuration unavailable']).join('; '), 'error');
+                    return;
                 }
-                resolvedCodes = data.resolved_codes || {};
-                // STANDARD (STD) defaults per Rev0.3 Selections. The API returns
-                // the standard default value per unselected field; the UI marks
-                // it as the pre-selected default in each dropdown.
-                standardDefaults = data.standard_defaults || {};
 
-                // HIERARCHY: the server is the authority. It returns the ordered
-                // fields, per-field status (selected/current/locked), the current
-                // step, and the EFFECTIVE selections after reset-on-upstream-change.
-                hierarchyOrder = data.ordered_fields || [];
-                hierarchyStatus = {};
-                for (const h of (data.hierarchy || [])) {
-                    hierarchyStatus[h.field_code] = h.status;
-                }
-                currentField = data.current_field || null;
+                selections = { ...(data.selections || {}) };
+                allowableOptions = { ...(data.allowable_options || {}) };
+                standardDefaults = { ...(data.standard_defaults || {}) };
+                resolvedCodes = { ...(data.resolved_codes || {}) };
+                orderedFields = data.ordered_fields || Object.keys(allowableOptions);
 
-                // Sync local selections to the server's effective set. If the
-                // server dropped downstream selections (because an upstream step
-                // changed), reflect that here so the UI never shows stale picks.
-                selections = { ...(data.effective_selections || {}) };
+                const reset = data.reset_fields || {};
+                const dropped = data.dropped_fields || [];
+                renderAllFields(reset, dropped);
+                renderNotice(reset, dropped);
 
-                renderAllFields();
-                document.getElementById('resolveBtn').disabled = Object.keys(selections).length === 0;
-                setStatus(`${Object.keys(selections).length} of ${Object.keys(allFieldOptions).length} fields selected`, 'success');
+                document.getElementById('resolveBtn').disabled = false;
+                document.getElementById('stdBtn').disabled = false;
+                document.getElementById('legend').style.display = 'flex';
+
+                const setCount = orderedFields.filter(fc => fc in selections).length;
+                setStatus(`${setCount} of ${orderedFields.length} fields set`, 'success');
             } catch (e) {
                 setStatus('Error: ' + e.message, 'error');
             }
         }
 
-        function renderAllFields() {
+        // Surface, non-silently, what the server auto-reset or dropped as a
+        // result of the last change, so a correction never quietly changes
+        // things behind the user's back.
+        function renderNotice(reset, dropped) {
+            const parts = [];
+            const resetKeys = Object.keys(reset);
+            if (resetKeys.length) {
+                parts.push('<strong>Auto-adjusted</strong> (your change invalidated these, reset to a valid value): ' +
+                    resetKeys.map(k => `${pretty(k)} → <em>${reset[k]}</em>`).join(', '));
+            }
+            if (dropped.length) {
+                parts.push('<strong>Cleared</strong> (no valid option remained given your other selections): ' +
+                    dropped.map(pretty).join(', '));
+            }
+            setNotice(parts.length ? parts.join('<br>') : '');
+        }
+
+        function pretty(fieldCode) {
+            return fieldCode.replace(/_/g, ' ');
+        }
+
+        function renderAllFields(reset, dropped) {
             const grid = document.getElementById('fieldsGrid');
             grid.innerHTML = '';
+            reset = reset || {};
+            dropped = dropped || [];
+            const flagged = new Set([...Object.keys(reset), ...dropped]);
 
-            // The SERVER is the hierarchy authority. Render fields in the
-            // server-provided order and use its per-field status:
-            //   selected -> show value + Change button
-            //   current  -> the single editable dropdown (only reachable step)
-            //   locked   -> disabled until predecessors are completed
-            // Only the CURRENT field is editable, enforcing "no skipping ahead".
-            const order = hierarchyOrder.length ? hierarchyOrder
-                : Object.keys(allFieldOptions);
+            for (const fieldCode of orderedFields) {
+                const options = allowableOptions[fieldCode] || [];
+                const value = selections[fieldCode];        // may be undefined (no-STD, unset)
+                const std = standardDefaults[fieldCode];    // may be undefined
+                const hasValue = value !== undefined && value !== null && value !== '';
+                const isStd = hasValue && std !== undefined && value === std;
+                const isCustom = hasValue && (std === undefined || value !== std);
 
-            for (const fieldCode of order) {
-                const status = hierarchyStatus[fieldCode]
-                    || (fieldCode in selections ? 'selected'
-                        : (fieldCode === currentField ? 'current' : 'locked'));
-                const options = allFieldOptions[fieldCode] || [];
                 const card = document.createElement('div');
+                let cls = 'field-card ' + (hasValue ? (isStd ? 'is-std' : 'is-custom') : 'is-unset');
+                if (flagged.has(fieldCode)) cls += ' is-flagged';
+                card.className = cls;
 
-                if (status === 'selected') {
-                    const code = resolvedCodes[fieldCode];
-                    card.className = 'field-card selected';
-                    card.innerHTML = `
-                        <label>${fieldCode.replace(/_/g, ' ')}</label>
-                        <div style="font-size:14px;font-weight:600;padding:4px 0">${selections[fieldCode]}</div>
-                        ${code ? `<div class="code">→ ${code}</div>` : ''}
-                        <button class="btn btn-sm change-btn" onclick="clearField('${fieldCode}')">Change</button>
-                    `;
-                } else if (status === 'current') {
-                    const stdDefault = standardDefaults[fieldCode];
-                    // The current step always starts on an explicit placeholder
-                    // and requires the user to actively choose - the UI never
-                    // pre-selects or auto-commits a value on the user's behalf, so
-                    // the flow neither advances without input nor stalls on a
-                    // value that only LOOKS chosen. The standard default is shown
-                    // as a hint (in the placeholder and marked "(standard)"), but
-                    // must still be picked to commit. onchange fires for any real
-                    // option (blank placeholder has value="" and is ignored).
-                    const placeholder = stdDefault
-                        ? `-- Select (default: ${stdDefault}) --`
-                        : '-- Select --';
-                    card.className = 'field-card';
-                    card.innerHTML = `
-                        <label>${fieldCode.replace(/_/g, ' ')} <span style="color:#4a90d9">(current step)</span></label>
-                        <select onchange="onFieldChange('${fieldCode}', this.value)">
-                            <option value="" selected>${placeholder}</option>
-                            ${options.map(o => {
-                                const isStd = stdDefault && o === stdDefault;
-                                return `<option value="${o}">${o}${isStd ? ' (standard)' : ''}</option>`;
-                            }).join('')}
-                        </select>
-                        ${stdDefault ? `<div class="code" style="color:#28a745">standard: ${stdDefault}</div>` : ''}
-                    `;
-                } else {
-                    // locked
-                    card.className = 'field-card locked';
-                    card.innerHTML = `
-                        <label>${fieldCode.replace(/_/g, ' ')}</label>
-                        <select disabled style="opacity:0.5;cursor:not-allowed">
-                            <option>-- Complete previous steps --</option>
-                        </select>
-                    `;
+                const tag = hasValue
+                    ? (isStd ? '<span class="tag std">std</span>' : '<span class="tag custom">custom</span>')
+                    : '<span class="tag unset">not set</span>';
+
+                // Build options. Every field is ALWAYS editable. A "not set"
+                // choice is offered so a no-STD field can be cleared/left blank.
+                const optionHtml = [
+                    `<option value=""${hasValue ? '' : ' selected'}>-- Not set --</option>`,
+                    ...options.map(o => {
+                        const sel = hasValue && o === value ? ' selected' : '';
+                        const stdMark = (std !== undefined && o === std) ? ' (standard)' : '';
+                        return `<option value="${o}"${sel}>${o}${stdMark}</option>`;
+                    })
+                ];
+                // If the current value somehow isn't in the allowable list (should
+                // not happen — server keeps only valid), still show it so the UI
+                // never hides a persisted pick.
+                if (hasValue && !options.some(o => o === value)) {
+                    optionHtml.push(`<option value="${value}" selected>${value} (current)</option>`);
                 }
+
+                const code = resolvedCodes[fieldCode];
+                card.innerHTML = `
+                    <label>${pretty(fieldCode)} ${tag}</label>
+                    <select onchange="onFieldChange('${fieldCode}', this.value)">
+                        ${optionHtml.join('')}
+                    </select>
+                    ${std !== undefined ? `<div class="std-line">standard: ${std}</div>` : ''}
+                    ${flagged.has(fieldCode) ? `<div class="reset-line">${dropped.includes(fieldCode) ? 'cleared by your last change' : 'auto-adjusted by your last change'}</div>` : ''}
+                    ${code ? `<div class="code">→ ${code}</div>` : ''}
+                `;
                 grid.appendChild(card);
             }
         }
@@ -297,9 +332,8 @@
             const family = document.getElementById('family').value;
             const series = document.getElementById('series').value;
 
-            setStatus('Resolving...', 'loading');
+            setStatus('Generating part number...', 'loading');
             try {
-                // Build segment_codes from resolved_codes (what the API returned)
                 const segmentCodes = {};
                 for (const [k, v] of Object.entries(resolvedCodes)) {
                     if (v) segmentCodes[k] = v;
@@ -307,7 +341,7 @@
 
                 const resp = await fetch(`${API}/families/${family}/configured-products/resolve`, {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         series,
                         selections: { SERIES: series, ...selections },
@@ -324,21 +358,19 @@
                 const data = await resp.json();
                 document.getElementById('resPn').textContent = data.part_number;
                 document.getElementById('resSku').textContent = data.sku;
-                document.getElementById('resSig').textContent = data.configuration_signature.substring(0, 24) + '...';
+                document.getElementById('resSig').textContent = (data.configuration_signature || '').substring(0, 24) + '...';
                 document.getElementById('resReused').textContent = data.existing_configuration ? 'Yes (existing)' : 'No (new)';
                 document.getElementById('resultPanel').style.display = 'block';
 
-                // Show failed segments if any
                 if (data.segment_debug && data.segment_debug.failed_segments && data.segment_debug.failed_segments.length > 0) {
                     const failedInfo = document.createElement('div');
                     failedInfo.style.cssText = 'margin-top:8px;padding:8px;background:#fff3cd;border-radius:4px;font-size:12px;';
-                    failedInfo.innerHTML = '<strong>Unresolved segments:</strong> ' + 
-                        data.segment_debug.failed_segments.join(', ') + 
+                    failedInfo.innerHTML = '<strong>Unresolved segments:</strong> ' +
+                        data.segment_debug.failed_segments.join(', ') +
                         '<br><small>These fields need VocabularyMap entries or are not selected.</small>';
                     document.getElementById('resultPanel').appendChild(failedInfo);
                 }
 
-                // Show pricing from API response
                 renderPricing(data.pricing || [], data.total_price || 0);
                 setStatus('Product resolved!', 'success');
             } catch (e) {
@@ -346,13 +378,13 @@
             }
         }
 
-        async function renderPricing(pricingLines, total) {
+        function renderPricing(pricingLines, total) {
             const panel = document.getElementById('pricingPanel');
             if (!pricingLines.length) {
                 panel.innerHTML = `<div class="pricing-total" style="background:#fff3cd;color:#856404">No pricing rules matched for this configuration. Check price.PriceRule data.</div>`;
                 return;
             }
-            const rows = pricingLines.map(p => 
+            const rows = pricingLines.map(p =>
                 `<tr><td>${p.component}</td><td class="amount">$${p.amount.toLocaleString('en-US', {minimumFractionDigits:2})}</td></tr>`
             ).join('');
             panel.innerHTML = `

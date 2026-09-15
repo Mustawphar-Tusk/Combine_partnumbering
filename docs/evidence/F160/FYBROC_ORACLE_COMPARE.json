@@ -1,7 +1,7 @@
 {
   "artifact": "FYBROC_ORACLE_COMPARE",
   "milestone": "F160",
-  "generated_utc": "2026-09-14T20:37:05.224782+00:00",
+  "generated_utc": "2026-09-15T19:03:25.241894+00:00",
   "compares": "PN leading identity + identity segment codes (Excel oracle vs API/SQL)",
   "test_count": 6,
   "passed": 6,

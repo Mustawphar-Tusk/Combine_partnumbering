@@ -11,6 +11,12 @@ Audits:
   2. audit_feasible_constraints.py - API. Feasible-constraint fail-closed
                                     (NOT-ALLOWED / ALLOW-LIST) + valid walks.
   3. audit_motor_constraints.py  - API. All 4 Motor Constraint relationships.
+  4. audit_identifier_parity.py  - API. PN/SKU identity + python==sql parity.
+  5. audit_bom_engine.py         - API. BOM generation + signature parity.
+  6. audit_quote_engine.py       - API. Quote engine line/total integrity.
+  7. audit_free_config.py        - API. Free-edit resolve-state: STD seed,
+                                    omni-directional allowable, non-destructive
+                                    upstream correction, invalidation reporting.
 
 The API-dependent audits need the FastAPI server on 127.0.0.1:8080. This runner
 detects whether it is already up; if not, it starts a temporary local instance
@@ -35,7 +41,7 @@ API_HEALTH = "http://127.0.0.1:8080/docs"
 DB_ONLY_AUDITS = ["audit_selections_vs_db.py"]
 API_AUDITS = ["audit_feasible_constraints.py", "audit_motor_constraints.py",
               "audit_identifier_parity.py", "audit_bom_engine.py",
-              "audit_quote_engine.py"]
+              "audit_quote_engine.py", "audit_free_config.py"]
 
 
 def _api_up() -> bool:
