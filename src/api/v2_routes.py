@@ -260,7 +260,89 @@ def _prune_to_prefix(
     return effective, dropped
 
 
-def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable):
+def _load_constraint_context(cursor, pub_id, family_id, series):
+    """Read all the CONSTANT constraint data for a (pub, family, series) ONCE, so
+    that repeated _apply_constraints calls within a single request (e.g. the
+    free-edit endpoint filtering every field) do not re-query the same tables.
+
+    Returns a dict consumed by _apply_constraints via its `ctx` argument. All the
+    contained data depends only on (pub, family, series), never on the current
+    selections, so it is safe to reuse across every field in one request.
+    """
+    label_to_sfo = {
+        r[0]: r[1] for r in cursor.execute(
+            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
+        ).fetchall()
+    }
+    feasible_rows = cursor.execute(
+        "SELECT TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
+        "       Option3Field, Option3Value, Allowed, SeriesApplicability "
+        "FROM cfg.FeasibleConstraint"
+    ).fetchall()
+
+    scope_row = cursor.execute(
+        "SELECT DISTINCT SeriesScope FROM cfg.MotorConstraint "
+        "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
+        "AND (SeriesScope = ? OR SeriesScope LIKE ? OR SeriesScope LIKE ? "
+        "     OR SeriesScope LIKE ?)",
+        pub_id, family_id, series,
+        f"{series} %", f"% {series}", f"% {series} %",
+    ).fetchone()
+    motor_scope = scope_row[0] if scope_row else None
+
+    # All motor-constraint rows for this scope, indexed by
+    # (Dimension1Field, Dimension2Field) -> {dim1_value_lower -> {dim2_value_lower}}
+    # and the reverse (dim2 -> {dim1}) so both directions are O(1) lookups.
+    mc_fwd: dict = {}
+    mc_rev: dict = {}
+    if motor_scope:
+        for d1f, d1v, d2f, d2v in cursor.execute(
+            "SELECT Dimension1Field, Dimension1Value, Dimension2Field, Dimension2Value "
+            "FROM cfg.MotorConstraint "
+            "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=?",
+            pub_id, family_id, motor_scope,
+        ).fetchall():
+            if d1v is None or d2v is None:
+                continue
+            k = (d1f, d2f)
+            mc_fwd.setdefault(k, {}).setdefault(str(d1v).strip().lower(), set()).add(
+                str(d2v).strip().lower())
+            mc_rev.setdefault(k, {}).setdefault(str(d2v).strip().lower(), set()).add(
+                str(d1v).strip().lower())
+
+    # MotorHpRpm combine pairs: MotorHp value (lower) -> {allowed RPM values (lower)}
+    hp_to_rpm: dict = {}
+    for hp_v, rpm_v in cursor.execute(
+        "SELECT cv_hp.ValueValue, cv_rpm.ValueValue "
+        "FROM cfg.CombineVariable cv_hp "
+        "JOIN cfg.CombineVariable cv_rpm "
+        "  ON cv_rpm.MetadataPublicationId = cv_hp.MetadataPublicationId "
+        " AND cv_rpm.PumpFamilyId = cv_hp.PumpFamilyId "
+        " AND cv_rpm.TableName = cv_hp.TableName "
+        " AND cv_rpm.KeyValue = cv_hp.KeyValue "
+        "WHERE cv_hp.MetadataPublicationId = ? AND cv_hp.PumpFamilyId = ? "
+        "  AND cv_hp.TableName = 'MotorHpRpm_to_HpAndRpm' "
+        "  AND cv_hp.ValueField = 'MotorHp' AND cv_rpm.ValueField = 'MotorRPM'",
+        pub_id, family_id,
+    ).fetchall():
+        if hp_v is None or rpm_v is None:
+            continue
+        hp_to_rpm.setdefault(str(hp_v).strip().lower(), set()).add(
+            str(rpm_v).strip().lower())
+
+    return {
+        "series": series,
+        "label_to_sfo": label_to_sfo,
+        "feasible_rows": feasible_rows,
+        "motor_scope": motor_scope,
+        "mc_fwd": mc_fwd,
+        "mc_rev": mc_rev,
+        "hp_to_rpm": hp_to_rpm,
+    }
+
+
+def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
+                       ctx=None):
     """Apply the authoritative constraints (feasible + motor + combine HP->RPM)
     to `allowable` in place, given the current `selections` as context.
 
@@ -271,27 +353,30 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable)
     per-field option lists to filter (only fields present in `allowable` are
     filtered, so a caller wanting to constrain an already-chosen field must
     include that field in `allowable`).
-    """
-    import collections as _collections
 
-    # constraint field label -> SFO field code
-    label_to_sfo = {
-        r[0]: r[1] for r in cursor.execute(
-            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
-        ).fetchall()
-    }
+    `ctx`, when provided, is a pre-loaded constraint context from
+    _load_constraint_context (constant per pub/family/series). Passing it lets a
+    caller that filters many fields in one request avoid re-querying the constant
+    constraint tables per field. When omitted, the context is loaded here, so the
+    behavior is identical whether or not a context is supplied.
+    """
+    if ctx is None:
+        ctx = _load_constraint_context(cursor, pub_id, family_id, series)
+
+    label_to_sfo = ctx["label_to_sfo"]
+    all_rows = ctx["feasible_rows"]
+    motor_scope = ctx["motor_scope"]
+    mc_fwd = ctx["mc_fwd"]
+    mc_rev = ctx["mc_rev"]
+    hp_to_rpm = ctx["hp_to_rpm"]
+
+    import collections as _collections
 
     def _series_in_scope(scope: str) -> bool:
         s = (scope or "ALL_SERIES").strip().upper()
         if s == "ALL_SERIES":
             return True
         return series.upper() in s  # e.g. "5500_ONLY"
-
-    all_rows = cursor.execute(
-        "SELECT TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
-        "       Option3Field, Option3Value, Allowed, SeriesApplicability "
-        "FROM cfg.FeasibleConstraint"
-    ).fetchall()
 
     _sel_norm = {k.upper(): str(v).strip().lower() for k, v in selections.items()}
 
@@ -343,27 +428,12 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable)
             ]
 
     # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint - ALLOW-LISTs).
-    scope_row = cursor.execute(
-        "SELECT DISTINCT SeriesScope FROM cfg.MotorConstraint "
-        "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
-        "AND (SeriesScope = ? OR SeriesScope LIKE ? OR SeriesScope LIKE ? "
-        "     OR SeriesScope LIKE ?)",
-        pub_id, family_id, series,
-        f"{series} %", f"% {series}", f"% {series} %",
-    ).fetchone()
-    motor_scope = scope_row[0] if scope_row else None
-
+    # Uses the pre-indexed motor map (ctx) instead of per-call SQL.
     def _mc_allowed(dim1_field, dim1_value, dim2_field):
         if not motor_scope or dim1_value is None:
             return set()
-        rows = cursor.execute(
-            "SELECT Dimension2Value FROM cfg.MotorConstraint "
-            "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
-            "AND Dimension1Field=? AND Dimension2Field=? "
-            "AND LOWER(Dimension1Value)=LOWER(?)",
-            pub_id, family_id, motor_scope, dim1_field, dim2_field, str(dim1_value),
-        ).fetchall()
-        return {str(r[0]).strip().lower() for r in rows if r[0] is not None}
+        return set(mc_fwd.get((dim1_field, dim2_field), {})
+                   .get(str(dim1_value).strip().lower(), set()))
 
     size_value = selections.get("ALT_SIZE")
     hp_sel = selections.get("MOTOR_HP")
@@ -400,15 +470,12 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable)
                     ]
 
     if hp_sel is not None and rpm_sel is not None and "FRAME_SIZE" in allowable:
-        composite = f"{str(hp_sel).strip()}-{str(rpm_sel).strip()}"
-        rows = cursor.execute(
-            "SELECT Dimension1Value FROM cfg.MotorConstraint "
-            "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND SeriesScope=? "
-            "AND Dimension1Field='F_Frame_Size' AND Dimension2Field='F_MotorHpRpm' "
-            "AND LOWER(Dimension2Value)=LOWER(?)",
-            pub_id, family_id, motor_scope, composite,
-        ).fetchall()
-        frames_for_hprpm = {str(r[0]).strip().lower() for r in rows if r[0] is not None}
+        composite = f"{str(hp_sel).strip()}-{str(rpm_sel).strip()}".lower()
+        # F_Frame_Size(dim1) x F_MotorHpRpm(dim2): frames whose allowed hprpm set
+        # includes this composite -> reverse map dim2(composite) -> {dim1 frames}.
+        frames_for_hprpm = set(
+            mc_rev.get(("F_Frame_Size", "F_MotorHpRpm"), {}).get(composite, set())
+        )
         if frames_for_hprpm:
             allowable["FRAME_SIZE"] = [
                 v for v in allowable["FRAME_SIZE"]
@@ -417,24 +484,8 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable)
 
     # MOTOR Hp -> RPM (Combine Variables MotorHpRpm table).
     if "MOTOR_HP" in selections and "MOTOR_RPM" in allowable:
-        hp_value = str(selections["MOTOR_HP"]).strip()
-        allowed_rpms = cursor.execute(
-            "SELECT cv_rpm.ValueValue "
-            "FROM cfg.CombineVariable cv_hp "
-            "JOIN cfg.CombineVariable cv_rpm "
-            "  ON cv_rpm.MetadataPublicationId = cv_hp.MetadataPublicationId "
-            " AND cv_rpm.PumpFamilyId = cv_hp.PumpFamilyId "
-            " AND cv_rpm.TableName = cv_hp.TableName "
-            " AND cv_rpm.KeyValue = cv_hp.KeyValue "
-            "WHERE cv_hp.MetadataPublicationId = ? AND cv_hp.PumpFamilyId = ? "
-            "  AND cv_hp.TableName = 'MotorHpRpm_to_HpAndRpm' "
-            "  AND cv_hp.ValueField = 'MotorHp' AND LOWER(cv_hp.ValueValue) = LOWER(?) "
-            "  AND cv_rpm.ValueField = 'MotorRPM'",
-            pub_id, family_id, hp_value,
-        ).fetchall()
-        allowed_rpm_set = {
-            str(r[0]).strip().lower() for r in allowed_rpms if r[0] is not None
-        }
+        hp_value = str(selections["MOTOR_HP"]).strip().lower()
+        allowed_rpm_set = set(hp_to_rpm.get(hp_value, set()))
         if allowed_rpm_set:
             allowable["MOTOR_RPM"] = [
                 v for v in allowable["MOTOR_RPM"]
@@ -969,13 +1020,21 @@ async def resolve_configuration_state(
                 fields = [fc for fc in fields if fc != "WETTED_HARDWARE_SELECTION"]
             return fields
 
+        # Load the constant constraint data ONCE for this request, then reuse it
+        # for every per-field filter below (avoids re-querying the constraint
+        # tables per field, which is what made this endpoint slow).
+        constraint_ctx = _load_constraint_context(
+            cursor, pub_id, family_id, body.series
+        )
+
         def _allowable_for(target: str, sel: dict[str, str]) -> list[str]:
             """Constraint-correct options for `target` given every OTHER
             selection as context (omni-directional)."""
             context = {k: v for k, v in sel.items() if k != target}
             box = {target: list(all_options.get(target, []))}
             _apply_constraints(
-                cursor, pub_id, family_id, body.series, context, box
+                cursor, pub_id, family_id, body.series, context, box,
+                ctx=constraint_ctx,
             )
             return box.get(target, [])
 
