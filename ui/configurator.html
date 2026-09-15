@@ -205,6 +205,13 @@
             await resolveState(fieldCode, next);
         }
 
+        // Monotonic request counter. Field changes can fire while a previous
+        // resolve-state (e.g. the series-select STD seed) is still in flight;
+        // applying an out-of-order/older response would corrupt state and could
+        // surface a spurious "error in fetching". We stamp each call and apply
+        // only the LATEST response, ignoring any that a newer call superseded.
+        let reqSeq = 0;
+
         // Core call to the free-edit endpoint. `changedField` is informational
         // (lets the server prefer pinning the user's explicit change); `sel` is
         // the full desired selection set (empty => STD seed).
@@ -213,6 +220,7 @@
             const series = document.getElementById('series').value;
             if (!series) return;
 
+            const mySeq = ++reqSeq;
             setStatus('Resolving configuration...', 'loading');
             try {
                 const body = { series, selections: sel };
@@ -222,8 +230,15 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
                 });
-                if (!resp.ok) throw new Error(`API ${resp.status}`);
+                // A newer request started while this one was in flight -> discard.
+                if (mySeq !== reqSeq) return;
+                if (!resp.ok) {
+                    let detail = '';
+                    try { detail = await resp.text(); } catch (_) {}
+                    throw new Error(`API ${resp.status}${detail ? ' - ' + detail.slice(0, 200) : ''}`);
+                }
                 const data = await resp.json();
+                if (mySeq !== reqSeq) return;  // superseded after body read
 
                 if (!data.valid) {
                     setStatus((data.errors || ['Configuration unavailable']).join('; '), 'error');
@@ -371,29 +386,53 @@
                     document.getElementById('resultPanel').appendChild(failedInfo);
                 }
 
-                renderPricing(data.pricing || [], data.total_price || 0);
+                renderPricing(data.component_pricing || [], data.total_price || 0);
                 setStatus('Product resolved!', 'success');
             } catch (e) {
                 setStatus(e.message, 'error');
             }
         }
 
-        function renderPricing(pricingLines, total) {
+        function esc(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        // Render the COMPLETE per-component breakdown: every component this
+        // configuration selects, with its price or C/F (Contact Factory) where
+        // no price is available. This lets you track, per config and per series,
+        // exactly which components are priced vs still need pricing.
+        function renderPricing(components, total) {
             const panel = document.getElementById('pricingPanel');
-            if (!pricingLines.length) {
-                panel.innerHTML = `<div class="pricing-total" style="background:#fff3cd;color:#856404">No pricing rules matched for this configuration. Check price.PriceRule data.</div>`;
+            if (!components.length) {
+                panel.innerHTML = `<div class="pricing-total" style="background:#fff3cd;color:#856404">No components to price for this configuration.</div>`;
                 return;
             }
-            const rows = pricingLines.map(p =>
-                `<tr><td>${p.component}</td><td class="amount">$${p.amount.toLocaleString('en-US', {minimumFractionDigits:2})}</td></tr>`
-            ).join('');
+            const priced = components.filter(c => c.status === 'found').length;
+            const cf = components.filter(c => c.status === 'C/F').length;
+            const rows = components.map(c => {
+                const isCF = c.status === 'C/F';
+                const priceCell = isCF
+                    ? `<td class="amount" style="color:#b02a37;font-weight:700">C/F</td>`
+                    : `<td class="amount">$${Number(c.amount).toLocaleString('en-US', {minimumFractionDigits:2})}</td>`;
+                const rowStyle = isCF ? ' style="background:#fdf3f4"' : '';
+                return `<tr${rowStyle}>
+                    <td>${esc(c.component)}</td>
+                    <td style="color:#555">${esc(c.selection || '')}</td>
+                    ${priceCell}
+                </tr>`;
+            }).join('');
             panel.innerHTML = `
-                <h3 style="margin-top:16px">Pricing</h3>
+                <h3 style="margin-top:16px">Component Pricing</h3>
+                <div style="font-size:12px;color:#555;margin-bottom:6px">
+                    ${priced} priced &middot; <span style="color:#b02a37;font-weight:700">${cf} C/F</span>
+                    (Contact Factory - no price available yet)
+                </div>
                 <table class="pricing-table">
-                    <tr><th>Component</th><th class="amount">Amount</th></tr>
+                    <tr><th>Component</th><th>Selection</th><th class="amount">Price</th></tr>
                     ${rows}
                 </table>
-                <div class="pricing-total">Total: $${total.toLocaleString('en-US', {minimumFractionDigits:2})}</div>
+                <div class="pricing-total">Priced total: $${Number(total).toLocaleString('en-US', {minimumFractionDigits:2})}</div>
             `;
         }
     </script>

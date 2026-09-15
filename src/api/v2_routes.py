@@ -1818,6 +1818,28 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         # Pricing lookup
         pricing = []
+        # component_pricing is a COMPLETE per-component breakdown for tracking:
+        # every component this configuration actually selects appears here, with
+        # either its price (status 'found') or "C/F" (Contact Factory) when no
+        # current price rule matched. Unlike `pricing` (which only lists priced
+        # components and drives total_price / the quote engine), this list is
+        # additive and exists so the UI can show, per config, exactly which
+        # components are priced vs still C/F. Order follows configuration flow.
+        component_pricing: list[dict] = []
+
+        def _add_component(label, selection_value, amount=None, detail=None):
+            """Record a component in the tracking breakdown. amount=None => C/F.
+            selection_value is what the user chose for this component (shown so a
+            reviewer can see which selection drives the price / C/F)."""
+            component_pricing.append({
+                "component": label,
+                "selection": (str(selection_value)
+                              if selection_value not in (None, "") else None),
+                "amount": (float(amount) if amount is not None else None),
+                "status": ("found" if amount is not None else "C/F"),
+                "detail": detail,
+            })
+
         size_val = body.selections.get("ALT_SIZE") or body.selections.get("SIZE") or ""
         size_upper = size_val.upper()
         material_display = body.selections.get("PUMP_MATERIAL", "").lower()
@@ -1860,6 +1882,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         if base_row:
             pricing.append({"component": "Base Pump", "amount": float(base_row[0]), "detail": base_row[1]})
+            _add_component("Base Pump", size_val, float(base_row[0]), base_row[1])
         else:
             # Fallback: any price for this size in this series family
             base_row2 = cursor.execute("""
@@ -1873,6 +1896,9 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             """, body.series, f"{body.series}%", f"{size_upper}%").fetchone()
             if base_row2:
                 pricing.append({"component": "Base Pump (std material)", "amount": float(base_row2[0]), "detail": base_row2[1]})
+                _add_component("Base Pump (std material)", size_val, float(base_row2[0]), base_row2[1])
+            else:
+                _add_component("Base Pump", size_val, None)
 
         # Seal pricing
         seal_type = body.selections.get("SEAL_TYPE", "")
@@ -1889,6 +1915,9 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             """, body.series, f"{body.series}%", seal_pattern).fetchone()
             if seal_row:
                 pricing.append({"component": "Seal", "amount": float(seal_row[0]), "detail": seal_row[1]})
+                _add_component("Seal", seal_type, float(seal_row[0]), seal_row[1])
+            else:
+                _add_component("Seal", seal_type, None)
 
         # ---- Rev0.4 Phase B: additional priced components (1500 & 5500) ----
         # Each of these adder/component tables is keyed by series + size + one
@@ -1949,9 +1978,16 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         for comp_code, label, sel_field in ADDER_COMPONENTS:
             sel_val = body.selections.get(sel_field, "")
+            if not sel_val:
+                # The config does not select this component -> not applicable,
+                # so it is not part of this configuration's breakdown at all.
+                continue
             priced = _price_component(comp_code, sel_val)
             if priced is not None:
                 pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
+                _add_component(label, sel_val, priced[0], priced[1])
+            else:
+                _add_component(label, sel_val, None)
 
         # ---- Rev0.4 Phase B: MULTI-CONDITION components (MOTOR/COUPLING/
         # BASEPLATE/TAILPIPE) ----
@@ -2043,11 +2079,19 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             ("TAILPIPE", "Tailpipe", [["SIZE", "PUMP_MATERIAL", "WETTED_HARDWARE", "TAILPIPE_LENGTH"]]),
         ]
         for comp_code, label, field_sets in MULTI_COMPONENTS:
+            priced = None
             for cond_fields in field_sets:
                 priced = _price_multi_condition(comp_code, label, cond_fields)
                 if priced is not None:
                     pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
                     break
+            # Motor is always part of a pump; the others (Coupling/Baseplate/
+            # Tailpipe) apply when the config drives them. Track them so a
+            # reviewer sees the priced-vs-C/F status per component.
+            if priced is not None:
+                _add_component(label, None, priced[0], priced[1])
+            else:
+                _add_component(label, None, None)
 
         total = sum(p["amount"] for p in pricing)
 
@@ -2146,6 +2190,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "sku_pn_ok": sku_pn_ok,
             "bom": bom,
             "pricing": pricing,
+            "component_pricing": component_pricing,
             "total_price": total,
             "segment_debug": segment_debug,
         }
