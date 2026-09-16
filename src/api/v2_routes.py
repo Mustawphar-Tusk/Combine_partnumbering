@@ -260,6 +260,68 @@ def _prune_to_prefix(
     return effective, dropped
 
 
+# ---------------------------------------------------------------------------
+# Segment-combination lookup cache
+# ---------------------------------------------------------------------------
+# The PN-assembly segment lookups query cfg.vw_SegmentCombinationLookup with
+# `LOWER(SelectionsJson) LIKE '%kw%'` (leading wildcard = full partition scan),
+# and do progressive-fallback retries - so a single /resolve fires ~15 scans,
+# and the PUMP_OPTIONS partition alone has 276K rows. On the vertical (5500)
+# path this dominated resolve at ~4.3s.
+#
+# The combination data is STATIC per loaded import batch, so we cache each
+# SegmentCode's rows in memory once per process and do the substring matching
+# in Python. This preserves the exact prior semantics (all keywords must be
+# substrings of lower(SelectionsJson), AND-combined, first match in the view's
+# natural scan order = clustered SegmentCombinationImportId order), while
+# turning ~15 DB scans per request into one-time in-memory work.
+_SEGMENT_ROWS_CACHE: dict = {}   # SegmentCode -> [(selections_json_lower, segment_value), ...]
+_SEGMENT_CACHE_TTL_SECONDS = 300.0
+_SEGMENT_CACHE_EXPIRES: dict = {}
+
+
+def _segment_rows(cursor, segment_code):
+    """Return cached [(selections_json_lower, segment_value)] for a SegmentCode,
+    in the view's natural (clustered id) order. Loaded once per process (short
+    TTL), matching cfg.vw_SegmentCombinationLookup's active-batch filter."""
+    now = time.monotonic()
+    exp = _SEGMENT_CACHE_EXPIRES.get(segment_code, 0.0)
+    if segment_code in _SEGMENT_ROWS_CACHE and now < exp:
+        return _SEGMENT_ROWS_CACHE[segment_code]
+    # Read straight from the same staging source the view uses, INCLUDING the
+    # clustered key, and order by it - so the cached "first match" is exactly the
+    # row the old `SELECT TOP 1 ... (no ORDER BY)` returned (scan = clustered
+    # order). Ordering by SegmentValue would NOT be equivalent: OPTIONS and
+    # SEAL_ASSEMBLY have duplicate SegmentValues whose scan order differs from
+    # value order, so the winning row could change and break PN parity.
+    rows = cursor.execute(
+        "SELECT sci.SelectionsJson, sci.SegmentValue "
+        "FROM stg.SegmentCombinationImport sci "
+        "WHERE sci.SegmentCode = ? "
+        "  AND sci.ImportBatchId IN ("
+        "      SELECT ImportBatchId FROM stg.SegmentCombinationImportBatch "
+        "      WHERE FamilyCode = 'FYBROC' AND Status = 'Loaded') "
+        "ORDER BY sci.SegmentCombinationImportId",
+        segment_code,
+    ).fetchall()
+    cached = [((r[0] or "").lower(), r[1]) for r in rows]
+    _SEGMENT_ROWS_CACHE[segment_code] = cached
+    _SEGMENT_CACHE_EXPIRES[segment_code] = now + _SEGMENT_CACHE_TTL_SECONDS
+    return cached
+
+
+def _seg_first_match(cursor, segment_code, patterns):
+    """First SegmentValue whose lower(SelectionsJson) contains EVERY pattern in
+    `patterns` (each pattern is a plain substring, already lower-cased, no % ).
+    Returns None if no row matches. Mirrors the old
+    `WHERE SegmentCode=? AND LOWER(SelectionsJson) LIKE '%p1%' AND ...` + TOP 1."""
+    subs = [p for p in patterns if p]
+    for js, val in _segment_rows(cursor, segment_code):
+        if all(s in js for s in subs):
+            return val
+    return None
+
+
 def _load_constraint_context(cursor, pub_id, family_id, series):
     """Read all the CONSTANT constraint data for a (pub, family, series) ONCE, so
     that repeated _apply_constraints calls within a single request (e.g. the
@@ -1326,16 +1388,13 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             if not keywords:
                 return None
             
-            # Direct match — SelectionsJson is now in SFO vocabulary
-            conditions = ["LOWER(SelectionsJson) LIKE ?"] * min(len(keywords), 4)
-            params = [segment_code] + [f"%{kw}%" for kw in keywords[:4]]
-            
-            where = " AND ".join(conditions)
-            sql = f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode = ? AND {where}"
+            # Direct match — SelectionsJson is now in SFO vocabulary. Match in
+            # Python against the cached segment rows (same semantics as the old
+            # `LIKE '%kw%'` AND-combined TOP 1, capped at 4 keywords).
             try:
-                row = cursor.execute(sql, *params).fetchone()
-                return row[0] if row else None
-            except:
+                return _seg_first_match(cursor, segment_code,
+                                        [kw for kw in keywords[:4]])
+            except Exception:
                 return None
 
         # PUMP_OPTIONS lookup - use vertical table for vertical series
@@ -1367,23 +1426,17 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                     vert_keywords.append(sfo_val.lower().strip())
             
             if vert_keywords:
-                # Progressive matching for vertical pump options
+                # Progressive matching for vertical pump options (in-memory).
                 pump_opts = None
                 for n in range(len(vert_keywords), 0, -1):
-                    use_kw = vert_keywords[:n]
-                    conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(use_kw))
-                    params = ["PUMP_OPTIONS_VERTICAL"] + [f"%{k}%" for k in use_kw]
                     try:
-                        row = cursor.execute(
-                            f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                            f"WHERE SegmentCode=? AND {conditions}",
-                            *params
-                        ).fetchone()
-                        if row:
-                            pump_opts = row[0]
-                            break
-                    except:
-                        continue
+                        match = _seg_first_match(
+                            cursor, "PUMP_OPTIONS_VERTICAL", vert_keywords[:n])
+                    except Exception:
+                        match = None
+                    if match is not None:
+                        pump_opts = match
+                        break
                 pump_opts = pump_opts or "0000"  # Default: standard vertical pump options
             else:
                 # No vertical pump option fields available for this series — use default
@@ -1423,14 +1476,10 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             # Series has no seal configuration — use noseal default code
             # Look up the "noseal nosealgland" + "not supplied by fybroc" combo
             try:
-                row = cursor.execute(
-                    "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                    "WHERE SegmentCode='SEAL_ASSEMBLY' "
-                    "AND LOWER(SelectionsJson) LIKE '%noseal nosealgland%' "
-                    "AND LOWER(SelectionsJson) LIKE '%not supplied by fybroc%'"
-                ).fetchone()
-                seal_assy = row[0] if row else "0X"  # 0X = noseal nosealgland default
-            except:
+                match = _seg_first_match(cursor, "SEAL_ASSEMBLY",
+                                         ["noseal nosealgland", "not supplied by fybroc"])
+                seal_assy = match if match is not None else "0X"  # 0X = noseal default
+            except Exception:
                 seal_assy = "0X"
             seal_mfg = "S"  # Standard offering for no-seal
         elif not has_seal_fields and is_vertical:
@@ -1460,58 +1509,39 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 seal_keywords.append(seal_guard_val.lower())
 
             if seal_keywords:
-                conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(seal_keywords))
-                params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in seal_keywords]
                 try:
-                    row = cursor.execute(
-                        f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                        f"WHERE SegmentCode=? AND {conditions}",
-                        *params
-                    ).fetchone()
-                    if row:
-                        seal_assy = row[0]
-                except:
+                    match = _seg_first_match(cursor, "SEAL_ASSEMBLY", seal_keywords)
+                    if match is not None:
+                        seal_assy = match
+                except Exception:
                     pass
                 
                 # Fallback 1: option + type only
                 if seal_assy == "??" and seal_type_val and seal_option_val:
-                    kw = seal_keywords[:2]  # just option + type
-                    conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(kw))
-                    params = ["SEAL_ASSEMBLY"] + [f"%{k}%" for k in kw]
                     try:
-                        row = cursor.execute(
-                            f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                            f"WHERE SegmentCode=? AND {conditions}",
-                            *params
-                        ).fetchone()
-                        if row:
-                            seal_assy = row[0]
-                    except:
+                        match = _seg_first_match(cursor, "SEAL_ASSEMBLY", seal_keywords[:2])
+                        if match is not None:
+                            seal_assy = match
+                    except Exception:
                         pass
                 
                 # Fallback 2: option alone (for noseal/customer supplied which have type="-")
                 if seal_assy == "??" and seal_option_val:
                     try:
-                        row = cursor.execute(
-                            "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                            "WHERE SegmentCode='SEAL_ASSEMBLY' AND LOWER(SelectionsJson) LIKE ?",
-                            f"%{seal_keywords[0]}%"
-                        ).fetchone()
-                        if row:
-                            seal_assy = row[0]
-                    except:
+                        match = _seg_first_match(cursor, "SEAL_ASSEMBLY", [seal_keywords[0]])
+                        if match is not None:
+                            seal_assy = match
+                    except Exception:
                         pass
 
         # OPTIONS — direct match
         opt_keywords = [v.lower() for k in ["COUPLING_OPTION", "BASEPLATE_OPTION"]
                        if (v := body.selections.get(k, "")) and len(v) > 2]
         if opt_keywords:
-            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(opt_keywords))
-            params = ["OPTIONS"] + [f"%{k}%" for k in opt_keywords]
             try:
-                row = cursor.execute(f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup WHERE SegmentCode=? AND {conditions}", *params).fetchone()
-                options_code = row[0] if row else "00"
-            except:
+                match = _seg_first_match(cursor, "OPTIONS", opt_keywords)
+                options_code = match if match is not None else "00"
+            except Exception:
                 options_code = "00"
         else:
             # No coupling/baseplate fields selected — check if series even has them
@@ -1581,37 +1611,25 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             # Priority order: motor_option, hp, rpm, voltage, hertz, frame, enclosure, efficiency, mfg
             motor_assy = "???"
             
-            # Try full match first
-            conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(motor_keywords))
-            params = ["MOTOR_ASSEMBLY"] + [f"%{k}%" for k in motor_keywords]
+            # Try full match first (in-memory against cached rows).
             try:
-                row = cursor.execute(
-                    f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                    f"WHERE SegmentCode=? AND {conditions}",
-                    *params
-                ).fetchone()
-                if row:
-                    motor_assy = row[0]
-            except:
+                match = _seg_first_match(cursor, "MOTOR_ASSEMBLY", motor_keywords)
+                if match is not None:
+                    motor_assy = match
+            except Exception:
                 pass
             
             # Progressive fallback: remove keywords from the end (least important)
             if motor_assy == "???":
                 for n in range(len(motor_keywords) - 1, 0, -1):
-                    use_kw = motor_keywords[:n]
-                    conditions = " AND ".join(["LOWER(SelectionsJson) LIKE ?"] * len(use_kw))
-                    params = ["MOTOR_ASSEMBLY"] + [f"%{k}%" for k in use_kw]
                     try:
-                        row = cursor.execute(
-                            f"SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                            f"WHERE SegmentCode=? AND {conditions}",
-                            *params
-                        ).fetchone()
-                        if row:
-                            motor_assy = row[0]
-                            break
-                    except:
-                        continue
+                        match = _seg_first_match(
+                            cursor, "MOTOR_ASSEMBLY", motor_keywords[:n])
+                    except Exception:
+                        match = None
+                    if match is not None:
+                        motor_assy = match
+                        break
         else:
             # No motor keywords formed — check if series even has motor configuration
             has_motor_fields = cursor.execute(
@@ -1695,20 +1713,14 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         # Exact per-field match against the stored JSON tokens (JSON keys are
         # PERFORMANCE_TESTING / HYDROTEST / VIBRATION / SOUND_LEVEL).
         try:
-            row = cursor.execute(
-                "SELECT TOP 1 SegmentValue FROM cfg.vw_SegmentCombinationLookup "
-                "WHERE SegmentCode='TESTING' "
-                "  AND LOWER(SelectionsJson) LIKE ? "
-                "  AND LOWER(SelectionsJson) LIKE ? "
-                "  AND LOWER(SelectionsJson) LIKE ? "
-                "  AND LOWER(SelectionsJson) LIKE ?",
-                f'%"performance_testing": "{perf_t}"%',
-                f'%"hydrotest": "{hydro_t}"%',
-                f'%"vibration": "{vib_t}"%',
-                f'%"sound_level": "{sound_t}"%',
-            ).fetchone()
-            if row:
-                testing = row[0]
+            match = _seg_first_match(cursor, "TESTING", [
+                f'"performance_testing": "{perf_t}"',
+                f'"hydrotest": "{hydro_t}"',
+                f'"vibration": "{vib_t}"',
+                f'"sound_level": "{sound_t}"',
+            ])
+            if match is not None:
+                testing = match
         except Exception:
             pass
 
