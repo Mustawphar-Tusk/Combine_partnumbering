@@ -1107,14 +1107,50 @@ async def resolve_configuration_state(
         else:
             selections = dict(incoming)
 
+        # DERIVE the SETTING/LENGTH mode from what the user just changed.
+        # SETTING/LENGTH is a mode pseudo-field: "standard setting" gates the
+        # SETTING field (ConstraintTable23), "custom length" gates the LENGTH
+        # field (ConstraintTable22) - the two are mutually exclusive. Rather than
+        # make the user flip the mode by hand (which otherwise surfaces as a
+        # confusing conflict), we set it automatically: choosing a LENGTH implies
+        # custom-length mode; choosing a SETTING implies standard-setting mode.
+        # The now-inapplicable sibling is then dropped by _applicable_fields.
+        _changed_fc = body.changed_field.upper() if body.changed_field else None
+        if "SETTING/LENGTH" in all_options:
+            def _has(fc):
+                v = selections.get(fc)
+                return v is not None and str(v).strip() != ""
+            if _changed_fc == "LENGTH" and _has("LENGTH"):
+                selections["SETTING/LENGTH"] = "custom length"
+                selections.pop("SETTING", None)
+            elif _changed_fc == "SETTING" and _has("SETTING"):
+                selections["SETTING/LENGTH"] = "standard setting"
+                selections.pop("LENGTH", None)
+            elif _changed_fc == "SETTING/LENGTH":
+                # User set the mode directly: clear the sibling that no longer applies.
+                mode = str(selections.get("SETTING/LENGTH", "")).strip().lower()
+                if mode == "custom length":
+                    selections.pop("SETTING", None)
+                elif mode == "standard setting":
+                    selections.pop("LENGTH", None)
+
         def _applicable_fields(sel: dict[str, str]) -> list[str]:
             """Fields applicable in hierarchy order, honoring conditional
-            applicability. WETTED_HARDWARE_SELECTION applies ONLY when
-            WETTED_HARDWARE == 'select material'."""
+            applicability:
+              - WETTED_HARDWARE_SELECTION applies ONLY when WETTED_HARDWARE ==
+                'select material'.
+              - SETTING/LENGTH mode gates the LENGTH vs SETTING pair: in
+                'custom length' mode only LENGTH applies; in 'standard setting'
+                mode only SETTING applies (the other is not shown)."""
             fields = _order_fields(all_options.keys())
             wh = sel.get("WETTED_HARDWARE")
             if wh is not None and str(wh).strip().lower() != "select material":
                 fields = [fc for fc in fields if fc != "WETTED_HARDWARE_SELECTION"]
+            mode = str(sel.get("SETTING/LENGTH", "")).strip().lower()
+            if mode == "custom length":
+                fields = [fc for fc in fields if fc != "SETTING"]
+            elif mode == "standard setting":
+                fields = [fc for fc in fields if fc != "LENGTH"]
             return fields
 
         # Load the constant constraint data ONCE for this request, then reuse it
