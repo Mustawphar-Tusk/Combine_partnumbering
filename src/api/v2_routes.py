@@ -176,7 +176,11 @@ def _order_fields(field_codes) -> list[str]:
 # Fields whose option values are numeric and must be presented in ASCENDING
 # NUMERIC order (not string order, which mixes "1, 1.5, 10, 100, 15, 2, ...").
 NUMERIC_OPTION_FIELDS = {"MOTOR_HP", "MOTOR_RPM", "MOTOR_HERTZ", "MOTOR_VOLTAGE",
-                         "IMPELLER_TRIM"}
+                         "IMPELLER_TRIM",
+                         # Vertical-series numeric fields (5500/5530/...): these
+                         # are whole-number sizes stored as strings, so SQL string
+                         # order mixes 1,10,11,...,2,3. Present ascending numeric.
+                         "SETTING", "LENGTH", "TAILPIPE_LENGTH"}
 
 # DIMENSIONAL fields whose option values are compound sizes like "10x12x16"
 # (suction x discharge x impeller). Plain string order mis-sorts these

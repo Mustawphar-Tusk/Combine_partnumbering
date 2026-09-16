@@ -105,6 +105,38 @@
         const API_BASE = (window.API_BASE || '').replace(/\/+$/, '');
         const API = API_BASE + '/api/v2';
 
+        // POST JSON with a generous timeout and ONE automatic retry. The API is
+        // hosted on a free tier that sleeps when idle, so the FIRST request after
+        // idle can take ~30-60s to wake; the vertical (5500) resolve is also the
+        // slowest path. A short default fetch has no timeout in some browsers and
+        // a stalled connection surfaces as a bare "Failed to fetch". This helper
+        // waits up to `timeoutMs`, and on a network failure/timeout retries once
+        // (showing a "waking the server" hint) before giving up.
+        async function postJson(url, body, { timeoutMs = 90000, onRetry = null } = {}) {
+            async function attempt() {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+                try {
+                    return await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body),
+                        signal: ctrl.signal,
+                    });
+                } finally {
+                    clearTimeout(timer);
+                }
+            }
+            try {
+                return await attempt();
+            } catch (e) {
+                // Network error or timeout (e.g. cold server). Retry once.
+                if (onRetry) onRetry();
+                await new Promise(r => setTimeout(r, 1500));
+                return await attempt();
+            }
+        }
+
         // FREE-EDIT model (server = authority). The /configurations/resolve-state
         // endpoint returns a COMPLETE configuration: a value for every field that
         // has a STANDARD default (STD-seeded), the constraint-correct allowable
@@ -225,11 +257,10 @@
             try {
                 const body = { series, selections: sel };
                 if (changedField) body.changed_field = changedField;
-                const resp = await fetch(`${API}/families/${family}/configurations/resolve-state`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body)
-                });
+                const resp = await postJson(
+                    `${API}/families/${family}/configurations/resolve-state`, body,
+                    { timeoutMs: 90000,
+                      onRetry: () => setStatus('Server is waking up, retrying...', 'loading') });
                 // A newer request started while this one was in flight -> discard.
                 if (mySeq !== reqSeq) return;
                 if (!resp.ok) {
@@ -277,8 +308,11 @@
             } catch (e) {
                 if (mySeq !== reqSeq) return;  // stale failure, a newer call is active
                 console.error('resolve-state fetch error:', e, { changedField, sel });
-                setStatus('Could not reach the configuration service: ' + e.message,
-                          'error');
+                const cold = (e.name === 'AbortError' || /fetch/i.test(e.message || ''));
+                setStatus(cold
+                    ? 'Could not reach the configuration service (it may be waking up on a free tier). Please try again in a moment.'
+                    : 'Could not reach the configuration service: ' + e.message,
+                    'error');
             }
         }
 
@@ -379,16 +413,16 @@
                     if (v) segmentCodes[k] = v;
                 }
 
-                const resp = await fetch(`${API}/families/${family}/configured-products/resolve`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
+                const resp = await postJson(
+                    `${API}/families/${family}/configured-products/resolve`,
+                    {
                         series,
                         selections: { SERIES: series, ...selections },
                         segment_codes: segmentCodes,
                         requested_by: 'configurator-ui'
-                    })
-                });
+                    },
+                    { timeoutMs: 120000,
+                      onRetry: () => setStatus('Server is waking up, retrying...', 'loading') });
 
                 if (!resp.ok) {
                     const err = await resp.text();
