@@ -448,6 +448,16 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
 
     allowed_by = _collections.defaultdict(set)
     notallowed_by = _collections.defaultdict(set)
+    # Per (table, target_field): the set of ALL target values the table mentions
+    # anywhere (across every in-scope row), regardless of context match. This is
+    # the target domain the table GOVERNS. An allow-list only restricts values
+    # inside this governed domain - values a table never mentions are left
+    # untouched. This distinguishes a full-domain allow-list (e.g. Alt Size x
+    # Impeller Trim enumerates every trim per size, so unlisted trims are
+    # excluded) from a DIRECTIONAL rule (e.g. Setting x Shaft Material lists only
+    # wrapped-shaft materials to say "wrapped shafts only come in settings 1-4";
+    # it must NOT wipe non-wrapped shaft materials it never names).
+    governed_targets = _collections.defaultdict(set)
 
     for (tname, o1f, o1v, o2f, o2v, o3f, o3v, allowed_flag, scope) in all_rows:
         if not _series_in_scope(scope):
@@ -468,6 +478,10 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
         for ti in range(len(legs)):
             target_field, target_value = legs[ti]
             context = [legs[i] for i in range(len(legs)) if i != ti]
+            # Every ALLOW row contributes its target value to the governed domain
+            # for (table, target_field), whether or not the context matches now.
+            if not is_not_allowed:
+                governed_targets[(tname, target_field)].add(target_value)
             if all(_sel_norm.get(cf) == cv for cf, cv in context):
                 key = (tname, target_field)
                 if is_not_allowed:
@@ -482,9 +496,13 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
         allow_set = allowed_by.get((tname, target_field), set())
         deny_set = notallowed_by.get((tname, target_field), set())
         if allow_set:
+            # Restrict ONLY within the domain this table governs; a target value
+            # the table never mentions is not constrained by this table.
+            governed = governed_targets.get((tname, target_field), set())
             allowable[target_field] = [
                 v for v in allowable[target_field]
-                if str(v).strip().lower() in allow_set
+                if (str(v).strip().lower() not in governed
+                    or str(v).strip().lower() in allow_set)
                 and str(v).strip().lower() not in deny_set
             ]
         elif deny_set:
@@ -659,11 +677,24 @@ class FreeConfigResponse(BaseModel):
     # Field-code -> STANDARD default option value for this series (all fields).
     standard_defaults: dict[str, str] = Field(default_factory=dict)
     # Fields whose incoming value was invalidated by another selection and was
-    # AUTO-RESET to the STD value (field_code -> new STD value).
+    # AUTO-RESET to the STD value (field_code -> new STD value). Only used for
+    # fields dropped by conditional-applicability (see below); user-made
+    # selections are NEVER silently reset - they are reported in `conflicts`.
     reset_fields: dict[str, str] = Field(default_factory=dict)
-    # Fields whose incoming value was invalidated AND whose STD was also invalid,
-    # so the field was dropped (has no value in the returned config).
+    # Fields removed because they no longer APPLY to the configuration (e.g.
+    # WETTED_HARDWARE_SELECTION when the wetted-hardware mode is not custom).
+    # This is applicability, not incompatibility - distinct from `conflicts`.
     dropped_fields: list[str] = Field(default_factory=list)
+    # Non-destructive conflict report. When a selection the user made is not
+    # compatible with the other current selections, its value is KEPT (never
+    # silently changed) and a conflict entry is emitted so the UI can flag the
+    # field and recommend valid alternatives. Each entry:
+    #   { "field": <field_code>,
+    #     "value": <the kept, incompatible value>,
+    #     "conflicts_with": [<other field codes that make it invalid>],
+    #     "recommended": [<up to N compatible option values for this field
+    #                      given the OTHER selections>] }
+    conflicts: list[dict] = Field(default_factory=list)
     # Fields applicable in authoritative hierarchy order (for stable UI layout).
     ordered_fields: list[str] = Field(default_factory=list)
     # Identifier (PN segment) code for each final selection.
@@ -1104,75 +1135,78 @@ async def resolve_configuration_state(
             )
             return box.get(target, [])
 
+        def _norm(v):
+            return str(v).strip().lower()
+
+        def _conflicting_context_fields(target: str, sel: dict[str, str]) -> list[str]:
+            """Which OTHER selected fields actually participate in making
+            `target`'s current value incompatible. We test each other selected
+            field in isolation: if removing it from the context makes target's
+            value valid again, that field is (part of) the conflict. This gives
+            the user a precise "conflicts with X, Y" explanation."""
+            cur = sel.get(target)
+            if cur is None:
+                return []
+            culprits = []
+            others = [k for k in sel if k != target]
+            for k in others:
+                reduced = {kk: vv for kk, vv in sel.items() if kk != k and kk != target}
+                allowed_without = _allowable_for(target, {**reduced, target: cur})
+                if any(_norm(cur) == _norm(a) for a in allowed_without):
+                    # Dropping k restores validity -> k participates in the conflict.
+                    culprits.append(k)
+            return culprits
+
         reset_fields: dict[str, str] = {}
         dropped_fields: set[str] = set()
 
-        # (c) Invalidation-based re-resolution to a fixpoint. Each pass:
-        #   - drop any selection for a no-longer-applicable field (conditional),
-        #   - for every selected field, if its value is not in its allowable set
-        #     given the others, reset to STD if STD is valid, else drop it.
-        # Keep the just-changed field pinned when possible so a user's explicit
-        # correction is never silently overwritten by the fixpoint.
-        changed = body.changed_field.upper() if body.changed_field else None
-        for _ in range(64):
-            changed_this_pass = False
+        # (c) NON-DESTRUCTIVE re-resolution. The user's explicit selections are
+        # NEVER silently changed. We only:
+        #   1. Drop fields that no longer APPLY (conditional applicability, e.g.
+        #      WETTED_HARDWARE_SELECTION when the wetted-hardware mode is not
+        #      custom) - this is applicability, not incompatibility.
+        #   2. Detect INCOMPATIBLE selections (a value not allowed given the other
+        #      current selections), KEEP the value, and report a conflict with the
+        #      fields it clashes with plus recommended compatible options. The UI
+        #      surfaces this so the user can correct it deliberately - instead of
+        #      the config silently resetting their upstream choices.
+        applicable = set(_applicable_fields(selections))
+        for fc in list(selections):
+            if fc not in applicable:
+                del selections[fc]
+                dropped_fields.add(fc)
 
-            # Remove selections for fields no longer applicable (e.g. the wetted-
-            # hardware selection when the mode is not 'select material').
-            applicable = set(_applicable_fields(selections))
-            for fc in list(selections):
-                if fc not in applicable:
-                    del selections[fc]
-                    dropped_fields.add(fc)
-                    reset_fields.pop(fc, None)
-                    changed_this_pass = True
+        conflicts: list[dict] = []
+        for fc in list(selections):
+            allowed = _allowable_for(fc, selections)
+            cur_val = selections[fc]
+            if any(_norm(cur_val) == _norm(a) for a in allowed):
+                continue  # compatible - keep as-is
+            # Incompatible: keep the value, report the conflict + recommendations.
+            culprits = _conflicting_context_fields(fc, selections)
+            conflicts.append({
+                "field": fc,
+                "value": cur_val,
+                "conflicts_with": culprits,
+                "recommended": allowed[:12],
+            })
 
-            for fc in list(selections):
-                allowed = _allowable_for(fc, selections)
-                cur_val = selections[fc]
-                if any(str(cur_val).strip().lower() == str(a).strip().lower()
-                       for a in allowed):
-                    continue  # still valid, keep it (non-destructive)
-                # Invalidated. If this is the user's just-changed field, do not
-                # overwrite it here - instead the surrounding fields will adapt;
-                # only reset it if it is still invalid after others settle.
-                std = standard_defaults.get(fc)
-                std_valid = std is not None and any(
-                    str(std).strip().lower() == str(a).strip().lower()
-                    for a in allowed
-                )
-                if fc == changed and std_valid is False and allowed:
-                    # keep an explicit change pinned to a valid option if any
-                    selections[fc] = allowed[0]
-                    reset_fields[fc] = allowed[0]
-                    changed_this_pass = True
-                elif std_valid:
-                    if selections[fc] != std:
-                        selections[fc] = std
-                        reset_fields[fc] = std
-                        changed_this_pass = True
-                elif allowed:
-                    # STD invalid but some option is valid -> take first valid.
-                    selections[fc] = allowed[0]
-                    reset_fields[fc] = allowed[0]
-                    changed_this_pass = True
-                else:
-                    # Nothing valid for this field in this context -> drop it.
-                    del selections[fc]
-                    dropped_fields.add(fc)
-                    reset_fields.pop(fc, None)
-                    changed_this_pass = True
-
-            if not changed_this_pass:
-                break
-
-        # Final applicable field order for the settled selections.
+        # Applicable field order for the (unchanged) selections.
         ordered_fields = _applicable_fields(selections)
 
         # Per-field allowable options for ALL applicable fields (omni-directional).
-        allowable_options = {
-            fc: _allowable_for(fc, selections) for fc in ordered_fields
-        }
+        # For a field in conflict we still surface its current (kept) value as a
+        # selectable option so the UI shows it as chosen, alongside the compatible
+        # recommendations - the value is flagged via `conflicts`, not hidden.
+        conflict_fields = {c["field"] for c in conflicts}
+        allowable_options = {}
+        for fc in ordered_fields:
+            allowed = _allowable_for(fc, selections)
+            if fc in conflict_fields and fc in selections:
+                cur = selections[fc]
+                if not any(_norm(cur) == _norm(a) for a in allowed):
+                    allowed = [cur] + allowed
+            allowable_options[fc] = allowed
 
         # STD defaults limited to applicable fields (so the UI can offer a reset).
         std_out = {
@@ -1193,12 +1227,17 @@ async def resolve_configuration_state(
         return FreeConfigResponse(
             family=family_upper,
             series=body.series,
+            # The response is always a usable state to render; conflicts are
+            # reported in `conflicts` (not via valid=False, which the UI treats
+            # as a hard error). The config simply isn't resolvable to a PN until
+            # the user clears the conflicts.
             valid=True,
             selections=selections,
             allowable_options=allowable_options,
             standard_defaults=std_out,
             reset_fields=reset_fields,
             dropped_fields=sorted(dropped_fields),
+            conflicts=conflicts,
             ordered_fields=ordered_fields,
             resolved_codes=resolved,
         )

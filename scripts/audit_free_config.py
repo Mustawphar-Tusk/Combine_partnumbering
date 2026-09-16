@@ -21,10 +21,10 @@ Asserts, for representative series (1500 horizontal, 5500 vertical):
      valid change to an UPSTREAM field keeps the still-valid downstream picks
      untouched (nothing is reset or dropped that did not have to be).
 
-  4. Invalidation is handled AND reported: an upstream change that invalidates a
-     downstream selection auto-resets it to a valid value (STD when valid) or
-     drops it, and the change is reported in reset_fields / dropped_fields (never
-     silent, never left invalid).
+  4. Invalidation is NON-DESTRUCTIVE and REPORTED: a change that makes a prior
+     selection incompatible KEEPS that selection (never silently changes it) and
+     reports it in `conflicts` with the field(s) it conflicts with and the
+     recommended compatible options - so the user corrects it deliberately.
 
   5. Resolvability: a completed free-edit configuration still resolves to a Part
      Number / SKU with parity_ok (Python assembly == SQL assembly).
@@ -165,10 +165,11 @@ def main():
             ok(True, f"{series}: no ALT_SIZE/MOTOR_HP fields, "
                      f"non-destructive check skipped")
 
-        # --- (4) Invalidation is handled AND reported -----------------------
+        # --- (4) Invalidation is KEPT and REPORTED (non-destructive) --------
         # Find a size A + HP where that HP is invalid under some other size B,
-        # then change A->B and assert the HP is reset (to a valid value) or
-        # dropped, and reported.
+        # then change A->B and assert the endpoint does NOT silently change the
+        # HP: the value is KEPT and reported in `conflicts` with the field(s) it
+        # conflicts with and recommended compatible options.
         size_hp = {}
         for s in sizes:
             t = post("/configurations/resolve-state",
@@ -200,23 +201,24 @@ def main():
             inval = post("/configurations/resolve-state",
                          {"series": series, "selections": sel_b,
                           "changed_field": "ALT_SIZE"})
-            was_reset = "MOTOR_HP" in inval.get("reset_fields", {})
-            was_dropped = "MOTOR_HP" in inval.get("dropped_fields", [])
-            new_hp = inval["selections"].get("MOTOR_HP")
-            ok(was_reset or was_dropped,
-               f"{series}: invalidated MOTOR_HP reported as reset/dropped "
-               f"(reset={was_reset}, dropped={was_dropped})")
-            # If reset, the new value must itself be valid under size B.
-            new_allow = inval["allowable_options"].get("MOTOR_HP", [])
-            ok(was_dropped or (new_hp is not None and _in(new_hp, new_allow)),
-               f"{series}: post-reset MOTOR_HP is valid under size {b} "
-               f"(={new_hp})")
-            ok(new_hp != hp or was_dropped,
-               f"{series}: MOTOR_HP no longer holds the invalidated value")
+            # Non-destructive: the incompatible MOTOR_HP is KEPT, not changed.
+            ok(inval["selections"].get("MOTOR_HP") == hp,
+               f"{series}: incompatible MOTOR_HP KEPT (not silently changed) "
+               f"(={inval['selections'].get('MOTOR_HP')})")
+            ok("MOTOR_HP" not in inval.get("reset_fields", {})
+               and "MOTOR_HP" not in inval.get("dropped_fields", []),
+               f"{series}: MOTOR_HP not silently reset/dropped")
+            # Reported as a conflict with recommendations.
+            conf = {c["field"]: c for c in inval.get("conflicts", [])}
+            ok("MOTOR_HP" in conf,
+               f"{series}: MOTOR_HP reported in conflicts")
+            mh = conf.get("MOTOR_HP", {})
+            ok(bool(mh.get("recommended")) and all(
+                _in(r, size_hp[b]) for r in mh.get("recommended", [])),
+               f"{series}: MOTOR_HP conflict recommends valid options under "
+               f"size {b} ({mh.get('recommended')})")
         else:
-            # No size differentiates HP for this series - exercise a guaranteed
-            # invalidation via the size->frame motor constraint instead, or skip
-            # honestly if the series has no such coupling.
+            # No size differentiates HP for this series - skip honestly.
             ok(True, f"{series}: no size invalidates a motor HP "
                      f"(no differentiating constraint) - invalidation check skipped")
 

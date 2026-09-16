@@ -27,6 +27,10 @@
         .field-card.is-unset { border-left: 3px solid #f0ad4e; }
         /* A field just auto-reset / dropped by an upstream correction. */
         .field-card.is-flagged { box-shadow: 0 0 0 2px #ffc107; }
+        /* A field whose value is INCOMPATIBLE with the other selections (kept,
+           flagged for the user to correct). */
+        .field-card.is-conflict { box-shadow: 0 0 0 2px #dc3545; border-left: 3px solid #dc3545; }
+        .field-card .conflict-line { font-size: 11px; color: #b02a37; margin-top: 3px; font-weight: 600; }
         .field-card label { display: block; font-size: 11px; font-weight: 600; color: #666; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px; }
         .field-card select { width: 100%; padding: 6px 8px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
         .field-card .code { font-size: 11px; color: #4a90d9; margin-top: 3px; font-weight: 600; }
@@ -288,9 +292,10 @@
                 // console will carry the full stack.
                 const reset = data.reset_fields || {};
                 const dropped = data.dropped_fields || [];
+                const conflicts = data.conflicts || [];
                 try {
-                    renderAllFields(reset, dropped);
-                    renderNotice(reset, dropped);
+                    renderAllFields(reset, dropped, conflicts);
+                    renderNotice(reset, dropped, conflicts);
                 } catch (renderErr) {
                     console.error('render error after resolve-state:', renderErr,
                                   { changedField, data });
@@ -316,18 +321,31 @@
             }
         }
 
-        // Surface, non-silently, what the server auto-reset or dropped as a
-        // result of the last change, so a correction never quietly changes
-        // things behind the user's back.
-        function renderNotice(reset, dropped) {
+        // Surface, non-silently, the outcome of the last change. Conflicts are
+        // the important case: selections are NEVER silently changed, so when a
+        // choice is incompatible with the others we KEEP it, flag the field, and
+        // list the fields it conflicts with plus recommended compatible options.
+        function renderNotice(reset, dropped, conflicts) {
+            conflicts = conflicts || [];
             const parts = [];
-            const resetKeys = Object.keys(reset);
-            if (resetKeys.length) {
-                parts.push('<strong>Auto-adjusted</strong> (your change invalidated these, reset to a valid value): ' +
-                    resetKeys.map(k => `${pretty(k)} → <em>${reset[k]}</em>`).join(', '));
+
+            if (conflicts.length) {
+                const items = conflicts.map(c => {
+                    const withList = (c.conflicts_with || []).map(pretty).join(', ');
+                    const rec = (c.recommended || []);
+                    const recTxt = rec.length
+                        ? `compatible options: ${rec.slice(0, 8).map(esc).join(', ')}`
+                        : 'no compatible option exists for this combination — change one of the conflicting fields';
+                    return `<li><strong>${esc(pretty(c.field))} = ${esc(c.value)}</strong> is not compatible`
+                        + (withList ? ` with ${esc(withList)}` : '')
+                        + `. <span style="color:#0a5">Recommended</span>: ${recTxt}.</li>`;
+                }).join('');
+                parts.push(
+                    '<div style="font-weight:700;margin-bottom:4px">⚠ Some selections are incompatible (kept as-is so you can correct them):</div>'
+                    + `<ul style="margin:0 0 0 18px">${items}</ul>`);
             }
             if (dropped.length) {
-                parts.push('<strong>Cleared</strong> (no valid option remained given your other selections): ' +
+                parts.push('<strong>Not applicable</strong> for this configuration (removed): ' +
                     dropped.map(pretty).join(', '));
             }
             setNotice(parts.length ? parts.join('<br>') : '');
@@ -337,9 +355,12 @@
             return fieldCode.replace(/_/g, ' ');
         }
 
-        function renderAllFields(reset, dropped) {
+        function renderAllFields(reset, dropped, conflicts) {
             const grid = document.getElementById('fieldsGrid');
             grid.innerHTML = '';
+            conflicts = conflicts || [];
+            const conflictByField = {};
+            for (const c of conflicts) conflictByField[c.field] = c;
             reset = reset || {};
             dropped = dropped || [];
             const flagged = new Set([...Object.keys(reset), ...dropped]);
@@ -352,9 +373,11 @@
                 const isStd = hasValue && std !== undefined && value === std;
                 const isCustom = hasValue && (std === undefined || value !== std);
 
+                const conflict = conflictByField[fieldCode];
                 const card = document.createElement('div');
                 let cls = 'field-card ' + (hasValue ? (isStd ? 'is-std' : 'is-custom') : 'is-unset');
-                if (flagged.has(fieldCode)) cls += ' is-flagged';
+                if (conflict) cls += ' is-conflict';
+                else if (flagged.has(fieldCode)) cls += ' is-flagged';
                 card.className = cls;
 
                 const tag = hasValue
@@ -391,7 +414,8 @@
                         ${optionHtml.join('')}
                     </select>
                     ${std !== undefined ? `<div class="std-line">standard: ${esc(std)}</div>` : ''}
-                    ${flagged.has(fieldCode) ? `<div class="reset-line">${dropped.includes(fieldCode) ? 'cleared by your last change' : 'auto-adjusted by your last change'}</div>` : ''}
+                    ${conflict ? `<div class="conflict-line">⚠ not compatible${(conflict.conflicts_with || []).length ? ' with ' + conflict.conflicts_with.map(pretty).map(esc).join(', ') : ''}${(conflict.recommended || []).length ? ' — try: ' + conflict.recommended.slice(0, 5).map(esc).join(', ') : ''}</div>` : ''}
+                    ${(!conflict && flagged.has(fieldCode)) ? `<div class="reset-line">${dropped.includes(fieldCode) ? 'not applicable for this configuration' : 'auto-adjusted by your last change'}</div>` : ''}
                     ${code ? `<div class="code">→ ${esc(code)}</div>` : ''}
                 `;
                 const selectEl = card.querySelector('select');
