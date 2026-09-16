@@ -1,93 +1,120 @@
 # F180 — Fybroc Configuration Signoff & Freeze
 
-**Date:** 2026-08-24  
-**Version:** F140-corrections-v1 (MetadataPublication ID=2)  
-**Status:** CONFIGURATION-COMPLETE  
+**Date:** 2026-08-26
+**Code baseline:** commit `70c69d2` (branch `feature/m021-shared-excel-production-hardening`)
+**Metadata publication:** id=2 `F140-corrections-v1`
+**Pricing publication:** id=7 `FYBROC-REV04-MERGE-20260914-V1`
+**Status:** CONFIGURATION-COMPLETE (pending engineering signature — §8)
+
+> Supersedes the 2026-08-24 signoff. That version predated the F150 SQL identity
+> authority, the Rev0.4 pricing adoption, the free-edit endpoint, and the
+> all-series batch regression, and its publication/series counts were stale.
 
 ---
 
-## 1. Approved Metadata Publication
+## 1. Approved metadata publication
 
-| Component | Count | Source |
-|-----------|-------|--------|
-| SeriesFieldOption | 1,724 rows | Rev0.3 Selections (authoritative) |
-| FieldOptionDependency | 10,574 rows | SQL snapshot + CT4 constraint corrections |
-| AttributeValue | 266 rows | V6 Nomenclature Attributes |
-| Active Pricing Rules | 2,884 | Price Estimator-Fybroc.xlsm |
+Publication id=2, version `F140-corrections-v1` (active).
 
-## 2. Series Coverage
+| Component | Count |
+|-----------|------:|
+| SeriesFieldOption | 2,096 rows |
+| FeasibleConstraint | 4,487 rows (29 tables) |
+| ConstraintFieldMap | 28 rows |
+| MotorConstraint | 3,278 rows |
+| AttributeValue | 532 rows |
 
-| Series | Fields | Options | Status |
-|--------|--------|---------|--------|
-| 1500 | 46 | 259 | ✅ Complete |
-| 1530 | 40 | 195 | ✅ Complete |
-| 1600 | 45 | 199 | ✅ Complete |
-| 1630 | 39 | 176 | ✅ Complete |
-| 2530 | 29 | 164 | ✅ Complete |
-| 3000 | 42 | 181 | ✅ Complete |
-| 5500 | 38 | 550 | ✅ Complete |
+## 2. Series coverage (10 series)
 
-## 3. SQL Identifier Authority
+| Series | Orientation | Fields | Options | Status |
+|--------|-------------|-------:|--------:|--------|
+| 1500 | Horizontal | 46 | 290 | ✅ Complete |
+| 1530 | Horizontal | 40 | 220 | ✅ Complete |
+| 1600 | Horizontal | 45 | 229 | ✅ Complete |
+| 1630 | Horizontal | 39 | 200 | ✅ Complete |
+| 2530 | Horizontal | 29 | 178 | ✅ Complete |
+| 3000 | Horizontal | 42 | 208 | ✅ Complete |
+| 5500 | Vertical | 38 | 569 | ✅ Complete |
+| 5530 | Vertical | 26 | 170 | ✅ Complete |
+| 7500 | Vertical | 4 | 22 | ⚠ Sparse (see §6.1) |
+| 8500 | Vertical | 4 | 10 | ⚠ Sparse (see §6.1) |
 
-| Procedure | Status | Verified |
-|-----------|--------|----------|
-| cfg.fn_LookupIdentifierCode | DEPLOYED | ✅ |
-| cfg.usp_GeneratePartNumber | DEPLOYED | ✅ 10/10 correct PNs |
-| cfg.usp_GenerateSKU | DEPLOYED | ✅ F<Series>-<8char><VersionLetter> |
-| cfg.usp_ResolveConfiguredProduct | DEPLOYED | ✅ |
-| cfg.usp_LookupBySKU | DEPLOYED | ✅ |
+## 3. Approved pricing publication
 
-**Part Number format:** `<Brand><Series+Flange><Size><Material><Trim>-<PumpOptions>-<SealMfg><SealAssy>-<Options>-<FrameSize><MotorAssy>-<MotorMods>-<Testing>`
+Current Fybroc pricebook: PriceBookVersion id=7 `FYBROC-REV04-MERGE-20260914-V1`
+— 56,241 active rules. Rev0.4 pricing adopted for series 1500 & 5500; other
+series retain Price-Estimator pricing (option-2b scope). Components with no
+current price resolve to Contact-Factory (C/F) and are reported per-config via
+the resolve response `component_pricing`.
 
-**SKU format:** `<FamilyPrefix><Series>-<8char_token><VersionLetter>`
+## 4. SQL identifier authority (F150)
 
-## 4. Regression Package
+SQL owns configured-product identity; the Python engine remains a parity oracle.
 
-| Test | Cases | SQL Passed | Excel Oracle Passed |
-|------|-------|------------|---------------------|
-| Part Number generation | 10 | 10/10 ✅ | 2/2 (where operational) |
-| SQL vs Excel parity | 2 (5500 series) | Match ✅ | Match ✅ |
+| Element | Authority | Verified |
+|---------|-----------|----------|
+| Canonical config signature (SHA-256) | SQL (python parity oracle) | ✅ identifier + BOM audits |
+| Part Number | SQL `usp_AssembleConfiguredProduct` | ✅ 44/44 parity, oracle 6/6 |
+| SKU V2 | SQL `usp_GenerateSKU` | ✅ deterministic, SKU↔PN 1:1 |
+| Configured-product reuse | SQL | ✅ existing_configuration determinism |
+| BOM | SQL `usp_GenerateBOM` | ✅ 38/38 signature parity + reuse |
 
-## 5. Source Lineage
+- **Part Number format:** `<Brand><Series+Flange><Size><Material><Trim>-<PumpOptions>-<SealMfg><SealAssy>-<Options>-<FrameSize><MotorAssy>-<MotorMods>-<Testing>` (vertical series omit the seal segment).
+- **SKU format:** `F<Series>-<8-char token><VersionLetter>` (Dean will use `D` prefix).
 
-| Source Workbook | Role | Status |
+## 5. Regression package (F170)
+
+See `docs/evidence/F170/FYBROC_EXHAUSTIVE_REGRESSION.md`. Summary:
+
+- Correction gate `run_all_fybroc_audits.py` → **ALL CORRECTIONS INTACT**
+  (selections clean, feasible 14/14, motor 91/91, identifier 44/44, BOM 38/38,
+  quote 22/22, free-config 32/32).
+- Excel oracle `fybroc_oracle_compare.py` → **6/6** (Excel == API).
+- Per-series free-edit batch `audit_series_batch.py` → **0 errors** across all
+  10 series (1,466 resolve-state + 1,466 resolve/pricing calls).
+
+## 6. Known limitations (carried forward)
+
+1. **7500 / 8500 sparse metadata** — only 4 configurable fields each; pricing
+   largely C/F. Resolves correctly for what is defined; fuller config/pricing is
+   a future engineering revision.
+2. **6000 / 7530** — no configuration data in the active publication; require
+   engineering to define options before support.
+3. **Vertical motor_assy / horizontal seal_assy combo-table gaps** — some SFO
+   values lack a matching combination row (data gap, not architecture).
+4. **Excel COM oracle horizontal limitation** — COM VLOOKUP dependency-chain
+   issue; API/SQL is authoritative, oracle confirms parity on drivable cases.
+5. **Pricebook `IsCurrent` anomaly** — a legacy `DEV1` PriceBookVersion (id=1,
+   89 rows) still carries `IsCurrent=1` alongside the Fybroc-authoritative
+   `FYBROC-REV04-MERGE-20260914-V1` (id=7). The runtime targets the Rev0.4-merge
+   book for Fybroc; the DEV1 flag should be cleared in a pricing-hygiene pass.
+
+## 7. Source lineage
+
+| Source workbook | Role | Status |
 |-----------------|------|--------|
 | Nomenclature_V6.xlsm | Identifier codes, segment combinations | AUTHORITATIVE |
 | Fybroc Configuration Rev0.3.xlsx | Configuration model, constraints, selections | AUTHORITATIVE |
-| Price Estimator-Fybroc.xlsm | Production pricing (base, adders, components) | AUTHORITATIVE |
+| Fybroc Rev0.4 (pricing) | 1500 & 5500 pricing adoption | AUTHORITATIVE (1500/5500) |
+| Price Estimator-Fybroc.xlsm | Production pricing (other series, adders, components) | AUTHORITATIVE (non-Rev0.4) |
 | Fybroc Nomenclature_V5.xlsm | Legacy reference | SUPERSEDED by V6 |
 | Fybroc Attributes and Constraints.xlsx | Legacy reference | SUPERSEDED by Rev0.3 |
 
-## 6. Known Limitations
+## 8. Engineering signoff
 
-1. **Excel Oracle horizontal series COM limitation** — Data validation VLOOKUPs in Nomenclature_V6 fail when series/flange values are written via COM without populating the full Named Range dependency chain. 5500 series works. Resolution: U150 (Excel V2 API flow) will replace COM cell manipulation with API-driven configuration.
+| Check | Result |
+|-------|--------|
+| All 10 series project valid options from corrected metadata | ✅ |
+| Invalid combinations fail closed / reported as conflicts | ✅ |
+| SQL Part Number == approved V6 nomenclature (oracle) | ✅ 6/6 |
+| SKU deterministic + collision-protected + 1:1 with PN | ✅ |
+| Pricing reconciled + per-config C/F visibility | ✅ |
+| Correction gate green | ✅ ALL CORRECTIONS INTACT |
 
-2. **Series 5530** — Appears in Rev0.3 selections but not in current SQL supported series list. Engineering decision needed: is 5530 a production series or a future/staging series?
-
-3. **5500 Setting-level pricing granularity** — Rev0.3 has 19 settings per size; Price Estimator has 4. Rev0.3 may have newer engineering data not yet in production pricebook.
-
-4. **Flexaseal seal pricing** — Not yet in production pricebook. Engineering review item.
-
-5. **MOTOR_MODIFICATIONS dependency** — 8,485 SQL rows with 11-key motor-spec context. Not yet reconciled against Rev0.3 Motor Constraints (different dimension structure). Deferred to Dean phase (D110) as the dependency structure may change.
-
-## 7. Corrections Applied (F140)
-
-- 2,604 over-permissive IMPELLER_TRIM dependency rows removed (CT4 enforcement)
-- +182 net new SeriesFieldOption rows from Rev0.3 selections
-- SEAL_TYPE vendor prefixes removed (Crane_, Flowserve_ → clean names)
-- BASEPLATE_OPTION vocabulary updated (by others → no baseplate, supplied by fybroc → baseplate included)
-- COUPLING_OPTION vocabulary updated (same pattern)
-- Publication 1 (v0.2.0-fybroc-attributes) retired
-
-## 8. Engineering Signoff
-
-**Configuration completeness:** All 7 supported series project valid options from corrected metadata.  
-**Identifier authority:** SQL generates Part Numbers matching V6 Nomenclature codes.  
-**Pricing reconciliation:** 109/109 base prices match between Rev0.3 and Price Estimator (0 mismatches).  
-**Constraint enforcement:** ConstraintTable4 (517 allowed size×trim pairs) enforced in SQL dependencies.  
+**Engineering signature:** _________________________  **Date:** ____________
 
 ---
 
-**Fybroc declared CONFIGURATION-COMPLETE.**
+**Fybroc declared CONFIGURATION-COMPLETE pending the engineering signature above.**
 
-**Next milestone:** D100 — Dean Source Reconciliation
+**Next milestone:** D100 — Dean Source Reconciliation.

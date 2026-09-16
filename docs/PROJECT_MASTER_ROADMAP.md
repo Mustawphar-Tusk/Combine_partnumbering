@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.8  
-**Roadmap Date:** 2026-08-28  
+**Roadmap Version:** 1.9  
+**Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** F150 — SQL Fybroc Identifier Authority (F140 exited 2026-08-28)  
+**Current Milestone:** F180 — Fybroc Signoff & Freeze (F150/F160/F170 passing; F180 signoff prepared, awaiting engineering signature). Next: D100 — Dean Source Reconciliation.  
 
 ---
 
@@ -984,10 +984,10 @@ F110	V5/V6 nomenclature reconciliation	COMPLETE
 F120	Rev0.3 configuration model	COMPLETE
 F130	Fybroc pricing/adders	COMPLETE
 F140	Fybroc metadata corrections	COMPLETE (exited 2026-08-28)
-F150	SQL Fybroc identifier	CURRENT — needs verification vs exit gate
-F160	Fybroc Excel Oracle	NEEDS RE-VERIFICATION
-F170	Fybroc exhaustive regression	NEEDS RE-VERIFICATION
-F180	Fybroc signoff	NOT COMPLETE
+F150	SQL Fybroc identifier	COMPLETE — SQL-authoritative PN/SKU, python parity 44/44
+F160	Fybroc Excel Oracle	COMPLETE — fybroc_oracle_compare.py 6/6 (Excel==API)
+F170	Fybroc exhaustive regression	COMPLETE — gate ALL CORRECTIONS INTACT + 10-series batch 0 errors
+F180	Fybroc signoff	SIGNOFF PREPARED — awaiting engineering signature (CURRENT)
 D100	Dean source reconciliation	NOT STARTED (only inventory docs exist)
 D110	Dean configuration completion	NOT STARTED
 D120	Dean pricing/adders	NOT STARTED
@@ -1024,32 +1024,40 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.8
+Version:            1.9
 
 Current Phase:      F — Fybroc Completion
-Current Milestone:  F150 (SQL Fybroc Identifier Authority)  [NEXT]
-Status:             F140 EXITED 2026-08-28 — awaiting engineering UAT feedback
+Current Milestone:  F180 (Fybroc Signoff & Freeze)  [CURRENT — signoff prepared]
+Status:             F150, F160, F170 PASSED (2026-08-26). F180 signoff document
+                    prepared (docs/evidence/F180/FYBROC_SIGNOFF.md); awaiting the
+                    engineering signature to formally freeze.
 
-CORRECTION (v1.8): The v1.6/1.7 checkpoint had advanced to T110 and marked
-F100-F180, D100-D160, U100-U170 all COMPLETE. Hands-on testing (ours + engineering
-on the deployed preview) showed Fybroc constraint enforcement was NOT actually
-working, so per governance the true position was F140. F140 has now been genuinely
-completed and exited (see docs/evidence/F140/FYBROC_F140_EXIT.md). Downstream
-milestones previously marked complete must be re-verified against their own exit
-gates, not assumed done — especially the Dean phase (D100-D160), which has NOT been
-built to Fybroc parity.
+CHANGE (v1.9): F150-F170 verified against their own exit gates and marked
+complete (they were "needs re-verification" under v1.8). Evidence:
+- F150 SQL identifier authority: resolve is SQL-authoritative for PN/SKU/
+  signature/reuse; Python parity oracle agrees (audit_identifier_parity 44/44).
+- F160 Excel oracle: scripts/fybroc_oracle_compare.py 6/6 (Excel == API).
+- F170 exhaustive regression: docs/evidence/F170/FYBROC_EXHAUSTIVE_REGRESSION.md
+  — correction gate ALL CORRECTIONS INTACT (selections clean, feasible 14/14,
+  motor 91/91, identifier 44/44, BOM 38/38, quote 22/22, free-config 32/32),
+  oracle 6/6, and a 10-series free-edit batch with 0 errors (1,466 resolve-state
+  + 1,466 resolve/pricing calls). Stale F170 0/10 Excel-COM artifacts removed.
+The prior stale F180 signoff (2026-08-24) was regenerated with current
+publication facts.
 
-Current Objective (F150):
-Move configured-product identity authority (Part Number, SKU V2, signature, reuse)
-into SQL Server, with the Python engine kept as a parity oracle until SQL passes
-regression.
+Current Objective (F180):
+Freeze a production-grade Fybroc engineering publication: approved metadata
+publication (id=2 F140-corrections-v1), approved pricing publication (id=7
+FYBROC-REV04-MERGE-20260914-V1), regression package, source lineage, known
+limitations, and engineering signoff.
 
-Current Exit Gate (F150):
-For all approved Fybroc regression cases, SQL Part Number = approved workbook Part
-Number; SKU V2 deterministic and collision-protected.
+Current Exit Gate (F180):
+Fybroc declared configuration-complete with engineering signature on
+docs/evidence/F180/FYBROC_SIGNOFF.md.
 
 Next Permitted Milestone:
-F160 — Excel Oracle Harness
+D100 — Dean Source Reconciliation (may begin in parallel with awaiting the F180
+signature, since Dean is net-new work that does not modify frozen Fybroc data).
 
 Deployment note (parallel to roadmap, NOT milestone T110):
 A PREVIEW test environment is live for engineering feedback — static UI on Vercel,
