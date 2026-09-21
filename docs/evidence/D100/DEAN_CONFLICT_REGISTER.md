@@ -25,10 +25,15 @@ is NOT in that field's Config Options domain. CONFIRMED root causes (from
 | # | Rule | Fields | Blocked | CONFIRMED cause | Proposed action |
 |---|------|--------|--------:|-----------------|-----------------|
 | A1 | Table100 | Seal Option × Gland Type × Flush Plan × Barrier Plan | 165 | **Barrier Plan casing mismatch**: codependency uses `PLAN 7352`/`PLAN 52`/`PLAN 53`/… but Barrier Plan domain is `Plan 7352`/`Plan 52`/`Plan 53` (`PLAN` vs `Plan`). Also a 4-leg quad. | Normalize Barrier Plan casing (case-insensitive match, as Fybroc does) → all 165 resolve. D110 schema must also support a 4-leg tuple (Fybroc's is 3-leg). |
-| A2 | Table113109 | Seal Configuration × Throttle Bushing | 1 | **Real data error**: tuple `Packing × Required`, but Throttle Bushing domain is `{Not Required, Carbon}` — "Required" is not a valid value. | NEEDS_ENGINEERING_REVIEW — is the intended value `Carbon` (or a new "Required")? |
+| A2 | Table113109 | Seal Configuration × Throttle Bushing | 1 | **Value not in domain** at `Codependencies!AO124` (sub-table header row 123 `Seal Configuration × Throttle Bushing`): tuple `Packing × Required`, but Throttle Bushing domain is `{Not Required, Carbon}`. Likely a copy-paste of the identical Hydropads rule two sub-tables up (`AN119/AO120 = Packing/Required`, where Hydropads legitimately has `Required`). | **PENDING ENGINEERING (user verifying)** — value must be `Not Required` or `Carbon`. Fix cell `AO124` in the workbook, or add a load-time alias. |
 | A3 | Table118 | Pumping Ring × Barrier Plan | 2 | Barrier Plan `Plan 52`/`Plan 53` — matches domain casing but the M023 run still flagged unknown (whitespace/normalization); resolves under case/space-insensitive match | Apply the same normalization as A1; re-validate |
 | A4 | Table121 | Seal Configuration × Barrier Plan | 12 | Same `PLAN xxxx` vs `Plan xxxx` casing mismatch as A1 | Normalize casing → resolves |
-| A5 | Table128 | Cooling Plan × Bearing Frame Cooling | 4 | **Value mismatch**: codependency uses `BEARING_FRAME_COOLING = NONE`, but domain is `{Not Required, Steel Tube, Aluminum Fan, Stainless Steel Fan}` — no `NONE`. | NEEDS_ENGINEERING_REVIEW — map `NONE` → `Not Required`? |
+| A5 | Table128 | Cooling Plan × Bearing Frame Cooling | 4 | **Value not in domain** at `Codependencies!AU99:AU102` (sub-table header row 98 `Cooling Plan × Bearing Frame Cooling`): `Plan C/D/E/J × NONE`, but Bearing Frame Cooling domain is `{Not Required, Steel Tube, Aluminum Fan, Stainless Steel Fan}` — no `NONE`. | **PENDING ENGINEERING (user to confirm in same pass)** — likely `NONE` → `Not Required`. Fix cells `AU99:AU102`, or add a load-time alias. |
+
+### Exact workbook locations (for the fix)
+`PumpConfiguration_Logic.xlsm` → **`Codependencies`** sheet:
+- **A2 — Throttle Bushing:** cell **`AO124`** (`Required` → `Not Required` or `Carbon`; sub-table `Seal Configuration × Throttle Bushing`, header row 123). The identical Hydropads rule at `AO120` is VALID (Hydropads domain includes `Required`) — do not change that one.
+- **A5 — Bearing Frame Cooling:** cells **`AU99`, `AU100`, `AU101`, `AU102`** (`NONE` → likely `Not Required`; sub-table `Cooling Plan × Bearing Frame Cooling`, header row 98).
 
 **Takeaway:** ~179 of 184 blocked tuples (A1, A3, A4) are **casing/normalization**
 mismatches that resolve with the same case/space-insensitive matching already
@@ -69,7 +74,7 @@ items, NOT codependency conflicts.
 
 | # | Item | Detail | Action |
 |---|------|--------|--------|
-| D1 | `DeanMasterConfig_v14 - RA - JASON.xlsm` (5.6 MB) | Present in `workbooks/Dean/` but NOT in the roadmap's four-workbook Dean source set, and NOT referenced by `config/workbook_roles.json` | NEEDS_ENGINEERING_REVIEW — is v14 a newer master that supersedes any of the four, or a personal working copy? Governance: newer filename does NOT auto-supersede. Classify before D110. |
+| D1 | `DeanMasterConfig_v14 - RA - JASON.xlsm` (5.6 MB) | A D365 EcoRes **ERP product-master / attribute-staging** workbook (`EcoResProductV2Staging`, `PRODUCTNUMBER`/`PRODUCTNAME`, ~70K rows), a personal working copy | **RESOLVED — DEFERRED to ERP mapping.** Engineering-confirmed: this belongs to mapping configured products to the ERP (D365), NOT to building the pump configuration. Out of scope for D100–D160 (config build); revisit at ERP/product-master integration (U100 / Phase P). Does NOT supersede any configuration workbook; filename recency ≠ authority. |
 
 ## E. Not-yet-loaded state (informational, not a conflict)
 
@@ -81,10 +86,17 @@ items, NOT codependency conflicts.
 
 ## Summary
 
-- **5 blocked constraint rules (A1-A5)** are the must-resolve engineering items
-  before Dean constraints can publish; A2-A5 look like value spelling/normalization
-  or domain mismatches, A1 is the 4-leg quad needing schema + confirmation.
-- **B, C, D** are review/classification items that do not block the constraint
-  authority but must be settled during D110/D130.
+- **5 blocked constraint rules (A1-A5):** ~179/184 tuples (A1, A3, A4) are Barrier
+  Plan casing/whitespace — resolved by case/space-insensitive matching in the
+  D110 loader (no workbook edit needed), plus A1 needs a 4-leg tuple schema.
+  Only **A2 (AO124, Throttle Bushing "Required") and A5 (AU99:AU102, Bearing
+  Frame Cooling "NONE")** are genuine value-domain items — **PENDING ENGINEERING**
+  (user verifying: Throttle Bushing must be `Not Required` or `Carbon`; Bearing
+  Frame Cooling `NONE` → likely `Not Required`). These 5 tuples do not block the
+  D100 exit gate (source is classified); they must be corrected in the workbook
+  (or aliased) before those specific rules publish in D110.
+- **B, C** are review/classification items settled during D110/D130.
+- **D1 (DeanMasterConfig_v14): RESOLVED** — ERP product-master artifact, deferred
+  to ERP mapping (U100/Phase P); not a configuration source.
 - No conflict contradicts the authority decision: PumpConfiguration_Logic remains
   the complete codependency + option-domain source.

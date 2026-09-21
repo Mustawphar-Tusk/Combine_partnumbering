@@ -39,16 +39,21 @@ no workbook remains structurally unexplained.
    mismatches (resolve with case/space-insensitive matching, as Fybroc already
    does); only **5 tuples** are true value-domain issues needing an engineering
    decision (Throttle Bushing "Required"; Bearing Frame Cooling "NONE").
-5. **DeanMasterConfig_v14 classified:** a D365 EcoRes **ERP product-master /
-   attribute staging** workbook (personal "- RA - JASON" copy), NOT a
-   configuration/constraint authority; does not supersede the governed sources.
+5. **DeanMasterConfig_v14 classified (RESOLVED):** a D365 EcoRes **ERP
+   product-master / attribute staging** workbook (personal "- RA - JASON" copy).
+   Engineering-confirmed as an **ERP-mapping artifact**, deferred to ERP/product-
+   master integration (U100/Phase P) — out of scope for the config build; does
+   not supersede any governed source.
 6. **SQL state:** no Dean rows published yet — publication is D110.
 
 ## Open engineering-review items (carried to D110/D120)
 
-- Barrier Plan casing normalization (unblocks 179 tuples).
-- Throttle Bushing "Required" (1 tuple) + Bearing Frame Cooling "NONE" (4 tuples)
-  — genuine value-domain decisions.
+- Barrier Plan casing normalization (unblocks 179 tuples; loader-side, no
+  workbook edit).
+- **PENDING ENGINEERING** — genuine value-domain fixes (5 tuples), exact cells in
+  `PumpConfiguration_Logic.xlsm → Codependencies`:
+  - `AO124` Throttle Bushing `Required` → `Not Required` or `Carbon` (user verifying).
+  - `AU99:AU102` Bearing Frame Cooling `NONE` → likely `Not Required`.
 - Barrier Plan Extras empty domain; "Pump Configuration" instruction-as-option;
   OLD JC Style deprecation.
 - Model-list reconciliation: DEANLINE 0.75x0.75 / 1.5x1.5 and MDL1-* non-A-prefix

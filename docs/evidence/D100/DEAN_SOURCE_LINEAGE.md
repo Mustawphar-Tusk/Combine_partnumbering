@@ -49,12 +49,13 @@ Evidence (structural inventory, 101 sheets):
 - The `- RA - JASON` filename suffix indicates a **personal working copy**
   (initials), reinforcing that it is not a governed authoritative source.
 
-**Governance decision:** does NOT supersede any of the four governed workbooks.
-It is a candidate ERP-integration artifact (D365 EcoRes product master) relevant
-later to SKU/product publication, **not** to D100 configuration/constraint
-reconciliation. Flagged in DEAN_CONFLICT_REGISTER §D1 for engineering
-confirmation. Newer version number (v14) does NOT grant it authority (governance
-rule: filename recency ≠ authority).
+**Governance decision (RESOLVED, engineering-confirmed):** does NOT supersede any
+of the four governed workbooks. It is an **ERP-integration artifact** (D365
+EcoRes product master) used later to **map configured products to the ERP**, not
+to build the pump configuration. **Deferred** to ERP/product-master integration
+(U100 / Phase P); out of scope for D100–D160. Newer version number (v14) does NOT
+grant it authority (governance rule: filename recency ≠ authority). See
+DEAN_CONFLICT_REGISTER §D1.
 
 ## 4. Prior compilation lineage (M023)
 
