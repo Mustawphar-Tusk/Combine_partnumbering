@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.9  
+**Roadmap Version:** 1.10  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -988,8 +988,8 @@ F150	SQL Fybroc identifier	COMPLETE — SQL-authoritative PN/SKU, python parity 
 F160	Fybroc Excel Oracle	COMPLETE — fybroc_oracle_compare.py 6/6 (Excel==API)
 F170	Fybroc exhaustive regression	COMPLETE — gate ALL CORRECTIONS INTACT + 10-series batch 0 errors
 F180	Fybroc signoff	SIGNOFF PREPARED — awaiting engineering signature (CURRENT)
-D100	Dean source reconciliation	NOT STARTED (only inventory docs exist)
-D110	Dean configuration completion	NOT STARTED
+D100	Dean source reconciliation	COMPLETE — 5 workbooks classified; PumpConfiguration_Logic authority (docs/evidence/D100/DEAN_D100_EXIT.md)
+D110	Dean configuration completion	COMPLETE — model published to SQL (family 1), audit 45/45, Fybroc gate intact (docs/evidence/D110/DEAN_D110_EXIT.md)
 D120	Dean pricing/adders	NOT STARTED
 D130	SQL Dean identifier	NOT STARTED
 D140	Dean Excel Oracle	NOT STARTED
@@ -1024,13 +1024,32 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.9
+Version:            1.10
 
-Current Phase:      F — Fybroc Completion
-Current Milestone:  F180 (Fybroc Signoff & Freeze)  [CURRENT — signoff prepared]
-Status:             F150, F160, F170 PASSED (2026-08-26). F180 signoff document
-                    prepared (docs/evidence/F180/FYBROC_SIGNOFF.md); awaiting the
-                    engineering signature to formally freeze.
+Current Phase:      D — Dean Completion
+Current Milestone:  D110 (Dean Configuration & Dependency Completion) COMPLETE.
+                    Next permitted: D120 (Dean Pricing & Adders) — do NOT start
+                    without explicit go-ahead.
+Status:             D100 + D110 complete (2026-08-26). F180 signoff remains
+                    prepared, awaiting engineering signature (parallel; Dean is
+                    net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.10): D100 and D110 marked complete against their exit gates.
+- D100 (Dean source reconciliation): 5 workbooks classified;
+  PumpConfiguration_Logic confirmed as codependency/option-domain authority
+  (docs/evidence/D100/DEAN_D100_EXIT.md).
+- D110 (Dean configuration completion): the authoritative model is published to
+  SQL for the DEAN family (family 1) by reusing the Fybroc constraint tables made
+  family-aware (PumpFamilyId on FeasibleConstraint + ConstraintFieldMap; composite
+  ConstraintFieldMap PK; Option4 columns for the 4-leg Seal Option × Gland Type ×
+  Flush Plan × Barrier Plan quad). Loaded: 46 field-map, 19,425 SeriesFieldOption
+  (incl. a synthesized BARRIER_PLAN domain), 721 feasible-constraint rows.
+  Verified: scripts/audit_dean_config.py 45/45 (options project, valid pass,
+  invalid fail-closed, quad wired, no dead ends) and the Fybroc regression gate
+  ALL CORRECTIONS INTACT 7/7 with Fybroc row counts unchanged (no regression).
+  Only gap: 5 pending-engineering value tuples (Throttle Bushing "Required";
+  Bearing Frame Cooling "NONE"), excluded and logged. See
+  docs/evidence/D110/DEAN_D110_EXIT.md.
 
 CHANGE (v1.9): F150-F170 verified against their own exit gates and marked
 complete (they were "needs re-verification" under v1.8). Evidence:
@@ -1056,8 +1075,10 @@ Fybroc declared configuration-complete with engineering signature on
 docs/evidence/F180/FYBROC_SIGNOFF.md.
 
 Next Permitted Milestone:
-D100 — Dean Source Reconciliation (may begin in parallel with awaiting the F180
-signature, since Dean is net-new work that does not modify frozen Fybroc data).
+D120 — Dean Pricing & Adders (D100 + D110 now complete; see §12 CHANGE v1.10).
+Dean work proceeds in parallel with awaiting the F180 signature, since Dean is
+net-new work that does not modify frozen Fybroc data. Do NOT start D120 without
+explicit go-ahead.
 
 Deployment note (parallel to roadmap, NOT milestone T110):
 A PREVIEW test environment is live for engineering feedback — static UI on Vercel,

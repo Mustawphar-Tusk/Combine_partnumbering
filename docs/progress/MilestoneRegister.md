@@ -1,6 +1,12 @@
 # Milestone Register
 
-**Last Updated:** 2026-08-25
+**Last Updated:** 2026-08-26
+
+> **Authority note:** for the true, verified Dean-phase status use
+> `docs/PROJECT_MASTER_ROADMAP.md` §11–§12 (v1.10). The Phase D / Phase U rows
+> below were over-reported in a prior checkpoint; only **D100** and **D110** are
+> verified complete against their exit gates (evidence in `docs/evidence/D100/`
+> and `docs/evidence/D110/`). D120–D160 are NOT yet built.
 
 ## Foundation Phase
 
@@ -98,6 +104,8 @@
 
 ## Current Work Context
 
-**Active work:** End-to-end UI testing of all Fybroc series via configurator UI  
+**Active work:** D110 complete — Dean configuration + codependency model published
+to SQL (family-scoped), Dean audit 45/45, Fybroc regression gate ALL CORRECTIONS
+INTACT (no regression).  
 **Branch:** `feature/m021-shared-excel-production-hardening`  
-**Next action:** Confirm all vertical series resolve consistently, then close milestone  
+**Next action:** D120 (Dean Pricing & Adders) — awaiting explicit go-ahead.  

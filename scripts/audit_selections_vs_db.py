@@ -78,10 +78,17 @@ def load_db() -> set[tuple[str, str, str, int]]:
     pub_id = cur.execute(
         "SELECT MetadataPublicationId FROM cfg.MetadataPublication WHERE Status='Active'"
     ).fetchone()[0]
+    # Scope to the FYBROC family: cfg.SeriesFieldOption is shared across families
+    # (Dean rows were added in D110), so this Fybroc authority audit must filter
+    # by PumpFamilyId or it would see Dean rows as spurious "EXTRA".
+    fybroc_id = cur.execute(
+        "SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode='FYBROC'"
+    ).fetchone()[0]
     got = set()
     for row in cur.execute(
         "SELECT FieldCode, OptionValue, SeriesCode, IsStandard "
-        "FROM cfg.SeriesFieldOption WHERE MetadataPublicationId=?", pub_id):
+        "FROM cfg.SeriesFieldOption WHERE MetadataPublicationId=? AND PumpFamilyId=?",
+        pub_id, fybroc_id):
         got.add((str(row[0]).strip(), str(row[1]).strip(),
                  str(row[2]).strip(), 1 if row[3] else 0))
     cn.close()

@@ -335,15 +335,22 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
     contained data depends only on (pub, family, series), never on the current
     selections, so it is safe to reuse across every field in one request.
     """
+    # Both tables are family-scoped (PumpFamilyId): a family's constraint rules
+    # and label->code map are read for THAT family only, so Dean and Fybroc
+    # coexist in the same tables without cross-contaminating each other's
+    # enforcement (esp. on shared labels like Seal Type / Seal Option / Shaft
+    # Material). Fybroc rows are tagged family 2; Dean family 1.
     label_to_sfo = {
         r[0]: r[1] for r in cursor.execute(
-            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap"
+            "SELECT ConstraintFieldName, SFOFieldCode FROM cfg.ConstraintFieldMap "
+            "WHERE PumpFamilyId = ?", family_id
         ).fetchall()
     }
     feasible_rows = cursor.execute(
         "SELECT TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
-        "       Option3Field, Option3Value, Allowed, SeriesApplicability "
-        "FROM cfg.FeasibleConstraint"
+        "       Option3Field, Option3Value, Option4Field, Option4Value, "
+        "       Allowed, SeriesApplicability "
+        "FROM cfg.FeasibleConstraint WHERE PumpFamilyId = ?", family_id
     ).fetchall()
 
     scope_row = cursor.execute(
@@ -459,12 +466,12 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
     # it must NOT wipe non-wrapped shaft materials it never names).
     governed_targets = _collections.defaultdict(set)
 
-    for (tname, o1f, o1v, o2f, o2v, o3f, o3v, allowed_flag, scope) in all_rows:
+    for (tname, o1f, o1v, o2f, o2v, o3f, o3v, o4f, o4v, allowed_flag, scope) in all_rows:
         if not _series_in_scope(scope):
             continue
         legs = []
         ok = True
-        for label, value in ((o1f, o1v), (o2f, o2v), (o3f, o3v)):
+        for label, value in ((o1f, o1v), (o2f, o2v), (o3f, o3v), (o4f, o4v)):
             if not label:
                 continue
             sfo = label_to_sfo.get(str(label).strip())
