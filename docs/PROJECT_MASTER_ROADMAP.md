@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.10  
+**Roadmap Version:** 1.11  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1024,7 +1024,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.10
+Version:            1.11
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D110 (Dean Configuration & Dependency Completion) COMPLETE.
@@ -1033,6 +1033,20 @@ Current Milestone:  D110 (Dean Configuration & Dependency Completion) COMPLETE.
 Status:             D100 + D110 complete (2026-08-26). F180 signoff remains
                     prepared, awaiting engineering signature (parallel; Dean is
                     net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.11): D110 option applicability corrected to be size-aware and
+STD/X-driven. Engineering flagged that most Dean configurations carry STD
+(standard) / X (available) markers, which the first D110 load ignored (it offered
+every option to every series with no standard default). The markers live on the
+PumpConfiguration_Logic 'Pump Options' sheet (per model = series+size), and
+applicability varies by size in 27/37 series. Fix: added a nullable SizeCode to
+cfg.SeriesFieldOption (Fybroc rows NULL, unaffected), rebuilt the loader from
+'Pump Options' (48,910 rows, 11,767 STD defaults), scoped the API option reads by
+size, and rewrote the Dean audit (29/29: STD seed, per-size applicability, size
+differentiation, fail-closed, quad, no dead ends). Also fixed SEAL_TYPE value
+vocabulary (short 'Type N' to match the constraints) and loaded the real 10-value
+BARRIER_PLAN domain. Fybroc gate ALL CORRECTIONS INTACT 7/7, Fybroc rows
+unchanged. See docs/evidence/D110/DEAN_D110_EXIT.md §0.
 
 CHANGE (v1.10): D100 and D110 marked complete against their exit gates.
 - D100 (Dean source reconciliation): 5 workbooks classified;

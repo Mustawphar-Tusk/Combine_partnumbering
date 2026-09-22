@@ -11,7 +11,94 @@ was altered** (verified by row-count parity and the full Fybroc gate).
 
 ---
 
-## 1. What was published
+## 0. Correction (2026-08-26): size-aware, STD/X-driven option applicability
+
+> **This supersedes the original SeriesFieldOption load described in §1 below.**
+> The first pass loaded option **values** from the `Config Options` sheet and
+> marked every option `IsStandard=0`, offered to every series. Engineering
+> flagged that most Dean configurations carry **STD** (standard) and **X**
+> (available) markers. Those markers live on the **`Pump Options`** sheet of
+> `PumpConfiguration_Logic.xlsm` (and the `Dean Data Sheet Rev 2` `Constraints`
+> sheet), which the first pass did not read. The load was rebuilt.
+
+**What changed**
+
+- **Authoritative option source is now `PumpConfiguration_Logic.xlsm → Pump
+  Options`** (the Dean analogue of Fybroc's Selections sheet): one row per
+  **model** = (A-Number + Series + Size), each option column marked STD /
+  X / blank. 206 models, 69 fields, 527 option columns.
+- **Applicability is per-model (series + size), not per-series.** STD/X varies by
+  size in **27 of 37 series** (e.g. PH2140 has 7 distinct size signatures across
+  17 sizes). A series-only key cannot represent this.
+- **Schema:** added a nullable `SizeCode` to `cfg.SeriesFieldOption`
+  (`scripts/d110_add_sizecode.py`). Fybroc rows keep `SizeCode = NULL` (a
+  series-level row that applies to every size — Fybroc's existing semantics). The
+  active-uniqueness index `UX_SeriesFieldOption_ActiveRelation` was widened to
+  include `SizeCode` so per-size Dean rows don't collide (Fybroc's NULL keeps its
+  existing 5-tuple uniqueness). A supporting index
+  `IX_SeriesFieldOption_SizeScope` was added.
+- **Loader** (`scripts/d110_load_dean_config.py`): per (model, field), an option
+  cell marked STD → `IsStandard=1`, `SelectionMarker='STD'`; X → `IsStandard=0`,
+  `SelectionMarker='X'`; blank → not loaded (not offered for that model).
+  `SizeCode` = the model size.
+- **API** (`src/api/v2_routes.py`): the option-projection reads (evaluate,
+  resolve-state, validate) now scope by `(SizeCode IS NULL OR SizeCode = @size)`
+  where `@size` is the selected `ALT_SIZE`/`SIZE`. Before a size is chosen, the
+  series union is shown (values de-duplicated); once a size is picked, options
+  narrow to that model. Fybroc rows are `SizeCode NULL` so they always project —
+  **Fybroc behavior is byte-for-byte unchanged** (proven by the gate).
+- **STD auto-seed now works for Dean** (it previously could not — there were no
+  STD defaults). Selecting a model seeds each field's standard value, matching
+  the Fybroc free-edit UX.
+
+**Two authoritative data fixes this surfaced**
+
+1. **SEAL_TYPE vocabulary.** `Config Options` used long descriptive seal names
+   ("SIU - Non-Pusher Elastomer Bellows Seal"), but the **codependency tables and
+   `Pump Options` both use the short `Type N` form** ("Type 1", "Type 6A", …). The
+   first load's long names did not match the constraint legs, so the 145-row
+   SEAL_TYPE codependency could not prune. Sourcing values from `Pump Options`
+   aligns them: **25/25 loaded SEAL_TYPE options now match the constraint
+   vocabulary.**
+2. **BARRIER_PLAN domain.** `Pump Options` carries the real 10-value Barrier Plan
+   domain (NONE, Plan 52/53/62/65/74/7352/7353, SK1861, Custom), richer than the
+   5 values previously synthesized from the quad. BARRIER_PLAN has no per-model
+   STD/X markers (availability is governed by the 4-leg quad), so it is loaded
+   per-series with `SizeCode NULL`.
+
+**Rebuilt load result**
+
+| SQL table | DEAN rows | Detail |
+|-----------|----------:|--------|
+| `cfg.ConstraintFieldMap` | 46 | unchanged |
+| `cfg.SeriesFieldOption` | 48,910 | 48,540 per-model (STD/X) across 206 models / 37 series + 370 ungated BARRIER_PLAN |
+| — of which STD defaults | 11,767 | matches the workbook STD count exactly |
+| `cfg.FeasibleConstraint` | 721 | unchanged (726 − 5 blocked) |
+
+**Verification**
+
+- **Dean audit** `scripts/audit_dean_config.py` — **29/29** (expectations derived
+  from the DB): STD auto-seed per model; per-size applicability (API options ⊆ DB
+  offered, 0 non-offered leaked) + size differentiation across sizes of varying
+  series; codependency fail-closed (0 disallowed leaked, 6 prunable tables);
+  4-leg quad wired via Option4; no empty-option dead ends.
+- **Fybroc regression gate** — **ALL CORRECTIONS INTACT (7/7)**; Fybroc row counts
+  unchanged (`FeasibleConstraint` 4487, `ConstraintFieldMap` 28,
+  `SeriesFieldOption` 3638, **0 Fybroc rows with a non-NULL SizeCode**).
+
+**New data-quality observation (non-blocking, pending engineering):** 10
+codependency rows reference a SEAL_TYPE value that has no matching option because
+the M023 codependency source mixes the long and short seal vocabularies —
+`SIB - Pusher O-Ring Seal` (×1), `… (thin cross section)` (×1), `… - High
+Pressure` (×1), `SIB - Pusher Wedge Seal` (×1), and `Type 2` (×6). These legs are
+**inert** (they can never match a selectable option), so they are harmless, but
+the seal vocabulary should be reconciled in the source with the other pending
+items.
+
+---
+
+## 1. What was published (original first-pass description — see §0 for the
+##    corrected, authoritative load)
 
 Authoritative source: `exports/m023_dean_source_reconciliation.json` (compiled
 M023.3) + `exports/dean_pumpconfiguration_logic.json`. Loaded by the idempotent,

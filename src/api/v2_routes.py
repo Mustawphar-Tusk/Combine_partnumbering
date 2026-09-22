@@ -233,6 +233,34 @@ def _sort_field_options(field_code: str, options: list[str]) -> list[str]:
     return options
 
 
+def _selected_size(selections: dict) -> str | None:
+    """The pump size from the current selections, if chosen (ALT_SIZE or SIZE).
+
+    Returns None when no size is selected. Used to scope size-aware option
+    projection (Dean publishes options PER (series, size); Fybroc's rows are
+    series-level with SizeCode NULL).
+    """
+    for k, v in selections.items():
+        if k.upper() in ("ALT_SIZE", "SIZE") and v is not None and str(v).strip():
+            return str(v).strip()
+    return None
+
+
+def _size_option_clause(size: str | None) -> tuple[str, list]:
+    """SQL fragment + params to scope a cfg.SeriesFieldOption read by size.
+
+    Semantics (backward-compatible / Fybroc-safe):
+      * size is None (no size chosen yet): no size filter - return the series
+        union across all sizes. Fybroc rows (SizeCode NULL) are included as-is.
+      * size is set: match series-level rows (SizeCode IS NULL, e.g. Fybroc and
+        Dean's ungated BARRIER_PLAN) OR rows for exactly that size. So Fybroc
+        (all SizeCode NULL) is unaffected, while Dean narrows to the model size.
+    """
+    if not size:
+        return "", []
+    return " AND (SizeCode IS NULL OR SizeCode = ?)", [size]
+
+
 def _prune_to_prefix(
     ordered_fields: list[str],
     selections: dict[str, str],
@@ -846,12 +874,16 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             raise RuntimeError(f"Family {family} not found")
         family_id = family_row[0]
 
-        # Get ALL options for this series (searching across all publications for this family)
+        # Get ALL options for this series, scoped to the selected size when one is
+        # chosen (Dean options are per (series, size); Fybroc rows are SizeCode
+        # NULL and therefore unaffected by the size clause).
+        _size = _selected_size(body.selections)
+        _size_sql, _size_params = _size_option_clause(_size)
         rows = cursor.execute(
             "SELECT FieldCode, OptionValue, IsStandard FROM cfg.SeriesFieldOption "
-            "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
-            "ORDER BY FieldCode, OptionValue",
-            pub_id, body.series,
+            "WHERE MetadataPublicationId = ? AND SeriesCode = ?" + _size_sql +
+            " ORDER BY FieldCode, OptionValue",
+            pub_id, body.series, *_size_params,
         ).fetchall()
 
         if not rows:
@@ -869,8 +901,13 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
         all_options: dict[str, list[str]] = {}
         # Field-code -> STANDARD (STD) default option value for this series.
         standard_defaults: dict[str, str] = {}
+        _seen_opt: set[tuple[str, str]] = set()
         for field_code, option_value, is_standard in rows:
-            all_options.setdefault(field_code, []).append(option_value)
+            # De-duplicate values: when no size is selected the query unions every
+            # size's rows for the series, so the same option value can repeat.
+            if (field_code, option_value) not in _seen_opt:
+                _seen_opt.add((field_code, option_value))
+                all_options.setdefault(field_code, []).append(option_value)
             if is_standard:
                 standard_defaults[field_code] = option_value
 
@@ -1065,11 +1102,15 @@ async def resolve_configuration_state(
             raise RuntimeError(f"Family {family} not found")
         family_id = family_row[0]
 
+        # Size-scoped option projection (Dean per (series, size); Fybroc SizeCode
+        # NULL -> unaffected). Before a size is chosen, the series union is shown.
+        _size = _selected_size(body.selections)
+        _size_sql, _size_params = _size_option_clause(_size)
         rows = cursor.execute(
             "SELECT FieldCode, OptionValue, IsStandard FROM cfg.SeriesFieldOption "
-            "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
-            "ORDER BY FieldCode, OptionValue",
-            pub_id, body.series,
+            "WHERE MetadataPublicationId = ? AND SeriesCode = ?" + _size_sql +
+            " ORDER BY FieldCode, OptionValue",
+            pub_id, body.series, *_size_params,
         ).fetchall()
 
         if not rows:
@@ -1086,8 +1127,13 @@ async def resolve_configuration_state(
         # Base option catalog + STD defaults for the series.
         all_options: dict[str, list[str]] = {}
         standard_defaults: dict[str, str] = {}
+        _seen_opt: set[tuple[str, str]] = set()
         for field_code, option_value, is_standard in rows:
-            all_options.setdefault(field_code, []).append(option_value)
+            # De-duplicate: the no-size series union can repeat a value across
+            # sizes. Keep one entry per (field, value).
+            if (field_code, option_value) not in _seen_opt:
+                _seen_opt.add((field_code, option_value))
+                all_options.setdefault(field_code, []).append(option_value)
             if is_standard:
                 standard_defaults[field_code] = option_value
         for field_code in all_options:
@@ -1305,13 +1351,17 @@ async def validate_configuration(family: str, body: ValidateRequest, request: Re
         cursor = conn.cursor()
         violations = []
 
-        # Check each selection is valid for the series
+        # Check each selection is valid for the series, scoped to the selected
+        # size when one is chosen (Dean options are per (series, size); Fybroc
+        # rows are SizeCode NULL so the clause never excludes them).
+        _size = _selected_size(body.selections)
+        _size_sql, _size_params = _size_option_clause(_size)
         for field, value in body.selections.items():
             exists = cursor.execute(
                 "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
                 "WHERE MetadataPublicationId = ? AND SeriesCode = ? "
-                "AND FieldCode = ? AND OptionValue = ?",
-                pub_id, body.series, field, value,
+                "AND FieldCode = ? AND OptionValue = ?" + _size_sql,
+                pub_id, body.series, field, value, *_size_params,
             ).fetchone()[0]
             if exists == 0:
                 violations.append({
