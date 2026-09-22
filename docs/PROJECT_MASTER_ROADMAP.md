@@ -110,6 +110,12 @@ The following rules apply throughout the project.
 - explicit exit-gate decision
 - Git checkpoint
 - Failed exit gates keep the project in the same milestone.
+- The mandatory per-milestone exit audit is defined in
+  `.kiro/steering/milestone-exit-audit.md` (always-on process rule): deliverables
+  inventory, milestone-specific audit, cross-family regression gate, isolation
+  check, build/verify, evidence doc, roadmap+register update, git checkpoint,
+  explicit PASS/FAIL decision, then wait for user go-ahead. Run it before
+  declaring any milestone done and before starting the next.
 - Every configured engineering result must retain source/version lineage.
 - CORRECTIONS ARE PERMANENT AND MUST NOT REGRESS. Every correction made in a
   milestone is guarded by a re-runnable audit. The consolidated regression
