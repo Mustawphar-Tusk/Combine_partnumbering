@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.12  
+**Roadmap Version:** 1.13  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -997,7 +997,7 @@ F180	Fybroc signoff	SIGNOFF PREPARED — awaiting engineering signature (CURRENT
 D100	Dean source reconciliation	COMPLETE — 5 workbooks classified; PumpConfiguration_Logic authority (docs/evidence/D100/DEAN_D100_EXIT.md)
 D110	Dean configuration completion	COMPLETE — model published to SQL (family 1), audit 45/45, Fybroc gate intact (docs/evidence/D110/DEAN_D110_EXIT.md)
 D120	Dean pricing/adders	COMPLETE — Dean Pricing Matrix published to SQL (DEAN_STANDARD, 9874 rules), pricing audit 22/22, Fybroc gate intact (docs/evidence/D120/DEAN_D120_EXIT.md)
-D130	SQL Dean identifier	NOT STARTED
+D130	SQL Dean identifier	COMPLETE — SQL generates the Dean Part Number (additive @FamilyCode='DEAN' branch in cfg.usp_AssembleConfiguredProduct); A#->D# + segment codes loaded family-scoped (204 model refs + 428,742 seg rows), identifier audit 8/8, pricing 22/22, config 29/29, Fybroc gate 7/7 intact. Seal excluded (external accdb); some models blocked by external STD Standard Confs accdb (disclosed). (docs/evidence/D130/DEAN_D130_EXIT.md)
 D140	Dean Excel Oracle	NOT STARTED
 D150	Dean exhaustive regression	NOT STARTED
 D160	Dean signoff	NOT STARTED
@@ -1030,15 +1030,32 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.12
+Version:            1.13
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D120 (Dean Pricing & Adders) COMPLETE.
-                    Next permitted: D130 (SQL Dean Identifier Authority) — do NOT
-                    start without explicit go-ahead.
-Status:             D100 + D110 + D120 complete (2026-08-26). F180 signoff remains
-                    prepared, awaiting engineering signature (parallel; Dean is
-                    net-new work that does not modify frozen Fybroc data).
+Current Milestone:  D130 (SQL Dean Identifier Authority) COMPLETE.
+                    Next permitted: D140 (Dean Excel Oracle) — do NOT start
+                    without explicit go-ahead.
+Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
+                    remains prepared, awaiting engineering signature (parallel;
+                    Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.13): D130 (SQL Dean Identifier Authority) complete. SQL now generates
+the Dean Part Number via an ADDITIVE @FamilyCode='DEAN' branch in
+cfg.usp_AssembleConfiguredProduct (Fybroc branch byte-for-byte unchanged). Dean
+A#->D# identity (204 rows in cfg.PumpModelReference) and the engineering segment
+String->code maps (428,742 rows in stg.SegmentCombinationImport, DEAN batch) were
+loaded family-scoped by reusing the existing Fybroc identifier infra (NO new
+table, NO schema migration); the API resolves each segment code and SQL assembles
+the authoritative PN + PN-derived SKU. Verified: audit_dean_identifier 8/8 (SQL==
+python parity, SKU 1:1, A#->D#, determinism, segment discipline), audit_dean_pricing
+22/22, audit_dean_config 29/29, run_all_fybroc_audits ALL CORRECTIONS INTACT 7/7,
+Fybroc row counts unchanged (isolation). Dean PN excludes the seal segment (seal
+code authored only in the external Seal Numbering.accdb, unavailable). Disclosed
+gaps: some models' D110 STD carries option values the numbering table never
+enumerated (authoritative STD "Standard Confs" lives in an external Access DB we
+don't have), so those resolve every segment except a wet-end/power field; motor
+frame gated 00 and motor options inert. See docs/evidence/D130/DEAN_D130_EXIT.md.
 
 CHANGE (v1.12): D120 (Dean Pricing & Adders) complete. The authoritative Dean
 Pricing Matrix is published to SQL for the DEAN family (DEAN_STANDARD version

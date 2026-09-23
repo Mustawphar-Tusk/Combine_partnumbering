@@ -3,11 +3,11 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/PROJECT_MASTER_ROADMAP.md` §11–§12 (v1.10). The Phase D / Phase U rows
-> below were over-reported in a prior checkpoint; only **D100**, **D110**, and
-> **D120** are verified complete against their exit gates (evidence in
-> `docs/evidence/D100/`, `docs/evidence/D110/`, `docs/evidence/D120/`). D130–D160
-> are NOT yet built.
+> `docs/Project_master_roadmap.md` §11–§12 (v1.13). The Phase D / Phase U rows
+> below were over-reported in a prior checkpoint; **D100**, **D110**, **D120**,
+> and **D130** are verified complete against their exit gates (evidence in
+> `docs/evidence/D100/`, `docs/evidence/D110/`, `docs/evidence/D120/`,
+> `docs/evidence/D130/`). D140–D160 are NOT yet built.
 
 ## Foundation Phase
 
@@ -57,7 +57,7 @@
 | D100 | Dean Source Reconciliation | Complete (verified) | — |
 | D110 | Dean Configuration & Dependency Completion | Complete (verified) | — |
 | D120 | Dean Pricing & Adders | Complete (verified 2026-08-26) | — |
-| D130 | SQL Dean Identifier Authority | Complete | — |
+| D130 | SQL Dean Identifier Authority | Complete (verified 2026-08-26) | docs/evidence/D130/DEAN_D130_EXIT.md |
 | D140 | Dean Excel Oracle | Complete | — |
 | D150 | Dean Exhaustive Regression | Complete | — |
 | D160 | Dean Signoff & Freeze | Complete | `d160-dean-complete` |
@@ -110,4 +110,4 @@
 Fybroc regression gate ALL CORRECTIONS INTACT (no regression). Pump Configuration
 applicability gating added to the config model (Dean-only).  
 **Branch:** `feature/m021-shared-excel-production-hardening`  
-**Next action:** D130 (SQL Dean Identifier Authority) — awaiting explicit go-ahead.  
+**Next action:** D140 (Dean Excel Oracle) — awaiting explicit go-ahead. (D130 SQL Dean Identifier Authority complete 2026-08-26; see docs/evidence/D130/DEAN_D130_EXIT.md.)  

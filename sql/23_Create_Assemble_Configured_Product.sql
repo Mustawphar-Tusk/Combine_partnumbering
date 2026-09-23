@@ -16,9 +16,15 @@
      Vertical  : F{series}{size}{material}{trim}-{pumpOpts}-{options}-{frame}{motorAssy}-{motorMods}-{testing}   (no seal segment)
 
    @SegmentsJson keys (all pre-resolved strings):
-     brand, series_code, size_code, material_code, trim_code,
-     pump_options, seal_mfg, seal_assy, options, frame_size,
-     motor_assy, motor_mods, testing
+     FYBROC: brand, series_code, size_code, material_code, trim_code,
+       pump_options, seal_mfg, seal_assy, options, frame_size,
+       motor_assy, motor_mods, testing
+     DEAN (D130, additive branch): base_identifier (=D<A#>), wet_end,
+       impeller_trim, impeller_options, power_frame_options,
+       flush_plan, barrier_plan, cooling_plan, frame_size, baseplate_options,
+       motor, motor_options, additional_options, testing, documentation
+       (seal is OMITTED from the Dean PN - external seal DB authority only;
+        seal_options may still be passed but is ignored here.)
    @CanonicalJson  : the canonical configuration JSON the signature is taken over
                      (the API sends the exact same bytes it would have hashed, so
                      Python and SQL signatures match).
@@ -48,6 +54,62 @@ BEGIN
     IF ISJSON(@CanonicalJson) <> 1
         THROW 53001, 'CanonicalJson must be valid JSON.', 1;
 
+    DECLARE @PartNumber varchar(200);
+
+    IF UPPER(@FamilyCode) = 'DEAN'
+    BEGIN
+        /* ============================================================
+           D130 - DEAN identifier assembly (ADDITIVE branch).
+           The Fybroc path below is byte-for-byte unchanged. The API
+           resolves each Dean segment code (A#->D#, wet-end, trim, etc.)
+           against the loaded numbering maps and passes them here; SQL
+           concatenates the authoritative Dean Part Number per the
+           workbook Smart Number!B5 + J5 formulas:
+
+             D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(3)>
+               -<Seal(5)>-<Flush(2)><Barrier><Cooling(2)>
+               -<Frame(2)><Baseplate(3)>-<Motor(4)><MotorOpts(2)>
+               -<AddlOpts(2)>-<Testing(2)><Doc(4)>
+
+           (B5 assembles through AddlOpts; J5 appends Testing+Doc as the
+           final suffix - the full stored Part Number is B5 + J5 content.)
+           ============================================================ */
+        DECLARE
+            @d_base   varchar(20) = JSON_VALUE(@SegmentsJson, '$.base_identifier'), -- D<A#>
+            @d_wet    varchar(20) = JSON_VALUE(@SegmentsJson, '$.wet_end'),
+            @d_trim   varchar(20) = JSON_VALUE(@SegmentsJson, '$.impeller_trim'),
+            @d_impopt varchar(20) = JSON_VALUE(@SegmentsJson, '$.impeller_options'),
+            @d_power  varchar(20) = JSON_VALUE(@SegmentsJson, '$.power_frame_options'),
+            @d_flush  varchar(20) = JSON_VALUE(@SegmentsJson, '$.flush_plan'),
+            @d_barr   varchar(20) = JSON_VALUE(@SegmentsJson, '$.barrier_plan'),
+            @d_cool   varchar(20) = JSON_VALUE(@SegmentsJson, '$.cooling_plan'),
+            @d_frame  varchar(20) = JSON_VALUE(@SegmentsJson, '$.frame_size'),
+            @d_basep  varchar(20) = JSON_VALUE(@SegmentsJson, '$.baseplate_options'),
+            @d_motor  varchar(20) = JSON_VALUE(@SegmentsJson, '$.motor'),
+            @d_motopt varchar(20) = JSON_VALUE(@SegmentsJson, '$.motor_options'),
+            @d_addl   varchar(20) = JSON_VALUE(@SegmentsJson, '$.additional_options'),
+            @d_test   varchar(20) = JSON_VALUE(@SegmentsJson, '$.testing'),
+            @d_doc    varchar(20) = JSON_VALUE(@SegmentsJson, '$.documentation');
+
+        -- Seal segment (@d_seal) is OMITTED from the Dean PN: the seal code is
+        -- authored only in the external "Seal Numbering.accdb" (getSealOptions),
+        -- which is not available, so the workbook itself only ever emits the
+        -- placeholder 00000/TBD__. Rather than embed a placeholder in the PN, the
+        -- Dean PN excludes seal. Seal STATUS is still surfaced in the API
+        -- segment_debug. (D130 decision, 2026-08-26.)
+        SET @PartNumber = CONCAT(
+            @d_base,
+            '-', @d_wet,
+            '-', @d_trim, @d_impopt,
+            '-', @d_power,
+            '-', @d_flush, @d_barr, @d_cool,
+            '-', @d_frame, @d_basep,
+            '-', @d_motor, @d_motopt,
+            '-', @d_addl,
+            '-', @d_test, @d_doc);
+    END
+    ELSE
+    BEGIN
     /* --- pull resolved segment codes --- */
     DECLARE
         @brand    varchar(10) = JSON_VALUE(@SegmentsJson, '$.brand'),
@@ -65,7 +127,6 @@ BEGIN
         @testing  varchar(20) = JSON_VALUE(@SegmentsJson, '$.testing');
 
     /* --- assemble the authoritative Part Number --- */
-    DECLARE @PartNumber varchar(200);
     DECLARE @lead varchar(60) =
         CONCAT(@brand, @seriesC, @sizeC, @matC, @trimC);
 
@@ -77,6 +138,7 @@ BEGIN
         SET @PartNumber = CONCAT(
             @lead, '-', @pumpOpts, '-', @sealMfg, @sealAssy, '-',
             @options, '-', @frame, @motorA, '-', @motorM, '-', @testing);
+    END
 
     /* --- signature in SQL (SHA2_256 over the canonical JSON, hex upper) --- */
     DECLARE @Signature char(64) =

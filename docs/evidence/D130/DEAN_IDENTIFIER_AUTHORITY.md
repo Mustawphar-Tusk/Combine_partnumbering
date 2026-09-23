@@ -3,6 +3,12 @@
 **Date:** 2026-08-24  
 **Milestone:** D130  
 
+> **SUPERSEDED / historical analysis (not the completion record).** This document
+> is an early design analysis dated 2026-08-24 and was NOT evidence of a built
+> milestone. The authoritative D130 completion record is
+> `docs/evidence/D130/DEAN_D130_EXIT.md` (2026-08-26); the pre-implementation
+> design is `docs/evidence/D130/DEAN_D130_DESIGN.md`. Preserved for history.
+
 ---
 
 ## Dean Part Number Generation Flow

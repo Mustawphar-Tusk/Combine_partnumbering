@@ -1502,538 +1502,582 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             raise RuntimeError(f"Family {family} not found")
         family_id = family_row[0]
 
-        # Build Part Number from resolved attribute codes
-        brand = "F" if family_upper == "FYBROC" else "D"
-
-        # Look up each identifier code.
-        #
-        # The identifier table (cfg.AttributeValue) stores STANDARD/DEFAULT
-        # option values with a trailing '*' marker (e.g. the standard material
-        # "VR-1" is stored as "VR-1*"). Selections coming off the configuration
-        # walk carry the plain value ("vr-1"), so an exact lookup misses the
-        # standard row and the segment resolves to '?'. We therefore try the
-        # value as-is and, if that misses, the '*'-suffixed (standard) form. This
-        # keeps the Python parity oracle faithful to how identity treats
-        # standard defaults; it does not change any authoritative value.
-        def lookup(field, value):
-            if not value:
-                return None
-            for candidate in (value, f"{value}*"):
-                row = cursor.execute(
-                    "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
-                    pub_id, family_id, field, candidate
-                ).fetchone()
-                if row and row[0]:
-                    return row[0]
-            return None
-
-        series_val = body.selections.get("SERIES", body.series)
-        flange_val = body.selections.get("FLANGE_TYPE", "")
-        
-        # Map FLANGE_TYPE option values to the short codes used in SERIES AttributeValue
-        flange_map = {"ansi flange": "ANSI", "din/iso flange": "Din", "jis flange": "JIS", "ansi": "ANSI", "din": "Din", "jis": "JIS"}
-        flange_short = flange_map.get(flange_val.lower(), "ANSI") if flange_val else "ANSI"
-        
-        series_key = f"{series_val} ({flange_short})"
-        series_code = lookup("SERIES", series_key) or lookup("SERIES", series_val) or "?"
-
-        size_code = lookup("SIZE", body.selections.get("ALT_SIZE", body.selections.get("SIZE", ""))) or "?"
-        material_code = lookup("PUMP_MATERIAL", body.selections.get("PUMP_MATERIAL", "")) or "?"
-        trim_code = lookup("IMPELLER_TRIM", body.selections.get("IMPELLER_TRIM", "")) or "??"
-
-        # Composite segment codes — build exact combination key and match
-        # The combination key = all field values joined by '|' in fixed order
-        # Values include '*' suffix for standard/default values
-        
-        PUMP_OPTIONS_FIELDS = [
-            "CASING_DRAINS", "SUCTION_DISCHARGE", "SHAFT_MATERIAL", "IMPELLER_SLEEVE",
-            "CASING_HARDWARE", "PUMP_ELASTOMERS", "BEARING_OPTION", "POWER_FRAME_HARDWARE",
-            "GLAND_HARDWARE", "FLUSH", "CYCLONE_SEPARATOR", "DYNAMIC_IMPELLER",
-        ]
-        # SFO field code -> combo field code mapping (some differ)
-        SFO_TO_COMBO_FIELD = {
-            "CASING_DRAINS": "CASING_DRAINS",
-            "SUCTION_DISCHARGE_TAPS": "SUCTION_DISCHARGE",
-            "SHAFT_MATERIAL": "SHAFT_MATERIAL",
-            "SLEEVE": "IMPELLER_SLEEVE",
-            "CASING_HARDWARE": "CASING_HARDWARE",
-            "PUMP_ELASTOMERS": "PUMP_ELASTOMERS",
-            "BEARING_OPTION": "BEARING_OPTION",
-            "POWER_FRAME_HARDWARE": "POWER_FRAME_HARDWARE",
-            "GLAND_HARDWARE": "GLAND_HARDWARE",
-            "FLUSH": "FLUSH",
-            "CYCLONE_SEPERATOR": "CYCLONE_SEPARATOR",
-            "IMPELLER_BALANCE": "DYNAMIC_IMPELLER",
-        }
-        
-        def translate_to_combo_with_star(field_code, sfo_value):
-            """Translate SFO value to combo value (with * if it's the standard/default)."""
-            if not sfo_value:
-                return None
-            combo_field = SFO_TO_COMBO_FIELD.get(field_code, field_code)
-            row = cursor.execute(
-                "SELECT ComboValue FROM cfg.VocabularyMap WHERE FieldCode = ? AND LOWER(SFOValue) LIKE ?",
-                combo_field, f"%{sfo_value.lower().strip()}%"
+        # ------------------------------------------------------------------
+        # D130 - DEAN identifier resolve (family-gated, additive). The Dean PN
+        # has a different segment structure from Fybroc. Resolve the Dean segment
+        # codes (dean_identifier), hand them to the SAME SQL assembler with
+        # @FamilyCode='DEAN' (authoritative), keep the parity oracle. The Fybroc
+        # block below is unchanged, guarded by the family.
+        # ------------------------------------------------------------------
+        if family_upper == "DEAN":
+            from . import dean_identifier as _dean_id
+            _dean_series = body.selections.get("SERIES", body.series)
+            _dean_size = (body.selections.get("ALT_SIZE")
+                          or body.selections.get("SIZE") or "")
+            dean_payload, dean_debug = _dean_id.resolve_segments(
+                cursor, _dean_series, _dean_size, body.selections)
+            py_pn = dean_debug["py_pn"]
+            segment_debug = dean_debug
+            is_vertical = False
+            segments_payload = json.dumps(dean_payload)
+            sql_row = cursor.execute(
+                "EXEC cfg.usp_AssembleConfiguredProduct "
+                "@FamilyCode=?, @SeriesCode=?, @IsVertical=0, "
+                "@SegmentsJson=?, @CanonicalJson=?, @RequestedBy=?, @Persist=1;",
+                family_upper, body.series, segments_payload, config_json,
+                body.requested_by,
             ).fetchone()
-            return row[0] if row else None
-        
-        def lookup_segment_by_key(segment_code, field_order, sfo_field_map):
-            """Look up hex code by matching SFO values directly against re-indexed SelectionsJson."""
-            keywords = []
-            for combo_field in field_order:
-                # Find which SFO field maps to this combo field
-                sfo_field = None
-                for sf, cf in SFO_TO_COMBO_FIELD.items():
-                    if cf == combo_field:
-                        sfo_field = sf
-                        break
-                
-                sfo_val = body.selections.get(sfo_field, "") if sfo_field else ""
-                if sfo_val and len(sfo_val) > 2:
-                    keywords.append(sfo_val.lower().strip())
-            
-            if not keywords:
-                return None
-            
-            # Direct match — SelectionsJson is now in SFO vocabulary. Match in
-            # Python against the cached segment rows (same semantics as the old
-            # `LIKE '%kw%'` AND-combined TOP 1, capped at 4 keywords).
-            try:
-                return _seg_first_match(cursor, segment_code,
-                                        [kw for kw in keywords[:4]])
-            except Exception:
+            pn = sql_row[0]
+            sku = sql_row[1]
+            signature = sql_row[2]
+            parity_ok = (py_pn == pn)
+            if not parity_ok:
+                import logging
+                logging.getLogger("uvicorn.error").warning(
+                    "D130 PN parity divergence: python=%r sql=%r (series=%s)",
+                    py_pn, pn, body.series)
+            sku_token_expected = (
+                hashlib.sha256(pn.encode()).hexdigest().upper()[:8] if pn else "")
+            sku_pn_ok = bool(sku) and (sku_token_expected in sku)
+            if not sku_pn_ok:
+                import logging
+                logging.getLogger("uvicorn.error").warning(
+                    "D130 SKU<->PN divergence: pn=%r token=%r sku=%r (series=%s)",
+                    pn, sku_token_expected, sku, body.series)
+
+        # Build Part Number from resolved attribute codes
+        if family_upper != "DEAN":
+            brand = "F" if family_upper == "FYBROC" else "D"
+
+            # Look up each identifier code.
+            #
+            # The identifier table (cfg.AttributeValue) stores STANDARD/DEFAULT
+            # option values with a trailing '*' marker (e.g. the standard material
+            # "VR-1" is stored as "VR-1*"). Selections coming off the configuration
+            # walk carry the plain value ("vr-1"), so an exact lookup misses the
+            # standard row and the segment resolves to '?'. We therefore try the
+            # value as-is and, if that misses, the '*'-suffixed (standard) form. This
+            # keeps the Python parity oracle faithful to how identity treats
+            # standard defaults; it does not change any authoritative value.
+            def lookup(field, value):
+                if not value:
+                    return None
+                for candidate in (value, f"{value}*"):
+                    row = cursor.execute(
+                        "SELECT cfg.fn_LookupIdentifierCode(?, ?, ?, ?)",
+                        pub_id, family_id, field, candidate
+                    ).fetchone()
+                    if row and row[0]:
+                        return row[0]
                 return None
 
-        # PUMP_OPTIONS lookup - use vertical table for vertical series
-        VERTICAL_SERIES = {"5500", "5530", "6000", "7500", "7530", "8500"}
-        is_vertical = body.series in VERTICAL_SERIES
+            series_val = body.selections.get("SERIES", body.series)
+            flange_val = body.selections.get("FLANGE_TYPE", "")
         
-        if is_vertical:
-            # Vertical combo table fields: SHAFT_MATERIAL, IMPELLER_SLEEVE, WETTED_HARDWARE,
-            # PUMP_ELASTOMERS, FLUSH, FLUSH_OPTIONS, IMPELLER_BALANCE, VAPOR_PROTECTION, STRAINER
-            # SFO field → vertical combo field mapping:
-            VERTICAL_SFO_TO_COMBO = {
+            # Map FLANGE_TYPE option values to the short codes used in SERIES AttributeValue
+            flange_map = {"ansi flange": "ANSI", "din/iso flange": "Din", "jis flange": "JIS", "ansi": "ANSI", "din": "Din", "jis": "JIS"}
+            flange_short = flange_map.get(flange_val.lower(), "ANSI") if flange_val else "ANSI"
+        
+            series_key = f"{series_val} ({flange_short})"
+            series_code = lookup("SERIES", series_key) or lookup("SERIES", series_val) or "?"
+
+            size_code = lookup("SIZE", body.selections.get("ALT_SIZE", body.selections.get("SIZE", ""))) or "?"
+            material_code = lookup("PUMP_MATERIAL", body.selections.get("PUMP_MATERIAL", "")) or "?"
+            trim_code = lookup("IMPELLER_TRIM", body.selections.get("IMPELLER_TRIM", "")) or "??"
+
+            # Composite segment codes — build exact combination key and match
+            # The combination key = all field values joined by '|' in fixed order
+            # Values include '*' suffix for standard/default values
+        
+            PUMP_OPTIONS_FIELDS = [
+                "CASING_DRAINS", "SUCTION_DISCHARGE", "SHAFT_MATERIAL", "IMPELLER_SLEEVE",
+                "CASING_HARDWARE", "PUMP_ELASTOMERS", "BEARING_OPTION", "POWER_FRAME_HARDWARE",
+                "GLAND_HARDWARE", "FLUSH", "CYCLONE_SEPARATOR", "DYNAMIC_IMPELLER",
+            ]
+            # SFO field code -> combo field code mapping (some differ)
+            SFO_TO_COMBO_FIELD = {
+                "CASING_DRAINS": "CASING_DRAINS",
+                "SUCTION_DISCHARGE_TAPS": "SUCTION_DISCHARGE",
                 "SHAFT_MATERIAL": "SHAFT_MATERIAL",
                 "SLEEVE": "IMPELLER_SLEEVE",
-                "WETTED_HARDWARE": "WETTED_HARDWARE",
-                "WETTED_HARDWARE_SELECTION": "WETTED_HARDWARE",
+                "CASING_HARDWARE": "CASING_HARDWARE",
                 "PUMP_ELASTOMERS": "PUMP_ELASTOMERS",
+                "BEARING_OPTION": "BEARING_OPTION",
+                "POWER_FRAME_HARDWARE": "POWER_FRAME_HARDWARE",
+                "GLAND_HARDWARE": "GLAND_HARDWARE",
                 "FLUSH": "FLUSH",
-                "FLUSH_OPTIONS": "FLUSH_OPTIONS",
-                "IMPELLER_BALANCE": "IMPELLER_BALANCE",
-                "VAPOR_SEAL": "VAPOR_PROTECTION",
-                "STRAINER": "STRAINER",
+                "CYCLONE_SEPERATOR": "CYCLONE_SEPARATOR",
+                "IMPELLER_BALANCE": "DYNAMIC_IMPELLER",
             }
-            
-            # Collect keywords from vertical SFO fields
-            vert_keywords = []
-            for sfo_field, combo_field in VERTICAL_SFO_TO_COMBO.items():
-                sfo_val = body.selections.get(sfo_field, "")
-                if sfo_val and len(sfo_val) > 2:
-                    vert_keywords.append(sfo_val.lower().strip())
-            
-            if vert_keywords:
-                # Progressive matching for vertical pump options (in-memory).
-                pump_opts = None
-                for n in range(len(vert_keywords), 0, -1):
-                    try:
-                        match = _seg_first_match(
-                            cursor, "PUMP_OPTIONS_VERTICAL", vert_keywords[:n])
-                    except Exception:
-                        match = None
-                    if match is not None:
-                        pump_opts = match
-                        break
-                pump_opts = pump_opts or "0000"  # Default: standard vertical pump options
-            else:
-                # No vertical pump option fields available for this series — use default
-                pump_opts = "0000"
-        else:
-            pump_opts = lookup_segment_by_key("PUMP_OPTIONS", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
-
-        # Seal Mfg code (S/F/J/C) — still from VocabularyMap
-        seal_mfg_val = body.selections.get("SEAL_MFG", "")
-        if seal_mfg_val:
-            mfg_row = cursor.execute(
-                "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='SEAL_MFG' AND LOWER(ComboValue) LIKE ?",
-                f"%{seal_mfg_val.lower().strip()}%"
-            ).fetchone()
-            seal_mfg = mfg_row[0] if mfg_row else "S"
-        else:
-            seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
-
-        # Seal Assembly hex — multi-field match against re-indexed SelectionsJson
-        # Combo fields: SEAL_OPTION, SEAL_TYPE, SEAL_MATERIALS, SEAL_ELASTOMERS, SEAL_GUARD
-        seal_option_val = body.selections.get("SEAL_OPTION", "")
-        seal_type_val = body.selections.get("SEAL_TYPE", "")
-        seal_materials_val = body.selections.get("SEAL_MATERIALS", "")
-        seal_elastomers_val = body.selections.get("SEAL_ELASTOMERS", "")
-        seal_guard_val = body.selections.get("SEAL_GUARD", "")
-        seal_assy = "??"
         
-        # Check if this series even HAS seal configuration fields
-        # If not, the seal segment should be a standard default (noseal)
-        has_seal_fields = cursor.execute(
-            "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
-            "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode IN ('SEAL_OPTION','SEAL_TYPE')",
-            pub_id, body.series
-        ).fetchone()[0] > 0
+            def translate_to_combo_with_star(field_code, sfo_value):
+                """Translate SFO value to combo value (with * if it's the standard/default)."""
+                if not sfo_value:
+                    return None
+                combo_field = SFO_TO_COMBO_FIELD.get(field_code, field_code)
+                row = cursor.execute(
+                    "SELECT ComboValue FROM cfg.VocabularyMap WHERE FieldCode = ? AND LOWER(SFOValue) LIKE ?",
+                    combo_field, f"%{sfo_value.lower().strip()}%"
+                ).fetchone()
+                return row[0] if row else None
         
-        if not has_seal_fields and not is_vertical:
-            # Series has no seal configuration — use noseal default code
-            # Look up the "noseal nosealgland" + "not supplied by fybroc" combo
-            try:
-                match = _seg_first_match(cursor, "SEAL_ASSEMBLY",
-                                         ["noseal nosealgland", "not supplied by fybroc"])
-                seal_assy = match if match is not None else "0X"  # 0X = noseal default
-            except Exception:
-                seal_assy = "0X"
-            seal_mfg = "S"  # Standard offering for no-seal
-        elif not has_seal_fields and is_vertical:
-            seal_assy = "N/A"  # Will be omitted from PN anyway
-        else:
-            # Build search keywords from all seal fields
-            seal_keywords = []
+            def lookup_segment_by_key(segment_code, field_order, sfo_field_map):
+                """Look up hex code by matching SFO values directly against re-indexed SelectionsJson."""
+                keywords = []
+                for combo_field in field_order:
+                    # Find which SFO field maps to this combo field
+                    sfo_field = None
+                    for sf, cf in SFO_TO_COMBO_FIELD.items():
+                        if cf == combo_field:
+                            sfo_field = sf
+                            break
+                
+                    sfo_val = body.selections.get(sfo_field, "") if sfo_field else ""
+                    if sfo_val and len(sfo_val) > 2:
+                        keywords.append(sfo_val.lower().strip())
             
-            if seal_option_val:
-                seal_opt_search = seal_option_val.lower()
-                # Normalize synonym
-                if "supplied by fybroc" in seal_opt_search:
-                    seal_opt_search = "installed by fybroc"
-                seal_keywords.append(seal_opt_search)
+                if not keywords:
+                    return None
             
-            if seal_type_val:
-                seal_keywords.append(seal_type_val.lower())
-            
-            if seal_materials_val:
-                seal_keywords.append(seal_materials_val.lower())
-            
-            if seal_elastomers_val:
-                seal_keywords.append(seal_elastomers_val.lower())
-            
-            if seal_guard_val:
-                # SEAL_GUARD SFO values: "supplied by fybroc" / "not supplied by fybroc"
-                seal_keywords.append(seal_guard_val.lower())
-
-            if seal_keywords:
+                # Direct match — SelectionsJson is now in SFO vocabulary. Match in
+                # Python against the cached segment rows (same semantics as the old
+                # `LIKE '%kw%'` AND-combined TOP 1, capped at 4 keywords).
                 try:
-                    match = _seg_first_match(cursor, "SEAL_ASSEMBLY", seal_keywords)
-                    if match is not None:
-                        seal_assy = match
+                    return _seg_first_match(cursor, segment_code,
+                                            [kw for kw in keywords[:4]])
                 except Exception:
-                    pass
-                
-                # Fallback 1: option + type only
-                if seal_assy == "??" and seal_type_val and seal_option_val:
-                    try:
-                        match = _seg_first_match(cursor, "SEAL_ASSEMBLY", seal_keywords[:2])
-                        if match is not None:
-                            seal_assy = match
-                    except Exception:
-                        pass
-                
-                # Fallback 2: option alone (for noseal/customer supplied which have type="-")
-                if seal_assy == "??" and seal_option_val:
-                    try:
-                        match = _seg_first_match(cursor, "SEAL_ASSEMBLY", [seal_keywords[0]])
-                        if match is not None:
-                            seal_assy = match
-                    except Exception:
-                        pass
+                    return None
 
-        # OPTIONS — direct match
-        opt_keywords = [v.lower() for k in ["COUPLING_OPTION", "BASEPLATE_OPTION"]
-                       if (v := body.selections.get(k, "")) and len(v) > 2]
-        if opt_keywords:
-            try:
-                match = _seg_first_match(cursor, "OPTIONS", opt_keywords)
-                options_code = match if match is not None else "00"
-            except Exception:
-                options_code = "00"
-        else:
-            # No coupling/baseplate fields selected — check if series even has them
-            has_options_fields = cursor.execute(
+            # PUMP_OPTIONS lookup - use vertical table for vertical series
+            VERTICAL_SERIES = {"5500", "5530", "6000", "7500", "7530", "8500"}
+            is_vertical = body.series in VERTICAL_SERIES
+        
+            if is_vertical:
+                # Vertical combo table fields: SHAFT_MATERIAL, IMPELLER_SLEEVE, WETTED_HARDWARE,
+                # PUMP_ELASTOMERS, FLUSH, FLUSH_OPTIONS, IMPELLER_BALANCE, VAPOR_PROTECTION, STRAINER
+                # SFO field → vertical combo field mapping:
+                VERTICAL_SFO_TO_COMBO = {
+                    "SHAFT_MATERIAL": "SHAFT_MATERIAL",
+                    "SLEEVE": "IMPELLER_SLEEVE",
+                    "WETTED_HARDWARE": "WETTED_HARDWARE",
+                    "WETTED_HARDWARE_SELECTION": "WETTED_HARDWARE",
+                    "PUMP_ELASTOMERS": "PUMP_ELASTOMERS",
+                    "FLUSH": "FLUSH",
+                    "FLUSH_OPTIONS": "FLUSH_OPTIONS",
+                    "IMPELLER_BALANCE": "IMPELLER_BALANCE",
+                    "VAPOR_SEAL": "VAPOR_PROTECTION",
+                    "STRAINER": "STRAINER",
+                }
+            
+                # Collect keywords from vertical SFO fields
+                vert_keywords = []
+                for sfo_field, combo_field in VERTICAL_SFO_TO_COMBO.items():
+                    sfo_val = body.selections.get(sfo_field, "")
+                    if sfo_val and len(sfo_val) > 2:
+                        vert_keywords.append(sfo_val.lower().strip())
+            
+                if vert_keywords:
+                    # Progressive matching for vertical pump options (in-memory).
+                    pump_opts = None
+                    for n in range(len(vert_keywords), 0, -1):
+                        try:
+                            match = _seg_first_match(
+                                cursor, "PUMP_OPTIONS_VERTICAL", vert_keywords[:n])
+                        except Exception:
+                            match = None
+                        if match is not None:
+                            pump_opts = match
+                            break
+                    pump_opts = pump_opts or "0000"  # Default: standard vertical pump options
+                else:
+                    # No vertical pump option fields available for this series — use default
+                    pump_opts = "0000"
+            else:
+                pump_opts = lookup_segment_by_key("PUMP_OPTIONS", PUMP_OPTIONS_FIELDS, SFO_TO_COMBO_FIELD) or body.segment_codes.get("PUMP_OPTIONS", "????")
+
+            # Seal Mfg code (S/F/J/C) — still from VocabularyMap
+            seal_mfg_val = body.selections.get("SEAL_MFG", "")
+            if seal_mfg_val:
+                mfg_row = cursor.execute(
+                    "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='SEAL_MFG' AND LOWER(ComboValue) LIKE ?",
+                    f"%{seal_mfg_val.lower().strip()}%"
+                ).fetchone()
+                seal_mfg = mfg_row[0] if mfg_row else "S"
+            else:
+                seal_mfg = body.segment_codes.get("SEAL_MFG", "S")
+
+            # Seal Assembly hex — multi-field match against re-indexed SelectionsJson
+            # Combo fields: SEAL_OPTION, SEAL_TYPE, SEAL_MATERIALS, SEAL_ELASTOMERS, SEAL_GUARD
+            seal_option_val = body.selections.get("SEAL_OPTION", "")
+            seal_type_val = body.selections.get("SEAL_TYPE", "")
+            seal_materials_val = body.selections.get("SEAL_MATERIALS", "")
+            seal_elastomers_val = body.selections.get("SEAL_ELASTOMERS", "")
+            seal_guard_val = body.selections.get("SEAL_GUARD", "")
+            seal_assy = "??"
+        
+            # Check if this series even HAS seal configuration fields
+            # If not, the seal segment should be a standard default (noseal)
+            has_seal_fields = cursor.execute(
                 "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
-                "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode IN ('COUPLING_OPTION','BASEPLATE_OPTION')",
+                "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode IN ('SEAL_OPTION','SEAL_TYPE')",
                 pub_id, body.series
             ).fetchone()[0] > 0
-            options_code = body.segment_codes.get("OPTIONS", "00") if not has_options_fields else "??"
-
-        # MOTOR_ASSEMBLY — multi-field lookup (same pattern as PUMP_OPTIONS)
-        # The combo table has 11 fields: MOTOR_OPTION, MOTOR_CLASS, MOTOR_ORIENTATION,
-        # MOTOR_HORSEPOWER, MOTOR_RPM, MOTOR_VOLTAGE, MOTOR_HERTZ, MOTOR_FRAME,
-        # MOTOR_ENCLOSURE, MOTOR_EFFICIENCY, MOTOR_MANUFACTURER
-        # SFO field → combo JSON field mapping:
-        MOTOR_SFO_TO_COMBO = {
-            "MOTOR_OPTION": "MOTOR_OPTION",
-            "MOTOR_HP": "MOTOR_HORSEPOWER",
-            "MOTOR_RPM": "MOTOR_RPM",
-            "MOTOR_VOLTAGE": "MOTOR_VOLTAGE",
-            "MOTOR_HERTZ": "MOTOR_HERTZ",
-            "FRAME_SIZE": "MOTOR_FRAME",
-            "MOTOR_ENCLOSURE": "MOTOR_ENCLOSURE",
-            "MOTOR_EFFICIENCY": "MOTOR_EFFICIENCY",
-            "MOTOR_MFG": "MOTOR_MANUFACTURER",
-        }
-
-        motor_keywords = []
-        motor_opt_val = body.selections.get("MOTOR_OPTION", "")
-        if motor_opt_val:
-            # Handle synonym: "supplied by fybroc" = "installed by fybroc" for motor
-            motor_search = motor_opt_val.lower()
-            if "supplied by fybroc" in motor_search:
-                motor_search = "installed by fybroc"
-            motor_keywords.append(motor_search)
-
-        # Add other motor fields for more precise matching
-        for sfo_field, combo_field in MOTOR_SFO_TO_COMBO.items():
-            if sfo_field == "MOTOR_OPTION":
-                continue  # Already handled above
-            val = body.selections.get(sfo_field, "")
-            if val and len(val) >= 1:
-                # Normalize: SFO "3ph - 60 hz" → combo has "/3/60"; SFO "143t" → combo "143"
-                search_val = val.lower().strip()
-                # Frame size: strip 't' suffix (SFO="143t", combo="143")
-                if sfo_field == "FRAME_SIZE":
-                    search_val = search_val.rstrip("t").strip()
-                # Hertz: SFO="3ph - 60 hz" → combo="/3/60"; SFO="3ph - 50 hz" → combo="/3/50"
-                elif sfo_field == "MOTOR_HERTZ":
-                    if "60" in search_val:
-                        search_val = "3/60"
-                    elif "50" in search_val:
-                        search_val = "3/50"
-                # HP: SFO="1.5" → combo="1.5 hp"; SFO="7.5" → combo="7.5 hp"
-                # Use quote boundary: combo JSON has "MOTOR_HORSEPOWER": "5 hp"
-                # So search for '"5 hp"' to avoid matching "1.5 hp" or "25 hp"
-                elif sfo_field == "MOTOR_HP":
-                    search_val = f'": "{search_val} hp"'  # matches the JSON value exactly
-                # MFG: SFO="standard offering" → combo="fybroc choice"
-                elif sfo_field == "MOTOR_MFG":
-                    if "standard" in search_val:
-                        search_val = "fybroc choice"
-                motor_keywords.append(search_val)
-
-        if motor_keywords:
-            # Progressive matching: try all keywords first, then progressively reduce
-            # Priority order: motor_option, hp, rpm, voltage, hertz, frame, enclosure, efficiency, mfg
-            motor_assy = "???"
+        
+            if not has_seal_fields and not is_vertical:
+                # Series has no seal configuration — use noseal default code
+                # Look up the "noseal nosealgland" + "not supplied by fybroc" combo
+                try:
+                    match = _seg_first_match(cursor, "SEAL_ASSEMBLY",
+                                             ["noseal nosealgland", "not supplied by fybroc"])
+                    seal_assy = match if match is not None else "0X"  # 0X = noseal default
+                except Exception:
+                    seal_assy = "0X"
+                seal_mfg = "S"  # Standard offering for no-seal
+            elif not has_seal_fields and is_vertical:
+                seal_assy = "N/A"  # Will be omitted from PN anyway
+            else:
+                # Build search keywords from all seal fields
+                seal_keywords = []
             
-            # Try full match first (in-memory against cached rows).
-            try:
-                match = _seg_first_match(cursor, "MOTOR_ASSEMBLY", motor_keywords)
-                if match is not None:
-                    motor_assy = match
-            except Exception:
-                pass
+                if seal_option_val:
+                    seal_opt_search = seal_option_val.lower()
+                    # Normalize synonym
+                    if "supplied by fybroc" in seal_opt_search:
+                        seal_opt_search = "installed by fybroc"
+                    seal_keywords.append(seal_opt_search)
             
-            # Progressive fallback: remove keywords from the end (least important)
-            if motor_assy == "???":
-                for n in range(len(motor_keywords) - 1, 0, -1):
+                if seal_type_val:
+                    seal_keywords.append(seal_type_val.lower())
+            
+                if seal_materials_val:
+                    seal_keywords.append(seal_materials_val.lower())
+            
+                if seal_elastomers_val:
+                    seal_keywords.append(seal_elastomers_val.lower())
+            
+                if seal_guard_val:
+                    # SEAL_GUARD SFO values: "supplied by fybroc" / "not supplied by fybroc"
+                    seal_keywords.append(seal_guard_val.lower())
+
+                if seal_keywords:
                     try:
-                        match = _seg_first_match(
-                            cursor, "MOTOR_ASSEMBLY", motor_keywords[:n])
+                        match = _seg_first_match(cursor, "SEAL_ASSEMBLY", seal_keywords)
+                        if match is not None:
+                            seal_assy = match
                     except Exception:
-                        match = None
+                        pass
+                
+                    # Fallback 1: option + type only
+                    if seal_assy == "??" and seal_type_val and seal_option_val:
+                        try:
+                            match = _seg_first_match(cursor, "SEAL_ASSEMBLY", seal_keywords[:2])
+                            if match is not None:
+                                seal_assy = match
+                        except Exception:
+                            pass
+                
+                    # Fallback 2: option alone (for noseal/customer supplied which have type="-")
+                    if seal_assy == "??" and seal_option_val:
+                        try:
+                            match = _seg_first_match(cursor, "SEAL_ASSEMBLY", [seal_keywords[0]])
+                            if match is not None:
+                                seal_assy = match
+                        except Exception:
+                            pass
+
+            # OPTIONS — direct match
+            opt_keywords = [v.lower() for k in ["COUPLING_OPTION", "BASEPLATE_OPTION"]
+                           if (v := body.selections.get(k, "")) and len(v) > 2]
+            if opt_keywords:
+                try:
+                    match = _seg_first_match(cursor, "OPTIONS", opt_keywords)
+                    options_code = match if match is not None else "00"
+                except Exception:
+                    options_code = "00"
+            else:
+                # No coupling/baseplate fields selected — check if series even has them
+                has_options_fields = cursor.execute(
+                    "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
+                    "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode IN ('COUPLING_OPTION','BASEPLATE_OPTION')",
+                    pub_id, body.series
+                ).fetchone()[0] > 0
+                options_code = body.segment_codes.get("OPTIONS", "00") if not has_options_fields else "??"
+
+            # MOTOR_ASSEMBLY — multi-field lookup (same pattern as PUMP_OPTIONS)
+            # The combo table has 11 fields: MOTOR_OPTION, MOTOR_CLASS, MOTOR_ORIENTATION,
+            # MOTOR_HORSEPOWER, MOTOR_RPM, MOTOR_VOLTAGE, MOTOR_HERTZ, MOTOR_FRAME,
+            # MOTOR_ENCLOSURE, MOTOR_EFFICIENCY, MOTOR_MANUFACTURER
+            # SFO field → combo JSON field mapping:
+            MOTOR_SFO_TO_COMBO = {
+                "MOTOR_OPTION": "MOTOR_OPTION",
+                "MOTOR_HP": "MOTOR_HORSEPOWER",
+                "MOTOR_RPM": "MOTOR_RPM",
+                "MOTOR_VOLTAGE": "MOTOR_VOLTAGE",
+                "MOTOR_HERTZ": "MOTOR_HERTZ",
+                "FRAME_SIZE": "MOTOR_FRAME",
+                "MOTOR_ENCLOSURE": "MOTOR_ENCLOSURE",
+                "MOTOR_EFFICIENCY": "MOTOR_EFFICIENCY",
+                "MOTOR_MFG": "MOTOR_MANUFACTURER",
+            }
+
+            motor_keywords = []
+            motor_opt_val = body.selections.get("MOTOR_OPTION", "")
+            if motor_opt_val:
+                # Handle synonym: "supplied by fybroc" = "installed by fybroc" for motor
+                motor_search = motor_opt_val.lower()
+                if "supplied by fybroc" in motor_search:
+                    motor_search = "installed by fybroc"
+                motor_keywords.append(motor_search)
+
+            # Add other motor fields for more precise matching
+            for sfo_field, combo_field in MOTOR_SFO_TO_COMBO.items():
+                if sfo_field == "MOTOR_OPTION":
+                    continue  # Already handled above
+                val = body.selections.get(sfo_field, "")
+                if val and len(val) >= 1:
+                    # Normalize: SFO "3ph - 60 hz" → combo has "/3/60"; SFO "143t" → combo "143"
+                    search_val = val.lower().strip()
+                    # Frame size: strip 't' suffix (SFO="143t", combo="143")
+                    if sfo_field == "FRAME_SIZE":
+                        search_val = search_val.rstrip("t").strip()
+                    # Hertz: SFO="3ph - 60 hz" → combo="/3/60"; SFO="3ph - 50 hz" → combo="/3/50"
+                    elif sfo_field == "MOTOR_HERTZ":
+                        if "60" in search_val:
+                            search_val = "3/60"
+                        elif "50" in search_val:
+                            search_val = "3/50"
+                    # HP: SFO="1.5" → combo="1.5 hp"; SFO="7.5" → combo="7.5 hp"
+                    # Use quote boundary: combo JSON has "MOTOR_HORSEPOWER": "5 hp"
+                    # So search for '"5 hp"' to avoid matching "1.5 hp" or "25 hp"
+                    elif sfo_field == "MOTOR_HP":
+                        search_val = f'": "{search_val} hp"'  # matches the JSON value exactly
+                    # MFG: SFO="standard offering" → combo="fybroc choice"
+                    elif sfo_field == "MOTOR_MFG":
+                        if "standard" in search_val:
+                            search_val = "fybroc choice"
+                    motor_keywords.append(search_val)
+
+            if motor_keywords:
+                # Progressive matching: try all keywords first, then progressively reduce
+                # Priority order: motor_option, hp, rpm, voltage, hertz, frame, enclosure, efficiency, mfg
+                motor_assy = "???"
+            
+                # Try full match first (in-memory against cached rows).
+                try:
+                    match = _seg_first_match(cursor, "MOTOR_ASSEMBLY", motor_keywords)
                     if match is not None:
                         motor_assy = match
-                        break
-        else:
-            # No motor keywords formed — check if series even has motor configuration
-            has_motor_fields = cursor.execute(
-                "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
-                "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode='MOTOR_OPTION'",
-                pub_id, body.series
-            ).fetchone()[0] > 0
-            if has_motor_fields:
-                motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
+                except Exception:
+                    pass
+            
+                # Progressive fallback: remove keywords from the end (least important)
+                if motor_assy == "???":
+                    for n in range(len(motor_keywords) - 1, 0, -1):
+                        try:
+                            match = _seg_first_match(
+                                cursor, "MOTOR_ASSEMBLY", motor_keywords[:n])
+                        except Exception:
+                            match = None
+                        if match is not None:
+                            motor_assy = match
+                            break
             else:
-                # No motor fields for this series — default to "no motor" (code 001)
-                motor_assy = "001"
+                # No motor keywords formed — check if series even has motor configuration
+                has_motor_fields = cursor.execute(
+                    "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
+                    "WHERE MetadataPublicationId=? AND SeriesCode=? AND FieldCode='MOTOR_OPTION'",
+                    pub_id, body.series
+                ).fetchone()[0] > 0
+                if has_motor_fields:
+                    motor_assy = body.segment_codes.get("MOTOR_ASSY", "???")
+                else:
+                    # No motor fields for this series — default to "no motor" (code 001)
+                    motor_assy = "001"
         
-        motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
+            motor_mods = body.segment_codes.get("MOTOR_MODS", "XXX")
         
-        # Motor Modifications — build 3-char code from individual mod selections
-        mod1 = body.selections.get("MOTOR_MOD_1", "")
-        mod2 = body.selections.get("MOTOR_MOD_2", "")
-        mod3 = body.selections.get("MOTOR_MOD_3", "")
-        if mod1 or mod2 or mod3:
-            def get_mod_code(mod_val):
-                if not mod_val or "no modification" in mod_val.lower():
-                    return "X"
-                row = cursor.execute(
-                    "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='MOTOR_MOD' AND LOWER(ComboValue)=?",
-                    mod_val.lower().strip()
-                ).fetchone()
-                return row[0] if row else "X"
-            motor_mods = get_mod_code(mod1) + get_mod_code(mod2) + get_mod_code(mod3)
+            # Motor Modifications — build 3-char code from individual mod selections
+            mod1 = body.selections.get("MOTOR_MOD_1", "")
+            mod2 = body.selections.get("MOTOR_MOD_2", "")
+            mod3 = body.selections.get("MOTOR_MOD_3", "")
+            if mod1 or mod2 or mod3:
+                def get_mod_code(mod_val):
+                    if not mod_val or "no modification" in mod_val.lower():
+                        return "X"
+                    row = cursor.execute(
+                        "SELECT SFOValue FROM cfg.VocabularyMap WHERE FieldCode='MOTOR_MOD' AND LOWER(ComboValue)=?",
+                        mod_val.lower().strip()
+                    ).fetchone()
+                    return row[0] if row else "X"
+                motor_mods = get_mod_code(mod1) + get_mod_code(mod2) + get_mod_code(mod3)
 
-        # Testing — lookup the 2-char base-36 code from the V6 Testing table
-        # (cfg.vw_SegmentCombinationLookup SegmentCode='TESTING', 60 rows). This
-        # code is the testing segment of the part number.
-        #
-        # The stored SelectionsJson uses the workbook's PREFIXED test tokens and
-        # 'none' for "no test", e.g.:
-        #   {"PERFORMANCE_TESTING":"1d-wit perf test","HYDROTEST":"none",
-        #    "VIBRATION":"none","SOUND_LEVEL":"4b-sound level test"}
-        # The user's selections come from cfg.SeriesFieldOption in a DIFFERENT
-        # vocabulary (no numeric prefix; "not included" instead of "none";
-        # "certificate"/"testing" suffixes). Prior code matched with fuzzy LIKE
-        # and skipped "not included", so almost every combination failed and the
-        # code defaulted to "00" - which is why testing never appeared in the
-        # part number. We normalize each selection to the stored token and match
-        # all four fields EXACTLY.
-        testing = "00"
+            # Testing — lookup the 2-char base-36 code from the V6 Testing table
+            # (cfg.vw_SegmentCombinationLookup SegmentCode='TESTING', 60 rows). This
+            # code is the testing segment of the part number.
+            #
+            # The stored SelectionsJson uses the workbook's PREFIXED test tokens and
+            # 'none' for "no test", e.g.:
+            #   {"PERFORMANCE_TESTING":"1d-wit perf test","HYDROTEST":"none",
+            #    "VIBRATION":"none","SOUND_LEVEL":"4b-sound level test"}
+            # The user's selections come from cfg.SeriesFieldOption in a DIFFERENT
+            # vocabulary (no numeric prefix; "not included" instead of "none";
+            # "certificate"/"testing" suffixes). Prior code matched with fuzzy LIKE
+            # and skipped "not included", so almost every combination failed and the
+            # code defaulted to "00" - which is why testing never appeared in the
+            # part number. We normalize each selection to the stored token and match
+            # all four fields EXACTLY.
+            testing = "00"
 
-        def _norm_test(field_code: str) -> str:
-            raw = str(body.selections.get(field_code, "")).strip().lower()
-            # No selection / explicit not-included -> the stored "none" token.
-            if raw in ("", "none", "not included", "not supplied by fybroc"):
+            def _norm_test(field_code: str) -> str:
+                raw = str(body.selections.get(field_code, "")).strip().lower()
+                # No selection / explicit not-included -> the stored "none" token.
+                if raw in ("", "none", "not included", "not supplied by fybroc"):
+                    return "none"
+                # Vibration and Sound Level have a single non-none token regardless
+                # of witnessed/non-witnessed in the V6 Testing table.
+                if field_code == "VIBRATION_TESTING":
+                    return "5b-vibration test"
+                if field_code == "SOUND_LEVEL_TESTING":
+                    return "4b-sound level test"
+                # Performance / Hydrotest: map the SFO wording to the prefixed token.
+                core = raw.replace(" certificate", "").replace(" testing", " test").strip()
+                perf_map = {
+                    "non-wit perf test": "1c-non-wit perf test",
+                    "wit perf test": "1d-wit perf test",
+                    "non-wit perf test npshr": "1e-non-wit perf test npshr",
+                    "wit perf test npshr": "1f-wit perf test npshr",
+                }
+                hydro_map = {
+                    "non-wit hydro test": "2a-non-wit hydro test",
+                    "wit hydro test": "2b-wit hydro test",
+                }
+                if field_code == "PERFORMANCE_TESTING":
+                    return perf_map.get(core, "none")
+                if field_code == "HYDROTEST_CERTIFICATE":
+                    return hydro_map.get(core, "none")
                 return "none"
-            # Vibration and Sound Level have a single non-none token regardless
-            # of witnessed/non-witnessed in the V6 Testing table.
-            if field_code == "VIBRATION_TESTING":
-                return "5b-vibration test"
-            if field_code == "SOUND_LEVEL_TESTING":
-                return "4b-sound level test"
-            # Performance / Hydrotest: map the SFO wording to the prefixed token.
-            core = raw.replace(" certificate", "").replace(" testing", " test").strip()
-            perf_map = {
-                "non-wit perf test": "1c-non-wit perf test",
-                "wit perf test": "1d-wit perf test",
-                "non-wit perf test npshr": "1e-non-wit perf test npshr",
-                "wit perf test npshr": "1f-wit perf test npshr",
-            }
-            hydro_map = {
-                "non-wit hydro test": "2a-non-wit hydro test",
-                "wit hydro test": "2b-wit hydro test",
-            }
-            if field_code == "PERFORMANCE_TESTING":
-                return perf_map.get(core, "none")
-            if field_code == "HYDROTEST_CERTIFICATE":
-                return hydro_map.get(core, "none")
-            return "none"
 
-        perf_t = _norm_test("PERFORMANCE_TESTING")
-        hydro_t = _norm_test("HYDROTEST_CERTIFICATE")
-        vib_t = _norm_test("VIBRATION_TESTING")
-        sound_t = _norm_test("SOUND_LEVEL_TESTING")
-        # Exact per-field match against the stored JSON tokens (JSON keys are
-        # PERFORMANCE_TESTING / HYDROTEST / VIBRATION / SOUND_LEVEL).
-        try:
-            match = _seg_first_match(cursor, "TESTING", [
-                f'"performance_testing": "{perf_t}"',
-                f'"hydrotest": "{hydro_t}"',
-                f'"vibration": "{vib_t}"',
-                f'"sound_level": "{sound_t}"',
-            ])
-            if match is not None:
-                testing = match
-        except Exception:
-            pass
+            perf_t = _norm_test("PERFORMANCE_TESTING")
+            hydro_t = _norm_test("HYDROTEST_CERTIFICATE")
+            vib_t = _norm_test("VIBRATION_TESTING")
+            sound_t = _norm_test("SOUND_LEVEL_TESTING")
+            # Exact per-field match against the stored JSON tokens (JSON keys are
+            # PERFORMANCE_TESTING / HYDROTEST / VIBRATION / SOUND_LEVEL).
+            try:
+                match = _seg_first_match(cursor, "TESTING", [
+                    f'"performance_testing": "{perf_t}"',
+                    f'"hydrotest": "{hydro_t}"',
+                    f'"vibration": "{vib_t}"',
+                    f'"sound_level": "{sound_t}"',
+                ])
+                if match is not None:
+                    testing = match
+            except Exception:
+                pass
 
-        # Frame size from selection
-        import re
-        frame_val = body.selections.get("FRAME_SIZE", "")
-        if frame_val:
-            digits = re.sub(r'[^0-9]', '', frame_val)
-            frame_size = digits[:2] if len(digits) >= 2 else "??"
-        else:
-            frame_size = body.segment_codes.get("FRAME_SIZE", "??")
+            # Frame size from selection
+            import re
+            frame_val = body.selections.get("FRAME_SIZE", "")
+            if frame_val:
+                digits = re.sub(r'[^0-9]', '', frame_val)
+                frame_size = digits[:2] if len(digits) >= 2 else "??"
+            else:
+                frame_size = body.segment_codes.get("FRAME_SIZE", "??")
 
-        # Build Part Number (vertical series omit seal segment)
-        if is_vertical:
-            pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
-        else:
-            pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
+            # Build Part Number (vertical series omit seal segment)
+            if is_vertical:
+                pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
+            else:
+                pn = f"{brand}{series_code}{size_code}{material_code}{trim_code}-{pump_opts}-{seal_mfg}{seal_assy}-{options_code}-{frame_size}{motor_assy}-{motor_mods}-{testing}"
 
-        # Debug info for segment resolution
-        # For vertical series, seal_assy "??" is expected (no seal assembly segment)
-        failed = [k for k, v in {
-            "seal_assy": seal_assy, "motor_assy": motor_assy,
-            "pump_options": pump_opts, "options": options_code,
-        }.items() if "?" in str(v)]
+            # Debug info for segment resolution
+            # For vertical series, seal_assy "??" is expected (no seal assembly segment)
+            failed = [k for k, v in {
+                "seal_assy": seal_assy, "motor_assy": motor_assy,
+                "pump_options": pump_opts, "options": options_code,
+            }.items() if "?" in str(v)]
         
-        # Remove seal_assy from failed list for vertical series (expected behavior)
-        if is_vertical and "seal_assy" in failed:
-            failed.remove("seal_assy")
+            # Remove seal_assy from failed list for vertical series (expected behavior)
+            if is_vertical and "seal_assy" in failed:
+                failed.remove("seal_assy")
         
-        segment_debug = {
-            "brand": brand,
-            "series_code": series_code,
-            "size_code": size_code,
-            "material_code": material_code,
-            "trim_code": trim_code,
-            "pump_options": pump_opts,
-            "seal_mfg": seal_mfg,
-            "seal_assy": seal_assy if not is_vertical else "N/A (vertical)",
-            "options": options_code,
-            "frame_size": frame_size,
-            "motor_assy": motor_assy,
-            "motor_mods": motor_mods,
-            "testing": testing,
-            "is_vertical": is_vertical,
-            "failed_segments": failed,
-        }
+            segment_debug = {
+                "brand": brand,
+                "series_code": series_code,
+                "size_code": size_code,
+                "material_code": material_code,
+                "trim_code": trim_code,
+                "pump_options": pump_opts,
+                "seal_mfg": seal_mfg,
+                "seal_assy": seal_assy if not is_vertical else "N/A (vertical)",
+                "options": options_code,
+                "frame_size": frame_size,
+                "motor_assy": motor_assy,
+                "motor_mods": motor_mods,
+                "testing": testing,
+                "is_vertical": is_vertical,
+                "failed_segments": failed,
+            }
 
-        # SQL-AUTHORITATIVE IDENTITY (F150, Option B).
-        # SQL now owns the authoritative assembly, signature, SKU, reuse, and
-        # persistence. The Python-assembled `pn` above is retained only as a
-        # PARITY ORACLE: we resolve the composite segments in Python (which
-        # respects all constraint corrections), hand the resolved segment codes
-        # to cfg.usp_AssembleConfiguredProduct, and use SQL's returned values as
-        # authoritative. If Python's PN diverges from SQL's, we log it (a signal
-        # the two assemblers disagree) but SQL wins.
-        segments_payload = json.dumps({
-            "brand": brand,
-            "series_code": series_code,
-            "size_code": size_code,
-            "material_code": material_code,
-            "trim_code": trim_code,
-            "pump_options": pump_opts,
-            "seal_mfg": seal_mfg,
-            "seal_assy": seal_assy,
-            "options": options_code,
-            "frame_size": frame_size,
-            "motor_assy": motor_assy,
-            "motor_mods": motor_mods,
-            "testing": testing,
-        })
-        py_pn = pn  # Python parity-oracle assembly (computed above)
+            # SQL-AUTHORITATIVE IDENTITY (F150, Option B).
+            # SQL now owns the authoritative assembly, signature, SKU, reuse, and
+            # persistence. The Python-assembled `pn` above is retained only as a
+            # PARITY ORACLE: we resolve the composite segments in Python (which
+            # respects all constraint corrections), hand the resolved segment codes
+            # to cfg.usp_AssembleConfiguredProduct, and use SQL's returned values as
+            # authoritative. If Python's PN diverges from SQL's, we log it (a signal
+            # the two assemblers disagree) but SQL wins.
+            segments_payload = json.dumps({
+                "brand": brand,
+                "series_code": series_code,
+                "size_code": size_code,
+                "material_code": material_code,
+                "trim_code": trim_code,
+                "pump_options": pump_opts,
+                "seal_mfg": seal_mfg,
+                "seal_assy": seal_assy,
+                "options": options_code,
+                "frame_size": frame_size,
+                "motor_assy": motor_assy,
+                "motor_mods": motor_mods,
+                "testing": testing,
+            })
+            py_pn = pn  # Python parity-oracle assembly (computed above)
 
-        sql_row = cursor.execute(
-            "EXEC cfg.usp_AssembleConfiguredProduct "
-            "@FamilyCode=?, @SeriesCode=?, @IsVertical=?, "
-            "@SegmentsJson=?, @CanonicalJson=?, @RequestedBy=?, @Persist=1;",
-            family_upper, body.series, 1 if is_vertical else 0,
-            segments_payload, config_json, body.requested_by,
-        ).fetchone()
+            sql_row = cursor.execute(
+                "EXEC cfg.usp_AssembleConfiguredProduct "
+                "@FamilyCode=?, @SeriesCode=?, @IsVertical=?, "
+                "@SegmentsJson=?, @CanonicalJson=?, @RequestedBy=?, @Persist=1;",
+                family_upper, body.series, 1 if is_vertical else 0,
+                segments_payload, config_json, body.requested_by,
+            ).fetchone()
 
-        # SQL is authoritative for PN, SKU, signature, and reuse.
-        pn = sql_row[0]
-        sku = sql_row[1]
-        signature = sql_row[2]
+            # SQL is authoritative for PN, SKU, signature, and reuse.
+            pn = sql_row[0]
+            sku = sql_row[1]
+            signature = sql_row[2]
 
-        # Parity check: Python assembly vs SQL assembly must agree on the PN.
-        parity_ok = (py_pn == pn)
-        if not parity_ok:
-            import logging
-            logging.getLogger("uvicorn.error").warning(
-                "F150 PN parity divergence: python=%r sql=%r (series=%s)",
-                py_pn, pn, body.series,
-            )
+            # Parity check: Python assembly vs SQL assembly must agree on the PN.
+            parity_ok = (py_pn == pn)
+            if not parity_ok:
+                import logging
+                logging.getLogger("uvicorn.error").warning(
+                    "F150 PN parity divergence: python=%r sql=%r (series=%s)",
+                    py_pn, pn, body.series,
+                )
 
-        # SKU<->PN 1:1 invariant (independent of the Python PN oracle): the SKU
-        # must carry the PN-derived token = first 8 hex of SHA-256(PartNumber).
-        # SQL derives the SKU from the PN; we recompute and expose the check so a
-        # divergence is visible even though SQL is authoritative for the SKU.
-        sku_token_expected = hashlib.sha256(pn.encode()).hexdigest().upper()[:8] if pn else ""
-        sku_pn_ok = bool(sku) and (sku_token_expected in sku)
-        if not sku_pn_ok:
-            import logging
-            logging.getLogger("uvicorn.error").warning(
-                "SKU<->PN divergence: pn=%r expected_token=%r sku=%r (series=%s)",
-                pn, sku_token_expected, sku, body.series,
-            )
+            # SKU<->PN 1:1 invariant (independent of the Python PN oracle): the SKU
+            # must carry the PN-derived token = first 8 hex of SHA-256(PartNumber).
+            # SQL derives the SKU from the PN; we recompute and expose the check so a
+            # divergence is visible even though SQL is authoritative for the SKU.
+            sku_token_expected = hashlib.sha256(pn.encode()).hexdigest().upper()[:8] if pn else ""
+            sku_pn_ok = bool(sku) and (sku_token_expected in sku)
+            if not sku_pn_ok:
+                import logging
+                logging.getLogger("uvicorn.error").warning(
+                    "SKU<->PN divergence: pn=%r expected_token=%r sku=%r (series=%s)",
+                    pn, sku_token_expected, sku, body.series,
+                )
 
         # Pricing lookup
         pricing = []
@@ -2446,80 +2490,82 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         # (component code + attributes + qty + uom), price EXCLUDED. Python
         # recomputes the same signature as a parity oracle.
         configured_product_id = sql_row[4]
-
-        # Priced lines for SQL to merge onto matching structural lines.
-        priced_payload = []
-        for p in pricing:
-            comp = p.get("component", "")
-            if comp.startswith("Base Pump"):
-                code = "BASE_PUMP"
-            elif comp == "Seal":
-                code = "SEAL"
-            else:
-                continue
-            priced_payload.append({
-                "component_code": code,
-                "unit_cost": p.get("amount"),
-                "source_reference": str(p.get("detail") or "")[:200],
-            })
-
-        # Structural lines (must mirror cfg.usp_GenerateBOM exactly).
-        def _line(code, attrs, desc, qty=1, uom="EA"):
-            return {"component_code": code, "attributes": attrs,
-                    "description": desc, "quantity": qty, "uom": uom}
-        bom_lines = [
-            _line("PUMP_ASSEMBLY", f"{series_code}{size_code}{material_code}{trim_code}",
-                  f"Pump assembly {series_code}{size_code}{material_code}{trim_code}"),
-            _line("PUMP_OPTIONS", pump_opts, f"Pump options {pump_opts}"),
-        ]
-        if not is_vertical:
-            bom_lines.append(_line("SEAL_ASSEMBLY", f"{seal_mfg}{seal_assy}",
-                                   f"Seal assembly {seal_mfg}{seal_assy}"))
-        bom_lines += [
-            _line("OPTIONS", options_code, f"Options {options_code}"),
-            _line("MOTOR_ASSEMBLY", f"{frame_size}{motor_assy}",
-                  f"Motor assembly {frame_size}{motor_assy}"),
-            _line("MOTOR_MODS", motor_mods, f"Motor modifications {motor_mods}"),
-            _line("TESTING", testing, f"Testing {testing}"),
-        ]
-        # Canonical BOM signature (parity oracle): sorted lower('code|attrs|qty|uom'),
-        # joined by newline, SHA-256 hex upper. Must match cfg.usp_GenerateBOM.
-        def _fmt_qty(q):
-            return f"{q:.3f}"
-        line_keys = sorted(
-            f"{l['component_code']}|{l['attributes']}|{_fmt_qty(l['quantity'])}|{l['uom']}".lower()
-            for l in bom_lines
-        )
-        py_bom_signature = hashlib.sha256("\n".join(line_keys).encode()).hexdigest().upper()
-
         bom = None
-        if configured_product_id is not None:
-            try:
-                bom_row = cursor.execute(
-                    "EXEC cfg.usp_GenerateBOM @ConfiguredProductId=?, @IsVertical=?, "
-                    "@SegmentsJson=?, @PricedJson=?, @CreatedBy=?;",
-                    configured_product_id, 1 if is_vertical else 0,
-                    segments_payload, json.dumps(priced_payload), body.requested_by,
-                ).fetchone()
-                sql_bom_signature = bom_row[1]
-                bom_parity_ok = (py_bom_signature == sql_bom_signature)
-                if not bom_parity_ok:
+        if family_upper != "DEAN":
+
+            # Priced lines for SQL to merge onto matching structural lines.
+            priced_payload = []
+            for p in pricing:
+                comp = p.get("component", "")
+                if comp.startswith("Base Pump"):
+                    code = "BASE_PUMP"
+                elif comp == "Seal":
+                    code = "SEAL"
+                else:
+                    continue
+                priced_payload.append({
+                    "component_code": code,
+                    "unit_cost": p.get("amount"),
+                    "source_reference": str(p.get("detail") or "")[:200],
+                })
+
+            # Structural lines (must mirror cfg.usp_GenerateBOM exactly).
+            def _line(code, attrs, desc, qty=1, uom="EA"):
+                return {"component_code": code, "attributes": attrs,
+                        "description": desc, "quantity": qty, "uom": uom}
+            bom_lines = [
+                _line("PUMP_ASSEMBLY", f"{series_code}{size_code}{material_code}{trim_code}",
+                      f"Pump assembly {series_code}{size_code}{material_code}{trim_code}"),
+                _line("PUMP_OPTIONS", pump_opts, f"Pump options {pump_opts}"),
+            ]
+            if not is_vertical:
+                bom_lines.append(_line("SEAL_ASSEMBLY", f"{seal_mfg}{seal_assy}",
+                                       f"Seal assembly {seal_mfg}{seal_assy}"))
+            bom_lines += [
+                _line("OPTIONS", options_code, f"Options {options_code}"),
+                _line("MOTOR_ASSEMBLY", f"{frame_size}{motor_assy}",
+                      f"Motor assembly {frame_size}{motor_assy}"),
+                _line("MOTOR_MODS", motor_mods, f"Motor modifications {motor_mods}"),
+                _line("TESTING", testing, f"Testing {testing}"),
+            ]
+            # Canonical BOM signature (parity oracle): sorted lower('code|attrs|qty|uom'),
+            # joined by newline, SHA-256 hex upper. Must match cfg.usp_GenerateBOM.
+            def _fmt_qty(q):
+                return f"{q:.3f}"
+            line_keys = sorted(
+                f"{l['component_code']}|{l['attributes']}|{_fmt_qty(l['quantity'])}|{l['uom']}".lower()
+                for l in bom_lines
+            )
+            py_bom_signature = hashlib.sha256("\n".join(line_keys).encode()).hexdigest().upper()
+
+            bom = None
+            if configured_product_id is not None:
+                try:
+                    bom_row = cursor.execute(
+                        "EXEC cfg.usp_GenerateBOM @ConfiguredProductId=?, @IsVertical=?, "
+                        "@SegmentsJson=?, @PricedJson=?, @CreatedBy=?;",
+                        configured_product_id, 1 if is_vertical else 0,
+                        segments_payload, json.dumps(priced_payload), body.requested_by,
+                    ).fetchone()
+                    sql_bom_signature = bom_row[1]
+                    bom_parity_ok = (py_bom_signature == sql_bom_signature)
+                    if not bom_parity_ok:
+                        import logging
+                        logging.getLogger("uvicorn.error").warning(
+                            "BOM signature parity divergence: py=%r sql=%r (pn=%s)",
+                            py_bom_signature, sql_bom_signature, pn,
+                        )
+                    bom = {
+                        "bom_header_id": bom_row[0],
+                        "bom_signature": sql_bom_signature,
+                        "existing_bom": bool(bom_row[2]),
+                        "line_count": bom_row[3],
+                        "bom_parity_ok": bom_parity_ok,
+                        "lines": bom_lines,
+                    }
+                except Exception as e:
                     import logging
-                    logging.getLogger("uvicorn.error").warning(
-                        "BOM signature parity divergence: py=%r sql=%r (pn=%s)",
-                        py_bom_signature, sql_bom_signature, pn,
-                    )
-                bom = {
-                    "bom_header_id": bom_row[0],
-                    "bom_signature": sql_bom_signature,
-                    "existing_bom": bool(bom_row[2]),
-                    "line_count": bom_row[3],
-                    "bom_parity_ok": bom_parity_ok,
-                    "lines": bom_lines,
-                }
-            except Exception as e:
-                import logging
-                logging.getLogger("uvicorn.error").warning("BOM generation failed: %s", e)
+                    logging.getLogger("uvicorn.error").warning("BOM generation failed: %s", e)
 
         return {
             "family": family_upper,
