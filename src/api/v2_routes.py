@@ -188,6 +188,62 @@ NUMERIC_OPTION_FIELDS = {"MOTOR_HP", "MOTOR_RPM", "MOTOR_HERTZ", "MOTOR_VOLTAGE"
 # their numeric parts so the UI shows an ascending, logical progression.
 DIMENSIONAL_OPTION_FIELDS = {"ALT_SIZE"}
 
+# ---------------------------------------------------------------------------
+# Dean PUMP_CONFIGURATION applicability gating (authoritative from the Dean Data
+# Sheet Rev 2 macro `Sheet1.Worksheet_Change` at Data Sheet!D8). Selecting the
+# Pump Configuration bundle determines whether the Baseplate, Coupling, and Motor
+# component groups are part of the pump at all. When a group is excluded, its
+# fields are NOT applicable (dropped from the field set, like WETTED_HARDWARE_
+# SELECTION) and therefore not priced.
+#
+# This is Dean-only: PUMP_CONFIGURATION with these bundle values exists only for
+# Dean. Fybroc has no PUMP_CONFIGURATION field, so the gate never triggers for
+# Fybroc and its applicability is unchanged.
+DEAN_COMPONENT_GROUP_FIELDS = {
+    "BASEPLATE": {"BASEPLATE_TYPE", "DRIP_PAN", "ALIGNMENT_LUGS", "LIFTING_LUGS",
+                  "LEVELLING_SCREWS", "GROUNDING_LUG", "GROUT_HOLE",
+                  "ISOLATION_PADS", "STILTS"},
+    "COUPLING": {"COUPLING_TYPE", "COUPLING_GUARD"},
+    "MOTOR": {"FRAME_SIZE"},
+}
+
+# Pump Configuration bundle -> set of component groups INCLUDED. Any group not in
+# the set is excluded (its fields drop out). Matches the 8 bundles in the Dean
+# SeriesFieldOption PUMP_CONFIGURATION domain and the macro cascade.
+DEAN_PUMP_CONFIG_INCLUDES = {
+    "pump only": set(),
+    "pump and baseplate": {"BASEPLATE"},
+    "pump, baseplate, and coupling": {"BASEPLATE", "COUPLING"},
+    "pump and motor": {"MOTOR"},
+    "pump, baseplate, and motor": {"BASEPLATE", "MOTOR"},
+    "pump, baseplate, coupling and motor": {"BASEPLATE", "COUPLING", "MOTOR"},
+    "pump and coupling": {"COUPLING"},
+    "pump, coupling and motor": {"COUPLING", "MOTOR"},
+}
+
+
+def _dean_pump_config_excluded_fields(selections: dict) -> set[str]:
+    """Fields that are NOT applicable given the chosen PUMP_CONFIGURATION bundle.
+
+    Returns the union of component-group fields for every group the bundle
+    excludes (Baseplate/Coupling/Motor). Empty set when PUMP_CONFIGURATION is
+    unset or not a recognized Dean bundle (so non-Dean configs are unaffected).
+    """
+    pc = None
+    for k, v in selections.items():
+        if k.upper() == "PUMP_CONFIGURATION" and v is not None and str(v).strip():
+            pc = str(v).strip().lower()
+            break
+    if pc is None or pc not in DEAN_PUMP_CONFIG_INCLUDES:
+        return set()
+    included = DEAN_PUMP_CONFIG_INCLUDES[pc]
+    excluded = set()
+    for group, fields in DEAN_COMPONENT_GROUP_FIELDS.items():
+        if group not in included:
+            excluded |= fields
+    return excluded
+
+
 _DIM_SPLIT = re.compile(r"\s*x\s*", re.IGNORECASE)
 
 
@@ -939,6 +995,16 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             ordered_fields = [fc for fc in ordered_fields
                               if fc != "WETTED_HARDWARE_SELECTION"]
             all_options.pop("WETTED_HARDWARE_SELECTION", None)
+        # Dean PUMP_CONFIGURATION gating (macro-authoritative): drop the
+        # Baseplate/Coupling/Motor fields the chosen bundle excludes, so they are
+        # neither shown nor priced. Dean-only (no-op when PUMP_CONFIGURATION unset
+        # or non-Dean), so Fybroc applicability is unchanged.
+        _pc_excluded = _dean_pump_config_excluded_fields(body.selections)
+        if _pc_excluded:
+            ordered_fields = [fc for fc in ordered_fields
+                              if fc.upper() not in _pc_excluded]
+            for _fc in _pc_excluded:
+                all_options.pop(_fc, None)
         # Reset-on-upstream-change: keep only the contiguous completed prefix of
         # selections. Any selection after the first incomplete step is dropped,
         # so changing/clearing an earlier step forces re-progression and never
@@ -1204,6 +1270,11 @@ async def resolve_configuration_state(
                 fields = [fc for fc in fields if fc != "SETTING"]
             elif mode == "standard setting":
                 fields = [fc for fc in fields if fc != "LENGTH"]
+            # Dean PUMP_CONFIGURATION gating (macro-authoritative): drop the
+            # Baseplate/Coupling/Motor fields the chosen bundle excludes.
+            excluded = _dean_pump_config_excluded_fields(sel)
+            if excluded:
+                fields = [fc for fc in fields if fc.upper() not in excluded]
             return fields
 
         # Load the constant constraint data ONCE for this request, then reuse it
@@ -2067,6 +2138,128 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             else:
                 _add_component("Seal", seal_type, None)
 
+        # ====================================================================
+        # DEAN pricing resolve path (D120). Dean's Matrix pricebook uses its own
+        # component-code vocabulary (OPTION_ADDER / COUPLING / BASEPLATE /
+        # SHAFT_CONFIG), NOT the Fybroc ADDER_COMPONENTS/MULTI_COMPONENTS field
+        # codes below. So for DEAN we price via a dedicated branch and SKIP the
+        # Fybroc blocks (they would only add spurious C/F entries). The Fybroc
+        # path is byte-for-byte unchanged (this branch is family-gated).
+        #
+        # Composition (macro/formula-authoritative, docs/evidence/D100/
+        # DEAN_DATASHEET_VBA_LOGIC.md): total = base list + Σ|option adder| (only
+        # for selected options) + coupling + baseplate + shaft config, gated by
+        # Pump Configuration presence. Adder sign ignored (abs). List price only;
+        # discount is a per-line sales input (default 0).
+        # ====================================================================
+        if family_upper == "DEAN":
+            _dean_excluded = _dean_pump_config_excluded_fields(body.selections)
+
+            def _dean_price_by_conditions(component_code, require_field=None,
+                                          require_value=None):
+                """Price a Dean component whose PriceRule's conditions ALL match the
+                current selections. A rule matches iff EVERY one of its
+                PriceConditions is satisfied by a selection (SIZE + PUMP_MATERIAL +
+                driving field(s)).
+
+                For OPTION_ADDER we additionally REQUIRE the rule to carry a
+                condition on the specific field being priced (require_field=value),
+                so pricing CASING_MATERIAL only ever returns a CASING_MATERIAL adder
+                rule - not just any rule whose conditions happen to be satisfied by
+                the full selection set. Returns (amount, detail) or None."""
+                sel_pairs = []
+                for fc, v in body.selections.items():
+                    if v is None or str(v).strip() == "":
+                        continue
+                    sel_pairs.append({"f": fc.upper(),
+                                      "v": str(v).strip().lower().replace("_", " ")})
+                if size_val:
+                    sel_pairs.append({"f": "SIZE",
+                                      "v": str(size_val).strip().lower().replace("_", " ")})
+                sel_json = json.dumps(sel_pairs)
+                sql = ["""
+                    SELECT TOP 1 pr.Amount, pr.SourceOptionValue
+                    FROM price.PriceRule pr
+                    JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                    WHERE pr.ComponentCode = ? AND pr.IsActive = 1 AND pr.PricingStatus = 'found'
+                      AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
+                      AND NOT EXISTS (
+                          SELECT 1 FROM price.PriceCondition pc
+                          WHERE pc.PriceRuleId = pr.PriceRuleId
+                            AND NOT EXISTS (
+                                SELECT 1 FROM OPENJSON(?) WITH (f varchar(100) '$.f', v nvarchar(400) '$.v') s
+                                WHERE s.f = UPPER(pc.FieldCode)
+                                  AND s.v = LOWER(REPLACE(LTRIM(RTRIM(pc.ComparisonValue)), '_', ' '))
+                            )
+                      )"""]
+                params = [component_code, body.series, f"{body.series}%", sel_json]
+                if require_field is not None:
+                    # The rule MUST have a condition on exactly this field+value,
+                    # so the adder returned is the one for the field being priced.
+                    sql.append("""
+                      AND EXISTS (
+                          SELECT 1 FROM price.PriceCondition pc2
+                          WHERE pc2.PriceRuleId = pr.PriceRuleId
+                            AND UPPER(pc2.FieldCode) = ?
+                            AND LOWER(REPLACE(LTRIM(RTRIM(pc2.ComparisonValue)), '_', ' ')) = ?
+                      )""")
+                    params += [require_field.upper(),
+                               str(require_value).strip().lower().replace("_", " ")]
+                sql.append(" ORDER BY pr.Priority")
+                row = cursor.execute("".join(sql), *params).fetchone()
+                if row and row[0] is not None:
+                    return float(row[0]), row[1]
+                return None
+
+            # (1) OPTION_ADDER: one rule per (SIZE, PUMP_MATERIAL, <field>=<value>).
+            # For each selected option field that is applicable (not gated out),
+            # look up its adder and add |amount|.
+            for fc, val in body.selections.items():
+                fcu = fc.upper()
+                if fcu in ("SERIES", "ALT_SIZE", "SIZE", "PUMP_MATERIAL",
+                           "PUMP_CONFIGURATION"):
+                    continue
+                if fcu in _dean_excluded:
+                    continue
+                if val is None or str(val).strip() == "":
+                    continue
+                priced = _dean_price_by_conditions(
+                    "OPTION_ADDER", require_field=fcu, require_value=val)
+                if priced is not None:
+                    amt = abs(priced[0])
+                    pricing.append({"component": f"Adder: {fcu}", "amount": amt,
+                                    "detail": priced[1]})
+                    _add_component(f"Adder: {fcu}", val, amt, priced[1])
+
+            # (2) COUPLING / BASEPLATE / SHAFT_CONFIG - gated by Pump Config.
+            _dean_components = [
+                ("COUPLING", "Coupling", "COUPLING"),
+                ("BASEPLATE", "Baseplate", "BASEPLATE"),
+                ("SHAFT_CONFIG", "Shaft Configuration", "SHAFT"),
+            ]
+            for comp_code, label, group in _dean_components:
+                # If the whole component group is gated out by Pump Configuration,
+                # it is not part of the pump -> no charge, not even C/F.
+                grp_fields = DEAN_COMPONENT_GROUP_FIELDS.get(group, set())
+                if grp_fields and grp_fields <= _dean_excluded:
+                    continue
+                priced = _dean_price_by_conditions(comp_code)
+                if priced is not None:
+                    amt = abs(priced[0])
+                    pricing.append({"component": label, "amount": amt, "detail": priced[1]})
+                    _add_component(label, None, amt, priced[1])
+                else:
+                    _add_component(label, None, None)
+
+            # Motor + Seal are not priced by the Matrix -> honest C/F.
+            _add_component("Motor", body.selections.get("FRAME_SIZE"), None)
+
+            total = sum(p["amount"] for p in pricing)
+            # Skip the Fybroc-specific adder/multi blocks below for Dean.
+            _dean_priced = True
+        else:
+            _dean_priced = False
+
         # ---- Rev0.4 Phase B: additional priced components (1500 & 5500) ----
         # Each of these adder/component tables is keyed by series + size + one
         # driving selection value; the published PriceRule denormalizes that
@@ -2124,7 +2317,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                     return float(row[0]), row[1]
             return None
 
-        for comp_code, label, sel_field in ADDER_COMPONENTS:
+        for comp_code, label, sel_field in (ADDER_COMPONENTS if not _dean_priced else []):
             sel_val = body.selections.get(sel_field, "")
             if not sel_val:
                 # The config does not select this component -> not applicable,
@@ -2226,7 +2419,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             ("BASEPLATE", "Baseplate", [["SIZE", "FRAME_SIZE", "BASEPLATE_OPTION"]]),
             ("TAILPIPE", "Tailpipe", [["SIZE", "PUMP_MATERIAL", "WETTED_HARDWARE", "TAILPIPE_LENGTH"]]),
         ]
-        for comp_code, label, field_sets in MULTI_COMPONENTS:
+        for comp_code, label, field_sets in (MULTI_COMPONENTS if not _dean_priced else []):
             priced = None
             for cond_fields in field_sets:
                 priced = _price_multi_condition(comp_code, label, cond_fields)
@@ -2241,6 +2434,8 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             else:
                 _add_component(label, None, None)
 
+        # For DEAN, `total` was already summed in the Dean branch above; recompute
+        # for Fybroc (and harmlessly re-affirm for Dean) from the priced lines.
         total = sum(p["amount"] for p in pricing)
 
         # ---- U130: BOM generation (grounded, deterministic from configuration) ----

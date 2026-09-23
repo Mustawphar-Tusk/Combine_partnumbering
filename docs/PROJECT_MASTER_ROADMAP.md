@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.11  
+**Roadmap Version:** 1.12  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -996,7 +996,7 @@ F170	Fybroc exhaustive regression	COMPLETE — gate ALL CORRECTIONS INTACT + 10-
 F180	Fybroc signoff	SIGNOFF PREPARED — awaiting engineering signature (CURRENT)
 D100	Dean source reconciliation	COMPLETE — 5 workbooks classified; PumpConfiguration_Logic authority (docs/evidence/D100/DEAN_D100_EXIT.md)
 D110	Dean configuration completion	COMPLETE — model published to SQL (family 1), audit 45/45, Fybroc gate intact (docs/evidence/D110/DEAN_D110_EXIT.md)
-D120	Dean pricing/adders	NOT STARTED
+D120	Dean pricing/adders	COMPLETE — Dean Pricing Matrix published to SQL (DEAN_STANDARD, 9874 rules), pricing audit 22/22, Fybroc gate intact (docs/evidence/D120/DEAN_D120_EXIT.md)
 D130	SQL Dean identifier	NOT STARTED
 D140	Dean Excel Oracle	NOT STARTED
 D150	Dean exhaustive regression	NOT STARTED
@@ -1030,15 +1030,31 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.11
+Version:            1.12
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 (Dean Configuration & Dependency Completion) COMPLETE.
-                    Next permitted: D120 (Dean Pricing & Adders) — do NOT start
-                    without explicit go-ahead.
-Status:             D100 + D110 complete (2026-08-26). F180 signoff remains
+Current Milestone:  D120 (Dean Pricing & Adders) COMPLETE.
+                    Next permitted: D130 (SQL Dean Identifier Authority) — do NOT
+                    start without explicit go-ahead.
+Status:             D100 + D110 + D120 complete (2026-08-26). F180 signoff remains
                     prepared, awaiting engineering signature (parallel; Dean is
                     net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.12): D120 (Dean Pricing & Adders) complete. The authoritative Dean
+Pricing Matrix is published to SQL for the DEAN family (DEAN_STANDARD version
+DEAN-MATRIX-20260826-V1, 9874 rules: base pump, option adders, couplings,
+baseplates, shaft config) reusing the existing pricing pipeline (no schema
+migration; PriceBook.PumpFamilyId already family-scopes). A configured Dean pump
+resolves to base + Σ|option adder| + coupling + baseplate + shaft, with baseplate
+keyed by Type(Economy=Formed)+Drip Pan (lugs descriptive), quote math
+List×(1−Discount)×Qty, and motor/seal honest C/F (not in the Matrix). The Dean
+Data Sheet Rev 2 macros+formulas were adopted as authoritative over all Dean
+configuration (docs/evidence/D100/DEAN_DATASHEET_VBA_LOGIC.md); this added a
+Pump-Configuration applicability gate (Baseplate/Coupling/Motor presence) to the
+config model — Dean-only, Fybroc unaffected. Verified: scripts/audit_dean_pricing.py
+22/22, scripts/audit_dean_config.py 29/29, Fybroc gate ALL CORRECTIONS INTACT 7/7,
+Fybroc pricing + config rows unchanged. Only gaps: motor/seal C/F + one flagged
+Matrix source anomaly (RTA3146 326TS). See docs/evidence/D120/DEAN_D120_EXIT.md.
 
 CHANGE (v1.11): D110 option applicability corrected to be size-aware and
 STD/X-driven. Engineering flagged that most Dean configurations carry STD
