@@ -3,11 +3,13 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.13). The Phase D / Phase U rows
+> `docs/Project_master_roadmap.md` §11–§12 (v1.14). The Phase D / Phase U rows
 > below were over-reported in a prior checkpoint; **D100**, **D110**, **D120**,
-> and **D130** are verified complete against their exit gates (evidence in
-> `docs/evidence/D100/`, `docs/evidence/D110/`, `docs/evidence/D120/`,
-> `docs/evidence/D130/`). D140–D160 are NOT yet built.
+> **D130**, and **D140** are verified complete against their exit gates (evidence
+> in `docs/evidence/D100/`…`docs/evidence/D140/`). **D140** was re-based onto the
+> new authoritative workbook `PumpConfiguration_Logic_0.1.xlsm`. **D150–D160 are
+> NOT yet built** (the "Complete" marks previously shown for them were
+> over-reported and remain inaccurate).
 
 ## Foundation Phase
 
@@ -58,9 +60,9 @@
 | D110 | Dean Configuration & Dependency Completion | Complete (verified) | — |
 | D120 | Dean Pricing & Adders | Complete (verified 2026-08-26) | — |
 | D130 | SQL Dean Identifier Authority | Complete (verified 2026-08-26) | docs/evidence/D130/DEAN_D130_EXIT.md |
-| D140 | Dean Excel Oracle | Complete | — |
-| D150 | Dean Exhaustive Regression | Complete | — |
-| D160 | Dean Signoff & Freeze | Complete | `d160-dean-complete` |
+| D140 | Dean Excel Oracle | Complete (verified 2026-08-26; re-based onto PumpConfiguration_Logic_0.1.xlsm) | docs/evidence/D140/DEAN_D140_EXIT.md |
+| D150 | Dean Exhaustive Regression | NOT STARTED (prior "Complete" was over-reported) | — |
+| D160 | Dean Signoff & Freeze | NOT STARTED (prior "Complete"/`d160-dean-complete` was over-reported) | — |
 
 ## Phase U — Unified Application
 
@@ -110,4 +112,4 @@
 Fybroc regression gate ALL CORRECTIONS INTACT (no regression). Pump Configuration
 applicability gating added to the config model (Dean-only).  
 **Branch:** `feature/m021-shared-excel-production-hardening`  
-**Next action:** D140 (Dean Excel Oracle) — awaiting explicit go-ahead. (D130 SQL Dean Identifier Authority complete 2026-08-26; see docs/evidence/D130/DEAN_D130_EXIT.md.)  
+**Next action:** D150 (Exhaustive Dean Regression) — awaiting explicit go-ahead. (D140 Dean Excel Oracle complete 2026-08-26, re-based onto PumpConfiguration_Logic_0.1.xlsm; see docs/evidence/D140/DEAN_D140_EXIT.md.)  

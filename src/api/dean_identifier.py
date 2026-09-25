@@ -1,8 +1,9 @@
-"""D130 - Dean Part Number resolver (family-scoped identifier authority).
+"""D140 - Dean Part Number resolver (family-scoped identifier authority).
 
 Resolves a Dean configuration (a dict of Dean SFO field_code -> value, plus
 series/size) into the engineering-segment codes that make up the Dean Part
-Number, then the full PN, mirroring the workbook Smart Number!B5 + J5 formulas.
+Number, then the full PN, mirroring the authoritative workbook
+PumpConfiguration_Logic_0.1.xlsm numbering.
 
 Storage this reads (all family-scoped, loaded by
 scripts/load_dean_identifier_to_sql.py):
@@ -10,19 +11,35 @@ scripts/load_dean_identifier_to_sql.py):
   - segment String->Code maps: stg.SegmentCombinationImport (DEAN batch),
     matched EXACTLY on CombinationKey (the numbering sheet's '*'-joined String).
 
-Special (non-table) segments per the Smart Number trace:
-  - Impeller Trim  : inch-letter + decimal-letter (Smart Number B31:C43 / E34:F41)
-  - Seal           : IF seal not "Included" -> "00000" else "TBD__"
-  - Flush / Barrier: Config Info FA->FH / FK->FN lookup maps
-  - Motor Frame    : gated -> "00" when no motor (full BASE(MATCH) matrix pending)
-  - Motor          : gated -> "0000" when motor option != "Included"
-  - Baseplate      : gated -> "000" when Baseplate Type = "NONE"
-  - Motor Options  : inert in the workbook (static "00")
+D140 RE-BASE (2026-08-26) onto PumpConfiguration_Logic_0.1.xlsm:
+  * Field ORDER per segment now follows the new workbook's numbering-sheet option
+    columns (see scripts/load_dean_identifier_to_sql.py SEGMENTS + PCL_V01
+    structure). Wet End / Impeller / Power Frame / Baseplate re-ordered.
+  * NO "N/A" collapse: the new workbook keeps literal option values (even under
+    NONE); segments collapse only by the natural trailing-'*' trim. The old
+    SEGMENT_NONE_COLLAPSE (which injected "N/A") is REMOVED.
+  * Flush Plan is now TABLE-BACKED (its own numbering sheet). Resolved by looking
+    up the plan's STD numbering row (lowest code for the FLUSH_PLAN), replacing
+    the prior Config-Info FA->FH letter map.
+  * Motor is table-backed via the Motor Frame-Size sub-table (FRAME_SIZE ->
+    2-char code). The main motor code column is inert ('000') in the workbook and
+    is NOT used.
+
+Special (non-table) segments:
+  - Impeller Trim  : inch-letter + decimal-letter (Impeller trim sub-table)
+  - Seal           : IF seal not "Included" -> "00000" else "TBD__" (EXCLUDED from PN)
+
+Retained-but-UNBUILT segments (no numbering table in v0.1 - documented gaps
+DEAN_ENGINEERING_QUESTIONS.md §F; the resolver emits a fixed zero-padded
+placeholder so the PN never errors and the slot is preserved):
+  - Barrier Plan (F2 header-only) -> "0"
+  - Cooling Plan (F1 empty sheet) -> "00"
+  - Testing / Documentation / Additional Options (no sheet in v0.1) -> "00"/"0000"/"00"
 
 The Dean PN (seal segment EXCLUDED - see below):
-  D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(3)>
-    -<Flush(2)><Barrier><Cooling(2)>-<Frame(2)><Baseplate(3)>
-    -<Motor(3)><MotorOpts(2)>-<AddlOpts(2)>-<Testing(2)><Doc(4)>
+  D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(4)>
+    -<Flush(2)><Barrier(1)><Cooling(2)>-<Frame(2)><Baseplate(2)>
+    -<Motor(4)><MotorOpts(2)>-<AddlOpts(2)>-<Testing(2)><Doc(4)>
 
 Seal is intentionally omitted from the PN: the seal code is authored only in the
 external "Seal Numbering.accdb" (getSealOptions), which is unavailable, so the
@@ -57,61 +74,52 @@ except Exception:
 #     Order verified against the loaded CombinationKey samples.
 # ---------------------------------------------------------------------------
 SEGMENT_FIELD_ORDER = {
-    # Wet End Numbering String col O (12 fields)
+    # Wet End Numbering (v0.1) option cols D..M (10 fields) - header order:
+    # Pump Material, Casing Material, Casing Drain, Casing Taps, Casing Gasket,
+    # Flange Configuration, Spot Facing, Casing Wear Ring, Casing Mounting,
+    # Seal Chamber Config.
     "WET_END_OPTIONS": [
-        "PUMP_MATERIAL",        # Pump Material Class
-        "CASING_MATERIAL",      # Casing Material
-        "FLANGE_CONFIGURATION", # Flange Style
-        "CASING_TAPS",          # Casing Taps
-        "CASING_DRAIN",         # Drain Options
-        "CASING_MOUNTING",      # Casing Mount
-        "CASING_GASKET",        # Casing Gasket
-        "SHIPPING_GASKET",      # Shipping Gasket
-        "CASING_WEAR_RING",     # Wear Ring Material
-        "TACK_WELD_WEAR_RINGS", # Tack weld wear rings
-        "SEAL_CHAMBER_CONFIG",  # Seal Chamber Config
-        "SPOT_FACING",          # Spot-Facing
+        "PUMP_MATERIAL",
+        "CASING_MATERIAL",
+        "CASING_DRAIN",
+        "CASING_TAPS",
+        "CASING_GASKET",
+        "FLANGE_CONFIGURATION",
+        "SPOT_FACING",
+        "CASING_WEAR_RING",
+        "CASING_MOUNTING",
+        "SEAL_CHAMBER_CONFIG",
     ],
-    # Wet End Numbering String col AJ (impeller sub-table). Sheet order observed:
-    # Material*Balance*WearRing*BalanceHoles
+    # Impeller Numbering (v0.1) option cols D..F (3 fields):
+    # Impeller Balance, Impeller Material, Impeller Wear Ring Material.
     "IMPELLER_OPTIONS": [
-        "IMPELLER_MATERIAL",
         "IMPELLER_BALANCE",
+        "IMPELLER_MATERIAL",
         "IMPELLER_WEAR_RING_MATERIAL",
-        None,  # Balance Holes (no direct Dean SFO field; workbook static)
     ],
-    # Power End Numbering String col N (11 fields)
+    # Power Frame Numbering (v0.1) option cols D..N (11 fields):
+    # Shaft Configuration, Shaft Material, Bearing Lubrication, Bearing Seal,
+    # Oiler Options, Sight Glass, Bearing Frame Cooling, Magnetic Drain,
+    # Expansion Chamber, Coupling Type, Coupling Guard.
     "POWER_FRAME_OPTIONS": [
         "SHAFT_CONFIGURATION",
         "SHAFT_MATERIAL",
-        "BEARING_LUBRICATION",  # Lubrication Options
+        "BEARING_LUBRICATION",
+        "BEARING_SEAL",
         "OILER_OPTIONS",
-        "BEARING_SEAL",         # Oil Seal
         "SIGHT_GLASS",
+        "BEARING_FRAME_COOLING",
         "MAGNETIC_DRAIN",
         "EXPANSION_CHAMBER",
-        "BEARING_FRAME_COOLING",
-        "COUPLING_GUARD",
         "COUPLING_TYPE",
+        "COUPLING_GUARD",
     ],
-    # Misc Numbering cooling String col G (3 fields)
-    "COOLING_PLAN": [
-        "COOLING_PLAN",
-        None,  # Cooling Plan Piping (derived)
-        None,  # Cooling Plan Extras (derived)
-    ],
-    # Misc Numbering addl String col P (5 fields)
-    "ADDITIONAL_OPTIONS": [
-        "SHIPPING_GASKET",
-        "AUXILLARY_NAMEPLATE",
-        "CRATING",
-        "PAINT_OPTIONS",
-        "COATING",
-    ],
-    # Baseplate Numbering cols C..K (9 fields)
+    # Baseplate Numbering (v0.1) option cols D..L (9 fields):
+    # Baseplate Type, Drip Pan, Alignment Lugs, Lifting Lugs, Levelling Screws,
+    # Grounding Lug, Grout Hole, Isolation Pads, Stilts.
     "BASEPLATE_OPTIONS": [
         "BASEPLATE_TYPE",
-        None,  # Drip Pan (DRIP_PAN field exists on some series; mapped below)
+        "DRIP_PAN",
         "ALIGNMENT_LUGS",
         "LIFTING_LUGS",
         "LEVELLING_SCREWS",
@@ -120,40 +128,6 @@ SEGMENT_FIELD_ORDER = {
         "ISOLATION_PADS",
         "STILTS",
     ],
-    # Test and Doc Numbering testing String col I (5 fields)
-    "TESTING": [
-        "PERFORMANCE_TESTING",
-        "HYDROTEST",
-        "GENERAL_INSPECTION",
-        "VIBRATION",
-        "SOUND_LEVEL",
-    ],
-    # Test and Doc Numbering documentation String col S (4 fields)
-    "DOCUMENTATION": [
-        "DOCUMENT_1",
-        "DOCUMENT_2",
-        "DOCUMENT_3",
-        "DOCUMENT_4",
-    ],
-    # Motor Numbering String col O (11 fields)
-    "MOTOR": [
-        "MOTOR_OPTION",
-        "MOTOR_CONTROL",
-        "MOTOR_FRAME_LIST",
-        "MOTOR_RATED_SPEED",
-        "MOTOR_RATED_POWER",
-        "MOTOR_VOLTAGE",
-        "MOTOR_PHASE_FREQUENCY",
-        "MOTOR_POLES",
-        "MOTOR_ENCLOSURE",
-        "MOTOR_EFFICIENCY",
-        "MOTOR_BRAND",
-    ],
-}
-
-# Some ComboString fields have a Dean SFO field under a different code; map here.
-FIELD_ALIASES = {
-    "DRIP_PAN": "DRIP_PAN",
 }
 
 # Default token for each ComboString POSITION when the mapped Dean field is
@@ -161,31 +135,25 @@ FIELD_ALIASES = {
 # loaded numbering data (the token that appears for the "nothing selected" row).
 # Positions not listed default to "NONE".
 SEGMENT_POSITION_DEFAULT = {
-    # WET_END: Casing Taps (idx3) default is "No Taps"; flags -> Not Required;
-    # material/config lists -> NONE. (Drain/Mount come from selections.)
-    # NOTE: "No Taps" is the numbering-table standard value for Casing Taps even
-    # though D110 applicability does not offer it (it only offers Custom / NPT*).
-    # This is the documented D110-vs-numbering STD data gap (see DEAN_D130_EXIT).
-    ("WET_END_OPTIONS", 3): "No Taps",       # Casing Taps
-    ("WET_END_OPTIONS", 7): "Not Required",  # Shipping Gasket
-    ("WET_END_OPTIONS", 9): "Not Required",  # Tack weld wear rings
-    ("WET_END_OPTIONS", 11): "Not Required", # Spot-Facing
-    # IMPELLER: Balance Holes (idx3) static "Not Required"
-    ("IMPELLER_OPTIONS", 3): "Not Required",
-    # POWER: Shaft Material (idx1) numbering-standard = "Steel" (D110 offers only
-    # Custom for some series -> documented STD data gap). Flags -> Not Required.
-    ("POWER_FRAME_OPTIONS", 1): "Steel",         # Shaft Material
+    # v0.1 workbook literal "nothing selected" tokens per position (verified
+    # against loaded rows). Flag-type fields default "Not Required"; list-type
+    # fields default "NONE"; material/config fields default "NONE".
+    # WET_END (10): 0 Pump Material, 1 Casing Material, 2 Casing Drain,
+    # 3 Casing Taps, 4 Casing Gasket, 5 Flange Configuration, 6 Spot Facing,
+    # 7 Casing Wear Ring, 8 Casing Mounting, 9 Seal Chamber Config.
+    ("WET_END_OPTIONS", 2): "Not Required",  # Casing Drain
+    ("WET_END_OPTIONS", 6): "Not Required",  # Spot Facing
+    ("WET_END_OPTIONS", 7): "NONE",          # Casing Wear Ring
+    ("WET_END_OPTIONS", 8): "Not Required",  # Casing Mounting
+    ("WET_END_OPTIONS", 9): "NONE",          # Seal Chamber Config
+    # POWER (11): flag fields -> Not Required; Oiler -> NONE.
+    ("POWER_FRAME_OPTIONS", 4): "NONE",          # Oiler Options
     ("POWER_FRAME_OPTIONS", 5): "Not Required",  # Sight Glass
-    ("POWER_FRAME_OPTIONS", 6): "Not Required",  # Magnetic Drain
-    ("POWER_FRAME_OPTIONS", 7): "Not Required",  # Expansion Chamber
-    ("POWER_FRAME_OPTIONS", 8): "Not Required",  # Bearing Frame Cooling
-    # ADDITIONAL: Crating/Paint default "Standard"; gaskets/nameplate/coating -> Not Required/NONE
-    ("ADDITIONAL_OPTIONS", 0): "Not Required",   # Shipping Gasket
-    ("ADDITIONAL_OPTIONS", 1): "Not Required",   # Auxillary Nameplate
-    ("ADDITIONAL_OPTIONS", 2): "Standard",       # Crating
-    ("ADDITIONAL_OPTIONS", 3): "Standard",       # Paint Options
-    ("ADDITIONAL_OPTIONS", 4): "Not Required",   # Coating
-    # BASEPLATE flag fields -> Not Required
+    ("POWER_FRAME_OPTIONS", 6): "Not Required",  # Bearing Frame Cooling
+    ("POWER_FRAME_OPTIONS", 7): "Not Required",  # Magnetic Drain
+    ("POWER_FRAME_OPTIONS", 8): "Not Required",  # Expansion Chamber
+    # BASEPLATE (9): Drip Pan -> NONE; flag fields -> Not Required.
+    ("BASEPLATE_OPTIONS", 1): "NONE",            # Drip Pan
     ("BASEPLATE_OPTIONS", 2): "Not Required",
     ("BASEPLATE_OPTIONS", 3): "Not Required",
     ("BASEPLATE_OPTIONS", 4): "Not Required",
@@ -195,32 +163,40 @@ SEGMENT_POSITION_DEFAULT = {
     ("BASEPLATE_OPTIONS", 8): "Not Required",
 }
 
-# NONE->N/A structural collapse (Module2 numbering enumeration). When the
-# CONTROLLER position holds "NONE", the DEPENDENT positions collapse to "N/A".
-# Verified against the loaded data (e.g. Wet End Casing Material=NONE ->
-# Flange/Taps/Drain/Mount = N/A; Cooling Plan=NONE -> Piping/Extras = N/A).
-SEGMENT_NONE_COLLAPSE = {
-    "WET_END_OPTIONS": (1, [2, 3, 4, 5]),   # Casing Material NONE -> Flange,Taps,Drain,Mount
-    "IMPELLER_OPTIONS": (0, [1, 2, 3]),     # Impeller Material NONE -> Balance,WearRing,BalHoles
-    "COOLING_PLAN": (0, [1, 2]),            # Cooling Plan NONE -> Piping,Extras
-    "BASEPLATE_OPTIONS": (0, [1, 2, 3, 4, 5, 6, 7, 8]),  # Baseplate Type NONE -> all deps
-}
+# The v0.1 workbook does NOT use an "N/A" collapse: numbering rows keep literal
+# option values even when a controller field is NONE (e.g. Baseplate NONE => the
+# ComboString is simply "NONE" with the remaining columns trailing-'*' trimmed).
+# So there is NO SEGMENT_NONE_COLLAPSE. The natural trailing-'*' trim in
+# _build_combo, plus the BASEPLATE gate below, reproduce the NONE rows.
+SEGMENT_NONE_COLLAPSE = {}
 
 # Segments where any field == "Custom" collapses the whole segment to a padded
-# custom placeholder (Module2 excludes Custom; Smart Number COUNTIFS(...,"Custom")).
+# custom placeholder (Module1/Module2 exclude Custom-containing rows).
 SEGMENT_CUSTOM_PLACEHOLDER = {
     "WET_END_OPTIONS": "____",
     "IMPELLER_OPTIONS": "__",
+    "POWER_FRAME_OPTIONS": "____",
+    "BASEPLATE_OPTIONS": "__",
 }
 
 # Default token when a field position isn't in SEGMENT_POSITION_DEFAULT.
 _GENERIC_DEFAULT = "NONE"
 
-# segment width (mirrors the loaded ExpectedWidth / SQL CHECK)
+# segment width (mirrors the loaded ExpectedWidth / SQL CHECK) for v0.1.
 SEGMENT_WIDTH = {
-    "WET_END_OPTIONS": 4, "IMPELLER_OPTIONS": 2, "POWER_FRAME_OPTIONS": 2,
-    "COOLING_PLAN": 2, "ADDITIONAL_OPTIONS": 2, "BASEPLATE_OPTIONS": 3,
-    "TESTING": 2, "DOCUMENTATION": 4, "MOTOR": 3,
+    "WET_END_OPTIONS": 4, "IMPELLER_OPTIONS": 2, "POWER_FRAME_OPTIONS": 4,
+    "BASEPLATE_OPTIONS": 2, "FLUSH_PLAN": 2, "MOTOR_FRAME": 2,
+}
+
+# Retained-but-UNBUILT segments (no numbering table in v0.1) -> fixed zero-padded
+# placeholder so the PN never errors and the slot is preserved. NOT '?'.
+UNBUILT_PLACEHOLDER = {
+    "BARRIER_PLAN": "0",
+    "COOLING_PLAN": "00",
+    "TESTING": "00",
+    "DOCUMENTATION": "0000",
+    "ADDITIONAL_OPTIONS": "00",
+    "MOTOR_OPTIONS": "00",   # motor-options inert in the workbook
 }
 
 # placeholder emitted when a table-backed segment can't be resolved (mirrors the
@@ -287,9 +263,10 @@ def _has_custom(selections, segment_code):
 
 def _build_combo(selections, segment_code):
     """Build the '*'-joined ComboString in the numbering sheet's column order,
-    applying (1) per-position default tokens for unset fields and (2) the
-    Module2 NONE->N/A structural collapse, so the string matches the workbook's
-    enumerated key. See SEGMENT_POSITION_DEFAULT / SEGMENT_NONE_COLLAPSE."""
+    applying per-position default tokens for unset fields, then trailing-'*'
+    trimming, so the string matches the workbook's enumerated CombinationKey.
+    The v0.1 workbook uses NO "N/A" collapse - just literal values + trailing
+    trim (see SEGMENT_NONE_COLLAPSE docstring)."""
     order = SEGMENT_FIELD_ORDER[segment_code]
     parts = []
     for i, fld in enumerate(order):
@@ -297,17 +274,10 @@ def _build_combo(selections, segment_code):
         if val == "":
             val = SEGMENT_POSITION_DEFAULT.get((segment_code, i), _GENERIC_DEFAULT)
         parts.append(val)
-
-    # NONE -> N/A structural collapse: if the controller position is NONE, the
-    # dependent positions become N/A (matching the numbering-table rows).
-    collapse = SEGMENT_NONE_COLLAPSE.get(segment_code)
-    if collapse:
-        ctrl_idx, dep_idxs = collapse
-        if ctrl_idx < len(parts) and parts[ctrl_idx].upper() == "NONE":
-            for di in dep_idxs:
-                if di < len(parts):
-                    parts[di] = "N/A"
-    return "*".join(parts)
+    combo = "*".join(parts)
+    while combo.endswith("*"):     # Module1/Module2 trailing-'*' trim
+        combo = combo[:-1]
+    return combo
 
 
 def resolve_trim(selections):
@@ -340,40 +310,42 @@ def resolve_seal(selections):
     return "TBD__" if seal_opt.lower() == "included" else "00000"
 
 
-def resolve_flush(selections):
-    """Flush (2): Config Info FA(letter)->FH(base-36).
+def resolve_flush(cursor, selections):
+    """Flush Plan (2): TABLE-BACKED against the Flush Plan Numbering sheet (v0.1).
 
-    The workbook derives the flush LETTER in a separate Data Sheet cell (H14); we
-    only receive FLUSH_PLAN (a name/number). If a recognized letter is provided
-    (FLUSH_PLAN_LETTER or a FLUSH_PLAN that IS a letter), map it. Otherwise -
-    including the STD 'no dedicated flush' cases where FLUSH_PLAN is a pressure/
-    spec value like 'P1200', or NONE/blank - fall back to the no-flush N/A code.
-    The flush-name->letter mapping lives only in the Data Sheet's derived cell
-    (not available here); non-'none' named plans without a letter surface as ??
-    so the gap is visible rather than silently wrong."""
-    flush_map = _SPECIAL.get("flush", {})
-    letter = _norm(selections.get("FLUSH_PLAN_LETTER", ""))
-    if letter and letter in flush_map:
-        return flush_map[letter]
+    The workbook enumerates one row per (Flush Plan x routing x connections x
+    temperature x cooling-media). We receive only FLUSH_PLAN from the SFO, so we
+    resolve to that plan's STANDARD numbering row = the lowest Alphanumeric Code
+    among rows whose ComboString begins with the plan value. NONE/blank -> the
+    'NONE' row (code '00'). If the plan has no numbering row, emit the padded
+    no-flush code '00' (retained, never '?': flush is not a disclosed-gap
+    segment)."""
     plan = _norm(selections.get("FLUSH_PLAN", ""))
-    if plan and plan in flush_map:          # FLUSH_PLAN itself is a letter
-        return flush_map[plan]
-    # No-flush / spec-value (e.g. 'P1200') / NONE / blank -> N/A code.
-    if plan == "" or plan.upper() in ("NONE", "N/A") or plan.upper().startswith("P"):
-        na = flush_map.get("N/A")
-        if na is not None:
-            return na
-    return "??"
+    if plan == "" or plan.upper() in ("NONE", "N/A"):
+        code = _seg_lookup(cursor, "FLUSH_PLAN", "NONE")
+        return code if code else "00"
+    bid = _dean_batch_id(cursor)
+    if bid < 0:
+        return "00"
+    # STD row for the plan = lowest code whose combo starts with "<plan>*" or == plan
+    row = cursor.execute(
+        "SELECT TOP 1 SegmentValue FROM stg.SegmentCombinationImport "
+        "WHERE ImportBatchId = ? AND SegmentCode = 'FLUSH_PLAN' "
+        "  AND (CombinationKey = ? OR CombinationKey LIKE ?) "
+        "ORDER BY SegmentValue",
+        bid, plan, plan.replace("[", "[[]").replace("%", "[%]").replace("_", "[_]") + "*%",
+    ).fetchone()
+    return row[0] if row else "00"
 
 
-def resolve_barrier(selections):
-    """Barrier (variable, usually 1): Config Info FK(code)->FN(base-36)."""
-    letter = _norm(selections.get("BARRIER_PLAN_LETTER", "")) or \
-        _norm(selections.get("BARRIER_PLAN", ""))
-    code = _SPECIAL.get("barrier", {}).get(letter)
-    if code is None and (letter == "" or letter.upper() in ("NONE", "N/A")):
-        code = _SPECIAL.get("barrier", {}).get("N/A")
-    return code if code is not None else "?"
+def resolve_motor_frame(cursor, selections):
+    """Motor Frame (2): TABLE-BACKED against the Motor Frame-Size sub-table
+    (v0.1). FRAME_SIZE -> 2-char code. No frame selected -> gated '00'."""
+    frame = _norm(selections.get("FRAME_SIZE", ""))
+    if frame == "" or frame.upper() in ("NONE", "N/A"):
+        return "00"
+    code = _seg_lookup(cursor, "MOTOR_FRAME", frame)
+    return code if code else "00"
 
 
 def resolve_segments(cursor, series, size, selections):
@@ -383,7 +355,7 @@ def resolve_segments(cursor, series, size, selections):
     """
     base = base_identifier(cursor, series, size) or ("D" + "?" * 4)
 
-    # --- table-backed segments (exact CombinationKey match) ---
+    # --- table-backed segments (exact CombinationKey match, v0.1 numbering) ---
     def table(seg):
         # Custom selection -> the workbook's padded custom placeholder (segment
         # excluded from the enumerated numbering table).
@@ -397,37 +369,35 @@ def resolve_segments(cursor, series, size, selections):
     wet_end = table("WET_END_OPTIONS")
     imp_opts = table("IMPELLER_OPTIONS")
     power = table("POWER_FRAME_OPTIONS")
-    cooling = table("COOLING_PLAN")
-    addl = table("ADDITIONAL_OPTIONS")
-    testing = table("TESTING")
-    documentation = table("DOCUMENTATION")
 
-    # --- gated segments ---
+    # --- gated table-backed baseplate (v0.1: BASEPLATE=NONE row = code '00') ---
     baseplate_type = _norm(selections.get("BASEPLATE_TYPE", ""))
     if baseplate_type.upper() == "NONE" or baseplate_type == "":
-        baseplate = "000"
+        baseplate = "00"
     else:
         baseplate = table("BASEPLATE_OPTIONS")
 
-    motor_opt = _norm(selections.get("MOTOR_OPTION", ""))
-    if motor_opt.lower() != "included":
-        motor = "0000"  # workbook emits 4 chars when not Included
-    else:
-        motor = table("MOTOR")
+    # --- table-backed flush + motor-frame (v0.1 own numbering sheets) ---
+    flush = resolve_flush(cursor, selections)
+    frame = resolve_motor_frame(cursor, selections)
 
-    # motor frame: gated to "00" when no motor/baseplate/coupling/frame.
-    # Full BASE(MATCH) over the HP x RPM matrix (Table2486) is pending precise
-    # engineering; default to the gated no-motor value.
-    frame = "00"
-
-    # motor options: inert in the workbook (static "00")
-    motor_options = "00"
+    # --- retained-but-UNBUILT segments (no numbering table in v0.1). Fixed
+    #     placeholders keep the PN error-free and the slot preserved (gaps F1/F2
+    #     + no-sheet Testing/Documentation/Additional Options + inert Motor). ---
+    cooling = UNBUILT_PLACEHOLDER["COOLING_PLAN"]
+    barrier = UNBUILT_PLACEHOLDER["BARRIER_PLAN"]
+    testing = UNBUILT_PLACEHOLDER["TESTING"]
+    documentation = UNBUILT_PLACEHOLDER["DOCUMENTATION"]
+    addl = UNBUILT_PLACEHOLDER["ADDITIONAL_OPTIONS"]
+    motor_options = UNBUILT_PLACEHOLDER["MOTOR_OPTIONS"]
+    # Motor MAIN code column is inert ('000') in v0.1 (gap F3); the live motor
+    # code differentiation is the frame-size (frame) above. Emit a fixed 4-char
+    # inert motor code so the PN slot is preserved.
+    motor = "0000"
 
     # --- special segments ---
     trim = resolve_trim(selections)
     seal = resolve_seal(selections)
-    flush = resolve_flush(selections)
-    barrier = resolve_barrier(selections)
 
     # NOTE: seal is resolved (00000/TBD__) for reference but is OMITTED from the
     # Dean PN - the seal code is authored only in the external Seal Numbering

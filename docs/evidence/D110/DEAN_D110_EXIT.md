@@ -1,5 +1,17 @@
 # D110 — Dean Configuration & Dependency Completion: Exit Summary
 
+> **2026-08-26 RE-BASE (D140):** the authoritative source is now
+> `workbooks/Dean/PumpConfiguration_Logic_0.1.xlsm` (PCL v0.1), which
+> **supersedes** the `PumpConfiguration_Logic.xlsm` referenced below for ALL
+> constraints/config. The Dean config model was re-loaded from v0.1 via
+> `scripts/d110_load_dean_config_v01.py` (Pump Constraints STD/X per-model matrix
+> + row-aligned Codependencies allow-tuples). Current published state:
+> SeriesFieldOption **48,063** (per-model), FeasibleConstraint **256** enforced
+> (251 2-leg + 5 3-leg; **519 seal-vocab codependency tuples SKIPPED**, pending
+> engineering A1). `audit_dean_config` **28/28**. See
+> `docs/evidence/D140/DEAN_D140_EXIT.md`. The numbers below reflect the original
+> D110 pass on the old workbook and are retained for history.
+
 **Date:** 2026-08-26
 **Milestone:** D110 — Dean Configuration & Dependency Completion
 **Status:** COMPLETE — the authoritative `PumpConfiguration_Logic.xlsm` model

@@ -1,0 +1,200 @@
+{
+  "artifact": "DEAN_ORACLE_COMPARE",
+  "milestone": "D140",
+  "generated_utc": "2026-09-25T19:25:27.867440+00:00",
+  "authority": "PumpConfiguration_Logic_0.1.xlsm numbering sheets, read LIVE via Excel COM",
+  "compares": "per-segment ComboString code: API/SQL resolver vs workbook numbering sheet (COM). Workbook-unenumerated combos = disclosed STD-vs-numbering gap (recorded, not failed).",
+  "case_count": 4,
+  "cases_passed": 4,
+  "cases_failed": 0,
+  "segments_matched": 15,
+  "segments_failed": 0,
+  "segments_engineering_gap": 5,
+  "engineering_questions_ref": "docs/evidence/DEAN_ENGINEERING_QUESTIONS.md",
+  "results": [
+    {
+      "case": {
+        "series": "R5140",
+        "size": "1.5X3X8.5",
+        "label": "D651 fully-resolving"
+      },
+      "api_pn": "D651-0VU9-EE0D-008S-00000-0000-000000-00-000000",
+      "segments": [
+        {
+          "segment": "wet end",
+          "combo": "(40) Cast Steel*(40) Cast Steel*NPT Plug*NPT Discharge*Spiral Wound*300# Raised*Not Required*Hard Iron*Pedestal*Standard Bore Jacketed",
+          "excel": "0VU9",
+          "api": "0VU9",
+          "status": "MATCH"
+        },
+        {
+          "segment": "impeller options",
+          "combo": "Dual Plane*(20) Cast Iron*Steel",
+          "excel": "0D",
+          "api": "0D",
+          "status": "MATCH"
+        },
+        {
+          "segment": "power frame",
+          "combo": "Sleeved*Steel*Oil*Labyrinth*Glass/Alum Oiler*Required*Steel Tube*Not Required*Not Required*NONE*Steel",
+          "excel": "008S",
+          "api": "008S",
+          "status": "MATCH"
+        },
+        {
+          "segment": "baseplate",
+          "combo": "NONE*NONE*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required",
+          "excel": "",
+          "api": "00",
+          "status": "ENG_GAP"
+        },
+        {
+          "segment": "flush plan",
+          "combo": "NONE",
+          "excel": "00",
+          "api": "00",
+          "status": "MATCH"
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "case": {
+        "series": "R5140",
+        "size": "3X4X8.5",
+        "label": "D653 fully-resolving"
+      },
+      "api_pn": "D653-0VU9-EE0D-008S-00000-0000-000000-00-000000",
+      "segments": [
+        {
+          "segment": "wet end",
+          "combo": "(40) Cast Steel*(40) Cast Steel*NPT Plug*NPT Discharge*Spiral Wound*300# Raised*Not Required*Hard Iron*Pedestal*Standard Bore Jacketed",
+          "excel": "0VU9",
+          "api": "0VU9",
+          "status": "MATCH"
+        },
+        {
+          "segment": "impeller options",
+          "combo": "Dual Plane*(20) Cast Iron*Steel",
+          "excel": "0D",
+          "api": "0D",
+          "status": "MATCH"
+        },
+        {
+          "segment": "power frame",
+          "combo": "Sleeved*Steel*Oil*Labyrinth*Glass/Alum Oiler*Required*Steel Tube*Not Required*Not Required*NONE*Steel",
+          "excel": "008S",
+          "api": "008S",
+          "status": "MATCH"
+        },
+        {
+          "segment": "baseplate",
+          "combo": "NONE*NONE*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required",
+          "excel": "",
+          "api": "00",
+          "status": "ENG_GAP"
+        },
+        {
+          "segment": "flush plan",
+          "combo": "NONE",
+          "excel": "00",
+          "api": "00",
+          "status": "MATCH"
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "case": {
+        "series": "R5170",
+        "size": "2X3X13.5",
+        "label": "D675 fully-resolving"
+      },
+      "api_pn": "D675-0VU9-JE0D-008S-00000-0000-000000-00-000000",
+      "segments": [
+        {
+          "segment": "wet end",
+          "combo": "(40) Cast Steel*(40) Cast Steel*NPT Plug*NPT Discharge*Spiral Wound*300# Raised*Not Required*Hard Iron*Pedestal*Standard Bore Jacketed",
+          "excel": "0VU9",
+          "api": "0VU9",
+          "status": "MATCH"
+        },
+        {
+          "segment": "impeller options",
+          "combo": "Dual Plane*(20) Cast Iron*Steel",
+          "excel": "0D",
+          "api": "0D",
+          "status": "MATCH"
+        },
+        {
+          "segment": "power frame",
+          "combo": "Sleeved*Steel*Oil*Labyrinth*Glass/Alum Oiler*Required*Steel Tube*Not Required*Not Required*NONE*Steel",
+          "excel": "008S",
+          "api": "008S",
+          "status": "MATCH"
+        },
+        {
+          "segment": "baseplate",
+          "combo": "NONE*NONE*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required",
+          "excel": "",
+          "api": "00",
+          "status": "ENG_GAP"
+        },
+        {
+          "segment": "flush plan",
+          "combo": "NONE",
+          "excel": "00",
+          "api": "00",
+          "status": "MATCH"
+        }
+      ],
+      "case_pass": true
+    },
+    {
+      "case": {
+        "series": "DL200",
+        "size": "1.5X3X6",
+        "label": "D363 (disclosed gap ok)"
+      },
+      "api_pn": "D363-1J4S-CA01-1HWL-01000-0000-000000-00-000000",
+      "segments": [
+        {
+          "segment": "wet end",
+          "combo": "(22) Ductile Iron*(22) Ductile Iron*NPT Plug*NPT Discharge*Teflon*150# Flat*Not Required*NONE*NONE*Standard Bore",
+          "excel": "1J4S",
+          "api": "1J4S",
+          "status": "MATCH"
+        },
+        {
+          "segment": "impeller options",
+          "combo": "Single Plane*(20) Cast Iron*NONE",
+          "excel": "01",
+          "api": "01",
+          "status": "MATCH"
+        },
+        {
+          "segment": "power frame",
+          "combo": "Motor w/ Shaft Extension*Steel*NONE*NONE*NONE*Not Required*Not Required*Not Required*Not Required*NONE*NONE",
+          "excel": "1HWL",
+          "api": "1HWL",
+          "status": "MATCH"
+        },
+        {
+          "segment": "baseplate",
+          "combo": "NONE*NONE*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required*Not Required",
+          "excel": "",
+          "api": "00",
+          "status": "ENG_GAP"
+        },
+        {
+          "segment": "flush plan",
+          "combo": "P1200",
+          "excel": "",
+          "api": "01",
+          "status": "ENG_GAP"
+        }
+      ],
+      "case_pass": true
+    }
+  ]
+}

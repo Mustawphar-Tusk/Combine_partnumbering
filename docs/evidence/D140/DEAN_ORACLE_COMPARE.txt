@@ -1,0 +1,41 @@
+====================================================================================================
+D140 - DEAN EXCEL ORACLE (v0.1 numbering, COM) vs API/SQL
+====================================================================================================
+
+Authority : PumpConfiguration_Logic_0.1.xlsm numbering sheets, read LIVE via Excel COM
+Compares  : per-segment ComboString code: API/SQL resolver vs workbook numbering sheet (COM). Workbook-unenumerated combos = disclosed STD-vs-numbering gap (recorded, not failed).
+Cases     : 4  Passed: 4  Failed: 0
+Segments  : matched=15  failed=0  engineering_gap=5
+
+  [PASS] R5140 1.5X3X8.5 (D651 fully-resolving)
+     api PN : D651-0VU9-EE0D-008S-00000-0000-000000-00-000000
+        [MATCH   ] wet end: excel='0VU9' api='0VU9'
+        [MATCH   ] impeller options: excel='0D' api='0D'
+        [MATCH   ] power frame: excel='008S' api='008S'
+        [ENG_GAP ] baseplate: excel='' api='00'
+        [MATCH   ] flush plan: excel='00' api='00'
+
+  [PASS] R5140 3X4X8.5 (D653 fully-resolving)
+     api PN : D653-0VU9-EE0D-008S-00000-0000-000000-00-000000
+        [MATCH   ] wet end: excel='0VU9' api='0VU9'
+        [MATCH   ] impeller options: excel='0D' api='0D'
+        [MATCH   ] power frame: excel='008S' api='008S'
+        [ENG_GAP ] baseplate: excel='' api='00'
+        [MATCH   ] flush plan: excel='00' api='00'
+
+  [PASS] R5170 2X3X13.5 (D675 fully-resolving)
+     api PN : D675-0VU9-JE0D-008S-00000-0000-000000-00-000000
+        [MATCH   ] wet end: excel='0VU9' api='0VU9'
+        [MATCH   ] impeller options: excel='0D' api='0D'
+        [MATCH   ] power frame: excel='008S' api='008S'
+        [ENG_GAP ] baseplate: excel='' api='00'
+        [MATCH   ] flush plan: excel='00' api='00'
+
+  [PASS] DL200 1.5X3X6 (D363 (disclosed gap ok))
+     api PN : D363-1J4S-CA01-1HWL-01000-0000-000000-00-000000
+        [MATCH   ] wet end: excel='1J4S' api='1J4S'
+        [MATCH   ] impeller options: excel='01' api='01'
+        [MATCH   ] power frame: excel='1HWL' api='1HWL'
+        [ENG_GAP ] baseplate: excel='' api='00'
+        [ENG_GAP ] flush plan: excel='' api='01'
+

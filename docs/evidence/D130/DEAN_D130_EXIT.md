@@ -1,5 +1,16 @@
 # D130 — SQL Dean Identifier Authority: EXIT
 
+> **2026-08-26 RE-BASE (D140):** the identifier numbering + resolver were
+> re-loaded from the NEW authority `workbooks/Dean/PumpConfiguration_Logic_0.1.xlsm`,
+> which supersedes the `Dean Data Sheet Rev 2.xlsm` numbering cited below. The
+> D130 SQL branch, A#→D# identity model, resolver structure, and seal-exclusion
+> decision are UNCHANGED and still hold; what changed in D140 is the numbering
+> SOURCE + per-segment field orders + table-backed flush/motor-frame. Current
+> state: `cfg.PumpModelReference` 206 DEAN rows; `stg.SegmentCombinationImport`
+> DEAN batch = 106,892 rows (old 428,742-row batch removed). `audit_dean_identifier`
+> 8/8; SQL==python parity intact. See `docs/evidence/D140/DEAN_D140_EXIT.md`. The
+> counts below reflect the original D130 pass and are retained for history.
+
 **Date:** 2026-08-26
 **Milestone:** D130 — SQL Dean Identifier Authority
 **Status:** EXIT — PASS (with disclosed pending-engineering gaps below).

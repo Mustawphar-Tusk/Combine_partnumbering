@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.13  
+**Roadmap Version:** 1.14  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** F180 — Fybroc Signoff & Freeze (F150/F160/F170 passing; F180 signoff prepared, awaiting engineering signature). Next: D100 — Dean Source Reconciliation.  
+**Current Milestone:** D140 — Dean Excel Oracle COMPLETE (re-based onto the new authority `PumpConfiguration_Logic_0.1.xlsm`; COM regression parity green, all Dean audits + Fybroc gate 7/7 intact). Next permitted: D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
 
 ---
 
@@ -998,7 +998,7 @@ D100	Dean source reconciliation	COMPLETE — 5 workbooks classified; PumpConfigu
 D110	Dean configuration completion	COMPLETE — model published to SQL (family 1), audit 45/45, Fybroc gate intact (docs/evidence/D110/DEAN_D110_EXIT.md)
 D120	Dean pricing/adders	COMPLETE — Dean Pricing Matrix published to SQL (DEAN_STANDARD, 9874 rules), pricing audit 22/22, Fybroc gate intact (docs/evidence/D120/DEAN_D120_EXIT.md)
 D130	SQL Dean identifier	COMPLETE — SQL generates the Dean Part Number (additive @FamilyCode='DEAN' branch in cfg.usp_AssembleConfiguredProduct); A#->D# + segment codes loaded family-scoped (204 model refs + 428,742 seg rows), identifier audit 8/8, pricing 22/22, config 29/29, Fybroc gate 7/7 intact. Seal excluded (external accdb); some models blocked by external STD Standard Confs accdb (disclosed). (docs/evidence/D130/DEAN_D130_EXIT.md)
-D140	Dean Excel Oracle	NOT STARTED
+D140	Dean Excel Oracle	COMPLETE (2026-08-26) — Re-based onto the NEW authority PumpConfiguration_Logic_0.1.xlsm (supersedes prior Dean numbering/config sources). Identifier numbering re-loaded (206 model refs + 106,892 seg rows in one DEAN batch; old 428,742-row batch removed) and resolver re-based (new field orders, table-backed flush + motor-frame, unbuilt-segment placeholders). Excel COM numbering-table oracle proves SQL/API codes == workbook live codes (dean_oracle_compare 15/15 seg matched, 0 failed). identifier 8/8, config 28/28, pricing 22/22, Fybroc gate ALL CORRECTIONS INTACT 7/7, Fybroc rows unchanged (isolation). Disclosed gaps: seal omitted-not-discarded + 519 skipped seal codependencies (A1); external Standard Confs STD gap (A2); Cooling/Barrier un-built + Motor main code inert (F1/F2/F3). (docs/evidence/D140/DEAN_D140_EXIT.md)
 D150	Dean exhaustive regression	NOT STARTED
 D160	Dean signoff	NOT STARTED
 U100	canonical product model	PARTIAL — needs re-verification
@@ -1030,15 +1030,40 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.13
+Version:            1.14
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D130 (SQL Dean Identifier Authority) COMPLETE.
-                    Next permitted: D140 (Dean Excel Oracle) — do NOT start
-                    without explicit go-ahead.
+Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
+                    Next permitted: D150 (Exhaustive Dean Regression) — do NOT
+                    start without explicit go-ahead.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.14): D140 (Dean Excel Oracle) complete, AND the Dean identifier
+numbering + config were RE-BASED onto the new authoritative workbook
+PumpConfiguration_Logic_0.1.xlsm (engineering delivered mid-D140; it supersedes
+ALL prior Dean constraint/config/numbering sources except seal). The identifier
+loader (scripts/load_dean_identifier_to_sql.py) now reads each PN segment's own
+numbering sheet by header-search (Permutation..Alphanumeric Code) with literal
+zero-padded codes; A#->D# identity from Pump Constraints A/B/C (206 model refs);
+one DEAN batch of 106,892 segment rows (WET_END 49,987, POWER_FRAME 55,452,
+BASEPLATE 1,153, FLUSH_PLAN 185 [now table-backed], IMPELLER 24, MOTOR_FRAME 91);
+the old 428,742-row DEAN batch was removed. The resolver (src/api/dean_identifier.py)
+was re-based to the v0.1 field orders, made flush + motor-frame table-backed,
+removed the (now-absent) N/A collapse, and emits fixed placeholders for
+retained-but-unbuilt segments (Barrier/Cooling/Testing/Documentation/Additional/
+Motor-main) so the PN never errors. The SQL @FamilyCode='DEAN' CONCAT branch is
+unchanged (width-agnostic). D140 oracle = an Excel COM numbering-table reader
+(scripts/dean_excel_oracle.py DeanNumberingOracle) that reads segment codes LIVE
+from the workbook and proves SQL/API == workbook (scripts/dean_oracle_compare.py:
+15/15 comparable segments matched, 0 failed). Verified: audit_dean_identifier 8/8,
+audit_dean_config 28/28, audit_dean_pricing 22/22, run_all_fybroc_audits ALL
+CORRECTIONS INTACT 7/7, Fybroc/shared row counts unchanged (isolation). Disclosed
+gaps: A1 seal (omitted-not-discarded; 519 seal codependencies skipped pending a
+Codependencies<->Pump-Constraints seal-vocab crosswalk), A2 external Standard Confs
+(wet_end/power_frame '?' on the STD-gap models only), F1 Cooling empty, F2 Barrier
+un-built, F3 Motor main code inert. See docs/evidence/D140/DEAN_D140_EXIT.md.
 
 CHANGE (v1.13): D130 (SQL Dean Identifier Authority) complete. SQL now generates
 the Dean Part Number via an ADDITIVE @FamilyCode='DEAN' branch in
@@ -1128,10 +1153,10 @@ Fybroc declared configuration-complete with engineering signature on
 docs/evidence/F180/FYBROC_SIGNOFF.md.
 
 Next Permitted Milestone:
-D120 — Dean Pricing & Adders (D100 + D110 now complete; see §12 CHANGE v1.10).
-Dean work proceeds in parallel with awaiting the F180 signature, since Dean is
-net-new work that does not modify frozen Fybroc data. Do NOT start D120 without
-explicit go-ahead.
+D150 — Exhaustive Dean Regression (D100–D140 complete; D140 re-based onto
+PumpConfiguration_Logic_0.1.xlsm, see §12 CHANGE v1.14). Dean work proceeds in
+parallel with awaiting the F180 signature, since Dean is net-new work that does
+not modify frozen Fybroc data. Do NOT start D150 without explicit go-ahead.
 
 Deployment note (parallel to roadmap, NOT milestone T110):
 A PREVIEW test environment is live for engineering feedback — static UI on Vercel,

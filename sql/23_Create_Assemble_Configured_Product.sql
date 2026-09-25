@@ -63,16 +63,19 @@ BEGIN
            The Fybroc path below is byte-for-byte unchanged. The API
            resolves each Dean segment code (A#->D#, wet-end, trim, etc.)
            against the loaded numbering maps and passes them here; SQL
-           concatenates the authoritative Dean Part Number per the
-           workbook Smart Number!B5 + J5 formulas:
+           concatenates the authoritative Dean Part Number (D140 re-base onto
+           PumpConfiguration_Logic_0.1.xlsm numbering; seal EXCLUDED):
 
-             D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(3)>
-               -<Seal(5)>-<Flush(2)><Barrier><Cooling(2)>
-               -<Frame(2)><Baseplate(3)>-<Motor(4)><MotorOpts(2)>
+             D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(4)>
+               -<Flush(2)><Barrier(1)><Cooling(2)>
+               -<Frame(2)><Baseplate(2)>-<Motor(4)><MotorOpts(2)>
                -<AddlOpts(2)>-<Testing(2)><Doc(4)>
 
-           (B5 assembles through AddlOpts; J5 appends Testing+Doc as the
-           final suffix - the full stored Part Number is B5 + J5 content.)
+           The CONCAT is width-agnostic (varchar segments), so this branch is
+           unchanged by the D140 per-segment width changes. Barrier/Cooling/
+           Testing/Documentation/AdditionalOptions/Motor(main) are retained-but-
+           unbuilt in v0.1 and arrive as fixed zero-padded placeholders; Flush
+           and Motor-Frame are table-backed from their own v0.1 numbering sheets.
            ============================================================ */
         DECLARE
             @d_base   varchar(20) = JSON_VALUE(@SegmentsJson, '$.base_identifier'), -- D<A#>
