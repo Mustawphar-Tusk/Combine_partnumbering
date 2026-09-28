@@ -1264,11 +1264,19 @@ async def resolve_configuration_state(
                 'select material'.
               - SETTING/LENGTH mode gates the LENGTH vs SETTING pair: in
                 'custom length' mode only LENGTH applies; in 'standard setting'
-                mode only SETTING applies (the other is not shown)."""
+                mode only SETTING applies (the other is not shown).
+              - TAILPIPE_LENGTH applies ONLY when TAILPIPE_OPTION ==
+                'supplied by fybroc' (Rev0.4 ConstraintTable24: every allowed
+                (Tailpipe Option, Tailpipe Length) row is 'Supplied by Fybroc';
+                if the tailpipe is not supplied there is no length to pick, so
+                the field is not applicable - not merely unconstrained)."""
             fields = _order_fields(all_options.keys())
             wh = sel.get("WETTED_HARDWARE")
             if wh is not None and str(wh).strip().lower() != "select material":
                 fields = [fc for fc in fields if fc != "WETTED_HARDWARE_SELECTION"]
+            tp = sel.get("TAILPIPE_OPTION")
+            if tp is not None and str(tp).strip().lower() != "supplied by fybroc":
+                fields = [fc for fc in fields if fc != "TAILPIPE_LENGTH"]
             mode = str(sel.get("SETTING/LENGTH", "")).strip().lower()
             if mode == "custom length":
                 fields = [fc for fc in fields if fc != "SETTING"]

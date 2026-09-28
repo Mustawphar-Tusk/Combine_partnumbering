@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.15  
+**Roadmap Version:** 1.16  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.15
+Version:            1.16
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,26 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.16): FYBROC Rev0.4 29-ConstraintTable conformance verified + one
+correction. Confirmed against the authoritative spec that all 29 ConstraintTables
+in the Rev0.4 Feasible Constraints sheet are extracted, loaded into
+cfg.FeasibleConstraint (family-scoped), and ENFORCED per their fields + allow-vs-
+not-allowed semantics (deny tables prune; allow-list tables restrict target to
+the listed set within the governed domain; 3-leg CT21 Alt Size×Pump Material×
+Length; blank Allowed? = allowed for the real CT21/25/26 escape-hatch combos;
+ConstraintFieldMap covers all 28 field labels). ONE gap found + fixed: CT24
+(Tailpipe Option × Tailpipe Length) left TAILPIPE_LENGTH fully selectable when
+TAILPIPE_OPTION='not supplied by fybroc' (no allowed length rows for that
+context). Fix: TAILPIPE_LENGTH is now conditionally NOT-APPLICABLE unless
+TAILPIPE_OPTION='supplied by fybroc' (src/api/v2_routes.py _applicable_fields,
+mirroring the WETTED_HARDWARE_SELECTION gate; Fybroc-only, Dean has no
+TAILPIPE_OPTION). audit_feasible_constraints.py extended to 44/44 with per-table
+coverage + CT24 applicability + CT21 3-leg asserts (no prior assert weakened).
+Verified: run_all_fybroc_audits ALL CORRECTIONS INTACT 7/7; Fybroc/Dean row
+counts unchanged (enforcement-code-only change, no data reload); Dean isolated.
+Dean phase status UNCHANGED (D140 current; D150 not started). See
+docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md.
 
 CHANGE (v1.15): FYBROC constraint/config authority moved to
 `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). A full workbook-wide

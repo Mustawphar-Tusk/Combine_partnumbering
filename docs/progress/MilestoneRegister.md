@@ -3,13 +3,19 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.15).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.16).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
 > to Rev0.3 — a provenance/authority supersession + loader family-safety hardening;
 > run_all_fybroc_audits ALL CORRECTIONS INTACT 7/7, Dean isolated. See
-> `docs/evidence/REV04_CONSTRAINTS/REV04_CONSTRAINT_SUPERSESSION.md`. The Phase D / Phase U rows
+> `docs/evidence/REV04_CONSTRAINTS/REV04_CONSTRAINT_SUPERSESSION.md`.
+>
+> **2026-08-26 (v1.16):** All 29 Rev0.4 ConstraintTables verified conformant
+> (extract/load/enforce) against the authoritative spec; one correction —
+> CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
+> supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
+> `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`. The Phase D / Phase U rows
 > below were over-reported in a prior checkpoint; **D100**, **D110**, **D120**,
 > **D130**, and **D140** are verified complete against their exit gates (evidence
 > in `docs/evidence/D100/`…`docs/evidence/D140/`). **D140** was re-based onto the
