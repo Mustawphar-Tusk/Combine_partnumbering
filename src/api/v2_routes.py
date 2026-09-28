@@ -843,13 +843,17 @@ async def get_configuration_dictionary(family: str, request: Request):
             raise RuntimeError(f"Family {family} not found")
         family_id = family_id[0]
 
-        # Get all fields + options grouped by series
+        # Get all fields + options grouped by series, SCOPED TO THIS FAMILY.
+        # SeriesFieldOption is a shared table holding BOTH families' rows under
+        # the same active publication; without the PumpFamilyId filter the
+        # dictionary (and therefore the UI series dropdown) leaks the other
+        # family's series (e.g. Dean showing Fybroc series and vice-versa).
         rows = cursor.execute(
             "SELECT FieldCode, SeriesCode, OptionValue "
             "FROM cfg.SeriesFieldOption "
-            "WHERE MetadataPublicationId = ? "
+            "WHERE MetadataPublicationId = ? AND PumpFamilyId = ? "
             "ORDER BY FieldCode, SeriesCode, OptionValue",
-            pub_id,
+            pub_id, family_id,
         ).fetchall()
 
         fields_map: dict[str, dict[str, list[str]]] = {}
