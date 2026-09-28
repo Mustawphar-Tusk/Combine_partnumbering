@@ -2,7 +2,7 @@
 F120.3 - FYBROC CONSTRAINT MODEL (Combination Matrix + Constraint Index + Feasible Tables)
 ============================================================================================================================================
 
-Git commit  : fb3eb996d6f970bef0a0ac43bbd92aa4d5143402
+Git commit  : 8311dc3eb90df366c61c7e14015e35c610e591bd
 Git clean   : False
 
 Series codes       : 1500, 1530, 1600, 1630, 2530, 3000, 5500, 5530

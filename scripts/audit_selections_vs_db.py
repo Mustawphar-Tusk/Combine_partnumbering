@@ -6,9 +6,14 @@ DIN/JIS for series outside 1500/1530/1600/1630), then diffs the resulting
 "expected" (field_code, option_value, series, is_standard) set against the live
 cfg.SeriesFieldOption for the active publication.
 
-Any difference reported here is an UNEXPECTED divergence between the Rev0.3
+Any difference reported here is an UNEXPECTED divergence between the Rev0.4
 Selections authority (+ documented V6 flange rule) and the runtime DB. An empty
 diff is a clean bill of health.
+
+Rev0.4 SUPERSEDES Rev0.3 as the authoritative Fybroc config source (2026-08-26).
+The Selections X/STD grid over the enforced range is byte-identical between the
+two revisions (verified in docs/evidence/REV04_CONSTRAINTS/), so this audit's
+expectations are unchanged in content; the authority reference is updated.
 
 Read-only. Prints a report; writes docs/evidence/F120/
 FYBROC_SELECTIONS_DB_AUDIT.txt.
@@ -28,7 +33,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 from src.compiler.workbook_types import norm_series
 
-WB = _ROOT / "workbooks" / "Fybroc" / "Fybroc Configuration Rev0.3.xlsx"
+WB = _ROOT / "workbooks" / "Fybroc" / "Fybroc Configuration Rev0.4.xlsx"
 OUT = _ROOT / "docs" / "evidence" / "F120" / "FYBROC_SELECTIONS_DB_AUDIT.txt"
 CONN = ("DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;"
         "DATABASE=PumpConfiguratorDB;Trusted_Connection=yes;"
@@ -121,13 +126,13 @@ def main() -> int:
     lines.append(f"Authoritative expected rows (X/STD, post V6 flange rule): {len(expected)}\r\n")
     lines.append(f"DB rows:                                                 {len(db)}\r\n\r\n")
 
-    lines.append(f"--- MISSING: allowed by Rev0.3(+V6) but NOT in DB ({len(missing3)}) ---\r\n")
+    lines.append(f"--- MISSING: allowed by Rev0.4(+V6) but NOT in DB ({len(missing3)}) ---\r\n")
     for f, v, s in sorted(missing3):
         lines.append(f"    {s:6s} {f:26s} {v!r}\r\n")
     if not missing3:
         lines.append("    (none)\r\n")
 
-    lines.append(f"\r\n--- EXTRA: in DB but NOT allowed by Rev0.3(+V6) ({len(extra3)}) ---\r\n")
+    lines.append(f"\r\n--- EXTRA: in DB but NOT allowed by Rev0.4(+V6) ({len(extra3)}) ---\r\n")
     for f, v, s in sorted(extra3):
         lines.append(f"    {s:6s} {f:26s} {v!r}\r\n")
     if not extra3:
@@ -140,7 +145,7 @@ def main() -> int:
         lines.append("    (none)\r\n")
 
     clean = not missing3 and not extra3 and not std_flag_diffs
-    lines.append(f"\r\n{W}\r\nRESULT: {'CLEAN - DB matches Rev0.3 Selections + V6 flange authority exactly' if clean else 'DIVERGENCES FOUND (see above)'}\r\n{W}\r\n")
+    lines.append(f"\r\n{W}\r\nRESULT: {'CLEAN - DB matches Rev0.4 Selections + V6 flange authority exactly' if clean else 'DIVERGENCES FOUND (see above)'}\r\n{W}\r\n")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("".join(lines), encoding="utf-8")

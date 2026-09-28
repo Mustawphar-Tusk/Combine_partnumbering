@@ -35,7 +35,11 @@ FYBROC_CONSTRAINT_MODEL.json is the output consumed by:
 No workbook is opened in write mode. Nothing is written back.
 
 Inputs:
-  workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx  (read-only)
+  workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx  (read-only)
+  (Rev0.4 SUPERSEDES Rev0.3 as the authoritative constraint source — 2026-08-26.
+   The Constraints / Constraint Index / Feasible Constraints sheets are
+   byte-identical between Rev0.3 and Rev0.4, verified by
+   docs/evidence/REV04_CONSTRAINTS/REV04_vs_REV03_CONSTRAINT_DIFF.md.)
 
 Outputs:
   docs/evidence/F120/FYBROC_CONSTRAINT_MODEL.{json,txt}
@@ -60,7 +64,7 @@ except ImportError as exc:
 STEP = "F120.3"
 ROADMAP_VERSION = "1.0"
 MILESTONE = "F120"
-WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx"
+WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx"
 
 # Constraints sheet layout constants
 CONSTRAINTS_HEADER_ROW = 5

@@ -1,4 +1,12 @@
-"""Load the 21 Fybroc feasible constraint tables into SQL for runtime enforcement."""
+"""Load the Fybroc feasible constraint tables into SQL for runtime enforcement.
+
+Family-safe (2026-08-26): cfg.FeasibleConstraint is SHARED across families
+(Dean rows added in D110). This loader is FYBROC-only: it deletes/reloads ONLY
+PumpFamilyId=FYBROC rows and inserts with PumpFamilyId set, so Dean's rows and
+the family-scoping/Option4 columns are preserved. Source is the Rev0.4-derived
+FYBROC_CONSTRAINT_MODEL.json (Rev0.4 supersedes Rev0.3; constraint content is
+identical between the two revisions - verified in docs/evidence/REV04_CONSTRAINTS/).
+"""
 import json
 import pyodbc
 
@@ -19,30 +27,19 @@ def main():
     conn = pyodbc.connect(conn_str, autocommit=True)
     cursor = conn.cursor()
 
-    # Create constraint table if not exists
-    cursor.execute("""
-    IF OBJECT_ID('cfg.FeasibleConstraint', 'U') IS NULL
-    BEGIN
-        CREATE TABLE cfg.FeasibleConstraint (
-            FeasibleConstraintId bigint IDENTITY(1,1) PRIMARY KEY,
-            TableName varchar(50) NOT NULL,
-            Option1Field varchar(100) NOT NULL,
-            Option1Value nvarchar(500) NOT NULL,
-            Option2Field varchar(100) NULL,
-            Option2Value nvarchar(500) NULL,
-            Option3Field varchar(100) NULL,
-            Option3Value nvarchar(500) NULL,
-            Allowed varchar(20) NOT NULL DEFAULT 'Allowed',
-            SeriesApplicability varchar(20) NOT NULL DEFAULT 'ALL_SERIES',
-            Description nvarchar(1000) NULL
-        );
-        CREATE INDEX IX_FeasibleConstraint_Lookup
-            ON cfg.FeasibleConstraint (Option1Field, Option1Value, Option2Field);
-    END;
-    """)
+    # FYBROC family id (rows are family-scoped; NEVER touch other families).
+    family_id = cursor.execute(
+        "SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode='FYBROC'"
+    ).fetchone()[0]
 
-    # Clear existing
-    cursor.execute("DELETE FROM cfg.FeasibleConstraint")
+    # Pre-count Dean (other-family) rows so we can assert isolation after reload.
+    other_before = cursor.execute(
+        "SELECT COUNT(*) FROM cfg.FeasibleConstraint WHERE PumpFamilyId <> ?", family_id
+    ).fetchone()[0]
+
+    # Clear ONLY the FYBROC rows (Dean rows and the shared PumpFamilyId/Option4
+    # columns are preserved). The table already exists with the full schema.
+    cursor.execute("DELETE FROM cfg.FeasibleConstraint WHERE PumpFamilyId = ?", family_id)
 
     # Load each constraint table
     total = 0
@@ -100,20 +97,32 @@ def main():
                 cursor.execute(
                     "INSERT INTO cfg.FeasibleConstraint "
                     "(TableName, Option1Field, Option1Value, Option2Field, Option2Value, "
-                    " Option3Field, Option3Value, Allowed, SeriesApplicability, Description) "
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    " Option3Field, Option3Value, Allowed, SeriesApplicability, Description, "
+                    " PumpFamilyId) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     table_name, opt1_field, str(opt1_val or ""),
                     opt2_field, str(opt2_val or ""),
                     opt3_field or None, str(opt3_val) if opt3_val else None,
                     str(allowed or "Allowed"), series_app, description[:1000],
+                    family_id,
                 )
                 total += 1
 
-    print(f"Loaded {total} feasible constraint rows into cfg.FeasibleConstraint")
+    print(f"Loaded {total} FYBROC feasible constraint rows into cfg.FeasibleConstraint")
 
-    # Summary by table
+    # Isolation assertion: other-family (Dean) rows must be unchanged.
+    other_after = cursor.execute(
+        "SELECT COUNT(*) FROM cfg.FeasibleConstraint WHERE PumpFamilyId <> ?", family_id
+    ).fetchone()[0]
+    assert other_before == other_after, (
+        f"ISOLATION FAILURE: other-family FeasibleConstraint rows changed "
+        f"{other_before} -> {other_after}")
+    print(f"Isolation OK: non-FYBROC rows unchanged ({other_after})")
+
+    # Summary by table (FYBROC only)
     for row in cursor.execute(
-        "SELECT TableName, COUNT(*) FROM cfg.FeasibleConstraint GROUP BY TableName ORDER BY TableName"
+        "SELECT TableName, COUNT(*) FROM cfg.FeasibleConstraint "
+        "WHERE PumpFamilyId = ? GROUP BY TableName ORDER BY TableName", family_id
     ).fetchall():
         print(f"  {row[0]}: {row[1]} rows")
 
@@ -122,3 +131,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+                                                                                                                                            

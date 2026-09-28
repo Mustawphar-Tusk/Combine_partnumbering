@@ -1,4 +1,9 @@
-"""Audit: Rev0.3 Feasible Constraint fail-closed enforcement (F140 correction).
+"""Audit: Rev0.4 Feasible Constraint fail-closed enforcement (F140 correction).
+
+(Rev0.4 supersedes Rev0.3 as the authoritative Fybroc constraint source, 2026-08-26.
+The Feasible Constraint tables are byte-identical between the two revisions -
+verified in docs/evidence/REV04_CONSTRAINTS/ - so these representative cases and
+their hardcoded expectations remain valid and unchanged.)
 
 Confirms invalid option combinations are blocked and valid configs still resolve,
 via the live evaluate endpoint. Requires the API server running on 127.0.0.1:8080.

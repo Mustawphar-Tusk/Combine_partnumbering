@@ -26,8 +26,13 @@ conn_str = (
 )
 
 def main():
+    # Rev0.4 SUPERSEDES Rev0.3 (2026-08-26) as the authoritative Fybroc config
+    # source. The Selections X/STD grid over rows 2-678 is byte-identical between
+    # revisions (verified: docs/evidence/REV04_CONSTRAINTS/), so this reload is a
+    # no-op on the loaded option set - the change is provenance (Rev0.4 authority).
+    WORKBOOK = "Fybroc Configuration Rev0.4.xlsx"
     wb = openpyxl.load_workbook(
-        "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx",
+        f"workbooks/Fybroc/{WORKBOOK}",
         read_only=True, data_only=True,
     )
     ws = wb["Selections"]
@@ -96,8 +101,13 @@ def main():
     pub_id = 2
     family_id = 2
 
-    # Clear and reload
-    cursor.execute("DELETE FROM cfg.SeriesFieldOption WHERE MetadataPublicationId=?", pub_id)
+    # Family-scoped clear + reload. cfg.SeriesFieldOption is SHARED across
+    # families under the same publication (Dean rows were added under pub 2,
+    # PumpFamilyId=1, in D110). A publication-only DELETE would WIPE Dean's
+    # SFO rows - a cross-family regression. Scope the delete to FYBROC only.
+    cursor.execute(
+        "DELETE FROM cfg.SeriesFieldOption "
+        "WHERE MetadataPublicationId=? AND PumpFamilyId=?", pub_id, family_id)
     conn.commit()
 
     # Batch insert
@@ -111,29 +121,32 @@ def main():
             " SelectionMarker, IsStandard) "
             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             [(pub_id, family_id, "", fc, val, series,
-              "Fybroc Configuration Rev0.3.xlsx", "Selections", 0, "", "", "",
+              WORKBOOK, "Selections", 0, "", "", "",
               marker, is_standard)
              for fc, val, series, marker, is_standard in batch],
         )
     conn.commit()
 
-    # Verify
+    # Verify (FYBROC-scoped counts; Dean rows share this publication)
     total = cursor.execute(
-        "SELECT COUNT(*) FROM cfg.SeriesFieldOption WHERE MetadataPublicationId=?", pub_id
+        "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
+        "WHERE MetadataPublicationId=? AND PumpFamilyId=?", pub_id, family_id
     ).fetchone()[0]
-    print(f"\nPublished: {total} rows")
+    print(f"\nPublished (FYBROC): {total} rows")
 
     for r in cursor.execute(
         "SELECT SeriesCode, COUNT(*) FROM cfg.SeriesFieldOption "
-        "WHERE MetadataPublicationId=? GROUP BY SeriesCode ORDER BY SeriesCode", pub_id
+        "WHERE MetadataPublicationId=? AND PumpFamilyId=? "
+        "GROUP BY SeriesCode ORDER BY SeriesCode", pub_id, family_id
     ).fetchall():
         print(f"  {r[0]}: {r[1]}")
 
     std_total = cursor.execute(
         "SELECT COUNT(*) FROM cfg.SeriesFieldOption "
-        "WHERE MetadataPublicationId=? AND IsStandard=1", pub_id
+        "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND IsStandard=1",
+        pub_id, family_id
     ).fetchone()[0]
-    print(f"\nStandard (STD) defaults published: {std_total}")
+    print(f"\nStandard (STD) defaults published (FYBROC): {std_total}")
 
     conn.close()
 

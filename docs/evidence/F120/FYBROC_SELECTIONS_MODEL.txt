@@ -2,7 +2,7 @@
 F120.2 - FYBROC SELECTIONS MODEL (per-question, per-answer, per-series validity)
 ============================================================================================================================================
 
-Git commit  : a4bd6337fd8344b8e0bff078d1705174a88bd68b
+Git commit  : 8311dc3eb90df366c61c7e14015e35c610e591bd
 Git clean   : False
 
 Series columns : 1500, 1530, 1600, 1630, 2530, 3000, 5500, 5530, 7500, 8500

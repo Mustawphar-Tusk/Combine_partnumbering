@@ -21,7 +21,12 @@ valid *values* within each field).
 No workbook is opened in write mode. Nothing is written back.
 
 Inputs:
-  workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx  (read-only)
+  workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx  (read-only)
+  (Rev0.4 SUPERSEDES Rev0.3 — 2026-08-26. The Selections X/STD grid over the
+   enforced range (rows 2-678, 10 series) is byte-identical between Rev0.3 and
+   Rev0.4; Rev0.4 adds a pricing helper block below row 678 that this compiler's
+   DATA_END_ROW=678 bound does not read. Verified in
+   docs/evidence/REV04_CONSTRAINTS/REV04_vs_REV03_CONSTRAINT_DIFF.md.)
 
 Outputs:
   docs/evidence/F120/FYBROC_SELECTIONS_MODEL.{json,txt}
@@ -47,11 +52,12 @@ except ImportError as exc:  # pragma: no cover
 STEP = "F120.2"
 ROADMAP_VERSION = "1.0"
 MILESTONE = "F120"
-WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx"
+WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx"
 
 HEADER_ROW = 1
 DATA_START_ROW = 2
-DATA_END_ROW = 678  # verified: last populated row
+DATA_END_ROW = 678  # verified: last populated X/STD row (Rev0.4 adds a pricing
+                    # helper block below this; NOT part of the option grid)
 SERIES_COLS_START = 4
 SERIES_COLS_END = 13  # verified: 1500..8500, 10 series
 

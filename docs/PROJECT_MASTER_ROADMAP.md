@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.14  
+**Roadmap Version:** 1.15  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,15 +1030,45 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.14
+Version:            1.15
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
                     Next permitted: D150 (Exhaustive Dean Regression) — do NOT
                     start without explicit go-ahead.
+                    (v1.15 is a Fybroc constraint-authority maintenance change,
+                    not a Dean milestone advance — see CHANGE v1.15.)
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.15): FYBROC constraint/config authority moved to
+`Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). A full workbook-wide
+cell-level diff proved the enforced constraint/config content is BYTE-IDENTICAL
+between Rev0.3 and Rev0.4 (Constraints combination matrix, all 29 Feasible
+ConstraintTables incl. CT24 Tailpipe Option×Length, Constraint Index, Motor
+Constraints, Hierarchy, and the Selections X/STD grid rows 2-678). Rev0.4's real
+differences are pricing (already adopted via price publication
+FYBROC-REV04-MERGE-20260914-V1), notes, added pricing/motor/UI sheets, and a
+Combine-Variables column reshuffle + a MotorType header rename - all handled so
+the loaded data is unchanged. The constraint/selections/motor compilers were
+repointed to Rev0.4 (compile_fybroc_motor_constraint_model.py made revision-robust
+via header-name resolution for the MotorHpRpm mapping + a canonical MotorType
+domain name); the regression guard (audit_selections_vs_db.py,
+audit_feasible_constraints.py) now cites Rev0.4 with NO asserts weakened. Two
+loaders were HARDENED family-safe (load_constraints_to_sql.py and load_all_series.py
+previously had un-scoped DELETEs that would have wiped Dean's shared-table rows);
+both now delete/insert scoped to PumpFamilyId=FYBROC with isolation assertions.
+Publication: cfg.MetadataPublication is shared+not-family-scoped and the content
+is identical, so NO new config publication was minted (would disrupt Dean for zero
+change); the active publication's Description was annotated with the Rev0.4
+authority (scripts/annotate_rev04_config_authority.py). Verified: run_all_fybroc_audits
+ALL CORRECTIONS INTACT 7/7; Fybroc row counts unchanged (FeasibleConstraint 4487,
+SFO 3638, CombineVariable 112, MotorConstraint 3278); Dean fully isolated
+(Feasible 256, SFO 48063 unchanged). Also fixed (separate, same session): the
+configuration-dictionary API endpoint leaked the other family's series (missing
+PumpFamilyId filter). Dean phase status UNCHANGED (D140 remains the current
+milestone; D150 not started). See docs/evidence/REV04_CONSTRAINTS/REV04_CONSTRAINT_SUPERSESSION.md.
 
 CHANGE (v1.14): D140 (Dean Excel Oracle) complete, AND the Dean identifier
 numbering + config were RE-BASED onto the new authoritative workbook

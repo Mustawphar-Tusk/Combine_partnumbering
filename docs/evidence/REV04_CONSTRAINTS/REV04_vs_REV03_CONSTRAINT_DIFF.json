@@ -1,0 +1,79 @@
+{
+  "artifact": "REV04_vs_REV03_CONSTRAINT_DIFF",
+  "generated_utc": "2026-09-28T17:51:17.656995+00:00",
+  "rev03_workbook": "Fybroc Configuration Rev0.3.xlsx",
+  "rev04_workbook": "Fybroc Configuration Rev0.4.xlsx",
+  "feasible": {
+    "tables_added": [],
+    "tables_removed": [],
+    "tables_changed": {},
+    "tables_identical": [
+      "ConstraintTable1",
+      "ConstraintTable10",
+      "ConstraintTable11",
+      "ConstraintTable12",
+      "ConstraintTable13",
+      "ConstraintTable14",
+      "ConstraintTable15",
+      "ConstraintTable16",
+      "ConstraintTable17",
+      "ConstraintTable18",
+      "ConstraintTable19",
+      "ConstraintTable2",
+      "ConstraintTable20",
+      "ConstraintTable21",
+      "ConstraintTable22",
+      "ConstraintTable23",
+      "ConstraintTable24",
+      "ConstraintTable25",
+      "ConstraintTable26",
+      "ConstraintTable27",
+      "ConstraintTable28",
+      "ConstraintTable29",
+      "ConstraintTable3",
+      "ConstraintTable4",
+      "ConstraintTable5",
+      "ConstraintTable6",
+      "ConstraintTable7",
+      "ConstraintTable8",
+      "ConstraintTable9"
+    ]
+  },
+  "constraint_index": {
+    "added": [],
+    "removed": [],
+    "changed": {}
+  },
+  "combination_matrix": {
+    "fields_added": [],
+    "fields_removed": [],
+    "series_codes_rev03": [
+      "1500",
+      "1530",
+      "1600",
+      "1630",
+      "2530",
+      "3000",
+      "5500",
+      "5530"
+    ],
+    "series_codes_rev04": [
+      "1500",
+      "1530",
+      "1600",
+      "1630",
+      "2530",
+      "3000",
+      "5500",
+      "5530"
+    ],
+    "changed": {}
+  },
+  "selections": {
+    "true_added": [],
+    "true_removed": [],
+    "std_flag_flips": [],
+    "count_rev03": 2096,
+    "count_rev04": 2096
+  }
+}

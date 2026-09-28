@@ -8,15 +8,15 @@ Series audited: ['1500', '1530', '1600', '1630', '2530', '3000', '5500', '5530',
 Authoritative expected rows (X/STD, post V6 flange rule): 2096
 DB rows:                                                 2096
 
---- MISSING: allowed by Rev0.3(+V6) but NOT in DB (0) ---
+--- MISSING: allowed by Rev0.4(+V6) but NOT in DB (0) ---
     (none)
 
---- EXTRA: in DB but NOT allowed by Rev0.3(+V6) (0) ---
+--- EXTRA: in DB but NOT allowed by Rev0.4(+V6) (0) ---
     (none)
 
 --- STD-flag mismatches (row present, IsStandard differs) (0) ---
     (none)
 
 ============================================================================================
-RESULT: CLEAN - DB matches Rev0.3 Selections + V6 flange authority exactly
+RESULT: CLEAN - DB matches Rev0.4 Selections + V6 flange authority exactly
 ============================================================================================

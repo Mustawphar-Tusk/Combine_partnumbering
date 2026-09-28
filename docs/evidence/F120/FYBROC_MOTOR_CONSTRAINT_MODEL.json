@@ -3,8 +3,8 @@
   "step": "F120.4",
   "roadmap_version": "1.0",
   "milestone": "F120",
-  "generated_utc": "2026-08-28T14:55:08.740265+00:00",
-  "git_commit": "fb3eb996d6f970bef0a0ac43bbd92aa4d5143402",
+  "generated_utc": "2026-09-28T18:31:25.931926+00:00",
+  "git_commit": "8311dc3eb90df366c61c7e14015e35c610e591bd",
   "git_working_tree_clean": false,
   "motor_constraint_block_count": 19,
   "motor_constraint_blocks": [

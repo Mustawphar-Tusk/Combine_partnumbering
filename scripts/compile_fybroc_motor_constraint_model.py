@@ -31,7 +31,12 @@ Verified structure (not assumed):
 No workbook is opened in write mode. Nothing is written back.
 
 Inputs:
-  workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx  (read-only)
+  workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx  (read-only)
+  (Rev0.4 SUPERSEDES Rev0.3 — 2026-08-26. Motor Constraints is byte-identical
+   between revisions. Combine Variables kept the SAME MotorHpRpm mapping VALUES
+   but RESHUFFLED its columns (Rev0.3 key=E,vals=F/G; Rev0.4 key=F,vals=D/E), so
+   the Combine-Variables extraction below is HEADER-SEARCH based to be
+   revision-robust. Verified: docs/evidence/REV04_CONSTRAINTS/.)
 
 Outputs:
   docs/evidence/F120/FYBROC_MOTOR_CONSTRAINT_MODEL.{json,txt}
@@ -57,7 +62,7 @@ except ImportError as exc:  # pragma: no cover
 STEP = "F120.4"
 ROADMAP_VERSION = "1.0"
 MILESTONE = "F120"
-WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.3.xlsx"
+WORKBOOK_REL = "workbooks/Fybroc/Fybroc Configuration Rev0.4.xlsx"
 
 MOTOR_GROUP_ROW = 2
 MOTOR_HEADER_ROW = 5
@@ -104,11 +109,20 @@ CV_MAX_SCAN_ROW = 130  # safety bound; real columns end at a blank cell before t
 #      produced a phantom "Toshiba -> (blank)" and would have wrongly filtered
 #      Motor Option to empty. See docs/evidence/F120/
 #      FYBROC_CONSTRAINT_EXTRACTION_ALIGNMENT.md.
+# The MotorHpRpm composite-key table is resolved by HEADER NAME (revision-robust):
+# Rev0.3 had key F_MotorHpRPM=E, MotorHp=F, MotorRPM=G; Rev0.4 moved them to
+# F/D/E. `key_header` is the composite key column; `value_headers` are its
+# decomposed components (emitted in the fixed order Hp, RPM to preserve the prior
+# JSON shape). Verified against both workbooks (docs/evidence/REV04_CONSTRAINTS/).
 COMBINE_KEY_VALUE_TABLES = [
-    {"name": "MotorHpRpm_to_HpAndRpm", "key_col": 5, "value_cols": [6, 7]},
+    {"name": "MotorHpRpm_to_HpAndRpm",
+     "key_header": "F_MotorHpRPM", "value_headers": ["MotorHp", "MotorRPM"]},
 ]
-# Each entry: independent per-attribute value lists. domain_cols read
-# top-to-first-blank independently (each column is one attribute's domain).
+# The value-domain columns did NOT move between Rev0.3 and Rev0.4 (verified:
+# MotorType=J, F_MotorEnclosure=L .. F_MotorRPM=Q, Motor Mfg=S, Motor Option=T,
+# Wetted Hardware=X, Shaft Material=Y), so they stay fixed-column. Only the J10
+# header text changed (Rev0.4: "PREVIOUS MotorType OPTIONS") - immaterial since
+# we key domains by column, and this region is a pricing/reference helper.
 COMBINE_VALUE_DOMAIN_TABLES = [
     {"name": "MotorType_domains",
      "domain_cols": [10, 12, 13, 14, 15, 16, 17]},
@@ -169,10 +183,25 @@ def compile_combine_variables(ws) -> dict[str, Any]:
     value_domain_tables : independent per-attribute value-domain lists (the
         MotorType region), each column read top-to-first-blank independently.
     """
+    # Resolve the CV_HEADER_ROW header text -> column index once, so key/value
+    # columns can be found by NAME (revision-robust against column reshuffles).
+    header_to_col: dict[str, int] = {}
+    for c in range(1, 40):
+        h = ws.cell(row=CV_HEADER_ROW, column=c).value
+        if h is not None and str(h).strip():
+            header_to_col.setdefault(str(h).strip(), c)
+
     key_value_tables = []
     for spec in COMBINE_KEY_VALUE_TABLES:
-        key_col = spec["key_col"]
-        value_cols = spec["value_cols"]
+        key_col = header_to_col.get(spec["key_header"])
+        value_cols = [header_to_col.get(h) for h in spec["value_headers"]]
+        if key_col is None or any(vc is None for vc in value_cols):
+            raise SystemExit(
+                f"Combine Variables: could not locate headers for "
+                f"{spec['name']} (key={spec['key_header']!r} -> {key_col}, "
+                f"values={spec['value_headers']} -> {value_cols}). "
+                f"Available headers: {sorted(header_to_col)}"
+            )
         key_header = ws.cell(row=CV_HEADER_ROW, column=key_col).value
         value_headers = [ws.cell(row=CV_HEADER_ROW, column=c).value for c in value_cols]
         rows = []
@@ -189,6 +218,15 @@ def compile_combine_variables(ws) -> dict[str, Any]:
             "value_fields": value_headers, "row_count": len(rows), "rows": rows,
         })
 
+    # Canonical attribute-name normalization: Rev0.4 renamed the J10 domain header
+    # from "MotorType" to "PREVIOUS MotorType OPTIONS" (same 5 values). Preserve
+    # the canonical "MotorType" attribute name so the loaded CombineValueDomain
+    # content is unchanged by the supersession (the values are identical; this is
+    # a workbook label change only).
+    DOMAIN_HEADER_CANONICAL = {
+        "PREVIOUS MotorType OPTIONS": "MotorType",
+    }
+
     value_domain_tables = []
     for spec in COMBINE_VALUE_DOMAIN_TABLES:
         domains = []
@@ -196,6 +234,7 @@ def compile_combine_variables(ws) -> dict[str, Any]:
             header = ws.cell(row=CV_HEADER_ROW, column=c).value
             if header is None:
                 continue
+            header = DOMAIN_HEADER_CANONICAL.get(str(header).strip(), header)
             values = []
             for row in range(CV_DATA_START_ROW, CV_MAX_SCAN_ROW + 1):
                 v = ws.cell(row=row, column=c).value
