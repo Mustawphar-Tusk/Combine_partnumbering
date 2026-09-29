@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.17).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.18).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,17 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.18):** FYBROC Rev0.4 "1500 Pricing" authority VERIFIED + base-pump
+> pricing correction. Probed all 24 pricing blocks (reconciled vs request spec's
+> column errors: Baseplate Hardware=BE-BH, Flange Type=BY-CB, Flush=CI-CL; G-I VR-1
+> helper redundant with main table, correctly not published). Data already in pub
+> FYBROC-REV04-MERGE-20260914-V1 (56241 rules) — no republish. FIXED runtime bug:
+> plain 'vr-1' base material aliased onto VR-1A (over-priced every VR-1 pump, e.g.
+> 8666 vs correct 4987); now exact per-material patterns. New guard
+> scripts/audit_fybroc_pricing.py (sheet-derived, 27/0) wired into the gate (audit
+> #8). Gate ALL CORRECTIONS INTACT 8/8; DEAN pricing 9874 unchanged (Fybroc-only,
+> runtime). See `docs/evidence/REV04_PRICING/REV04_1500_PRICING_EXIT.md`.
 >
 > **2026-08-26 (v1.17):** FYBROC Rev0.4 Motor Constraints authority + enforcement
 > VERIFIED (no code/data change needed). Extractor reproduces the real sheet layout

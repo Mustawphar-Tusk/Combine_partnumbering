@@ -17,6 +17,9 @@ Audits:
   7. audit_free_config.py        - API. Free-edit resolve-state: STD seed,
                                     omni-directional allowable, non-destructive
                                     upstream correction, invalidation reporting.
+  8. audit_fybroc_pricing.py     - API. Rev0.4 '1500 Pricing' base+adder prices
+                                    resolve to the authoritative sheet value
+                                    (guards the VR-1 vs VR-1A base-price leak).
 
 The API-dependent audits need the FastAPI server on 127.0.0.1:8080. This runner
 detects whether it is already up; if not, it starts a temporary local instance
@@ -41,7 +44,8 @@ API_HEALTH = "http://127.0.0.1:8080/docs"
 DB_ONLY_AUDITS = ["audit_selections_vs_db.py"]
 API_AUDITS = ["audit_feasible_constraints.py", "audit_motor_constraints.py",
               "audit_identifier_parity.py", "audit_bom_engine.py",
-              "audit_quote_engine.py", "audit_free_config.py"]
+              "audit_quote_engine.py", "audit_free_config.py",
+              "audit_fybroc_pricing.py"]
 
 
 def _api_up() -> bool:

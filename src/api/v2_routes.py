@@ -2119,25 +2119,47 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
         size_upper = size_val.upper()
         material_display = body.selections.get("PUMP_MATERIAL", "").lower()
 
-        # Normalize material for matching against price.PriceRule SourceOptionValue
-        # SFO values: "vr-1", "vr-1a", "ey-2", "vr-1 bpo/dma", "vr-1a bpo/dma", "vr-1v"
-        # Pricing values: "VR-1 (Standard)", "EY-2", "VR-1 BPO/DMA", "VR-1V"
-        # Build multiple LIKE patterns to try
+        # Normalize material for matching against price.PriceRule SourceOptionValue.
+        # SFO material values (selection): "vr-1", "vr-1a", "vr-1v", "ey-2",
+        #   "vr-1 bpo/dma", "vr-1a bpo/dma", "vr-1v bpo/dma".
+        # Published pricing SourceOptionValue (Rev0.4 base-price table, per size):
+        #   "VR-1 (Standard)", "VR-1A", "VR-1V", "EY-2",
+        #   "VR-1 BPO/DMA", "VR-1A BPO/DMA", "VR-1V BPO/DMA".
+        # These are DISTINCT materials with DISTINCT prices (e.g. for 1x1.5x6:
+        # VR-1=4987, VR-1A=8666, VR-1V=13870), so the match MUST be exact per
+        # material. A previous broad "%vr-1%" pattern (tried first) wrongly matched
+        # VR-1A / VR-1V / BPO-DMA rows for a plain "vr-1" selection and overpriced
+        # the base pump. We now build EXACT-anchored patterns per material and try
+        # the most specific first; the broad direct pattern is only a last resort.
         mat_patterns = []
         if material_display:
-            # Direct pattern (works for ey-2, vr-1 bpo/dma, vr-1v)
-            direct = material_display.replace(" ", "%")
-            mat_patterns.append(f"%{direct}%")
-            
-            # VR-1 / VR-1A → "VR-1 (Standard)" mapping
-            # "vr-1a" and "vr-1" are both standard VR-1 material
-            if material_display in ("vr-1", "vr-1a"):
-                mat_patterns.append("%vr-1%standard%")
+            md = material_display.strip()
+            is_bpo = "bpo/dma" in md
+            # Map the SFO material to its exact published SourceOptionValue LIKE.
+            # LIKE is case-insensitive here; '(' / '/' are literals in LIKE.
+            if md == "vr-1":
+                mat_patterns.append("vr-1 (standard)")          # exact 4987-class row
+            elif md == "vr-1a":
+                mat_patterns.append("vr-1a")                     # exact, NOT vr-1
+            elif md == "vr-1v":
+                mat_patterns.append("vr-1v")
+            elif md == "ey-2":
+                mat_patterns.append("ey-2")
+            elif md == "vr-1 bpo/dma":
+                mat_patterns.append("vr-1 bpo/dma")
+            elif md == "vr-1a bpo/dma":
+                mat_patterns.append("vr-1a bpo/dma")
+            elif md == "vr-1v bpo/dma":
+                mat_patterns.append("vr-1v bpo/dma")
+            # Generic last-resort fallbacks (only used if no exact row exists):
+            # keep them AFTER the exact pattern so they never shadow it, and make
+            # them as specific as the selection allows.
+            if md == "vr-1" and not is_bpo:
+                # plain VR-1: allow the "(standard)" variant but explicitly avoid
+                # VR-1A / VR-1V by not adding a bare "%vr-1%".
                 mat_patterns.append("%vr-1 (%")
-            elif "bpo/dma" in material_display:
-                mat_patterns.append("%bpo/dma%")
-            elif material_display == "vr-1v":
-                mat_patterns.append("%vr-1v%")
+            else:
+                mat_patterns.append(f"%{md.replace(' ', '%')}%")
 
         # Base pump price - try each material pattern until one matches
         base_row = None

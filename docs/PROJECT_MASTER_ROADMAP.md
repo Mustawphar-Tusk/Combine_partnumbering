@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.17  
+**Roadmap Version:** 1.18  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.17
+Version:            1.18
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,32 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.18): FYBROC Rev0.4 "1500 Pricing" authority VERIFIED + base-pump
+pricing correction. The Rev0.4 1500 Pricing datasheet is confirmed authoritative
+and correctly published: a read-only probe detected all 24 pricing blocks (base
+price + VR-1 helper + 22 material/option adder/seal/coupling/baseplate tables)
+via the compiler's own row-3-description block detector, reconciled against the
+request spec (which had column transcription errors: Baseplate Hardware=BE-BH not
+AY-BC; the only Flange Type block=BY-CB; Flush at CI-CL mislabeled). The G-I
+"VR-1 Base Price" helper is byte-redundant with the main table's VR-1 (Standard)
+rows and correctly not double-published. Data already lived in the current
+publication FYBROC-REV04-MERGE-20260914-V1 (56241 rules); NO republish. CORRECTION
+(runtime): src/api/v2_routes.py base-pump material matching aliased a plain 'vr-1'
+selection onto the pricier VR-1A row (broad '%vr-1%' pattern tried first),
+over-pricing every VR-1 pump (e.g. 1x1.5x6 returned 8666 instead of 4987). Fixed
+with exact per-material anchored patterns (vr-1->'vr-1 (standard)', vr-1a->'vr-1a',
+vr-1v->'vr-1v', ey-2, *bpo/dma exact; plain vr-1 fallback '%vr-1 (%' never bare
+'%vr-1%'). Published DB rows were already correct; DEAN unaffected (own family
+branch). New re-runnable guard scripts/audit_fybroc_pricing.py (expectations
+derived from the sheet, not hardcoded) = 27/0 across 4 sizes x 6 materials + adders,
+wired into run_all_fybroc_audits.py as audit #8. Verified: gate ALL CORRECTIONS
+INTACT 8/8 (quote audit now shows 1500 unit=4987, was 8666 pre-fix); FYBROC pricing
+rules 56241 and DEAN 9874 unchanged (runtime-only fix, no republish); imports OK.
+KNOWN GAP (disclosed): adders don't gate pricing status (found/partial keyed on
+base+seal only); SEAL often C/F for horizontal; only base+Shaft/Gland/Flange
+adders cross-checked vs sheet so far. Dean phase status UNCHANGED (D140 current;
+D150 not started). See docs/evidence/REV04_PRICING/REV04_1500_PRICING_EXIT.md.
 
 CHANGE (v1.17): FYBROC Rev0.4 Motor Constraints authority + enforcement VERIFIED
 (no code/data change needed). The Rev0.4 `Motor Constraints` datasheet is
