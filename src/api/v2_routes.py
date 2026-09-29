@@ -2484,6 +2484,56 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         # (component, label, [condition field sets to try]). Some components have
         # more than one condition shape (e.g. COUPLING: horizontal vs 5500).
+        # ---- CPQ Conversion2 (Rev0.4 '1500 Motors' col L) ----
+        # The authoritative Rev0.4 '1500 Motors' datasheet defines, for every motor
+        # row, a "CPQ Conversion2" string = the canonical motor descriptor shown for
+        # a selected motor in UI quotes. Verified against ALL 144,000 rows: it is
+        # EXACTLY  "{Motor Enclosure}---{Motor Efficiency}---{Motor Voltage}---{Motor Hertz}"
+        # (0 mismatches; 18 distinct values). It is a pure function of those 4
+        # fields (NOT Hp/RPM/frame/etc.), so it is derived here rather than stored.
+        #
+        # The stored selection (SeriesFieldOption) values are lowercase (e.g.
+        # "tefc", "pe", "230/460", "3ph - 60 hz"); the sheet uses display casing
+        # ("TEFC", "PE", ...). This map carries the sheet's exact display token per
+        # lowercased selection value so the runtime string matches the source. It
+        # is guarded by scripts/audit_fybroc_motor_cpq.py, which derives the
+        # expected map + strings from the workbook (so any drift fails the gate).
+        _CPQ_DISPLAY = {
+            "MOTOR_ENCLOSURE": {"tefc": "TEFC", "tefc sd": "TEFC SD", "ieee 841": "IEEE 841"},
+            "MOTOR_EFFICIENCY": {"pe": "PE"},
+            # Voltage + Hertz are already in the sheet's display form; pass through.
+        }
+
+        def _cpq_token(field_code: str, value) -> str:
+            """Return the sheet-cased CPQ token for a motor field value. Falls back
+            to the value's own uppercasing for enclosure/efficiency (title-style
+            fields) and to the raw trimmed value for voltage/hertz."""
+            if value is None:
+                return ""
+            raw = str(value).strip()
+            fmap = _CPQ_DISPLAY.get(field_code)
+            if fmap is not None:
+                return fmap.get(raw.lower(), raw.upper())
+            return raw
+
+        def _cpq_conversion2(selections: dict) -> str | None:
+            """Build the CPQ Conversion2 descriptor for the selected motor, or None
+            if the four source fields are not all present."""
+            enc = selections.get("MOTOR_ENCLOSURE")
+            eff = selections.get("MOTOR_EFFICIENCY")
+            volt = selections.get("MOTOR_VOLTAGE")
+            hz = selections.get("MOTOR_HERTZ")
+            if not (enc and eff and volt and hz):
+                return None
+            return "---".join([
+                _cpq_token("MOTOR_ENCLOSURE", enc),
+                _cpq_token("MOTOR_EFFICIENCY", eff),
+                _cpq_token("MOTOR_VOLTAGE", volt),
+                _cpq_token("MOTOR_HERTZ", hz),
+            ])
+
+        motor_cpq_conversion = _cpq_conversion2(body.selections)
+
         MULTI_COMPONENTS = [
             ("MOTOR", "Motor", [[
                 "MOTOR_ENCLOSURE", "MOTOR_EFFICIENCY", "MOTOR_VOLTAGE", "MOTOR_HERTZ",
@@ -2498,19 +2548,27 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             ("TAILPIPE", "Tailpipe", [["SIZE", "PUMP_MATERIAL", "WETTED_HARDWARE", "TAILPIPE_LENGTH"]]),
         ]
         for comp_code, label, field_sets in (MULTI_COMPONENTS if not _dean_priced else []):
+            # CPQ Conversion2 is the authoritative UI-display descriptor for the
+            # MOTOR component (the "selected motor" string shown in quotes).
+            cpq = motor_cpq_conversion if comp_code == "MOTOR" else None
             priced = None
             for cond_fields in field_sets:
                 priced = _price_multi_condition(comp_code, label, cond_fields)
                 if priced is not None:
-                    pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
+                    entry = {"component": label, "amount": priced[0], "detail": priced[1]}
+                    if cpq is not None:
+                        entry["cpq_conversion"] = cpq
+                    pricing.append(entry)
                     break
             # Motor is always part of a pump; the others (Coupling/Baseplate/
             # Tailpipe) apply when the config drives them. Track them so a
-            # reviewer sees the priced-vs-C/F status per component.
+            # reviewer sees the priced-vs-C/F status per component. The Motor's
+            # display selection is its CPQ Conversion2 descriptor.
+            _sel_display = cpq if comp_code == "MOTOR" else None
             if priced is not None:
-                _add_component(label, None, priced[0], priced[1])
+                _add_component(label, _sel_display, priced[0], priced[1])
             else:
-                _add_component(label, None, None)
+                _add_component(label, _sel_display, None)
 
         # For DEAN, `total` was already summed in the Dean branch above; recompute
         # for Fybroc (and harmlessly re-affirm for Dean) from the priced lines.
@@ -2615,6 +2673,12 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             "pricing": pricing,
             "component_pricing": component_pricing,
             "total_price": total,
+            # CPQ Conversion2: the authoritative UI-display descriptor for the
+            # selected motor (Rev0.4 '1500 Motors'). Present whenever the four
+            # motor descriptor fields are selected, regardless of whether a motor
+            # PRICE was found (only ~151 of 144k motor combos are priced), so the
+            # UI can always show the canonical motor string on the quote line.
+            "motor_cpq_conversion": motor_cpq_conversion,
             "segment_debug": segment_debug,
         }
     finally:

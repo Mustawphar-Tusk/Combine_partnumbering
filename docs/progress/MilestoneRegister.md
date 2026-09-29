@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.18).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.19).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,17 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.19):** FYBROC Rev0.4 "1500 Motors" — CPQ Conversion2 motor display
+> descriptor implemented. Verified against all 144000 rows that CPQ Conversion2 ==
+> "{Enclosure}---{Efficiency}---{Voltage}---{Hertz}" (18 distinct values), so it is
+> derived at runtime (no 144k reload; only 151 motor rows are priced, rest C/F).
+> src/api/v2_routes.py surfaces it on the Motor line + top-level motor_cpq_conversion
+> (present even when motor is C/F); UI shows it via the existing Selection column.
+> New guard scripts/audit_fybroc_motor_cpq.py (sheet-derived, 37/0) wired into the
+> gate (audit #9). Gate ALL CORRECTIONS INTACT 9/9; runtime-only (no DB write), DEAN
+> 9874 / FYBROC 56241 pricing unchanged. See
+> `docs/evidence/REV04_PRICING/REV04_1500_MOTORS_CPQ_EXIT.md`.
 >
 > **2026-08-26 (v1.18):** FYBROC Rev0.4 "1500 Pricing" authority VERIFIED + base-pump
 > pricing correction. Probed all 24 pricing blocks (reconciled vs request spec's

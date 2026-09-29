@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.18  
+**Roadmap Version:** 1.19  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.18
+Version:            1.19
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,29 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.19): FYBROC Rev0.4 "1500 Motors" — CPQ Conversion2 motor display
+descriptor implemented (motor pricing authority already published; no reload). A
+read-only probe of the '1500 Motors' sheet (header row 2, data 3-144002 = 144000
+rows, cols B-N incl L=CPQ Conversion2, M=HpRPM, N=Price; only 151 priced, rest C/F)
+verified CPQ Conversion2 == "{Motor Enclosure}---{Motor Efficiency}---{Motor
+Voltage}---{Motor Hertz}" for ALL 144000 rows (0 mismatches; 18 distinct values) -
+a pure function of 4 fields, NOT Hp/RPM/etc. So it is DERIVED at runtime (no 144k
+reload). Implemented in src/api/v2_routes.py resolve flow: _CPQ_DISPLAY sheet-cased
+token map (enclosure tefc->TEFC/tefc sd->TEFC SD/ieee 841->IEEE 841; efficiency
+pe->PE; voltage/hertz passthrough) + _cpq_conversion2(); surfaced as (a) pricing[]
+Motor 'cpq_conversion', (b) component_pricing[] Motor 'selection' (so the existing
+UI renderPricing shows it), (c) top-level resolve key 'motor_cpq_conversion'
+(present even when the motor is C/F). Persisted in quote-line pricing lineage.
+DEAN-safe (helper returns None absent the 4 Fybroc motor fields; no DB write, no
+publication). New re-runnable guard scripts/audit_fybroc_motor_cpq.py (sheet-derived
+expectations across all 18 combos incl TEFC SD/IEEE 841 casing) = 37/0, wired into
+run_all_fybroc_audits.py as audit #9. Verified: gate ALL CORRECTIONS INTACT 9/9;
+FYBROC pricing 56241 / DEAN 9874 unchanged (runtime-only); imports OK. KNOWN GAP
+(disclosed): only 151/144000 motor combos are priced (rest C/F by source); CPQ is
+derived not stored (guarded by the sheet-derived audit). Dean phase status UNCHANGED
+(D140 current; D150 not started). See
+docs/evidence/REV04_PRICING/REV04_1500_MOTORS_CPQ_EXIT.md.
 
 CHANGE (v1.18): FYBROC Rev0.4 "1500 Pricing" authority VERIFIED + base-pump
 pricing correction. The Rev0.4 1500 Pricing datasheet is confirmed authoritative
