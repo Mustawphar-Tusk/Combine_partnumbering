@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.16).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.17).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -15,7 +15,17 @@
 > (extract/load/enforce) against the authoritative spec; one correction —
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
-> `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`. The Phase D / Phase U rows
+> `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.17):** FYBROC Rev0.4 Motor Constraints authority + enforcement
+> VERIFIED (no code/data change needed). Extractor reproduces the real sheet layout
+> exactly (19 blocks, 3278 rows; 3000 at col AV, 1500/1600 Alt×HpRpm at F–H — two
+> request-spec transcription errors reconciled against the sheet). Pure allow-list
+> semantics ('Allowed'/'X' = present = allowed, no deny rows). cfg.MotorConstraint
+> FYBROC=3278 / DEAN=0. audit_motor_constraints 91/0; 5530 targeted probe 0 leaks;
+> gate 7/7 ALL CORRECTIONS INTACT; Dean isolated. KNOWN GAP: F_MotorHpRpm×F_Motor Type
+> block (170 rows) loaded but inert (no single MOTOR_TYPE field). See
+> `docs/evidence/REV04_CONSTRAINTS/REV04_MOTOR_CONSTRAINTS_EXIT.md`. The Phase D / Phase U rows
 > below were over-reported in a prior checkpoint; **D100**, **D110**, **D120**,
 > **D130**, and **D140** are verified complete against their exit gates (evidence
 > in `docs/evidence/D100/`…`docs/evidence/D140/`). **D140** was re-based onto the

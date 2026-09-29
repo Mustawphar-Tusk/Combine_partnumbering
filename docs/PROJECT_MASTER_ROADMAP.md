@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.16  
+**Roadmap Version:** 1.17  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.16
+Version:            1.17
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,32 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.17): FYBROC Rev0.4 Motor Constraints authority + enforcement VERIFIED
+(no code/data change needed). The Rev0.4 `Motor Constraints` datasheet is
+confirmed authoritative and correctly enforced: the extractor
+(compile_fybroc_motor_constraint_model.py) reproduces the real sheet layout
+exactly — 19 blocks, per-series start columns from the row-2 banners
+(1500/1600=B, 1530/1630=T, 2530=AH, 3000=AV, 5500=BJ, 5530=BX), each mini-table
+3 cols (Dim1, Dim2, Allowed?) with dynamic row extents — totalling 3278 rows,
+byte-identical to what is already in cfg.MotorConstraint (FYBROC=3278, DEAN=0,
+active pub). Value semantics are pure ALLOW-LIST (each Allowed? column is a single
+token — 'Allowed' or 'X' — with no deny rows; present row = allowed), and the
+runtime index-builder + _apply_constraints enforce it as such. Two transcription
+errors in the request spec were reconciled AGAINST the sheet (code was already
+correct): 3000 is at AV not AH (AH–AR is 2530), and 1500/1600 Alt×HpRpm has an
+Allowed? column at H (F–H, 3 cols). Verified: extractor re-run = byte-identical
+model; audit_motor_constraints 91/0; 5530 targeted probe 0 leaks + walk complete;
+run_all_fybroc_audits ALL CORRECTIONS INTACT 7/7; Dean isolated (Feasible 256, SFO
+48063, MotorConstraint 0 unchanged); Fybroc MotorConstraint 3278 / FeasibleConstraint
+4487 unchanged; imports OK. KNOWN GAP (disclosed, pending engineering): the
+F_MotorHpRpm×F_Motor Type block (1500/1600, 170 rows) is loaded but INERT — the
+configurator has no single MOTOR_TYPE field (motor type is decomposed), so that
+allow-list is stored but not enforced. Standing audit does not yet sweep 5530
+(verified this slice by targeted probe; recommend adding to SERIES list). Dean
+phase status UNCHANGED (D140 current; D150 not started). This CHANGE also carries
+the previously-unpushed effort-mode steering commit (e117b1d) to both remotes.
+See docs/evidence/REV04_CONSTRAINTS/REV04_MOTOR_CONSTRAINTS_EXIT.md.
 
 CHANGE (v1.16): FYBROC Rev0.4 29-ConstraintTable conformance verified + one
 correction. Confirmed against the authoritative spec that all 29 ConstraintTables
