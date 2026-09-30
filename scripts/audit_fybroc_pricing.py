@@ -63,7 +63,7 @@ def read_sheet_tables():
         wb = openpyxl.load_workbook(str(tmp), read_only=True, data_only=True)
         ws = wb["1500 Pricing"]
         grid = {}
-        for ri, row in enumerate(ws.iter_rows(min_row=1, max_row=700, max_col=90, values_only=True), start=1):
+        for ri, row in enumerate(ws.iter_rows(min_row=1, max_row=700, max_col=104, values_only=True), start=1):
             for c, v in enumerate(row, start=1):
                 if v is not None and str(v).strip() != "":
                     grid[(ri, c)] = str(v).strip()
@@ -95,6 +95,11 @@ def read_sheet_tables():
         "Shaft Material": (adder("Q", "R", "S", 6, 43), "SHAFT_MATERIAL"),
         "Gland Hardware": (adder("AA", "AB", "AC", 6, 100), "GLAND_HARDWARE"),
         "Flange Type": (adder("BZ", "CA", "CB", 6, 62), "FLANGE_TYPE"),
+        # Suction/Discharge Taps adder (CS-CV, r6..43): the option label uses the
+        # pricing vocabulary (Not_Supplied_by_Fybroc / Supplied_by_Fybroc). Keyed
+        # by (size, normalized pricing label) so the check maps the selectable
+        # value onto it via the same not-supplied/supplied semantics.
+        "Suction Discharge Taps": (adder("CT", "CU", "CV", 6, 43), "SUCTION_DISCHARGE_TAPS"),
     }
     return tables
 
@@ -171,6 +176,30 @@ def main():
         good = (api is not None and abs(exp - api) < 0.005) or (exp == 0 and api in (0, None))
         ok(good, f"adder {label} 1500/{size}/{selval}: sheet={exp} api={api}")
         print(f"  [{'PASS' if good else 'FAIL'}] adder {label:16} {size}/{selval}: sheet={exp} api={api}")
+
+    # Suction/Discharge Taps: the selectable option vocabulary differs from the
+    # pricing vocabulary, so the API must bridge them (value-equivalence). Force
+    # each selectable option on 1500 and assert it resolves to the sheet price.
+    # 'not supplied' -> Not_Supplied_by_Fybroc ($0); 'supplied' -> Supplied_by_Fybroc.
+    sdt_tbl = tables["Suction Discharge Taps"][0]
+    sdt_cases = [
+        ("no suction discharge taps", "not supplied by fybroc"),
+        ("suction discharge taps", "supplied by fybroc"),
+    ]
+    for size in ["1x1.5x6", "2x3x8", "3x4x10", "6x8x13"]:
+        for sel_opt, price_label in sdt_cases:
+            exp = sdt_tbl.get((size.lower(), _norm(price_label)))
+            if exp is None:
+                continue
+            sel = full_walk("1500", {"ALT_SIZE": size, "SUCTION_DISCHARGE_TAPS": sel_opt})
+            if _norm(sel.get("SUCTION_DISCHARGE_TAPS")) != _norm(sel_opt):
+                continue  # option not selectable at this size/context
+            r = resolve("1500", sel)
+            comps = {c["component"]: c for c in r.get("pricing", [])}
+            api = comps.get("Suction/Discharge Taps", {}).get("amount")
+            good = (api is not None and abs(exp - api) < 0.005)
+            ok(good, f"suction/discharge 1500/{size}/{sel_opt}: sheet={exp} api={api}")
+            print(f"  [{'PASS' if good else 'FAIL'}] suction/discharge 1500/{size:9}/{sel_opt:26} sheet={exp} api={api}")
 
     print(f"\n=== RESULT: {P[0]} passed, {F[0]} failed ===")
     for m in fails[:25]:

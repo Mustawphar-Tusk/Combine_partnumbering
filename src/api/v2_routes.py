@@ -22,6 +22,7 @@ import json
 import re
 import time
 from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
 import pyodbc
@@ -29,6 +30,77 @@ from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel, Field
 
 router_v2 = APIRouter(prefix="/api/v2", tags=["v2"])
+
+
+# ---------------------------------------------------------------------------
+# Value-equivalence pricing bridge
+# ---------------------------------------------------------------------------
+# The selectable option vocabulary (SeriesFieldOption, e.g. "no suction discharge
+# taps") differs from the pricing vocabulary (price.PriceRule SourceOptionValue,
+# e.g. "Not_Supplied_by_Fybroc") for several supplied/not-supplied adders. The
+# authoritative reconciliation already lives in
+# config/runtime_profiles/fybroc_value_equivalences.json (used by the config
+# engine). Pricing lookups must use the SAME reconciliation so a selected option
+# resolves to its priced row. This builds, per family + field code, a map from a
+# normalized selection value to the set of ALL values in its equivalence group
+# (so a pricing lookup can try each). Loaded once; small JSON.
+
+_PRICING_ROOT = Path(__file__).resolve().parents[2]
+
+# A few runtime SFO field codes differ from the config field code the
+# value-equivalence profile is keyed by. Map the former to the latter for the
+# pricing bridge (mirrors the config engine's SFO->combo field mapping).
+_EQUIV_FIELD_ALIAS = {
+    "SUCTION_DISCHARGE_TAPS": "SUCTION_DISCHARGE",
+    "CYCLONE_SEPERATOR": "CYCLONE_SEPARATOR",   # runtime SFO field code (misspelled) -> profile
+    "CYCLONE_SEPARATOR": "CYCLONE_SEPARATOR",
+    "IMPELLER_SLEEVE": "IMPELLER_SLEEVE",
+}
+
+
+def _norm_equiv(v: str) -> str:
+    # Normalize for matching: lowercase, underscores->spaces, trim. A trailing '*'
+    # in the profile marks the field's STANDARD-default value (not a literal), so
+    # it is dropped here; prefix semantics are handled in _value_equivalence_map.
+    return str(v or "").strip().lower().replace("_", " ").rstrip("*").strip()
+
+
+@lru_cache(maxsize=8)
+def _value_equivalence_map(family_upper: str) -> dict[str, dict[str, set]]:
+    """family -> {FIELD_CODE -> {normalized_value -> {equivalent raw values}}}.
+
+    Each equivalence group's members are mutually interchangeable, so any member's
+    normalized form maps to the full set of the group's raw values. A profile value
+    ending in '*' (STD marker) is registered BOTH as its exact normalized form and
+    (because the '*' can stand in for a trailing suffix such as the plural 's', e.g.
+    profile 'No Suction Discharge Tap*' vs selection 'no suction discharge taps') as
+    a prefix alias, so the selectable value still resolves to the group. Returns {}
+    if the family has no profile."""
+    path = _PRICING_ROOT / "config" / "runtime_profiles" / f"{family_upper.lower()}_value_equivalences.json"
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    out: dict[str, dict[str, set]] = {}
+    for field_code, cfg in (data.get("fields") or {}).items():
+        field_map: dict[str, set] = {}
+        prefix_aliases: list[tuple[str, set]] = []  # (prefix, member_set) for '*' values
+        for group in cfg.get("equivalence_groups", []):
+            members = [str(v) for v in group.get("values", [])]
+            member_set = set(members)
+            for m in members:
+                field_map.setdefault(_norm_equiv(m), set()).update(member_set)
+                if str(m).rstrip().endswith("*"):
+                    prefix_aliases.append((_norm_equiv(m), member_set))
+        # Register prefix aliases: any selection value that starts with a '*'-marked
+        # profile value's prefix maps to that group (covers a wildcard suffix).
+        for prefix, member_set in prefix_aliases:
+            field_map.setdefault(("prefix:" + prefix), set()).update(member_set)
+        if field_map:
+            out[field_code] = field_map
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -2370,29 +2442,61 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             ("IMPELLER_BALANCE", "Impeller Balance", "IMPELLER_BALANCE"),
         ]
 
-        def _price_component(component_code: str, selection_value: str):
+        _equiv_map = _value_equivalence_map(family_upper)
+
+        def _price_component(component_code: str, selection_value: str,
+                             field_code: str | None = None):
             """Return (amount, detail) for a component priced by series+size+value,
             or None. Matches on the denormalized SourceOptionValue (case-insensitive,
-            underscores/spaces normalized)."""
+            underscores/spaces normalized).
+
+            The selectable option vocabulary can differ from the pricing vocabulary
+            (e.g. selection 'no suction discharge taps' vs priced 'Not_Supplied_by_
+            Fybroc'). We therefore try the raw selection value AND every value in its
+            equivalence group (config/runtime_profiles/<family>_value_equivalences.json,
+            keyed by field_code) so a selected option resolves to its priced row."""
             if not selection_value:
                 return None
-            v = selection_value.strip().lower()
-            # try exact-ish then space/underscore-insensitive LIKE
-            patterns = [v, v.replace(" ", "%"), v.replace("_", "%").replace(" ", "%")]
-            for pat in patterns:
-                row = cursor.execute("""
-                    SELECT TOP 1 pr.Amount, pr.SourceOptionValue
-                    FROM price.PriceRule pr
-                    JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
-                    WHERE pr.ComponentCode = ? AND pr.IsActive = 1 AND pr.PricingStatus = 'found'
-                      AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
-                      AND UPPER(pr.SourceSizeValue) LIKE ?
-                      AND LOWER(REPLACE(pr.SourceOptionValue,'_',' ')) LIKE ?
-                    ORDER BY pr.Priority
-                """, component_code, body.series, f"{body.series}%",
-                     f"{size_upper}%", pat.replace("_", " ")).fetchone()
-                if row and row[0] is not None:
-                    return float(row[0]), row[1]
+            # Candidate values to try: the raw selection, plus any equivalence-group
+            # members for this field (the pricing vocabulary may use a different label).
+            candidates = [selection_value]
+            if field_code:
+                # The equivalence profile is keyed by the config field code, which
+                # differs from a couple of runtime SFO field codes.
+                _equiv_field = _EQUIV_FIELD_ALIAS.get(field_code, field_code)
+                _fm = _equiv_map.get(_equiv_field, {})
+                _nsel = _norm_equiv(selection_value)
+                equivs = _fm.get(_nsel)
+                if not equivs:
+                    # Try prefix aliases (a '*'-marked profile value whose prefix the
+                    # selection starts with, e.g. 'no suction discharge tap*' for
+                    # selection 'no suction discharge taps').
+                    for _k, _vs in _fm.items():
+                        if _k.startswith("prefix:") and _nsel.startswith(_k[len("prefix:"):]):
+                            equivs = _vs
+                            break
+                if equivs:
+                    # Deterministic order; raw selection first, then the rest.
+                    candidates += sorted(v for v in equivs
+                                         if _norm_equiv(v) != _norm_equiv(selection_value))
+            for cand in candidates:
+                v = str(cand).strip().lower()
+                # try exact-ish then space/underscore-insensitive LIKE
+                patterns = [v, v.replace(" ", "%"), v.replace("_", "%").replace(" ", "%")]
+                for pat in patterns:
+                    row = cursor.execute("""
+                        SELECT TOP 1 pr.Amount, pr.SourceOptionValue
+                        FROM price.PriceRule pr
+                        JOIN price.PriceBookVersion pbv ON pbv.PriceBookVersionId = pr.PriceBookVersionId AND pbv.IsCurrent = 1
+                        WHERE pr.ComponentCode = ? AND pr.IsActive = 1 AND pr.PricingStatus = 'found'
+                          AND (pr.SeriesCode = ? OR pr.SeriesCode LIKE ?)
+                          AND UPPER(pr.SourceSizeValue) LIKE ?
+                          AND LOWER(REPLACE(pr.SourceOptionValue,'_',' ')) LIKE ?
+                        ORDER BY pr.Priority
+                    """, component_code, body.series, f"{body.series}%",
+                         f"{size_upper}%", pat.replace("_", " ")).fetchone()
+                    if row and row[0] is not None:
+                        return float(row[0]), row[1]
             return None
 
         for comp_code, label, sel_field in (ADDER_COMPONENTS if not _dean_priced else []):
@@ -2401,7 +2505,7 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 # The config does not select this component -> not applicable,
                 # so it is not part of this configuration's breakdown at all.
                 continue
-            priced = _price_component(comp_code, sel_val)
+            priced = _price_component(comp_code, sel_val, field_code=sel_field)
             if priced is not None:
                 pricing.append({"component": label, "amount": priced[0], "detail": priced[1]})
                 _add_component(label, sel_val, priced[0], priced[1])

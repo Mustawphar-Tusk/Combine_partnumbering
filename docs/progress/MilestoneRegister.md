@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.19).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.20).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,17 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.20):** FYBROC Suction Discharge Taps pricing bridge. Selecting the
+> option for 1500 now resolves to the Rev0.4 1500 Pricing CS-CV adder ($0 not-supplied /
+> $1041 supplied); unpriced series show C/F. Root cause: runtime pricing didn't bridge
+> the selectable vocabulary ('no suction discharge taps') to the pricing vocabulary
+> ('Not_Supplied_by_Fybroc'), so it was silently C/F despite correct priced rows. Fix
+> (runtime-only, no reload): _price_component now consults
+> config/runtime_profiles/fybroc_value_equivalences.json (+ field-code alias + prefix
+> for '*' STD values). Bonus: Casing Drains also resolves now. audit_fybroc_pricing
+> 35/0 (+8 sheet-derived asserts); gate ALL CORRECTIONS INTACT 9/9; DEAN 9874 / FYBROC
+> 56241 unchanged. See `docs/evidence/REV04_PRICING/REV04_SUCTION_DISCHARGE_PRICING_EXIT.md`.
 >
 > **2026-08-26 (v1.19):** FYBROC Rev0.4 "1500 Motors" — CPQ Conversion2 motor display
 > descriptor implemented. Verified against all 144000 rows that CPQ Conversion2 ==

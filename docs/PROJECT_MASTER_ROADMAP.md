@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.19  
+**Roadmap Version:** 1.20  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.19
+Version:            1.20
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,28 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.20): FYBROC Suction Discharge Taps pricing bridge (V6 'Pump Options -
+Horizontal' E3:E4 field -> Rev0.4 '1500 Pricing' CS-CV adder). The selected option
+now resolves to the sheet price; unpriced series show C/F. ROOT CAUSE: the runtime
+pricing lookup matched the SELECTABLE value ('no suction discharge taps' /
+'suction discharge taps') against the PRICING value ('Not_Supplied_by_Fybroc' /
+'Supplied_by_Fybroc') with only case/space/underscore normalization -> no match ->
+silent C/F, even though the 38 priced rows ($0 / $1041 per 1500 size) existed and
+were correct. FIX (src/api/v2_routes.py, runtime-only, no data reload): the pricing
+lookup now consults config/runtime_profiles/fybroc_value_equivalences.json (the same
+reconciliation the config engine uses) via a module-level _value_equivalence_map +
+_EQUIV_FIELD_ALIAS (SUCTION_DISCHARGE_TAPS->SUCTION_DISCHARGE) + prefix-alias handling
+for '*'-marked STD values; _price_component tries the raw selection value plus all
+equivalence-group members. BONUS: Casing Drains now also resolves via the same bridge
+(was silently C/F). Verified: 1500 not-supplied->$0 / supplied->$1041 across sizes;
+2530 (no pricing) -> C/F placeholder; audit_fybroc_pricing extended with 8 sheet-derived
+suction/discharge asserts (35/0, was 27/0); gate ALL CORRECTIONS INTACT 9/9; FYBROC
+56241 / DEAN 9874 pricing rules unchanged (runtime-only, no republish); imports OK.
+KNOWN GAP (disclosed): Cyclone Separator stays C/F (its priced label isn't in its
+equivalence group - a data reconciliation item). Dean phase status UNCHANGED (D140
+current; D150 not started). See
+docs/evidence/REV04_PRICING/REV04_SUCTION_DISCHARGE_PRICING_EXIT.md.
 
 CHANGE (v1.19): FYBROC Rev0.4 "1500 Motors" — CPQ Conversion2 motor display
 descriptor implemented (motor pricing authority already published; no reload). A
