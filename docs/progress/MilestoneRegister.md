@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.20).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.21).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,16 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.21):** FYBROC 1500 Pricing series-attribution correction. The 1500
+> Vibration Testing & Sound Level Testing adders were missing from the published pricing
+> (present only under 5500), so 1500 vibration/sound resolved to C/F. Root cause: stale
+> publication (the compiler already extracts the 1500 testing blocks). Fix: recompile +
+> re-merge + re-publish a new family-safe FYBROC version FYBROC-REV04-MERGE-20260826-V2
+> (56355 rules, +114 restored 1500 testing rows; supersede-not-delete). Verified: both
+> components now [1500:57, 5500:57]; live 1500 witnessed vibration/sound = \$3045 (sheet
+> match); audit_fybroc_pricing 47/0 (+12 testing asserts); gate 9/9; DEAN 9874 unchanged.
+> See `docs/evidence/REV04_PRICING/REV04_1500_TESTING_SERIES_FIX_EXIT.md`.
 >
 > **2026-08-26 (v1.20):** FYBROC Suction Discharge Taps pricing bridge. Selecting the
 > option for 1500 now resolves to the Rev0.4 1500 Pricing CS-CV adder ($0 not-supplied /

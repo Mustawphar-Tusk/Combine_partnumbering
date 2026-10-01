@@ -63,7 +63,7 @@ def read_sheet_tables():
         wb = openpyxl.load_workbook(str(tmp), read_only=True, data_only=True)
         ws = wb["1500 Pricing"]
         grid = {}
-        for ri, row in enumerate(ws.iter_rows(min_row=1, max_row=700, max_col=104, values_only=True), start=1):
+        for ri, row in enumerate(ws.iter_rows(min_row=1, max_row=700, max_col=126, values_only=True), start=1):
             for c, v in enumerate(row, start=1):
                 if v is not None and str(v).strip() != "":
                     grid[(ri, c)] = str(v).strip()
@@ -100,6 +100,11 @@ def read_sheet_tables():
         # by (size, normalized pricing label) so the check maps the selectable
         # value onto it via the same not-supplied/supplied semantics.
         "Suction Discharge Taps": (adder("CT", "CU", "CV", 6, 43), "SUCTION_DISCHARGE_TAPS"),
+        # Vibration Testing (DH-DK) + Sound Level Testing (DM-DP), both 1500-series
+        # (Series='1500'). These guard the correction that the 1500 testing rows are
+        # published under series 1500 (they were previously missing / 5500-only).
+        "Vibration Testing": (adder("DI", "DJ", "DK", 6, 62), "VIBRATION_TESTING"),
+        "Sound Level Testing": (adder("DN", "DO", "DP", 6, 62), "SOUND_LEVEL_TESTING"),
     }
     return tables
 
@@ -200,6 +205,37 @@ def main():
             good = (api is not None and abs(exp - api) < 0.005)
             ok(good, f"suction/discharge 1500/{size}/{sel_opt}: sheet={exp} api={api}")
             print(f"  [{'PASS' if good else 'FAIL'}] suction/discharge 1500/{size:9}/{sel_opt:26} sheet={exp} api={api}")
+
+    # Vibration / Sound Level Testing (1500 series): guard that the 1500 testing
+    # rows are published under series 1500 and price to the sheet value (they were
+    # previously missing from the publication / recorded only under 5500).
+    testing_cases = [
+        ("Vibration Testing", "VIBRATION_TESTING",
+         [("not included", "not included"),
+          ("non-wit vibration testing", "non-wit vibration testing"),
+          ("wit vibration testing", "wit vibration testing")]),
+        ("Sound Level Testing", "SOUND_LEVEL_TESTING",
+         [("not included", "not included"),
+          ("non-wit sound level testing", "non-wit sound level testing"),
+          ("wit sound level testing", "wit sound level testing")]),
+    ]
+    for label, field, opts in testing_cases:
+        tbl = tables[label][0]
+        for size in ["1x1.5x6", "3x4x10"]:
+            for sel_opt, price_label in opts:
+                exp = tbl.get((size.lower(), _norm(price_label)))
+                if exp is None:
+                    continue
+                sel = full_walk("1500", {"ALT_SIZE": size, field: sel_opt})
+                if _norm(sel.get(field)) != _norm(sel_opt):
+                    continue
+                r = resolve("1500", sel)
+                comps = {c["component"]: c for c in r.get("pricing", [])}
+                api = comps.get(label, {}).get("amount")
+                # exp 0 may surface as 0 or None (zero-priced line); treat equal
+                good = (api is not None and abs(exp - api) < 0.005) or (exp == 0 and api in (0, None))
+                ok(good, f"{label} 1500/{size}/{sel_opt}: sheet={exp} api={api}")
+                print(f"  [{'PASS' if good else 'FAIL'}] {label:20} 1500/{size:9}/{sel_opt:28} sheet={exp} api={api}")
 
     print(f"\n=== RESULT: {P[0]} passed, {F[0]} failed ===")
     for m in fails[:25]:

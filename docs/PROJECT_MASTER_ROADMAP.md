@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.20  
+**Roadmap Version:** 1.21  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.20
+Version:            1.21
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,24 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.21): FYBROC 1500 Pricing series-attribution correction (Vibration/Sound
+Testing). The Rev0.4 '1500 Pricing' sheet is authoritative for the 1500 series (every
+block stamps Series='1500'); the 5500 Pricing sheet legitimately has its own testing
+blocks. The previously published pricing (FYBROC-REV04-MERGE-20260914-V1) was STALE:
+VIBRATION_TESTING and SOUND_LEVEL_TESTING existed only under 5500, with the 1500 rows
+MISSING (so 1500 vibration/sound resolved to C/F). Root cause: data staleness, not a
+code bug — re-running the current compiler produces both 1500:57 + 5500:57 for each
+(+114 candidates). FIX: recompile (compile_fybroc_rev04_pricing --all --found-only) +
+re-merge (merge_rev04_over_price_estimator) + re-publish a NEW family-safe FYBROC version
+FYBROC-REV04-MERGE-20260826-V2 (PriceBookVersionId 9, 56355 rules, supersede-not-delete;
+old version retained IsCurrent=0). Verified: VIBRATION_TESTING & SOUND_LEVEL_TESTING now
+[1500:57, 5500:57]; live 1500/1x1.5x6 witnessed vibration=\$3045 / sound=\$3045 (were
+C/F), matching the sheet (DH-DK, DM-DP: 0/1395/3045); audit_fybroc_pricing extended +12
+sheet-derived testing asserts (47/0, sheet read widened to col 126); gate ALL CORRECTIONS
+INTACT 9/9; DEAN pricing 9874 UNCHANGED (publisher superseded only FYBROC); imports OK.
+Dean phase status UNCHANGED (D140 current; D150 not started). See
+docs/evidence/REV04_PRICING/REV04_1500_TESTING_SERIES_FIX_EXIT.md.
 
 CHANGE (v1.20): FYBROC Suction Discharge Taps pricing bridge (V6 'Pump Options -
 Horizontal' E3:E4 field -> Rev0.4 '1500 Pricing' CS-CV adder). The selected option
