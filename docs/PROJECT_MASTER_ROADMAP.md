@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.21  
+**Roadmap Version:** 1.22  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1030,7 +1030,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.21
+Version:            1.22
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1041,25 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.22): Targeted price-adjustment procedure (both families). Added
+sql/19_Create_Price_Adjustment.sql: price.usp_ApplyPriceAdjustment applies a PERCENT
+change to price.PriceRule.Amount for the CURRENT (IsCurrent) price book version,
+scoped @ScopeType=ALL_FAMILIES|FAMILY|SERIES (+ optional @ComponentCode child; NULL=all).
+Model: a pump SERIES (Fybroc 1500, Dean PH2110, ...) is the parent, its priced
+COMPONENTS are the children — a FAMILY/SERIES scope with no component cascades to all
+child rows. @DryRun=1 (default) previews + writes nothing; @DryRun=0 updates in a txn and
+audits every change in price.PriceAdjustment (header) + price.PriceAdjustmentRow (per-rule
+old/new), so changes are traceable + reversible. FAMILY/SERIES are family-isolated;
+ALL_FAMILIES is the only cross-family scope. Validation THROW 52001-52007 (incl pct<=-100
+guard, empty-target guard). SeriesCode match handles '1530 (ANSI)'. Thin CLI
+scripts/apply_price_adjustment.py (defaults to dry-run). VERIFIED: scope counts (ALL 66229
+= FYBROC 56355 + DEAN 9874; FYBROC/1500 all=5193, +SHAFT=38), real +10% round-trip reverted
+to byte-identical, DEAN untouched under FAMILY scope, CLI preview + validation. Gate ALL
+CORRECTIONS INTACT 9/9; pricing UNCHANGED (mechanism only, 0 live adjustments; FYBROC 56355
+/ DEAN 9874 at baseline). price.PriceRule is the table to update; this proc is the supported
+entrypoint. Dean phase status UNCHANGED (D140 current; D150 not started). See
+docs/evidence/PRICING/PRICE_ADJUSTMENT_PROCEDURE.md.
 
 CHANGE (v1.21): FYBROC 1500 Pricing series-attribution correction (Vibration/Sound
 Testing). The Rev0.4 '1500 Pricing' sheet is authoritative for the 1500 series (every

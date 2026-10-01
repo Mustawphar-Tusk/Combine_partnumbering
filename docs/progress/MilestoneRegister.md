@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.21).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.22).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,16 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.22):** Targeted price-adjustment procedure. New
+> price.usp_ApplyPriceAdjustment (sql/19_Create_Price_Adjustment.sql) applies a PERCENT
+> change to price.PriceRule.Amount for the current price book version, scoped
+> ALL_FAMILIES / FAMILY / SERIES (+ optional component child; NULL=all). @DryRun default
+> previews; real run audits every row (price.PriceAdjustment + price.PriceAdjustmentRow)
+> and is reversible. FAMILY/SERIES family-isolated. Thin CLI scripts/apply_price_adjustment.py.
+> Verified scope targeting + byte-identical round-trip + DEAN isolation; gate 9/9; pricing
+> UNCHANGED (mechanism only). price.PriceRule is the update table; this proc the entrypoint.
+> See `docs/evidence/PRICING/PRICE_ADJUSTMENT_PROCEDURE.md`.
 >
 > **2026-08-26 (v1.21):** FYBROC 1500 Pricing series-attribution correction. The 1500
 > Vibration Testing & Sound Level Testing adders were missing from the published pricing
