@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.22  
+**Roadmap Version:** 1.23  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -898,6 +898,42 @@ Exit gate:
 
 UAT release threshold achieved.
 
+T105 — UAT-Readiness Hardening (prep for T110+)
+----------------------------------------------
+Architecture-review follow-ups (2026-08-26). The core design is UAT-aligned
+(env-driven config, versioned+reversible data publications, family isolation,
+executable regression gate). These close the gaps that make DEV -> UAT promotion
+and redeploy safe and repeatable. None change the core approach.
+
+  T105.1  Guard the dev auth bypass — fail-closed. The Entra-ID auth bypass must
+          engage ONLY when APP_ENVIRONMENT == 'development'; any other/unset value
+          must require real token validation (never silently bypass in UAT/PROD).
+          Add a startup assertion + a test.
+  T105.2  Schema migration tooling. Replace manual application of sql/*.sql with a
+          versioned migrator (sqlpackage/DACPAC or Alembic) so any environment's
+          schema can be brought to a known version by ONE command, matching the
+          already-versioned data publications. (CI only checks files are non-empty
+          today — it does not verify SQL parses or applies.)
+  T105.3  Wire the regression gate into CI as a required pre-UAT check. CI today
+          runs: uv sync, pytest, a non-empty SQL file check, and an import check —
+          it does NOT run run_all_fybroc_audits.py (needs live SQL Server + API).
+          Add a CI job (service container or ephemeral DB) that runs the audit gate
+          and requires "ALL CORRECTIONS INTACT" before promotion.
+  T105.4  Secrets management. Move CONFIGURATION_TOKEN_SECRET + DB credentials to a
+          secret store (Azure Key Vault) for UAT/PROD; .env for local only.
+  T105.5  Promotion + rollback runbook. Document the DEV -> UAT promotion: deploy
+          code -> apply schema migration -> run compiler/publisher against the UAT
+          DB -> run run_all_fybroc_audits.py -> sign off. Rollback = flip the prior
+          PriceBookVersion/publication IsCurrent back (old versions are retained).
+  T105.6  Price-adjustment reapply policy. Decide whether a manual
+          price.usp_ApplyPriceAdjustment should auto-reapply after a republish, so a
+          UAT price tweak is not silently lost on the next publish. The audit log
+          (price.PriceAdjustment / PriceAdjustmentRow) already preserves what was
+          applied; wiring auto-reapply into the publish flow is the open decision.
+
+Exit gate (T105): auth bypass fail-closed + migration command exists + CI runs the
+audit gate + secrets externalized + promotion/rollback runbook written.
+
 10. PHASE P — PRODUCTION
 P100 — Performance & Concurrency
 Validate:
@@ -1009,7 +1045,8 @@ U140	quote engine	NEEDS RE-VERIFICATION
 U150	Excel V2	NEEDS RE-VERIFICATION
 U160	React UI	NOT BUILT (HTML configurator serves as UI)
 U170	security/audit	NOT COMPLETE (no Entra auth yet)
-T100	CI/CD	PARTIAL (CI workflow exists)
+T100	CI/CD	PARTIAL (CI runs: uv sync, pytest, non-empty SQL check, import check; does NOT run run_all_fybroc_audits — see T105.3)
+T105	UAT-readiness hardening	NOT STARTED (6 items: auth-bypass guard, schema migrations, CI audit gate, secrets, promotion/rollback runbook, adjustment-reapply policy)
 T110	Azure TEST	NOT STARTED (preview env on Render/Vercel/ngrok instead)
 T120	Telford UAT	NOT STARTED
 T130	Indianapolis UAT	NOT STARTED
@@ -1030,7 +1067,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.22
+Version:            1.23
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1041,6 +1078,25 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.23): Architecture review + UAT-readiness hardening backlog recorded
+(docs only; no code/data/schema change). Confirmed the stack: FastAPI + Uvicorn +
+Pydantic v2 API; SQL Server via raw pyodbc in the runtime hot path and SQLAlchemy
+CORE (text()) in the repository layer — NO ORM (no mapped entities); logic lives in
+SQL DDL + stored procs. SQL-injection posture verified: parameterized queries
+everywhere (? / named binds), no string-interpolated SQL in v2_routes, param-bound
+stored procs, Pydantic boundary validation. Evaluated and REJECTED a Tortoise-ORM
+switch (Tortoise has no SQL Server support -> would force a Postgres migration +
+rewrite of the stored-proc/set-based core the audits depend on; if an ORM is ever
+wanted, SQLAlchemy ORM is the lower-risk path since it is already a dependency and
+keeps MSSQL). Added Phase-T milestone T105 (UAT-Readiness Hardening) with 6 tracked
+items: T105.1 fail-closed dev auth-bypass guard; T105.2 schema migration tooling
+(sqlpackage/DACPAC or Alembic); T105.3 run run_all_fybroc_audits in CI as a required
+pre-UAT gate (CI today = uv sync + pytest + non-empty-SQL check + import check only);
+T105.4 secrets to Key Vault; T105.5 DEV->UAT promotion + rollback runbook; T105.6
+decide price-adjustment auto-reapply-after-republish policy. Status table + T100 note
+updated. No milestone objective redefined. Dean phase status UNCHANGED (D140 current;
+D150 not started).
 
 CHANGE (v1.22): Targeted price-adjustment procedure (both families). Added
 sql/19_Create_Price_Adjustment.sql: price.usp_ApplyPriceAdjustment applies a PERCENT

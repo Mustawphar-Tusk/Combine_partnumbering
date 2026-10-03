@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.22).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.23).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,15 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.23):** Architecture review + UAT-readiness backlog (docs only).
+> Confirmed FastAPI/Pydantic API over SQL Server via raw pyodbc + SQLAlchemy Core (NO
+> ORM); injection-safe via parameterized queries throughout. Rejected Tortoise ORM (no
+> MSSQL support; would force Postgres + rewrite of stored-proc core). Added Phase-T
+> milestone T105 (UAT-Readiness Hardening): auth-bypass fail-closed guard, schema
+> migration tooling, CI audit gate, Key Vault secrets, promotion/rollback runbook,
+> price-adjustment reapply policy. CI today = uv sync + pytest + non-empty-SQL + imports
+> (does NOT run run_all_fybroc_audits — tracked as T105.3). No code/data/schema change.
 >
 > **2026-08-26 (v1.22):** Targeted price-adjustment procedure. New
 > price.usp_ApplyPriceAdjustment (sql/19_Create_Price_Adjustment.sql) applies a PERCENT
