@@ -1,6 +1,6 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.23  
+**Roadmap Version:** 1.24  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
@@ -1067,7 +1067,7 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.23
+Version:            1.24
 
 Current Phase:      D — Dean Completion
 Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
@@ -1078,6 +1078,26 @@ Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
 Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
                     remains prepared, awaiting engineering signature (parallel;
                     Dean is net-new work that does not modify frozen Fybroc data).
+
+CHANGE (v1.24): Dean PCL v0.1 numbering-authority CERTIFICATION (verify-only; no
+data/schema/code change). Certified that PumpConfiguration_Logic_0.1.xlsm (its
+Module1/Module2 numbering macros) is the authoritative, LOADED source for the Dean
+configuration build-up — adoption was already implemented under the D140 re-base
+(scripts/load_dean_identifier_to_sql.py loads the 6 numbering sheets via header-search
+Module1/2 semantics; src/api/dean_identifier.py resolves segments with python==SQL
+parity). DB-verified: stg.SegmentCombinationImport DEAN batch id=5 (hash
+cc1fab74...706e, 106,892 rows) — WET_END 49987, POWER_FRAME 55452, BASEPLATE 1153,
+FLUSH_PLAN 185, IMPELLER 24, MOTOR_FRAME 91; cfg.PumpModelReference DEAN 206 models /
+37 series (A#->D#). Bounded live parity probe 12/12 PASS (base_identifier correct 12/12;
+parity_ok 0 fails; segment codes from the loaded tables; only wet_end/power_frame '?'
+= disclosed A2 Standard-Confs external-DB gap). Isolation: run_all_fybroc_audits ALL
+CORRECTIONS INTACT 9/9; baselines unchanged (Dean SFO 48063 / Feasible 256; pricing
+FYBROC 56355 / DEAN 9874). Documented engineering gaps (NOT dev defects): Cooling Plan
+Numbering empty (F1), Barrier Plan 0 rows (F2), Motor main code inert 000 (F3), Standard
+Confs (A2) + Seal code (A1) external Access DBs not provided. Full-stride
+audit_dean_identifier is the D150 exhaustive step (run out-of-band; ~17s/model). Dean
+phase status UNCHANGED (D140 current; D150 not started). See
+docs/evidence/D100/DEAN_PCL_V01_NUMBERING_CERTIFICATION.md.
 
 CHANGE (v1.23): Architecture review + UAT-readiness hardening backlog recorded
 (docs only; no code/data/schema change). Confirmed the stack: FastAPI + Uvicorn +

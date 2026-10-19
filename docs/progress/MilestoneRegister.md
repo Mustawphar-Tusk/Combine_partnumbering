@@ -3,7 +3,7 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.23).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.24).
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical
@@ -16,6 +16,15 @@
 > CT24 Tailpipe Length now conditionally not-applicable when the tailpipe is not
 > supplied. audit_feasible_constraints 44/44; gate 7/7; Dean isolated. See
 > `docs/evidence/REV04_CONSTRAINTS/REV04_29_TABLES_CONFORMANCE.md`.
+>
+> **2026-08-26 (v1.24):** Dean PCL v0.1 numbering-authority CERTIFICATION (verify-only,
+> no data/code change). Confirmed PumpConfiguration_Logic_0.1.xlsm is the loaded
+> authoritative Dean numbering source (batch id=5, 106,892 seg rows across the 6
+> numbering sheets; 206 models/37 series A#->D#). Bounded live parity probe 12/12 PASS
+> (parity_ok 0 fails; base_identifier correct); run_all_fybroc_audits 9/9; baselines
+> unchanged. Documented engineering gaps remain (Cooling/Barrier tables, Motor main
+> code, Standard Confs + Seal external DBs). See
+> `docs/evidence/D100/DEAN_PCL_V01_NUMBERING_CERTIFICATION.md`.
 >
 > **2026-08-26 (v1.23):** Architecture review + UAT-readiness backlog (docs only).
 > Confirmed FastAPI/Pydantic API over SQL Server via raw pyodbc + SQLAlchemy Core (NO
