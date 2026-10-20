@@ -127,9 +127,19 @@ def audit_dean_ordering_and_groups() -> None:
         check(no_excluded_shown, f"{series}: bundle-excluded fields omitted (not C/F)",
               f"bundle='{bundle}'")
 
-        # identity fields never shown in the grid
-        identity = {"SERIES", "SIZE", "ALT_SIZE"}
-        check(not (shown & identity), f"{series}: identity fields not in grid")
+        # SERIES is owned by the top-of-UI series selector and must never appear
+        # as a grid field. SIZE, by contrast, IS a selectable Pump-Information
+        # field (sourced from cfg.PumpModelReference for Dean) and SHOULD appear
+        # so the user can pick a size after choosing a series.
+        check("SERIES" not in shown, f"{series}: SERIES not shown as a grid field")
+        pump_info = next((g for g in groups if g["group"] == "Pump Information"), None)
+        size_first = (pump_info is not None and pump_info["fields"]
+                      and pump_info["fields"][0]["field"] == "SIZE"
+                      and pump_info["fields"][0]["placeholder"] is False)
+        check(size_first,
+              f"{series}: SIZE is the first selectable field in Pump Information")
+        check(bool(state["selections"].get("SIZE")),
+              f"{series}: SIZE is STD-seeded", state["selections"].get("SIZE"))
 
         # a real (present) field is never flagged placeholder, and vice-versa
         present = set(ordered)
@@ -201,6 +211,44 @@ def audit_pn_unchanged() -> None:
               res.get("sku", ""))
 
 
+def _get(path: str) -> dict:
+    with urllib.request.urlopen(BASE + path, timeout=90) as r:
+        return json.loads(r.read())
+
+
+def audit_sku_lookup() -> None:
+    """The by-sku lookup returns the stored configuration for a real SKU, and a
+    clean not-found for a bogus SKU. Resolve a Dean config first to guarantee a
+    SKU exists, then look it up."""
+    print("=== SKU lookup (by-sku) ===")
+    state = post("/families/DEAN/configurations/resolve-state",
+                 {"series": "PH2110", "selections": {}})
+    sel = dict(state["selections"]); sel["SERIES"] = "PH2110"
+    seg = {k: v for k, v in state["resolved_codes"].items() if v}
+    res = post("/families/DEAN/configured-products/resolve",
+               {"series": "PH2110", "selections": sel, "segment_codes": seg,
+                "requested_by": "audit_dean_ui_rearrange"})
+    sku = res.get("sku")
+    check(bool(sku), "a Dean SKU exists to look up", sku)
+    if not sku:
+        return
+
+    import urllib.parse
+    look = _get(f"/configured-products/by-sku/{urllib.parse.quote(sku, safe='')}")
+    check(look.get("found") is True, "lookup returns found=True", sku)
+    check((look.get("family") or "").upper() == "DEAN", "lookup family is DEAN",
+          look.get("family"))
+    check(len(look.get("selections", {})) > 0, "lookup returns stored selections",
+          f"{len(look.get('selections', {}))} fields")
+    check(len(look.get("field_groups", [])) >= 1,
+          "lookup returns Dean grouped field_groups",
+          f"{len(look.get('field_groups', []))} groups")
+
+    missing = _get("/configured-products/by-sku/NO-SUCH-SKU-XYZ")
+    check(missing.get("found") is False, "bogus SKU returns found=False")
+    check(bool(missing.get("errors")), "bogus SKU returns an error message")
+
+
 def main() -> int:
     try:
         post("/families/DEAN/configurations/resolve-state",
@@ -213,6 +261,7 @@ def main() -> int:
     audit_bundle_gating()
     audit_fybroc_untouched()
     audit_pn_unchanged()
+    audit_sku_lookup()
 
     print("=" * 76)
     print(f"RESULT: {_passed} passed, {_failed} failed")

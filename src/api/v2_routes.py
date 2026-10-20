@@ -363,12 +363,16 @@ def _field_groups_payload(
         return []
     present = set(ordered_fields)
     sel = selections or {}
-    # Identity / sizing fields are part of the authoritative spec-sheet layout
-    # but are NOT configured in the field grid - they are owned by the Series and
-    # Size selectors at the top of the UI (and by the certified numbering). They
-    # must not appear as C/F placeholders (they are not a factory gap); omit them
-    # from the grouped grid entirely.
-    identity_fields = {"SERIES", "ALT_SIZE", "SIZE"}
+    # SERIES is owned by the top-of-UI Series selector, not the field grid, so it
+    # is omitted here (and must not appear as a C/F placeholder - it is not a
+    # factory gap). The SIZE field (ALT_SIZE / SIZE), by contrast, IS a real
+    # selectable Pump-Information field: it must render so the user can pick a
+    # size after choosing a series (it also scopes the size-dependent options).
+    # It is therefore NOT omitted - when present in ordered_fields it renders as
+    # a normal selectable field; when absent for a series it is simply not shown
+    # (no C/F), because size is a configuration input, not an unbuilt component.
+    identity_fields = {"SERIES"}
+    size_fields = {"ALT_SIZE", "SIZE"}
     # Fields removed by the current PUMP_CONFIGURATION bundle: these are
     # intentionally-excluded, not C/F. Hide them rather than flag them.
     bundle_excluded = _dean_pump_config_excluded_fields(sel)
@@ -386,13 +390,17 @@ def _field_groups_payload(
         members = []
         for fc in fcs:
             if fc.upper() in identity_fields:
-                # Owned by the Series/Size selectors - not a grid field.
+                # SERIES is owned by the top-of-UI selector - never a grid field.
                 if fc in present:
                     covered.add(fc)
                 continue
             if fc in present:
                 members.append({"field": fc, "placeholder": False})
                 covered.add(fc)
+            elif fc.upper() in size_fields:
+                # Size is a configuration INPUT, not an unbuilt component: when a
+                # series has no such field it is simply absent (no C/F row).
+                continue
             elif fc.upper() in bundle_excluded:
                 # Deliberately excluded by the bundle -> omit (not a C/F gap).
                 continue
@@ -568,6 +576,23 @@ def _selected_size(selections: dict) -> str | None:
         if k.upper() in ("ALT_SIZE", "SIZE") and v is not None and str(v).strip():
             return str(v).strip()
     return None
+
+
+def _dean_series_sizes(cursor, series: str) -> list[str]:
+    """Authoritative valid sizes for a Dean series, from cfg.PumpModelReference
+    (Series+Size -> BaseIdentifier). Dean does not store size as a
+    SeriesFieldOption, so this is the source for the Dean SIZE selector. Returned
+    in ascending dimensional order (e.g. 1X1.5X6 before 2X3X6). Empty if none.
+    """
+    rows = cursor.execute(
+        "SELECT DISTINCT SizeCode FROM cfg.PumpModelReference "
+        "WHERE PumpFamilyId = (SELECT PumpFamilyId FROM cfg.PumpFamily "
+        "WHERE FamilyCode = 'DEAN') AND IsActive = 1 AND UPPER(SeriesCode) = ? "
+        "AND SizeCode IS NOT NULL AND LTRIM(RTRIM(SizeCode)) <> ''",
+        str(series).strip().upper(),
+    ).fetchall()
+    sizes = [r[0] for r in rows]
+    return _sort_field_options("ALT_SIZE", sizes)  # dimensional ascending sort
 
 
 def _size_option_clause(size: str | None) -> tuple[str, list]:
@@ -1085,6 +1110,30 @@ class ResolveResponse(BaseModel):
     configured_product_id: int | None = None
 
 
+class SkuLookupResponse(BaseModel):
+    """Result of a SKU lookup against cfg.ConfiguredProduct: the stored product
+    identity plus the exact configured field values it was built from. Lets the
+    UI show "what is this pump" and optionally load it as a starting config.
+    Family-agnostic (works for Dean and Fybroc)."""
+    found: bool
+    sku: str
+    family: str | None = None
+    series: str | None = None
+    part_number: str | None = None
+    configuration_signature: str | None = None
+    configured_product_id: int | None = None
+    created_at: str | None = None
+    # The stored configured field values (field_code -> value), parsed from the
+    # product's CanonicalConfiguration. Normalized to a flat {field: value} map
+    # regardless of the stored JSON shape.
+    selections: dict[str, str] = Field(default_factory=dict)
+    # Authoritative presentation grouping for the family (Dean only; [] for
+    # Fybroc) so the UI can render the lookup result in the same sectioned
+    # layout as the configurator.
+    field_groups: list[dict[str, Any]] = Field(default_factory=list)
+    errors: list[str] = Field(default_factory=list)
+
+
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
@@ -1490,6 +1539,21 @@ async def resolve_configuration_state(
                 field_code, all_options[field_code]
             )
 
+        # DEAN SIZE field injection. Unlike Fybroc (whose size is the ALT_SIZE
+        # SeriesFieldOption), Dean does NOT store size as a SeriesFieldOption -
+        # the authoritative valid sizes per series live in cfg.PumpModelReference
+        # (Series+Size -> BaseIdentifier). So the Dean SIZE selector would never
+        # appear from the SeriesFieldOption read alone. Inject it here as a real
+        # selectable field (options = the series' PumpModelReference sizes) so the
+        # user can pick a size after choosing a series; the chosen SIZE then scopes
+        # the size-dependent options via _selected_size (already honored below).
+        # Dean-only: no-op for Fybroc (its size is ALT_SIZE, already present).
+        if family_upper == "DEAN" and "SIZE" not in all_options and "ALT_SIZE" not in all_options:
+            dean_sizes = _dean_series_sizes(cursor, body.series)
+            if dean_sizes:
+                all_options["SIZE"] = dean_sizes
+                standard_defaults["SIZE"] = dean_sizes[0]
+
         # Normalize incoming selections onto known field codes (upper-cased keys,
         # keep only fields that exist for this series). SERIES pseudo-field is
         # not a configurable option field, so it is ignored here.
@@ -1693,6 +1757,107 @@ async def resolve_configuration_state(
             field_groups=_field_groups_payload(
                 ordered_fields, family_upper, selections),
             resolved_codes=resolved,
+        )
+    finally:
+        conn.close()
+
+
+@router_v2.get(
+    "/configured-products/by-sku/{sku}",
+    response_model=SkuLookupResponse,
+)
+async def lookup_configured_product_by_sku(sku: str, request: Request):
+    """
+    SKU LOOKUP (family-agnostic). Given a SKU, return the stored configured
+    product's identity (family, series, part number, signature) and the EXACT
+    configured field values it was built from, parsed from the product's
+    CanonicalConfiguration.
+
+    This is a read-only lookup against cfg.ConfiguredProduct (SKUCode is UNIQUE),
+    so it reflects a configuration that was actually resolved/persisted - letting
+    the UI show "what is this pump" and optionally load it as the starting point
+    for a new configuration/quote. NOT cached (input-dependent).
+    """
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        cursor = conn.cursor()
+        sku_norm = (sku or "").strip()
+        row = cursor.execute(
+            "SELECT pf.FamilyCode, ps.SeriesCode, cp.PartNumber, cp.SKUCode, "
+            "       cp.ConfigurationSignature, cp.ConfiguredProductId, "
+            "       cp.CanonicalConfiguration, cp.CreatedAt "
+            "FROM cfg.ConfiguredProduct cp "
+            "JOIN cfg.PumpFamily pf ON pf.PumpFamilyId = cp.PumpFamilyId "
+            "LEFT JOIN cfg.PumpSeries ps ON ps.PumpSeriesId = cp.PumpSeriesId "
+            "WHERE cp.SKUCode = ?",
+            sku_norm,
+        ).fetchone()
+
+        if row is None:
+            return SkuLookupResponse(
+                found=False,
+                sku=sku_norm,
+                errors=[f"No configured product found for SKU '{sku_norm}'."],
+            )
+
+        family_code = row[0]
+        series_code = row[1]
+        part_number = row[2]
+        sku_code = row[3]
+        signature = row[4]
+        cp_id = row[5]
+        canonical_raw = row[6] or "{}"
+        created_at = row[7]
+
+        # Parse the stored configuration into a flat {FIELD: value} map. It is
+        # normally a JSON object; tolerate the array-of-pairs shape just in case.
+        selections: dict[str, str] = {}
+        try:
+            parsed = json.loads(canonical_raw)
+            if isinstance(parsed, dict):
+                selections = {
+                    str(k).upper(): ("" if v is None else str(v))
+                    for k, v in parsed.items()
+                }
+            elif isinstance(parsed, list):
+                for item in parsed:
+                    if not isinstance(item, dict):
+                        continue
+                    fc = item.get("fieldCode") or item.get("field") or item.get("f")
+                    val = (item.get("value") if "value" in item
+                           else item.get("optionCode") or item.get("v"))
+                    if fc is not None:
+                        selections[str(fc).upper()] = "" if val is None else str(val)
+        except (ValueError, TypeError):
+            return SkuLookupResponse(
+                found=True, sku=sku_code, family=family_code,
+                series=series_code, part_number=part_number,
+                configuration_signature=signature, configured_product_id=cp_id,
+                errors=["Stored configuration could not be parsed as JSON."],
+            )
+
+        # Derive series when the product row didn't carry one (series is often
+        # stored only inside the configuration JSON as the SERIES field).
+        if not series_code:
+            series_code = selections.get("SERIES") or None
+
+        # Grouped presentation for the family (Dean grouped; Fybroc flat -> []).
+        family_upper = (family_code or "").upper()
+        ordered = _order_fields(selections.keys(), family_upper)
+        field_groups = _field_groups_payload(ordered, family_upper, selections)
+
+        return SkuLookupResponse(
+            found=True,
+            sku=sku_code,
+            family=family_code,
+            series=series_code,
+            part_number=part_number,
+            configuration_signature=signature,
+            configured_product_id=cp_id,
+            created_at=str(created_at) if created_at is not None else None,
+            selections=selections,
+            field_groups=field_groups,
         )
     finally:
         conn.close()
