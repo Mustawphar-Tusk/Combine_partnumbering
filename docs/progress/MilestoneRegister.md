@@ -155,6 +155,7 @@
 | D130 | SQL Dean Identifier Authority | Complete (verified 2026-08-26) | docs/evidence/D130/DEAN_D130_EXIT.md |
 | D140 | Dean Excel Oracle | Complete (verified 2026-08-26; re-based onto PumpConfiguration_Logic_0.1.xlsm) | docs/evidence/D140/DEAN_D140_EXIT.md |
 | D145 | Dean UI Selection-Hierarchy Rearrangement (presentation-only) | Complete (verified 2026-08-26; authoritative order + 10-group render, C/F for unbuilt, Fybroc untouched, PN unchanged) | docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md |
+| D155 | Dean Codependencies Certification | Complete (verified 2026-08-26; 256 non-seal codependencies enforced = 251 two-leg + 5 three-leg, matches PCL v0.1 Codependencies sheet; 519 seal tuples deferred per A1 crosswalk gap; fail-closed, no dead ends; FYBROC 4487 unchanged) | docs/evidence/D155/DEAN_D155_CODEPENDENCIES_EXIT.md |
 | D150 | Dean Exhaustive Regression | NOT STARTED (prior "Complete" was over-reported) | — |
 | D160 | Dean Signoff & Freeze | NOT STARTED (prior "Complete"/`d160-dean-complete` was over-reported) | — |
 
@@ -201,16 +202,17 @@
 
 ## Current Work Context
 
-**Active work:** D145 complete — Dean configurator UI rearranged to the
-authoritative Dean Data Sheet Rev 2 selection hierarchy + 10-group presentation
-(presentation-only via additive `field_groups`; C/F placeholders for unbuilt
-authoritative fields; bundle-excluded components omitted; identity fields owned
-by the Series/Size selectors). Milestone audit `scripts/audit_dean_ui_rearrange.py`
-40/40; Fybroc regression gate ALL CORRECTIONS INTACT 9/9; Dean baselines
-unchanged (48063/256/206/37); PN assembly + parity unchanged.  
+**Active work:** D155 complete — Dean Codependencies CERTIFIED. The PCL v0.1
+`Codependencies` sheet (B1:BA171, 775 tuples) is enforced as Dean cross-constraint
+dependencies: 256 non-seal tuples (251 two-leg + 5 three-leg) in
+cfg.FeasibleConstraint, matching the authoritative workbook exactly; 519 seal
+tuples deferred (A1 seal-vocab crosswalk gap, engineering-blocked, disclosed).
+New re-runnable audit `scripts/audit_dean_codependencies.py` 13/0 (expectations
+derived from re-parsing the workbook, not hardcoded); `scripts/audit_dean_config.py`
+28/0 (fail-closed + quad-deferral + no-dead-end); Fybroc gate ALL CORRECTIONS
+INTACT 9/9; FYBROC FeasibleConstraint 4487 unchanged. No data/schema/code change
+(verify-only). Prior: D145 (UI rearrangement) complete.  
 **Branch:** `feature/m021-shared-excel-production-hardening`  
-**Next action:** PCL v0.1 Codependencies workstream (implement `Codependencies`
-sheet B1:BA171 as Dean cross-constraint dependencies "as needed", reconciled vs
-D110's 256 enforced + 519 held-out seal tuples) — awaiting explicit go-ahead.
-(D145 evidence: docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md. D140 Dean Excel
-Oracle complete 2026-08-26; see docs/evidence/D140/DEAN_D140_EXIT.md.)  
+**Next action:** D150 — Dean Exhaustive Regression — awaiting explicit go-ahead.
+(D155 evidence: docs/evidence/D155/DEAN_D155_CODEPENDENCIES_EXIT.md. D145 evidence:
+docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md.)  

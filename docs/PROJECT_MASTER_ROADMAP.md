@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.25  
+**Roadmap Version:** 1.26  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** D145 — Dean UI Selection-Hierarchy Rearrangement COMPLETE (presentation-only: authoritative Dean Data Sheet Rev 2 order + 10-group render via additive `field_groups`; C/F for unbuilt authoritative fields; bundle-excluded components omitted; Fybroc untouched; PN/parity unchanged; milestone audit 40/40, Fybroc gate 9/9 intact). D140 — Dean Excel Oracle COMPLETE. Next permitted: PCL v0.1 Codependencies workstream, then D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
+**Current Milestone:** D155 — Dean Codependencies Certification COMPLETE (PCL v0.1 `Codependencies` sheet B1:BA171 enforced: 256 non-seal tuples = 251 two-leg + 5 three-leg in cfg.FeasibleConstraint, matches the authoritative workbook; 519 seal tuples deferred per A1 crosswalk gap; fail-closed, no dead ends; FYBROC 4487 unchanged; audit_dean_codependencies 13/0, audit_dean_config 28/0, Fybroc gate 9/9). Prior: D145 — Dean UI Selection-Hierarchy Rearrangement COMPLETE; D140 — Dean Excel Oracle COMPLETE. Next permitted: D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
 
 ---
 
@@ -1036,6 +1036,7 @@ D120	Dean pricing/adders	COMPLETE — Dean Pricing Matrix published to SQL (DEAN
 D130	SQL Dean identifier	COMPLETE — SQL generates the Dean Part Number (additive @FamilyCode='DEAN' branch in cfg.usp_AssembleConfiguredProduct); A#->D# + segment codes loaded family-scoped (204 model refs + 428,742 seg rows), identifier audit 8/8, pricing 22/22, config 29/29, Fybroc gate 7/7 intact. Seal excluded (external accdb); some models blocked by external STD Standard Confs accdb (disclosed). (docs/evidence/D130/DEAN_D130_EXIT.md)
 D140	Dean Excel Oracle	COMPLETE (2026-08-26) — Re-based onto the NEW authority PumpConfiguration_Logic_0.1.xlsm (supersedes prior Dean numbering/config sources). Identifier numbering re-loaded (206 model refs + 106,892 seg rows in one DEAN batch; old 428,742-row batch removed) and resolver re-based (new field orders, table-backed flush + motor-frame, unbuilt-segment placeholders). Excel COM numbering-table oracle proves SQL/API codes == workbook live codes (dean_oracle_compare 15/15 seg matched, 0 failed). identifier 8/8, config 28/28, pricing 22/22, Fybroc gate ALL CORRECTIONS INTACT 7/7, Fybroc rows unchanged (isolation). Disclosed gaps: seal omitted-not-discarded + 519 skipped seal codependencies (A1); external Standard Confs STD gap (A2); Cooling/Barrier un-built + Motor main code inert (F1/F2/F3). (docs/evidence/D140/DEAN_D140_EXIT.md)
 D145	Dean UI selection-hierarchy rearrangement	COMPLETE — presentation-only; authoritative Dean Data Sheet Rev 2 order + 10-group render via additive field_groups; C/F for unbuilt authoritative fields; bundle-excluded components omitted; identity fields owned by Series/Size selectors; Fybroc flat/byte-unchanged; PN/parity unchanged. Milestone audit scripts/audit_dean_ui_rearrange.py 40/40; Fybroc gate ALL CORRECTIONS INTACT 9/9; Dean baselines unchanged (48063/256/206/37). (docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md)
+D155	Dean Codependencies Certification	COMPLETE (2026-08-26) — PCL v0.1 Codependencies sheet (B1:BA171, 775 tuples) certified enforced: 256 non-seal tuples (251 two-leg + 5 three-leg) in cfg.FeasibleConstraint, matches the authoritative workbook exactly; 519 seal tuples deferred (A1 seal-vocab crosswalk, engineering-blocked, disclosed); fail-closed + no dead ends; FYBROC 4487 unchanged. New re-runnable audit scripts/audit_dean_codependencies.py 13/0 (expectations derived from re-parsing the workbook); audit_dean_config 28/0; Fybroc gate ALL CORRECTIONS INTACT 9/9. Verify-only (no data/schema/code change). (docs/evidence/D155/DEAN_D155_CODEPENDENCIES_EXIT.md)
 D150	Dean exhaustive regression	NOT STARTED
 D160	Dean signoff	NOT STARTED
 U100	canonical product model	PARTIAL — needs re-verification
@@ -1068,20 +1069,40 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.25
+Version:            1.26
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D145 (Dean UI Selection-Hierarchy Rearrangement) COMPLETE
-                    (presentation-only). D140 (Dean Excel Oracle) COMPLETE.
-                    Next permitted: PCL v0.1 Codependencies workstream, then
-                    D150 (Exhaustive Dean Regression) — do NOT start without
-                    explicit go-ahead.
+Current Milestone:  D155 (Dean Codependencies Certification) COMPLETE
+                    (verify-only). D145 (Dean UI Selection-Hierarchy
+                    Rearrangement) COMPLETE. D140 (Dean Excel Oracle) COMPLETE.
+                    Next permitted: D150 (Exhaustive Dean Regression) — do NOT
+                    start without explicit go-ahead.
                     (v1.15 is a Fybroc constraint-authority maintenance change,
                     not a Dean milestone advance — see CHANGE v1.15.)
-Status:             D100 + D110 + D120 + D130 + D140 + D145 complete (2026-08-26).
-                    F180 signoff remains prepared, awaiting engineering signature
-                    (parallel; Dean is net-new work that does not modify frozen
-                    Fybroc data).
+Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
+                    (2026-08-26). F180 signoff remains prepared, awaiting
+                    engineering signature (parallel; Dean is net-new work that
+                    does not modify frozen Fybroc data).
+
+CHANGE (v1.26): Dean Codependencies CERTIFICATION (D155, verify-only; no
+schema/loader/data/runtime change). Certified that the authoritative PCL v0.1
+`Codependencies` sheet (PumpConfiguration_Logic_0.1.xlsm, B1:BA171, 775 allow-
+tuples) is correctly enforced as Dean cross-constraint dependencies: 256 non-seal
+tuples (251 two-leg + 5 three-leg) live in cfg.FeasibleConstraint and match the
+workbook EXACTLY (count + leg distribution derived by re-parsing the sheet, not
+hardcoded). The 519 seal-related tuples remain DEFERRED (held out of enforcement)
+pending the A1 seal-vocabulary crosswalk — the Codependencies sheet uses long
+descriptive seal names while Pump Constraints uses short canonical names (e.g.
+`Type N`), so enforcing them would prune seal options to a dead end; seal stays
+omitted-not-discarded. NO enforced row touches a seal field; the only 4-leg quad
+(Seal Option × Gland Type × Flush Plan × Barrier Plan) is correctly not enforced.
+New re-runnable audit scripts/audit_dean_codependencies.py (13/0): DB==workbook
+non-seal enforced (256), leg dist {2:251,3:5}, 0 seal-field rows, 519 held-out
+accounted, all legs mapped in ConstraintFieldMap, FYBROC FeasibleConstraint 4487
+unchanged, live fail-closed (CASING_MATERIAL=none -> CASING_GASKET prunes 3/13),
+no dead ends. audit_dean_config 28/0; run_all_fybroc_audits ALL CORRECTIONS INTACT
+9/9. Dean phase advances D145 -> D155; D150 still not started. See
+docs/evidence/D155/DEAN_D155_CODEPENDENCIES_EXIT.md.
 
 CHANGE (v1.25): Dean configurator UI SELECTION-HIERARCHY REARRANGEMENT
 (D145, presentation-only; no schema/loader/data change). Aligned the Dean UI field
