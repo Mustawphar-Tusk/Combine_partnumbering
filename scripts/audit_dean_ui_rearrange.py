@@ -174,16 +174,17 @@ def audit_bundle_gating() -> None:
 
 
 def audit_fybroc_untouched() -> None:
-    print("=== Fybroc isolation (presentation unchanged) ===")
+    # Fybroc ORDER + behavior must stay family-specific (not Dean-ordered). Note:
+    # Fybroc now also ships its OWN presentation grouping (sectioned UI like
+    # Dean), so field_groups is intentionally non-empty - that is verified in
+    # audit_fybroc_grouping(), not here. This check guards ordering isolation.
+    print("=== Fybroc isolation (ordering family-specific) ===")
     fseries = _fybroc_series()
     check(fseries is not None, "found a Fybroc series", str(fseries))
     if not fseries:
         return
     state = post("/families/FYBROC/configurations/resolve-state",
                  {"series": fseries, "selections": {}})
-    check(state["field_groups"] == [],
-          "Fybroc field_groups empty (flat render)",
-          f"got len={len(state['field_groups'])}")
     # Fybroc order must equal the Fybroc hierarchy ordering (not Dean's).
     ordered = state["ordered_fields"]
     check(ordered == _order_fields(ordered, "FYBROC"),
@@ -192,6 +193,35 @@ def audit_fybroc_untouched() -> None:
     check(ordered != _order_fields(ordered, "DEAN") or
           all(fc not in DEAN_FIELD_HIERARCHY for fc in ordered),
           "Fybroc order is family-specific (not Dean-ordered)")
+
+
+def audit_fybroc_grouping() -> None:
+    """Fybroc now ships its own sectioned grouping (mirrors the Dean UI). A
+    horizontal series shows the Mechanical Seals group; a vertical series (no
+    mechanical seal) shows the Vertical Pump group in its place. No 'Other'
+    group should appear (SERIES is omitted; every field maps to a group)."""
+    print("=== Fybroc grouping (horizontal vs vertical) ===")
+    # Horizontal (1500): Mechanical Seals present, no Vertical Pump.
+    h = post("/families/FYBROC/configurations/resolve-state",
+             {"series": "1500", "selections": {}})
+    hg = [g["group"] for g in h["field_groups"]]
+    check(len(hg) >= 1, "1500: grouped (field_groups non-empty)", str(hg))
+    check("Mechanical Seals" in hg, "1500: has Mechanical Seals group", str(hg))
+    check("Vertical Pump" not in hg, "1500: no Vertical Pump group (horizontal)")
+    check("Other" not in hg, "1500: no Other group")
+
+    # Vertical (5500): Vertical Pump replaces Mechanical Seals.
+    v = post("/families/FYBROC/configurations/resolve-state",
+             {"series": "5500", "selections": {}})
+    vg = [g["group"] for g in v["field_groups"]]
+    check("Vertical Pump" in vg, "5500: has Vertical Pump group", str(vg))
+    check("Mechanical Seals" not in vg, "5500: no Mechanical Seals (vertical)")
+    check("Other" not in vg, "5500: no Other group")
+    # The Vertical Pump group carries the setting/tailpipe fields.
+    vpump = next((g for g in v["field_groups"] if g["group"] == "Vertical Pump"), None)
+    vfields = {f["field"] for f in (vpump["fields"] if vpump else [])}
+    check(bool(vfields & {"SETTING", "SETTING/LENGTH"}),
+          "5500: Vertical Pump has a setting field", str(sorted(vfields)))
 
 
 def audit_pn_unchanged() -> None:
@@ -260,6 +290,7 @@ def main() -> int:
     audit_dean_ordering_and_groups()
     audit_bundle_gating()
     audit_fybroc_untouched()
+    audit_fybroc_grouping()
     audit_pn_unchanged()
     audit_sku_lookup()
 

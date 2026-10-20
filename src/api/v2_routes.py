@@ -236,6 +236,70 @@ _HIERARCHY_INDEX = {fc: i for i, fc in enumerate(FYBROC_FIELD_HIERARCHY)}
 
 
 # ---------------------------------------------------------------------------
+# Authoritative presentation grouping (Fybroc)
+# ---------------------------------------------------------------------------
+# Source: the Fybroc pump specification sheet (Rev0.4 Selections layout). This
+# is PRESENTATION ONLY - it mirrors the Dean sectioned UI and does NOT change
+# Part-Number assembly, parity, constraints, or pricing. Field codes are the
+# real cfg.SeriesFieldOption codes (see FYBROC_FIELD_HIERARCHY).
+#
+# Horizontal pumps use the "Mechanical Seals" group. Vertical pumps (sump/
+# cantilever series such as 5500/5530) have NO mechanical seal; for them the
+# Mechanical Seals group is REPLACED by a "Vertical Pump" group that carries the
+# setting/length and tailpipe fields. A field only renders if the series/current
+# selections actually expose it (fields absent for a series are simply not shown
+# - Fybroc has no C/F placeholders), so one grouping serves every series.
+FYBROC_FIELD_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("Pump Information", (
+        "ALT_SIZE", "PUMP_MATERIAL", "FLANGE_TYPE", "SHAFT_MATERIAL",
+        "CASING_DRAINS", "SUCTION_DISCHARGE_TAPS", "SLEEVE", "PUMP_ELASTOMERS",
+        "GLAND_HARDWARE", "FLUSH", "FLUSH_MATERIAL", "FLUSH_OPTIONS",
+        "CYCLONE_SEPERATOR", "IMPELLER_BALANCE",
+        # vertical-specific wetted-path fields
+        "WETTED_HARDWARE", "WETTED_HARDWARE_SELECTION", "VAPOR_SEAL", "STRAINER",
+    )),
+    ("Mechanical Seals", (
+        "SEAL_OPTION", "SEAL_MFG", "SEAL_TYPE", "SEAL_MATERIALS",
+        "SEAL_ELASTOMERS", "SEAL_GUARD",
+    )),
+    ("Options", (
+        "BEARING_OPTION", "COUPLING_OPTION", "COUPLING_GUARD", "BASEPLATE_OPTION",
+        "CASING_HARDWARE", "BASEPLATEHARDWARE", "POWER_FRAME_HARDWARE",
+        "MOUNTING_PLATE_OPTION",
+    )),
+    ("Impeller", (
+        "IMPELLER_TRIM", "DYNAMIC_IMPELLER",
+    )),
+    ("Motor", (
+        "MOTOR_OPTION", "MOTOR_CONTROL", "MOTOR_HP", "MOTOR_RPM",
+        "MOTOR_VOLTAGE", "MOTOR_HERTZ", "FRAME_SIZE", "MOTOR_ENCLOSURE",
+        "MOTOR_EFFICIENCY", "C_FACE_ADAPTOR", "MOTOR_MFG",
+    )),
+    ("Testing", (
+        "PERFORMANCE_TESTING", "HYDROTEST_CERTIFICATE", "VIBRATION_TESTING",
+        "SOUND_LEVEL_TESTING", "NAMEPLATE", "CUSTOMER_NAMEPLATE", "PAINT_UPGRADE",
+        "SHAFT_GROUNDING",
+    )),
+)
+
+# Vertical pumps have no mechanical seal: the "Mechanical Seals" group is
+# replaced (in place, same position) by this "Vertical Pump" group, which groups
+# the setting/length and tailpipe fields together per the Vertical Pump spec.
+_FYBROC_VERTICAL_GROUP = ("Vertical Pump", (
+    "SETTING/LENGTH", "SETTING", "LENGTH", "TAILPIPE_OPTION", "TAILPIPE_LENGTH",
+))
+
+# A Fybroc configuration is VERTICAL when it has no mechanical seal but does
+# carry a setting (the vertical sump/cantilever families). Detected from the
+# fields actually present for the series/selections, so it is data-driven.
+def _fybroc_is_vertical(present_fields: set[str]) -> bool:
+    up = {f.upper() for f in present_fields}
+    has_seal = "SEAL_OPTION" in up
+    has_setting = "SETTING" in up or "SETTING/LENGTH" in up
+    return (not has_seal) and has_setting
+
+
+# ---------------------------------------------------------------------------
 # Authoritative configuration hierarchy + grouping (Dean)
 # ---------------------------------------------------------------------------
 # Source: Dean Data Sheet Rev 2.xlsm — the "Smart Number" selection layout
@@ -330,6 +394,42 @@ def _order_fields(field_codes, family_upper: str | None = None) -> list[str]:
     return sorted(field_codes, key=lambda fc: _hierarchy_rank(fc, family_upper))
 
 
+def _fybroc_field_groups_payload(ordered_fields: list[str]) -> list[dict]:
+    """Fybroc presentation grouping (mirrors the Dean sectioned UI). Includes
+    ONLY the fields actually present for the series/selections (Fybroc has no
+    C/F placeholders). Vertical pumps (no mechanical seal, has a setting) swap
+    the Mechanical Seals group for the Vertical Pump group, in the same slot.
+    A group with no present members is dropped so the UI shows no empty header.
+    """
+    present = set(ordered_fields)
+    vertical = _fybroc_is_vertical(present)
+    groups: list[dict] = []
+    covered: set[str] = set()
+    # SERIES is the series identifier (shown in the Series selector / lookup
+    # header), not a configurable grid field - never render it as a field row.
+    covered.add("SERIES")
+    for grp, fcs in FYBROC_FIELD_GROUPS:
+        # Vertical pumps: replace Mechanical Seals with the Vertical Pump group.
+        if grp == "Mechanical Seals" and vertical:
+            grp, fcs = _FYBROC_VERTICAL_GROUP
+        members = []
+        for fc in fcs:
+            if fc in present:
+                members.append({"field": fc, "placeholder": False})
+                covered.add(fc)
+        if members:
+            groups.append({"group": grp, "fields": members})
+    # Any present field not mapped to a group is surfaced under "Other" so it is
+    # never silently dropped (keeps the grouping honest as fields evolve).
+    leftover = [fc for fc in ordered_fields if fc not in covered]
+    if leftover:
+        groups.append({
+            "group": "Other",
+            "fields": [{"field": fc, "placeholder": False} for fc in leftover],
+        })
+    return groups
+
+
 def _field_groups_payload(
     ordered_fields: list[str],
     family_upper: str | None,
@@ -358,8 +458,13 @@ def _field_groups_payload(
          OMITTED entirely (and its group header dropped if the whole group is
          excluded) - showing "contact factory" there would be misleading.
 
-    Returns [] for non-Dean families (no defined grouping -> UI flat render)."""
-    if not family_upper or family_upper.upper() != "DEAN":
+    Fybroc has its own grouping (no C/F placeholders; vertical pumps swap the
+    Mechanical Seals group for a Vertical Pump group). Returns [] for families
+    with no defined grouping -> the UI then renders a flat field list."""
+    fam = (family_upper or "").upper()
+    if fam == "FYBROC":
+        return _fybroc_field_groups_payload(ordered_fields)
+    if fam != "DEAN":
         return []
     present = set(ordered_fields)
     sel = selections or {}
