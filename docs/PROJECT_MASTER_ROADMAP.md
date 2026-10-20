@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.24  
+**Roadmap Version:** 1.25  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** D140 — Dean Excel Oracle COMPLETE (re-based onto the new authority `PumpConfiguration_Logic_0.1.xlsm`; COM regression parity green, all Dean audits + Fybroc gate 7/7 intact). Next permitted: D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
+**Current Milestone:** D145 — Dean UI Selection-Hierarchy Rearrangement COMPLETE (presentation-only: authoritative Dean Data Sheet Rev 2 order + 10-group render via additive `field_groups`; C/F for unbuilt authoritative fields; bundle-excluded components omitted; Fybroc untouched; PN/parity unchanged; milestone audit 40/40, Fybroc gate 9/9 intact). D140 — Dean Excel Oracle COMPLETE. Next permitted: PCL v0.1 Codependencies workstream, then D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
 
 ---
 
@@ -1035,6 +1035,7 @@ D110	Dean configuration completion	COMPLETE — model published to SQL (family 1
 D120	Dean pricing/adders	COMPLETE — Dean Pricing Matrix published to SQL (DEAN_STANDARD, 9874 rules), pricing audit 22/22, Fybroc gate intact (docs/evidence/D120/DEAN_D120_EXIT.md)
 D130	SQL Dean identifier	COMPLETE — SQL generates the Dean Part Number (additive @FamilyCode='DEAN' branch in cfg.usp_AssembleConfiguredProduct); A#->D# + segment codes loaded family-scoped (204 model refs + 428,742 seg rows), identifier audit 8/8, pricing 22/22, config 29/29, Fybroc gate 7/7 intact. Seal excluded (external accdb); some models blocked by external STD Standard Confs accdb (disclosed). (docs/evidence/D130/DEAN_D130_EXIT.md)
 D140	Dean Excel Oracle	COMPLETE (2026-08-26) — Re-based onto the NEW authority PumpConfiguration_Logic_0.1.xlsm (supersedes prior Dean numbering/config sources). Identifier numbering re-loaded (206 model refs + 106,892 seg rows in one DEAN batch; old 428,742-row batch removed) and resolver re-based (new field orders, table-backed flush + motor-frame, unbuilt-segment placeholders). Excel COM numbering-table oracle proves SQL/API codes == workbook live codes (dean_oracle_compare 15/15 seg matched, 0 failed). identifier 8/8, config 28/28, pricing 22/22, Fybroc gate ALL CORRECTIONS INTACT 7/7, Fybroc rows unchanged (isolation). Disclosed gaps: seal omitted-not-discarded + 519 skipped seal codependencies (A1); external Standard Confs STD gap (A2); Cooling/Barrier un-built + Motor main code inert (F1/F2/F3). (docs/evidence/D140/DEAN_D140_EXIT.md)
+D145	Dean UI selection-hierarchy rearrangement	COMPLETE — presentation-only; authoritative Dean Data Sheet Rev 2 order + 10-group render via additive field_groups; C/F for unbuilt authoritative fields; bundle-excluded components omitted; identity fields owned by Series/Size selectors; Fybroc flat/byte-unchanged; PN/parity unchanged. Milestone audit scripts/audit_dean_ui_rearrange.py 40/40; Fybroc gate ALL CORRECTIONS INTACT 9/9; Dean baselines unchanged (48063/256/206/37). (docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md)
 D150	Dean exhaustive regression	NOT STARTED
 D160	Dean signoff	NOT STARTED
 U100	canonical product model	PARTIAL — needs re-verification
@@ -1067,17 +1068,42 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.24
+Version:            1.25
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D140 (Dean Excel Oracle) COMPLETE.
-                    Next permitted: D150 (Exhaustive Dean Regression) — do NOT
-                    start without explicit go-ahead.
+Current Milestone:  D145 (Dean UI Selection-Hierarchy Rearrangement) COMPLETE
+                    (presentation-only). D140 (Dean Excel Oracle) COMPLETE.
+                    Next permitted: PCL v0.1 Codependencies workstream, then
+                    D150 (Exhaustive Dean Regression) — do NOT start without
+                    explicit go-ahead.
                     (v1.15 is a Fybroc constraint-authority maintenance change,
                     not a Dean milestone advance — see CHANGE v1.15.)
-Status:             D100 + D110 + D120 + D130 complete (2026-08-26). F180 signoff
-                    remains prepared, awaiting engineering signature (parallel;
-                    Dean is net-new work that does not modify frozen Fybroc data).
+Status:             D100 + D110 + D120 + D130 + D140 + D145 complete (2026-08-26).
+                    F180 signoff remains prepared, awaiting engineering signature
+                    (parallel; Dean is net-new work that does not modify frozen
+                    Fybroc data).
+
+CHANGE (v1.25): Dean configurator UI SELECTION-HIERARCHY REARRANGEMENT
+(D145, presentation-only; no schema/loader/data change). Aligned the Dean UI field
+ORDER + GROUPING to the authoritative Dean Data Sheet Rev 2 (Smart Number B3:AL26 +
+Data Sheet B12:I71 + Dean Pump Specification Sheet): added a Dean-specific field
+hierarchy + the authoritative 10 groups (Pump Information, Impeller, Power Frame,
+Coupling, Pump Seal, Flush/Barrier/Cooling Plan, Motor, Baseplate, Testing &
+Documentation, Additional Options), delivered as an ADDITIVE `field_groups`
+response field on /configurations/evaluate + /configurations/resolve-state
+(default [] -> back-compatible; empty for non-Dean). Ordering is family-aware
+(_order_fields/_hierarchy_rank take family; Fybroc byte-unchanged). Empty/unbuilt
+authoritative fields render as C/F placeholders (Motor beyond FRAME_SIZE, Testing &
+Documentation, Barrier Plan); fields a PUMP_CONFIGURATION bundle excludes are
+OMITTED (not C/F); identity fields (SERIES/SIZE/ALT_SIZE) are owned by the
+Series/Size selectors, not the grid. UI (ui/configurator.html) renders group
+headers + disabled C/F rows for Dean, flat (unchanged) for Fybroc. PN assembly /
+parity / certified PCL v0.1 numbering UNCHANGED (presentation only). Verified:
+milestone audit scripts/audit_dean_ui_rearrange.py 40/40 (PH2110/DL200/RA3146/
+R5140); run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9; Dean baselines unchanged
+(SFO 48063 / Feasible 256 / 206 models / 37 series); imports OK; temp scripts
+cleaned. Dean phase advances D140 -> D145; D150 still not started. See
+docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md.
 
 CHANGE (v1.24): Dean PCL v0.1 numbering-authority CERTIFICATION (verify-only; no
 data/schema/code change). Certified that PumpConfiguration_Logic_0.1.xlsm (its

@@ -154,6 +154,7 @@
 | D120 | Dean Pricing & Adders | Complete (verified 2026-08-26) | — |
 | D130 | SQL Dean Identifier Authority | Complete (verified 2026-08-26) | docs/evidence/D130/DEAN_D130_EXIT.md |
 | D140 | Dean Excel Oracle | Complete (verified 2026-08-26; re-based onto PumpConfiguration_Logic_0.1.xlsm) | docs/evidence/D140/DEAN_D140_EXIT.md |
+| D145 | Dean UI Selection-Hierarchy Rearrangement (presentation-only) | Complete (verified 2026-08-26; authoritative order + 10-group render, C/F for unbuilt, Fybroc untouched, PN unchanged) | docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md |
 | D150 | Dean Exhaustive Regression | NOT STARTED (prior "Complete" was over-reported) | — |
 | D160 | Dean Signoff & Freeze | NOT STARTED (prior "Complete"/`d160-dean-complete` was over-reported) | — |
 
@@ -200,9 +201,16 @@
 
 ## Current Work Context
 
-**Active work:** D120 complete — Dean Pricing Matrix published to SQL
-(DEAN_STANDARD, 9874 rules), Dean pricing audit 22/22, Dean config audit 29/29,
-Fybroc regression gate ALL CORRECTIONS INTACT (no regression). Pump Configuration
-applicability gating added to the config model (Dean-only).  
+**Active work:** D145 complete — Dean configurator UI rearranged to the
+authoritative Dean Data Sheet Rev 2 selection hierarchy + 10-group presentation
+(presentation-only via additive `field_groups`; C/F placeholders for unbuilt
+authoritative fields; bundle-excluded components omitted; identity fields owned
+by the Series/Size selectors). Milestone audit `scripts/audit_dean_ui_rearrange.py`
+40/40; Fybroc regression gate ALL CORRECTIONS INTACT 9/9; Dean baselines
+unchanged (48063/256/206/37); PN assembly + parity unchanged.  
 **Branch:** `feature/m021-shared-excel-production-hardening`  
-**Next action:** D150 (Exhaustive Dean Regression) — awaiting explicit go-ahead. (D140 Dean Excel Oracle complete 2026-08-26, re-based onto PumpConfiguration_Logic_0.1.xlsm; see docs/evidence/D140/DEAN_D140_EXIT.md.)  
+**Next action:** PCL v0.1 Codependencies workstream (implement `Codependencies`
+sheet B1:BA171 as Dean cross-constraint dependencies "as needed", reconciled vs
+D110's 256 enforced + 519 held-out seal tuples) — awaiting explicit go-ahead.
+(D145 evidence: docs/evidence/D145/DEAN_D145_UI_REARRANGE_EXIT.md. D140 Dean Excel
+Oracle complete 2026-08-26; see docs/evidence/D140/DEAN_D140_EXIT.md.)  

@@ -235,14 +235,183 @@ FYBROC_FIELD_HIERARCHY: tuple[str, ...] = (
 _HIERARCHY_INDEX = {fc: i for i, fc in enumerate(FYBROC_FIELD_HIERARCHY)}
 
 
-def _hierarchy_rank(field_code: str) -> tuple[int, str]:
+# ---------------------------------------------------------------------------
+# Authoritative configuration hierarchy + grouping (Dean)
+# ---------------------------------------------------------------------------
+# Source: Dean Data Sheet Rev 2.xlsm — the "Smart Number" selection layout
+# (B3:AL26) and the "Data Sheet" grouped spec layout (B12:I71), which agree with
+# the Dean Pump Specification Sheet. This defines the UI SELECTION order and the
+# 10 presentation GROUPS. It is PRESENTATION ONLY: it does not affect Part-Number
+# assembly, parity, or the certified PCL v0.1 numbering (those remain owned by
+# cfg.usp_AssembleConfiguredProduct + dean_identifier.py).
+#
+# Field codes below are the real cfg.SeriesFieldOption codes. Some authoritative
+# groups (Motor beyond FRAME_SIZE, Testing & Documentation, Barrier Plan) have no
+# selectable Dean field yet (external-DB / unbuilt engineering gaps); their fields
+# therefore surface as Contact-Factory (C/F) placeholders rather than being hidden.
+DEAN_FIELD_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("Pump Information", (
+        "SERIES", "ALT_SIZE", "SIZE", "PUMP_CONFIGURATION",
+        "PUMP_MATERIAL", "CASING_MATERIAL", "CASING_DRAIN", "CASING_TAPS",
+        "CASING_GASKET", "FLANGE_CONFIGURATION", "SPOT_FACING", "CASING_WEAR_RING",
+        "TACK_WELD_WEAR_RINGS", "CASING_MOUNTING", "SEAL_CHAMBER_CONFIG",
+        "SHIPPING_GASKET", "CASING_HEAT_JACKET",
+    )),
+    ("Impeller", (
+        "IMPELLER_TRIM", "IMPELLER_BALANCE", "IMPELLER_MATERIAL",
+        "IMPELLER_WEAR_RING_MATERIAL",
+    )),
+    ("Power Frame", (
+        "SHAFT_CONFIGURATION", "SHAFT_MATERIAL", "BEARING_LUBRICATION",
+        "BEARING_SEAL", "OILER_OPTIONS", "SIGHT_GLASS", "BEARING_FRAME_COOLING",
+        "MAGNETIC_DRAIN", "EXPANSION_CHAMBER",
+    )),
+    ("Coupling", (
+        "COUPLING_TYPE", "COUPLING_GUARD",
+    )),
+    ("Pump Seal", (
+        "SEAL_OPTION", "SEAL_MANUFACTURER", "SEAL_CONFIGURATION", "SEAL_TYPE",
+        "GLAND_TYPE", "GLAND_GASKET", "SHAFT_SLEEVE_MATERIAL",
+        "INBOARD_ROTATING_FACE_MATERIAL", "INBOARD_STATIONARY_FACE_MATERIAL",
+        "INBOARD_ELASTOMER", "INBOARD_HARDWARE_MATERIAL",
+        "OUTBOARD_ROTATING_FACE_MATERIAL", "OUTBOARD_STATIONARY_FACE_MATERIAL",
+        "OUTBOARD_ELASTOMERS", "OUTBOARD_HARDWARE_MATERIAL",
+        "HYDROPADS", "PUMPING_RING", "THROTTLE_BUSHING", "MIN_FLO_BUSHING",
+        "LANTERN_RING",
+    )),
+    ("Flush / Barrier / Cooling Plan", (
+        "FLUSH_PLAN", "BARRIER_PLAN", "BARRIER_PLAN_EXTRAS",
+        "COOLING_PLAN", "COOLING_PLAN_PIPING", "COOLING_PLAN_EXTRAS",
+    )),
+    ("Motor", (
+        "MOTOR_OPTIONS", "MOTOR_CONTROL", "MOTOR_HP", "MOTOR_SPEED",
+        "MOTOR_VOLTAGE", "MOTOR_PHASE_HERTZ", "FRAME_SIZE", "MOTOR_ENCLOSURE",
+        "MOTOR_EFFICIENCY", "C_FACE_ADAPTER_OPTION", "MOTOR_MANUFACTURER",
+    )),
+    ("Baseplate", (
+        "BASEPLATE_TYPE", "DRIP_PAN", "ALIGNMENT_LUGS", "LIFTING_LUGS",
+        "LEVELLING_SCREWS", "GROUNDING_LUG", "GROUT_HOLE", "ISOLATION_PADS",
+        "STILTS",
+    )),
+    ("Testing & Documentation", (
+        "PERFORMANCE_TESTING", "HYDRO_TEST", "VIBRATION", "SOUND_LEVEL",
+        "GENERAL_INSPECTION", "DOCUMENTATION_1", "DOCUMENTATION_2",
+        "DOCUMENTATION_3", "DOCUMENTATION_4",
+    )),
+    ("Additional Options", (
+        "PAINT_OPTIONS", "COATING", "AUXILLARY_NAMEPLATE", "CRATING",
+    )),
+)
+
+# Flattened Dean field order (derived from the groups) + the field->group map.
+DEAN_FIELD_HIERARCHY: tuple[str, ...] = tuple(
+    fc for _grp, fcs in DEAN_FIELD_GROUPS for fc in fcs
+)
+_DEAN_HIERARCHY_INDEX = {fc: i for i, fc in enumerate(DEAN_FIELD_HIERARCHY)}
+
+
+def _family_hierarchy_index(family_upper: str | None) -> dict[str, int]:
+    """The field->rank index for the given family (Dean has its own; everything
+    else uses the Fybroc hierarchy)."""
+    if family_upper and family_upper.upper() == "DEAN":
+        return _DEAN_HIERARCHY_INDEX
+    return _HIERARCHY_INDEX
+
+
+def _hierarchy_rank(field_code: str, family_upper: str | None = None) -> tuple[int, str]:
     fc = field_code.upper()
-    return (_HIERARCHY_INDEX.get(fc, len(FYBROC_FIELD_HIERARCHY)), fc)
+    idx = _family_hierarchy_index(family_upper)
+    return (idx.get(fc, len(idx)), fc)
 
 
-def _order_fields(field_codes) -> list[str]:
-    """Return field codes sorted by the authoritative hierarchy."""
-    return sorted(field_codes, key=_hierarchy_rank)
+def _order_fields(field_codes, family_upper: str | None = None) -> list[str]:
+    """Return field codes sorted by the authoritative hierarchy for the family.
+    Fybroc (default) is byte-unchanged; Dean uses the Smart-Number order."""
+    return sorted(field_codes, key=lambda fc: _hierarchy_rank(fc, family_upper))
+
+
+def _field_groups_payload(
+    ordered_fields: list[str],
+    family_upper: str | None,
+    selections: dict | None = None,
+) -> list[dict]:
+    """Presentation grouping for the UI: the authoritative Dean group structure,
+    in group order. Each group lists its fields in authoritative order; every
+    field carries a `placeholder` flag:
+
+      - placeholder=False -> a real, selectable cfg.SeriesFieldOption field
+        (present in `ordered_fields`); the UI renders its dropdown.
+      - placeholder=True  -> an authoritative field with no selectable Dean
+        option yet (external-DB / unbuilt engineering gap). Per the product
+        decision these are NOT hidden: the UI renders them as a disabled
+        Contact-Factory (C/F) row so the spec-sheet layout stays complete.
+
+    IMPORTANT distinction: a field can be absent from `ordered_fields` for two
+    very different reasons, and only ONE of them is a C/F gap:
+
+      1. It is UNBUILT (no Dean option exists / external-DB) -> genuine C/F
+         placeholder (placeholder=True). Examples: most Motor fields, all of
+         Testing & Documentation, Barrier Plan.
+      2. It was deliberately EXCLUDED by the chosen PUMP_CONFIGURATION bundle
+         (macro-authoritative gating of the Baseplate/Coupling/Motor component
+         groups). This is the user's own choice, NOT a factory gap, so it is
+         OMITTED entirely (and its group header dropped if the whole group is
+         excluded) - showing "contact factory" there would be misleading.
+
+    Returns [] for non-Dean families (no defined grouping -> UI flat render)."""
+    if not family_upper or family_upper.upper() != "DEAN":
+        return []
+    present = set(ordered_fields)
+    sel = selections or {}
+    # Identity / sizing fields are part of the authoritative spec-sheet layout
+    # but are NOT configured in the field grid - they are owned by the Series and
+    # Size selectors at the top of the UI (and by the certified numbering). They
+    # must not appear as C/F placeholders (they are not a factory gap); omit them
+    # from the grouped grid entirely.
+    identity_fields = {"SERIES", "ALT_SIZE", "SIZE"}
+    # Fields removed by the current PUMP_CONFIGURATION bundle: these are
+    # intentionally-excluded, not C/F. Hide them rather than flag them.
+    bundle_excluded = _dean_pump_config_excluded_fields(sel)
+    # Which COMPONENT groups the bundle excludes (BASEPLATE / COUPLING / MOTOR).
+    # When a whole component is excluded, its entire authoritative UI group is
+    # dropped - including any unbuilt fields in it - because the component is
+    # simply not part of this pump (showing C/F there would be misleading).
+    excluded_components = _dean_excluded_components(sel)
+    groups: list[dict] = []
+    covered: set[str] = set()
+    for grp, fcs in DEAN_FIELD_GROUPS:
+        # Skip an entire authoritative group the bundle excludes as a component.
+        if _DEAN_GROUP_TO_COMPONENT.get(grp) in excluded_components:
+            continue
+        members = []
+        for fc in fcs:
+            if fc.upper() in identity_fields:
+                # Owned by the Series/Size selectors - not a grid field.
+                if fc in present:
+                    covered.add(fc)
+                continue
+            if fc in present:
+                members.append({"field": fc, "placeholder": False})
+                covered.add(fc)
+            elif fc.upper() in bundle_excluded:
+                # Deliberately excluded by the bundle -> omit (not a C/F gap).
+                continue
+            else:
+                # Authoritative but unbuilt -> Contact-Factory placeholder.
+                members.append({"field": fc, "placeholder": True})
+        # Drop a group that ends up with no members (e.g. a component group the
+        # bundle fully excludes), so the UI doesn't show an empty header.
+        if members:
+            groups.append({"group": grp, "fields": members})
+    # Any applicable field not mapped to an authoritative group (new/unknown
+    # field) is surfaced under "Other" so it is never silently dropped.
+    leftover = [fc for fc in ordered_fields if fc not in covered]
+    if leftover:
+        groups.append({
+            "group": "Other",
+            "fields": [{"field": fc, "placeholder": False} for fc in leftover],
+        })
+    return groups
 
 
 # Fields whose option values are numeric and must be presented in ASCENDING
@@ -314,6 +483,33 @@ def _dean_pump_config_excluded_fields(selections: dict) -> set[str]:
         if group not in included:
             excluded |= fields
     return excluded
+
+
+def _dean_excluded_components(selections: dict) -> set[str]:
+    """The COMPONENT groups (BASEPLATE / COUPLING / MOTOR) the chosen
+    PUMP_CONFIGURATION bundle excludes. Empty set when PUMP_CONFIGURATION is
+    unset or not a recognized Dean bundle. Used to drop whole authoritative UI
+    groups (presentation only) - the authoritative field/pricing gating remains
+    _dean_pump_config_excluded_fields."""
+    pc = None
+    for k, v in selections.items():
+        if k.upper() == "PUMP_CONFIGURATION" and v is not None and str(v).strip():
+            pc = str(v).strip().lower()
+            break
+    if pc is None or pc not in DEAN_PUMP_CONFIG_INCLUDES:
+        return set()
+    included = DEAN_PUMP_CONFIG_INCLUDES[pc]
+    return {g for g in DEAN_COMPONENT_GROUP_FIELDS if g not in included}
+
+
+# Maps an authoritative presentation GROUP (DEAN_FIELD_GROUPS) to the component
+# gate (DEAN_COMPONENT_GROUP_FIELDS key) that can exclude it wholesale via the
+# PUMP_CONFIGURATION bundle. Groups not listed here are never bundle-excluded.
+_DEAN_GROUP_TO_COMPONENT = {
+    "Coupling": "COUPLING",
+    "Baseplate": "BASEPLATE",
+    "Motor": "MOTOR",
+}
 
 
 _DIM_SPLIT = re.compile(r"\s*x\s*", re.IGNORECASE)
@@ -783,6 +979,10 @@ class EvaluateResponse(BaseModel):
     #  - effective_selections: selections after reset-on-upstream-change pruning
     #  - dropped_selections: selections removed because an upstream step changed
     ordered_fields: list[str] = Field(default_factory=list)
+    # Presentation grouping for the UI (Dean only; empty for other families):
+    # ordered [{group, fields:[...]}] over the applicable fields, per the
+    # authoritative Dean Data Sheet hierarchy. Additive; flat clients ignore it.
+    field_groups: list[dict[str, Any]] = Field(default_factory=list)
     hierarchy: list[FieldHierarchyState] = Field(default_factory=list)
     current_field: str | None = None
     effective_selections: dict[str, str] = Field(default_factory=dict)
@@ -860,6 +1060,10 @@ class FreeConfigResponse(BaseModel):
     conflicts: list[dict] = Field(default_factory=list)
     # Fields applicable in authoritative hierarchy order (for stable UI layout).
     ordered_fields: list[str] = Field(default_factory=list)
+    # Authoritative presentation grouping (Dean only): ordered list of
+    # {group, fields:[...]} so the UI can render group headers. Empty for
+    # families without a defined grouping (e.g. Fybroc).
+    field_groups: list[dict[str, Any]] = Field(default_factory=list)
     # Identifier (PN segment) code for each final selection.
     resolved_codes: dict[str, str | None] = Field(default_factory=dict)
     errors: list[str] = Field(default_factory=list)
@@ -1052,8 +1256,9 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             )
 
         # HIERARCHY ENFORCEMENT (server is the authority).
-        # Applicable fields for this series, in authoritative hierarchy order.
-        ordered_fields = _order_fields(all_options.keys())
+        # Applicable fields for this series, in authoritative hierarchy order
+        # (family-aware: Dean uses the Smart-Number order, Fybroc its own).
+        ordered_fields = _order_fields(all_options.keys(), family_upper)
         # CONDITIONAL FIELD APPLICABILITY (Rev0.3 dependent fields).
         # Some fields apply only when a controlling field holds a specific value.
         # WETTED_HARDWARE_SELECTION applies ONLY when WETTED_HARDWARE ==
@@ -1182,6 +1387,8 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
             standard_defaults=exposed_defaults,
             resolved_codes=resolved,
             ordered_fields=ordered_fields,
+            field_groups=_field_groups_payload(
+                ordered_fields, family_upper, body.selections),
             hierarchy=hierarchy_state,
             current_field=current_field,
             effective_selections=effective_selections,
@@ -1342,7 +1549,7 @@ async def resolve_configuration_state(
                 (Tailpipe Option, Tailpipe Length) row is 'Supplied by Fybroc';
                 if the tailpipe is not supplied there is no length to pick, so
                 the field is not applicable - not merely unconstrained)."""
-            fields = _order_fields(all_options.keys())
+            fields = _order_fields(all_options.keys(), family_upper)
             wh = sel.get("WETTED_HARDWARE")
             if wh is not None and str(wh).strip().lower() != "select material":
                 fields = [fc for fc in fields if fc != "WETTED_HARDWARE_SELECTION"]
@@ -1483,6 +1690,8 @@ async def resolve_configuration_state(
             dropped_fields=sorted(dropped_fields),
             conflicts=conflicts,
             ordered_fields=ordered_fields,
+            field_groups=_field_groups_payload(
+                ordered_fields, family_upper, selections),
             resolved_codes=resolved,
         )
     finally:
