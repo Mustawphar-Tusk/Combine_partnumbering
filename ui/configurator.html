@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Discourage aggressive browser caching of this single-page UI so a new
+         build is picked up on reload (the page is small; re-fetch is cheap). -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Pump Configurator</title>
     <style>
         /* ---- Sky-blue theme tokens ---------------------------------------- */
@@ -101,11 +106,19 @@
         .lookup-meta .m .v { font-family: 'Courier New', monospace; font-size: 14px; color: var(--ink); }
 
         /* ---- Section (spec-sheet) layout --------------------------------- */
-        .sections { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-        @media (max-width: 900px) { .sections { grid-template-columns: 1fr; } }
+        /* Masonry (column-flow) layout so each section card packs tightly
+           top-to-bottom across two columns, like the spec-sheet screenshot -
+           sections are NOT forced into aligned rows, so a short section (e.g.
+           Coupling) never leaves a big gap next to a tall one (e.g. Pump Seal). */
+        .sections { column-count: 2; column-gap: 18px; }
+        @media (max-width: 900px) { .sections { column-count: 1; } }
         .section {
             background: #fff; border: 1px solid var(--line); border-radius: 14px;
-            box-shadow: var(--shadow); padding: 16px 18px; break-inside: avoid;
+            box-shadow: var(--shadow); padding: 16px 18px;
+            /* keep a card intact within one column and give vertical rhythm */
+            break-inside: avoid; -webkit-column-break-inside: avoid;
+            page-break-inside: avoid; display: inline-block; width: 100%;
+            margin: 0 0 18px;
         }
         .section h3 {
             font-size: 15px; color: var(--sky-700); font-weight: 700;
