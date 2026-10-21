@@ -462,9 +462,10 @@
             else if (flagged.has(fieldCode)) cls += ' is-flagged';
             row.className = cls;
 
-            const tag = hasValue
-                ? (isStd ? '<span class="tag std">std</span>' : '<span class="tag custom">custom</span>')
-                : '<span class="tag unset">not set</span>';
+            // No std/custom/not-set badge beside the field name: the dropdown
+            // already shows "(standard)" and "-- Not set --", so a label badge
+            // is redundant and clutters the layout. Field state is still
+            // conveyed by the row's left-border color (see .frow.is-* CSS).
 
             const optionHtml = [
                 `<option value=""${hasValue ? '' : ' selected'}>-- Not set --</option>`,
@@ -480,11 +481,10 @@
             const code = resolvedCodes[fieldCode];
 
             row.innerHTML = `
-                <div class="fl">${esc(pretty(fieldCode))} ${tag}</div>
+                <div class="fl">${esc(pretty(fieldCode))}</div>
                 <div>
                     <select data-field="${escAttr(fieldCode)}">${optionHtml.join('')}</select>
                 </div>
-                ${std !== undefined ? `<div class="meta std-line">standard: ${esc(std)}</div>` : ''}
                 ${conflict ? `<div class="meta conflict-line">⚠ not compatible${(conflict.conflicts_with || []).length ? ' with ' + conflict.conflicts_with.map(pretty).map(esc).join(', ') : ''}${(conflict.recommended || []).length ? ' — try: ' + conflict.recommended.slice(0, 5).map(esc).join(', ') : ''}</div>` : ''}
                 ${(!conflict && flagged.has(fieldCode)) ? `<div class="meta reset-line">${dropped.includes(fieldCode) ? 'not applicable for this configuration' : 'auto-adjusted by your last change'}</div>` : ''}
                 ${code ? `<div class="meta code">→ ${esc(code)}</div>` : ''}
@@ -501,9 +501,8 @@
             const row = document.createElement('div');
             row.className = 'frow is-unset';
             row.innerHTML = `
-                <div class="fl">${esc(pretty(fieldCode))} <span class="tag cf">C/F</span></div>
-                <div><select disabled><option selected>C/F</option></select></div>
-                <div class="meta std-line">contact factory</div>`;
+                <div class="fl">${esc(pretty(fieldCode))}</div>
+                <div><select disabled><option selected>C/F</option></select></div>`;
             return row;
         }
 
