@@ -186,6 +186,36 @@
         .ro-row .v { color: var(--ink); font-weight: 600; text-align: right; }
         .ro-row .v.cf { color: var(--bad); }
 
+        /* ---- Quantity + order total ------------------------------------- */
+        .order-panel { display: flex; align-items: center; justify-content: space-between;
+            gap: 24px; flex-wrap: wrap; }
+        .order-qty { display: flex; flex-direction: column; gap: 8px; }
+        .order-label { font-size: 11px; font-weight: 700; letter-spacing: .5px;
+            text-transform: uppercase; color: var(--ink-soft); }
+        .qty-stepper { display: inline-flex; align-items: stretch; border: 1px solid var(--line);
+            border-radius: 10px; overflow: hidden; background: #fff; width: max-content; }
+        .qty-btn { width: 44px; border: none; background: var(--btn); color: #fff;
+            font-size: 20px; font-weight: 700; cursor: pointer; line-height: 1;
+            transition: background .12s ease, box-shadow .1s ease; }
+        .qty-btn:hover { background: var(--btn-hover); }
+        .qty-btn:active { box-shadow: inset 0 2px 6px rgba(255,255,255,.35),
+            inset 0 -1px 3px rgba(0,0,0,.25); }
+        .qty-input { width: 72px; border: none; text-align: center; font-size: 16px;
+            font-weight: 700; color: var(--ink); background: #fff; font-family: inherit; }
+        .qty-input:focus { outline: none; background: var(--sky-50); }
+        /* hide number-input spinners (we use our own buttons) */
+        .qty-input::-webkit-outer-spin-button, .qty-input::-webkit-inner-spin-button {
+            -webkit-appearance: none; margin: 0; }
+        .qty-input { -moz-appearance: textfield; }
+        .order-totals { min-width: 260px; }
+        .order-line { display: flex; justify-content: space-between; font-size: 13px;
+            color: var(--ink-soft); padding: 3px 0; }
+        .order-line .order-val { color: var(--ink); font-weight: 600; font-family: 'Courier New', monospace; }
+        .order-grand { display: flex; justify-content: space-between; align-items: baseline;
+            margin-top: 8px; padding-top: 10px; border-top: 2px solid var(--sky-200);
+            font-size: 18px; font-weight: 800; color: #1d6b47; }
+        .order-grand span:last-child { font-family: 'Courier New', monospace; }
+
         /* field row inside a section */
         .frow { display: grid; grid-template-columns: 1fr 1.2fr; gap: 10px;
             align-items: center; padding: 7px 0; border-bottom: 1px solid #eef5fa; }
@@ -335,6 +365,24 @@
                 <div id="pricingPanel"></div>
             </div>
 
+            <!-- Quantity + order total -->
+            <div class="panel order-panel">
+                <div class="order-qty">
+                    <span class="order-label">Quantity</span>
+                    <div class="qty-stepper">
+                        <button type="button" class="qty-btn" onclick="changeQty(-1)" aria-label="Decrease quantity">−</button>
+                        <input id="qtyInput" class="qty-input" type="number" min="1" step="1" value="1"
+                               inputmode="numeric" onchange="setQtyFromInput()" onkeyup="setQtyFromInput()">
+                        <button type="button" class="qty-btn" onclick="changeQty(1)" aria-label="Increase quantity">+</button>
+                    </div>
+                </div>
+                <div class="order-totals">
+                    <div class="order-line"><span class="order-label">Unit price</span><span id="unitPrice" class="order-val"></span></div>
+                    <div class="order-line"><span class="order-label">Quantity</span><span id="qtyEcho" class="order-val">1</span></div>
+                    <div class="order-grand"><span>Order total</span><span id="orderTotal"></span></div>
+                </div>
+            </div>
+
             <!-- full configured spec (grouped, read-only) -->
             <div class="panel">
                 <h2 class="section-title">Configuration</h2>
@@ -378,6 +426,8 @@
         let orderedFields = [];
         let fieldGroups = [];   // [{group, fields:[{field, placeholder}]}] (Dean + Fybroc)
         let activeGroup = 0;    // index of the expanded accordion group (persists across re-renders)
+        let unitTotal = 0;      // priced total for ONE configured pump (from resolve)
+        let quantity = 1;       // order quantity on the result page (>= 1)
 
         function setStatus(msg, type) {
             const el = document.getElementById('status');
@@ -717,6 +767,28 @@
         // Configure Another: clear and start fresh on the configurator.
         function newConfiguration() { showConfigView(); reset(); }
 
+        // ---- Quantity + order total (result page) ------------------------
+        function _fmtMoney(n) {
+            return '$' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        function renderOrderTotals() {
+            document.getElementById('unitPrice').textContent = _fmtMoney(unitTotal);
+            document.getElementById('qtyEcho').textContent = String(quantity);
+            document.getElementById('orderTotal').textContent = _fmtMoney(unitTotal * quantity);
+        }
+        // + / - buttons.
+        function changeQty(delta) {
+            quantity = Math.max(1, (quantity || 1) + delta);
+            document.getElementById('qtyInput').value = String(quantity);
+            renderOrderTotals();
+        }
+        // Typed value (clamped to an integer >= 1).
+        function setQtyFromInput() {
+            const raw = parseInt(document.getElementById('qtyInput').value, 10);
+            quantity = (isNaN(raw) || raw < 1) ? 1 : raw;
+            renderOrderTotals();
+        }
+
         // ---- Generate PN / SKU -------------------------------------------
         async function resolve() {
             const family = document.getElementById('family').value;
@@ -739,7 +811,11 @@
                 document.getElementById('resReused').textContent = data.existing_configuration ? 'Yes (existing)' : 'No (new)';
                 document.getElementById('resSummary').textContent =
                     `${family} · ${series}` + (data.part_number ? ` · ${data.part_number}` : '');
-                renderPricing(data.component_pricing || [], data.total_price || 0);
+                unitTotal = Number(data.total_price || 0);   // price for ONE pump
+                quantity = 1;                                 // reset qty each resolve
+                document.getElementById('qtyInput').value = '1';
+                renderPricing(data.component_pricing || [], unitTotal);
+                renderOrderTotals();
                 renderResultSpec();
                 setStatus('', '');          // clear the configurator status line
                 showResultView();           // navigate to the result "page"
