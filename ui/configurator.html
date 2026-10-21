@@ -149,10 +149,21 @@
         .section .fields { display: grid; grid-template-columns: repeat(2, 1fr);
             column-gap: 28px; }
         @media (max-width: 1100px) { .section .fields { grid-template-columns: 1fr; } }
-        /* Panel footer nav (prev / next group) */
-        .acc-nav { display: flex; justify-content: space-between; align-items: center;
-            margin-top: 16px; padding-top: 14px; border-top: 1px solid #eef5fa; }
-        .acc-nav .pos { font-size: 12px; color: var(--ink-soft); }
+        /* Collapsed group bars stacked under the expanded section. */
+        .acc-panel .section { margin-bottom: 12px; }
+        .acc-bar { display: flex; align-items: center; justify-content: space-between;
+            width: 100%; text-align: left; cursor: pointer; font-family: inherit;
+            background: var(--sky-50); border: 1px solid var(--line);
+            border-radius: 10px; padding: 13px 18px; margin-bottom: 10px;
+            transition: background .12s ease, box-shadow .12s ease; }
+        .acc-bar:hover { background: var(--sky-100); box-shadow: var(--shadow); }
+        .acc-bar-title { font-size: 14px; font-weight: 700; color: var(--sky-700); }
+        .acc-bar-right { display: inline-flex; align-items: center; gap: 12px; }
+        .acc-bar-meta { font-size: 11px; font-weight: 700; color: var(--ink-soft);
+            background: #fff; border: 1px solid var(--line); border-radius: 10px;
+            padding: 1px 8px; }
+        .acc-bar-plus { font-size: 18px; font-weight: 700; color: var(--sky-500);
+            line-height: 1; width: 18px; text-align: center; }
 
         /* field row inside a section */
         .frow { display: grid; grid-template-columns: 1fr 1.2fr; gap: 10px;
@@ -605,37 +616,40 @@
             });
 
             // ---- right panel: the active group ------------------------------
+            // ---- right panel: every group stacked; active one expanded, the
+            // rest as collapsed "+" bars (click to expand in place) -----------
             const panel = document.getElementById('accPanel');
             panel.innerHTML = '';
-            const grp = groups[activeGroup];
-            const { set, total } = groupCounts(grp);
-            const sec = makeSection(grp.group, total > 0 ? `${set} of ${total} set` : '');
-            const fieldsWrap = document.createElement('div');
-            fieldsWrap.className = 'fields';
-            for (const f of (grp.fields || [])) {
-                fieldsWrap.appendChild(f.placeholder
-                    ? buildPlaceholderRow(f.field)
-                    : buildFieldRow(f.field, conflictByField, flagged, dropped));
-            }
-            sec.appendChild(fieldsWrap);
-
-            // prev / next nav
-            const nav = document.createElement('div');
-            nav.className = 'acc-nav';
-            const prev = document.createElement('button');
-            prev.className = 'btn ghost'; prev.textContent = '← Previous';
-            prev.disabled = activeGroup === 0;
-            prev.addEventListener('click', () => { activeGroup = Math.max(0, activeGroup - 1); renderAllFields(reset, dropped, conflicts); });
-            const pos = document.createElement('div');
-            pos.className = 'pos'; pos.textContent = `Section ${activeGroup + 1} of ${groups.length}`;
-            const next = document.createElement('button');
-            next.className = 'btn'; next.textContent = 'Next →';
-            next.disabled = activeGroup === groups.length - 1;
-            next.addEventListener('click', () => { activeGroup = Math.min(groups.length - 1, activeGroup + 1); renderAllFields(reset, dropped, conflicts); });
-            nav.appendChild(prev); nav.appendChild(pos); nav.appendChild(next);
-            sec.appendChild(nav);
-
-            panel.appendChild(sec);
+            groups.forEach((grp, i) => {
+                const { set, total } = groupCounts(grp);
+                if (i === activeGroup) {
+                    // Expanded section: header + two-column fields.
+                    const sec = makeSection(grp.group, total > 0 ? `${set} of ${total} set` : '');
+                    const fieldsWrap = document.createElement('div');
+                    fieldsWrap.className = 'fields';
+                    for (const f of (grp.fields || [])) {
+                        fieldsWrap.appendChild(f.placeholder
+                            ? buildPlaceholderRow(f.field)
+                            : buildFieldRow(f.field, conflictByField, flagged, dropped));
+                    }
+                    sec.appendChild(fieldsWrap);
+                    panel.appendChild(sec);
+                } else {
+                    // Collapsed bar: title + set/total (or C/F) + a "+" affordance.
+                    const bar = document.createElement('button');
+                    bar.type = 'button';
+                    bar.className = 'acc-bar';
+                    const meta = total > 0 ? `${set}/${total}`
+                        : (grp.fields && grp.fields.length ? 'C/F' : '');
+                    bar.innerHTML = `<span class="acc-bar-title">${esc(grp.group)}</span>`
+                        + `<span class="acc-bar-right">${meta ? `<span class="acc-bar-meta">${esc(meta)}</span>` : ''}<span class="acc-bar-plus">+</span></span>`;
+                    bar.addEventListener('click', () => {
+                        activeGroup = i;
+                        renderAllFields(reset, dropped, conflicts);
+                    });
+                    panel.appendChild(bar);
+                }
+            });
         }
 
         // ---- Generate PN / SKU -------------------------------------------
