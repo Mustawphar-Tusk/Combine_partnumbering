@@ -182,6 +182,17 @@ SEGMENT_CUSTOM_PLACEHOLDER = {
 # Default token when a field position isn't in SEGMENT_POSITION_DEFAULT.
 _GENERIC_DEFAULT = "NONE"
 
+# Fields that MUST be explicitly selected for a segment to resolve (no silent
+# default). The Power Frame Numbering enumerates real Coupling Type / Coupling
+# Guard values for essentially every row (Coupling Guard = NONE appears in only
+# 4 of 55,452 rows), so defaulting an unselected coupling to NONE yields a
+# non-enumerated combo and a spurious '????'. Instead we REQUIRE the user to
+# pick these; until they do, the power-frame segment stays '????' and the reason
+# is surfaced in debug.needs_selection so the UI can prompt for them.
+SEGMENT_REQUIRED_FIELDS = {
+    "POWER_FRAME_OPTIONS": ("COUPLING_TYPE", "COUPLING_GUARD"),
+}
+
 # segment width (mirrors the loaded ExpectedWidth / SQL CHECK) for v0.1.
 SEGMENT_WIDTH = {
     "WET_END_OPTIONS": 4, "IMPELLER_OPTIONS": 2, "POWER_FRAME_OPTIONS": 4,
@@ -280,6 +291,13 @@ def _build_combo(selections, segment_code):
     return combo
 
 
+def _missing_required(segment_code, selections):
+    """Return the list of REQUIRED fields (SEGMENT_REQUIRED_FIELDS) that are not
+    explicitly selected for this segment. Empty list => all required present."""
+    req = SEGMENT_REQUIRED_FIELDS.get(segment_code, ())
+    return [f for f in req if _norm(selections.get(f, "")) == ""]
+
+
 def resolve_trim(selections):
     """Impeller Trim (2 chars): inch-letter + decimal-letter of IMPELLER_TRIM.
     Handles bare integers ('4' -> 4",.000") and decimals ('4.125' -> 4",.125")."""
@@ -368,7 +386,16 @@ def resolve_segments(cursor, series, size, selections):
 
     wet_end = table("WET_END_OPTIONS")
     imp_opts = table("IMPELLER_OPTIONS")
-    power = table("POWER_FRAME_OPTIONS")
+
+    # Power Frame REQUIRES explicit Coupling Type + Coupling Guard (no silent
+    # NONE default - see SEGMENT_REQUIRED_FIELDS). If either is unselected, the
+    # segment stays '????' and the missing fields are reported so the UI can
+    # prompt for them instead of producing a confusing no-match.
+    power_missing = _missing_required("POWER_FRAME_OPTIONS", selections)
+    if power_missing:
+        power = _err(SEGMENT_WIDTH["POWER_FRAME_OPTIONS"])
+    else:
+        power = table("POWER_FRAME_OPTIONS")
 
     # --- gated table-backed baseplate (v0.1: BASEPLATE=NONE row = code '00') ---
     baseplate_type = _norm(selections.get("BASEPLATE_TYPE", ""))
@@ -432,8 +459,14 @@ def resolve_segments(cursor, series, size, selections):
     # seal status (out-of-band; not in PN). "included_external_db" => code comes
     # from the external Seal Numbering DB (pending); "none" => no seal.
     seal_status = "included_external_db" if seal == "TBD__" else "none"
+    # Fields the user still must select for a segment to resolve (Option-2
+    # "require selection" behavior). Keyed by segment -> missing field codes.
+    needs_selection = {}
+    if power_missing:
+        needs_selection["power_frame_options"] = power_missing
     debug = {**payload, "seal_status": seal_status, "seal_code_placeholder": seal,
-             "py_pn": py_pn, "failed_segments": failed}
+             "py_pn": py_pn, "failed_segments": failed,
+             "needs_selection": needs_selection}
     return payload, debug
 
 

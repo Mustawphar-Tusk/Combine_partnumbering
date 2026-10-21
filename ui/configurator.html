@@ -805,6 +805,23 @@
                       onRetry: () => setStatus('Server is waking up, retrying...', 'loading') });
                 if (!resp.ok) { const err = await resp.text(); throw new Error(`Resolve error: ${resp.status} - ${err}`); }
                 const data = await resp.json();
+
+                // Option-2 "require selection": if the server reports fields that
+                // must be chosen before the PN can resolve (e.g. Coupling Type /
+                // Coupling Guard on the Power Frame), stay on the configurator and
+                // tell the user exactly what to pick instead of showing a '????' PN.
+                const needs = (data.segment_debug && data.segment_debug.needs_selection) || {};
+                const needFields = [...new Set(Object.values(needs).flat())];
+                if (needFields.length) {
+                    setStatus('', '');
+                    setNotice('<strong>Selection required</strong> before a part number '
+                        + 'can be generated: ' + needFields.map(pretty).map(esc).join(', ')
+                        + '. Please choose ' + (needFields.length > 1 ? 'these options' : 'this option')
+                        + ' in the configuration, then generate again.');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;   // do NOT navigate to the result page
+                }
+
                 document.getElementById('resPn').textContent = data.part_number;
                 document.getElementById('resSku').textContent = data.sku;
                 document.getElementById('resSig').textContent = (data.configuration_signature || '').substring(0, 24) + '...';
