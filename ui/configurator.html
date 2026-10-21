@@ -105,27 +105,54 @@
             color: var(--ink-soft); font-weight: 700; }
         .lookup-meta .m .v { font-family: 'Courier New', monospace; font-size: 14px; color: var(--ink); }
 
-        /* ---- Section (spec-sheet) layout --------------------------------- */
-        /* Masonry (column-flow) layout so each section card packs tightly
-           top-to-bottom across two columns, like the spec-sheet screenshot -
-           sections are NOT forced into aligned rows, so a short section (e.g.
-           Coupling) never leaves a big gap next to a tall one (e.g. Pump Seal). */
-        .sections { column-count: 2; column-gap: 18px; }
-        @media (max-width: 900px) { .sections { column-count: 1; } }
+        /* ---- Accordion layout (Layout A) --------------------------------- */
+        /* A left rail lists every group; the right panel shows ONLY the active
+           group's fields. Uneven group sizes never create ragged columns -
+           you focus one group at a time. Works for Dean (10 groups) and Fybroc
+           (6 groups, horizontal/vertical). */
+        .accordion { display: grid; grid-template-columns: 270px 1fr; gap: 18px;
+            align-items: start; }
+        @media (max-width: 820px) { .accordion { grid-template-columns: 1fr; } }
+
+        /* Left rail */
+        .acc-rail { background: #fff; border: 1px solid var(--line);
+            border-radius: 14px; box-shadow: var(--shadow); padding: 10px;
+            position: sticky; top: 16px; }
+        .acc-rail .rail-title { font-size: 11px; font-weight: 700; letter-spacing: .6px;
+            text-transform: uppercase; color: var(--ink-soft); padding: 6px 10px 10px; }
+        .acc-step { display: flex; align-items: center; justify-content: space-between;
+            gap: 8px; width: 100%; text-align: left; border: none; cursor: pointer;
+            background: transparent; color: var(--ink); font-size: 13px; font-weight: 600;
+            padding: 10px 12px; border-radius: 9px; margin-bottom: 2px;
+            font-family: inherit; transition: background .12s ease; }
+        .acc-step:hover { background: var(--sky-50); }
+        .acc-step.active { background: var(--sky-500); color: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+        .acc-step .pill { font-size: 10px; font-weight: 700; padding: 1px 7px;
+            border-radius: 10px; background: var(--sky-100); color: var(--sky-700); }
+        .acc-step.active .pill { background: rgba(255,255,255,.25); color: #fff; }
+        .acc-step .pill.cf { background: #e6ebef; color: #4b545c; }
+        .acc-step.active .pill.cf { background: rgba(255,255,255,.25); color: #fff; }
+
+        /* Right panel = the active section */
+        .acc-panel { display: block; }
         .section {
             background: #fff; border: 1px solid var(--line); border-radius: 14px;
-            box-shadow: var(--shadow); padding: 16px 18px;
-            /* keep a card intact within one column and give vertical rhythm */
-            break-inside: avoid; -webkit-column-break-inside: avoid;
-            page-break-inside: avoid; display: inline-block; width: 100%;
-            margin: 0 0 18px;
+            box-shadow: var(--shadow); padding: 18px 22px;
         }
         .section h3 {
-            font-size: 15px; color: var(--sky-700); font-weight: 700;
-            padding-bottom: 8px; margin-bottom: 10px;
+            font-size: 16px; color: var(--sky-700); font-weight: 700;
+            padding-bottom: 10px; margin-bottom: 14px;
             border-bottom: 2px solid var(--sky-200); letter-spacing: 0.3px;
         }
         .section .count { font-size: 11px; color: var(--ink-soft); font-weight: 500; }
+        /* Two-column field grid inside the active section (one column on narrow). */
+        .section .fields { display: grid; grid-template-columns: repeat(2, 1fr);
+            column-gap: 28px; }
+        @media (max-width: 1100px) { .section .fields { grid-template-columns: 1fr; } }
+        /* Panel footer nav (prev / next group) */
+        .acc-nav { display: flex; justify-content: space-between; align-items: center;
+            margin-top: 16px; padding-top: 14px; border-top: 1px solid #eef5fa; }
+        .acc-nav .pos { font-size: 12px; color: var(--ink-soft); }
 
         /* field row inside a section */
         .frow { display: grid; grid-template-columns: 1fr 1.2fr; gap: 10px;
@@ -237,8 +264,12 @@
             <span><span class="swatch" style="background:#9aa4ac"></span> C/F (contact factory)</span>
         </div>
 
-        <!-- Sectioned spec-sheet layout (Dean grouped; Fybroc flat). -->
-        <div class="sections" id="fieldsGrid"></div>
+        <!-- Accordion layout: left rail of groups + active group panel
+             (Dean grouped; Fybroc grouped horizontal/vertical). -->
+        <div class="accordion" id="fieldsGrid" style="display:none">
+            <div class="acc-rail" id="accRail"></div>
+            <div class="acc-panel" id="accPanel"></div>
+        </div>
 
         <div id="resultPanel" class="panel" style="display:none">
             <h2 class="section-title">✅ Configured Product</h2>
@@ -285,7 +316,8 @@
         let standardDefaults = {};
         let resolvedCodes = {};
         let orderedFields = [];
-        let fieldGroups = [];   // [{group, fields:[{field, placeholder}]}] (Dean)
+        let fieldGroups = [];   // [{group, fields:[{field, placeholder}]}] (Dean + Fybroc)
+        let activeGroup = 0;    // index of the expanded accordion group (persists across re-renders)
 
         function setStatus(msg, type) {
             const el = document.getElementById('status');
@@ -301,9 +333,11 @@
 
         function reset() {
             selections = {}; allowableOptions = {}; standardDefaults = {};
-            resolvedCodes = {}; orderedFields = []; fieldGroups = [];
+            resolvedCodes = {}; orderedFields = []; fieldGroups = []; activeGroup = 0;
             document.getElementById('series').value = '';
-            document.getElementById('fieldsGrid').innerHTML = '';
+            document.getElementById('fieldsGrid').style.display = 'none';
+            document.getElementById('accRail').innerHTML = '';
+            document.getElementById('accPanel').innerHTML = '';
             document.getElementById('resultPanel').style.display = 'none';
             document.getElementById('resolveBtn').disabled = true;
             document.getElementById('stdBtn').disabled = true;
@@ -335,8 +369,10 @@
 
         async function onSeriesChange() {
             selections = {}; allowableOptions = {}; standardDefaults = {};
-            resolvedCodes = {}; orderedFields = []; fieldGroups = [];
-            document.getElementById('fieldsGrid').innerHTML = '';
+            resolvedCodes = {}; orderedFields = []; fieldGroups = []; activeGroup = 0;
+            document.getElementById('fieldsGrid').style.display = 'none';
+            document.getElementById('accRail').innerHTML = '';
+            document.getElementById('accPanel').innerHTML = '';
             document.getElementById('resultPanel').style.display = 'none';
             setNotice('');
             await resolveState(null, {});
@@ -515,9 +551,31 @@
             return sec;
         }
 
+        // Normalize to a groups array. Both Dean and Fybroc now return
+        // field_groups; if a family ever returns none, synthesize a single
+        // "Configuration" group from orderedFields so the accordion still works.
+        function currentGroups() {
+            if (Array.isArray(fieldGroups) && fieldGroups.length) return fieldGroups;
+            return [{
+                group: 'Configuration',
+                fields: orderedFields.map(fc => ({ field: fc, placeholder: false })),
+            }];
+        }
+
+        // Count the selectable (non-placeholder) fields in a group that currently
+        // hold a value, for the little "set/total" pill in the rail.
+        function groupCounts(grp) {
+            const real = (grp.fields || []).filter(f => !f.placeholder);
+            const set = real.filter(f => selections[f.field] !== undefined
+                && selections[f.field] !== null && selections[f.field] !== '').length;
+            const cf = (grp.fields || []).filter(f => f.placeholder).length;
+            return { set, total: real.length, cf };
+        }
+
+        // Layout A — Accordion. Left rail lists all groups; the active group's
+        // fields render in a two-column grid in the right panel. activeGroup
+        // persists across re-renders so a field change doesn't collapse the view.
         function renderAllFields(reset, dropped, conflicts) {
-            const grid = document.getElementById('fieldsGrid');
-            grid.innerHTML = '';
             conflicts = conflicts || [];
             const conflictByField = {};
             for (const c of conflicts) conflictByField[c.field] = c;
@@ -525,26 +583,59 @@
             dropped = dropped || [];
             const flagged = new Set([...Object.keys(reset), ...dropped]);
 
-            // Grouped (Dean): one section card per authoritative group.
-            if (Array.isArray(fieldGroups) && fieldGroups.length) {
-                for (const grp of fieldGroups) {
-                    const sec = makeSection(grp.group);
-                    for (const f of (grp.fields || [])) {
-                        sec.appendChild(f.placeholder
-                            ? buildPlaceholderRow(f.field)
-                            : buildFieldRow(f.field, conflictByField, flagged, dropped));
-                    }
-                    grid.appendChild(sec);
-                }
-                return;
-            }
+            const groups = currentGroups();
+            if (activeGroup < 0 || activeGroup >= groups.length) activeGroup = 0;
 
-            // Flat (Fybroc): a single "Configuration" section card.
-            const sec = makeSection('Configuration', `${orderedFields.length} fields`);
-            for (const fieldCode of orderedFields) {
-                sec.appendChild(buildFieldRow(fieldCode, conflictByField, flagged, dropped));
+            document.getElementById('fieldsGrid').style.display = 'grid';
+
+            // ---- left rail --------------------------------------------------
+            const rail = document.getElementById('accRail');
+            rail.innerHTML = '<div class="rail-title">Sections</div>';
+            groups.forEach((grp, i) => {
+                const { set, total, cf } = groupCounts(grp);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'acc-step' + (i === activeGroup ? ' active' : '');
+                const pill = total > 0
+                    ? `<span class="pill">${set}/${total}</span>`
+                    : (cf > 0 ? `<span class="pill cf">C/F</span>` : '');
+                btn.innerHTML = `<span>${esc(grp.group)}</span>${pill}`;
+                btn.addEventListener('click', () => { activeGroup = i; renderAllFields(reset, dropped, conflicts); });
+                rail.appendChild(btn);
+            });
+
+            // ---- right panel: the active group ------------------------------
+            const panel = document.getElementById('accPanel');
+            panel.innerHTML = '';
+            const grp = groups[activeGroup];
+            const { set, total } = groupCounts(grp);
+            const sec = makeSection(grp.group, total > 0 ? `${set} of ${total} set` : '');
+            const fieldsWrap = document.createElement('div');
+            fieldsWrap.className = 'fields';
+            for (const f of (grp.fields || [])) {
+                fieldsWrap.appendChild(f.placeholder
+                    ? buildPlaceholderRow(f.field)
+                    : buildFieldRow(f.field, conflictByField, flagged, dropped));
             }
-            grid.appendChild(sec);
+            sec.appendChild(fieldsWrap);
+
+            // prev / next nav
+            const nav = document.createElement('div');
+            nav.className = 'acc-nav';
+            const prev = document.createElement('button');
+            prev.className = 'btn ghost'; prev.textContent = '← Previous';
+            prev.disabled = activeGroup === 0;
+            prev.addEventListener('click', () => { activeGroup = Math.max(0, activeGroup - 1); renderAllFields(reset, dropped, conflicts); });
+            const pos = document.createElement('div');
+            pos.className = 'pos'; pos.textContent = `Section ${activeGroup + 1} of ${groups.length}`;
+            const next = document.createElement('button');
+            next.className = 'btn'; next.textContent = 'Next →';
+            next.disabled = activeGroup === groups.length - 1;
+            next.addEventListener('click', () => { activeGroup = Math.min(groups.length - 1, activeGroup + 1); renderAllFields(reset, dropped, conflicts); });
+            nav.appendChild(prev); nav.appendChild(pos); nav.appendChild(next);
+            sec.appendChild(nav);
+
+            panel.appendChild(sec);
         }
 
         // ---- Generate PN / SKU -------------------------------------------
