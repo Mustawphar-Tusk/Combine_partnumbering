@@ -885,6 +885,54 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
         hp_to_rpm.setdefault(str(hp_v).strip().lower(), set()).add(
             str(rpm_v).strip().lower())
 
+    # DEAN WET-END COMBINATION ALLOW-LIST. The Wet End Numbering "combinations"
+    # block (stg.SegmentCombinationImport, SegmentCode='WET_END_OPTIONS') is the
+    # authoritative allow-list of buildable wet-end option combinations: a full
+    # combination with no enumerated row is NOT an allowed build (and has no part
+    # number). We load every combo row's SelectionsJson (field_code -> value) once
+    # here, lowercased, so _apply_constraints can restrict each wet-end field to
+    # values that keep at least one coded combination reachable given the other
+    # wet-end picks. Dean-only; None for every other family (no-op -> Fybroc and
+    # others are completely unaffected).
+    # authoritative allow-list of buildable option combinations for that segment:
+    # a full combination with no enumerated row is NOT an allowed build (and has
+    # no part-number code). We load every combo row's SelectionsJson
+    # (field_code -> value) once here, both lowercased (for case-insensitive
+    # matching) and original-cased (for writing values back / snapping STD), so
+    # _apply_constraints can restrict each segment field to values that keep at
+    # least one coded combination reachable given the other picks in that segment.
+    # Applied to the Dean WET_END and POWER_FRAME numbering segments. Dean-only;
+    # empty for every other family (no-op -> Fybroc and others are unaffected).
+    combo_allowlists: dict[str, dict] = {}
+    fam_code_row = cursor.execute(
+        "SELECT FamilyCode FROM cfg.PumpFamily WHERE PumpFamilyId = ?", family_id
+    ).fetchone()
+    if fam_code_row and str(fam_code_row[0]).upper() == "DEAN":
+        from . import dean_identifier as _dean_id
+        _bid = _dean_id._dean_batch_id(cursor)
+        if _bid and _bid > 0:
+            for _seg in ("WET_END_OPTIONS", "POWER_FRAME_OPTIONS"):
+                seg_fields = list(_dean_id.SEGMENT_FIELD_ORDER[_seg])
+                rows_lc = []    # lowercased, for case-insensitive matching
+                rows_orig = []  # original-cased (parallel), for writing back
+                for (sj,) in cursor.execute(
+                    "SELECT SelectionsJson FROM stg.SegmentCombinationImport "
+                    "WHERE ImportBatchId = ? AND SegmentCode = ?", _bid, _seg
+                ).fetchall():
+                    try:
+                        d = json.loads(sj)
+                    except (ValueError, TypeError):
+                        continue
+                    orig = {f: str(d.get(f, "")).strip() for f in seg_fields}
+                    rows_lc.append({f: orig[f].lower() for f in seg_fields})
+                    rows_orig.append(orig)
+                if rows_lc:
+                    combo_allowlists[_seg] = {
+                        "fields": seg_fields,
+                        "rows": rows_lc,
+                        "rows_orig": rows_orig,
+                    }
+
     return {
         "series": series,
         "label_to_sfo": label_to_sfo,
@@ -893,7 +941,79 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
         "mc_fwd": mc_fwd,
         "mc_rev": mc_rev,
         "hp_to_rpm": hp_to_rpm,
+        "combo_allowlists": combo_allowlists,
     }
+
+
+def _dean_std_combo_autoadjust(cursor, pub_id, family_id, series, selections):
+    """STD seed auto-adjust for Dean numbering segments (currently WET_END only;
+    power-frame STD snapping is deferred to the standard-fields work). If the
+    STD-seeded combination for a covered segment has no enumerated (coded) row,
+    snap that segment's fields to the NEAREST coded combination and mutate
+    `selections` in place. Returns {field_code: new_value} for every field
+    changed (empty if already coded). The segment's first field (Pump Material)
+    is weighted so the snap keeps the anchoring value; ties break to the earliest
+    (standard) sheet row. The chosen value is always an enumerated option, so the
+    segment always resolves to a real code.
+
+    "Nearest" = the coded combination row that agrees with the most seeded
+    wet-end values, with Pump Material weighted highest (it anchors the material
+    family), then the sheet's own order as a tiebreaker (lowest row = standard).
+    Presentation/seed convenience only - it never invents a value outside the
+    enumerated combinations, so the resulting combo always has a part-number code.
+    """
+    ctx = _load_constraint_context(cursor, pub_id, family_id, series)
+    allowlists = ctx.get("combo_allowlists") or {}
+    # STD auto-adjust (snapping the STD seed onto a coded combination) is DEFERRED
+    # for every segment until the Dean standard-fields work: the standard values
+    # per series come from the authoritative standard-config source, not from
+    # snapping to the nearest enumerated row (which could pick a value the series
+    # does not even offer). For now we ONLY ENFORCE each segment's combinations as
+    # the allow-list (in _apply_constraints); we do not rewrite the STD seed here.
+    STD_AUTOADJUST_SEGMENTS = ()
+    changed: dict[str, str] = {}
+    for _seg, al in allowlists.items():
+        if _seg not in STD_AUTOADJUST_SEGMENTS:
+            continue
+        seg_fields = al["fields"]
+        rows = al["rows"]              # lowercased (for matching)
+        rows_orig = al["rows_orig"]    # original-cased (for writing)
+        if not rows:
+            continue
+        seeded = {f: str(selections.get(f, "")).strip().lower() for f in seg_fields}
+
+        # Already a coded combination for this segment? (exact on every field)
+        if any(all(row.get(f, "") == seeded[f] for f in seg_fields) for row in rows):
+            continue
+
+        # Score each coded row by agreement with the seeded values. The segment's
+        # FIRST field (Pump Material / Shaft Configuration) anchors the family, so
+        # weight it; then total matches; tie -> earliest (standard) sheet row.
+        anchor = seg_fields[0]
+
+        def _score(idx, _rows=rows, _anchor=anchor, _fields=seg_fields, _seeded=seeded):
+            row = _rows[idx]
+            a = 3 if row.get(_anchor, "") == _seeded.get(_anchor, "") else 0
+            matches = sum(1 for f in _fields if row.get(f, "") == _seeded[f])
+            return (a, matches, -idx)
+
+        best = rows_orig[max(range(len(rows)), key=_score)]  # original-cased
+
+        # Overwrite the seeded fields that differ, using the chosen coded row's
+        # ORIGINAL-cased value (the numbering sheet is the authority for the
+        # segment key's casing, so this always hashes to a real code).
+        for f in seg_fields:
+            target = best.get(f, "")       # original case
+            if target.strip().lower() == seeded.get(f, ""):
+                continue
+            if target == "":
+                if f in selections:
+                    del selections[f]
+                    changed[f] = ""
+                continue
+            selections[f] = target
+            changed[f] = target
+    return changed
 
 
 def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
@@ -999,6 +1119,54 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
                 v for v in allowable[target_field]
                 if str(v).strip().lower() not in deny_set
             ]
+
+    # DEAN NUMBERING COMBINATION ALLOW-LISTS. Each segment's enumerated-
+    # combinations block (Wet End Numbering, Power Frame Numbering) is the
+    # authoritative set of buildable option combinations for that segment. For
+    # each UNSELECTED field in the segment, keep ONLY values that still have at
+    # least one enumerated combination row consistent with the OTHER fields of
+    # that segment already selected. This guarantees the configurator can never
+    # reach a combination the workbook does not code (no '????' part number), and
+    # it narrows dependent fields the way the sheet does (e.g. Casing Mounting =
+    # 'Yoke Foot' drops once Pump Material = Ductile Iron; Coupling Guard narrows
+    # once Coupling Type / Shaft Configuration are chosen). No-op for non-Dean
+    # (combo_allowlists is empty), so Fybroc is unaffected. Fields are filtered
+    # only WITHIN the same segment, so the two segments never cross-constrain.
+    for _seg, al in (ctx.get("combo_allowlists") or {}).items():
+        seg_fields = al["fields"]
+        combo_rows = al["rows"]
+        # Context = this segment's fields the user has already chosen (non-blank).
+        sel_ctx = {
+            f: _sel_norm[f] for f in seg_fields
+            if f in _sel_norm and _sel_norm[f] != ""
+        }
+        # Rows consistent with every chosen field in this segment.
+        matching = [
+            row for row in combo_rows
+            if all(row.get(f, "") == v for f, v in sel_ctx.items())
+        ]
+        # FAIL OPEN when the current context matches no coded combination: the
+        # chosen context is already off the enumerated set (e.g. a deferred-
+        # standard-fields power frame, or a value another constraint forced), so
+        # narrowing the remaining fields to nothing would create a false dead end.
+        # In that case we leave this segment's fields unconstrained (the config
+        # simply won't resolve to a code until it's back on an enumerated combo).
+        if not matching:
+            continue
+        # For each UNSELECTED segment field present in `allowable`, restrict to
+        # the values that appear in at least one matching combination row - but
+        # never prune a field to empty (fail open per-field too, so a single
+        # off-sheet field can't dead-end the rest).
+        for f in seg_fields:
+            if f in sel_ctx or f not in allowable:
+                continue
+            reachable = {row.get(f, "") for row in matching}
+            narrowed = [
+                v for v in allowable[f]
+                if str(v).strip().lower() in reachable
+            ]
+            if narrowed:
+                allowable[f] = narrowed
 
     # MOTOR CONSTRAINT ENFORCEMENT (cfg.MotorConstraint - ALLOW-LISTs).
     # Uses the pre-indexed motor map (ctx) instead of per-call SQL.
@@ -1669,12 +1837,26 @@ async def resolve_configuration_state(
         }
 
         # (a) STD seed when nothing selected: start every field at its STD.
+        std_combo_adjusted: dict[str, str] = {}
         if not incoming:
             selections = {
                 fc: standard_defaults[fc]
                 for fc in all_options
                 if fc in standard_defaults
             }
+            # STD COMBINATION AUTO-ADJUST (Dean). The Pump Constraints STD markers
+            # can seed a WET-END or POWER-FRAME combination the numbering sheet
+            # does not code (e.g. RA3146 seeds Casing Mounting='Yoke Foot' with
+            # Ductile Iron, which the sheet only codes with stainless). Since each
+            # segment's combinations block is the allow-list, such an STD is not a
+            # buildable combo. When that happens, snap the seeded fields to the
+            # NEAREST coded combination (keeping the anchoring value + as many
+            # seeded values as possible), so a freshly-seeded config is always
+            # numberable. Changed fields are reported in reset_fields. Dean-only.
+            if family_upper == "DEAN":
+                std_combo_adjusted = _dean_std_combo_autoadjust(
+                    cursor, pub_id, family_id, body.series, selections
+                )
         else:
             selections = dict(incoming)
 
@@ -1779,6 +1961,15 @@ async def resolve_configuration_state(
 
         reset_fields: dict[str, str] = {}
         dropped_fields: set[str] = set()
+
+        # Seed-time combination auto-adjust (Dean): report any wet-end / power-
+        # frame fields the STD seed snapped to a coded combination so the UI flags
+        # what changed.
+        for _f, _v in std_combo_adjusted.items():
+            if _v == "":
+                dropped_fields.add(_f)
+            else:
+                reset_fields[_f] = _v
 
         # (c) NON-DESTRUCTIVE re-resolution. The user's explicit selections are
         # NEVER silently changed. We only:
