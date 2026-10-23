@@ -3,7 +3,21 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.24).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.27).
+>
+> **2026-08-26 (v1.27):** Dean CONFIGURATION RE-EXTRACT CERTIFICATION (D110,
+> verify-only; no schema/loader/data/runtime change). Re-ran the authoritative
+> loader (d110_load_dean_config_v01.py) against PumpConfiguration_Logic_0.1.xlsm
+> "Pump Constraints" per the user's explicit 67-group column map and full row range
+> (4–209 = 206 models). Loader already matched the spec: dry-run 206 models / 37
+> series / 68 fields / 11,786 STD cells / 0 unmapped; real reload reproduced the
+> baseline EXACTLY (SFO 48,063; FeasibleConstraint 256 = 251 2-leg + 5 3-leg; 519
+> seal tuples still deferred) with ZERO file/DB diff (git clean). Live resolve-state
+> verified across the sheet incl. row-167+ (RM5140, Deanline): all valid, SIZE
+> present, STD seeded, no dead ends. audit_dean_config 28/0; audit_dean_codependencies
+> 13/0; run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9; FYBROC unchanged (4487 /
+> 3638 / 28). D150 not started. See
+> `docs/evidence/D110/DEAN_D110_CONFIG_REEXTRACT_CERTIFICATION.md`.
 >
 > **2026-08-26 (v1.15):** FYBROC constraint/config authority moved to
 > `Fybroc Configuration Rev0.4.xlsx` (supersedes Rev0.3). Content is byte-identical

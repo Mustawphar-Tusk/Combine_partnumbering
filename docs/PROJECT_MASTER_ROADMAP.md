@@ -1069,10 +1069,11 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.26
+Version:            1.27
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D155 (Dean Codependencies Certification) COMPLETE
+Current Milestone:  D110 config RE-EXTRACT CERTIFICATION COMPLETE (verify-only).
+                    D155 (Dean Codependencies Certification) COMPLETE
                     (verify-only). D145 (Dean UI Selection-Hierarchy
                     Rearrangement) COMPLETE. D140 (Dean Excel Oracle) COMPLETE.
                     Next permitted: D150 (Exhaustive Dean Regression) — do NOT
@@ -1083,6 +1084,28 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.27): Dean CONFIGURATION RE-EXTRACT CERTIFICATION (D110, verify-only; no
+schema/loader/data/runtime change). On user request ("re-extract Dean's
+configuration ... STD and allowable ... datasheet: Pump Constraints" + explicit
+67-group column map; row range "the full load: 4–209: full sheet"), re-ran the
+authoritative loader scripts/d110_load_dean_config_v01.py against
+PumpConfiguration_Logic_0.1.xlsm "Pump Constraints". Confirmed the loader already
+implements the user's exact column map (A/B/C identity; 68 row-2 groups, 0 skipped
+— e.g. Pump Config E–L, Pump Material N–V, Casing Material X–AF, Impeller Trim
+CN–GH=99, Seal Type JX–LC=32, Frame Size RC–UH=84, Crating WA–WE) over the full
+sheet (data rows 4–209 = 206 models). Dry-run 206 models / 37 series / 68 fields /
+11,786 STD cells / 0 unmapped. Real Dean-only reload reproduced the published
+baseline EXACTLY (cfg.SeriesFieldOption DEAN 48,063; FeasibleConstraint DEAN 256 =
+251 2-leg + 5 3-leg; 519 seal tuples still DEFERRED pending A1 crosswalk) —
+git status clean, ZERO file/DB diff. Live resolve-state verified for RA3146,
+PH2110, DL200, R5140, and the row-167+ models RM5140 + Deanline (all valid, SIZE
+present, STD seeded, no empty-option dead ends). audit_dean_config 28/0;
+audit_dean_codependencies 13/0 (FYBROC FeasibleConstraint unchanged 4487);
+run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9; FYBROC row counts unchanged
+(Feasible 4487, SFO 3638, CFM 28). Casing Heat Jacket + Shipping Gasket remain
+offered options that do NOT drive the wet-end PN (unchanged, separate). D150 still
+not started. See docs/evidence/D110/DEAN_D110_CONFIG_REEXTRACT_CERTIFICATION.md.
 
 CHANGE (v1.26): Dean Codependencies CERTIFICATION (D155, verify-only; no
 schema/loader/data/runtime change). Certified that the authoritative PCL v0.1
