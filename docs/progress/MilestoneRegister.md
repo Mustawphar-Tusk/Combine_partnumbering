@@ -3,7 +3,22 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.27).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.28).
+>
+> **2026-08-26 (v1.28):** Dean CONFIG FIELD-ACCURACY AUDIT (all fields) +
+> Custom->C/F relabel (D110; Dean-only data change, Fybroc frozen). Proved DB
+> cfg.SeriesFieldOption (DEAN) is a BYTE-EXACT image of PumpConfiguration_Logic_0.1
+> "Pump Constraints" across every (series,size,field) via new
+> scripts/audit_dean_config_accuracy.py (independent oracle re-parse): 8/0, 0
+> MISSING/EXTRA/STD-mismatch (206 models, 68 fields, 48,063 rows, STD 11,786).
+> Relabeled sheet value "Custom" (customer-request, outside standard offering) to
+> C/F in loader _norm_value: 2,329 SFO rows/20 fields (all X) + 4 codep legs; totals
+> unchanged. Live API cross-check (new audit_dean_config_accuracy_live.py) 6/6
+> models, 286 STD-exact + 326 no-leak, 0 fail. Regression audit_dean_config 28/0,
+> audit_dean_codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9;
+> FYBROC unchanged (4487/28/3638). Pending: C/F downstream quote/numbering logic,
+> BARRIER_PLAN (no per-model STD/X, deferred seal quad A1), 519 seal codep tuples.
+> See `docs/evidence/D110/DEAN_D110_FIELD_ACCURACY_AUDIT.md`.
 >
 > **2026-08-26 (v1.27):** Dean CONFIGURATION RE-EXTRACT CERTIFICATION (D110,
 > verify-only; no schema/loader/data/runtime change). Re-ran the authoritative

@@ -113,6 +113,15 @@ def _norm_value(field_code, value):
     v = str(value).strip()
     if field_code in ("BARRIER_PLAN", "FLUSH_PLAN") and v.upper().startswith("PLAN "):
         return "Plan " + v[5:]
+    # "Custom" on the Pump Constraints sheet means a customer-specific option
+    # OUTSIDE the standard offering (configure-to-order). We surface it with the
+    # project's Contact-Factory marker C/F so it is clearly an engage-factory
+    # placeholder rather than a selectable standard value; the downstream logic
+    # that quotes/numbers a C/F selection is a pending-engineering item. Applied
+    # uniformly to BOTH the per-model option rows AND the codependency allow-tuple
+    # legs (both flow through here), so enforcement stays consistent. Dean-only.
+    if v.lower() == "custom":
+        return "C/F"
     return v
 
 

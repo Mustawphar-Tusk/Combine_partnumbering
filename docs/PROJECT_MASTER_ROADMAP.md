@@ -1069,10 +1069,12 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.27
+Version:            1.28
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 config RE-EXTRACT CERTIFICATION COMPLETE (verify-only).
+Current Milestone:  D110 config FIELD-ACCURACY AUDIT + Custom->C/F relabel
+                    COMPLETE. D110 config RE-EXTRACT CERTIFICATION COMPLETE
+                    (verify-only).
                     D155 (Dean Codependencies Certification) COMPLETE
                     (verify-only). D145 (Dean UI Selection-Hierarchy
                     Rearrangement) COMPLETE. D140 (Dean Excel Oracle) COMPLETE.
@@ -1084,6 +1086,31 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.28): Dean CONFIG FIELD-ACCURACY AUDIT (all fields) + Custom->C/F
+relabel (D110; Dean-only data change, Fybroc frozen). Proved the DB
+cfg.SeriesFieldOption (DEAN) is a BYTE-EXACT image of the authoritative
+PumpConfiguration_Logic_0.1.xlsm "Pump Constraints" sheet across EVERY
+(series,size,field): new scripts/audit_dean_config_accuracy.py independently
+re-parses the sheet as oracle (shares only the norm_label/_norm_value
+canonicalization contract) and diffs cell-for-cell -> 8/0, 0 MISSING, 0 EXTRA,
+0 STD/marker mismatch, 0 field-presence diffs (206 models, 37 series, 68 mapped
+fields, 48,157 raw STD/X cells -> 48,063 distinct rows, STD 11,786==11,786; 94
+duplicate value-header columns collapse). Per user clarification, sheet value
+"Custom" (customer-request option outside the standard offering) is relabeled to
+C/F (Contact Factory) in loader _norm_value() -> applies to BOTH per-model option
+rows AND codependency legs: 2,329 'Custom' SFO rows across 20 fields (all X, never
+STD) became 'C/F', and 4 non-seal codep legs (CASING_TAPS/CASING_GASKET/
+IMPELLER_TRIM) became 'C/F'; totals unchanged (SFO 48,063; FeasibleConstraint 256).
+DB==sheet audit still 8/0 after relabel. New scripts/audit_dean_config_accuracy_live.py
+proves the API projects the data (6/6 models incl. row-167+ RM5140; 286 STD-exact
++ 326 no-leak checks, 0 fail). Regression: audit_dean_config 28/0,
+audit_dean_codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9;
+FYBROC watermarks unchanged (FeasibleConstraint 4487, ConstraintFieldMap 28,
+SeriesFieldOption 3638). Pending-engineering (disclosed): C/F downstream
+quote/numbering logic not yet built; BARRIER_PLAN has no per-model STD/X by design
+(governed by deferred seal quad A1); 519 seal codep tuples still deferred. D150 not
+started. See docs/evidence/D110/DEAN_D110_FIELD_ACCURACY_AUDIT.md.
 
 CHANGE (v1.27): Dean CONFIGURATION RE-EXTRACT CERTIFICATION (D110, verify-only; no
 schema/loader/data/runtime change). On user request ("re-extract Dean's
