@@ -1017,7 +1017,7 @@ def _dean_std_combo_autoadjust(cursor, pub_id, family_id, series, selections):
 
 
 def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
-                       ctx=None):
+                       ctx=None, std_defaults=None):
     """Apply the authoritative constraints (feasible + motor + combine HP->RPM)
     to `allowable` in place, given the current `selections` as context.
 
@@ -1034,7 +1034,21 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
     caller that filters many fields in one request avoid re-querying the constant
     constraint tables per field. When omitted, the context is loaded here, so the
     behavior is identical whether or not a context is supplied.
+
+    `std_defaults`, when provided, is {field_code -> STANDARD value} for the
+    current (series, size) from the authoritative Pump Constraints matrix. A
+    field's STD value is, by definition, part of a complete valid shippable
+    configuration, so the feasible-constraint ALLOW/DENY filter must NEVER remove
+    a field's own STD value. This guards against a codependency allow-list whose
+    source vocabulary does not line up with the Pump Constraints offered values
+    (e.g. a "Casing Mounting" sub-block that actually enumerates cooling-plan
+    piping accessories), which would otherwise wrongly prune a sheet-STD value and
+    surface a false STD-vs-STD conflict. Protecting STD does NOT weaken the
+    constraint for any NON-STD value. None -> no STD protection (legacy
+    behavior); keys upper-cased, values compared case-insensitively.
     """
+    _std_norm = {k.upper(): str(v).strip().lower()
+                 for k, v in (std_defaults or {}).items()}
     if ctx is None:
         ctx = _load_constraint_context(cursor, pub_id, family_id, series)
 
@@ -1104,20 +1118,26 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
             continue
         allow_set = allowed_by.get((tname, target_field), set())
         deny_set = notallowed_by.get((tname, target_field), set())
+        # The field's own authoritative STD value is always buildable and must
+        # never be filtered out by a feasible-constraint table (see std_defaults
+        # in the docstring). Non-STD values are filtered exactly as before.
+        _std_v = _std_norm.get(target_field)
         if allow_set:
             # Restrict ONLY within the domain this table governs; a target value
             # the table never mentions is not constrained by this table.
             governed = governed_targets.get((tname, target_field), set())
             allowable[target_field] = [
                 v for v in allowable[target_field]
-                if (str(v).strip().lower() not in governed
-                    or str(v).strip().lower() in allow_set)
-                and str(v).strip().lower() not in deny_set
+                if str(v).strip().lower() == _std_v
+                or ((str(v).strip().lower() not in governed
+                     or str(v).strip().lower() in allow_set)
+                    and str(v).strip().lower() not in deny_set)
             ]
         elif deny_set:
             allowable[target_field] = [
                 v for v in allowable[target_field]
-                if str(v).strip().lower() not in deny_set
+                if str(v).strip().lower() == _std_v
+                or str(v).strip().lower() not in deny_set
             ]
 
     # DEAN NUMBERING COMBINATION ALLOW-LISTS. Each segment's enumerated-
@@ -1161,9 +1181,17 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
             if f in sel_ctx or f not in allowable:
                 continue
             reachable = {row.get(f, "") for row in matching}
+            # A field's own authoritative STD value is always buildable and is
+            # kept even if the currently-matching enumerated combinations do not
+            # cover it (same STD-is-authoritative rule as the feasible filter: the
+            # Pump Constraints STD matrix wins over a numbering-combination gap, so
+            # the standard config never has its STD pruned to a conflict). Non-STD
+            # values are still narrowed to the reachable combination set.
+            _std_v = _std_norm.get(f)
             narrowed = [
                 v for v in allowable[f]
                 if str(v).strip().lower() in reachable
+                or str(v).strip().lower() == _std_v
             ]
             if narrowed:
                 allowable[f] = narrowed
@@ -1663,8 +1691,14 @@ async def evaluate_configuration(family: str, body: EvaluateRequest, request: Re
         # unselected fields' options in `allowable` given the effective (pruned)
         # selections. See _apply_constraints for the full data-driven semantics
         # (feasible allow/deny per table, motor allow-lists, HP->RPM pairs).
+        # STD protection is DEAN-ONLY: it guards against the Dean Codependencies-
+        # vs-Pump-Constraints vocabulary mismatch pruning a sheet-STD value. Fybroc
+        # has no such mismatch and its constraints may legitimately prune a field's
+        # default in context (e.g. CT20 MotorControl x ShaftGrounding), so Fybroc
+        # passes std_defaults=None -> byte-for-byte unchanged behavior.
         _apply_constraints(
-            cursor, pub_id, family_id, body.series, effective_selections, allowable
+            cursor, pub_id, family_id, body.series, effective_selections, allowable,
+            std_defaults=(standard_defaults if family_upper == "DEAN" else None),
         )
 
         # Resolve identifier codes for the effective (pruned) selections.
@@ -1931,9 +1965,14 @@ async def resolve_configuration_state(
             selection as context (omni-directional)."""
             context = {k: v for k, v in sel.items() if k != target}
             box = {target: list(all_options.get(target, []))}
+            # STD protection is DEAN-ONLY (see /evaluate note): Fybroc passes
+            # std_defaults=None so its constraint behavior is byte-for-byte
+            # unchanged; only Dean guards its sheet-STD values from the
+            # Codependencies-vocabulary-mismatch pruning.
             _apply_constraints(
                 cursor, pub_id, family_id, body.series, context, box,
                 ctx=constraint_ctx,
+                std_defaults=(standard_defaults if family_upper == "DEAN" else None),
             )
             return box.get(target, [])
 

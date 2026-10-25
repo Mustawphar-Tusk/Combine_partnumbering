@@ -3,7 +3,25 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.28).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.29).
+>
+> **2026-08-26 (v1.29):** Dean STD-CONSISTENCY fix (D110; Dean-only runtime fix,
+> Fybroc frozen; no DB/schema/loader change). CNV206/1X1.5X6 wrongly reported
+> Cooling Plan STD incompatible with the standard selection. Root cause: a
+> source-vocabulary-inconsistent Dean Codependencies sub-block ('Casing Mounting'
+> stacked under Cooling Plan, enumerating piping accessories) made _apply_constraints
+> prune CASING_MOUNTING=NONE (the sheet STD) -> false conflict; widespread (0/7
+> sample pre-fix across 3 codep tables + a numbering-combination gap). FIX: a
+> field's authoritative Pump-Constraints STD value is never pruned by a constraint
+> (std_defaults guard in _apply_constraints feasible + Dean combination blocks,
+> threaded from /evaluate + resolve-state). Scoped DEAN-ONLY after the universal
+> version regressed Fybroc CT20 (Fybroc defaults can legitimately be pruned);
+> Fybroc std_defaults=None -> unchanged. New scripts/audit_dean_std_consistency.py
+> --all 206/206. Non-STD enforcement intact; audit_dean_config 28/0;
+> audit_dean_codependencies 13/0; run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9;
+> FYBROC watermarks unchanged (4487/28/3638). Pending: full reconciliation of the
+> vocab-mismatch Codependencies sub-blocks (deferred, seal-A1 class). See
+> `docs/evidence/D110/DEAN_D110_STD_CONSISTENCY_FIX.md`.
 >
 > **2026-08-26 (v1.28):** Dean CONFIG FIELD-ACCURACY AUDIT (all fields) +
 > Custom->C/F relabel (D110; Dean-only data change, Fybroc frozen). Proved DB

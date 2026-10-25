@@ -1069,12 +1069,13 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.28
+Version:            1.29
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 config FIELD-ACCURACY AUDIT + Custom->C/F relabel
-                    COMPLETE. D110 config RE-EXTRACT CERTIFICATION COMPLETE
-                    (verify-only).
+Current Milestone:  D110 STD-CONSISTENCY fix COMPLETE (Dean sheet-STD never
+                    pruned by a constraint; 206/206). D110 config FIELD-ACCURACY
+                    AUDIT + Custom->C/F relabel COMPLETE. D110 config RE-EXTRACT
+                    CERTIFICATION COMPLETE (verify-only).
                     D155 (Dean Codependencies Certification) COMPLETE
                     (verify-only). D145 (Dean UI Selection-Hierarchy
                     Rearrangement) COMPLETE. D140 (Dean Excel Oracle) COMPLETE.
@@ -1086,6 +1087,33 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.29): Dean STD-CONSISTENCY fix (D110; Dean-only runtime constraint
+fix, Fybroc frozen; no DB/schema/loader change). Reported: CNV206/1X1.5X6 showed
+Cooling Plan STD as incompatible with the standard selection though the sheet
+marks it STD-compatible. Root cause (runtime, NOT a parse bug): the Dean
+Codependencies sheet stacks several sub-blocks in the same two columns; the
+'Casing Mounting' sub-block is source-vocabulary-inconsistent (its COOLING_PLAN=
+NONE row allows cooling-plan piping accessories, not casing-mounting values, and
+has no (NONE,NONE) row), so _apply_constraints' allow-list pruned CASING_MOUNTING=
+NONE (the sheet STD) -> false 'CASING_MOUNTING conflicts_with COOLING_PLAN'. New
+audit scripts/audit_dean_std_consistency.py showed the problem was WIDESPREAD
+(0/7 sample pre-fix) across CASING_MOUNTING<->COOLING_PLAN, BEARING_LUBRICATION<->
+OILER_OPTIONS, BEARING_LUBRICATION<->BEARING_SEAL, plus a numbering-combination gap
+(RM5140 Yoke Foot). FIX: a field's authoritative Pump-Constraints STD value is
+never pruned by a constraint (STD is by definition a valid shippable config);
+added std_defaults protection to _apply_constraints' feasible allow/deny block AND
+the Dean numbering-combination block, threaded from /evaluate + resolve-state.
+SCOPED DEAN-ONLY after the first (universal) version regressed Fybroc
+(audit_feasible_constraints 43/1: CT20 MotorControl x ShaftGrounding) — Fybroc
+field defaults CAN be legitimately pruned, so Fybroc passes std_defaults=None
+(byte-for-byte unchanged). Non-STD enforcement intact (Dean fail-closed still
+prunes 3 CASING_GASKET). Verified: audit_dean_std_consistency --all 206/206;
+CNV206/1x1.5x6 conflicts=[]; RM5140 Yoke Foot kept; audit_dean_config 28/0;
+audit_dean_codependencies 13/0; run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9;
+FYBROC watermarks unchanged (4487/28/3638). Pending: full source reconciliation of
+the vocab-mismatch Codependencies sub-blocks (same class as deferred seal A1). D150
+not started. See docs/evidence/D110/DEAN_D110_STD_CONSISTENCY_FIX.md.
 
 CHANGE (v1.28): Dean CONFIG FIELD-ACCURACY AUDIT (all fields) + Custom->C/F
 relabel (D110; Dean-only data change, Fybroc frozen). Proved the DB
