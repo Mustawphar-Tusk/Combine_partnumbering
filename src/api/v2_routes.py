@@ -578,12 +578,25 @@ DEAN_PUMP_CONFIG_INCLUDES = {
 }
 
 
+# Component groups whose fields the PUMP_CONFIGURATION bundle may still HIDE when
+# excluded. Per the authoritative Pump Constraints matrix, the Baseplate fields
+# (BASEPLATE_TYPE, DRIP_PAN, ALIGNMENT_LUGS, ...) and the Coupling fields
+# (COUPLING_TYPE, COUPLING_GUARD) are marked STANDARD (value NONE / Not Required)
+# on EVERY model - including Pump-Only models - so they are ALWAYS applicable and
+# must always display + STD-seed regardless of the bundle. Only MOTOR stays
+# bundle-gated (FRAME_SIZE is not a Pump-Constraints standard field; it comes from
+# the motor tables and only applies when the bundle includes a motor). Dean-only.
+DEAN_BUNDLE_GATED_COMPONENTS = {"MOTOR"}
+
+
 def _dean_pump_config_excluded_fields(selections: dict) -> set[str]:
     """Fields that are NOT applicable given the chosen PUMP_CONFIGURATION bundle.
 
-    Returns the union of component-group fields for every group the bundle
-    excludes (Baseplate/Coupling/Motor). Empty set when PUMP_CONFIGURATION is
-    unset or not a recognized Dean bundle (so non-Dean configs are unaffected).
+    Only components in DEAN_BUNDLE_GATED_COMPONENTS (currently just MOTOR) are
+    bundle-gated. Baseplate and Coupling are authoritative-standard on every model
+    (Pump Constraints), so they are never excluded here - they always display and
+    STD-seed. Empty set when PUMP_CONFIGURATION is unset or not a recognized Dean
+    bundle (so non-Dean configs are unaffected).
     """
     pc = None
     for k, v in selections.items():
@@ -595,7 +608,7 @@ def _dean_pump_config_excluded_fields(selections: dict) -> set[str]:
     included = DEAN_PUMP_CONFIG_INCLUDES[pc]
     excluded = set()
     for group, fields in DEAN_COMPONENT_GROUP_FIELDS.items():
-        if group not in included:
+        if group in DEAN_BUNDLE_GATED_COMPONENTS and group not in included:
             excluded |= fields
     return excluded
 
@@ -614,7 +627,11 @@ def _dean_excluded_components(selections: dict) -> set[str]:
     if pc is None or pc not in DEAN_PUMP_CONFIG_INCLUDES:
         return set()
     included = DEAN_PUMP_CONFIG_INCLUDES[pc]
-    return {g for g in DEAN_COMPONENT_GROUP_FIELDS if g not in included}
+    # Only bundle-gated components (MOTOR) can be dropped wholesale; Baseplate and
+    # Coupling are authoritative-standard and always shown (see
+    # DEAN_BUNDLE_GATED_COMPONENTS / _dean_pump_config_excluded_fields).
+    return {g for g in DEAN_COMPONENT_GROUP_FIELDS
+            if g in DEAN_BUNDLE_GATED_COMPONENTS and g not in included}
 
 
 # Maps an authoritative presentation GROUP (DEAN_FIELD_GROUPS) to the component

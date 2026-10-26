@@ -1069,10 +1069,12 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.30
+Version:            1.31
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 FLUSH PLAN configurable options + 185-combination
+Current Milestone:  D110 BASEPLATE+COUPLING always-applicable (display + STD seed)
+                    COMPLETE (option A + Coupling; only MOTOR stays bundle-gated).
+                    D110 FLUSH PLAN configurable options + 185-combination
                     enforcement COMPLETE (option A, 5 fields, Custom->C/F).
                     D110 STD-CONSISTENCY fix COMPLETE (Dean sheet-STD never
                     pruned by a constraint; 206/206). D110 config FIELD-ACCURACY
@@ -1089,6 +1091,33 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.31): Dean BASEPLATE + COUPLING always-applicable fix (D110; Dean-only
+runtime change, Fybroc frozen; no DB/schema/loader change). Reported: the 9
+Baseplate fields (BASEPLATE_TYPE, DRIP_PAN, ALIGNMENT_LUGS, LIFTING_LUGS,
+LEVELLING_SCREWS, GROUNDING_LUG, GROUT_HOLE, ISOLATION_PADS, STILTS) were not
+displayed/STD-seeded for the majority of Dean series. Root cause (runtime, data was
+correct): PUMP_CONFIGURATION bundle gating dropped Baseplate/Coupling/Motor fields
+when the bundle excluded them, but the STD bundle for most models is 'Pump Only' /
+'Pump and Motor' -> all baseplate+coupling fields dropped, though the Pump
+Constraints sheet marks them STANDARD (NONE/Not Required) on EVERY model. User
+decision: option A (Pump Constraints authoritative -> always applicable + STD-seed)
+extended to Coupling; Motor stays bundle-gated. FIX in src/api/v2_routes.py: added
+DEAN_BUNDLE_GATED_COMPONENTS={"MOTOR"}; _dean_pump_config_excluded_fields and
+_dean_excluded_components now gate ONLY Motor, so Baseplate (9) + Coupling
+(COUPLING_TYPE, COUPLING_GUARD) are never excluded -> always display + STD-seed.
+Refines the D145 macro bundle-gating (now Motor-only for these fields). New audit
+scripts/audit_dean_baseplate_coupling.py 301/0 (7 series: each field displayed,
+STD seed == sheet STD, allowable subset of sheet + STD present; FRAME_SIZE still
+motor-gated). Regression: audit_dean_std_consistency 7/7, audit_dean_flush_plan
+15/0, audit_dean_config 28/0, audit_dean_codependencies 13/0, run_all_fybroc_audits
+ALL CORRECTIONS INTACT 9/9. Runtime-only (no DB write) -> FYBROC watermarks
+unchanged (4487/28/3638, stg 300608); _dean_* gating is Dean-only. Disclosed:
+DRIP_PAN still offered only on its 127 sheet-marked models (C/F placeholder
+elsewhere) = correct; some per-field X options (COUPLING_GUARD C/F, BASEPLATE_TYPE
+API/Formed) are narrowed by codependency/combination in the full STD context =
+correct (field still displays, STD always valid). D150 still parked. See
+docs/evidence/D110/DEAN_D110_BASEPLATE_COUPLING_DISPLAY.md.
 
 CHANGE (v1.30): Dean FLUSH PLAN made fully configurable + 185-combination
 enforcement (D110; Dean-only, Fybroc frozen). Implemented the Flush Plan

@@ -3,7 +3,22 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.30).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.31).
+>
+> **2026-08-26 (v1.31):** Dean BASEPLATE + COUPLING always-applicable fix (D110;
+> Dean-only runtime change, Fybroc frozen; no DB/schema/loader change). The 9
+> Baseplate fields + 2 Coupling fields weren't displayed/STD-seeded for most Dean
+> series because PUMP_CONFIGURATION bundle gating dropped them when the STD bundle
+> ('Pump Only' etc.) excluded the component, though Pump Constraints marks them
+> STANDARD on every model. Data was already correct (DB==sheet). User decision:
+> option A (authoritative -> always applicable + STD-seed) extended to Coupling;
+> Motor stays bundle-gated. Fix: DEAN_BUNDLE_GATED_COMPONENTS={"MOTOR"} in
+> v2_routes.py so only Motor is bundle-gated. New scripts/audit_dean_baseplate_coupling.py
+> 301/0. Regression: std_consistency 7/7, flush_plan 15/0, dean_config 28/0,
+> codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9; FYBROC
+> watermarks unchanged (4487/28/3638, stg 300608). DRIP_PAN still only on its 127
+> sheet models (correct). See
+> `docs/evidence/D110/DEAN_D110_BASEPLATE_COUPLING_DISPLAY.md`.
 >
 > **2026-08-26 (v1.30):** Dean FLUSH PLAN made fully configurable + 185-combination
 > enforcement (D110; Dean-only, Fybroc frozen). Implemented the Flush Plan Numbering
