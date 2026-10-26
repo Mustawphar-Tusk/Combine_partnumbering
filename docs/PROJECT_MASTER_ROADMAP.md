@@ -1069,10 +1069,12 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.33
+Version:            1.34
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 segment PN NEAREST-COMBO SNAP COMPLETE (wet-end/power-
+Current Milestone:  D110 PN DROP Additional Options + Testing/Documentation
+                    COMPLETE (engineering decision; Dean PN 9->7 groups). D110
+                    segment PN NEAREST-COMBO SNAP COMPLETE (wet-end/power-
                     frame/baseplate '????' fix; PN always buildable). D110
                     BASEPLATE allowed-combination ENFORCEMENT COMPLETE (1153
                     combos enforced as allow-list). D110 BASEPLATE+COUPLING
@@ -1095,6 +1097,30 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.34): Dean PN DROPS Additional Options + Testing & Documentation
+(D110; ENGINEERING DECISION 2026-08-26; Dean-only PN format change, Fybroc
+untouched). Per engineering, Additional Options and Testing & Documentation are
+NOT part-number drivers for Dean -> removed the two trailing dash-groups from the
+Dean PN, which now ends at the motor group (9 groups -> 7). Example RA3146:
+D770-004L-GA01-000S-00000-0000-000000-00-000000 -> D770-004L-GA01-000S-00000-0000-
+000000. Implemented in BOTH the Python resolver (src/api/dean_identifier.py: py_pn
++ assemble_pn no longer append -{addl}-{testing}{documentation}; segments still
+resolved into payload/debug for reference) AND the SQL assembler
+(sql/23_Create_Assemble_Configured_Product.sql DEAN branch CONCAT drops
+'-',@d_addl,'-',@d_test,@d_doc; still read for back-compat; re-applied via sqlcmd),
+so python==SQL parity holds. Fybroc branch untouched. Cleared 30 stale DEAN
+configured products (old 9-group PN; signature-keyed reuse; 0 quote/BOM refs) so
+they re-persist in the new format; FYBROC ConfiguredProduct 1196 untouched.
+Verified: RA3146/RA2096/CNV206/R5140/RM5140 all 7 groups, parity_ok=True, no '?'.
+Regression: audit_dean_wet_end_resolve 32/0, audit_dean_baseplate_combos 23/0,
+audit_dean_baseplate_coupling 301/0, audit_dean_flush_plan 15/0,
+audit_dean_std_consistency 7/7, audit_dean_config 28/0, audit_dean_codependencies
+13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9 (identifier_parity +
+bom_engine + quote_engine PASS - shared SQL proc changed DEAN-branch-only, Fybroc
+PN unaffected). FYBROC watermarks unchanged (4487/28/3638, stg 300608). Additional
+Options + Testing/Documentation remain selectable config areas, just not PN
+drivers. D150 still parked. See docs/evidence/D110/DEAN_D110_PN_DROP_ADDL_TESTING.md.
 
 CHANGE (v1.33): Dean segment PN NEAREST-COMBINATION SNAP (D110; Dean-only runtime
 fix in dean_identifier.py + one-time stale-product cleanup; Fybroc frozen). A

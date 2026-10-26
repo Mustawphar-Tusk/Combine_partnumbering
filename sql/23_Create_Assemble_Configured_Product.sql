@@ -107,9 +107,13 @@ BEGIN
             '-', @d_power,
             '-', @d_flush, @d_barr, @d_cool,
             '-', @d_frame, @d_basep,
-            '-', @d_motor, @d_motopt,
-            '-', @d_addl,
-            '-', @d_test, @d_doc);
+            '-', @d_motor, @d_motopt);
+        -- Additional Options (@d_addl) and Testing & Documentation
+        -- (@d_test/@d_doc) are NOT part-number drivers (engineering decision
+        -- 2026-08-26): the Dean PN ends at the motor group. @d_addl/@d_test/@d_doc
+        -- are still read from @SegmentsJson (for reference/back-compat) but are
+        -- intentionally omitted from the assembled PN, matching the Python
+        -- resolver's py_pn so python==SQL parity holds.
     END
     ELSE
     BEGIN

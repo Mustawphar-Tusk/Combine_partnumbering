@@ -535,10 +535,15 @@ def resolve_segments(cursor, series, size, selections):
     }
 
     # Python parity-oracle PN (must equal the SQL assembler's output). Seal excluded.
+    # ADDITIONAL OPTIONS and TESTING & DOCUMENTATION are NOT part-number drivers
+    # (engineering decision 2026-08-26): they are still resolved into the payload/
+    # debug for reference, but the PN ends at the motor group - the trailing
+    # '-{addl}-{testing}{documentation}' groups are intentionally omitted. The SQL
+    # assembler's DEAN branch drops the same two groups so python==SQL parity holds.
     py_pn = (
         f"{base}-{wet_end}-{trim}{imp_opts}-{power}"
         f"-{flush}{barrier}{cooling}-{frame}{baseplate}"
-        f"-{motor}{motor_options}-{addl}-{testing}{documentation}"
+        f"-{motor}{motor_options}"
     )
 
     failed = [k for k, v in payload.items() if "?" in str(v)]
@@ -561,6 +566,6 @@ def assemble_pn(payload):
         f"-{payload['flush_plan']}{payload['barrier_plan']}{payload['cooling_plan']}"
         f"-{payload['frame_size']}{payload['baseplate_options']}"
         f"-{payload['motor']}{payload['motor_options']}"
-        f"-{payload['additional_options']}"
-        f"-{payload['testing']}{payload['documentation']}"
+        # additional_options + testing/documentation are NOT PN drivers (dropped
+        # per engineering decision 2026-08-26); PN ends at the motor group.
     )

@@ -3,7 +3,23 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.33).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.34).
+>
+> **2026-08-26 (v1.34):** Dean PN DROPS Additional Options + Testing & Documentation
+> (D110; engineering decision, Dean-only PN format change, Fybroc untouched). These
+> two are no longer part-number drivers: removed the two trailing dash-groups so the
+> Dean PN ends at the motor group (9 groups -> 7). RA3146
+> D770-004L-GA01-000S-00000-0000-000000-00-000000 -> D770-004L-GA01-000S-00000-0000-
+> 000000. Implemented in both the Python resolver (dean_identifier.py py_pn +
+> assemble_pn) and the SQL assembler (usp_AssembleConfiguredProduct DEAN branch) so
+> python==SQL parity holds; segments still resolved for reference, just omitted from
+> the PN. Cleared 30 stale DEAN configured products (signature-keyed reuse; 0
+> quote/BOM refs); FYBROC ConfiguredProduct 1196 untouched. Verified 5 series 7
+> groups parity_ok=True. Regression: wet_end_resolve 32/0, baseplate_combos 23/0,
+> baseplate_coupling 301/0, flush_plan 15/0, std_consistency 7/7, dean_config 28/0,
+> codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9 (identifier
+> parity + BOM + quote PASS). FYBROC watermarks unchanged (4487/28/3638, stg 300608).
+> See `docs/evidence/D110/DEAN_D110_PN_DROP_ADDL_TESTING.md`.
 >
 > **2026-08-26 (v1.33):** Dean segment PN NEAREST-COMBINATION SNAP (D110; Dean-only
 > runtime fix, Fybroc frozen). A chosen series (RA3146) resolved to D770-????- :
