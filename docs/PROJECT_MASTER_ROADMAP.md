@@ -1069,11 +1069,13 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.31
+Version:            1.32
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 BASEPLATE+COUPLING always-applicable (display + STD seed)
-                    COMPLETE (option A + Coupling; only MOTOR stays bundle-gated).
+Current Milestone:  D110 BASEPLATE allowed-combination ENFORCEMENT COMPLETE (1153
+                    combos enforced as allow-list). D110 BASEPLATE+COUPLING
+                    always-applicable (display + STD seed) COMPLETE (option A +
+                    Coupling; only MOTOR stays bundle-gated).
                     D110 FLUSH PLAN configurable options + 185-combination
                     enforcement COMPLETE (option A, 5 fields, Custom->C/F).
                     D110 STD-CONSISTENCY fix COMPLETE (Dean sheet-STD never
@@ -1091,6 +1093,31 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.32): Dean BASEPLATE allowed-combination ENFORCEMENT (D110; Dean-only
+runtime change, Fybroc frozen; no DB/schema/loader change). Implemented the
+Baseplate Numbering sheet's allowed-combination table (cols C-M, rows 16-1169 =
+1153 permutations of the 9 baseplate fields -> 2-char code) as an enforced
+allow-list, matching the flush/wet-end/power-frame pattern. The data was already
+in place from prior work (BASEPLATE_OPTIONS segment loaded in
+stg.SegmentCombinationImport batch 9: 1153 combos, all 9 fields in SelectionsJson,
+0 Custom; field_map + SEGMENT_FIELD_ORDER cover the 9 fields; the 9 fields already
+configurable/displayed/STD-seeded per v1.31); the ONLY missing piece was
+enforcement. FIX: added "BASEPLATE_OPTIONS" to the combo_allowlists loop in
+v2_routes._load_constraint_context (now WET_END_OPTIONS, POWER_FRAME_OPTIONS,
+FLUSH_PLAN, BASEPLATE_OPTIONS) -> _apply_constraints restricts each baseplate field
+to values reachable in >=1 of the 1153 enumerated combinations (fails open
+per-field, STD-protected, Dean-only). New audit scripts/audit_dean_baseplate_combos.py
+23/0 (options DB==sheet 9 fields incl C/F; 1153 combos == sheet, all 9 fields in
+SelectionsJson, 0 Custom, code set matches; live: dependent fields subset of
+reachable under Formed, NONE within domain, on-sheet Formed combo resolves no
+conflict). Regression: audit_dean_baseplate_coupling 301/0, audit_dean_flush_plan
+15/0, audit_dean_std_consistency 7/7, audit_dean_config 28/0,
+audit_dean_codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9.
+Runtime-only (no DB write) -> FYBROC watermarks unchanged (4487/28/3638, stg
+300608). Disclosed: BASEPLATE_TYPE C/F (Custom) has no enumerated combo code
+(allow-list fails open; C/F downstream is the standing pending item). D150 still
+parked. See docs/evidence/D110/DEAN_D110_BASEPLATE_COMBINATIONS.md.
 
 CHANGE (v1.31): Dean BASEPLATE + COUPLING always-applicable fix (D110; Dean-only
 runtime change, Fybroc frozen; no DB/schema/loader change). Reported: the 9

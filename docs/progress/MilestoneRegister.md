@@ -3,7 +3,20 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.31).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.32).
+>
+> **2026-08-26 (v1.32):** Dean BASEPLATE allowed-combination ENFORCEMENT (D110;
+> Dean-only runtime change, Fybroc frozen; no DB/schema/loader change). Enforced the
+> Baseplate Numbering allowed-combination table (1153 permutations of the 9 baseplate
+> fields) as an allow-list. Data was already loaded (BASEPLATE_OPTIONS segment, batch
+> 9: 1153 combos, all 9 fields in SelectionsJson, 0 Custom); only enforcement was
+> missing. Fix: added "BASEPLATE_OPTIONS" to the combo_allowlists loop in
+> v2_routes._load_constraint_context. New scripts/audit_dean_baseplate_combos.py 23/0
+> (options==sheet incl C/F; 1153 combos match; live enforcement). Regression:
+> audit_dean_baseplate_coupling 301/0, flush_plan 15/0, std_consistency 7/7,
+> dean_config 28/0, codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT
+> 9/9; FYBROC watermarks unchanged (4487/28/3638, stg 300608). See
+> `docs/evidence/D110/DEAN_D110_BASEPLATE_COMBINATIONS.md`.
 >
 > **2026-08-26 (v1.31):** Dean BASEPLATE + COUPLING always-applicable fix (D110;
 > Dean-only runtime change, Fybroc frozen; no DB/schema/loader change). The 9

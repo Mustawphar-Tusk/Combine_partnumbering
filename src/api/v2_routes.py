@@ -930,7 +930,8 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
         from . import dean_identifier as _dean_id
         _bid = _dean_id._dean_batch_id(cursor)
         if _bid and _bid > 0:
-            for _seg in ("WET_END_OPTIONS", "POWER_FRAME_OPTIONS", "FLUSH_PLAN"):
+            for _seg in ("WET_END_OPTIONS", "POWER_FRAME_OPTIONS", "FLUSH_PLAN",
+                         "BASEPLATE_OPTIONS"):
                 seg_fields = list(_dean_id.SEGMENT_FIELD_ORDER[_seg])
                 rows_lc = []    # lowercased, for case-insensitive matching
                 rows_orig = []  # original-cased (parallel), for writing back
