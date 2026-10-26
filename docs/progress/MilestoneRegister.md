@@ -3,7 +3,23 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.32).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.33).
+>
+> **2026-08-26 (v1.33):** Dean segment PN NEAREST-COMBINATION SNAP (D110; Dean-only
+> runtime fix, Fybroc frozen). A chosen series (RA3146) resolved to D770-????- :
+> the wet-end segment was '????' because the Pump-Constraints STD-seeded wet-end
+> combo (CASING_MOUNTING='Yoke Foot') is not one of the enumerated Wet End Numbering
+> combos. Fix (option A, extended to Power Frame + Baseplate): the PART NUMBER snaps
+> to the nearest enumerated combination's code (via new _nearest_seg_code in
+> dean_identifier.py) while the displayed config keeps its authoritative STD;
+> selections unchanged, python==SQL parity preserved. One-time cleanup of 125 stale
+> pre-fix DEAN configured products ('????'/'0000'; signature-keyed reuse was
+> returning them); FYBROC ConfiguredProduct 1196 untouched. RA3146 -> D770-004L-...
+> parity_ok=True. New scripts/audit_dean_wet_end_resolve.py 32/0. Regression:
+> baseplate_combos 23/0, baseplate_coupling 301/0, flush_plan 15/0, std_consistency
+> 7/7, dean_config 28/0, codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS
+> INTACT 9/9 (identifier parity PASS); FYBROC watermarks unchanged (4487/28/3638, stg
+> 300608). See `docs/evidence/D110/DEAN_D110_SEGMENT_NEAREST_SNAP.md`.
 >
 > **2026-08-26 (v1.32):** Dean BASEPLATE allowed-combination ENFORCEMENT (D110;
 > Dean-only runtime change, Fybroc frozen; no DB/schema/loader change). Enforced the

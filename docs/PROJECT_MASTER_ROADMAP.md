@@ -1069,10 +1069,12 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.32
+Version:            1.33
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 BASEPLATE allowed-combination ENFORCEMENT COMPLETE (1153
+Current Milestone:  D110 segment PN NEAREST-COMBO SNAP COMPLETE (wet-end/power-
+                    frame/baseplate '????' fix; PN always buildable). D110
+                    BASEPLATE allowed-combination ENFORCEMENT COMPLETE (1153
                     combos enforced as allow-list). D110 BASEPLATE+COUPLING
                     always-applicable (display + STD seed) COMPLETE (option A +
                     Coupling; only MOTOR stays bundle-gated).
@@ -1093,6 +1095,40 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.33): Dean segment PN NEAREST-COMBINATION SNAP (D110; Dean-only runtime
+fix in dean_identifier.py + one-time stale-product cleanup; Fybroc frozen). A
+chosen Dean series (RA3146) resolved to D770-????-EE01-... : the wet-end 4-char
+segment was '????'. Root cause: RA3146's Pump-Constraints STD-seeded wet-end combo
+(CASING_MOUNTING='Yoke Foot' with Ductile Iron) is NOT one of the 49,987
+enumerated Wet End Numbering combos (that sheet codes the config only with Not
+Required/Required), so the exact CombinationKey lookup missed -> _err '????'. Two
+authoritative sheets disagree (Pump Constraints STD vs the Numbering combination
+table); same class can hit POWER_FRAME + BASEPLATE. FIX (option A, extended to
+Power Frame + Baseplate): the DISPLAYED config keeps its authoritative
+Pump-Constraints STD; only the PART NUMBER snaps to the NEAREST enumerated
+combination's code. Added _seg_parts() + _nearest_seg_code() in dean_identifier.py
+(score: anchor field weighted, then #position matches, tie->earliest row;
+case-insensitive compare since CombinationKey tokens are original-cased - a bug
+caught in verification that otherwise picked 0000); resolve_segments().table()
+falls back to the nearest code for WET_END_OPTIONS/POWER_FRAME_OPTIONS/
+BASEPLATE_OPTIONS when the exact combo isn't enumerated (never invents a code;
+selections not mutated; SQL assembler reads the payload code so python==SQL parity
+holds). One-time cleanup: reuse is signature-keyed, so pre-fix persisted products
+kept returning stale '????'/'0000' PNs - deleted 122 DEAN products with '????' in
+PN (0 quote/BOM refs) + 3 stale '0000' session products; FYBROC ConfiguredProduct
+1196 untouched. Verified: RA3146 -> D770-004L-GA01-000S-... parity_ok=True (004L =
+correct dist-1 nearest). New audit scripts/audit_dean_wet_end_resolve.py 32/0 (8
+models incl RA3146 + row-167+: segments resolve to valid enumerated codes, PN no
+'?', python==SQL parity). Regression: audit_dean_baseplate_combos 23/0,
+audit_dean_baseplate_coupling 301/0, audit_dean_flush_plan 15/0,
+audit_dean_std_consistency 7/7, audit_dean_config 28/0, audit_dean_codependencies
+13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9 (audit_identifier_parity
+PASS - Fybroc PN parity intact despite dean_identifier change). FYBROC watermarks
+unchanged (4487/28/3638, stg 300608). Disclosed: the snap is numbering-only; where
+displayed STD and the coded combo differ on a field it reflects a Pump Constraints
+vs Numbering source disagreement (engineering reconciliation item). D150 still
+parked. See docs/evidence/D110/DEAN_D110_SEGMENT_NEAREST_SNAP.md.
 
 CHANGE (v1.32): Dean BASEPLATE allowed-combination ENFORCEMENT (D110; Dean-only
 runtime change, Fybroc frozen; no DB/schema/loader change). Implemented the

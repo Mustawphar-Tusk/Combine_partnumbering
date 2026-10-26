@@ -290,6 +290,66 @@ def _build_combo(selections, segment_code):
     return combo
 
 
+def _seg_parts(selections, segment_code):
+    """The per-position values (in SEGMENT_FIELD_ORDER column order, defaults
+    applied) WITHOUT the trailing-'*' trim - used to score nearest enumerated
+    combinations. Lowercased to match the stored CombinationKey tokens."""
+    order = SEGMENT_FIELD_ORDER[segment_code]
+    parts = []
+    for i, fld in enumerate(order):
+        val = _norm(selections.get(fld, "")) if fld else ""
+        if val == "":
+            val = SEGMENT_POSITION_DEFAULT.get((segment_code, i), _GENERIC_DEFAULT)
+        parts.append(str(val).strip().lower())
+    return parts
+
+
+def _nearest_seg_code(cursor, segment_code, selections):
+    """NUMBERING-ONLY nearest-combination fallback for a table-backed segment.
+
+    When the selected/STD-seeded combination for a segment is NOT one of the
+    enumerated numbering rows (two authoritative sheets disagree - e.g. Pump
+    Constraints marks CASING_MOUNTING='Yoke Foot' standard for RA3146, but the Wet
+    End Numbering sheet only codes that wet-end config with 'Not Required' /
+    'Required'), the exact lookup returns nothing and the segment would be '????'.
+
+    Per the product decision (option A), the displayed configuration keeps its
+    authoritative Pump-Constraints STD value; only the PART NUMBER snaps to the
+    NEAREST enumerated combination so the segment always resolves to a real,
+    buildable code. 'Nearest' = the coded row agreeing on the most positions, with
+    the segment's FIRST field (material/anchor) weighted, ties broken to the
+    earliest (standard) sheet row - identical scoring to the API's
+    _dean_std_combo_autoadjust, so the two stay consistent. This NEVER invents a
+    code: it always returns an enumerated row's code (or None if the segment has
+    no rows at all). selections are NOT mutated.
+    """
+    bid = _dean_batch_id(cursor)
+    if bid < 0:
+        return None
+    rows = cursor.execute(
+        "SELECT CombinationKey, SegmentValue, SourceId FROM stg.SegmentCombinationImport "
+        "WHERE ImportBatchId = ? AND SegmentCode = ?", bid, segment_code,
+    ).fetchall()
+    if not rows:
+        return None
+    want = _seg_parts(selections, segment_code)        # lowercased positions
+    n = len(want)
+    best_code = None
+    best_score = None
+    for ck, code, sid in rows:
+        # CombinationKey tokens are stored original-cased; lowercase to compare
+        # with the lowercased `want` positions (case-insensitive match).
+        parts = [p.strip().lower() for p in str(ck).split("*")]
+        parts += [""] * (n - len(parts))               # pad (trailing-* trimmed keys)
+        anchor = 3 if (n and parts[0] == want[0]) else 0
+        matches = sum(1 for i in range(n) if parts[i] == want[i])
+        score = (anchor, matches, -int(sid or 0))      # tie -> earliest SourceId
+        if best_score is None or score > best_score:
+            best_score = score
+            best_code = code
+    return best_code
+
+
 def resolve_trim(selections):
     """Impeller Trim (2 chars): inch-letter + decimal-letter of IMPELLER_TRIM.
     Handles bare integers ('4' -> 4",.000") and decimals ('4.125' -> 4",.125")."""
@@ -388,6 +448,13 @@ def resolve_segments(cursor, series, size, selections):
     """
     base = base_identifier(cursor, series, size) or ("D" + "?" * 4)
 
+    # Segments that snap the PART NUMBER to the nearest enumerated combination
+    # when the exact (STD/selected) combination is not coded (option A: the
+    # displayed config keeps its authoritative Pump-Constraints STD; only the PN
+    # uses the nearest buildable code, so these segments never emit '????').
+    _NEAREST_SNAP_SEGMENTS = {"WET_END_OPTIONS", "POWER_FRAME_OPTIONS",
+                              "BASEPLATE_OPTIONS"}
+
     # --- table-backed segments (exact CombinationKey match, v0.1 numbering) ---
     def table(seg):
         # Custom selection -> the workbook's padded custom placeholder (segment
@@ -397,7 +464,16 @@ def resolve_segments(cursor, series, size, selections):
             return cust
         combo = _build_combo(selections, seg)
         code = _seg_lookup(cursor, seg, combo)
-        return code if code else _err(SEGMENT_WIDTH[seg])
+        if code:
+            return code
+        # Exact combo not enumerated. For the snap segments, resolve the PN to the
+        # nearest enumerated combination's code (option A) so the segment is never
+        # '????'; other segments keep the error placeholder.
+        if seg in _NEAREST_SNAP_SEGMENTS:
+            near = _nearest_seg_code(cursor, seg, selections)
+            if near:
+                return near
+        return _err(SEGMENT_WIDTH[seg])
 
     wet_end = table("WET_END_OPTIONS")
     imp_opts = table("IMPELLER_OPTIONS")
