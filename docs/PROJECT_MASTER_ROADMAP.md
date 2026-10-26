@@ -1069,10 +1069,12 @@ P190	closeout	PENDING
 # 12. Current Project Checkpoint
 
 MASTER ROADMAP
-Version:            1.29
+Version:            1.30
 
 Current Phase:      D — Dean Completion
-Current Milestone:  D110 STD-CONSISTENCY fix COMPLETE (Dean sheet-STD never
+Current Milestone:  D110 FLUSH PLAN configurable options + 185-combination
+                    enforcement COMPLETE (option A, 5 fields, Custom->C/F).
+                    D110 STD-CONSISTENCY fix COMPLETE (Dean sheet-STD never
                     pruned by a constraint; 206/206). D110 config FIELD-ACCURACY
                     AUDIT + Custom->C/F relabel COMPLETE. D110 config RE-EXTRACT
                     CERTIFICATION COMPLETE (verify-only).
@@ -1087,6 +1089,36 @@ Status:             D100 + D110 + D120 + D130 + D140 + D145 + D155 complete
                     (2026-08-26). F180 signoff remains prepared, awaiting
                     engineering signature (parallel; Dean is net-new work that
                     does not modify frozen Fybroc data).
+
+CHANGE (v1.30): Dean FLUSH PLAN made fully configurable + 185-combination
+enforcement (D110; Dean-only, Fybroc frozen). Implemented the Flush Plan
+Numbering sheet's options (cols D-H) + 185 allowed combinations (rows 27-211) as
+a configurable, constraint-enforced area. User scope: option A (all 5 flush fields
+selectable) + choice (i) (Flush Plan keeps per-model Pump Constraints options) +
+Custom->C/F as a configurable customer-request choice. Changes: (1)
+d110_load_dean_config_v01.py adds 4 canonical codes (FLUSH_PLAN_ROUTING,
+FLUSH_CONNECTIONS, FLUSH_TEMPERATURE_RANGE, FLUSH_COOLING_MEDIA), loads them as
+series-level option domains for all 37 series (Custom->C/F) + a per-series
+FLUSH_PLAN 'C/F' option -> cfg.SeriesFieldOption DEAN 48063->48507 (+444). (2)
+load_dean_identifier_to_sql.py FLUSH_PLAN segment field_map now maps all 5 flush
+fields so each of the 185 combos carries all 5 in SelectionsJson (Custom->C/F,
+0 left); numbering batch 9. (3) dean_identifier.py SEGMENT_FIELD_ORDER gains
+FLUSH_PLAN (5 fields); resolve_flush is exact-combination-aware when all sub-fields
+chosen (else plan-STD fallback, never invents a code). (4) v2_routes.py adds
+FLUSH_PLAN to the combo_allowlists enforcement loop (constrains the 5 flush fields
+to reachable combos, fails open per-field, Dean-only) + the 4 sub-fields to the
+Dean UI 'Flush / Barrier / Cooling Plan' group. New audit
+scripts/audit_dean_flush_plan.py 15/0 (options DB==sheet all 37 series; 185 combos
+with all 5 fields, codes match; live: sub-fields subset of reachable under P1200,
+off-combo media pruned, on-sheet combo resolves no conflict). Regression:
+audit_dean_std_consistency 7/7, audit_dean_config 28/0, audit_dean_codependencies
+13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9 (incl identifier parity +
+BOM/quote). FYBROC watermarks unchanged (FeasibleConstraint 4487, ConstraintFieldMap
+28, SeriesFieldOption 3638, stg 300608). Disclosed: the 7 extra Seal Guard plans in
+the Numbering options but not Pump Constraints are NOT added to Flush Plan (choice
+(i)); C/F downstream quote/numbering handling is the standing pending-engineering
+item. D150 still parked (further config work precedes it). See
+docs/evidence/D110/DEAN_D110_FLUSH_PLAN.md.
 
 CHANGE (v1.29): Dean STD-CONSISTENCY fix (D110; Dean-only runtime constraint
 fix, Fybroc frozen; no DB/schema/loader change). Reported: CNV206/1X1.5X6 showed

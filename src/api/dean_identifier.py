@@ -128,6 +128,16 @@ SEGMENT_FIELD_ORDER = {
         "ISOLATION_PADS",
         "STILTS",
     ],
+    # Flush Plan Numbering (v0.1) combination cols D..H (5 fields), in column
+    # order. All five are configurable (D110 Flush Plan option A); the combination
+    # allow-list constrains them to the 185 enumerated flush combinations.
+    "FLUSH_PLAN": [
+        "FLUSH_PLAN",
+        "FLUSH_PLAN_ROUTING",
+        "FLUSH_CONNECTIONS",
+        "FLUSH_TEMPERATURE_RANGE",
+        "FLUSH_COOLING_MEDIA",
+    ],
 }
 
 # Default token for each ComboString POSITION when the mapped Dean field is
@@ -327,6 +337,29 @@ def resolve_flush(cursor, selections):
     bid = _dean_batch_id(cursor)
     if bid < 0:
         return "00"
+    # EXACT-combination resolution (D110 Flush Plan option A): when the four flush
+    # sub-fields are selected, resolve to the code for that precise (plan, routing,
+    # connections, temperature, cooling-media) combination by matching the full
+    # CombinationKey. The sub-fields are now configurable and constrained to the
+    # 185 enumerated flush combinations, so a complete flush config always has an
+    # exact coded row.
+    sub = [_norm(selections.get(f, "")) for f in (
+        "FLUSH_PLAN_ROUTING", "FLUSH_CONNECTIONS",
+        "FLUSH_TEMPERATURE_RANGE", "FLUSH_COOLING_MEDIA")]
+    if all(s != "" for s in sub):
+        combo_key = "*".join([plan] + sub)
+        while combo_key.endswith("*"):      # mirror the loader's trailing-* trim
+            combo_key = combo_key[:-1]
+        exact = cursor.execute(
+            "SELECT TOP 1 SegmentValue FROM stg.SegmentCombinationImport "
+            "WHERE ImportBatchId = ? AND SegmentCode = 'FLUSH_PLAN' "
+            "  AND CombinationKey = ? ORDER BY SegmentValue",
+            bid, combo_key,
+        ).fetchone()
+        if exact:
+            return exact[0]
+        # no exact row -> fall through to the plan STD row (never invent a code)
+
     # STD row for the plan = lowest code whose combo starts with "<plan>*" or == plan
     row = cursor.execute(
         "SELECT TOP 1 SegmentValue FROM stg.SegmentCombinationImport "

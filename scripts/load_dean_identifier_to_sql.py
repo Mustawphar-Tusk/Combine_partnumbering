@@ -132,13 +132,15 @@ SEGMENTS = [
         "width": 2,
         "header_scan_max": 40,   # header is at row 26
         "field_map": {
+            # All five flush fields are configurable (D110 Flush Plan option A):
+            # mapping the sub-fields to canonical codes makes them part of the
+            # per-combination SelectionsJson, so the flush combination allow-list
+            # can constrain every flush field (not just Flush Plan).
             "Flush Plan": "FLUSH_PLAN",
-            # routing/connections/temp/media have no canonical Dean option code;
-            # they participate in the ComboString by their literal workbook value.
-            "Flush Plan Routing": None,
-            "Flush Connections": None,
-            "Flush Temperature Range": None,
-            "Flush Cooling Media": None,
+            "Flush Plan Routing": "FLUSH_PLAN_ROUTING",
+            "Flush Connections": "FLUSH_CONNECTIONS",
+            "Flush Temperature Range": "FLUSH_TEMPERATURE_RANGE",
+            "Flush Cooling Media": "FLUSH_COOLING_MEDIA",
         },
     },
     {
@@ -366,7 +368,15 @@ def extract_segment_rows(wb, seg):
         parts = []
         for c in opt_cols:
             v = row[c] if c < len(row) else None
-            parts.append("" if v is None else str(v).strip())
+            sv = "" if v is None else str(v).strip()
+            # "Custom" is a customer-request (configure-to-order) choice; surface it
+            # as the project's Contact-Factory marker C/F. Applied to BOTH the
+            # ComboString/CombinationKey and the per-field SelectionsJson so the
+            # numbering key, the config allow-list, and the resolver all agree with
+            # the C/F option the configurator offers.
+            if sv.lower() == "custom":
+                sv = "C/F"
+            parts.append(sv)
         combo_s = "*".join(parts)
         while combo_s.endswith("*"):        # Module1/Module2 trailing-* trim
             combo_s = combo_s[:-1]

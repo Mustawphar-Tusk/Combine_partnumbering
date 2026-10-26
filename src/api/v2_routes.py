@@ -344,7 +344,9 @@ DEAN_FIELD_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
         "LANTERN_RING",
     )),
     ("Flush / Barrier / Cooling Plan", (
-        "FLUSH_PLAN", "BARRIER_PLAN", "BARRIER_PLAN_EXTRAS",
+        "FLUSH_PLAN", "FLUSH_PLAN_ROUTING", "FLUSH_CONNECTIONS",
+        "FLUSH_TEMPERATURE_RANGE", "FLUSH_COOLING_MEDIA",
+        "BARRIER_PLAN", "BARRIER_PLAN_EXTRAS",
         "COOLING_PLAN", "COOLING_PLAN_PIPING", "COOLING_PLAN_EXTRAS",
     )),
     ("Motor", (
@@ -911,7 +913,7 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
         from . import dean_identifier as _dean_id
         _bid = _dean_id._dean_batch_id(cursor)
         if _bid and _bid > 0:
-            for _seg in ("WET_END_OPTIONS", "POWER_FRAME_OPTIONS"):
+            for _seg in ("WET_END_OPTIONS", "POWER_FRAME_OPTIONS", "FLUSH_PLAN"):
                 seg_fields = list(_dean_id.SEGMENT_FIELD_ORDER[_seg])
                 rows_lc = []    # lowercased, for case-insensitive matching
                 rows_orig = []  # original-cased (parallel), for writing back

@@ -3,7 +3,22 @@
 **Last Updated:** 2026-08-26
 
 > **Authority note:** for the true, verified Dean-phase status use
-> `docs/Project_master_roadmap.md` §11–§12 (v1.29).
+> `docs/Project_master_roadmap.md` §11–§12 (v1.30).
+>
+> **2026-08-26 (v1.30):** Dean FLUSH PLAN made fully configurable + 185-combination
+> enforcement (D110; Dean-only, Fybroc frozen). Implemented the Flush Plan Numbering
+> options (cols D-H) + 185 allowed combinations (rows 27-211). Scope: option A (all 5
+> flush fields selectable) + choice (i) (Flush Plan keeps per-model Pump Constraints
+> options) + Custom->C/F configurable choice. Added 4 canonical sub-field codes
+> (ROUTING/CONNECTIONS/TEMPERATURE_RANGE/COOLING_MEDIA) loaded series-level for 37
+> series + per-series FLUSH_PLAN C/F (cfg.SeriesFieldOption 48063->48507, +444); the
+> 185 combos now carry all 5 fields in SelectionsJson (numbering batch 9, 0 Custom);
+> resolve_flush exact-combination-aware; FLUSH_PLAN added to the combo allow-list
+> enforcement + the Dean UI flush group. New scripts/audit_dean_flush_plan.py 15/0.
+> Regression: audit_dean_std_consistency 7/7, audit_dean_config 28/0,
+> audit_dean_codependencies 13/0, run_all_fybroc_audits ALL CORRECTIONS INTACT 9/9;
+> FYBROC watermarks unchanged (4487/28/3638, stg 300608). See
+> `docs/evidence/D110/DEAN_D110_FLUSH_PLAN.md`.
 >
 > **2026-08-26 (v1.29):** Dean STD-CONSISTENCY fix (D110; Dean-only runtime fix,
 > Fybroc frozen; no DB/schema/loader change). CNV206/1X1.5X6 wrongly reported

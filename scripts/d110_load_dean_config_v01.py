@@ -46,7 +46,9 @@ CANONICAL_CODES = {
     "CASING_GASKET","CASING_HEAT_JACKET","CASING_MATERIAL","CASING_MOUNTING",
     "CASING_TAPS","CASING_WEAR_RING","COATING","COOLING_PLAN","COOLING_PLAN_EXTRAS",
     "COOLING_PLAN_PIPING","COUPLING_GUARD","COUPLING_TYPE","CRATING","DRIP_PAN",
-    "EXPANSION_CHAMBER","FLANGE_CONFIGURATION","FLUSH_PLAN","FRAME_SIZE",
+    "EXPANSION_CHAMBER","FLANGE_CONFIGURATION","FLUSH_PLAN",
+    "FLUSH_PLAN_ROUTING","FLUSH_CONNECTIONS","FLUSH_TEMPERATURE_RANGE",
+    "FLUSH_COOLING_MEDIA","FRAME_SIZE",
     "GLAND_GASKET","GLAND_TYPE","GROUNDING_LUG","GROUT_HOLE","HYDROPADS",
     "IMPELLER_BALANCE","IMPELLER_MATERIAL","IMPELLER_TRIM","IMPELLER_WEAR_RING_MATERIAL",
     "INBOARD_ELASTOMER","INBOARD_HARDWARE_MATERIAL","INBOARD_ROTATING_FACE_MATERIAL",
@@ -107,6 +109,61 @@ def col_letter(i0):
     while c > 0:
         c, r = divmod(c - 1, 26); s = chr(65 + r) + s
     return s
+
+
+# The four Flush sub-fields come from the "Flush Plan Numbering" OPTIONS block
+# (cols D..H, header row 2). Flush Plan itself stays per-model from Pump
+# Constraints (option (i)); these four are series-level option domains governed
+# only by the flush combination allow-list. Maps the options-block header label
+# -> canonical code. (Flush Plan column is intentionally NOT remapped here; it is
+# loaded per-model elsewhere.)
+FLUSH_SUBFIELD_HEADERS = {
+    "flush plan routing": "FLUSH_PLAN_ROUTING",
+    "flush connections": "FLUSH_CONNECTIONS",
+    "flush temperature range": "FLUSH_TEMPERATURE_RANGE",
+    "flush cooling media": "FLUSH_COOLING_MEDIA",
+}
+
+
+def read_flush_subfield_options(wb):
+    """Read the Flush Plan Numbering OPTIONS block (header row 2, data rows 3..).
+
+    Returns {canonical_code: [values...]} for the four flush SUB-fields only
+    (routing / connections / temperature range / cooling media). 'Custom' is
+    normalized to C/F (a configurable customer-request choice). Flush Plan
+    itself is excluded here (per option (i) it stays per-model from Pump
+    Constraints)."""
+    ws = wb["Flush Plan Numbering"]
+    rows = list(ws.iter_rows(min_row=1, max_row=min(ws.max_row, 25),
+                             values_only=True))
+
+    def cell(r0, c0):
+        row = rows[r0] if 0 <= r0 < len(rows) else []
+        return row[c0] if 0 <= c0 < len(row) else None
+
+    # header row 2 (0-based idx 1); find each sub-field's column by its label
+    hdr = rows[1] if len(rows) > 1 else ()
+    col_code = {}
+    for c0, v in enumerate(hdr):
+        if v is None:
+            continue
+        code = FLUSH_SUBFIELD_HEADERS.get(str(v).strip().lower())
+        if code:
+            col_code[c0] = code
+
+    out = {}
+    for c0, code in col_code.items():
+        vals = []
+        for r0 in range(2, len(rows)):          # data rows 3..
+            v = cell(r0, c0)
+            if v is None or str(v).strip() == "":
+                continue
+            nv = _norm_value(code, str(v).strip())   # Custom -> C/F
+            if nv not in vals:
+                vals.append(nv)
+        if vals:
+            out[code] = vals
+    return out
 
 
 def _norm_value(field_code, value):
@@ -326,6 +383,7 @@ def main():
     wb = load_workbook(WB_PATH, data_only=True, read_only=True)
     models, field_domains, unmapped = read_pump_constraints(wb)
     codeps = read_codependencies(wb)
+    flush_sub = read_flush_subfield_options(wb)
     wb.close()
 
     series_set = sorted({m["series"] for m in models})
@@ -336,6 +394,8 @@ def main():
     if unmapped:
         print(f"  UNMAPPED group headers (skipped): {unmapped}")
     print(f"Codependencies: {len(codeps)} driver->dependent allow tuples")
+    print(f"Flush sub-field options: "
+          f"{ {k: len(v) for k, v in flush_sub.items()} }")
 
     from collections import Counter
     leg_dist = Counter(len(legs) for _, legs in codeps)
@@ -349,6 +409,9 @@ def main():
         print("[dry-run] sample codep tuples:")
         for t in codeps[:4] + codeps[-2:]:
             print("  ", t[0], t[1])
+        print("[dry-run] flush sub-field domains:")
+        for k, v in flush_sub.items():
+            print("  ", k, v)
         return
 
     conn = pyodbc.connect(CS, autocommit=True); c = conn.cursor()
@@ -395,6 +458,31 @@ def main():
                            marker == "STD", marker)
                 n_sfo += 1
     print(f"SeriesFieldOption: {n_sfo} per-model rows")
+
+    # FLUSH PLAN NUMBERING (option A, choice (i)): make the flush area fully
+    # configurable. The four flush SUB-fields (routing / connections / temperature
+    # range / cooling media) are NOT in Pump Constraints, so they are loaded here
+    # as SERIES-LEVEL option domains (SizeCode NULL -> projected for every size of
+    # every series) from the Flush Plan Numbering options block. In addition, C/F
+    # is appended as a series-level FLUSH_PLAN option for every series so a
+    # customer-request flush plan is always a configurable choice (Flush Plan's
+    # per-model STD/X options from Pump Constraints are left untouched - choice
+    # (i)). These rows have SelectionMarker='X', IsStandard=0 (never a default).
+    # The authoritative 185 flush combinations (loaded separately into
+    # stg.SegmentCombinationImport by load_dean_identifier_to_sql.py) are what
+    # constrain which (plan, routing, connections, temp, media) tuples are valid.
+    series_list = sorted({m["series"] for m in models})
+    n_flush = 0
+    for ser in series_list:
+        for code, vals in flush_sub.items():
+            for v in vals:
+                insert_sfo(code, v, ser, None, False, "X")
+                n_flush += 1
+        # C/F as an always-available configurable Flush Plan choice
+        insert_sfo("FLUSH_PLAN", "C/F", ser, None, False, "X")
+        n_flush += 1
+    print(f"SeriesFieldOption: +{n_flush} series-level flush rows "
+          f"(4 sub-fields + FLUSH_PLAN C/F x {len(series_list)} series)")
 
     # SEAL codependencies are NOT enforced yet: the seal-type vocabulary differs
     # between the Pump Constraints seal columns (short 'Type N' names offered per
