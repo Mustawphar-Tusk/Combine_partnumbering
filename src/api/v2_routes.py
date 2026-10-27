@@ -349,10 +349,14 @@ DEAN_FIELD_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
         "BARRIER_PLAN", "BARRIER_PLAN_EXTRAS",
         "COOLING_PLAN", "COOLING_PLAN_PIPING", "COOLING_PLAN_EXTRAS",
     )),
+    # Motor: the authoritative fields from the new "Motor Numbering.xlsm" (10
+    # real selectable fields that combine into the 4-char motor code). Replaces
+    # the old placeholder motor field codes (MOTOR_OPTIONS/MOTOR_HP/... were
+    # never loaded as selectable Dean options). Order follows the workbook's
+    # motor spec columns. FRAME_SIZE sits in its natural position.
     ("Motor", (
-        "MOTOR_OPTIONS", "MOTOR_CONTROL", "MOTOR_HP", "MOTOR_SPEED",
-        "MOTOR_VOLTAGE", "MOTOR_PHASE_HERTZ", "FRAME_SIZE", "MOTOR_ENCLOSURE",
-        "MOTOR_EFFICIENCY", "C_FACE_ADAPTER_OPTION", "MOTOR_MANUFACTURER",
+        "MOTOR", "MOTOR_CONTROL", "FRAME_SIZE", "RATED_SPEED", "RATED_POWER",
+        "VOLTAGE", "PHASE_FREQUENCY", "ENCLOSURE", "EFFICIENCY", "BRAND",
     )),
     ("Baseplate", (
         "BASEPLATE_TYPE", "DRIP_PAN", "ALIGNMENT_LUGS", "LIFTING_LUGS",
@@ -560,7 +564,12 @@ DEAN_COMPONENT_GROUP_FIELDS = {
                   "LEVELLING_SCREWS", "GROUNDING_LUG", "GROUT_HOLE",
                   "ISOLATION_PADS", "STILTS"},
     "COUPLING": {"COUPLING_TYPE", "COUPLING_GUARD"},
-    "MOTOR": {"FRAME_SIZE"},
+    # The Motor component is now the full motor spec (new Motor Numbering.xlsm),
+    # not just FRAME_SIZE. All 10 motor fields belong to the MOTOR component so
+    # PUMP_CONFIGURATION bundle gating drops/keeps them together.
+    "MOTOR": {"MOTOR", "MOTOR_CONTROL", "FRAME_SIZE", "RATED_SPEED",
+              "RATED_POWER", "VOLTAGE", "PHASE_FREQUENCY", "ENCLOSURE",
+              "EFFICIENCY", "BRAND"},
 }
 
 # Pump Configuration bundle -> set of component groups INCLUDED. Any group not in
