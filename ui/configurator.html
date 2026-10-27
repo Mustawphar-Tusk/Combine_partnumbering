@@ -305,6 +305,30 @@
             font-weight: 800; text-transform: uppercase; letter-spacing: .6px;
             background: #fbeccf; color: #8a5a00; border: 1px solid #f3d79a;
             border-radius: 8px; padding: 4px 10px; }
+
+        /* ---- Live spec-number plate (Phase B) ---------------------------- */
+        /* A running view of the part-number segment codes, one chip per group,
+           built from resolve-state's resolved_codes. Updates on every selection.
+           Shown in the configurator (live) and on the result page (final). */
+        .plate { background: #fff; border: 1px solid var(--line); border-radius: 14px;
+            box-shadow: var(--shadow); padding: 14px 16px; margin-bottom: 18px; }
+        .plate-head { display: flex; align-items: baseline; justify-content: space-between;
+            gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+        .plate-title { font-size: 11px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: .6px; color: var(--ink-soft); }
+        .plate-full { font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700;
+            color: var(--ink); word-break: break-all; }
+        .plate-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+        .chip-seg { display: inline-flex; flex-direction: column; gap: 2px;
+            border: 1px solid var(--line); border-radius: 9px; padding: 6px 10px;
+            background: var(--sky-50); min-width: 54px; }
+        .chip-seg .chip-code { font-family: 'Courier New', monospace; font-size: 14px;
+            font-weight: 700; color: var(--sky-700); letter-spacing: .5px; }
+        .chip-seg .chip-label { font-size: 9px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: .4px; color: var(--ink-soft); }
+        .chip-seg.chip-pending { background: #fbeccf; border-color: #f3d79a; }
+        .chip-seg.chip-pending .chip-code { color: #8a5a00; }
+        .plate-empty { font-size: 13px; color: var(--ink-soft); font-style: italic; }
     </style>
 </head>
 <body>
@@ -415,6 +439,9 @@
                 </div>
                 <div id="pricingPanel"></div>
             </div>
+
+            <!-- Final spec-number plate (Phase B): same renderer as the live plate. -->
+            <div class="plate" id="specPlateResult" style="display:none"></div>
 
             <!-- Quantity + order total -->
             <div class="panel order-panel">
@@ -643,6 +670,11 @@
                 try {
                     renderAllFields(reset, dropped, conflicts);
                     renderNotice(reset, dropped, conflicts);
+                    // NOTE: resolve-state returns resolved_codes as all-null (the PN
+                    // segment codes are computed by /resolve, not resolve-state), so a
+                    // "live" plate here would always be empty. The spec-number plate is
+                    // therefore shown on the RESULT page only, where codes are real and
+                    // match the generated Part Number. See CPQ roadmap Phase B note.
                 } catch (renderErr) {
                     console.error('render error after resolve-state:', renderErr, { changedField, data });
                     setStatus('Display error: ' + renderErr.message + ' (see console)', 'error');
@@ -695,7 +727,8 @@
         }
 
         // Build one editable field ROW inside a section.
-        function buildFieldRow(fieldCode, conflictByField, flagged, dropped) {
+        function buildFieldRow(fieldCode, conflictByField, flagged, dropped, reset) {
+            reset = reset || {};
             const options = allowableOptions[fieldCode] || [];
             const value = selections[fieldCode];
             const std = standardDefaults[fieldCode];
@@ -709,10 +742,12 @@
             else if (flagged.has(fieldCode)) cls += ' is-flagged';
             row.className = cls;
 
-            // No std/custom/not-set badge beside the field name: the dropdown
-            // already shows "(standard)" and "-- Not set --", so a label badge
-            // is redundant and clutters the layout. Field state is still
-            // conveyed by the row's left-border color (see .frow.is-* CSS).
+            // Phase B: a single "Standard" badge when the current value equals the
+            // series STD default. We intentionally show ONLY the std badge (not a
+            // custom/not-set badge) so the row stays uncluttered - other states are
+            // already conveyed by the row's left-border color and the dropdown's
+            // "(standard)" / "-- Not set --" option text.
+            const stdBadge = isStd ? '<span class="tag std">Standard</span>' : '';
 
             const optionHtml = [
                 `<option value=""${hasValue ? '' : ' selected'}>-- Not set --</option>`,
@@ -728,12 +763,12 @@
             const code = resolvedCodes[fieldCode];
 
             row.innerHTML = `
-                <div class="fl">${esc(pretty(fieldCode))}</div>
+                <div class="fl">${esc(pretty(fieldCode))}${stdBadge}</div>
                 <div>
                     <select data-field="${escAttr(fieldCode)}">${optionHtml.join('')}</select>
                 </div>
                 ${conflict ? `<div class="meta conflict-line">⚠ not compatible${(conflict.conflicts_with || []).length ? ' with ' + conflict.conflicts_with.map(pretty).map(esc).join(', ') : ''}${(conflict.recommended || []).length ? ' — try: ' + conflict.recommended.slice(0, 5).map(esc).join(', ') : ''}</div>` : ''}
-                ${(!conflict && flagged.has(fieldCode)) ? `<div class="meta reset-line">${dropped.includes(fieldCode) ? 'not applicable for this configuration' : 'auto-adjusted by your last change'}</div>` : ''}
+                ${(!conflict && flagged.has(fieldCode)) ? `<div class="meta reset-line">${dropped.includes(fieldCode) ? 'not applicable for this configuration' : ('auto-reset to standard by your last change' + (reset[fieldCode] ? ' → ' + esc(reset[fieldCode]) : ''))}</div>` : ''}
                 ${code ? `<div class="meta code">→ ${esc(code)}</div>` : ''}
             `;
             const selectEl = row.querySelector('select');
@@ -830,7 +865,7 @@
                     for (const f of (grp.fields || [])) {
                         fieldsWrap.appendChild(f.placeholder
                             ? buildPlaceholderRow(f.field)
-                            : buildFieldRow(f.field, conflictByField, flagged, dropped));
+                            : buildFieldRow(f.field, conflictByField, flagged, dropped, reset));
                     }
                     sec.appendChild(fieldsWrap);
                     panel.appendChild(sec);
@@ -919,6 +954,7 @@
                 renderPricing(data.component_pricing || [], unitTotal);
                 renderOrderTotals();
                 renderResultSpec();
+                renderSpecPlate('specPlateResult', data.part_number);
                 setStatus('', '');          // clear the configurator status line
                 showResultView();           // navigate to the result "page"
             } catch (e) { setStatus(e.message, 'error'); }
@@ -944,6 +980,31 @@
                 card.innerHTML = `<h4>${esc(grp.group)}</h4>${rows}`;
                 wrap.appendChild(card);
             }
+        }
+
+        // ---- Spec-number plate (Phase B) ---------------------------------
+        // The authoritative per-field segment codes are NOT returned by
+        // resolve-state (resolved_codes is all-null there) nor as a map by
+        // /resolve — the one always-correct artifact is the generated Part Number
+        // string itself. So the plate renders the REAL Part Number split on '-'
+        // into one chip per segment. Every chip is therefore a true segment of
+        // the actual PN (no client-side encoding, nothing faked). Shown on the
+        // result page, where a Part Number exists. `pn` is data.part_number.
+        function renderSpecPlate(target, pn) {
+            const el = document.getElementById(target);
+            if (!el) return;
+            if (!pn) { el.style.display = 'none'; el.innerHTML = ''; return; }
+            const segs = String(pn).split('-');
+            const chips = segs.map((s, i) =>
+                `<span class="chip-seg"><span class="chip-code">${esc(s)}</span>`
+                + `<span class="chip-label">Seg ${i + 1}</span></span>`).join('');
+            el.innerHTML = `
+                <div class="plate-head">
+                    <span class="plate-title">Part number</span>
+                    <span class="plate-full">${esc(pn)}</span>
+                </div>
+                <div class="plate-chips">${chips}</div>`;
+            el.style.display = 'block';
         }
 
         function esc(s) {

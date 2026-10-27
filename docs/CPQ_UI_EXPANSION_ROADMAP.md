@@ -93,18 +93,42 @@ Each phase lists: deliverables, API touchpoints, collision guard, effort mode, e
 - **Exit:** both families still configure + look up exactly as before; nav switches views.
 
 ### Phase B — Configurator view polish `vConfig` (LEAN, UI-only, both families)
-- **Deliverables:** adopt the reference's configurator UX on top of current data:
-  per-option **price-delta labels** and **"Standard" badges** inside option lists,
-  inline **blocked-option reasons** (from `conflicts`/`dropped`), and a **live
-  spec-number "plate"** with per-segment chips built from `resolved_codes` that
-  updates as selections change.
-- **API:** existing `resolve-state` (codes/conflicts) + `resolve` (prices). May request
-  a lightweight price-delta by reusing `resolve`'s `component_pricing`; if per-option
-  deltas need a cheaper call, that becomes a small additive read (decided in design, not
-  assumed here).
-- **Collision guard:** no pricing math in the client — deltas are displayed from API
-  numbers only. Fybroc view visually updates but calls the same frozen endpoints.
-- **Exit:** both families show badges/deltas/plate; PN plate matches `resolve` output.
+- **Deliverables (implemented):** adopt the reference's configurator UX on top of the
+  data `resolve-state` already returns:
+  - **"Standard" badges** on a field row when its value equals `standard_defaults`.
+  - inline **blocked / conflict / dropped reasons** per field (from `conflicts`,
+    `dropped_fields`, `reset_fields`).
+  - a **spec-number "plate"** with per-segment chips on the **result view**. *(Placement
+    finding: a truly LIVE configurator plate is NOT possible in a LEAN UI pass — see note
+    below — so the plate is shown where the data is real: the result page.)*
+- **DEFERRED — per-option price-delta labels.** The reference shows a price delta next to
+  every option, but it computes prices client-side from its mock engine. This project's
+  `resolve-state` returns `allowable_options` / `standard_defaults` / `resolved_codes` /
+  `conflicts` but **no per-option prices**, and the authoritative price lives server-side
+  (`/configured-products/resolve` → `pricing` + `component_pricing`, for the whole
+  configuration). Showing a per-option delta would require either an N-options×`resolve`
+  fan-out (slow) or a new "price this option" endpoint — neither is a LEAN UI change, and
+  faking it client-side is exactly the collision we forbade. So per-option deltas are
+  deferred to a later additive pricing endpoint; the **total price already shows on the
+  result page** from `resolve`. Recorded here so the gap is not glossed over.
+- **FINDING — no live per-field codes.** `resolve-state` returns `resolved_codes` with
+  every field key present but **all values `null`** (verified live: Fybroc 1500 → 31 keys,
+  0 non-null; Dean Deanline → 63 keys, 0 non-null). The PN segment codes are produced by
+  `/configured-products/resolve`, which returns the assembled `part_number` string (not a
+  per-field code map). So a "live" plate in the configurator would always be empty, and
+  per-segment chips can't be truthfully built from a code map. The plate therefore renders
+  the **real generated Part Number split on `-` into one chip per segment** on the result
+  page — every chip is a true segment of the actual PN, nothing faked, no client-side
+  encoding. A genuinely live plate would need a new endpoint and is deferred with the
+  price-delta work.
+- **API:** existing `resolve-state` + `resolve` only (no new calls, no change to existing
+  calls).
+- **Collision guard:** zero pricing/encoding math in the client — every value shown
+  (std default, segment code, conflict) comes straight from the API. Fybroc view updates
+  visually but calls the same frozen endpoint with identical payloads.
+- **Exit:** both families show Standard badges and inline reasons in the configurator;
+  the result-view plate renders the generated Part Number as per-segment chips (chips
+  reassemble to exactly the `resolve` Part Number).
 
 ### Phase C — Quotes view + quote lifecycle UI (FULL, mostly UI + thin endpoints)
 - **Deliverables:** Quote list, open quote, add line from a configuration, edit/duplicate/
