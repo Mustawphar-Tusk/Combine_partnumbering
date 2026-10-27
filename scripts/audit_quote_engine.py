@@ -38,6 +38,26 @@ def _wait():
     return False
 
 
+def _cleanup_quote(qid):
+    """Delete the quote (+ lines) THIS audit created so it leaves no residue in
+    quote.QuoteHeader/QuoteLine. Scoped to the single header id. Best-effort: a
+    cleanup failure never changes the audit's pass/fail result."""
+    if not qid:
+        return
+    try:
+        import pyodbc
+        conn = pyodbc.connect(
+            "DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;"
+            "DATABASE=PumpConfiguratorDB;Trusted_Connection=yes;Encrypt=yes;"
+            "TrustServerCertificate=yes;", autocommit=True)
+        cur = conn.cursor()
+        cur.execute("DELETE FROM quote.QuoteLine WHERE QuoteHeaderId = ?;", qid)
+        cur.execute("DELETE FROM quote.QuoteHeader WHERE QuoteHeaderId = ?;", qid)
+        conn.close()
+    except Exception as e:
+        print(f"  [warn] cleanup of quote {qid} skipped: {e}")
+
+
 def build_full_config(series):
     sel = {}
     for _ in range(160):
@@ -77,6 +97,16 @@ def main():
     ok(bool(qid), f"quote created ({q.get('quote_number')})")
     ok(q.get("site_code") == "TEL", "quote site persisted (TEL)")
 
+    try:
+        rc = _run(qid, ok, P, F)
+    finally:
+        # Always remove the quote this audit created (pass or fail): a
+        # verification must not accumulate quote rows in the DB.
+        _cleanup_quote(qid)
+    return rc
+
+
+def _run(qid, ok, P, F):
     # 2) Add a line per representative config.
     expected_lines = 0
     for series in CASES:

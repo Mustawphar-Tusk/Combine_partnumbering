@@ -45,6 +45,26 @@ def _wait():
     return False
 
 
+def _cleanup_quote(qid):
+    """Delete the quote (and its lines) THIS audit created, so the audit leaves no
+    residue in quote.QuoteHeader/QuoteLine. Scoped to the single header id we were
+    handed. Best-effort: a cleanup failure must never fail the audit."""
+    if not qid:
+        return
+    try:
+        import pyodbc
+        conn = pyodbc.connect(
+            "DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;"
+            "DATABASE=PumpConfiguratorDB;Trusted_Connection=yes;Encrypt=yes;"
+            "TrustServerCertificate=yes;", autocommit=True)
+        cur = conn.cursor()
+        cur.execute("DELETE FROM quote.QuoteLine WHERE QuoteHeaderId = ?;", qid)
+        cur.execute("DELETE FROM quote.QuoteHeader WHERE QuoteHeaderId = ?;", qid)
+        conn.close()
+    except Exception as e:
+        print(f"  [warn] cleanup of quote {qid} skipped: {e}")
+
+
 def std_selections(family, series):
     """Resolve-state once, then echo its STD-seeded selections back (the state
     the UI holds) so the add-line resolve has a complete config."""
@@ -76,6 +96,18 @@ def main():
     ok(bool(qid), f"quote created ({q.get('quote_number')})")
     ok(q.get("site_code") == "TEL", "quote site persisted (TEL)")
 
+    try:
+        _run_checks(qid, ok)
+    finally:
+        # Always remove the quote this audit created (pass or fail): the audit is
+        # a verification, not a data source, so it must leave no quote residue.
+        _cleanup_quote(qid)
+
+    print(f"\n=== RESULT: {P[0]} passed, {F[0]} failed ===")
+    return 0 if F[0] == 0 else 1
+
+
+def _run_checks(qid, ok):
     # 2) Add a Fybroc line AND a Dean line.
     cases = [("FYBROC", "1500"), ("DEAN", "Deanline")]
     expected_total = 0.0
@@ -118,9 +150,6 @@ def main():
 
     # 5) The list `count` is consistent (>= the quotes returned, and our quote in it).
     ok(lst.get("count") == len(quotes), f"list count matches returned rows ({lst.get('count')})")
-
-    print(f"\n=== RESULT: {P[0]} passed, {F[0]} failed ===")
-    return 0 if F[0] == 0 else 1
 
 
 if __name__ == "__main__":
