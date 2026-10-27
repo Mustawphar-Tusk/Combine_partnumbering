@@ -965,7 +965,7 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
     }
 
 
-def _dean_std_combo_autoadjust(cursor, pub_id, family_id, series, selections):
+def _dean_std_combo_autoadjust(cursor, pub_id, family_id, series, selections, ctx=None):
     """STD seed auto-adjust for Dean numbering segments (currently WET_END only;
     power-frame STD snapping is deferred to the standard-fields work). If the
     STD-seeded combination for a covered segment has no enumerated (coded) row,
@@ -982,7 +982,11 @@ def _dean_std_combo_autoadjust(cursor, pub_id, family_id, series, selections):
     Presentation/seed convenience only - it never invents a value outside the
     enumerated combinations, so the resulting combo always has a part-number code.
     """
-    ctx = _load_constraint_context(cursor, pub_id, family_id, series)
+    # Reuse the caller's pre-loaded constraint context when supplied (avoids a
+    # second ~2s load of the 100K+ combo rows per Dean seed). Load only if the
+    # caller didn't pass one. Behavior is identical either way.
+    if ctx is None:
+        ctx = _load_constraint_context(cursor, pub_id, family_id, series)
     allowlists = ctx.get("combo_allowlists") or {}
     # STD auto-adjust (snapping the STD seed onto a coded combination) is DEFERRED
     # for every segment until the Dean standard-fields work: the standard values
@@ -1175,6 +1179,14 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
     for _seg, al in (ctx.get("combo_allowlists") or {}).items():
         seg_fields = al["fields"]
         combo_rows = al["rows"]
+        # PERF: only this segment's combo rows can constrain this segment's
+        # fields, so skip the (potentially 50K+ row) scan entirely unless at
+        # least one of this segment's fields is actually being filtered (present
+        # in `allowable`). In the free-edit endpoint `allowable` holds a single
+        # target field per call, so each call now scans at most ONE segment's
+        # rows instead of all four. Pure short-circuit; does not change results.
+        if not any(f in allowable for f in seg_fields):
+            continue
         # Context = this segment's fields the user has already chosen (non-blank).
         sel_ctx = {
             f: _sel_norm[f] for f in seg_fields
@@ -1890,6 +1902,15 @@ async def resolve_configuration_state(
             if k.upper() in all_options
         }
 
+        # Load the constant constraint data ONCE for this request (constant per
+        # pub/family/series) and reuse it everywhere below: the STD combo
+        # auto-adjust AND every per-field filter. Loaded here (before the seed
+        # block) so the Dean seed's auto-adjust doesn't trigger a second ~2s load
+        # of the 100K+ combo rows. Behavior unchanged; this is purely to load once.
+        constraint_ctx = _load_constraint_context(
+            cursor, pub_id, family_id, body.series
+        )
+
         # (a) STD seed when nothing selected: start every field at its STD.
         std_combo_adjusted: dict[str, str] = {}
         if not incoming:
@@ -1909,7 +1930,8 @@ async def resolve_configuration_state(
             # numberable. Changed fields are reported in reset_fields. Dean-only.
             if family_upper == "DEAN":
                 std_combo_adjusted = _dean_std_combo_autoadjust(
-                    cursor, pub_id, family_id, body.series, selections
+                    cursor, pub_id, family_id, body.series, selections,
+                    ctx=constraint_ctx,
                 )
         else:
             selections = dict(incoming)
@@ -1973,12 +1995,8 @@ async def resolve_configuration_state(
                 fields = [fc for fc in fields if fc.upper() not in excluded]
             return fields
 
-        # Load the constant constraint data ONCE for this request, then reuse it
-        # for every per-field filter below (avoids re-querying the constraint
-        # tables per field, which is what made this endpoint slow).
-        constraint_ctx = _load_constraint_context(
-            cursor, pub_id, family_id, body.series
-        )
+        # (constraint_ctx was loaded once above, before the STD seed, and is
+        # reused by every per-field filter below.)
 
         def _allowable_for(target: str, sel: dict[str, str]) -> list[str]:
             """Constraint-correct options for `target` given every OTHER

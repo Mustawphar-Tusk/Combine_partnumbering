@@ -742,12 +742,11 @@
             else if (flagged.has(fieldCode)) cls += ' is-flagged';
             row.className = cls;
 
-            // Phase B: a single "Standard" badge when the current value equals the
-            // series STD default. We intentionally show ONLY the std badge (not a
-            // custom/not-set badge) so the row stays uncluttered - other states are
-            // already conveyed by the row's left-border color and the dropdown's
-            // "(standard)" / "-- Not set --" option text.
-            const stdBadge = isStd ? '<span class="tag std">Standard</span>' : '';
+            // No std/custom/not-set badge beside the field name: the dropdown
+            // already shows "(standard)" and "-- Not set --", so a per-label badge
+            // is redundant and clutters the layout (user directive: keep fields
+            // clutter-free, no redundant naming). Field state is conveyed by the
+            // row's left-border color (see .frow.is-* CSS).
 
             const optionHtml = [
                 `<option value=""${hasValue ? '' : ' selected'}>-- Not set --</option>`,
@@ -763,7 +762,7 @@
             const code = resolvedCodes[fieldCode];
 
             row.innerHTML = `
-                <div class="fl">${esc(pretty(fieldCode))}${stdBadge}</div>
+                <div class="fl">${esc(pretty(fieldCode))}</div>
                 <div>
                     <select data-field="${escAttr(fieldCode)}">${optionHtml.join('')}</select>
                 </div>
