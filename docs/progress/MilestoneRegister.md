@@ -2,6 +2,33 @@
 
 **Last Updated:** 2026-10-27
 
+> **2026-10-27 (Dean Motor Numbering + Price Adders):** PASS. Adopted the new
+> `workbooks/Dean/Motor Numbering.xlsm` as the authoritative Dean motor source,
+> replacing the old inert/frame-only motor. The Dean PN motor group is now the
+> 4-char Combined Alphanumeric Code (brand letter + 3-char base) resolved from
+> the MOTOR_SPEC combination table (34,084 enumerated combos). New
+> `scripts/load_dean_motor_numbering.py` (Dean-family-scoped) loads: MOTOR_SPEC
+> combos into the DEAN segment batch; 9 motor option fields (MOTOR, MOTOR_CONTROL,
+> RATED_SPEED, RATED_POWER, VOLTAGE, PHASE_FREQUENCY, ENCLOSURE, EFFICIENCY, BRAND)
+> × 37 series; and `price.DeanMotorPrice` (491 numeric / 33,593 C.F., per source).
+> FRAME_SIZE canonicalized in place (UPPER + VP→HP per engineering) with each
+> series' applicable frame set PRESERVED. `dean_identifier.py` resolves the motor
+> segment (4-char code, or clean `0000` for the 21 big frames with no motor combo —
+> never `????`); SQL assembler unchanged (width-agnostic CONCAT), py==SQL parity
+> holds. Dean pricing branch prices the motor numeric-where-present / C/F otherwise.
+> Milestone audit `scripts/audit_dean_motor_numbering.py` 27/0; `audit_dean_config`
+> 28/0; `audit_dean_wet_end_resolve` 32/0; Fybroc gate ALL CORRECTIONS INTACT 9/9;
+> Fybroc watermarks unchanged (FeasibleConstraint 4743, non-Dean SFO 2096,
+> non-Dean SegmentCombinationImport 300608, ConfiguredProduct non-DEAN 1196).
+> INCIDENT (resolved): an early un-scoped SFO delete removed 16 Fybroc MOTOR_CONTROL
+> rows; detected via audit_selections_vs_db, restored via the canonical Fybroc
+> loader (load_all_series.py), loader hardened to family-scope every write.
+> Known gaps (disclosed): motor price mostly C/F by source; 21 big frames have no
+> motor combo (resolve `0000`/C/F); no per-series STD frame (Pump Constraints all
+> X); pre-existing audit_dean_config_accuracy flush-field EXTRA (D110, unrelated).
+> Evidence: `docs/evidence/DEAN_MOTOR/DEAN_MOTOR_NUMBERING_EXIT.md`.
+> **Next:** resume CPQ Phase D (Accounts/contacts) on go-ahead. D150 PARKED.
+
 > **2026-10-27 (CPQ Phase C — Quotes UI):** PASS. Added a Quotes page
 > (list/create/open) + an "Add to a quote" action on the configurator result page,
 > both families, on top of the EXISTING quote engine. One additive, read-only

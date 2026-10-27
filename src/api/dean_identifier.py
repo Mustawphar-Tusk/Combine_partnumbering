@@ -21,9 +21,11 @@ D140 RE-BASE (2026-08-26) onto PumpConfiguration_Logic_0.1.xlsm:
   * Flush Plan is now TABLE-BACKED (its own numbering sheet). Resolved by looking
     up the plan's STD numbering row (lowest code for the FLUSH_PLAN), replacing
     the prior Config-Info FA->FH letter map.
-  * Motor is table-backed via the Motor Frame-Size sub-table (FRAME_SIZE ->
-    2-char code). The main motor code column is inert ('000') in the workbook and
-    is NOT used.
+  * Motor (2026 re-base onto "Motor Numbering.xlsm"): the motor PN group is the
+    4-char Combined Alphanumeric Code resolved from the MOTOR_SPEC combination
+    table (10 motor fields -> brand letter + 3-char base). This REPLACES the old
+    inert frame-only motor code. FRAME_SIZE values are canonicalized (UPPER +
+    VP->HP) so selections match the enumerated motor combinations.
 
 Special (non-table) segments:
   - Impeller Trim  : inch-letter + decimal-letter (Impeller trim sub-table)
@@ -39,7 +41,12 @@ placeholder so the PN never errors and the slot is preserved):
 The Dean PN (seal segment EXCLUDED - see below):
   D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(4)>
     -<Flush(2)><Barrier(1)><Cooling(2)>-<Frame(2)><Baseplate(2)>
-    -<Motor(4)><MotorOpts(2)>-<AddlOpts(2)>-<Testing(2)><Doc(4)>
+    -<Motor(4)>
+  Motor is now the 4-char Combined Alphanumeric Code from the new Motor
+  Numbering workbook (brand letter + 3-char base); it is the WHOLE motor group
+  (the old separate 2-char motor-options slot is folded in / empty). Additional
+  Options + Testing/Documentation are NOT PN drivers (2026-08-26); the PN ends at
+  the motor group.
 
 Seal is intentionally omitted from the PN: the seal code is authored only in the
 external "Seal Numbering.accdb" (getSealOptions), which is unavailable, so the
@@ -138,6 +145,26 @@ SEGMENT_FIELD_ORDER = {
         "FLUSH_TEMPERATURE_RANGE",
         "FLUSH_COOLING_MEDIA",
     ],
+    # Motor Numbering (new "Motor Numbering.xlsm" Pricing sheet). The 10 motor
+    # spec fields (combos column order S..AB) combine into the 4-char Combined
+    # Alphanumeric Code (brand letter + 3-char base). CombinationKey is the
+    # '*'-join of these 10 values, matching scripts/load_dean_motor_numbering.py.
+    # 34,084 enumerated combinations are the motor allow-list; the code is the
+    # motor PN segment (replaces the old inert frame-only motor). FRAME_SIZE is
+    # canonicalized (UPPER + VP->HP) in SeriesFieldOption so the selected value
+    # matches the stored key.
+    "MOTOR_SPEC": [
+        "MOTOR",
+        "MOTOR_CONTROL",
+        "FRAME_SIZE",
+        "RATED_SPEED",
+        "RATED_POWER",
+        "VOLTAGE",
+        "PHASE_FREQUENCY",
+        "ENCLOSURE",
+        "EFFICIENCY",
+        "BRAND",
+    ],
 }
 
 # Default token for each ComboString POSITION when the mapped Dean field is
@@ -196,6 +223,7 @@ _GENERIC_DEFAULT = "NONE"
 SEGMENT_WIDTH = {
     "WET_END_OPTIONS": 4, "IMPELLER_OPTIONS": 2, "POWER_FRAME_OPTIONS": 4,
     "BASEPLATE_OPTIONS": 2, "FLUSH_PLAN": 2, "MOTOR_FRAME": 2,
+    "MOTOR_SPEC": 4,
 }
 
 # Retained-but-UNBUILT segments (no numbering table in v0.1) -> fixed zero-padded
@@ -441,6 +469,38 @@ def resolve_motor_frame(cursor, selections):
     return code if code else "00"
 
 
+def _canon_frame(v):
+    """Canonical FRAME_SIZE for MOTOR_SPEC key matching (UPPER + VP->HP), mirroring
+    scripts/load_dean_motor_numbering.canon_frame. The SeriesFieldOption FRAME_SIZE
+    values are already canonicalized, but normalize defensively here too."""
+    import re
+    return re.sub(r"VP$", "HP", _norm(v).upper())
+
+
+def resolve_motor_spec(cursor, selections):
+    """Motor (4): the new multi-field motor spec -> 4-char Combined Alphanumeric
+    Code (brand letter + 3-char base), via the MOTOR_SPEC combination table
+    (Motor Numbering.xlsm). Builds the CombinationKey as the '*'-join of the 10
+    motor fields in MOTOR_SPEC order (FRAME_SIZE canonicalized), matches it
+    exactly against the loaded combos, and returns the code. A non-enumerated
+    combination (incomplete selection, or one of the 21 big frames with no motor
+    combo) returns the fixed '0000' placeholder - the PN stays clean and the
+    Contact-Factory story is carried by pricing, not a '????' PN error."""
+    order = SEGMENT_FIELD_ORDER["MOTOR_SPEC"]
+    parts = []
+    for fld in order:
+        val = _canon_frame(selections.get(fld, "")) if fld == "FRAME_SIZE" \
+            else _norm(selections.get(fld, ""))
+        parts.append(val)
+    # All 10 motor fields must be present to form a real combination; if any is
+    # blank the motor is not fully specified -> placeholder.
+    if any(p == "" for p in parts):
+        return "0000"
+    combo = "*".join(parts)
+    code = _seg_lookup(cursor, "MOTOR_SPEC", combo)
+    return code if code else "0000"
+
+
 def resolve_segments(cursor, series, size, selections):
     """Resolve every Dean PN segment. Returns (segments_payload_dict, debug_dict).
 
@@ -496,17 +556,23 @@ def resolve_segments(cursor, series, size, selections):
 
     # --- retained-but-UNBUILT segments (no numbering table in v0.1). Fixed
     #     placeholders keep the PN error-free and the slot preserved (gaps F1/F2
-    #     + no-sheet Testing/Documentation/Additional Options + inert Motor). ---
+    #     + no-sheet Testing/Documentation/Additional Options). ---
     cooling = UNBUILT_PLACEHOLDER["COOLING_PLAN"]
     barrier = UNBUILT_PLACEHOLDER["BARRIER_PLAN"]
     testing = UNBUILT_PLACEHOLDER["TESTING"]
     documentation = UNBUILT_PLACEHOLDER["DOCUMENTATION"]
     addl = UNBUILT_PLACEHOLDER["ADDITIONAL_OPTIONS"]
-    motor_options = UNBUILT_PLACEHOLDER["MOTOR_OPTIONS"]
-    # Motor MAIN code column is inert ('000') in v0.1 (gap F3); the live motor
-    # code differentiation is the frame-size (frame) above. Emit a fixed 4-char
-    # inert motor code so the PN slot is preserved.
-    motor = "0000"
+
+    # --- MOTOR (new Motor Numbering.xlsm): the 10-field motor spec resolves to a
+    #     4-char Combined Alphanumeric Code via the MOTOR_SPEC combination table.
+    #     The whole motor group IS this code now (motor_options folded in -> ''),
+    #     so the PN motor group is a single 4-char segment. A combination that is
+    #     NOT enumerated (e.g. a frame with no motor combo - the 21 big frames, or
+    #     an incomplete motor selection) emits a fixed '0000' placeholder rather
+    #     than the '????' error marker, so the PN stays clean; the C/F story is
+    #     carried by pricing (price.DeanMotorPrice), not a broken PN. ---
+    motor = resolve_motor_spec(cursor, selections)
+    motor_options = ""
 
     # --- special segments ---
     trim = resolve_trim(selections)

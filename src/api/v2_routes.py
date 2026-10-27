@@ -931,7 +931,7 @@ def _load_constraint_context(cursor, pub_id, family_id, series):
         _bid = _dean_id._dean_batch_id(cursor)
         if _bid and _bid > 0:
             for _seg in ("WET_END_OPTIONS", "POWER_FRAME_OPTIONS", "FLUSH_PLAN",
-                         "BASEPLATE_OPTIONS"):
+                         "BASEPLATE_OPTIONS", "MOTOR_SPEC"):
                 seg_fields = list(_dean_id.SEGMENT_FIELD_ORDER[_seg])
                 rows_lc = []    # lowercased, for case-insensitive matching
                 rows_orig = []  # original-cased (parallel), for writing back
@@ -3148,8 +3148,29 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 else:
                     _add_component(label, None, None)
 
-            # Motor + Seal are not priced by the Matrix -> honest C/F.
-            _add_component("Motor", body.selections.get("FRAME_SIZE"), None)
+            # MOTOR price (Motor Numbering.xlsm): price the resolved motor by its
+            # 4-char Combined Alphanumeric Code via price.DeanMotorPrice. The
+            # workbook gives a numeric price for 491 combinations and 'C.F.'
+            # (Contact Factory) for 33,593 - so this is numeric where present and
+            # an honest C/F line otherwise. A non-enumerated motor (code '0000',
+            # e.g. no frame chosen yet) is not priced (C/F). Seal stays C/F.
+            _motor_code = (dean_payload.get("motor") or "").strip()
+            _motor_label_val = body.selections.get("FRAME_SIZE") or _motor_code
+            if _motor_code and _motor_code != "0000":
+                mrow = cursor.execute(
+                    "SELECT Amount, IsContactFactory FROM price.DeanMotorPrice "
+                    "WHERE MotorCode = ?", _motor_code).fetchone()
+                if mrow is not None and mrow[0] is not None and not mrow[1]:
+                    _m_amt = float(mrow[0])
+                    pricing.append({"component": "Motor", "amount": _m_amt,
+                                    "detail": _motor_code})
+                    _add_component("Motor", _motor_label_val, _m_amt, _motor_code)
+                else:
+                    # enumerated but Contact-Factory (or no numeric price)
+                    _add_component("Motor", _motor_label_val, None)
+            else:
+                # motor not fully specified / not enumerated -> C/F
+                _add_component("Motor", _motor_label_val, None)
 
             total = sum(p["amount"] for p in pricing)
             # Skip the Fybroc-specific adder/multi blocks below for Dean.

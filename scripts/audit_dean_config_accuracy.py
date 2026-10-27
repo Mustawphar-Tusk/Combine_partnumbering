@@ -35,6 +35,19 @@ CS = ('DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;'
       'TrustServerCertificate=yes;')
 WB_PATH = Path("workbooks/Dean/PumpConfiguration_Logic_0.1.xlsm")
 
+# Motor-domain fields whose AUTHORITY is the new "Motor Numbering.xlsm", NOT the
+# Pump Constraints sheet this audit oracles against. They are EXCLUDED here and
+# covered by scripts/audit_dean_motor_numbering.py instead:
+#  - the 9 pure-motor fields do not exist in Pump Constraints at all;
+#  - FRAME_SIZE exists in Pump Constraints (applicability) but its VALUES are now
+#    canonicalized (UPPER + VP->HP) to match the motor combos, so a raw-literal
+#    equality against the sheet no longer applies. Its per-series applicability is
+#    preserved by the loader (canonicalize-in-place, never add/remove frames).
+MOTOR_DOMAIN_FIELDS = {
+    "MOTOR", "MOTOR_CONTROL", "RATED_SPEED", "RATED_POWER", "VOLTAGE",
+    "PHASE_FREQUENCY", "ENCLOSURE", "EFFICIENCY", "BRAND", "FRAME_SIZE",
+}
+
 
 def _col_letter(i0: int) -> str:
     s, c = "", i0 + 1
@@ -137,6 +150,11 @@ def parse_sheet_oracle():
         fieldmap = expected.setdefault(key, {})
         order.append(key)
         for c0, code in col_field.items():
+            # Motor-domain fields are authored by Motor Numbering.xlsm, not this
+            # sheet -> excluded from the Pump-Constraints oracle (see
+            # MOTOR_DOMAIN_FIELDS; covered by audit_dean_motor_numbering.py).
+            if code in MOTOR_DOMAIN_FIELDS:
+                continue
             mk = g(r0, c0)
             mk = str(mk).strip().upper() if mk is not None else ""
             if mk not in ("STD", "X"):
@@ -164,7 +182,9 @@ def parse_sheet_oracle():
 
 
 def read_db():
-    """{(series, size): {field: {value: 'STD'|'X'}}} from DB DEAN active rows."""
+    """{(series, size): {field: {value: 'STD'|'X'}}} from DB DEAN active rows.
+    Motor-domain fields (authored by Motor Numbering.xlsm) are excluded - they
+    are audited by audit_dean_motor_numbering.py, not against Pump Constraints."""
     conn = pyodbc.connect(CS)
     c = conn.cursor()
     dean = c.execute("SELECT PumpFamilyId FROM cfg.PumpFamily "
@@ -177,6 +197,8 @@ def read_db():
     actual = {}
     dup = 0
     for ser, size, field, value, marker, is_std in rows:
+        if field in MOTOR_DOMAIN_FIELDS:
+            continue
         key = (str(ser).strip(), str(size).strip() if size is not None else "")
         mk = (marker or "").strip().upper()
         if mk not in ("STD", "X"):
