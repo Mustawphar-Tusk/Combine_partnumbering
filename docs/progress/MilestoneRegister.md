@@ -1,6 +1,23 @@
 # Milestone Register
 
-**Last Updated:** 2026-08-26
+**Last Updated:** 2026-10-27
+
+> **2026-10-27 (CPQ Phase C — Quotes UI):** PASS. Added a Quotes page
+> (list/create/open) + an "Add to a quote" action on the configurator result page,
+> both families, on top of the EXISTING quote engine. One additive, read-only
+> backend addition: `GET /api/v2/families/{family}/quotes` + `quote.usp_ListQuotes`
+> (`sql/26_Create_Quote_List.sql`); no table/DDL change, no change to existing procs
+> or endpoints. Milestone audit `scripts/audit_cpq_quotes_ui.py` 16/0 (create →
+> Fybroc line $18,219×2 `found` + Dean line `call_for_price`/$0 → list count/total ==
+> get-quote). Fybroc gate ALL CORRECTIONS INTACT 9/9 (incl. quote_engine). Isolation:
+> before==after on cfg.FeasibleConstraint 4743 / cfg.ConstraintFieldMap 59 /
+> cfg.SeriesFieldOption 52145 / stg.SegmentCombinationImport 407500 /
+> cfg.ConfiguredProduct non-DEAN 1196 — only quote tables grew (the feature). Known
+> gap: Dean base price pending (Dean line = call_for_price), pre-existing, disclosed;
+> line edit/remove UI deferred. Part of the CPQ UI Expansion (see
+> `docs/CPQ_UI_EXPANSION_ROADMAP.md`; Phases A, B, and the Dean resolve-state perf fix
+> already shipped). Evidence: `docs/evidence/PHASE_C/CPQ_QUOTES_UI_EXIT.md`.
+> **Next:** CPQ Phase D (Accounts/contacts) — awaiting go-ahead. D150 remains PARKED.
 
 > **Authority note:** for the true, verified Dean-phase status use
 > `docs/Project_master_roadmap.md` §11–§12 (v1.34).

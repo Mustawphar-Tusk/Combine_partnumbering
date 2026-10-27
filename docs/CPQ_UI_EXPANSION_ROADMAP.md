@@ -130,7 +130,15 @@ Each phase lists: deliverables, API touchpoints, collision guard, effort mode, e
   the result-view plate renders the generated Part Number as per-segment chips (chips
   reassemble to exactly the `resolve` Part Number).
 
-### Phase C — Quotes view + quote lifecycle UI (FULL, mostly UI + thin endpoints)
+### Phase C — Quotes view + quote lifecycle UI (FULL, mostly UI + thin endpoints) — ✅ COMPLETE
+**Status: PASS** (evidence: `docs/evidence/PHASE_C/CPQ_QUOTES_UI_EXIT.md`). Shipped: Quotes
+page (list/create/open) + "Add to a quote" on the result page; new additive read-only
+`GET /families/{family}/quotes` + `quote.usp_ListQuotes`. Milestone audit
+`scripts/audit_cpq_quotes_ui.py` 16/0; Fybroc gate 9/9 ALL CORRECTIONS INTACT; isolation
+before==after on all config/constraint/segment/non-Dean tables (only quote tables grew).
+Known gap: Dean base price pending (Dean line = call_for_price/$0) — pre-existing, disclosed.
+Line edit/remove UI deferred.
+
 - **Deliverables:** Quote list, open quote, add line from a configuration, edit/duplicate/
   remove line, line summary with item/spec number + price + lead, quote totals.
 - **API:** reuse `POST /quotes`, `POST /quotes/{id}/lines`, `GET /quotes/{id}`.

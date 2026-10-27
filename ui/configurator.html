@@ -440,6 +440,27 @@
                 <div id="pricingPanel"></div>
             </div>
 
+            <!-- Add-to-quote (Phase C): add this configured product as a quote line. -->
+            <div class="panel">
+                <h2 class="section-title" style="font-size:16px">Add to a quote</h2>
+                <div class="top-bar" style="align-items:flex-end">
+                    <div class="ctrl" style="min-width:220px">
+                        <label for="atqQuote">Quote</label>
+                        <select id="atqQuote"><option value="">— Select a quote —</option></select>
+                    </div>
+                    <div class="ctrl">
+                        <label for="atqQty">Quantity</label>
+                        <input id="atqQty" class="qty-input" type="number" min="1" step="1" value="1"
+                               style="border:1px solid var(--line);border-radius:8px">
+                    </div>
+                    <button class="btn" onclick="addResultToQuote()" id="atqAddBtn">+ Add line</button>
+                    <button class="btn ghost" onclick="refreshAtqQuotes()">↻</button>
+                    <span style="color:var(--ink-soft);font-size:12px">or
+                        <a href="#" onclick="event.preventDefault();showPage('quotes');showQuoteCreate();">create a new quote</a></span>
+                </div>
+                <div id="atqStatus"></div>
+            </div>
+
             <!-- Final spec-number plate (Phase B): same renderer as the live plate. -->
             <div class="plate" id="specPlateResult" style="display:none"></div>
 
@@ -476,13 +497,86 @@
              the shell is navigable without faking any backend behavior.
              ============================================================ -->
         <section class="page" id="page-quotes">
-            <div class="panel phase-placeholder">
-                <span class="emoji">🧾</span>
-                <h2>Quotes</h2>
-                <p>Build quotes from configured pumps: add lines, see item and spec
-                   numbers, unit and extended pricing, and quote totals for both Dean
-                   and Fybroc.</p>
-                <span class="tag">Coming in Phase C</span>
+            <!-- Quotes LIST sub-view -->
+            <div id="quotesListView">
+                <div class="panel">
+                    <div class="result-header">
+                        <div>
+                            <h2 class="section-title" style="margin:0">🧾 Quotes</h2>
+                            <div class="result-summary">Build quotes from configured pumps.
+                                Create a quote, then add configured products as lines from the
+                                Configurator result page. Works for both Dean and Fybroc.</div>
+                        </div>
+                        <div class="result-actions">
+                            <button class="btn" onclick="showQuoteCreate()">+ New quote</button>
+                            <button class="btn ghost" onclick="loadQuotesList()">↻ Refresh</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="quotesStatus"></div>
+                <div class="panel">
+                    <table class="pricing-table" id="quotesTable">
+                        <thead>
+                            <tr><th>Quote</th><th>Customer</th><th>Site</th><th>Status</th>
+                                <th class="amount">Lines</th><th class="amount">Total</th><th></th></tr>
+                        </thead>
+                        <tbody id="quotesTableBody"></tbody>
+                    </table>
+                    <div id="quotesEmpty" class="lookup-sub" style="display:none;padding:10px 2px">
+                        No quotes yet. Create one with “New quote”.</div>
+                </div>
+            </div>
+
+            <!-- Quote CREATE sub-view -->
+            <div id="quoteCreateView" style="display:none">
+                <div class="panel">
+                    <h2 class="section-title">New quote</h2>
+                    <div class="top-bar" style="align-items:flex-end">
+                        <div class="ctrl">
+                            <label for="nqSite">Site</label>
+                            <select id="nqSite">
+                                <option value="TEL">TEL</option>
+                                <option value="IND">IND</option>
+                            </select>
+                        </div>
+                        <div class="ctrl" style="flex:1;min-width:200px">
+                            <label for="nqCustomer">Customer name</label>
+                            <input id="nqCustomer" class="qty-input" style="width:100%;text-align:left;font-family:inherit;border:1px solid var(--line);border-radius:8px;padding:9px 12px" placeholder="e.g. Acme Pumps Inc.">
+                        </div>
+                        <div class="ctrl" style="min-width:160px">
+                            <label for="nqAccount">Account (optional)</label>
+                            <input id="nqAccount" class="qty-input" style="width:100%;text-align:left;font-family:inherit;border:1px solid var(--line);border-radius:8px;padding:9px 12px" placeholder="Account code">
+                        </div>
+                    </div>
+                    <div class="result-actions" style="margin-top:16px">
+                        <button class="btn" onclick="createQuote()">Create quote</button>
+                        <button class="btn ghost" onclick="showQuotesList()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quote OPEN (header + lines) sub-view -->
+            <div id="quoteOpenView" style="display:none">
+                <div class="panel result-header">
+                    <div>
+                        <h2 class="section-title" style="margin:0">🧾 <span id="qoNumber"></span></h2>
+                        <div id="qoMeta" class="result-summary"></div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn ghost" onclick="showQuotesList()">← Back to quotes</button>
+                    </div>
+                </div>
+                <div class="panel">
+                    <table class="pricing-table">
+                        <thead>
+                            <tr><th>#</th><th>Part Number</th><th>SKU</th><th>Family</th>
+                                <th class="amount">Qty</th><th class="amount">Unit</th>
+                                <th class="amount">Ext.</th><th>Status</th></tr>
+                        </thead>
+                        <tbody id="qoLinesBody"></tbody>
+                    </table>
+                    <div class="pricing-total" id="qoTotal"></div>
+                </div>
             </div>
         </section>
 
@@ -954,6 +1048,8 @@
                 renderOrderTotals();
                 renderResultSpec();
                 renderSpecPlate('specPlateResult', data.part_number);
+                setAtqStatus('', '');       // clear any prior add-to-quote message
+                refreshAtqQuotes();         // populate the add-to-quote dropdown
                 setStatus('', '');          // clear the configurator status line
                 showResultView();           // navigate to the result "page"
             } catch (e) { setStatus(e.message, 'error'); }
@@ -1141,6 +1237,205 @@
             document.querySelector('.top-bar').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // ================= QUOTES PAGE (Phase C) =================
+        // Thin UI over the existing quote engine: GET .../quotes (list, new in
+        // Phase C), POST .../quotes (create), POST .../quotes/{id}/lines (add a
+        // configured product as a line), GET .../quotes/{id} (open). No pricing
+        // or identity is computed client-side — every value comes from the API.
+        let openQuoteId = null;   // quote currently open in the Open sub-view
+
+        function setQuotesStatus(msg, type) {
+            const el = document.getElementById('quotesStatus');
+            if (!el) return;
+            el.className = msg ? ('status ' + (type || '')) : '';
+            el.textContent = msg || '';
+            el.style.display = msg ? 'block' : 'none';
+        }
+
+        function _quotesApiFamily() {
+            // Quotes are not family-scoped server-side; use the current family
+            // selector only to satisfy the URL path.
+            return document.getElementById('family').value || 'DEAN';
+        }
+
+        function showQuotesList() {
+            document.getElementById('quotesListView').style.display = 'block';
+            document.getElementById('quoteCreateView').style.display = 'none';
+            document.getElementById('quoteOpenView').style.display = 'none';
+        }
+        function showQuoteCreate() {
+            document.getElementById('quotesListView').style.display = 'none';
+            document.getElementById('quoteCreateView').style.display = 'block';
+            document.getElementById('quoteOpenView').style.display = 'none';
+            setQuotesStatus('', '');
+        }
+        function showQuoteOpenView() {
+            document.getElementById('quotesListView').style.display = 'none';
+            document.getElementById('quoteCreateView').style.display = 'none';
+            document.getElementById('quoteOpenView').style.display = 'block';
+        }
+
+        async function loadQuotesList() {
+            const fam = _quotesApiFamily();
+            const body = document.getElementById('quotesTableBody');
+            const empty = document.getElementById('quotesEmpty');
+            body.innerHTML = '';
+            setQuotesStatus('Loading quotes…', 'loading');
+            try {
+                const resp = await fetch(`${API}/families/${fam}/quotes`);
+                if (!resp.ok) throw new Error(`API ${resp.status}`);
+                const data = await resp.json();
+                const quotes = data.quotes || [];
+                if (!quotes.length) {
+                    empty.style.display = 'block';
+                    setQuotesStatus('', '');
+                    return;
+                }
+                empty.style.display = 'none';
+                body.innerHTML = quotes.map(q => `
+                    <tr>
+                        <td class="mono" style="font-weight:700">${esc(q.quote_number)}</td>
+                        <td>${esc(q.customer_name || '—')}${q.customer_account ? ` <span class="lookup-sub">(${esc(q.customer_account)})</span>` : ''}</td>
+                        <td>${esc(q.site_code)}</td>
+                        <td>${esc(q.status)}</td>
+                        <td class="amount">${q.line_count}</td>
+                        <td class="amount">${_fmtMoney(q.total_price)}</td>
+                        <td><button class="btn ghost" data-open-quote="${q.quote_header_id}">Open</button></td>
+                    </tr>`).join('');
+                body.querySelectorAll('[data-open-quote]').forEach(b =>
+                    b.addEventListener('click', () => openQuote(+b.getAttribute('data-open-quote'))));
+                setQuotesStatus(`${quotes.length} quote${quotes.length === 1 ? '' : 's'}`, 'success');
+            } catch (e) {
+                setQuotesStatus('Could not load quotes: ' + e.message, 'error');
+            }
+        }
+
+        async function createQuote() {
+            const fam = _quotesApiFamily();
+            const site = document.getElementById('nqSite').value;
+            const customer = document.getElementById('nqCustomer').value.trim();
+            const account = document.getElementById('nqAccount').value.trim();
+            setQuotesStatus('Creating quote…', 'loading');
+            try {
+                const resp = await postJson(`${API}/families/${fam}/quotes`, {
+                    site_code: site,
+                    customer_name: customer || null,
+                    customer_account: account || null,
+                    created_by: 'configurator-ui',
+                });
+                if (!resp.ok) { const t = await resp.text(); throw new Error(`API ${resp.status} - ${t.slice(0,160)}`); }
+                const q = await resp.json();
+                document.getElementById('nqCustomer').value = '';
+                document.getElementById('nqAccount').value = '';
+                showQuotesList();
+                await loadQuotesList();
+                setQuotesStatus(`Created ${q.quote_number}.`, 'success');
+            } catch (e) {
+                setQuotesStatus('Create failed: ' + e.message, 'error');
+            }
+        }
+
+        async function openQuote(quoteId) {
+            const fam = _quotesApiFamily();
+            openQuoteId = quoteId;
+            showQuoteOpenView();
+            document.getElementById('qoLinesBody').innerHTML = '';
+            document.getElementById('qoTotal').textContent = '';
+            document.getElementById('qoNumber').textContent = 'Loading…';
+            document.getElementById('qoMeta').textContent = '';
+            try {
+                const resp = await fetch(`${API}/families/${fam}/quotes/${quoteId}`);
+                if (!resp.ok) throw new Error(`API ${resp.status}`);
+                const doc = await resp.json();
+                document.getElementById('qoNumber').textContent = doc.quote_number || `Quote ${quoteId}`;
+                document.getElementById('qoMeta').textContent =
+                    `${doc.customer_name || 'No customer'} · Site ${doc.site_code} · ${doc.status} · ${doc.currency}`;
+                const lines = doc.lines || [];
+                document.getElementById('qoLinesBody').innerHTML = lines.length
+                    ? lines.map(l => `
+                        <tr>
+                            <td>${l.line_number}</td>
+                            <td class="mono">${esc(l.part_number)}</td>
+                            <td class="mono">${esc(l.sku)}</td>
+                            <td>${esc(l.family)}</td>
+                            <td class="amount">${l.quantity}</td>
+                            <td class="amount">${_fmtMoney(l.unit_price)}</td>
+                            <td class="amount">${_fmtMoney(l.extended_price)}</td>
+                            <td>${esc(l.pricing_status)}</td>
+                        </tr>`).join('')
+                    : `<tr><td colspan="8" class="lookup-sub" style="padding:10px">No lines yet. Add one from the Configurator result page.</td></tr>`;
+                document.getElementById('qoTotal').textContent =
+                    `Quote total: ${_fmtMoney(doc.total_price)} ${doc.currency || ''}`;
+            } catch (e) {
+                document.getElementById('qoNumber').textContent = 'Error';
+                document.getElementById('qoMeta').textContent = 'Could not load quote: ' + e.message;
+            }
+        }
+
+        // ---- Add-to-quote (Phase C, result page) -------------------------
+        function setAtqStatus(msg, type) {
+            const el = document.getElementById('atqStatus');
+            if (!el) return;
+            el.className = msg ? ('status ' + (type || '')) : '';
+            el.textContent = msg || '';
+            el.style.display = msg ? 'block' : 'none';
+        }
+
+        // Populate the result-page quote dropdown from the live list.
+        async function refreshAtqQuotes() {
+            const sel = document.getElementById('atqQuote');
+            if (!sel) return;
+            const fam = _quotesApiFamily();
+            const prev = sel.value;
+            try {
+                const resp = await fetch(`${API}/families/${fam}/quotes`);
+                if (!resp.ok) throw new Error(`API ${resp.status}`);
+                const data = await resp.json();
+                const quotes = data.quotes || [];
+                sel.innerHTML = '<option value="">— Select a quote —</option>' +
+                    quotes.map(q => `<option value="${q.quote_header_id}">${esc(q.quote_number)}`
+                        + `${q.customer_name ? ' · ' + esc(q.customer_name) : ''}`
+                        + ` (${q.line_count} lines)</option>`).join('');
+                if (prev) sel.value = prev;
+            } catch (e) {
+                setAtqStatus('Could not load quotes: ' + e.message, 'error');
+            }
+        }
+
+        // Add the just-resolved configuration to the selected quote as a line,
+        // via the existing /quotes/{id}/lines endpoint (same authoritative resolve
+        // flow the audit uses). Uses the current family/series + selections +
+        // resolved segment codes held by the configurator.
+        async function addResultToQuote() {
+            const fam = document.getElementById('family').value;
+            const series = document.getElementById('series').value;
+            const quoteId = document.getElementById('atqQuote').value;
+            const qty = Math.max(1, parseInt(document.getElementById('atqQty').value, 10) || 1);
+            if (!quoteId) { setAtqStatus('Pick a quote first (or create one).', 'error'); return; }
+            const segmentCodes = {};
+            for (const [k, v] of Object.entries(resolvedCodes)) if (v) segmentCodes[k] = v;
+            setAtqStatus('Adding line…', 'loading');
+            document.getElementById('atqAddBtn').disabled = true;
+            try {
+                const resp = await postJson(`${API}/families/${fam}/quotes/${quoteId}/lines`, {
+                    series,
+                    selections: { SERIES: series, ...selections },
+                    segment_codes: segmentCodes,
+                    quantity: qty,
+                    requested_by: 'configurator-ui',
+                }, { timeoutMs: 120000 });
+                if (!resp.ok) { const t = await resp.text(); throw new Error(`API ${resp.status} - ${t.slice(0,180)}`); }
+                const line = await resp.json();
+                setAtqStatus(`Added line ${line.line_number}: ${line.part_number} `
+                    + `(${_fmtMoney(line.extended_price)}, ${line.pricing_status}).`, 'success');
+                refreshAtqQuotes();
+            } catch (e) {
+                setAtqStatus('Add failed: ' + e.message, 'error');
+            } finally {
+                document.getElementById('atqAddBtn').disabled = false;
+            }
+        }
+
         // ================= TOP-NAV VIEW ROUTER (Phase A) =================
         // Minimal state/render shell: one active "page" at a time. Only the
         // Configurator page is functional today; the rest are placeholders
@@ -1160,6 +1455,9 @@
             document.querySelectorAll('#topnav .nav-item').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-page') === page);
             });
+            // Phase C: entering the Quotes page loads the list (and resets to the
+            // list sub-view).
+            if (page === 'quotes') { showQuotesList(); loadQuotesList(); }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 

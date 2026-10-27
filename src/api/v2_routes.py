@@ -3778,3 +3778,42 @@ async def get_quote(family: str, quote_header_id: int, request: Request):
         from fastapi import HTTPException
         raise HTTPException(status_code=404, detail="Quote not found")
     return _quote_to_document(quote)
+
+
+@router_v2.get("/families/{family}/quotes")
+async def list_quotes(family: str, request: Request):
+    """List persisted quotes (header + line_count + total), newest first.
+
+    Phase C (CPQ Quotes UI). Additive, read-only: backed by the new
+    quote.usp_ListQuotes proc over the existing quote tables. Quotes are not
+    family-scoped in the schema (a quote can carry lines from either family), so
+    the `family` path segment is accepted for URL consistency with the other
+    endpoints but does not filter - the full quote list is returned. No existing
+    endpoint or response shape changes.
+    """
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        cur = conn.cursor()
+        cur.execute("EXEC quote.usp_ListQuotes;")
+        cols = [c[0] for c in cur.description]
+        rows = [dict(zip(cols, r)) for r in cur.fetchall()]
+    finally:
+        conn.close()
+    quotes = [
+        {
+            "quote_header_id": r.get("QuoteHeaderId"),
+            "quote_number": r.get("QuoteNumber"),
+            "customer_name": r.get("CustomerName"),
+            "customer_account": r.get("CustomerAccount"),
+            "site_code": r.get("SiteCode"),
+            "currency_code": r.get("CurrencyCode"),
+            "status": r.get("Status"),
+            "created_at": str(r.get("CreatedAt")) if r.get("CreatedAt") is not None else None,
+            "created_by": r.get("CreatedBy"),
+            "line_count": int(r.get("LineCount") or 0),
+            "total_price": float(r.get("TotalPrice") or 0.0),
+        }
+        for r in rows
+    ]
+    return {"quotes": quotes, "count": len(quotes)}
