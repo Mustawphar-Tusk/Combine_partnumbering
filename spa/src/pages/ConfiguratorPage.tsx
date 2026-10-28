@@ -220,85 +220,116 @@ export function ConfiguratorPage({ me }: { me: Me }) {
       </div>
 
       {state && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 20, alignItems: "start" }}>
-          <div className="card">
-            {/* Group tabs */}
-            <div className="row" style={{ gap: 6, flexWrap: "wrap", marginBottom: 16 }}>
+        <>
+          {/* Spec-number plate across the top (reference layout). */}
+          <SpecPlate resolved={resolved} />
+
+          <div className="cfg">
+            {/* Left: grouped selection summary. */}
+            <aside className="summary">
+              <h2>Configuration</h2>
               {groups.map((g, i) => (
-                <button
-                  key={g.group}
-                  className={"btn " + (i === activeGroup ? "" : "secondary")}
-                  onClick={() => setActiveGroup(i)}
-                  style={{ padding: "5px 12px" }}
-                >
-                  {g.group}
-                </button>
+                <div key={g.group} className={"sgroup" + (i === activeGroup ? " on" : "")}>
+                  <h3>
+                    <button
+                      className="navlink"
+                      style={{ padding: 0, background: "none" }}
+                      onClick={() => setActiveGroup(i)}
+                    >
+                      {g.group}
+                    </button>
+                  </h3>
+                  {g.fields.map((gf) => {
+                    const v = gf.placeholder ? "C/F" : state.selections[gf.field];
+                    return (
+                      <div key={gf.field} className={"srow" + (gf.placeholder ? " custom" : "")}>
+                        <span className="sl">{titleize(gf.field)}</span>
+                        <span className="sv">{v || "—"}</span>
+                      </div>
+                    );
+                  })}
+                </div>
               ))}
-            </div>
+            </aside>
 
-            {/* A2: per-grouping Custom button (edit mode only - needs a quote line). */}
-            {edit && groups[activeGroup] && (
-              <div className="row" style={{ marginBottom: 12 }}>
-                <button
-                  className="btn amber"
-                  onClick={() => setCustomGroup(groups[activeGroup].group)}
-                >
-                  Custom — request a customization for {groups[activeGroup].group}
-                </button>
+            {/* Right: options for the active group (radio-style rows). */}
+            <section className="opts">
+              <div className="gtabs">
+                {groups.map((g, i) => (
+                  <button
+                    key={g.group}
+                    className={"gtab" + (i === activeGroup ? " on" : "")}
+                    onClick={() => setActiveGroup(i)}
+                  >
+                    {g.group}
+                  </button>
+                ))}
               </div>
-            )}
 
-            {/* Fields for the active group */}
-            {groups[activeGroup]?.fields.map((gf) => {
-              const fc = gf.field;
-              if (gf.placeholder) {
+              {edit && groups[activeGroup] && (
+                <div className="row" style={{ marginBottom: 12 }}>
+                  <button className="btn amber" onClick={() => setCustomGroup(groups[activeGroup].group)}>
+                    Custom — request a customization for {groups[activeGroup].group}
+                  </button>
+                </div>
+              )}
+
+              {groups[activeGroup]?.fields.map((gf) => {
+                const fc = gf.field;
+                if (gf.placeholder) {
+                  return (
+                    <div className="cfield" key={fc}>
+                      <h3>{titleize(fc)}</h3>
+                      <div className="opt is-custom on" aria-disabled>
+                        <span className="radio" />
+                        <span className="ov">Contact Factory (C/F)</span>
+                      </div>
+                    </div>
+                  );
+                }
+                const opts = state.allowable_options[fc] || [];
+                const value = state.selections[fc] ?? "";
+                const std = state.standard_defaults[fc];
+                const conflict = conflictByField.get(fc);
                 return (
-                  <div className="field" key={fc}>
-                    <label>{titleize(fc)}</label>
-                    <input value="Contact Factory (C/F)" disabled />
+                  <div className="cfield" key={fc}>
+                    <h3>
+                      {titleize(fc)}
+                      {conflict && <span className="amber-t"> ⚠ conflict</span>}
+                    </h3>
+                    <div className="radios">
+                      {opts.map((o) => {
+                        const on = value === o;
+                        return (
+                          <button
+                            key={o}
+                            className={"opt" + (on ? " on" : "")}
+                            onClick={() => onFieldChange(fc, on ? "" : o)}
+                          >
+                            <span className="radio" />
+                            <span className="ov">
+                              {o}
+                              {std && o === std ? <em className="std">STD</em> : null}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {conflict && (
+                      <span className="why err">
+                        Conflicts with{" "}
+                        {conflict.conflicts_with.map(titleize).join(", ") || "other selections"}.
+                        {conflict.recommended.length
+                          ? ` Try: ${conflict.recommended.slice(0, 6).join(", ")}`
+                          : " No compatible option for this combination."}
+                      </span>
+                    )}
                   </div>
                 );
-              }
-              const opts = state.allowable_options[fc] || [];
-              const value = state.selections[fc] ?? "";
-              const std = state.standard_defaults[fc];
-              const conflict = conflictByField.get(fc);
-              return (
-                <div className="field" key={fc}>
-                  <label htmlFor={`f-${fc}`}>
-                    {titleize(fc)}
-                    {conflict && <span style={{ color: "var(--err)" }}> ⚠ conflict</span>}
-                  </label>
-                  <select
-                    id={`f-${fc}`}
-                    value={value}
-                    onChange={(e) => onFieldChange(fc, e.target.value)}
-                    style={conflict ? { outline: "2px solid var(--err)" } : undefined}
-                  >
-                    <option value="">— Not set —</option>
-                    {opts.map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                        {std && o === std ? "  (standard)" : ""}
-                      </option>
-                    ))}
-                  </select>
-                  {conflict && (
-                    <span className="err">
-                      Conflicts with {conflict.conflicts_with.map(titleize).join(", ") || "other selections"}.
-                      {conflict.recommended.length
-                        ? ` Try: ${conflict.recommended.slice(0, 6).join(", ")}`
-                        : " No compatible option for this combination."}
-                    </span>
-                  )}
-                </div>
-              );
-            })}
+              })}
+            </section>
           </div>
-
-          {/* Live spec plate */}
-          <SpecPlate family={family} resolved={resolved} me={me} />
-        </div>
+        </>
       )}
 
       {edit && customGroup && state && (
@@ -320,57 +351,39 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   );
 }
 
-function SpecPlate({
-  family,
-  resolved,
-  me,
-}: {
-  family: string;
-  resolved: ResolveResponse | null;
-  me: Me;
-}) {
-  const canQuote = me.capabilities.create_quote;
+function SpecPlate({ resolved }: { resolved: ResolveResponse | null }) {
+  if (!resolved) {
+    return (
+      <div className="plate">
+        <h3>Specification</h3>
+        <p style={{ color: "var(--plate-cap)", margin: 0 }}>
+          Resolve a complete, conflict-free configuration to see its part number and price.
+        </p>
+      </div>
+    );
+  }
+  // Split the authoritative PN into its hyphen-delimited segments for the plate.
+  const segs = resolved.part_number.split("-");
+  const priced = resolved.component_pricing.filter((c) => c.status === "found").length;
+  const cf = resolved.component_pricing.length - priced;
   return (
-    <div className="card" style={{ position: "sticky", top: 16 }}>
-      <h3 style={{ marginTop: 0 }}>Specification</h3>
-      {!resolved ? (
-        <p className="muted">Resolve a complete, conflict-free configuration to see its part number and price.</p>
-      ) : (
-        <>
-          <div className="field">
-            <label>Part number</label>
-            <input readOnly value={resolved.part_number} />
-          </div>
-          <div className="field">
-            <label>SKU</label>
-            <input readOnly value={resolved.sku} />
-          </div>
-          <table style={{ marginTop: 8 }}>
-            <tbody>
-              {resolved.component_pricing.map((c, i) => (
-                <tr key={i}>
-                  <td style={{ fontSize: 13 }}>{c.component}</td>
-                  <td style={{ textAlign: "right", fontSize: 13 }}>
-                    {c.status === "found" ? money(c.amount) : <span className="muted">C/F</span>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="row" style={{ justifyContent: "space-between", marginTop: 12, fontWeight: 700 }}>
-            <span>Total (priced)</span>
-            <span>{money(resolved.total_price)}</span>
-          </div>
-          {canQuote && (
-            <p className="muted" style={{ fontSize: 12, marginTop: 12 }}>
-              Use the Quotes page to add this configuration to a quote.
-            </p>
-          )}
-          <p className="muted" style={{ fontSize: 12 }}>
-            Family: {titleize(family)}. Prices are list; loyalty discount is applied on the quote.
-          </p>
-        </>
-      )}
+    <div className="plate">
+      <h3>Specification</h3>
+      <div className="plate-row">
+        {segs.map((s, i) => (
+          <span key={i} style={{ display: "contents" }}>
+            {i > 0 && <span className="dash">-</span>}
+            <span className="seg">
+              <span className="code">{s}</span>
+            </span>
+          </span>
+        ))}
+      </div>
+      <div className="plate-foot">
+        <span>SKU <b>{resolved.sku}</b></span>
+        <span>Total (priced) <b>{money(resolved.total_price)}</b></span>
+        <span>Components <b>{priced} priced{cf ? ` · ${cf} C/F` : ""}</b></span>
+      </div>
     </div>
   );
 }
