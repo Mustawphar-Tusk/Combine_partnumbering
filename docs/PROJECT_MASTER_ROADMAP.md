@@ -1,10 +1,10 @@
 # Pump Configurator Master Roadmap
 
-**Roadmap Version:** 1.26  
+**Roadmap Version:** 1.27  
 **Roadmap Date:** 2026-08-26  
 **Project:** Dean + Fybroc Pump Configurator  
 **Status:** ACTIVE  
-**Current Milestone:** D155 — Dean Codependencies Certification COMPLETE (PCL v0.1 `Codependencies` sheet B1:BA171 enforced: 256 non-seal tuples = 251 two-leg + 5 three-leg in cfg.FeasibleConstraint, matches the authoritative workbook; 519 seal tuples deferred per A1 crosswalk gap; fail-closed, no dead ends; FYBROC 4487 unchanged; audit_dean_codependencies 13/0, audit_dean_config 28/0, Fybroc gate 9/9). Prior: D145 — Dean UI Selection-Hierarchy Rearrangement COMPLETE; D140 — Dean Excel Oracle COMPLETE. Next permitted: D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
+**Current Milestone:** CPQ SPA U1 — SPA Shell + Identity + Distributor Onboarding + Admin Approval COMPLETE (new `acct` schema via additive `sql/27_Create_Account_Identity.sql`; new React+TS+Vite `spa/` served at `/app` parallel to legacy `/ui`; new `acct` API router + `ROLE_DISTRIBUTOR`; built against dev-mock auth, real Entra deferred to U5; API-enforced authorization + account ownership; audit_cpq_u1 22/22 self-cleaning, Fybroc gate 9/9, isolation watermarks unchanged FeasibleConstraint 4743 / non-Dean SFO 3638 / non-DEAN SegmentCombinationImport 300608 / non-DEAN ConfiguredProduct 1196). On branch `feature/cpq-spa`. Evidence: `docs/evidence/CPQ_U1/CPQ_U1_EXIT.md`. **CHANGE v1.27:** recorded CPQ SPA U1 complete; next permitted CPQ SPA U2 (quote configuring/creating UI + loyalty math) on explicit go-ahead. Prior: D155 — Dean Codependencies Certification COMPLETE (PCL v0.1 `Codependencies` sheet B1:BA171 enforced: 256 non-seal tuples = 251 two-leg + 5 three-leg in cfg.FeasibleConstraint, matches the authoritative workbook; 519 seal tuples deferred per A1 crosswalk gap; fail-closed, no dead ends; FYBROC 4487 unchanged; audit_dean_codependencies 13/0, audit_dean_config 28/0, Fybroc gate 9/9). Prior: D145 — Dean UI Selection-Hierarchy Rearrangement COMPLETE; D140 — Dean Excel Oracle COMPLETE. Next permitted: D150 — Exhaustive Dean Regression — do NOT start without explicit go-ahead.  
 
 ---
 

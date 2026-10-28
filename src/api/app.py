@@ -21,6 +21,7 @@ from src.api.models import (
 )
 from src.api.http_routes import router
 from src.api.v2_routes import router_v2
+from src.api.acct_routes import router_acct
 from src.api.runtime_registry import (
     ConfigurationRuntimeRegistry,
     UnsupportedPumpFamilyError,
@@ -146,6 +147,7 @@ def create_app(
 
     application.include_router(router)
     application.include_router(router_v2)
+    application.include_router(router_acct)
 
     # CORS — allow all origins for development
     application.add_middleware(
@@ -322,4 +324,16 @@ if _ui_dir.exists():
         "/ui",
         StaticFiles(directory=str(_ui_dir), html=True),
         name="ui",
+    )
+
+# CPQ SPA (U1): serve the built React app at /app. Additive and parallel to the
+# legacy /ui mount, which stays until the cutover. Mounted only when a build
+# exists (spa/dist), so a missing build never breaks API startup. html=True
+# enables client-side routing fallback to index.html.
+_spa_dir = PROJECT_ROOT / "spa" / "dist"
+if _spa_dir.exists():
+    app.mount(
+        "/app",
+        StaticFiles(directory=str(_spa_dir), html=True),
+        name="spa",
     )

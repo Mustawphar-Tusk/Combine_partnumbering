@@ -1,6 +1,35 @@
 # Milestone Register
 
-**Last Updated:** 2026-10-27
+**Last Updated:** 2026-08-26
+
+> **2026-08-26 (CPQ SPA U1 — Shell + Identity + Distributor Onboarding + Admin
+> Approval):** PASS. First milestone of the CPQ SPA platform adoption (handoff
+> `docs/README_CPQ_SPA_AGENT_HANDOFF.md`; design `docs/CPQ_SPA_U1_DESIGN.md`).
+> Additive-only, Fybroc frozen. On branch `feature/cpq-spa`.
+> **SQL:** new `acct` schema via `sql/27_Create_Account_Identity.sql` (idempotent/
+> additive) — 10 tables (AppUser, DistributorAccount, AccountMembership,
+> AccountApplication, Address, LoyaltyTier, LoyaltyAssignment, Notification,
+> BrandSiteRouting, EngineerMembership) + 8 `usp_*` procs; seeds loyalty tiers
+> standard/loyalty15/loyalty30 (0/1500/3000 bp) and routing DEAN→IND, FYBROC→TEL;
+> audit reuses `cfg.AuditLog`. **API:** new `src/api/acct_routes.py` (`/api/v2/me`,
+> distributor applications, admin review, notifications) with authorization +
+> account-ownership enforced server-side; `src/api/auth.py` gains `ROLE_DISTRIBUTOR`
+> (configure/quote gated on APPROVED account) + dev-only identity assumption header.
+> **UI:** new Vite+React+TS `spa/` served at `/app` (parallel to legacy `/ui`);
+> onboarding form (contact + ship-to), application status, admin queue+review,
+> notifications; capability-driven routing from `/me`. Built against dev-mock auth;
+> real Entra validation deferred to U5. **Verify:** `scripts/audit_cpq_u1.py`
+> 22/22 (re-runnable, self-cleaning, residue=0); Fybroc gate `run_all_fybroc_audits.py`
+> ALL CORRECTIONS INTACT 9/9; isolation watermarks unchanged (cfg.FeasibleConstraint
+> 4743, non-Dean cfg.SeriesFieldOption 3638, non-DEAN stg.SegmentCombinationImport
+> 300608, non-DEAN cfg.ConfiguredProduct 1196); SPA build tsc-strict + vite clean;
+> `/app/` 200, `/api/v2/me` 200, legacy `/ui/configurator.html` 200. **Known gaps
+> (disclosed):** real Entra not wired (U5); `/ui/` root 404 is pre-existing (entry is
+> configurator.html); `spa/dist` is a gitignored build artifact (run `npm install &&
+> npm run build` in `spa/`); U2–U5 scope deferred. Evidence:
+> `docs/evidence/CPQ_U1/CPQ_U1_EXIT.md`.
+> **Next:** CPQ SPA U2 (quote configuring/creating UI + loyalty math) — awaiting
+> explicit go-ahead.
 
 > **2026-10-27 (Dean Motor Numbering + Price Adders):** PASS. Adopted the new
 > `workbooks/Dean/Motor Numbering.xlsm` as the authoritative Dean motor source,

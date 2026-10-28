@@ -24,6 +24,11 @@ ROLE_ENGINEERING = "engineering"
 ROLE_PRICING = "pricing"
 ROLE_CONFIGURATOR = "configurator"
 ROLE_ADMIN = "admin"
+# CPQ SPA U1 (additive): external distributor identity. A distributor can submit
+# an onboarding application and view their own account; configure/create_quote
+# are granted ONLY once their account is APPROVED (enforced per-account at the
+# endpoint via acct.DistributorAccount.Status, not by this static role map).
+ROLE_DISTRIBUTOR = "distributor"
 
 # Role hierarchy: admin has all permissions
 ROLE_PERMISSIONS = {
@@ -31,6 +36,10 @@ ROLE_PERMISSIONS = {
     ROLE_ENGINEERING: {"publish_metadata", "configure", "audit"},
     ROLE_PRICING: {"manage_pricing", "configure", "create_quote"},
     ROLE_CONFIGURATOR: {"configure", "create_quote"},
+    # Distributor base capabilities. Note: "configure"/"create_quote" are
+    # intentionally NOT here — they are gated on APPROVED account status and
+    # granted by the endpoint, never by role alone.
+    ROLE_DISTRIBUTOR: {"submit_application", "view_own_account"},
 }
 
 
@@ -70,6 +79,52 @@ def _is_development() -> bool:
     return os.getenv("APP_ENVIRONMENT", "development").lower() == "development"
 
 
+# Entra "issuer" placeholder used to key acct.AppUser rows until real token
+# validation (U5) supplies the true `iss`. Dev-mock identities use this issuer.
+DEV_IDP_ISSUER = "dev-mock"
+
+
+def _dev_assumed_user(request: Request) -> AuthenticatedUser | None:
+    """DEV-ONLY: let a local caller assume a non-admin identity for testing the
+    distributor/onboarding path.
+
+    Controlled by request headers, honored ONLY in development:
+      X-Dev-Assume-Role: distributor | configurator | engineering | pricing | admin
+      X-Dev-Subject:     stable subject id for the assumed user (default per role)
+      X-Dev-Email:       optional email override
+
+    Returns None when no assume-role header is present (caller falls back to the
+    default mock admin). This is inert outside development because the only call
+    site is guarded by _is_development().
+    """
+    role = (request.headers.get("X-Dev-Assume-Role") or "").strip().lower()
+    if not role:
+        return None
+    if role not in ROLE_PERMISSIONS and role != ROLE_ADMIN:
+        return None
+    subject = (request.headers.get("X-Dev-Subject") or f"dev-{role}-001").strip()
+    email = (request.headers.get("X-Dev-Email") or f"{subject}@dev.local").strip()
+    return AuthenticatedUser(
+        user_id=subject,
+        display_name=f"Dev {role.title()}",
+        email=email,
+        roles=[role],
+        tenant_id="dev-tenant",
+    )
+
+
+def idp_identity(user: AuthenticatedUser) -> tuple[str, str]:
+    """Return (issuer, subject) used to key acct.AppUser.
+
+    In dev mode the issuer is DEV_IDP_ISSUER and the subject is the mock user_id.
+    When real Entra validation lands (U5) this will reflect the token's iss/sub.
+    """
+    issuer = user.tenant_id and f"entra:{user.tenant_id}" or DEV_IDP_ISSUER
+    if _is_development():
+        issuer = DEV_IDP_ISSUER
+    return issuer, user.user_id
+
+
 async def get_current_user(
     request: Request,
     credentials: HTTPAuthorizationCredentials | None = Depends(_bearer_scheme),
@@ -77,11 +132,14 @@ async def get_current_user(
     """
     Dependency that resolves the current authenticated user.
     
-    In development: returns a mock admin user (no token required).
+    In development: returns a mock admin user (no token required). A dev-only
+    X-Dev-Assume-Role header may assume a different identity (e.g. distributor)
+    purely for local testing; this is ignored outside development.
     In production: validates the Entra ID Bearer token and extracts claims.
     """
     if _is_development():
-        return _DEV_USER
+        assumed = _dev_assumed_user(request)
+        return assumed or _DEV_USER
 
     if credentials is None:
         raise HTTPException(
@@ -147,3 +205,5 @@ def require_role(role: str):
 require_engineering = require_role(ROLE_ENGINEERING)
 require_pricing = require_role(ROLE_PRICING)
 require_configurator = require_role(ROLE_CONFIGURATOR)
+require_admin = require_role(ROLE_ADMIN)
+require_distributor = require_role(ROLE_DISTRIBUTOR)
