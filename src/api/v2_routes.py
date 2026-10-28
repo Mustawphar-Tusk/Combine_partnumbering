@@ -3725,6 +3725,155 @@ async def add_quote_line(family: str, quote_header_id: int,
     return line
 
 
+@router_v2.put("/families/{family}/quotes/{quote_header_id}/lines/{quote_line_id}")
+async def update_quote_line(family: str, quote_header_id: int, quote_line_id: int,
+                            body: AddQuoteLineRequest, request: Request):
+    """A1: edit a DRAFT quote line in place.
+
+    Re-resolves the (edited) configuration through the SAME authoritative resolve
+    flow as add-line, then writes the refreshed PN/SKU/BOM/pricing back to the
+    EXISTING line via quote.usp_UpdateQuoteLine (no duplicate line, no new quote).
+    Draft-only (the proc enforces it); submitted/approved revisions are immutable.
+    """
+    conn_str = _get_conn_str(request)
+
+    resolve_body = ResolveRequest(
+        series=body.series, selections=body.selections,
+        segment_codes=body.segment_codes, requested_by=body.requested_by,
+    )
+    resolved = await resolve_configured_product(family, resolve_body, request)
+
+    configured_product_id = resolved.get("configured_product_id")
+    unit_price = float(resolved.get("total_price") or 0.0)
+    pricing = resolved.get("pricing", [])
+    is_vertical = bool((resolved.get("segment_debug") or {}).get("is_vertical"))
+    status = _pricing_status(pricing, body.selections, is_vertical)
+    pricing_lineage = json.dumps({
+        "components": pricing,
+        "total_price": unit_price,
+        "configuration_signature": resolved.get("configuration_signature"),
+        "bom_signature": (resolved.get("bom") or {}).get("bom_signature"),
+    }, sort_keys=True, separators=(",", ":"))
+
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        pub_id, pub_version = _get_active_publication(conn_str, conn)
+        try:
+            row = conn.cursor().execute(
+                "EXEC quote.usp_UpdateQuoteLine @QuoteLineId=?, @ConfiguredProductId=?, "
+                "@SKU=?, @Quantity=?, @UnitPrice=?, @PricingStatus=?, @PricingLineage=?, "
+                "@PublicationVersion=?, @PriceBookVersion=?;",
+                quote_line_id, configured_product_id, resolved.get("sku"),
+                body.quantity, unit_price, status, pricing_lineage,
+                str(pub_version), None,
+            ).fetchone()
+        except pyodbc.Error as exc:
+            from fastapi import HTTPException
+            msg = str(exc).lower()
+            if "only draft" in msg:
+                raise HTTPException(status_code=409, detail="Only draft quote lines can be edited.") from exc
+            if "not found" in msg:
+                raise HTTPException(status_code=404, detail="Quote line not found.") from exc
+            raise
+        line = {
+            "quote_line_id": row[0], "line_number": row[1], "part_number": row[2],
+            "sku": row[3], "bom_header_id": row[4], "bom_signature": row[5],
+            "quantity": row[6], "unit_price": float(row[7]),
+            "extended_price": float(row[8]), "pricing_status": row[9],
+        }
+    finally:
+        conn.close()
+
+    try:
+        from src.api.audit import log_audit_event
+        from src.api.auth import AuthenticatedUser
+        _who = body.requested_by or "system"
+        log_audit_event(
+            connection_string=conn_str,
+            user=AuthenticatedUser(user_id=_who, display_name=_who, email="", roles=[]),
+            action="update_quote_line", resource_type="quote_line",
+            resource_id=str(line["quote_line_id"]),
+            details={"quote": quote_header_id, "sku": line["sku"], "pn": line["part_number"]},
+        )
+    except Exception:
+        pass
+    return line
+
+
+@router_v2.get("/families/{family}/quotes/{quote_header_id}/lines/{quote_line_id}/config")
+async def get_quote_line_config(family: str, quote_header_id: int, quote_line_id: int,
+                                request: Request):
+    """A1: the saved configuration of a quote line, for 'Edit Configuration'.
+
+    Returns the line's family, series, and the selections it was built from
+    (parsed from the stored ConfigurationJson), so the SPA can reopen the
+    configurator seeded with the exact saved selections. Additive, read-only.
+    """
+    del family, quote_header_id
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        row = conn.cursor().execute(
+            "SELECT FamilyCode, ConfigurationJson, Quantity, PartNumber, SKU "
+            "FROM quote.QuoteLine WHERE QuoteLineId = ?",
+            quote_line_id,
+        ).fetchone()
+        if row is None:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail="Quote line not found.")
+        family_code, config_raw, quantity, pn, sku = row
+        selections: dict[str, str] = {}
+        series = None
+        try:
+            parsed = json.loads(config_raw or "{}")
+            if isinstance(parsed, dict):
+                # Canonical JSON holds field->value plus "<FIELD>_CODE" entries;
+                # strip the _CODE helpers and surface the plain selections.
+                for k, v in parsed.items():
+                    if k.endswith("_CODE"):
+                        continue
+                    selections[str(k)] = "" if v is None else str(v)
+                series = selections.get("SERIES")
+        except (ValueError, TypeError):
+            pass
+        return {
+            "quote_line_id": quote_line_id,
+            "family": family_code,
+            "series": series,
+            "selections": selections,
+            "quantity": quantity,
+            "part_number": pn,
+            "sku": sku,
+        }
+    finally:
+        conn.close()
+
+
+@router_v2.delete("/families/{family}/quotes/{quote_header_id}/lines/{quote_line_id}")
+async def remove_quote_line(family: str, quote_header_id: int, quote_line_id: int,
+                            request: Request):
+    """A1: remove a DRAFT quote line (and compact line numbers). Draft-only."""
+    del family, quote_header_id
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        try:
+            row = conn.cursor().execute(
+                "EXEC quote.usp_RemoveQuoteLine @QuoteLineId=?;", quote_line_id
+            ).fetchone()
+        except pyodbc.Error as exc:
+            from fastapi import HTTPException
+            msg = str(exc).lower()
+            if "only draft" in msg:
+                raise HTTPException(status_code=409, detail="Only draft quote lines can be removed.") from exc
+            if "not found" in msg:
+                raise HTTPException(status_code=404, detail="Quote line not found.") from exc
+            raise
+        return {"quote_header_id": row[0], "remaining_lines": row[1]}
+    finally:
+        conn.close()
+
+
 def _fetch_quote(conn, quote_header_id: int) -> dict:
     """Fetch a quote (header + lines) via quote.usp_GetQuote into a dict."""
     cur = conn.cursor()
@@ -3754,6 +3903,7 @@ def _quote_to_document(quote: dict) -> dict:
         ext = float(ln.get("ExtendedPrice") or 0.0)
         total += ext
         lines_out.append({
+            "quote_line_id": ln.get("QuoteLineId"),
             "line_number": ln.get("LineNumber"),
             "part_number": ln.get("PartNumber"),
             "sku": ln.get("SKU"),

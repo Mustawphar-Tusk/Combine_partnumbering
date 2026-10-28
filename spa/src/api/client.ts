@@ -166,6 +166,27 @@ export const api = {
       `/families/${family}/quotes/${id}/lines`,
       body,
     ),
+  updateQuoteLine: (family: string, id: number, lineId: number, body: AddQuoteLineInput) =>
+    request<QuoteLine & { quote_line_id: number; bom_header_id: number }>(
+      "PUT",
+      `/families/${family}/quotes/${id}/lines/${lineId}`,
+      body,
+    ),
+  removeQuoteLine: (family: string, id: number, lineId: number) =>
+    request<{ quote_header_id: number; remaining_lines: number }>(
+      "DELETE",
+      `/families/${family}/quotes/${id}/lines/${lineId}`,
+    ),
+  getQuoteLineConfig: (family: string, id: number, lineId: number) =>
+    request<{
+      quote_line_id: number;
+      family: string;
+      series: string | null;
+      selections: Record<string, string>;
+      quantity: number;
+      part_number: string;
+      sku: string;
+    }>("GET", `/families/${family}/quotes/${id}/lines/${lineId}/config`),
   getQuotePricing: (id: number) =>
     request<QuotePricing>("GET", `/quotes/${id}/pricing`),
 

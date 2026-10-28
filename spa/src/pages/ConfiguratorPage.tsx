@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api, ApiError } from "../api/client";
 import type { FieldGroup, Me, ResolveResponse, ResolveStateResponse } from "../api/types";
 import { money, titleize } from "../format";
-import { setDraft } from "../draft";
+import { setDraft, getEditContext, setEditContext, type EditContext } from "../draft";
 
 const FAMILIES = ["FYBROC", "DEAN"] as const;
 
@@ -15,14 +16,23 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   const [activeGroup, setActiveGroup] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // A1: edit context (set when arriving via "Edit Configuration" on a draft line).
+  const [edit, setEdit] = useState<EditContext | null>(() => getEditContext());
+  const [saving, setSaving] = useState(false);
+  const [savedMsg, setSavedMsg] = useState<string | null>(null);
+  const navigate = useNavigate();
   const seq = useRef(0);
+  const bootstrapped = useRef(false);
 
   // Load the series list when the family changes.
   useEffect(() => {
     let cancelled = false;
-    setSeries("");
-    setState(null);
-    setResolved(null);
+    // Do not reset in the middle of an edit bootstrap.
+    if (!edit || bootstrapped.current) {
+      setSeries("");
+      setState(null);
+      setResolved(null);
+    }
     api
       .getSeriesList(family)
       .then((list) => !cancelled && setSeriesList(list))
@@ -32,14 +42,31 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     };
   }, [family]);
 
+  // A1: when launched to edit a draft line, seed family/series/selections once.
+  useEffect(() => {
+    if (!edit || bootstrapped.current) return;
+    bootstrapped.current = true;
+    setFamily(edit.family);
+    setSeries(edit.series);
+    setActiveGroup(0);
+    runResolveState(edit.series, edit.selections, undefined, edit.family);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [edit]);
+
   const runResolveState = useCallback(
-    async (nextSeries: string, selections: Record<string, string>, changedField?: string) => {
+    async (
+      nextSeries: string,
+      selections: Record<string, string>,
+      changedField?: string,
+      familyOverride?: string,
+    ) => {
       if (!nextSeries) return;
+      const fam = familyOverride || family;
       const mine = ++seq.current;
       setLoading(true);
       setError(null);
       try {
-        const st = await api.resolveState(family, {
+        const st = await api.resolveState(fam, {
           series: nextSeries,
           selections,
           changed_field: changedField ?? null,
@@ -47,7 +74,7 @@ export function ConfiguratorPage({ me }: { me: Me }) {
         if (mine !== seq.current) return;
         setState(st);
         // Resolve PN/SKU/price from the full selection set (include SERIES).
-        runResolve(nextSeries, { SERIES: nextSeries, ...st.selections });
+        runResolve(nextSeries, { SERIES: nextSeries, ...st.selections }, fam);
       } catch (e) {
         if (mine !== seq.current) return;
         setError(e instanceof ApiError ? String(e.detail || e.message) : String(e));
@@ -59,13 +86,14 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   );
 
   const runResolve = useCallback(
-    async (nextSeries: string, selections: Record<string, string>) => {
+    async (nextSeries: string, selections: Record<string, string>, familyOverride?: string) => {
+      const fam = familyOverride || family;
       try {
-        const r = await api.resolve(family, { series: nextSeries, selections });
+        const r = await api.resolve(fam, { series: nextSeries, selections });
         setResolved(r);
         // Publish the current resolvable config so the Quotes workspace can add it.
         setDraft({
-          family,
+          family: fam,
           series: nextSeries,
           selections,
           part_number: r.part_number,
@@ -81,6 +109,36 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     },
     [family],
   );
+
+  // A1: save the current (edited) configuration back to the draft line in place.
+  async function saveEdit() {
+    if (!edit || !state) return;
+    setSaving(true);
+    setError(null);
+    setSavedMsg(null);
+    try {
+      await api.updateQuoteLine(edit.family, edit.quoteHeaderId, edit.quoteLineId, {
+        series: edit.series,
+        selections: { SERIES: edit.series, ...state.selections },
+        quantity: edit.quantity || 1,
+        requested_by: me.user.email || me.user.display_name || "distributor",
+      });
+      setEditContext(null);
+      setSavedMsg("Saved to the quote.");
+      navigate(`/quotes/${edit.quoteHeaderId}`);
+    } catch (e) {
+      setError(e instanceof ApiError ? String(e.detail || e.message) : String(e));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function cancelEdit() {
+    setEditContext(null);
+    setEdit(null);
+    const target = edit ? `/quotes/${edit.quoteHeaderId}` : "/";
+    navigate(target);
+  }
 
   function onSeriesChange(s: string) {
     setSeries(s);
@@ -137,6 +195,25 @@ export function ConfiguratorPage({ me }: { me: Me }) {
           {loading && <span className="muted">Resolving…</span>}
         </div>
         {error && <div className="notice err" style={{ marginTop: 12 }}>{error}</div>}
+        {savedMsg && <div className="notice ok" style={{ marginTop: 12 }}>{savedMsg}</div>}
+        {edit && (
+          <div className="notice" style={{ marginTop: 12 }}>
+            <div className="row" style={{ justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
+              <span>
+                Editing line {edit.quoteLineId} of quote {edit.quoteHeaderId}. Change permitted
+                selections, then save back to the draft.
+              </span>
+              <span className="row" style={{ gap: 8 }}>
+                <button className="btn" onClick={saveEdit} disabled={saving || !resolved}>
+                  {saving ? "Saving…" : "Save to quote"}
+                </button>
+                <button className="btn secondary" onClick={cancelEdit} disabled={saving}>
+                  Cancel
+                </button>
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       {state && (

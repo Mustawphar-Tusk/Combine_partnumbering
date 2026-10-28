@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { api, ApiError } from "../api/client";
 import type { QuoteDocument, QuotePricing } from "../api/types";
 import { money } from "../format";
 import { StatusBadge } from "../components/StatusBadge";
-import { getDraft, type ConfigDraft } from "../draft";
+import { getDraft, setEditContext, type ConfigDraft } from "../draft";
 
 function lineStatusBadge(status: string) {
   const cls = status === "found" ? "approved" : status === "partial" ? "pending" : "rejected";
@@ -14,6 +14,7 @@ function lineStatusBadge(status: string) {
 
 export function QuoteWorkspacePage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const quoteId = Number(id);
   const [doc, setDoc] = useState<QuoteDocument | null>(null);
   const [pricing, setPricing] = useState<QuotePricing | null>(null);
@@ -79,11 +80,42 @@ export function QuoteWorkspacePage() {
     }
   }
 
+  // A1: open the configurator seeded with a line's saved config, to edit in place.
+  async function editLine(l: QuoteDocument["lines"][number]) {
+    try {
+      const cfg = await api.getQuoteLineConfig(l.family, quoteId, l.quote_line_id);
+      const { SERIES: _series, ...sel } = cfg.selections;
+      setEditContext({
+        family: cfg.family,
+        series: cfg.series || _series || "",
+        quoteHeaderId: quoteId,
+        quoteLineId: l.quote_line_id,
+        selections: sel,
+        quantity: cfg.quantity,
+      });
+      navigate("/configure");
+    } catch (e) {
+      setError(String((e as Error).message || e));
+    }
+  }
+
+  async function removeLine(l: QuoteDocument["lines"][number]) {
+    setError(null);
+    try {
+      await api.removeQuoteLine(l.family, quoteId, l.quote_line_id);
+      load();
+    } catch (err) {
+      const e = err as ApiError;
+      setError(typeof e.detail === "string" ? e.detail : e.message);
+    }
+  }
+
   if (loading) return <p className="muted">Loading quote…</p>;
   if (error && !doc) return <div className="notice err">{error}</div>;
   if (!doc || !pricing) return <div className="notice warn">Quote not found.</div>;
 
   const currency = doc.currency;
+  const isDraft = doc.status === "Draft";
 
   return (
     <>
@@ -146,6 +178,7 @@ export function QuoteWorkspacePage() {
                 <th style={{ textAlign: "right" }}>Unit</th>
                 <th style={{ textAlign: "right" }}>Extended</th>
                 <th>Pricing</th>
+                {isDraft && <th></th>}
               </tr>
             </thead>
             <tbody>
@@ -157,6 +190,18 @@ export function QuoteWorkspacePage() {
                   <td style={{ textAlign: "right" }}>{money(l.unit_price, currency)}</td>
                   <td style={{ textAlign: "right" }}>{money(l.extended_price, currency)}</td>
                   <td>{lineStatusBadge(l.pricing_status)}</td>
+                  {isDraft && (
+                    <td>
+                      <div className="row" style={{ gap: 6 }}>
+                        <button className="btn secondary" onClick={() => editLine(l)}>
+                          Edit
+                        </button>
+                        <button className="btn danger" onClick={() => removeLine(l)}>
+                          Remove
+                        </button>
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

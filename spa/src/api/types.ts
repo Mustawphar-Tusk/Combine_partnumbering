@@ -216,6 +216,7 @@ export interface QuoteListItem {
 }
 
 export interface QuoteLine {
+  quote_line_id: number;
   line_number: number;
   part_number: string;
   sku: string;
