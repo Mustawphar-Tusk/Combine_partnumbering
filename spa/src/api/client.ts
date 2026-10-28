@@ -289,6 +289,32 @@ export const api = {
       { notes },
     ),
 
+  // --- A4: governed per-grouping custom-code mirror ---
+  mintCustomCode: (family: string, body: { segment_code: string; spec_text: string; selections_json?: string }) =>
+    request<{
+      family: string;
+      segment_code: string;
+      spec_key: string;
+      custom_code: string;
+      was_existing: boolean;
+    }>("POST", `/families/${family}/custom-segment-codes`, body),
+  listCustomCodes: (family: string, segmentCode?: string) =>
+    request<{
+      custom_codes: {
+        custom_segment_code_id: number;
+        family: string;
+        segment_code: string;
+        width: number;
+        custom_code: string;
+        spec_text: string | null;
+        first_seen_at: string;
+      }[];
+    }>(
+      "GET",
+      `/families/${family}/custom-segment-codes` +
+        (segmentCode ? `?segment_code=${encodeURIComponent(segmentCode)}` : ""),
+    ),
+
   // --- A6: confirm order + order document (identical for both parties) ---
   confirmOrder: (reviewCaseId: number) =>
     request<ConfirmOrderResult>(

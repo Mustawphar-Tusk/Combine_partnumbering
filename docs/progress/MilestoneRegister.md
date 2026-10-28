@@ -2,6 +2,38 @@
 
 **Last Updated:** 2026-08-26
 
+> **2026-08-26 (CPQ SPA Pre-U4 Adjustments A1–A7 + A4):** PASS. Owner adjustment pass
+> (`docs/newadjustment.md`), additive-only, Fybroc frozen, branch `feature/cpq-spa`.
+> Design `docs/CPQ_SPA_ADJUSTMENTS_DESIGN.md`.
+> **A1** editable/resumable draft quote lines — `quote.usp_UpdateQuoteLine` /
+> `usp_RemoveQuoteLine` (sql/29, re-resolve + write back same line, draft-only); SPA
+> Edit/Remove → configurator seeded with saved selections → save in place. **A2** multiple
+> per-grouping customization requests — `quote.QuoteLineCustomization` + CRUD (sql/30); SPA
+> Custom modal with "Add Another Customization". **A3** C/F forces review — read-only
+> `GET /quotes/{id}/unresolved` lists C/F lines (never priced/$0) + customization requests;
+> SPA unresolved panel before submit. **A5** completion gate + reviewed-revision return —
+> `usp_CompleteReviewCase` gated (lead time required + no unresolved C/F) + new
+> `usp_RequestFurtherReview` (sql/31); SPA "My Reviews" + Request Further Review. **A6**
+> Confirm Order + identical PDF — `quote.OrderConfirmation` + idempotent `usp_ConfirmOrder`
+> + `usp_GetOrderByCase` (sql/32); jsPDF renders one server-authored snapshot so distributor
+> + engineer get byte-identical docs; retry-safe. **A7** reference configurator presentation
+> adopted from `docs/style.md` (UI-only). **A4** governed per-grouping custom-code MIRROR —
+> `cfg.CustomSegmentCode` + base-36 `fn_Base36Encode/Decode` (mirror docs/style.md) +
+> `usp_GetOrCreateCustomSegmentCode` (sql/33): next-after-max(real∪custom) base-36 mint,
+> family-wide reuse by spec-key, sp_getapplock-serialized, fail-closed on width exhaustion;
+> MIRRORS the authoritative PN (never edits `cfg.usp_AssembleConfiguredProduct`/dean_identifier/
+> stg). SPA engineer mint UI + custom-code library endpoint. **Verify:** audits a1 11/11,
+> a2 11/11, a3 6/6, a5 11/11, a6 11/11, custom_codes 11/11 (reuse determinism, per-grouping
+> independence, next-after-max, width/radix, BASEPLATE fail-closed, authoritative PN
+> byte-unchanged, 0 real-custom collisions). Fybroc gate ALL CORRECTIONS INTACT 9/9 (after
+> the DB batch and again after A4). Frozen invariants unchanged (cfg.FeasibleConstraint 4743,
+> non-Dean cfg.SeriesFieldOption 3638, non-DEAN stg.SegmentCombinationImport 300608, DEAN
+> 140976 — A4 did not append to real numbering). **Known gaps (disclosed):** non-DEAN
+> cfg.ConfiguredProduct 1196→1211 = resolve product-identity accrual, not a regression;
+> BASEPLATE_OPTIONS custom space full (ZZ) → mint fails closed; real Entra = U5; spa/dist
+> gitignored. Evidence: `docs/evidence/CPQ_ADJUSTMENTS/CPQ_ADJUSTMENTS_EXIT.md`.
+> **Next:** CPQ SPA U4 — awaiting go-ahead.
+
 > **2026-08-26 (CPQ SPA U3 — Engineering Review Queue + Brand/Site Routing):** PASS.
 > Third CPQ SPA milestone. Additive-only, Fybroc frozen. Branch `feature/cpq-spa`.
 > Design `docs/CPQ_SPA_U3_DESIGN.md`; implements handoff §4 REQUIRED brand/site routing.

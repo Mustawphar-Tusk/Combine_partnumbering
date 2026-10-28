@@ -3850,6 +3850,81 @@ async def get_quote_line_config(family: str, quote_header_id: int, quote_line_id
 
 
 # ---------------------------------------------------------------------------
+# A4 - governed per-grouping custom-code mirror (never edits the real PN)
+# ---------------------------------------------------------------------------
+
+class CustomCodeRequest(BaseModel):
+    segment_code: str          # grouping, e.g. WET_END_OPTIONS
+    spec_text: str             # the engineer's custom spec for the grouping
+    selections_json: str | None = None
+
+
+@router_v2.post("/families/{family}/custom-segment-codes")
+async def mint_custom_segment_code(family: str, body: CustomCodeRequest, request: Request):
+    """A4: mint-or-reuse a governed per-grouping custom code for a custom spec.
+
+    The code MIRRORS the authoritative numbering (same base-36 width) but lives
+    in cfg.CustomSegmentCode - it never edits the real PN or stg data. Reuse is
+    family-wide by spec; minting is next-after-max(real union custom), fail-closed
+    if the grouping's width space is exhausted. The spec-key is the SHA-256 of the
+    normalized spec text so the same spec always resolves to the same code.
+    """
+    from fastapi import HTTPException
+    spec_norm = " ".join((body.spec_text or "").split()).lower()
+    spec_key = hashlib.sha256(spec_norm.encode()).hexdigest().upper()
+    conn = pyodbc.connect(_get_conn_str(request), autocommit=True)
+    try:
+        try:
+            row = conn.cursor().execute(
+                "EXEC cfg.usp_GetOrCreateCustomSegmentCode @FamilyCode=?, @SegmentCode=?, "
+                "@SpecKey=?, @SpecText=?, @SelectionsJson=?, @CreatedByAppUserId=?;",
+                family.upper(), body.segment_code.upper(), spec_key,
+                body.spec_text, body.selections_json, None,
+            ).fetchone()
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "exhausted" in msg:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(f"The {body.segment_code} custom-code space is full at its "
+                            f"numbering width; a custom code cannot be minted for this grouping."),
+                ) from exc
+            if "no authoritative width" in msg:
+                raise HTTPException(status_code=404, detail="Unknown family/grouping for custom codes.") from exc
+            raise
+        return {
+            "family": family.upper(),
+            "segment_code": row[2],
+            "spec_key": spec_key,
+            "custom_code": row[0],
+            "was_existing": bool(row[1]),
+        }
+    finally:
+        conn.close()
+
+
+@router_v2.get("/families/{family}/custom-segment-codes")
+async def list_custom_segment_codes(family: str, request: Request, segment_code: str | None = None):
+    """A4: the custom-code library for a family (optionally one grouping)."""
+    conn = pyodbc.connect(_get_conn_str(request), autocommit=True)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "EXEC cfg.usp_ListCustomSegmentCodes @FamilyCode=?, @SegmentCode=?;",
+            family.upper(), segment_code.upper() if segment_code else None,
+        )
+        cols = [c[0] for c in cur.description]
+        rows = [dict(zip(cols, r)) for r in cur.fetchall()]
+    finally:
+        conn.close()
+    return {"custom_codes": [
+        {"custom_segment_code_id": r["CustomSegmentCodeId"], "family": r["FamilyCode"],
+         "segment_code": r["SegmentCode"], "width": r["Width"], "custom_code": r["SegmentValue"],
+         "spec_text": r["SpecText"], "first_seen_at": str(r["FirstSeenAt"])}
+        for r in rows]}
+
+
+# ---------------------------------------------------------------------------
 # A3 - unresolved items: C/F lines + customization requests force review
 # ---------------------------------------------------------------------------
 

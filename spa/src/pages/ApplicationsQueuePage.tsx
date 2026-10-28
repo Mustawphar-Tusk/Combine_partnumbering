@@ -180,6 +180,7 @@ function CaseDetail({
             <ReviewLineRow
               key={l.ReviewCaseLineId}
               caseId={c.ReviewCaseId}
+              brand={c.Brand}
               line={l}
               editable={claimed}
               onResolved={onChanged}
@@ -256,17 +257,42 @@ function CaseDetail({
 function ReviewLineRow({
   caseId,
   line,
+  brand,
   editable,
   onResolved,
 }: {
   caseId: number;
+  brand: string;
   line: import("../api/types").ReviewCaseLine;
   editable: boolean;
   onResolved: () => void;
 }) {
   const [price, setPrice] = useState(line.ResolvedUnitPrice?.toString() ?? "");
   const [spec, setSpec] = useState(line.CustomSpec ?? "");
+  const [grouping, setGrouping] = useState("WET_END_OPTIONS");
+  const [minting, setMinting] = useState(false);
+  const [mintErr, setMintErr] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  // A4: mint a governed per-grouping custom code for the spec and record it in
+  // the custom spec text (displayed alongside the authoritative PN; never edits it).
+  async function mintCode() {
+    if (!spec.trim()) {
+      setMintErr("Enter the custom spec first.");
+      return;
+    }
+    setMinting(true);
+    setMintErr(null);
+    try {
+      const r = await api.mintCustomCode(brand, { segment_code: grouping, spec_text: spec.trim() });
+      setSpec(`[${r.segment_code}:${r.custom_code}] ${spec.trim()}`);
+    } catch (e) {
+      const a = e as ApiError;
+      setMintErr(typeof a.detail === "string" ? a.detail : a.message);
+    } finally {
+      setMinting(false);
+    }
+  }
 
   async function save() {
     setSaving(true);
@@ -303,7 +329,22 @@ function ReviewLineRow({
       </td>
       <td>
         {editable ? (
-          <input value={spec} onChange={(e) => setSpec(e.target.value)} placeholder="custom spec" />
+          <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 260 }}>
+            <input value={spec} onChange={(e) => setSpec(e.target.value)} placeholder="custom spec" />
+            <div className="row" style={{ gap: 4 }}>
+              <select value={grouping} onChange={(e) => setGrouping(e.target.value)} style={{ width: "auto" }}>
+                <option value="WET_END_OPTIONS">Wet end</option>
+                <option value="IMPELLER_OPTIONS">Impeller</option>
+                <option value="POWER_FRAME_OPTIONS">Power frame</option>
+                <option value="MOTOR_SPEC">Motor</option>
+                <option value="BASEPLATE_OPTIONS">Baseplate</option>
+              </select>
+              <button className="btn sm amber" onClick={mintCode} disabled={minting}>
+                {minting ? "…" : "Mint custom code"}
+              </button>
+            </div>
+            {mintErr && <span className="err">{mintErr}</span>}
+          </div>
         ) : (
           line.CustomSpec || <span className="muted">—</span>
         )}
