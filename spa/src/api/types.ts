@@ -350,6 +350,27 @@ export interface ResolveReviewLineInput {
   engineer_note?: string;
 }
 
+export interface Customization {
+  customization_id: number;
+  quote_line_id: number;
+  line_number?: number;
+  grouping: string;
+  field_code: string | null;
+  current_value: string | null;
+  requested_change: string;
+  notes: string | null;
+  revision_no: number;
+  created_at: string;
+}
+
+export interface CustomizationInput {
+  grouping: string;
+  field_code?: string | null;
+  current_value?: string | null;
+  requested_change: string;
+  notes?: string | null;
+}
+
 export interface CompleteReviewInput {
   lead_time_days?: number | null;
   notes?: string;

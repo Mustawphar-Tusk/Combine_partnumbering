@@ -4,6 +4,7 @@ import { api, ApiError } from "../api/client";
 import type { FieldGroup, Me, ResolveResponse, ResolveStateResponse } from "../api/types";
 import { money, titleize } from "../format";
 import { setDraft, getEditContext, setEditContext, type EditContext } from "../draft";
+import { CustomRequestModal } from "../components/CustomRequestModal";
 
 const FAMILIES = ["FYBROC", "DEAN"] as const;
 
@@ -20,6 +21,8 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   const [edit, setEdit] = useState<EditContext | null>(() => getEditContext());
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState<string | null>(null);
+  // A2: which grouping's customization modal is open (edit mode only).
+  const [customGroup, setCustomGroup] = useState<string | null>(null);
   const navigate = useNavigate();
   const seq = useRef(0);
   const bootstrapped = useRef(false);
@@ -233,6 +236,18 @@ export function ConfiguratorPage({ me }: { me: Me }) {
               ))}
             </div>
 
+            {/* A2: per-grouping Custom button (edit mode only - needs a quote line). */}
+            {edit && groups[activeGroup] && (
+              <div className="row" style={{ marginBottom: 12 }}>
+                <button
+                  className="btn amber"
+                  onClick={() => setCustomGroup(groups[activeGroup].group)}
+                >
+                  Custom — request a customization for {groups[activeGroup].group}
+                </button>
+              </div>
+            )}
+
             {/* Fields for the active group */}
             {groups[activeGroup]?.fields.map((gf) => {
               const fc = gf.field;
@@ -284,6 +299,22 @@ export function ConfiguratorPage({ me }: { me: Me }) {
           {/* Live spec plate */}
           <SpecPlate family={family} resolved={resolved} me={me} />
         </div>
+      )}
+
+      {edit && customGroup && state && (
+        <CustomRequestModal
+          family={edit.family}
+          quoteHeaderId={edit.quoteHeaderId}
+          quoteLineId={edit.quoteLineId}
+          grouping={customGroup}
+          fields={
+            (groups.find((g) => g.group === customGroup)?.fields || [])
+              .filter((f) => !f.placeholder)
+              .map((f) => f.field)
+          }
+          selections={state.selections}
+          onClose={() => setCustomGroup(null)}
+        />
       )}
     </>
   );

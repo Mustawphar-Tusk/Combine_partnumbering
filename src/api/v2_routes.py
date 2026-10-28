@@ -3849,6 +3849,124 @@ async def get_quote_line_config(family: str, quote_header_id: int, quote_line_id
         conn.close()
 
 
+# ---------------------------------------------------------------------------
+# A2 - per-grouping customization requests on a draft quote line
+# ---------------------------------------------------------------------------
+
+class CustomizationRequest(BaseModel):
+    grouping: str
+    field_code: str | None = None
+    current_value: str | None = None
+    requested_change: str
+    notes: str | None = None
+
+
+def _customization_row(row) -> dict:
+    return {
+        "customization_id": row[0], "quote_line_id": row[1], "grouping": row[2],
+        "field_code": row[3], "current_value": row[4], "requested_change": row[5],
+        "notes": row[6], "revision_no": row[7], "created_at": str(row[8]),
+    }
+
+
+@router_v2.get("/families/{family}/quotes/{quote_header_id}/customizations")
+async def list_quote_customizations(family: str, quote_header_id: int, request: Request):
+    """A2: all customization requests across a quote's lines."""
+    del family
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        cur = conn.cursor()
+        cur.execute("EXEC quote.usp_ListQuoteCustomizations @QuoteHeaderId=?;", quote_header_id)
+        cols = [c[0] for c in cur.description]
+        rows = [dict(zip(cols, r)) for r in cur.fetchall()]
+    finally:
+        conn.close()
+    return {"customizations": [
+        {"customization_id": r["CustomizationId"], "quote_line_id": r["QuoteLineId"],
+         "line_number": r["LineNumber"], "grouping": r["Grouping"], "field_code": r["FieldCode"],
+         "current_value": r["CurrentValue"], "requested_change": r["RequestedChange"],
+         "notes": r["Notes"], "revision_no": r["RevisionNo"], "created_at": str(r["CreatedAt"])}
+        for r in rows]}
+
+
+@router_v2.get("/families/{family}/quotes/{quote_header_id}/lines/{quote_line_id}/customizations")
+async def list_line_customizations(family: str, quote_header_id: int, quote_line_id: int,
+                                   request: Request):
+    """A2: customization requests for a single line."""
+    del family, quote_header_id
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        rows = conn.cursor().execute(
+            "EXEC quote.usp_ListQuoteLineCustomizations @QuoteLineId=?;", quote_line_id
+        ).fetchall()
+        return {"customizations": [_customization_row(r) for r in rows]}
+    finally:
+        conn.close()
+
+
+def _run_customization(request, proc_sql, params):
+    from fastapi import HTTPException
+    conn = pyodbc.connect(_get_conn_str(request), autocommit=True)
+    try:
+        try:
+            return conn.cursor().execute(proc_sql, *params).fetchone()
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "only" in msg and "draft" in msg:
+                raise HTTPException(status_code=409, detail="Customizations can only be edited on a draft quote.") from exc
+            if "not found" in msg:
+                raise HTTPException(status_code=404, detail="Not found.") from exc
+            raise
+    finally:
+        conn.close()
+
+
+@router_v2.post("/families/{family}/quotes/{quote_header_id}/lines/{quote_line_id}/customizations",
+                status_code=201)
+async def add_line_customization(family: str, quote_header_id: int, quote_line_id: int,
+                                 body: CustomizationRequest, request: Request):
+    """A2: add a customization request to a draft line (supports many per grouping)."""
+    del family, quote_header_id
+    row = _run_customization(
+        request,
+        "EXEC quote.usp_AddQuoteLineCustomization @QuoteLineId=?, @Grouping=?, "
+        "@FieldCode=?, @CurrentValue=?, @RequestedChange=?, @Notes=?;",
+        (quote_line_id, body.grouping, body.field_code, body.current_value,
+         body.requested_change, body.notes),
+    )
+    return _customization_row(row)
+
+
+@router_v2.put("/families/{family}/quotes/{quote_header_id}/customizations/{customization_id}")
+async def update_line_customization(family: str, quote_header_id: int, customization_id: int,
+                                    body: CustomizationRequest, request: Request):
+    """A2: edit a customization request (draft-only)."""
+    del family, quote_header_id
+    row = _run_customization(
+        request,
+        "EXEC quote.usp_UpdateQuoteLineCustomization @CustomizationId=?, @Grouping=?, "
+        "@FieldCode=?, @CurrentValue=?, @RequestedChange=?, @Notes=?;",
+        (customization_id, body.grouping, body.field_code, body.current_value,
+         body.requested_change, body.notes),
+    )
+    return _customization_row(row)
+
+
+@router_v2.delete("/families/{family}/quotes/{quote_header_id}/customizations/{customization_id}")
+async def remove_line_customization(family: str, quote_header_id: int, customization_id: int,
+                                    request: Request):
+    """A2: remove a customization request (draft-only)."""
+    del family, quote_header_id
+    row = _run_customization(
+        request,
+        "EXEC quote.usp_RemoveQuoteLineCustomization @CustomizationId=?;",
+        (customization_id,),
+    )
+    return {"quote_line_id": row[0], "remaining": row[1]}
+
+
 @router_v2.delete("/families/{family}/quotes/{quote_header_id}/lines/{quote_line_id}")
 async def remove_quote_line(family: str, quote_header_id: int, quote_line_id: int,
                             request: Request):

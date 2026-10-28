@@ -13,6 +13,8 @@ import type {
   ApplicationListItem,
   CompleteReviewInput,
   CreateQuoteInput,
+  Customization,
+  CustomizationInput,
   Me,
   MyAccount,
   Notification,
@@ -187,6 +189,35 @@ export const api = {
       part_number: string;
       sku: string;
     }>("GET", `/families/${family}/quotes/${id}/lines/${lineId}/config`),
+
+  // --- A2: per-grouping customization requests ---
+  listLineCustomizations: (family: string, id: number, lineId: number) =>
+    request<{ customizations: Customization[] }>(
+      "GET",
+      `/families/${family}/quotes/${id}/lines/${lineId}/customizations`,
+    ),
+  listQuoteCustomizations: (family: string, id: number) =>
+    request<{ customizations: Customization[] }>(
+      "GET",
+      `/families/${family}/quotes/${id}/customizations`,
+    ),
+  addLineCustomization: (family: string, id: number, lineId: number, body: CustomizationInput) =>
+    request<Customization>(
+      "POST",
+      `/families/${family}/quotes/${id}/lines/${lineId}/customizations`,
+      body,
+    ),
+  updateLineCustomization: (family: string, id: number, custId: number, body: CustomizationInput) =>
+    request<Customization>(
+      "PUT",
+      `/families/${family}/quotes/${id}/customizations/${custId}`,
+      body,
+    ),
+  removeLineCustomization: (family: string, id: number, custId: number) =>
+    request<{ quote_line_id: number; remaining: number }>(
+      "DELETE",
+      `/families/${family}/quotes/${id}/customizations/${custId}`,
+    ),
   getQuotePricing: (id: number) =>
     request<QuotePricing>("GET", `/quotes/${id}/pricing`),
 
