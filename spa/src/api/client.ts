@@ -8,12 +8,21 @@
 //    server outside development (the backend only honors it in dev mode).
 
 import type {
+  AddQuoteLineInput,
   ApplicationDetail,
   ApplicationListItem,
+  CreateQuoteInput,
   Me,
   MyAccount,
   Notification,
+  QuoteDocument,
+  QuoteLine,
+  QuoteListItem,
+  QuotePricing,
+  ResolveResponse,
+  ResolveStateResponse,
   ReviewInput,
+  SkuLookupResponse,
   SubmitApplicationInput,
   SubmitApplicationResult,
 } from "./types";
@@ -96,4 +105,58 @@ export const api = {
     request<{ notifications: Notification[] }>("GET", "/notifications"),
   markNotificationRead: (id: number) =>
     request<{ read: boolean }>("POST", `/notifications/${id}/read`),
+
+  // --- U2: configurator / resolve / quotes / loyalty pricing ---
+  getSeriesList: async (family: string): Promise<string[]> => {
+    const data = await request<{ fields: { series_options?: Record<string, unknown> }[] }>(
+      "GET",
+      `/families/${family}/configuration-dictionary`,
+    );
+    const set = new Set<string>();
+    for (const f of data.fields || []) {
+      for (const s of Object.keys(f.series_options || {})) set.add(s);
+    }
+    return [...set].sort();
+  },
+  resolveState: (
+    family: string,
+    body: { series: string; selections: Record<string, string>; changed_field?: string | null },
+  ) =>
+    request<ResolveStateResponse>(
+      "POST",
+      `/families/${family}/configurations/resolve-state`,
+      body,
+    ),
+  resolve: (
+    family: string,
+    body: { series: string; selections: Record<string, string>; requested_by?: string },
+  ) =>
+    request<ResolveResponse>(
+      "POST",
+      `/families/${family}/configured-products/resolve`,
+      body,
+    ),
+  lookupBySku: (sku: string) =>
+    request<SkuLookupResponse>("GET", `/configured-products/by-sku/${encodeURIComponent(sku)}`),
+  listQuotes: (family: string) =>
+    request<{ quotes: QuoteListItem[]; count: number }>("GET", `/families/${family}/quotes`),
+  createQuote: (family: string, body: CreateQuoteInput) =>
+    request<{
+      quote_header_id: number;
+      quote_number: string;
+      site_code: string;
+      currency_code: string;
+      status: string;
+      created_at: string;
+    }>("POST", `/families/${family}/quotes`, body),
+  getQuote: (family: string, id: number) =>
+    request<QuoteDocument>("GET", `/families/${family}/quotes/${id}`),
+  addQuoteLine: (family: string, id: number, body: AddQuoteLineInput) =>
+    request<QuoteLine & { quote_line_id: number; bom_header_id: number }>(
+      "POST",
+      `/families/${family}/quotes/${id}/lines`,
+      body,
+    ),
+  getQuotePricing: (id: number) =>
+    request<QuotePricing>("GET", `/quotes/${id}/pricing`),
 };

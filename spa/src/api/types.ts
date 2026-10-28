@@ -126,3 +126,148 @@ export interface Notification {
   RecipientAppUserId: number | null;
   RecipientRole: string | null;
 }
+
+// ---------------------------------------------------------------------------
+// U2 — Configurator / resolve / quotes / loyalty pricing
+// ---------------------------------------------------------------------------
+
+export type FamilyCode = "DEAN" | "FYBROC";
+
+export interface FieldGroupField {
+  field: string;
+  placeholder?: boolean;
+}
+
+export interface FieldGroup {
+  group: string;
+  fields: FieldGroupField[];
+}
+
+export interface ConfigConflict {
+  field: string;
+  value: string;
+  conflicts_with: string[];
+  recommended: string[];
+}
+
+export interface ResolveStateResponse {
+  family: string;
+  series: string;
+  valid: boolean;
+  selections: Record<string, string>;
+  allowable_options: Record<string, string[]>;
+  standard_defaults: Record<string, string>;
+  reset_fields: Record<string, string>;
+  dropped_fields: string[];
+  conflicts: ConfigConflict[];
+  ordered_fields: string[];
+  field_groups: FieldGroup[];
+  resolved_codes: Record<string, string | null>;
+  errors: string[];
+}
+
+export interface ComponentPrice {
+  component: string;
+  selection: string | null;
+  amount: number | null;
+  status: "found" | "C/F";
+  detail?: unknown;
+}
+
+export interface ResolveResponse {
+  family: string;
+  part_number: string;
+  sku: string;
+  configuration_signature: string;
+  existing_configuration: boolean;
+  configured_product_id: number | null;
+  pricing: { component: string; amount: number; detail?: string }[];
+  component_pricing: ComponentPrice[];
+  total_price: number;
+  motor_cpq_conversion?: string | null;
+}
+
+export interface SkuLookupResponse {
+  found: boolean;
+  sku: string;
+  family: string | null;
+  series: string | null;
+  part_number: string | null;
+  configuration_signature: string | null;
+  configured_product_id: number | null;
+  created_at: string | null;
+  selections: Record<string, string>;
+  field_groups: FieldGroup[];
+  errors: string[];
+}
+
+export interface QuoteListItem {
+  quote_header_id: number;
+  quote_number: string;
+  customer_name: string | null;
+  customer_account: string | null;
+  site_code: string;
+  currency_code: string;
+  status: string;
+  created_at: string | null;
+  created_by: string | null;
+  line_count: number;
+  total_price: number;
+}
+
+export interface QuoteLine {
+  line_number: number;
+  part_number: string;
+  sku: string;
+  family: string;
+  quantity: number;
+  unit_price: number;
+  extended_price: number;
+  pricing_status: "found" | "partial" | "call_for_price";
+  bom_signature: string;
+  publication_version: string;
+}
+
+export interface QuoteDocument {
+  quote_number: string;
+  customer_name: string | null;
+  customer_account: string | null;
+  site_code: string;
+  currency: string;
+  status: string;
+  lines: QuoteLine[];
+  total_price: number;
+  line_count: number;
+  rendered_text: string;
+}
+
+export interface CreateQuoteInput {
+  site_code: string;
+  customer_name?: string;
+  customer_account?: string;
+  currency_code?: string;
+  created_by?: string;
+  quote_number?: string;
+}
+
+export interface AddQuoteLineInput {
+  series: string;
+  selections: Record<string, string>;
+  segment_codes?: Record<string, string>;
+  quantity?: number;
+  requested_by?: string;
+}
+
+export interface QuotePricing {
+  quote_header_id: number;
+  currency: string;
+  loyalty_tier_code: string | null;
+  discount_rate_bp: number;
+  list_total: number;
+  merchandise_subtotal: number;
+  discount_amount: number;
+  net_total: number;
+  unpriced_line_count: number;
+  unpriced_line_total: number;
+  line_count: number;
+}

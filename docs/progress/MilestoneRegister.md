@@ -2,6 +2,34 @@
 
 **Last Updated:** 2026-08-26
 
+> **2026-08-26 (CPQ SPA U2 — Quote Config/Create UI + Server-Owned Loyalty Math):**
+> PASS. Second CPQ SPA milestone. Additive-only, Fybroc frozen. Branch
+> `feature/cpq-spa`. Design `docs/CPQ_SPA_U2_DESIGN.md`.
+> **API:** ONE additive read-only endpoint `GET /api/v2/quotes/{id}/pricing` in
+> `src/api/acct_routes.py` — computes loyalty-adjusted quote totals SERVER-SIDE from
+> the caller's `acct.DistributorAccount` → `acct.LoyaltyTier.RateBp` (rate never owned
+> by the UI, per D4). Discount applies to the merchandise subtotal of fully-priced
+> (`found`) lines only; `partial`/`call_for_price` lines are excluded from the base but
+> carried at list in the net. Staff/no-account → rate 0. Missing quote → clean 404.
+> **No v2 route changed, no DB migration.**
+> **UI:** new React screens in `spa/` served at `/app` — Configurator (bound to
+> `resolve-state`/`resolve`, Dean+Fybroc, group tabs, conflict flags, live PN/SKU/price
+> plate), Quotes list + create, Quote workspace (lines + loyalty Totals card), SKU
+> lookup; capability-gated on `/me` `configure`/`create_quote`. Build tsc-strict + vite
+> clean (49 modules). **Verify:** `scripts/audit_cpq_u2.py` 18/18 (re-runnable,
+> self-cleaning): Fybroc 1500 line priced $18,219, Dean RA3146 `partial` $13,675
+> excluded; standard 0 / loyalty15 $2,732.85 / loyalty30 $5,465.70; staff rate 0; 404.
+> Fybroc gate: 8/9 PASS in the batch run; `audit_free_config` FAILED on an HTTP
+> `TimeoutError` (shared-server contention under load) and was **re-run GREEN in
+> isolation (32/0, exit 0)** — environmental flake, not a regression. Isolation
+> watermarks unchanged (cfg.FeasibleConstraint 4743, non-Dean cfg.SeriesFieldOption
+> 3638, non-DEAN stg.SegmentCombinationImport 300608, non-DEAN cfg.ConfiguredProduct
+> 1196). Legacy `/ui` + U1 `/app` intact. **Known gaps (disclosed):** real Entra = U5;
+> freight/tax not in discount base (D4, deferred); `spa/dist` gitignored (npm build on
+> fresh checkout); U3–U5 scope deferred. Evidence:
+> `docs/evidence/CPQ_U2/CPQ_U2_EXIT.md`.
+> **Next:** CPQ SPA U3 (engineering review/queue) — awaiting explicit go-ahead.
+
 > **2026-08-26 (CPQ SPA U1 — Shell + Identity + Distributor Onboarding + Admin
 > Approval):** PASS. First milestone of the CPQ SPA platform adoption (handoff
 > `docs/README_CPQ_SPA_AGENT_HANDOFF.md`; design `docs/CPQ_SPA_U1_DESIGN.md`).

@@ -345,3 +345,121 @@ async def mark_notification_read(
         return {"notification_id": notification_id, "read": True}
     finally:
         conn.close()
+
+
+# ---------------------------------------------------------------------------
+# U2 — Quote pricing with server-owned loyalty discount
+# ---------------------------------------------------------------------------
+# Additive, read-only. Computes a quote's loyalty-adjusted totals SERVER-SIDE so
+# the discount rate is never owned by the UI (decision D4). It reads the caller's
+# assigned loyalty tier (acct.DistributorAccount -> acct.LoyaltyTier.RateBp) and
+# the persisted quote (existing quote.usp_GetQuote), and applies the rate to the
+# MERCHANDISE SUBTOTAL ONLY: the sum of fully-priced lines (pricing_status
+# 'found'). Partial / call_for_price lines are reported but excluded from the
+# discountable base. Staff/admin callers (no distributor account) get rate 0
+# (list pricing). No v2 route or DB object is changed by this endpoint.
+
+
+def _loyalty_rate_bp_for_account(cur, account: dict[str, Any] | None) -> tuple[int, str | None]:
+    """Return (rate_bp, tier_code) for the caller's account. No account or no
+    assigned tier -> (0, tier_code_or_None): list pricing."""
+    if not account:
+        return 0, None
+    tier_code = account.get("LoyaltyTierCode")
+    if not tier_code:
+        return 0, None
+    row = cur.execute(
+        "SELECT RateBp FROM acct.LoyaltyTier WHERE LoyaltyTierCode = ? AND IsActive = 1",
+        tier_code,
+    ).fetchone()
+    return (int(row[0]) if row else 0), tier_code
+
+
+def _fetch_quote_header_and_lines(cur, quote_header_id: int):
+    """Read a quote via the existing quote.usp_GetQuote (header set, then lines
+    set), returning (header_dict | None, [line_dict]). Mirrors v2_routes._fetch_quote
+    but kept local so the acct router has no import dependency on v2_routes.
+
+    quote.usp_GetQuote RAISERRORs 'Quote not found' for a missing id (rather than
+    returning an empty set); that surfaces as a pyodbc error. We translate it to a
+    clean 404 here so a missing quote does not become a 503 via the global pyodbc
+    exception handler."""
+    try:
+        cur.execute("EXEC quote.usp_GetQuote @QuoteHeaderId=?;", quote_header_id)
+        hcols = [c[0] for c in cur.description]
+        hrow = cur.fetchone()
+    except pyodbc.Error as exc:
+        if "not found" in str(exc).lower():
+            raise HTTPException(status_code=404, detail="Quote not found.") from exc
+        raise
+    if hrow is None:
+        return None, []
+    header = dict(zip(hcols, hrow))
+    cur.nextset()
+    lcols = [c[0] for c in cur.description]
+    lines = [dict(zip(lcols, r)) for r in cur.fetchall()]
+    return header, lines
+
+
+@router_acct.get("/quotes/{quote_header_id}/pricing")
+async def get_quote_pricing(
+    request: Request,
+    quote_header_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """Loyalty-adjusted totals for a quote (server-owned discount rate, D4).
+
+    - list_total           : sum of ALL line ExtendedPrice (unchanged list pricing)
+    - merchandise_subtotal : sum of ExtendedPrice for pricing_status='found' lines
+                             (the discountable base; D4 "merchandise subtotal only")
+    - discount_rate_bp     : the caller account's loyalty rate in basis points
+    - discount_amount      : merchandise_subtotal * rate
+    - net_total            : merchandise_subtotal - discount_amount, PLUS the
+                             unpriced-line list amount carried through at list
+                             (so the figure is honest about what is/ isn't priced)
+    - unpriced_line_count  : lines not 'found' (partial / call_for_price)
+    """
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        header, lines = _fetch_quote_header_and_lines(cur, quote_header_id)
+        if header is None:
+            raise HTTPException(status_code=404, detail="Quote not found.")
+
+        account = _get_my_account(request, app_user["AppUserId"])
+        rate_bp, tier_code = _loyalty_rate_bp_for_account(cur, account)
+
+        currency = header.get("CurrencyCode") or "USD"
+        list_total = 0.0
+        merch_subtotal = 0.0
+        unpriced_total = 0.0
+        unpriced_count = 0
+        for ln in lines:
+            ext = float(ln.get("ExtendedPrice") or 0.0)
+            list_total += ext
+            if (ln.get("PricingStatus") or "") == "found":
+                merch_subtotal += ext
+            else:
+                unpriced_total += ext
+                unpriced_count += 1
+
+        discount_amount = round(merch_subtotal * rate_bp / 10000.0, 2)
+        net_priced = merch_subtotal - discount_amount
+        net_total = round(net_priced + unpriced_total, 2)
+
+        return {
+            "quote_header_id": quote_header_id,
+            "currency": currency,
+            "loyalty_tier_code": tier_code,
+            "discount_rate_bp": rate_bp,
+            "list_total": round(list_total, 2),
+            "merchandise_subtotal": round(merch_subtotal, 2),
+            "discount_amount": discount_amount,
+            "net_total": net_total,
+            "unpriced_line_count": unpriced_count,
+            "unpriced_line_total": round(unpriced_total, 2),
+            "line_count": len(lines),
+        }
+    finally:
+        conn.close()

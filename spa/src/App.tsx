@@ -6,6 +6,10 @@ import { DistributorOnboardingPage } from "./pages/DistributorOnboardingPage";
 import { DistributorAccountPage } from "./pages/DistributorAccountPage";
 import { AdminApplicationsPage } from "./pages/AdminApplicationsPage";
 import { NotificationsPage } from "./pages/NotificationsPage";
+import { ConfiguratorPage } from "./pages/ConfiguratorPage";
+import { QuotesListPage } from "./pages/QuotesListPage";
+import { QuoteWorkspacePage } from "./pages/QuoteWorkspacePage";
+import { LookupPage } from "./pages/LookupPage";
 
 export function App() {
   const meState = useMe();
@@ -27,6 +31,30 @@ export function App() {
               className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
             >
               My Account
+            </NavLink>
+          )}
+          {caps?.configure && (
+            <NavLink
+              to="/configure"
+              className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
+            >
+              Configurator
+            </NavLink>
+          )}
+          {caps?.create_quote && (
+            <NavLink
+              to="/quotes"
+              className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
+            >
+              Quotes
+            </NavLink>
+          )}
+          {caps?.configure && (
+            <NavLink
+              to="/lookup"
+              className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
+            >
+              Look up
             </NavLink>
           )}
           {caps?.review_applications && (
@@ -92,6 +120,22 @@ export function App() {
                   <Navigate to="/" replace />
                 )
               }
+            />
+            <Route
+              path="/configure"
+              element={caps?.configure ? <ConfiguratorPage me={me} /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/lookup"
+              element={caps?.configure ? <LookupPage /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/quotes"
+              element={caps?.create_quote ? <QuotesListPage /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/quotes/:id"
+              element={caps?.create_quote ? <QuoteWorkspacePage /> : <Navigate to="/" replace />}
             />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
