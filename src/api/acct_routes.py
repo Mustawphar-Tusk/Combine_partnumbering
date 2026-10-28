@@ -16,6 +16,7 @@ Nothing here touches cfg / price / quote config data. Fybroc is unaffected.
 """
 from __future__ import annotations
 
+import json
 from typing import Any
 
 import pyodbc
@@ -768,6 +769,176 @@ async def get_my_review_case(
             review_case_id,
         )
         return {"case": header, "lines": _rows_as_dicts(cur)}
+    finally:
+        conn.close()
+
+
+def _build_order_document(cur, review_case_id: int, app_user_id: int) -> dict[str, Any]:
+    """Assemble the authoritative order document for a COMPLETED review case owned
+    by app_user_id. Pulls the quote header + lines, the reviewed per-line
+    resolution (engineer price / custom spec), the loyalty rate for the owner's
+    account, and the lead time. This is the single snapshot both parties render.
+    """
+    # Case (owner-scoped) + quote id.
+    cur.execute(
+        "SELECT rc.QuoteHeaderId, rc.Brand, rc.ResponsibleSiteCode, rc.Status, "
+        "rc.RevisionNo, rc.LeadTimeDays, qh.QuoteNumber, qh.CustomerName, qh.CurrencyCode "
+        "FROM acct.ReviewCase rc JOIN quote.QuoteHeader qh ON qh.QuoteHeaderId = rc.QuoteHeaderId "
+        "WHERE rc.ReviewCaseId = ? AND rc.SubmittedByAppUserId = ?",
+        review_case_id, app_user_id,
+    )
+    head = _one(cur)
+    if head is None:
+        raise HTTPException(status_code=404, detail="Review case not found.")
+    if head["Status"] != "COMPLETED":
+        raise HTTPException(status_code=409, detail="Only a completed review can be confirmed.")
+
+    # Reviewed lines (engineer resolution).
+    cur.execute(
+        "SELECT LineNumber, PartNumber, PricingStatus, ResolvedUnitPrice, CustomSpec, EngineerNote "
+        "FROM acct.ReviewCaseLine WHERE ReviewCaseId = ? ORDER BY LineNumber",
+        review_case_id,
+    )
+    rlines = _rows_as_dicts(cur)
+
+    # Quote lines (qty + list unit/extended).
+    cur.execute("EXEC quote.usp_GetQuote @QuoteHeaderId=?;", head["QuoteHeaderId"])
+    cur.nextset()  # skip header set
+    qcols = [c[0] for c in cur.description]
+    qlines = {r[qcols.index("LineNumber")]: dict(zip(qcols, r)) for r in cur.fetchall()}
+
+    # Loyalty rate for the owner's account.
+    account = None
+    cur.execute("{CALL acct.usp_GetMyAccount (?)}", app_user_id)
+    account = _one(cur)
+    rate_bp, tier_code = _loyalty_rate_bp_for_account(cur, account)
+
+    currency = head.get("CurrencyCode") or "USD"
+    lines_out, merch_subtotal = [], 0.0
+    for rl in rlines:
+        ql = qlines.get(rl["LineNumber"], {})
+        qty = int(ql.get("Quantity") or 1)
+        # Effective unit = engineer-resolved price if present, else the line's unit.
+        unit = rl.get("ResolvedUnitPrice")
+        if unit is None:
+            unit = float(ql.get("UnitPrice") or 0.0)
+        else:
+            unit = float(unit)
+        ext = round(unit * qty, 2)
+        priced = (rl.get("PricingStatus") == "found") or (rl.get("ResolvedUnitPrice") is not None)
+        if priced:
+            merch_subtotal += ext
+        lines_out.append({
+            "line_number": rl["LineNumber"], "part_number": rl.get("PartNumber"),
+            "quantity": qty, "unit_price": unit, "extended_price": ext,
+            "pricing_status": rl.get("PricingStatus"),
+            "custom_spec": rl.get("CustomSpec"), "engineer_note": rl.get("EngineerNote"),
+            "priced": priced,
+        })
+
+    merch_subtotal = round(merch_subtotal, 2)
+    discount = round(merch_subtotal * rate_bp / 10000.0, 2)
+    net = round(merch_subtotal - discount, 2)
+    return {
+        "quote_number": head.get("QuoteNumber"),
+        "customer_name": head.get("CustomerName"),
+        "brand": head.get("Brand"),
+        "responsible_site_code": head.get("ResponsibleSiteCode"),
+        "revision_no": head.get("RevisionNo"),
+        "lead_time_days": head.get("LeadTimeDays"),
+        "currency": currency,
+        "loyalty_tier_code": tier_code,
+        "discount_rate_bp": rate_bp,
+        "merchandise_subtotal": merch_subtotal,
+        "discount_amount": discount,
+        "net_total": net,
+        "lines": lines_out,
+    }
+
+
+@router_acct.post("/distributor/review-cases/{review_case_id}/confirm-order", status_code=201)
+async def confirm_order(
+    request: Request,
+    review_case_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """A6: confirm the exact reviewed revision as a CPQ order (idempotent)."""
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        document = _build_order_document(cur, review_case_id, app_user["AppUserId"])
+        try:
+            cur.execute(
+                "{CALL quote.usp_ConfirmOrder (?, ?, ?)}",
+                review_case_id, app_user["AppUserId"],
+                json.dumps(document, separators=(",", ":")),
+            )
+            row = _one(cur)
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "not found" in msg:
+                raise HTTPException(status_code=404, detail="Review case not found.") from exc
+            if "only a completed" in msg:
+                raise HTTPException(status_code=409, detail="Only a completed review can be confirmed.") from exc
+            raise
+        return {
+            "order_confirmation_id": row["OrderConfirmationId"],
+            "cpq_order_number": row["CpqOrderNumber"],
+            "quote_header_id": row["QuoteHeaderId"],
+            "review_case_id": row["ReviewCaseId"],
+            "confirmed_revision_no": row["ConfirmedRevisionNo"],
+            "lead_time_days": row.get("LeadTimeDays"),
+            "confirmed_at": str(row.get("ConfirmedAt")),
+            "was_existing": bool(row.get("WasExisting", 0)),
+        }
+    finally:
+        conn.close()
+
+
+@router_acct.get("/orders/by-case/{review_case_id}")
+async def get_order_by_case(
+    request: Request,
+    review_case_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """A6: the confirmed order document for a case. Readable by the owning
+    distributor OR an engineer authorized for the case's site (same record ->
+    identical PDF). 404 to anyone else."""
+    import json as _json
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        # Who is allowed: the submitting distributor, or an engineer for the site.
+        cur.execute(
+            "SELECT SubmittedByAppUserId, ResponsibleSiteCode FROM acct.ReviewCase WHERE ReviewCaseId = ?",
+            review_case_id,
+        )
+        case = _one(cur)
+        if case is None:
+            raise HTTPException(status_code=404, detail="Order not found.")
+        is_owner = case["SubmittedByAppUserId"] == app_user["AppUserId"]
+        authorized = is_owner
+        if not authorized:
+            sites = _engineer_sites(request, app_user["AppUserId"])
+            authorized = case["ResponsibleSiteCode"] in sites
+        if not authorized:
+            raise HTTPException(status_code=404, detail="Order not found.")
+
+        cur.execute("{CALL quote.usp_GetOrderByCase (?)}", review_case_id)
+        order = _one(cur)
+        if order is None:
+            raise HTTPException(status_code=404, detail="Order not confirmed yet.")
+        return {
+            "cpq_order_number": order["CpqOrderNumber"],
+            "quote_header_id": order["QuoteHeaderId"],
+            "review_case_id": order["ReviewCaseId"],
+            "confirmed_revision_no": order["ConfirmedRevisionNo"],
+            "lead_time_days": order.get("LeadTimeDays"),
+            "confirmed_at": str(order.get("ConfirmedAt")),
+            "document": _json.loads(order["DocumentJson"]),
+        }
     finally:
         conn.close()
 

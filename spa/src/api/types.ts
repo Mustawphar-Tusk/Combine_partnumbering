@@ -411,6 +411,55 @@ export interface DistributorReviewCase {
   CustomerName: string | null;
 }
 
+export interface ConfirmOrderResult {
+  order_confirmation_id: number;
+  cpq_order_number: string;
+  quote_header_id: number;
+  review_case_id: number;
+  confirmed_revision_no: number;
+  lead_time_days: number | null;
+  confirmed_at: string;
+  was_existing: boolean;
+}
+
+export interface OrderDocumentLine {
+  line_number: number;
+  part_number: string | null;
+  quantity: number;
+  unit_price: number;
+  extended_price: number;
+  pricing_status: string | null;
+  custom_spec: string | null;
+  engineer_note: string | null;
+  priced: boolean;
+}
+
+export interface OrderDocument {
+  quote_number: string | null;
+  customer_name: string | null;
+  brand: string;
+  responsible_site_code: string;
+  revision_no: number;
+  lead_time_days: number | null;
+  currency: string;
+  loyalty_tier_code: string | null;
+  discount_rate_bp: number;
+  merchandise_subtotal: number;
+  discount_amount: number;
+  net_total: number;
+  lines: OrderDocumentLine[];
+}
+
+export interface OrderRecord {
+  cpq_order_number: string;
+  quote_header_id: number;
+  review_case_id: number;
+  confirmed_revision_no: number;
+  lead_time_days: number | null;
+  confirmed_at: string;
+  document: OrderDocument;
+}
+
 export interface DistributorReviewLine {
   ReviewCaseLineId: number;
   QuoteLineId: number;

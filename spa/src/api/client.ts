@@ -13,11 +13,13 @@ import type {
   ApplicationListItem,
   CompleteReviewInput,
   CreateQuoteInput,
+  ConfirmOrderResult,
   Customization,
   CustomizationInput,
   DistributorReviewCase,
   DistributorReviewLine,
   Me,
+  OrderRecord,
   MyAccount,
   Notification,
   QuoteDocument,
@@ -286,4 +288,13 @@ export const api = {
       `/distributor/review-cases/${id}/request-further-review`,
       { notes },
     ),
+
+  // --- A6: confirm order + order document (identical for both parties) ---
+  confirmOrder: (reviewCaseId: number) =>
+    request<ConfirmOrderResult>(
+      "POST",
+      `/distributor/review-cases/${reviewCaseId}/confirm-order`,
+    ),
+  getOrderByCase: (reviewCaseId: number) =>
+    request<OrderRecord>("GET", `/orders/by-case/${reviewCaseId}`),
 };

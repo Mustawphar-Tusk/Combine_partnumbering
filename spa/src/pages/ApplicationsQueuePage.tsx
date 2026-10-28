@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { api, ApiError } from "../api/client";
 import type { ReviewCaseDetail, ReviewCaseListItem } from "../api/types";
 import { money } from "../format";
+import { downloadOrderPdf } from "../orderPdf";
 
 function reviewBadge(status: string) {
   const cls =
@@ -226,11 +227,26 @@ function CaseDetail({
           </>
         )}
         {terminal && (
-          <span className="muted">
-            {c.Status === "COMPLETED"
-              ? `Completed${c.LeadTimeDays != null ? ` · lead time ${c.LeadTimeDays} days` : ""}.`
-              : "Closed."}
-          </span>
+          <>
+            <span className="muted">
+              {c.Status === "COMPLETED"
+                ? `Completed${c.LeadTimeDays != null ? ` · lead time ${c.LeadTimeDays} days` : ""}.`
+                : "Closed."}
+            </span>
+            {c.Status === "COMPLETED" && (
+              <button
+                className="btn secondary"
+                onClick={() =>
+                  act(async () => {
+                    const order = await api.getOrderByCase(c.ReviewCaseId);
+                    downloadOrderPdf(order);
+                  })
+                }
+              >
+                Download order PDF
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>

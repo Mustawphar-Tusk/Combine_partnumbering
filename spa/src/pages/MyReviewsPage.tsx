@@ -3,16 +3,12 @@ import { api, ApiError } from "../api/client";
 import type { DistributorReviewCase, DistributorReviewLine } from "../api/types";
 import { money } from "../format";
 import { StatusBadge } from "../components/StatusBadge";
+import { downloadOrderPdf } from "../orderPdf";
 
-// A5: distributor-facing view of submitted review cases. Shows the reviewed
+// A5/A6: distributor-facing view of submitted review cases. Shows the reviewed
 // revision (engineer-resolved prices / custom specs / lead time) and offers
-// Request Further Review. (A6 adds Confirm Order + PDF to the completed view.)
-export function MyReviewsPage({
-  renderCompletedActions,
-}: {
-  // A6 injects Confirm Order / PDF actions for a COMPLETED case.
-  renderCompletedActions?: (c: DistributorReviewCase, lines: DistributorReviewLine[]) => React.ReactNode;
-}) {
+// Request Further Review, Confirm Order, and Download order PDF.
+export function MyReviewsPage() {
   const [cases, setCases] = useState<DistributorReviewCase[]>([]);
   const [selected, setSelected] = useState<{ case: DistributorReviewCase; lines: DistributorReviewLine[] } | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -44,6 +40,30 @@ export function MyReviewsPage({
     } catch (e) {
       const a = e as ApiError;
       setError(typeof a.detail === "string" ? a.detail : a.message);
+    }
+  }
+
+  const [orderMsg, setOrderMsg] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  async function confirmAndDownload(id: number) {
+    setBusy(true);
+    setError(null);
+    setOrderMsg(null);
+    try {
+      const conf = await api.confirmOrder(id);
+      setOrderMsg(
+        conf.was_existing
+          ? `Order ${conf.cpq_order_number} already confirmed — downloading.`
+          : `Order ${conf.cpq_order_number} confirmed — downloading.`,
+      );
+      const order = await api.getOrderByCase(id);
+      downloadOrderPdf(order);
+    } catch (e) {
+      const a = e as ApiError;
+      setError(typeof a.detail === "string" ? a.detail : a.message);
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -131,9 +151,16 @@ export function MyReviewsPage({
             </tbody>
           </table>
 
+          {orderMsg && <div className="notice ok">{orderMsg}</div>}
           {selected.case.Status === "COMPLETED" && (
             <div className="actions">
-              {renderCompletedActions?.(selected.case, selected.lines)}
+              <button
+                className="btn primary"
+                onClick={() => confirmAndDownload(selected.case.ReviewCaseId)}
+                disabled={busy}
+              >
+                {busy ? "Working…" : "Confirm order & download PDF"}
+              </button>
               <button className="btn secondary" onClick={() => furtherReview(selected.case.ReviewCaseId)}>
                 Request further review
               </button>
