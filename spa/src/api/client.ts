@@ -220,6 +220,23 @@ export const api = {
     ),
   getQuotePricing: (id: number) =>
     request<QuotePricing>("GET", `/quotes/${id}/pricing`),
+  getQuoteUnresolved: (family: string, id: number) =>
+    request<{
+      quote_header_id: number;
+      requires_review: boolean;
+      unresolved_count: number;
+      items: {
+        kind: "pricing" | "customization";
+        line_number: number | null;
+        quote_line_id: number;
+        part_number?: string;
+        pricing_status?: string;
+        grouping?: string;
+        field_code?: string | null;
+        requested_change?: string;
+        detail: string;
+      }[];
+    }>("GET", `/families/${family}/quotes/${id}/unresolved`),
 
   // --- U3: engineering review queue ---
   submitQuoteForReview: (quoteId: number) =>

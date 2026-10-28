@@ -24,8 +24,13 @@ export function QuoteWorkspacePage() {
   const [adding, setAdding] = useState(false);
   const [qty, setQty] = useState(1);
 
+  const [unresolved, setUnresolved] = useState<
+    import("../api/types").QuoteUnresolved | null
+  >(null);
+
   const load = useCallback(() => {
     setLoading(true);
+    api.getQuoteUnresolved("FYBROC", quoteId).then(setUnresolved).catch(() => setUnresolved(null));
     Promise.all([api.getQuote("FYBROC", quoteId), api.getQuotePricing(quoteId)])
       .then(([d, p]) => {
         setDoc(d);
@@ -212,6 +217,32 @@ export function QuoteWorkspacePage() {
       <div className="card">
         <h3 style={{ marginTop: 0 }}>Engineering review</h3>
         {reviewMsg && <div className="notice ok">{reviewMsg}</div>}
+        {unresolved && unresolved.requires_review && (
+          <div className="notice warn">
+            <strong>{unresolved.unresolved_count} item(s) require engineering review.</strong>
+            <ul style={{ margin: "8px 0 0", paddingLeft: 18, fontSize: 13 }}>
+              {unresolved.items.map((it, i) => (
+                <li key={i}>
+                  Line {it.line_number}:{" "}
+                  {it.kind === "pricing" ? (
+                    <>
+                      {it.part_number} — <span className="amber-t">Contact Factory</span> (
+                      {it.pricing_status})
+                    </>
+                  ) : (
+                    <>
+                      customization ({it.grouping}
+                      {it.field_code ? ` · ${it.field_code}` : ""}): {it.requested_change}
+                    </>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {unresolved && !unresolved.requires_review && (
+          <div className="notice ok">No unresolved items — all lines are priced and standard.</div>
+        )}
         <p className="muted" style={{ fontSize: 13 }}>
           Submit this quote to the responsible engineering team. Routing is by the
           ordered brand (Dean → Indianapolis, Fybroc → Telford).

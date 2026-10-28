@@ -3850,6 +3850,66 @@ async def get_quote_line_config(family: str, quote_header_id: int, quote_line_id
 
 
 # ---------------------------------------------------------------------------
+# A3 - unresolved items: C/F lines + customization requests force review
+# ---------------------------------------------------------------------------
+
+@router_v2.get("/families/{family}/quotes/{quote_header_id}/unresolved")
+async def quote_unresolved_items(family: str, quote_header_id: int, request: Request):
+    """A3: the explicit list of items that REQUIRE engineering review.
+
+    An unresolved item is any quote line whose pricing_status is not 'found'
+    (i.e. partial / call_for_price / not_found - a Contact-Factory value that must
+    NOT be treated as a completed value or an approved $0), plus every
+    per-grouping customization request on the quote. The response drives the
+    pre-submit warning and the 'needs review' gate; it never prices a C/F item.
+    """
+    del family
+    conn_str = _get_conn_str(request)
+    conn = pyodbc.connect(conn_str, autocommit=True)
+    try:
+        quote = _fetch_quote(conn, quote_header_id)
+        if not quote:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail="Quote not found")
+        cur = conn.cursor()
+        cur.execute("EXEC quote.usp_ListQuoteCustomizations @QuoteHeaderId=?;", quote_header_id)
+        ccols = [c[0] for c in cur.description]
+        customs = [dict(zip(ccols, r)) for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+    items: list[dict] = []
+    for ln in quote["lines"]:
+        status = (ln.get("PricingStatus") or "").lower()
+        if status and status != "found":
+            items.append({
+                "kind": "pricing",
+                "line_number": ln.get("LineNumber"),
+                "quote_line_id": ln.get("QuoteLineId"),
+                "part_number": ln.get("PartNumber"),
+                "pricing_status": ln.get("PricingStatus"),
+                "detail": "Contact-Factory / unpriced component — requires engineering review.",
+            })
+    for c in customs:
+        items.append({
+            "kind": "customization",
+            "line_number": c.get("LineNumber"),
+            "quote_line_id": c.get("QuoteLineId"),
+            "grouping": c.get("Grouping"),
+            "field_code": c.get("FieldCode"),
+            "requested_change": c.get("RequestedChange"),
+            "detail": "Customization request — requires engineering review.",
+        })
+
+    return {
+        "quote_header_id": quote_header_id,
+        "requires_review": len(items) > 0,
+        "unresolved_count": len(items),
+        "items": items,
+    }
+
+
+# ---------------------------------------------------------------------------
 # A2 - per-grouping customization requests on a draft quote line
 # ---------------------------------------------------------------------------
 

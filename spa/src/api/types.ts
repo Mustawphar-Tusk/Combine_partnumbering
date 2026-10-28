@@ -350,6 +350,25 @@ export interface ResolveReviewLineInput {
   engineer_note?: string;
 }
 
+export interface QuoteUnresolvedItem {
+  kind: "pricing" | "customization";
+  line_number: number | null;
+  quote_line_id: number;
+  part_number?: string;
+  pricing_status?: string;
+  grouping?: string;
+  field_code?: string | null;
+  requested_change?: string;
+  detail: string;
+}
+
+export interface QuoteUnresolved {
+  quote_header_id: number;
+  requires_review: boolean;
+  unresolved_count: number;
+  items: QuoteUnresolvedItem[];
+}
+
 export interface Customization {
   customization_id: number;
   quote_line_id: number;
