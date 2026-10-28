@@ -15,6 +15,8 @@ import type {
   CreateQuoteInput,
   Customization,
   CustomizationInput,
+  DistributorReviewCase,
+  DistributorReviewLine,
   Me,
   MyAccount,
   Notification,
@@ -268,5 +270,20 @@ export const api = {
     request<{ cases: ReviewCaseListItem[] }>(
       "GET",
       "/admin/engineering/cases" + (status ? `?status=${encodeURIComponent(status)}` : ""),
+    ),
+
+  // --- A5: distributor-facing review cases (reviewed revision + further review) ---
+  listMyReviewCases: () =>
+    request<{ cases: DistributorReviewCase[] }>("GET", "/distributor/review-cases"),
+  getMyReviewCase: (id: number) =>
+    request<{ case: DistributorReviewCase; lines: DistributorReviewLine[] }>(
+      "GET",
+      `/distributor/review-cases/${id}`,
+    ),
+  requestFurtherReview: (id: number, notes?: string) =>
+    request<{ status: string; revision_no: number }>(
+      "POST",
+      `/distributor/review-cases/${id}/request-further-review`,
+      { notes },
     ),
 };

@@ -707,6 +707,103 @@ async def complete_review_case(
     }
 
 
+# --- Distributor: view my submitted review cases + request further review ---
+
+@router_acct.get("/distributor/review-cases")
+async def list_my_review_cases(
+    request: Request,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """A5: review cases the calling distributor submitted (ownership-scoped)."""
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT rc.ReviewCaseId, rc.QuoteHeaderId, rc.Brand, rc.ResponsibleSiteCode, "
+            "rc.Status, rc.RoutingException, rc.RevisionNo, rc.LeadTimeDays, rc.ReviewNotes, "
+            "rc.SubmittedAt, rc.CompletedAt, qh.QuoteNumber, qh.CustomerName "
+            "FROM acct.ReviewCase rc "
+            "LEFT JOIN quote.QuoteHeader qh ON qh.QuoteHeaderId = rc.QuoteHeaderId "
+            "WHERE rc.SubmittedByAppUserId = ? ORDER BY rc.ReviewCaseId DESC",
+            app_user["AppUserId"],
+        )
+        return {"cases": _rows_as_dicts(cur)}
+    finally:
+        conn.close()
+
+
+@router_acct.get("/distributor/review-cases/{review_case_id}")
+async def get_my_review_case(
+    request: Request,
+    review_case_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """A5: the reviewed revision for a case the caller submitted (owner-scoped).
+
+    Returns the case header + the per-line resolution (engineer-entered price /
+    custom spec), so the distributor sees the completed configuration, custom
+    specs, lead time, etc. A case not submitted by the caller -> 404.
+    """
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT rc.ReviewCaseId, rc.QuoteHeaderId, rc.Brand, rc.ResponsibleSiteCode, "
+            "rc.Status, rc.RoutingException, rc.RevisionNo, rc.LeadTimeDays, rc.ReviewNotes, "
+            "rc.SubmittedAt, rc.CompletedAt, qh.QuoteNumber, qh.CustomerName "
+            "FROM acct.ReviewCase rc "
+            "LEFT JOIN quote.QuoteHeader qh ON qh.QuoteHeaderId = rc.QuoteHeaderId "
+            "WHERE rc.ReviewCaseId = ? AND rc.SubmittedByAppUserId = ?",
+            review_case_id, app_user["AppUserId"],
+        )
+        header = _one(cur)
+        if header is None:
+            raise HTTPException(status_code=404, detail="Review case not found.")
+        cur.execute(
+            "SELECT ReviewCaseLineId, QuoteLineId, LineNumber, PartNumber, PricingStatus, "
+            "ResolvedUnitPrice, CustomSpec, EngineerNote, ResolvedAt "
+            "FROM acct.ReviewCaseLine WHERE ReviewCaseId = ? ORDER BY LineNumber",
+            review_case_id,
+        )
+        return {"case": header, "lines": _rows_as_dicts(cur)}
+    finally:
+        conn.close()
+
+
+@router_acct.post("/distributor/review-cases/{review_case_id}/request-further-review")
+async def request_further_review(
+    request: Request,
+    review_case_id: int,
+    body: ReviewNotesIn,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """A5: distributor sends a COMPLETED case back to the responsible team."""
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        try:
+            cur.execute(
+                "{CALL acct.usp_RequestFurtherReview (?, ?, ?)}",
+                review_case_id, app_user["AppUserId"], body.notes,
+            )
+            row = _one(cur)
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "not authorized" in msg or "not found" in msg:
+                raise HTTPException(status_code=404, detail="Review case not found.") from exc
+            raise HTTPException(status_code=409, detail=str(exc.args[-1])) from exc
+        return {
+            "review_case_id": review_case_id,
+            "status": (row or {}).get("Status", "CHANGES_REQUESTED"),
+            "revision_no": (row or {}).get("RevisionNo"),
+        }
+    finally:
+        conn.close()
+
+
 # --- Admin: read-only oversight across both queues ------------------------
 
 @router_acct.get("/admin/engineering/cases")

@@ -11,6 +11,7 @@ import { QuotesListPage } from "./pages/QuotesListPage";
 import { QuoteWorkspacePage } from "./pages/QuoteWorkspacePage";
 import { LookupPage } from "./pages/LookupPage";
 import { ApplicationsQueuePage } from "./pages/ApplicationsQueuePage";
+import { MyReviewsPage } from "./pages/MyReviewsPage";
 
 export function App() {
   const meState = useMe();
@@ -49,6 +50,14 @@ export function App() {
               className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
             >
               Quotes
+            </NavLink>
+          )}
+          {caps?.is_distributor && (
+            <NavLink
+              to="/my-reviews"
+              className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
+            >
+              My Reviews
             </NavLink>
           )}
           {caps?.configure && (
@@ -150,6 +159,10 @@ export function App() {
             <Route
               path="/applications"
               element={isEngineer ? <ApplicationsQueuePage /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/my-reviews"
+              element={caps?.is_distributor ? <MyReviewsPage /> : <Navigate to="/" replace />}
             />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

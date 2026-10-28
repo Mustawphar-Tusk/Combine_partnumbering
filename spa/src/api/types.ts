@@ -394,3 +394,31 @@ export interface CompleteReviewInput {
   lead_time_days?: number | null;
   notes?: string;
 }
+
+export interface DistributorReviewCase {
+  ReviewCaseId: number;
+  QuoteHeaderId: number;
+  Brand: string;
+  ResponsibleSiteCode: string;
+  Status: ReviewStatus;
+  RoutingException: boolean;
+  RevisionNo: number;
+  LeadTimeDays: number | null;
+  ReviewNotes: string | null;
+  SubmittedAt: string;
+  CompletedAt: string | null;
+  QuoteNumber: string | null;
+  CustomerName: string | null;
+}
+
+export interface DistributorReviewLine {
+  ReviewCaseLineId: number;
+  QuoteLineId: number;
+  LineNumber: number;
+  PartNumber: string | null;
+  PricingStatus: string | null;
+  ResolvedUnitPrice: number | null;
+  CustomSpec: string | null;
+  EngineerNote: string | null;
+  ResolvedAt: string | null;
+}
