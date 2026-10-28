@@ -26,6 +26,7 @@ from src.api.auth import (
     AuthenticatedUser,
     ROLE_ADMIN,
     ROLE_DISTRIBUTOR,
+    ROLE_ENGINEERING,
     get_current_user,
     idp_identity,
 )
@@ -43,11 +44,17 @@ def _conn(request: Request) -> pyodbc.Connection:
 
 
 def _rows_as_dicts(cursor) -> list[dict[str, Any]]:
+    # A proc that RETURNs without selecting leaves cursor.description = None.
+    if cursor.description is None:
+        return []
     cols = [c[0] for c in cursor.description]
     return [dict(zip(cols, row)) for row in cursor.fetchall()]
 
 
 def _one(cursor) -> dict[str, Any] | None:
+    # No result set (e.g. a scope-blocked proc that RETURNed early).
+    if cursor.description is None:
+        return None
     cols = [c[0] for c in cursor.description]
     row = cursor.fetchone()
     return dict(zip(cols, row)) if row else None
@@ -461,5 +468,260 @@ async def get_quote_pricing(
             "unpriced_line_total": round(unpriced_total, 2),
             "line_count": len(lines),
         }
+    finally:
+        conn.close()
+
+
+# ---------------------------------------------------------------------------
+# U3 — Engineering review queue with REQUIRED brand/site routing
+# ---------------------------------------------------------------------------
+# Brand/site isolation is enforced HERE and in the stored procs (handoff §4):
+#   - A case's brand is derived SERVER-SIDE from the persisted quote lines
+#     (usp_SubmitQuoteForReview); never from a client-supplied family/site.
+#   - Every engineer action is scoped to the caller's acct.EngineerMembership
+#     (brand, site) set, passed to the procs as @SiteCsv. An engineer for one
+#     site cannot read/claim/edit another site's case by id -> treated as not
+#     found (404). Admin oversight is read-only across both queues.
+
+
+class SubmitForReviewIn(BaseModel):
+    pass  # no body needed; brand is derived from the persisted quote
+
+
+class ResolveLineIn(BaseModel):
+    resolved_unit_price: float | None = None
+    custom_spec: str | None = Field(default=None, max_length=1000)
+    engineer_note: str | None = Field(default=None, max_length=1000)
+
+
+class ReviewNotesIn(BaseModel):
+    notes: str | None = Field(default=None, max_length=2000)
+
+
+class CompleteReviewIn(BaseModel):
+    lead_time_days: int | None = None
+    notes: str | None = Field(default=None, max_length=2000)
+
+
+def _engineer_sites(request: Request, app_user_id: int) -> list[str]:
+    """The sites the caller is authorized to act on, from acct.EngineerMembership.
+    Empty list => not an engineer for any site."""
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        rows = cur.execute(
+            "SELECT DISTINCT SiteCode FROM acct.EngineerMembership WHERE AppUserId = ?",
+            app_user_id,
+        ).fetchall()
+        return [r[0] for r in rows]
+    finally:
+        conn.close()
+
+
+def _require_engineer_sites(request: Request, user: AuthenticatedUser) -> tuple[dict, list[str]]:
+    """Resolve the engineer AppUser + their authorized sites, or 403 if none.
+    Admins without a membership do NOT get engineer edit scope (handoff §4)."""
+    if ROLE_ENGINEERING not in user.roles and not user.has_role(ROLE_ADMIN):
+        raise HTTPException(status_code=403, detail="Engineering role required.")
+    app_user = _resolve_app_user(request, user)
+    sites = _engineer_sites(request, app_user["AppUserId"])
+    if not sites:
+        raise HTTPException(
+            status_code=403,
+            detail="No engineering brand/site membership for this user.",
+        )
+    return app_user, sites
+
+
+# --- Distributor: submit a quote for engineering review -------------------
+
+@router_acct.post("/quotes/{quote_header_id}/submit-for-review", status_code=201)
+async def submit_quote_for_review(
+    request: Request,
+    quote_header_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """Submit a quote for engineering review. The server derives the brand from
+    the persisted quote lines and routes to the responsible site queue."""
+    app_user = _resolve_app_user(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        try:
+            cur.execute(
+                "{CALL acct.usp_SubmitQuoteForReview (?, ?)}",
+                quote_header_id, app_user["AppUserId"],
+            )
+            row = _one(cur)
+        except pyodbc.Error as exc:
+            if "not found" in str(exc).lower():
+                raise HTTPException(status_code=404, detail="Quote not found.") from exc
+            raise
+        if row is None:
+            raise HTTPException(status_code=500, detail="Review submission failed.")
+        return {
+            "review_case_id": row["ReviewCaseId"],
+            "quote_header_id": row["QuoteHeaderId"],
+            "brand": row["Brand"],
+            "responsible_site_code": row["ResponsibleSiteCode"],
+            "status": row["Status"],
+            "routing_exception": bool(row.get("RoutingException", 0)),
+            "was_existing": bool(row.get("WasExisting", 0)),
+        }
+    finally:
+        conn.close()
+
+
+# --- Engineer: brand/site-scoped queue ------------------------------------
+
+@router_acct.get("/engineering/cases")
+async def list_review_cases(
+    request: Request,
+    status: str | None = None,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """The caller's authorized review queue (scoped to their membership sites)."""
+    _app_user, sites = _require_engineer_sites(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "{CALL acct.usp_ListReviewCases (?, ?, ?)}",
+            ",".join(sites), status, 0,
+        )
+        return {"cases": _rows_as_dicts(cur), "authorized_sites": sites}
+    finally:
+        conn.close()
+
+
+@router_acct.get("/engineering/cases/{review_case_id}")
+async def get_review_case(
+    request: Request,
+    review_case_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """Case + lines, scope-checked. A case outside the caller's sites -> 404."""
+    _app_user, sites = _require_engineer_sites(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        cur.execute(
+            "{CALL acct.usp_GetReviewCase (?, ?, ?)}",
+            review_case_id, ",".join(sites), 0,
+        )
+        header = _one(cur)
+        if header is None:
+            # Not authorized for this site OR nonexistent: do not leak which.
+            raise HTTPException(status_code=404, detail="Review case not found.")
+        lines = _rows_as_dicts(cur) if cur.nextset() else []
+        return {"case": header, "lines": lines}
+    finally:
+        conn.close()
+
+
+def _engineer_case_action(request, user, proc_call, params):
+    """Run a scope-checked engineer proc; translate the proc's authorization
+    RAISERROR into 403 and 'not found' into 404."""
+    _app_user, sites = _require_engineer_sites(request, user)
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        try:
+            cur.execute(proc_call, *params(_app_user["AppUserId"], ",".join(sites)))
+            return _one(cur)
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "not authorized" in msg:
+                raise HTTPException(status_code=404, detail="Review case not found.") from exc
+            if "not found" in msg:
+                raise HTTPException(status_code=404, detail="Review case not found.") from exc
+            raise HTTPException(status_code=409, detail=str(exc.args[-1])) from exc
+    finally:
+        conn.close()
+
+
+@router_acct.post("/engineering/cases/{review_case_id}/claim")
+async def claim_review_case(
+    request: Request,
+    review_case_id: int,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    row = _engineer_case_action(
+        request, user,
+        "{CALL acct.usp_ClaimReviewCase (?, ?, ?)}",
+        lambda uid, csv: (review_case_id, uid, csv),
+    )
+    return {"review_case_id": review_case_id, "status": (row or {}).get("Status", "CLAIMED")}
+
+
+@router_acct.post("/engineering/cases/{review_case_id}/lines/{review_case_line_id}/resolve")
+async def resolve_review_case_line(
+    request: Request,
+    review_case_id: int,
+    review_case_line_id: int,
+    body: ResolveLineIn,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    row = _engineer_case_action(
+        request, user,
+        "{CALL acct.usp_ResolveReviewCaseLine (?, ?, ?, ?, ?, ?, ?)}",
+        lambda uid, csv: (
+            review_case_id, review_case_line_id, uid, csv,
+            body.resolved_unit_price, body.custom_spec, body.engineer_note,
+        ),
+    )
+    return {"review_case_line_id": review_case_line_id, "result": (row or {}).get("Result", "resolved")}
+
+
+@router_acct.post("/engineering/cases/{review_case_id}/request-changes")
+async def request_review_changes(
+    request: Request,
+    review_case_id: int,
+    body: ReviewNotesIn,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    row = _engineer_case_action(
+        request, user,
+        "{CALL acct.usp_RequestReviewChanges (?, ?, ?, ?)}",
+        lambda uid, csv: (review_case_id, uid, csv, body.notes),
+    )
+    return {"review_case_id": review_case_id, "status": (row or {}).get("Status", "CHANGES_REQUESTED")}
+
+
+@router_acct.post("/engineering/cases/{review_case_id}/complete")
+async def complete_review_case(
+    request: Request,
+    review_case_id: int,
+    body: CompleteReviewIn,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    row = _engineer_case_action(
+        request, user,
+        "{CALL acct.usp_CompleteReviewCase (?, ?, ?, ?, ?)}",
+        lambda uid, csv: (review_case_id, uid, csv, body.lead_time_days, body.notes),
+    )
+    return {
+        "review_case_id": review_case_id,
+        "status": (row or {}).get("Status", "COMPLETED"),
+        "lead_time_days": (row or {}).get("LeadTimeDays"),
+    }
+
+
+# --- Admin: read-only oversight across both queues ------------------------
+
+@router_acct.get("/admin/engineering/cases")
+async def admin_list_review_cases(
+    request: Request,
+    status: str | None = None,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """Admin oversight: list review cases across ALL sites (read-only)."""
+    if not _is_admin(user):
+        raise HTTPException(status_code=403, detail="Admin role required.")
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+        cur.execute("{CALL acct.usp_ListReviewCases (?, ?, ?)}", None, status, 1)
+        return {"cases": _rows_as_dicts(cur)}
     finally:
         conn.close()

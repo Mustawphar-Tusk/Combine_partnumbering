@@ -11,6 +11,7 @@ import type {
   AddQuoteLineInput,
   ApplicationDetail,
   ApplicationListItem,
+  CompleteReviewInput,
   CreateQuoteInput,
   Me,
   MyAccount,
@@ -20,11 +21,15 @@ import type {
   QuoteListItem,
   QuotePricing,
   ResolveResponse,
+  ResolveReviewLineInput,
   ResolveStateResponse,
+  ReviewCaseDetail,
+  ReviewCaseListItem,
   ReviewInput,
   SkuLookupResponse,
   SubmitApplicationInput,
   SubmitApplicationResult,
+  SubmitForReviewResult,
 } from "./types";
 
 const API_BASE = "/api/v2";
@@ -34,6 +39,10 @@ const DEV_SUBJECT_KEY = "cpq.devSubject";
 
 export function getDevRole(): string | null {
   return localStorage.getItem(DEV_ROLE_KEY);
+}
+
+export function getDevSubject(): string | null {
+  return localStorage.getItem(DEV_SUBJECT_KEY);
 }
 
 export function setDevRole(role: string | null, subject?: string): void {
@@ -159,4 +168,36 @@ export const api = {
     ),
   getQuotePricing: (id: number) =>
     request<QuotePricing>("GET", `/quotes/${id}/pricing`),
+
+  // --- U3: engineering review queue ---
+  submitQuoteForReview: (quoteId: number) =>
+    request<SubmitForReviewResult>("POST", `/quotes/${quoteId}/submit-for-review`),
+  listReviewCases: (status?: string) =>
+    request<{ cases: ReviewCaseListItem[]; authorized_sites: string[] }>(
+      "GET",
+      "/engineering/cases" + (status ? `?status=${encodeURIComponent(status)}` : ""),
+    ),
+  getReviewCase: (id: number) =>
+    request<ReviewCaseDetail>("GET", `/engineering/cases/${id}`),
+  claimReviewCase: (id: number) =>
+    request<{ status: string }>("POST", `/engineering/cases/${id}/claim`),
+  resolveReviewLine: (caseId: number, lineId: number, body: ResolveReviewLineInput) =>
+    request<{ result: string }>(
+      "POST",
+      `/engineering/cases/${caseId}/lines/${lineId}/resolve`,
+      body,
+    ),
+  requestReviewChanges: (id: number, notes?: string) =>
+    request<{ status: string }>("POST", `/engineering/cases/${id}/request-changes`, { notes }),
+  completeReviewCase: (id: number, body: CompleteReviewInput) =>
+    request<{ status: string; lead_time_days: number | null }>(
+      "POST",
+      `/engineering/cases/${id}/complete`,
+      body,
+    ),
+  adminListReviewCases: (status?: string) =>
+    request<{ cases: ReviewCaseListItem[] }>(
+      "GET",
+      "/admin/engineering/cases" + (status ? `?status=${encodeURIComponent(status)}` : ""),
+    ),
 };

@@ -271,3 +271,85 @@ export interface QuotePricing {
   unpriced_line_total: number;
   line_count: number;
 }
+
+// ---------------------------------------------------------------------------
+// U3 — Engineering review queue
+// ---------------------------------------------------------------------------
+
+export type ReviewStatus =
+  | "PENDING_REVIEW"
+  | "CLAIMED"
+  | "CHANGES_REQUESTED"
+  | "COMPLETED"
+  | "CANCELLED"
+  | "ROUTING_EXCEPTION";
+
+export interface SubmitForReviewResult {
+  review_case_id: number;
+  quote_header_id: number;
+  brand: string;
+  responsible_site_code: string;
+  status: ReviewStatus;
+  routing_exception: boolean;
+  was_existing: boolean;
+}
+
+export interface ReviewCaseListItem {
+  ReviewCaseId: number;
+  QuoteHeaderId: number;
+  Brand: string;
+  ResponsibleSiteCode: string;
+  Status: ReviewStatus;
+  RoutingException: boolean;
+  SubmittedAt: string;
+  AssignedToAppUserId: number | null;
+  LeadTimeDays: number | null;
+  RevisionNo: number;
+  QuoteNumber: string | null;
+  CustomerName: string | null;
+  AssignedToEmail: string | null;
+}
+
+export interface ReviewCaseLine {
+  ReviewCaseLineId: number;
+  QuoteLineId: number;
+  LineNumber: number;
+  PartNumber: string | null;
+  PricingStatus: string | null;
+  ResolvedUnitPrice: number | null;
+  CustomSpec: string | null;
+  EngineerNote: string | null;
+  ResolvedAt: string | null;
+}
+
+export interface ReviewCaseDetail {
+  case: {
+    ReviewCaseId: number;
+    QuoteHeaderId: number;
+    Brand: string;
+    ResponsibleSiteCode: string;
+    Status: ReviewStatus;
+    RoutingException: boolean;
+    SubmittedAt: string;
+    AssignedToAppUserId: number | null;
+    ClaimedAt: string | null;
+    CompletedAt: string | null;
+    RevisionNo: number;
+    LeadTimeDays: number | null;
+    ReviewNotes: string | null;
+    QuoteNumber: string | null;
+    CustomerName: string | null;
+  };
+  lines: ReviewCaseLine[];
+}
+
+export interface ResolveReviewLineInput {
+  resolved_unit_price?: number | null;
+  custom_spec?: string;
+  engineer_note?: string;
+}
+
+export interface CompleteReviewInput {
+  lead_time_days?: number | null;
+  notes?: string;
+}

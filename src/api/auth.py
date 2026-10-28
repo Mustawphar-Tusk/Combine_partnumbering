@@ -113,6 +113,19 @@ def _dev_assumed_user(request: Request) -> AuthenticatedUser | None:
     )
 
 
+def is_engineering(user: AuthenticatedUser) -> bool:
+    """True if the caller holds the engineering role (or admin).
+
+    NOTE: the engineering ROLE alone does NOT authorize a specific brand/site
+    queue. Per the brand/site routing requirement, an engineer's authorized
+    (brand, site) memberships live in acct.EngineerMembership and are resolved +
+    enforced in the acct router against each case's responsible site. This helper
+    only answers "is this a staff engineer identity"; it must be combined with the
+    membership scope check for any case action.
+    """
+    return user.has_role(ROLE_ENGINEERING)
+
+
 def idp_identity(user: AuthenticatedUser) -> tuple[str, str]:
     """Return (issuer, subject) used to key acct.AppUser.
 

@@ -58,6 +58,27 @@ export function QuoteWorkspacePage() {
     }
   }
 
+  const [reviewMsg, setReviewMsg] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  async function submitForReview() {
+    setSubmitting(true);
+    setError(null);
+    setReviewMsg(null);
+    try {
+      const r = await api.submitQuoteForReview(quoteId);
+      setReviewMsg(
+        r.routing_exception
+          ? `Submitted, but routing needs admin attention (brand/site could not be resolved).`
+          : `Submitted to ${r.brand} engineering (${r.responsible_site_code})${r.was_existing ? " — already in review" : ""}.`,
+      );
+    } catch (err) {
+      const e = err as ApiError;
+      setError(typeof e.detail === "string" ? e.detail : e.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   if (loading) return <p className="muted">Loading quote…</p>;
   if (error && !doc) return <div className="notice err">{error}</div>;
   if (!doc || !pricing) return <div className="notice warn">Quote not found.</div>;
@@ -140,6 +161,27 @@ export function QuoteWorkspacePage() {
               ))}
             </tbody>
           </table>
+        )}
+      </div>
+
+      <div className="card">
+        <h3 style={{ marginTop: 0 }}>Engineering review</h3>
+        {reviewMsg && <div className="notice ok">{reviewMsg}</div>}
+        <p className="muted" style={{ fontSize: 13 }}>
+          Submit this quote to the responsible engineering team. Routing is by the
+          ordered brand (Dean → Indianapolis, Fybroc → Telford).
+        </p>
+        <button
+          className="btn"
+          onClick={submitForReview}
+          disabled={submitting || doc.lines.length === 0}
+        >
+          {submitting ? "Submitting…" : "Submit for review"}
+        </button>
+        {doc.lines.length === 0 && (
+          <span className="muted" style={{ marginLeft: 10, fontSize: 13 }}>
+            Add at least one line first.
+          </span>
         )}
       </div>
 

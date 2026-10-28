@@ -10,12 +10,14 @@ import { ConfiguratorPage } from "./pages/ConfiguratorPage";
 import { QuotesListPage } from "./pages/QuotesListPage";
 import { QuoteWorkspacePage } from "./pages/QuoteWorkspacePage";
 import { LookupPage } from "./pages/LookupPage";
+import { ApplicationsQueuePage } from "./pages/ApplicationsQueuePage";
 
 export function App() {
   const meState = useMe();
   const { me, loading, error, reload } = meState;
 
   const caps = me?.capabilities;
+  const isEngineer = !!me?.user.roles.includes("engineering");
 
   return (
     <div className="app-shell">
@@ -55,6 +57,14 @@ export function App() {
               className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
             >
               Look up
+            </NavLink>
+          )}
+          {isEngineer && (
+            <NavLink
+              to="/applications"
+              className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
+            >
+              Engineering
             </NavLink>
           )}
           {caps?.review_applications && (
@@ -136,6 +146,10 @@ export function App() {
             <Route
               path="/quotes/:id"
               element={caps?.create_quote ? <QuoteWorkspacePage /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/applications"
+              element={isEngineer ? <ApplicationsQueuePage /> : <Navigate to="/" replace />}
             />
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

@@ -2,6 +2,34 @@
 
 **Last Updated:** 2026-08-26
 
+> **2026-08-26 (CPQ SPA U3 — Engineering Review Queue + Brand/Site Routing):** PASS.
+> Third CPQ SPA milestone. Additive-only, Fybroc frozen. Branch `feature/cpq-spa`.
+> Design `docs/CPQ_SPA_U3_DESIGN.md`; implements handoff §4 REQUIRED brand/site routing.
+> **SQL:** additive `sql/28_Create_Engineering_Review.sql` — new acct.ReviewCase /
+> ReviewCaseLine / ReviewEvent + 7 procs (usp_SubmitQuoteForReview, usp_ListReviewCases,
+> usp_GetReviewCase, usp_ClaimReviewCase, usp_ResolveReviewCaseLine,
+> usp_RequestReviewChanges, usp_CompleteReviewCase). Brand derived SERVER-SIDE from
+> quote.QuoteLine.FamilyCode; site resolved via acct.BrandSiteRouting (DEAN→IND,
+> FYBROC→TEL); missing/ambiguous → ROUTING_EXCEPTION case (never silent fallback). Seeded
+> 2 dev engineer memberships (IND/DEAN, TEL/FYBROC), inert in prod. **API:** acct router
+> gains submit-for-review + engineering cases (list/get/claim/resolve-line/request-changes/
+> complete) + admin oversight; every engineer action scoped to acct.EngineerMembership —
+> an engineer for one site gets 404 on another site's case by direct id (enforced on
+> API+DB, not UI). auth.py adds is_engineering() (role alone ≠ queue access). **UI:** SPA
+> Applications workspace at /app (queue/claim/resolve/complete + routing-exception banner),
+> quote workspace Submit-for-review action, dev switcher engineering(IND)/(TEL). Build
+> tsc-strict + vite clean (50 modules). **Verify:** `scripts/audit_cpq_u3.py` 20/20
+> (re-runnable, self-cleaning): Dean→IND, Fybroc→TEL; cross-team GET+claim 404; claim→
+> resolve→complete(lead 21)→distributor notified; admin sees both. Fybroc gate
+> ALL CORRECTIONS INTACT 9/9 (clean run, no flake). Frozen watermarks unchanged
+> (FeasibleConstraint 4743, non-Dean SeriesFieldOption 3638, non-DEAN
+> SegmentCombinationImport 300608). **Known gaps (disclosed):** non-DEAN ConfiguredProduct
+> 1202 (was 1196 at U1) = resolve product-identity accrual from U2/U3 audits + browser
+> testing, NOT a regression and not from migration 28; mixed-brand quote → ROUTING_EXCEPTION
+> (single-brand D7); cross-team reassignment not enabled; acceptance + PDF = U4; real Entra
+> = U5; spa/dist gitignored. Evidence: `docs/evidence/CPQ_U3/CPQ_U3_EXIT.md`.
+> **Next:** CPQ SPA U4 (acceptance of reviewed revision + quote PDF) — awaiting go-ahead.
+
 > **2026-08-26 (CPQ SPA U2 — Quote Config/Create UI + Server-Owned Loyalty Math):**
 > PASS. Second CPQ SPA milestone. Additive-only, Fybroc frozen. Branch
 > `feature/cpq-spa`. Design `docs/CPQ_SPA_U2_DESIGN.md`.
