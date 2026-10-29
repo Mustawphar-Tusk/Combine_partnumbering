@@ -446,24 +446,36 @@ export function QuoteWorkspacePage() {
             No unresolved items — all lines are priced and standard.
           </div>
         )}
-        <p className="muted" style={{ fontSize: 13 }}>
-          Submit this quote to the responsible engineering team. Routing is by
-          the ordered brand (Dean → Indianapolis, Fybroc → Telford).
-        </p>
-        <div className="actions">
-          <button
-            className="btn primary"
-            onClick={submitForReview}
-            disabled={submitting || doc.lines.length === 0}
-          >
-            {submitting ? "Submitting…" : "Submit for review"}
-          </button>
-          {doc.lines.length === 0 && (
-            <span className="muted" style={{ fontSize: 13 }}>
-              Add at least one line first.
-            </span>
-          )}
-        </div>
+        {isDraft ? (
+          <>
+            <p className="muted" style={{ fontSize: 13 }}>
+              Submit this quote to the responsible engineering team. Routing is by
+              the ordered brand (Dean → Indianapolis, Fybroc → Telford). Submitting
+              locks the quote and moves it to the engineering queue.
+            </p>
+            <div className="actions">
+              <button
+                className="btn primary"
+                onClick={submitForReview}
+                disabled={submitting || doc.lines.length === 0}
+              >
+                {submitting ? "Submitting…" : "Submit for review"}
+              </button>
+              {doc.lines.length === 0 && (
+                <span className="muted" style={{ fontSize: 13 }}>
+                  Add at least one line first.
+                </span>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="notice">
+            This quote has been submitted to engineering (status{" "}
+            <strong>{doc.status}</strong>) and is now with the review team. It is
+            locked for editing. Track progress under{" "}
+            <Link to="/my-reviews">My Reviews</Link>.
+          </div>
+        )}
       </section>
 
       {/* Totals. */}

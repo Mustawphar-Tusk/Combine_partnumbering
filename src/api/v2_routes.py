@@ -3616,20 +3616,35 @@ class QuotePartyRequest(BaseModel):
 
 
 async def require_quote_authoring(request: Request):
-    """U4 guard dependency: allow create/author of a quote for a caller holding
-    either `create_quote` (distributor-style create surface) or `author_quote`
-    (engineer self-serve authoring). In dev-mock the default user is admin (holds
-    both); a dev-assumed distributor/engineer is honored via headers. Outside dev
-    the Entra token roles drive the decision. 403 otherwise."""
+    """U4 guard dependency: allow create/author of a quote for a caller who may
+    quote. This mirrors the ENTITLEMENT rule surfaced in /me capabilities, so it
+    must not be stricter than the UI:
+      - staff `create_quote` (admin/pricing/configurator) — static permission, OR
+      - `author_quote` (engineer self-serve, admin) — static permission, OR
+      - a DISTRIBUTOR whose account is APPROVED (dynamic entitlement granted by
+        account status, NOT by the static role map — same as _capabilities()).
+    In dev-mock the default user is admin. 403 otherwise."""
     from fastapi import HTTPException
-    from src.api.auth import get_current_user
+    from src.api.auth import ROLE_DISTRIBUTOR, get_current_user
 
     user = await get_current_user(request)
     if user.has_permission("author_quote") or user.has_permission("create_quote"):
         return user
+
+    # Distributor path: approved account unlocks create_quote dynamically.
+    if ROLE_DISTRIBUTOR in user.roles:
+        try:
+            from src.api.acct_routes import _get_my_account, _resolve_app_user
+            app_user = _resolve_app_user(request, user)
+            account = _get_my_account(request, app_user["AppUserId"])
+            if account and account.get("Status") == "APPROVED":
+                return user
+        except Exception:
+            pass  # fall through to 403
+
     raise HTTPException(
         status_code=403,
-        detail="Quote authoring requires create_quote or author_quote.",
+        detail="Quote authoring requires an approved account (distributor) or create_quote/author_quote.",
     )
 
 

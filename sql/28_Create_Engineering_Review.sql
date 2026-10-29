@@ -191,6 +191,13 @@ BEGIN
     VALUES (@QuoteHeaderId, @Brand, @site, @status, @SubmittedByAppUserId, @routingExc);
     SET @caseId = SCOPE_IDENTITY();
 
+    -- Move the quote header off Draft so the distributor workspace locks it
+    -- (no more edit/remove/submit) and it reads as "with engineering". A routing
+    -- exception still leaves it submitted (admin resolves routing, not the distributor).
+    UPDATE quote.QuoteHeader
+    SET Status = 'Submitted'
+    WHERE QuoteHeaderId = @QuoteHeaderId AND Status = 'Draft';
+
     -- Snapshot the quote lines for review.
     INSERT INTO acct.ReviewCaseLine
         (ReviewCaseId, QuoteLineId, LineNumber, PartNumber, PricingStatus)
