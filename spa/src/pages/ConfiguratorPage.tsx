@@ -3,7 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { api, ApiError } from "../api/client";
 import type { FieldGroup, Me, ResolveResponse, ResolveStateResponse } from "../api/types";
 import { money, titleize } from "../format";
-import { setDraft, getEditContext, setEditContext, type EditContext } from "../draft";
+import {
+  setDraft,
+  getEditContext,
+  setEditContext,
+  getSeedContext,
+  setSeedContext,
+  type EditContext,
+} from "../draft";
 import { CustomRequestModal } from "../components/CustomRequestModal";
 
 const FAMILIES = ["FYBROC", "DEAN"] as const;
@@ -19,6 +26,8 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   const [error, setError] = useState<string | null>(null);
   // A1: edit context (set when arriving via "Edit Configuration" on a draft line).
   const [edit, setEdit] = useState<EditContext | null>(() => getEditContext());
+  // Lookup→configure: seed a NEW configuration from a looked-up pump (consumed once).
+  const [seed] = useState(() => (getEditContext() ? null : getSeedContext()));
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState<string | null>(null);
   // A2: which grouping's customization modal is open (edit mode only).
@@ -30,8 +39,10 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   // Load the series list when the family changes.
   useEffect(() => {
     let cancelled = false;
-    // Do not reset in the middle of an edit bootstrap.
-    if (!edit || bootstrapped.current) {
+    // Reset the in-progress config on a genuine family change, but NOT while an
+    // edit or lookup-seed bootstrap is seeding family/series/selections itself.
+    const hasContext = !!(edit || seed);
+    if (!hasContext) {
       setSeries("");
       setState(null);
       setResolved(null);
@@ -55,6 +66,19 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     runResolveState(edit.series, edit.selections, undefined, edit.family);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edit]);
+
+  // Lookup→configure: seed a NEW configuration from a looked-up pump, once.
+  // Starts a normal (non-edit) config so the user can tweak and add it to a quote.
+  useEffect(() => {
+    if (!seed || edit || bootstrapped.current) return;
+    bootstrapped.current = true;
+    setSeedContext(null); // consume once
+    setFamily(seed.family);
+    setSeries(seed.series);
+    setActiveGroup(0);
+    runResolveState(seed.series, seed.selections, undefined, seed.family);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed]);
 
   const runResolveState = useCallback(
     async (

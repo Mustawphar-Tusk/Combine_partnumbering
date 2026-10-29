@@ -19,6 +19,8 @@ export function App() {
 
   const caps = me?.capabilities;
   const isEngineer = !!me?.user.roles.includes("engineering");
+  // A quote author is anyone who can create (distributor) OR author (engineer) a quote.
+  const canQuote = !!(caps?.create_quote || caps?.author_quote);
 
   return (
     <div className="app-shell">
@@ -44,7 +46,7 @@ export function App() {
               Configurator
             </NavLink>
           )}
-          {caps?.create_quote && (
+          {canQuote && (
             <NavLink
               to="/quotes"
               className={({ isActive }) => "navlink" + (isActive ? " active" : "")}
@@ -150,11 +152,11 @@ export function App() {
             />
             <Route
               path="/quotes"
-              element={caps?.create_quote ? <QuotesListPage /> : <Navigate to="/" replace />}
+              element={canQuote ? <QuotesListPage /> : <Navigate to="/" replace />}
             />
             <Route
               path="/quotes/:id"
-              element={caps?.create_quote ? <QuoteWorkspacePage /> : <Navigate to="/" replace />}
+              element={canQuote ? <QuoteWorkspacePage /> : <Navigate to="/" replace />}
             />
             <Route
               path="/applications"

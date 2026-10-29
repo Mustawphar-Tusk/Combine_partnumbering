@@ -56,3 +56,30 @@ export function getEditContext(): EditContext | null {
     return null;
   }
 }
+
+// "Configure from a looked-up pump": seed the configurator with an existing
+// pump's family/series/selections to START A NEW configuration (not an edit of
+// a quote line). The configurator bootstraps these selections, then behaves as a
+// normal new config (publishes a draft the Quotes workspace can add).
+export interface SeedContext {
+  family: string;
+  series: string;
+  selections: Record<string, string>;
+}
+
+const SEED_KEY = "cpq.seedContext";
+
+export function setSeedContext(s: SeedContext | null): void {
+  if (s) sessionStorage.setItem(SEED_KEY, JSON.stringify(s));
+  else sessionStorage.removeItem(SEED_KEY);
+}
+
+export function getSeedContext(): SeedContext | null {
+  const raw = sessionStorage.getItem(SEED_KEY);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as SeedContext;
+  } catch {
+    return null;
+  }
+}
