@@ -2,6 +2,40 @@
 
 **Last Updated:** 2026-08-26
 
+> **2026-08-26 (CPQ SPA U4 — Engineer-Authored Quotes):** PASS. Owner request:
+> an application engineer creates a quote from scratch, adds customer contact +
+> ship-to, completes it, and gets a PDF; custom fields available. Option A
+> (engineer self-serves end to end). Additive-only, Fybroc frozen, branch
+> `feature/cpq-spa`. Design `docs/CPQ_SPA_U4_DESIGN.md`.
+> **SQL:** additive `sql/34_Create_Quote_Customer_Party.sql` — new `quote.QuoteParty`
+> (one CONTACT + one SHIP_TO per quote, UNIQUE quote+kind; mirrors acct.Address +
+> Email/CompanyName) + `usp_UpsertQuoteParty` (DRAFT-ONLY, THROW 52341/52342/52340)
+> + `usp_GetQuoteParties`.
+> **API:** new `author_quote` capability (ROLE_ENGINEERING + ROLE_ADMIN, surfaced in
+> `/me`); real `require_quote_authoring` guard on create_quote + add_quote_line (closed
+> the prior unauthenticated hole); new PUT/GET `/quotes/{id}/parties`; new POST
+> `/quotes/{id}/engineer-complete` (reuses A5/A6 review-case machinery with the engineer
+> as author AND resolver — submit→auto-claim→resolve C/F→complete[A5 gate]→confirm[A6];
+> idempotent return of the existing order on retry; flips QuoteHeader Draft→Submitted on
+> confirm); `_build_order_document` now adds `contact` + `ship_to`.
+> **SPA:** QuotePartyCard (editable CONTACT/SHIP_TO, draft-only), QuoteWorkspacePage
+> customer/ship-to cards + "Complete & confirm" + Download PDF (capability-gated);
+> orderPdf.ts renders contact + ship-to; QuotesList/Workspace restyled to the reference
+> demo presentation. Build tsc-strict + vite clean (415 modules).
+> **Verify:** `scripts/audit_cpq_u4.py` **17/17** (re-runnable, self-cleaning): author
+> DEAN quote (routes IND, keeps Fybroc frozen) → set contact+ship-to → add line →
+> engineer-complete → CPQ order (idempotent retry = same order) → order doc carries
+> contact+ship_to+customer_name; non-draft party upsert → 409; capability gate holds.
+> Fybroc gate **9/9 ALL CORRECTIONS INTACT on merits** (audit_fybroc_pricing flaked on
+> an HTTP TimeoutError in the batch; re-run GREEN 47/0 in isolation). Isolation
+> watermarks unchanged (FeasibleConstraint 4743, non-Dean SFO 3638, non-DEAN/DEAN
+> SegmentCombinationImport 300608/140976). **Known gaps (disclosed):** Dean base price
+> pending (DEAN lines price partial/CF — pre-existing); self-serve creates a review case
+> + order confirmation under the hood (by design, one order snapshot); loyalty = standard
+> 0% for engineer quotes (no account); real Entra = U5; `spa/dist` gitignored. Evidence:
+> `docs/evidence/CPQ_U4/CPQ_U4_EXIT.md`.
+> **Next:** CPQ SPA U5 (real Entra validation + hardening + cutover) — awaiting go-ahead.
+
 > **2026-08-26 (CPQ SPA Pre-U4 Adjustments A1–A7 + A4):** PASS. Owner adjustment pass
 > (`docs/newadjustment.md`), additive-only, Fybroc frozen, branch `feature/cpq-spa`.
 > Design `docs/CPQ_SPA_ADJUSTMENTS_DESIGN.md`.

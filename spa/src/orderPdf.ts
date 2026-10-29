@@ -31,6 +31,42 @@ export function downloadOrderPdf(order: OrderRecord): void {
   );
   y += 24;
 
+  // U4: contact + ship-to blocks (rendered only when present on the order).
+  const partyLines = (p: NonNullable<typeof d.contact>): string[] => {
+    const name = [p.first_name, p.last_name].filter(Boolean).join(" ");
+    const cityLine = [p.city, p.state, p.postal_code].filter(Boolean).join(", ");
+    return [
+      p.company_name || "",
+      name,
+      p.address1 || "",
+      p.address2 || "",
+      cityLine,
+      p.country || "",
+      p.phone ? `Tel: ${p.phone}` : "",
+      p.email || "",
+    ].filter(Boolean);
+  };
+  if (d.contact || d.ship_to) {
+    const blockTop = y;
+    doc.setFont("helvetica", "bold");
+    if (d.contact) doc.text("Contact", left, y);
+    if (d.ship_to) doc.text("Ship to", left + 240, y);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    let yC = y + 14;
+    for (const ln of d.contact ? partyLines(d.contact) : []) {
+      doc.text(String(ln).slice(0, 48), left, yC);
+      yC += 12;
+    }
+    let yS = blockTop + 14;
+    for (const ln of d.ship_to ? partyLines(d.ship_to) : []) {
+      doc.text(String(ln).slice(0, 48), left + 240, yS);
+      yS += 12;
+    }
+    doc.setFontSize(10);
+    y = Math.max(yC, yS) + 10;
+  }
+
   // Lines table (manual, deterministic — no autotable dependency).
   doc.setFont("helvetica", "bold");
   doc.text("#", left, y);

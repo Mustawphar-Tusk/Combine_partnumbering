@@ -5,10 +5,14 @@ import type { QuoteListItem } from "../api/types";
 import { money } from "../format";
 import { StatusBadge } from "../components/StatusBadge";
 
+// Quotes log — aligned with the reference CPQ demo (vLog): a page head with a
+// lede + a "New quote" action, then the quote grid inside a .tablewrap. The
+// create form is a small modal-style card revealed from the page head.
 export function QuotesListPage() {
   const [quotes, setQuotes] = useState<QuoteListItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showNew, setShowNew] = useState(false);
   const [creating, setCreating] = useState(false);
   const [customer, setCustomer] = useState("");
   const [site, setSite] = useState("TEL");
@@ -44,59 +48,115 @@ export function QuotesListPage() {
     }
   }
 
+  const sorted = [...quotes].sort((a, b) =>
+    b.quote_number.localeCompare(a.quote_number),
+  );
+
   return (
     <>
-      <form className="card" onSubmit={create}>
-        <h2>New quote</h2>
-        {error && <div className="notice err">{error}</div>}
-        <div className="row" style={{ gap: 14, flexWrap: "wrap", alignItems: "flex-end" }}>
-          <div className="field" style={{ margin: 0, minWidth: 220 }}>
-            <label htmlFor="cust">Customer name</label>
-            <input id="cust" value={customer} onChange={(e) => setCustomer(e.target.value)} />
-          </div>
-          <div className="field" style={{ margin: 0, minWidth: 120 }}>
-            <label htmlFor="site">Site</label>
-            <select id="site" value={site} onChange={(e) => setSite(e.target.value)}>
-              <option value="TEL">TEL</option>
-              <option value="IND">IND</option>
-            </select>
-          </div>
-          <button className="btn" type="submit" disabled={creating}>
-            {creating ? "Creating…" : "Create quote"}
-          </button>
+      <div className="page-head">
+        <div>
+          <h1>Quotes</h1>
+          <p className="lede">
+            Every quote you have access to. Open one to configure pumps, add
+            customer details, and complete it.
+          </p>
         </div>
-      </form>
+        <button className="btn primary" onClick={() => setShowNew((v) => !v)}>
+          {showNew ? "Close" : "New quote"}
+        </button>
+      </div>
 
-      <div className="card">
-        <h2>Quotes</h2>
-        {loading ? (
-          <p className="muted">Loading…</p>
-        ) : quotes.length === 0 ? (
-          <p className="muted">No quotes yet.</p>
-        ) : (
-          <table>
+      {error && <div className="notice err">{error}</div>}
+
+      {showNew && (
+        <form className="card" onSubmit={create}>
+          <h2 style={{ marginBottom: ".7rem" }}>New quote</h2>
+          <div
+            className="row"
+            style={{ gap: 14, flexWrap: "wrap", alignItems: "flex-end" }}
+          >
+            <div className="field" style={{ margin: 0, minWidth: 240 }}>
+              <label htmlFor="cust">Customer name</label>
+              <input
+                id="cust"
+                value={customer}
+                onChange={(e) => setCustomer(e.target.value)}
+                placeholder="For example Cascade Chemical Supply"
+              />
+            </div>
+            <div className="field" style={{ margin: 0, minWidth: 120 }}>
+              <label htmlFor="site">Site</label>
+              <select
+                id="site"
+                value={site}
+                onChange={(e) => setSite(e.target.value)}
+              >
+                <option value="TEL">TEL</option>
+                <option value="IND">IND</option>
+              </select>
+            </div>
+            <button className="btn primary" type="submit" disabled={creating}>
+              {creating ? "Creating…" : "Create quote"}
+            </button>
+          </div>
+          <p className="muted" style={{ fontSize: 13, marginTop: 10 }}>
+            Contact and ship-to details are added on the quote itself.
+          </p>
+        </form>
+      )}
+
+      {loading ? (
+        <p className="muted">Loading…</p>
+      ) : sorted.length === 0 ? (
+        <div className="card">
+          <p className="muted" style={{ margin: 0 }}>
+            No quotes yet. Start one with “New quote”.
+          </p>
+        </div>
+      ) : (
+        <div className="tablewrap">
+          <table className="grid">
             <thead>
               <tr>
-                <th>Quote #</th>
+                <th>Quote</th>
                 <th>Customer</th>
                 <th>Site</th>
                 <th>Status</th>
-                <th>Lines</th>
-                <th style={{ textAlign: "right" }}>List total</th>
+                <th className="num">Lines</th>
+                <th className="num">List total</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {quotes.map((q) => (
-                <tr key={q.quote_header_id}>
-                  <td>{q.quote_number}</td>
-                  <td>{q.customer_name || <span className="muted">—</span>}</td>
-                  <td>{q.site_code}</td>
-                  <td><StatusBadge status={q.status} /></td>
-                  <td>{q.line_count}</td>
-                  <td style={{ textAlign: "right" }}>{money(q.total_price, q.currency_code)}</td>
+              {sorted.map((q) => (
+                <tr
+                  key={q.quote_header_id}
+                  className="click"
+                  onClick={() => navigate(`/quotes/${q.quote_header_id}`)}
+                >
+                  <td className="mono strong">{q.quote_number}</td>
                   <td>
-                    <button className="btn secondary" onClick={() => navigate(`/quotes/${q.quote_header_id}`)}>
+                    {q.customer_name || (
+                      <span className="muted">No customer</span>
+                    )}
+                  </td>
+                  <td>{q.site_code}</td>
+                  <td>
+                    <StatusBadge status={q.status} />
+                  </td>
+                  <td className="num">{q.line_count}</td>
+                  <td className="num">
+                    {money(q.total_price, q.currency_code)}
+                  </td>
+                  <td>
+                    <button
+                      className="btn secondary sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/quotes/${q.quote_header_id}`);
+                      }}
+                    >
                       Open
                     </button>
                   </td>
@@ -104,8 +164,8 @@ export function QuotesListPage() {
               ))}
             </tbody>
           </table>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

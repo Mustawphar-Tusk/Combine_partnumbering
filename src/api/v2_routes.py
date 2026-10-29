@@ -3600,6 +3600,50 @@ class AddQuoteLineRequest(BaseModel):
     requested_by: str | None = None
 
 
+class QuotePartyRequest(BaseModel):
+    """U4: one customer party (CONTACT or SHIP_TO) on a quote."""
+    company_name: str | None = None
+    first_name: str | None = None
+    last_name: str | None = None
+    address1: str | None = None
+    address2: str | None = None
+    city: str | None = None
+    state: str | None = None
+    postal_code: str | None = None
+    country: str | None = None
+    phone: str | None = None
+    email: str | None = None
+
+
+async def require_quote_authoring(request: Request):
+    """U4 guard dependency: allow create/author of a quote for a caller holding
+    either `create_quote` (distributor-style create surface) or `author_quote`
+    (engineer self-serve authoring). In dev-mock the default user is admin (holds
+    both); a dev-assumed distributor/engineer is honored via headers. Outside dev
+    the Entra token roles drive the decision. 403 otherwise."""
+    from fastapi import HTTPException
+    from src.api.auth import get_current_user
+
+    user = await get_current_user(request)
+    if user.has_permission("author_quote") or user.has_permission("create_quote"):
+        return user
+    raise HTTPException(
+        status_code=403,
+        detail="Quote authoring requires create_quote or author_quote.",
+    )
+
+
+def _party_row_to_dict(row) -> dict:
+    cols = [
+        "quote_party_id", "quote_header_id", "kind", "company_name",
+        "first_name", "last_name", "address1", "address2", "city", "state",
+        "postal_code", "country", "phone", "email", "updated_at",
+    ]
+    d = dict(zip(cols, row))
+    d["updated_at"] = str(d["updated_at"]) if d.get("updated_at") is not None else None
+    return d
+
+
 def _pricing_status(pricing: list[dict], selections: dict[str, str], is_vertical: bool) -> str:
     """Honest pricing status for a line given the components we can price today.
 
@@ -3622,8 +3666,13 @@ def _pricing_status(pricing: list[dict], selections: dict[str, str], is_vertical
 
 
 @router_v2.post("/families/{family}/quotes")
-async def create_quote(family: str, body: CreateQuoteRequest, request: Request):
-    """Create a quote header. Returns the quote id + number."""
+async def create_quote(
+    family: str, body: CreateQuoteRequest, request: Request,
+    _auth=Depends(require_quote_authoring),
+):
+    """Create a quote header. Returns the quote id + number.
+
+    U4: guarded by `create_quote` OR `author_quote` (engineer self-serve)."""
     conn_str = _get_conn_str(request)
     conn = pyodbc.connect(conn_str, autocommit=True)
     try:
@@ -3658,7 +3707,8 @@ async def create_quote(family: str, body: CreateQuoteRequest, request: Request):
 
 @router_v2.post("/families/{family}/quotes/{quote_header_id}/lines")
 async def add_quote_line(family: str, quote_header_id: int,
-                         body: AddQuoteLineRequest, request: Request):
+                         body: AddQuoteLineRequest, request: Request,
+                         _auth=Depends(require_quote_authoring)):
     """Add a line to a quote from a configuration.
 
     Resolves the configuration through the authoritative resolve flow (identity +
@@ -4250,3 +4300,59 @@ async def list_quotes(family: str, request: Request):
         for r in rows
     ]
     return {"quotes": quotes, "count": len(quotes)}
+
+
+# ---------------------------------------------------------------------------
+# U4 — Quote customer party (contact + ship-to)
+# ---------------------------------------------------------------------------
+
+@router_v2.put("/quotes/{quote_header_id}/parties/{kind}")
+async def upsert_quote_party(
+    quote_header_id: int, kind: str, body: QuotePartyRequest, request: Request,
+    _auth=Depends(require_quote_authoring),
+):
+    """U4: upsert ONE customer party (CONTACT or SHIP_TO) on a quote. Draft-only
+    (the proc enforces it). Guarded by create_quote OR author_quote."""
+    from fastapi import HTTPException
+
+    kind_u = (kind or "").upper()
+    if kind_u not in ("CONTACT", "SHIP_TO"):
+        raise HTTPException(status_code=400, detail="kind must be CONTACT or SHIP_TO.")
+
+    conn = pyodbc.connect(_get_conn_str(request), autocommit=True)
+    try:
+        try:
+            row = conn.cursor().execute(
+                "EXEC quote.usp_UpsertQuoteParty @QuoteHeaderId=?, @Kind=?, "
+                "@CompanyName=?, @FirstName=?, @LastName=?, @Address1=?, @Address2=?, "
+                "@City=?, @State=?, @PostalCode=?, @Country=?, @Phone=?, @Email=?;",
+                quote_header_id, kind_u, body.company_name, body.first_name,
+                body.last_name, body.address1, body.address2, body.city, body.state,
+                body.postal_code, body.country, body.phone, body.email,
+            ).fetchone()
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "quote not found" in msg:
+                raise HTTPException(status_code=404, detail="Quote not found.") from exc
+            if "only draft" in msg:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Only draft quotes can have their customer party edited.",
+                ) from exc
+            raise
+        return _party_row_to_dict(row)
+    finally:
+        conn.close()
+
+
+@router_v2.get("/quotes/{quote_header_id}/parties")
+async def get_quote_parties(quote_header_id: int, request: Request):
+    """U4: the 0-2 customer party rows (CONTACT, SHIP_TO) for a quote."""
+    conn = pyodbc.connect(_get_conn_str(request), autocommit=True)
+    try:
+        cur = conn.cursor()
+        cur.execute("EXEC quote.usp_GetQuoteParties @QuoteHeaderId=?;", quote_header_id)
+        rows = cur.fetchall()
+    finally:
+        conn.close()
+    return {"parties": [_party_row_to_dict(r) for r in rows]}

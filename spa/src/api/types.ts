@@ -23,6 +23,7 @@ export interface Capabilities {
   review_applications: boolean;
   configure: boolean;
   create_quote: boolean;
+  author_quote?: boolean;
   account_status: AccountStatus | null;
 }
 
@@ -242,6 +243,50 @@ export interface QuoteDocument {
   rendered_text: string;
 }
 
+// U4 — quote customer party (contact + ship-to)
+export interface QuoteParty {
+  quote_party_id: number;
+  quote_header_id: number;
+  kind: "CONTACT" | "SHIP_TO";
+  company_name: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  postal_code: string | null;
+  country: string | null;
+  phone: string | null;
+  email: string | null;
+  updated_at: string | null;
+}
+
+export interface QuotePartyInput {
+  company_name?: string | null;
+  first_name?: string | null;
+  last_name?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  postal_code?: string | null;
+  country?: string | null;
+  phone?: string | null;
+  email?: string | null;
+}
+
+export interface EngineerCompleteInput {
+  lead_time_days: number;
+  notes?: string | null;
+  line_prices?: {
+    line_number: number;
+    resolved_unit_price: number;
+    custom_spec?: string | null;
+    engineer_note?: string | null;
+  }[];
+}
+
 export interface CreateQuoteInput {
   site_code: string;
   customer_name?: string;
@@ -448,6 +493,23 @@ export interface OrderDocument {
   discount_amount: number;
   net_total: number;
   lines: OrderDocumentLine[];
+  // U4: customer contact + ship-to (null for distributor-only quotes).
+  contact?: OrderParty | null;
+  ship_to?: OrderParty | null;
+}
+
+export interface OrderParty {
+  company_name: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  postal_code: string | null;
+  country: string | null;
+  phone: string | null;
+  email: string | null;
 }
 
 export interface OrderRecord {

@@ -132,3 +132,51 @@ blockquote{margin:.4rem 0;padding:.6rem .8rem;background:var(--rule-2);border-ra
 
 @media (max-width:900px){.cfg{grid-template-columns:1fr}.summary,.plate{position:static;max-height:none}.grid-2,.form2{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== Quotes UI (reference CPQ demo presentation) ===== */
+/* Page head: title + lede on the left, actions on the right (vQuote/vLog). */
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:.25rem 0 1.1rem}
+.page-head h1{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.lede{color:var(--ink-2);margin:.35rem 0 0;font-size:.92rem;max-width:60ch}
+.head-acts{display:flex;gap:.5rem;flex-wrap:wrap}
+.link{background:none;border:0;color:var(--blue);cursor:pointer;font-weight:600;padding:0;font-size:.9rem}
+.link.back{display:inline-block;margin-bottom:.5rem}
+.strong{font-weight:700}
+.num{text-align:right}
+.big{font-size:1.1rem}
+
+/* Table wrapper gives the grid a card surface + horizontal scroll on small screens. */
+.tablewrap{background:var(--panel);border:1px solid var(--rule);border-radius:8px;overflow-x:auto}
+.tablewrap table{font-size:.86rem}
+.grid.click tr,tr.click{cursor:pointer}
+.emptyrow{text-align:center;color:var(--ink-2);padding:1.4rem}
+.grid tfoot td{border-bottom:0;border-top:1px solid var(--rule);font-weight:600}
+
+/* Quote metadata strip: Contact / Project / Reference / Created. */
+.qmeta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:.9rem 1rem;margin:0 0 1rem}
+.qmeta label{display:flex;flex-direction:column;gap:.25rem;font-size:.72rem;font-weight:700;color:var(--ink-2);text-transform:uppercase;letter-spacing:.02em}
+.qmeta label>span{font-size:.92rem;font-weight:600;color:var(--ink);text-transform:none;letter-spacing:0}
+
+/* Line chips (status) */
+.chips{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.3rem}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;padding:.12rem .5rem;border-radius:5px;border:1px solid transparent}
+.chip.green{background:var(--green-bg);color:var(--green)}
+.chip.amber{background:var(--amber-bg);color:var(--amber)}
+.chip.blue{background:var(--blue-bg);color:var(--blue)}
+
+/* Add-a-pump bar on the quote workspace. */
+.addbar{display:flex;flex-direction:column;gap:.7rem;background:var(--panel);border:1px dashed var(--rule);border-radius:8px;padding:.9rem 1rem;margin:0 0 1rem}
+.addbar>div{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.addbar .lbl{font-size:.78rem;font-weight:700;color:var(--ink-2)}
+
+/* Activity / history log. */
+.history{margin-top:.5rem}
+.history h2{margin-bottom:.5rem}
+.history ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule);display:flex;flex-direction:column;gap:.55rem}
+.history li{padding:0 0 0 .9rem;position:relative;font-size:.86rem}
+.history li::before{content:"";position:absolute;left:-5px;top:.45rem;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+
+/* Two-column customer / ship-to cards (U4 engineer-authored quote). */
+.party-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.party-grid .card{margin:0}
+@media (max-width:760px){.party-grid{grid-template-columns:1fr}}

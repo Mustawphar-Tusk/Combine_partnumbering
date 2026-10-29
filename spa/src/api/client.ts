@@ -25,6 +25,9 @@ import type {
   QuoteDocument,
   QuoteLine,
   QuoteListItem,
+  QuoteParty,
+  QuotePartyInput,
+  EngineerCompleteInput,
   QuotePricing,
   ResolveResponse,
   ResolveReviewLineInput,
@@ -182,6 +185,18 @@ export const api = {
     request<{ quote_header_id: number; remaining_lines: number }>(
       "DELETE",
       `/families/${family}/quotes/${id}/lines/${lineId}`,
+    ),
+  // --- U4: quote customer party (contact + ship-to) ---
+  getQuoteParties: (id: number) =>
+    request<{ parties: QuoteParty[] }>("GET", `/quotes/${id}/parties`),
+  upsertQuoteParty: (id: number, kind: "CONTACT" | "SHIP_TO", body: QuotePartyInput) =>
+    request<QuoteParty>("PUT", `/quotes/${id}/parties/${kind}`, body),
+  // --- U4: engineer self-serve complete (author -> complete -> confirm) ---
+  engineerCompleteQuote: (id: number, body: EngineerCompleteInput) =>
+    request<ConfirmOrderResult & { review_case_id: number }>(
+      "POST",
+      `/quotes/${id}/engineer-complete`,
+      body,
     ),
   getQuoteLineConfig: (family: string, id: number, lineId: number) =>
     request<{

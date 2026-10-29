@@ -31,9 +31,13 @@ ROLE_ADMIN = "admin"
 ROLE_DISTRIBUTOR = "distributor"
 
 # Role hierarchy: admin has all permissions
+# "author_quote" (U4): entitles a staff engineer to create a quote from scratch,
+# attach customer contact + ship-to, and self-serve complete it. Distinct from
+# "create_quote" (the distributor-style create surface) so the engineer authoring
+# entry point stays separate. Admin holds both.
 ROLE_PERMISSIONS = {
-    ROLE_ADMIN: {"publish_metadata", "manage_pricing", "configure", "create_quote", "audit"},
-    ROLE_ENGINEERING: {"publish_metadata", "configure", "audit"},
+    ROLE_ADMIN: {"publish_metadata", "manage_pricing", "configure", "create_quote", "author_quote", "audit"},
+    ROLE_ENGINEERING: {"publish_metadata", "configure", "author_quote", "audit"},
     ROLE_PRICING: {"manage_pricing", "configure", "create_quote"},
     ROLE_CONFIGURATOR: {"configure", "create_quote"},
     # Distributor base capabilities. Note: "configure"/"create_quote" are

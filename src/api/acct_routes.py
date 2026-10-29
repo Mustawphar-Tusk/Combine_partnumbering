@@ -155,6 +155,10 @@ def _capabilities(user: AuthenticatedUser, account: dict[str, Any] | None) -> di
         # configure/quote: staff keep their permission; distributor gated on APPROVED.
         "configure": staff_can_configure or (is_distributor and approved),
         "create_quote": staff_can_quote or (is_distributor and approved),
+        # U4: engineer self-serve quote authoring (create + customer party +
+        # self-serve complete). Staff capability only; never granted to a
+        # distributor identity.
+        "author_quote": user.has_permission("author_quote"),
         "account_status": account_status,
     }
 
@@ -839,6 +843,25 @@ def _build_order_document(cur, review_case_id: int, app_user_id: int) -> dict[st
     merch_subtotal = round(merch_subtotal, 2)
     discount = round(merch_subtotal * rate_bp / 10000.0, 2)
     net = round(merch_subtotal - discount, 2)
+
+    # U4: customer contact + ship-to party rows for the quote (if any). Purely
+    # additive to the order document; distributor-only quotes simply have null.
+    cur.execute("{CALL quote.usp_GetQuoteParties (?)}", head["QuoteHeaderId"])
+    parties = _rows_as_dicts(cur)
+
+    def _party(kind: str) -> dict[str, Any] | None:
+        for p in parties:
+            if p.get("Kind") == kind:
+                return {
+                    "company_name": p.get("CompanyName"),
+                    "first_name": p.get("FirstName"), "last_name": p.get("LastName"),
+                    "address1": p.get("Address1"), "address2": p.get("Address2"),
+                    "city": p.get("City"), "state": p.get("State"),
+                    "postal_code": p.get("PostalCode"), "country": p.get("Country"),
+                    "phone": p.get("Phone"), "email": p.get("Email"),
+                }
+        return None
+
     return {
         "quote_number": head.get("QuoteNumber"),
         "customer_name": head.get("CustomerName"),
@@ -853,6 +876,8 @@ def _build_order_document(cur, review_case_id: int, app_user_id: int) -> dict[st
         "discount_amount": discount,
         "net_total": net,
         "lines": lines_out,
+        "contact": _party("CONTACT"),
+        "ship_to": _party("SHIP_TO"),
     }
 
 
@@ -991,5 +1016,179 @@ async def admin_list_review_cases(
         cur = conn.cursor()
         cur.execute("{CALL acct.usp_ListReviewCases (?, ?, ?)}", None, status, 1)
         return {"cases": _rows_as_dicts(cur)}
+    finally:
+        conn.close()
+
+
+# ---------------------------------------------------------------------------
+# U4 — Engineer self-serve: author -> complete -> confirm in one action
+# ---------------------------------------------------------------------------
+
+class EngineerLinePriceIn(BaseModel):
+    """Engineer resolution for one Contact-Factory line, keyed by line_number."""
+    line_number: int
+    resolved_unit_price: float
+    custom_spec: str | None = Field(default=None, max_length=1000)
+    engineer_note: str | None = Field(default=None, max_length=1000)
+
+
+class EngineerCompleteIn(BaseModel):
+    lead_time_days: int
+    notes: str | None = Field(default=None, max_length=2000)
+    line_prices: list[EngineerLinePriceIn] = Field(default_factory=list)
+
+
+@router_acct.post("/quotes/{quote_header_id}/engineer-complete", status_code=201)
+async def engineer_complete_quote(
+    request: Request,
+    quote_header_id: int,
+    body: EngineerCompleteIn,
+    user: AuthenticatedUser = Depends(get_current_user),
+) -> dict[str, Any]:
+    """U4 (option A): an application engineer completes their own authored quote
+    end to end, with no separate distributor hand-off.
+
+    Reuses the review-case machinery (A5/A6) with the engineer as BOTH author and
+    resolver: submit -> auto-claim -> resolve each Contact-Factory line with the
+    supplied price -> complete (A5 gate: lead time + no unresolved C/F) -> confirm
+    the order (A6, idempotent). Returns the confirmed order (CPQ number + case id).
+
+    Requires author_quote AND an engineering brand/site membership covering the
+    quote's responsible site. Loyalty defaults to standard (no account)."""
+    if not user.has_permission("author_quote"):
+        raise HTTPException(status_code=403, detail="author_quote capability required.")
+    app_user, sites = _require_engineer_sites(request, user)
+    uid = app_user["AppUserId"]
+    conn = _conn(request)
+    try:
+        cur = conn.cursor()
+
+        # 0. Idempotency: if this quote was already self-completed (its latest
+        # review case is COMPLETED and has a confirmed order), return that order
+        # instead of submitting a fresh case. Keeps one order per authored quote.
+        cur.execute(
+            "SELECT TOP (1) rc.ReviewCaseId FROM acct.ReviewCase rc "
+            "WHERE rc.QuoteHeaderId = ? AND rc.Status = 'COMPLETED' "
+            "ORDER BY rc.ReviewCaseId DESC",
+            quote_header_id,
+        )
+        done_case = _one(cur)
+        if done_case is not None:
+            cur.execute("{CALL quote.usp_GetOrderByCase (?)}", done_case["ReviewCaseId"])
+            existing = _one(cur)
+            if existing is not None:
+                return {
+                    "review_case_id": existing["ReviewCaseId"],
+                    "cpq_order_number": existing["CpqOrderNumber"],
+                    "quote_header_id": existing["QuoteHeaderId"],
+                    "confirmed_revision_no": existing["ConfirmedRevisionNo"],
+                    "lead_time_days": existing.get("LeadTimeDays"),
+                    "confirmed_at": str(existing.get("ConfirmedAt")),
+                    "was_existing": True,
+                }
+
+        # 1. Submit the quote for review (engineer = submitter). Derives brand/site.
+        try:
+            cur.execute(
+                "{CALL acct.usp_SubmitQuoteForReview (?, ?)}", quote_header_id, uid,
+            )
+            case = _one(cur)
+        except pyodbc.Error as exc:
+            if "not found" in str(exc).lower():
+                raise HTTPException(status_code=404, detail="Quote not found.") from exc
+            raise
+        if case is None:
+            raise HTTPException(status_code=500, detail="Review submission failed.")
+        review_case_id = case["ReviewCaseId"]
+        site = case["ResponsibleSiteCode"]
+        if bool(case.get("RoutingException", 0)):
+            raise HTTPException(
+                status_code=409,
+                detail="Quote brand/site could not be routed; cannot self-complete.",
+            )
+        if site not in sites:
+            raise HTTPException(
+                status_code=403,
+                detail=f"Not authorized to complete a {case.get('Brand')} quote for site {site}.",
+            )
+        site_csv = ",".join(sites)
+
+        # 2. Claim (idempotent in effect: a freshly submitted case is PENDING_REVIEW).
+        try:
+            cur.execute(
+                "{CALL acct.usp_ClaimReviewCase (?, ?, ?)}", review_case_id, uid, site_csv,
+            )
+            _one(cur)
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "cannot be claimed" not in msg:  # already claimed is fine to proceed
+                if "not authorized" in msg or "not found" in msg:
+                    raise HTTPException(status_code=404, detail="Review case not found.") from exc
+                raise HTTPException(status_code=409, detail=str(exc.args[-1])) from exc
+
+        # 3. Resolve each supplied C/F line price.
+        price_by_line = {p.line_number: p for p in body.line_prices}
+        cur.execute(
+            "SELECT ReviewCaseLineId, LineNumber, PricingStatus, ResolvedUnitPrice "
+            "FROM acct.ReviewCaseLine WHERE ReviewCaseId = ? ORDER BY LineNumber",
+            review_case_id,
+        )
+        rlines = _rows_as_dicts(cur)
+        for rl in rlines:
+            needs = (rl.get("PricingStatus") != "found") and (rl.get("ResolvedUnitPrice") is None)
+            if not needs:
+                continue
+            supplied = price_by_line.get(rl["LineNumber"])
+            if supplied is None:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Line {rl['LineNumber']} is Contact-Factory and needs a resolved price.",
+                )
+            cur.execute(
+                "{CALL acct.usp_ResolveReviewCaseLine (?, ?, ?, ?, ?, ?, ?)}",
+                review_case_id, rl["ReviewCaseLineId"], uid, site_csv,
+                supplied.resolved_unit_price, supplied.custom_spec, supplied.engineer_note,
+            )
+            _one(cur)
+
+        # 4. Complete (A5 gate: lead time + no unresolved C/F).
+        try:
+            cur.execute(
+                "{CALL acct.usp_CompleteReviewCase (?, ?, ?, ?, ?)}",
+                review_case_id, uid, site_csv, body.lead_time_days, body.notes,
+            )
+            _one(cur)
+        except pyodbc.Error as exc:
+            raise HTTPException(status_code=409, detail=str(exc.args[-1])) from exc
+
+        # 5. Confirm the order (A6, idempotent). Engineer is the owner/submitter.
+        document = _build_order_document(cur, review_case_id, uid)
+        try:
+            cur.execute(
+                "{CALL quote.usp_ConfirmOrder (?, ?, ?)}",
+                review_case_id, uid, json.dumps(document, separators=(",", ":")),
+            )
+            order = _one(cur)
+        except pyodbc.Error as exc:
+            raise HTTPException(status_code=409, detail=str(exc.args[-1])) from exc
+
+        # Advance the quote header off Draft so its customer party becomes
+        # immutable (draft-only guard) and a re-complete is handled idempotently
+        # above rather than minting a new case/order.
+        cur.execute(
+            "UPDATE quote.QuoteHeader SET Status = 'Submitted' "
+            "WHERE QuoteHeaderId = ? AND Status = 'Draft'",
+            quote_header_id,
+        )
+
+        return {
+            "review_case_id": review_case_id,
+            "cpq_order_number": order["CpqOrderNumber"],
+            "quote_header_id": order["QuoteHeaderId"],
+            "confirmed_revision_no": order["ConfirmedRevisionNo"],
+            "lead_time_days": order.get("LeadTimeDays"),
+            "confirmed_at": str(order.get("ConfirmedAt")),
+            "was_existing": bool(order.get("WasExisting", 0)),
+        }
     finally:
         conn.close()
