@@ -1,7 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api, ApiError } from "../api/client";
-import type { FieldGroup, Me, ResolveResponse, ResolveStateResponse } from "../api/types";
+import type {
+  FieldGroup,
+  Me,
+  QuoteListItem,
+  ResolveResponse,
+  ResolveStateResponse,
+} from "../api/types";
 import { money, titleize } from "../format";
 import {
   setDraft,
@@ -30,6 +36,11 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   const [seed] = useState(() => (getEditContext() ? null : getSeedContext()));
   const [saving, setSaving] = useState(false);
   const [savedMsg, setSavedMsg] = useState<string | null>(null);
+  // "Add to a quote" (new-config mode): quote picker + quantity.
+  const [quotes, setQuotes] = useState<QuoteListItem[]>([]);
+  const [targetQuote, setTargetQuote] = useState<string>("__new");
+  const [addQty, setAddQty] = useState(1);
+  const [addingToQuote, setAddingToQuote] = useState(false);
   // A2: which grouping's customization modal is open (edit mode only).
   const [customGroup, setCustomGroup] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -165,6 +176,45 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     setEdit(null);
     const target = edit ? `/quotes/${edit.quoteHeaderId}` : "/";
     navigate(target);
+  }
+
+  // Load existing DRAFT quotes for the "Add to a quote" picker (new-config mode).
+  useEffect(() => {
+    if (edit) return;
+    api
+      .listQuotes(family || "FYBROC")
+      .then((r) => setQuotes(r.quotes.filter((q) => q.status === "Draft")))
+      .catch(() => setQuotes([]));
+  }, [edit, family, savedMsg]);
+
+  // Add the current resolved configuration as a line to a new or existing quote.
+  async function addToQuote() {
+    if (!resolved || !state || !series) return;
+    setAddingToQuote(true);
+    setError(null);
+    setSavedMsg(null);
+    try {
+      let quoteId: number;
+      if (targetQuote === "__new") {
+        const site = family === "DEAN" ? "IND" : "TEL";
+        const q = await api.createQuote(family, { site_code: site });
+        quoteId = q.quote_header_id;
+      } else {
+        quoteId = Number(targetQuote);
+      }
+      await api.addQuoteLine(family, quoteId, {
+        series,
+        selections: { SERIES: series, ...state.selections },
+        quantity: Math.max(1, addQty),
+        requested_by: me.user.email || me.user.display_name || "configurator",
+      });
+      setDraft(null); // consumed into the quote
+      navigate(`/quotes/${quoteId}`);
+    } catch (e) {
+      setError(e instanceof ApiError ? String(e.detail || e.message) : String(e));
+    } finally {
+      setAddingToQuote(false);
+    }
   }
 
   function onSeriesChange(s: string) {
@@ -353,6 +403,66 @@ export function ConfiguratorPage({ me }: { me: Me }) {
               })}
             </section>
           </div>
+
+          {/* New-config mode: clear next step — add this pump to a quote. */}
+          {!edit && (
+            <section className="addbar" style={{ marginTop: "1rem" }}>
+              <div style={{ justifyContent: "space-between" }}>
+                <div>
+                  <span className="lbl">This configuration</span>
+                  {resolved ? (
+                    <span className="sub">
+                      <b className="mono">{resolved.part_number}</b> · SKU {resolved.sku} ·{" "}
+                      {money(resolved.total_price)}
+                      {resolved.component_pricing.some((c) => c.status !== "found")
+                        ? " (some items Contact Factory)"
+                        : ""}
+                    </span>
+                  ) : (
+                    <span className="sub">
+                      Resolve a complete, conflict-free configuration to add it to a quote.
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div>
+                <span className="lbl">Add to a quote</span>
+                <select
+                  className="in"
+                  style={{ width: "auto", minWidth: 220 }}
+                  value={targetQuote}
+                  onChange={(e) => setTargetQuote(e.target.value)}
+                  aria-label="Target quote"
+                >
+                  <option value="__new">+ New quote</option>
+                  {quotes.map((q) => (
+                    <option key={q.quote_header_id} value={q.quote_header_id}>
+                      {q.quote_number}
+                      {q.customer_name ? ` — ${q.customer_name}` : ""}
+                    </option>
+                  ))}
+                </select>
+                <div className="field" style={{ margin: 0, width: 80 }}>
+                  <label htmlFor="add-qty">Qty</label>
+                  <input
+                    id="add-qty"
+                    type="number"
+                    min={1}
+                    value={addQty}
+                    onChange={(e) => setAddQty(Math.max(1, Number(e.target.value) || 1))}
+                  />
+                </div>
+                <button
+                  className="btn primary"
+                  onClick={addToQuote}
+                  disabled={!resolved || addingToQuote}
+                  title={!resolved ? "Resolve a complete configuration first" : ""}
+                >
+                  {addingToQuote ? "Adding…" : "Add to quote"}
+                </button>
+              </div>
+            </section>
+          )}
         </>
       )}
 
