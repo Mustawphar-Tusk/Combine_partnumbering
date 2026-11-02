@@ -3968,6 +3968,62 @@ async def mint_custom_segment_code(family: str, body: CustomCodeRequest, request
         conn.close()
 
 
+class ResolveCustomSpecRequest(BaseModel):
+    segment_code: str                 # grouping, e.g. WET_END_OPTIONS
+    spec_text: str                    # the engineer's resolved custom spec
+    customization_id: int | None = None   # optional A2 QuoteLineCustomization row to stamp
+    selections_json: str | None = None
+    app_user_id: int | None = None
+
+
+@router_v2.post("/families/{family}/custom-segment-codes/resolve")
+async def resolve_custom_spec(family: str, body: ResolveCustomSpecRequest, request: Request):
+    """D-R2b: engineer resolves a grouping's custom spec -> mints-or-reuses the
+    governed per-grouping custom code (family-wide reuse by spec) and stamps it
+    onto the A2 customization row (if supplied). The returned custom_code then
+    occupies the grouping's PN segment slot at its native width (D-R2a) for this
+    and every identical custom build (reuse). Same spec-key normalization as the
+    mint endpoint, so a spec resolved here reuses a code minted anywhere."""
+    from fastapi import HTTPException
+    spec_norm = " ".join((body.spec_text or "").split()).lower()
+    spec_key = hashlib.sha256(spec_norm.encode()).hexdigest().upper()
+    conn = pyodbc.connect(_get_conn_str(request), autocommit=True)
+    try:
+        try:
+            row = conn.cursor().execute(
+                "EXEC cfg.usp_ResolveCustomSpec @FamilyCode=?, @SegmentCode=?, @SpecKey=?, "
+                "@SpecText=?, @SelectionsJson=?, @CustomizationId=?, @AppUserId=?;",
+                family.upper(), body.segment_code.upper(), spec_key, body.spec_text,
+                body.selections_json, body.customization_id, body.app_user_id,
+            ).fetchone()
+        except pyodbc.Error as exc:
+            msg = str(exc).lower()
+            if "exhausted" in msg:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(f"The {body.segment_code} custom-code space is full at its "
+                            f"numbering width; a custom code cannot be minted for this grouping."),
+                ) from exc
+            if "no authoritative width" in msg:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(f"{body.segment_code} has no numbering width yet (e.g. seal, "
+                            f"pending engineering); the custom spec is captured but a reusable "
+                            f"code cannot be minted until the grouping is numbered."),
+                ) from exc
+            raise
+        return {
+            "family": family.upper(),
+            "segment_code": row[2],
+            "spec_key": spec_key,
+            "custom_code": row[0],
+            "was_existing": bool(row[1]),
+            "customization_id": body.customization_id,
+        }
+    finally:
+        conn.close()
+
+
 @router_v2.get("/families/{family}/custom-segment-codes")
 async def list_custom_segment_codes(family: str, request: Request, segment_code: str | None = None):
     """A4: the custom-code library for a family (optionally one grouping)."""
