@@ -2,6 +2,52 @@
 
 **Last Updated:** 2026-08-26
 
+> **2026-08-26 (DEAN Revision — Pump Constraints Custom + Seal Reference + custom-spec
+> lifecycle):** PASS. Owner-driven revision of `PumpConfiguration_Logic_0.1`
+> `Pump Constraints`. Additive-only, Fybroc frozen, branch `feature/cpq-spa`. Design
+> `docs/DEAN_REVISION_CUSTOM_SPEC_DESIGN.md`.
+> **D-R1:** Codependencies parser moved header row 6→8 (revised layout; `?`/notes
+> excluded) — a naive re-run would have parsed 0 and wiped the constraint model;
+> now 738 tuples → 246 non-seal enforced (seal 492 deferred, Option A) vs 256 before.
+> Pump Constraints re-ingested: 39 groupings carry a Custom→`C/F` option; DEAN
+> `cfg.SeriesFieldOption` 50320→50478. New `cfg.DeanSealReference` (sql/35) +
+> `scripts/load_dean_seal_reference.py`: per-series Seal Reference Table (col 594), 37
+> series, keys {1.000"/1.375"/1.750"/2.125"/2.250"/3.000" Shafts, Misc., X} —
+> capture-only, NOT in the PN.
+> **D-R2a** (`src/api/dean_identifier.py`): reserved `<SEG>__CUSTOM` flag +
+> `<SEG>__CUSTOM_CODE`; a resolved custom code occupies the grouping's PN segment slot
+> at native width (same shape) — e.g. wet-end `D784-1SYB-EE01-...` vs standard
+> `D784-0022-EE01-...`. `_has_custom` triggers on EXPLICIT custom only (not C/F STD —
+> 43 Dean coded-field STD defaults are legitimately C/F). No SQL change; code flows
+> through the existing DEAN CONCAT; python==SQL parity preserved.
+> **D-R2b** (sql/36, v2_routes): `quote.QuoteLineCustomization` + Resolved* columns;
+> `cfg.usp_ResolveCustomSpec` mints-or-reuses via `cfg.usp_GetOrCreateCustomSegmentCode`
+> (A4, family-wide reuse by spec SHA) and stamps the row; `POST /families/{f}/custom-
+> segment-codes/resolve` (same spec-key hash as A4 mint). `/unresolved` already forces
+> review for any customization.
+> **D-R2c** (SPA): configurator sets the custom flag on a C/F pick (PN placeholder +
+> review) + opens the customization pop-up in edit mode; engineer review line
+> "Resolve custom spec" → `resolveCustomSpec` (reused/new; seal→deferred);
+> `client.ts resolveCustomSpec`.
+> **Verify:** `scripts/audit_dean_revision.py` **15/15** (re-runnable, self-cleaning):
+> C/F options (4756 rows, 0 literal Custom); DeanSealReference 37 series exact; specA→
+> 1SYB(new), reuse 1SYB, specB→1SYC(new); resolved code in PN wet-end slot; SEAL_TYPE→
+> 409 deferred; standard PN clean. `audit_dean_config` 28/0. python==SQL PN parity
+> sound (standard builds byte-unchanged; the batch parity audit's non-deterministic
+> "failure" count is a documented HTTP under-load flake on the M300/RM5140/RMA5140
+> forced-baseplate C/F-STD config — verified clean three ways: offline assemble_pn==
+> py_pn, fresh HTTP resolve, and audit-config HTTP resolve all MATCH). Fybroc gate
+> **9/9 ALL CORRECTIONS INTACT on merits** (audit_fybroc_motor_cpq flaked on an HTTP
+> timeout in the batch, re-run isolated 37/0). Isolation watermarks unchanged
+> (non-DEAN SFO 3638, non-DEAN/DEAN SegmentCombinationImport 300608/140976, non-DEAN
+> FeasibleConstraint 4487; DEAN SFO 50320→50478 and DEAN FeasibleConstraint 256→246 are
+> the intended revision deltas). **Known gaps (disclosed):** seal codependency
+> enforcement + seal numbering/width deferred (seal customs capture+review+store the
+> spec; code minted once seal is numbered); Dean base price pending (pre-existing).
+> Evidence: `docs/evidence/DEAN_REVISION/DEAN_REVISION_EXIT.md`.
+> **Next:** seal codependency/numbering enforcement, and the parked CPQ SPA U5 — both
+> on explicit go-ahead.
+
 > **2026-08-26 (CPQ SPA U4 — Engineer-Authored Quotes):** PASS. Owner request:
 > an application engineer creates a quote from scratch, adds customer contact +
 > ship-to, completes it, and gets a PDF; custom fields available. Option A
