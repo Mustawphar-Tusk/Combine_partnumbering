@@ -296,36 +296,52 @@ _CODEP_HEADER_LABELS = {
 }
 
 
+# Codependencies header row. The revised PumpConfiguration_Logic_0.1 moved the
+# field-label header row from row 6 to ROW 8 (row 3 now holds descriptive group
+# titles like "IF CASING MATERIAL IS NONE..."). Anchored as a constant so the
+# parser tracks the workbook layout.
+CODEP_HEADER_ROW = 8
+
+
 def _codep_is_note(v):
     s = str(v).strip()
-    return len(s) > 40 or s.lower().startswith(("if ", "no ", "when "))
+    if s == "?":                       # revised sheet: disallow/exception marker, not a leg value
+        return True
+    return len(s) > 40 or s.lower().startswith(
+        ("if ", "no ", "when ", "look ", "reference ", "refer ", "cannot "))
 
 
 def read_codependencies(wb):
-    """Return a list of allow tuples: each = [(code, value), ...] (2..4 legs)."""
+    """Return a list of allow tuples: each = [(code, value), ...] (2..4 legs).
+
+    Revised layout (PumpConfiguration_Logic_0.1): field-label headers on ROW 8
+    (CODEP_HEADER_ROW); column groups separated by blank columns; sub-blocks
+    restart with a fresh header row inside a group. Data rows run from the header
+    row downward. Seal-field tuples are filtered downstream (SEAL_CODEP_FIELDS,
+    option A deferral) — this parser returns ALL tuples it finds."""
     ws = wb["Codependencies"]
     rows = list(ws.iter_rows(min_row=1, max_row=ws.max_row, values_only=True))
     ncol = ws.max_column
-    hdr6 = rows[5] if len(rows) > 5 else ()
+    hdr_h = rows[CODEP_HEADER_ROW - 1] if len(rows) >= CODEP_HEADER_ROW else ()
 
     def cell(rn, ci):
         r = rows[rn - 1] if rn - 1 < len(rows) else None
         return r[ci] if r and ci < len(r) else None
 
-    # contiguous header groups on row 6
+    # contiguous header groups on the header row
     groups = []
     c = 0
     while c < ncol:
-        if c < len(hdr6) and hdr6[c] is not None and str(hdr6[c]).strip():
+        if c < len(hdr_h) and hdr_h[c] is not None and str(hdr_h[c]).strip():
             start = c
-            while c < ncol and c < len(hdr6) and hdr6[c] is not None and str(hdr6[c]).strip():
+            while c < ncol and c < len(hdr_h) and hdr_h[c] is not None and str(hdr_h[c]).strip():
                 c += 1
             groups.append(list(range(start, c)))
         else:
             c += 1
 
-    group_hdr_labels = {str(hdr6[c2]).strip().lower()
-                        for grp in groups for c2 in grp if c2 < len(hdr6) and hdr6[c2]}
+    group_hdr_labels = {str(hdr_h[c2]).strip().lower()
+                        for grp in groups for c2 in grp if c2 < len(hdr_h) and hdr_h[c2]}
     valid_hdr = _CODEP_HEADER_LABELS | group_hdr_labels
 
     tuples = []
@@ -346,7 +362,7 @@ def read_codependencies(wb):
             return got
 
         cur_codes = None  # {col_idx: code} from the most recent header row
-        for rn in range(6, len(rows) + 1):
+        for rn in range(CODEP_HEADER_ROW, len(rows) + 1):
             if is_header_row(rn):
                 cur_codes = {}
                 for ci in cols:
