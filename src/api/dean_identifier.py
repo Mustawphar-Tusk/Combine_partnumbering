@@ -291,12 +291,51 @@ def _seg_lookup(cursor, segment_code, combo_string):
     return row[0] if row else None
 
 
+# Reserved selections-key conventions (Dean revision D-R2).
+#   "<SEGMENT_CODE>__CUSTOM"      = flag: the user CHOSE to customize this grouping
+#                                   (pop-up opened / customization requested). This
+#                                   is what forces the custom path — NOT a field's
+#                                   C/F standard value (many Dean models legitimately
+#                                   have C/F STD values for coded fields, which must
+#                                   stay standard builds).
+#   "<SEGMENT_CODE>__CUSTOM_CODE" = the engineer-RESOLVED custom code for the
+#                                   grouping (minted via cfg.CustomSegmentCode).
+#                                   When present + width-valid it OCCUPIES the slot.
+CUSTOM_FLAG_SELECTION_SUFFIX = "__CUSTOM"
+CUSTOM_CODE_SELECTION_SUFFIX = "__CUSTOM_CODE"
+
+
 def _has_custom(selections, segment_code):
-    """True if any mapped field for this segment is 'Custom' (Module2 excludes it)."""
+    """True iff the user EXPLICITLY customized this grouping.
+
+    A grouping is custom when the configurator set the reserved
+    '<SEGMENT_CODE>__CUSTOM' flag (pop-up / customization request) OR a resolved
+    '<SEGMENT_CODE>__CUSTOM_CODE' is present, OR a mapped field literally equals
+    'Custom' (legacy workbook token). It is NOT triggered by a field's 'C/F'
+    STANDARD value — 43 Dean coded-field STD defaults are legitimately C/F and
+    must remain standard builds (would otherwise wrongly collapse)."""
+    if _norm(selections.get(segment_code + CUSTOM_FLAG_SELECTION_SUFFIX, "")) != "":
+        return True
+    if _norm(selections.get(segment_code + CUSTOM_CODE_SELECTION_SUFFIX, "")) != "":
+        return True
     for fld in SEGMENT_FIELD_ORDER[segment_code]:
         if fld and _norm(selections.get(fld, "")).lower() == "custom":
             return True
     return False
+
+
+def _resolved_custom_code(selections, segment_code):
+    """Return the resolved custom code for a grouping if supplied AND it matches
+    the grouping's PN width; else None. Width mismatch is ignored (fall back to
+    placeholder) so a stale/bad code can never silently change the PN shape."""
+    key = segment_code + CUSTOM_CODE_SELECTION_SUFFIX
+    code = _norm(selections.get(key, ""))
+    if code == "":
+        return None
+    w = SEGMENT_WIDTH.get(segment_code)
+    if w is not None and len(code) != w:
+        return None
+    return code.upper()
 
 
 def _build_combo(selections, segment_code):
@@ -517,11 +556,21 @@ def resolve_segments(cursor, series, size, selections):
 
     # --- table-backed segments (exact CombinationKey match, v0.1 numbering) ---
     def table(seg):
-        # Custom selection -> the workbook's padded custom placeholder (segment
-        # excluded from the enumerated numbering table).
-        cust = SEGMENT_CUSTOM_PLACEHOLDER.get(seg)
-        if cust and _has_custom(selections, seg):
-            return cust
+        # Custom selection handling (Dean revision D-R2a):
+        #   - If a RESOLVED custom code is supplied for this grouping (the engineer
+        #     has resolved the custom spec and minted a cfg.CustomSegmentCode), the
+        #     minted code OCCUPIES the segment slot at its native width — same PN
+        #     shape, custom value in the slot. (Owner: "fit into the original
+        #     placeholder … same width but a new custom spec".)
+        #   - Else if the grouping IS custom but not yet resolved, fall back to the
+        #     workbook's padded custom placeholder (pre-resolution; forces review).
+        if _has_custom(selections, seg):
+            resolved = _resolved_custom_code(selections, seg)
+            if resolved is not None:
+                return resolved
+            cust = SEGMENT_CUSTOM_PLACEHOLDER.get(seg)
+            if cust:
+                return cust
         combo = _build_combo(selections, seg)
         code = _seg_lookup(cursor, seg, combo)
         if code:
