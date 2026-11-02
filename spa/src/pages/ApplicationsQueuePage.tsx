@@ -274,18 +274,25 @@ function ReviewLineRow({
   const [mintErr, setMintErr] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
-  // A4: mint a governed per-grouping custom code for the spec and record it in
-  // the custom spec text (displayed alongside the authoritative PN; never edits it).
+  // D-R2b: resolve the grouping's custom spec -> mint-or-reuse the governed
+  // per-grouping custom code (family-wide reuse by spec). The code occupies the
+  // grouping's PN segment slot at its native width; identical specs reuse the
+  // same code. A grouping with no numbering width yet (e.g. seal) returns 409 —
+  // the spec is captured but the code is deferred.
   async function mintCode() {
-    if (!spec.trim()) {
+    const raw = spec.replace(/^\[[A-Z_]+:[0-9A-Z]+\]\s*/, "").trim(); // strip prior tag
+    if (!raw) {
       setMintErr("Enter the custom spec first.");
       return;
     }
     setMinting(true);
     setMintErr(null);
     try {
-      const r = await api.mintCustomCode(brand, { segment_code: grouping, spec_text: spec.trim() });
-      setSpec(`[${r.segment_code}:${r.custom_code}] ${spec.trim()}`);
+      const r = await api.resolveCustomSpec(brand, {
+        segment_code: grouping,
+        spec_text: raw,
+      });
+      setSpec(`[${r.segment_code}:${r.custom_code}${r.was_existing ? " reused" : ""}] ${raw}`);
     } catch (e) {
       const a = e as ApiError;
       setMintErr(typeof a.detail === "string" ? a.detail : a.message);
@@ -338,9 +345,11 @@ function ReviewLineRow({
                 <option value="POWER_FRAME_OPTIONS">Power frame</option>
                 <option value="MOTOR_SPEC">Motor</option>
                 <option value="BASEPLATE_OPTIONS">Baseplate</option>
+                <option value="FLUSH_PLAN">Flush plan</option>
+                <option value="SEAL_TYPE">Seal (pending numbering)</option>
               </select>
               <button className="btn sm amber" onClick={mintCode} disabled={minting}>
-                {minting ? "…" : "Mint custom code"}
+                {minting ? "…" : "Resolve custom spec"}
               </button>
             </div>
             {mintErr && <span className="err">{mintErr}</span>}

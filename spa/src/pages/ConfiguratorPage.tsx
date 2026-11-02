@@ -21,6 +21,44 @@ import { CustomRequestModal } from "../components/CustomRequestModal";
 
 const FAMILIES = ["FYBROC", "DEAN"] as const;
 
+// Dean numbering-segment -> its member fields (mirror of SEGMENT_FIELD_ORDER in
+// src/api/dean_identifier.py). Used to flag the owning segment custom when a
+// field's Custom (C/F) option is chosen, and to find the grouping for the
+// customization pop-up. Seal fields map to SEAL_TYPE (no numbering width yet ->
+// the engineer resolve returns 409 "code deferred", spec still captured).
+const SEGMENT_FIELDS: Record<string, string[]> = {
+  WET_END_OPTIONS: [
+    "PUMP_MATERIAL", "CASING_MATERIAL", "CASING_DRAIN", "CASING_TAPS",
+    "CASING_GASKET", "FLANGE_CONFIGURATION", "SPOT_FACING", "CASING_WEAR_RING",
+    "CASING_MOUNTING", "SEAL_CHAMBER_CONFIG",
+  ],
+  IMPELLER_OPTIONS: ["IMPELLER_BALANCE", "IMPELLER_MATERIAL", "IMPELLER_WEAR_RING_MATERIAL"],
+  POWER_FRAME_OPTIONS: [
+    "SHAFT_CONFIGURATION", "SHAFT_MATERIAL", "BEARING_LUBRICATION", "BEARING_SEAL",
+    "OILER_OPTIONS", "SIGHT_GLASS", "BEARING_FRAME_COOLING", "MAGNETIC_DRAIN",
+    "EXPANSION_CHAMBER", "COUPLING_TYPE", "COUPLING_GUARD",
+  ],
+  BASEPLATE_OPTIONS: [
+    "BASEPLATE_TYPE", "DRIP_PAN", "ALIGNMENT_LUGS", "LIFTING_LUGS",
+    "LEVELLING_SCREWS", "GROUNDING_LUG", "GROUT_HOLE", "ISOLATION_PADS", "STILTS",
+  ],
+  FLUSH_PLAN: [
+    "FLUSH_PLAN", "FLUSH_PLAN_ROUTING", "FLUSH_CONNECTIONS",
+    "FLUSH_TEMPERATURE_RANGE", "FLUSH_COOLING_MEDIA",
+  ],
+  SEAL_TYPE: [
+    "SEAL_OPTION", "SEAL_MANUFACTURER", "SEAL_CONFIGURATION", "SEAL_TYPE",
+    "GLAND_TYPE", "SHAFT_SLEEVE_MATERIAL",
+    "INBOARD_ROTATING_FACE_MATERIAL", "INBOARD_STATIONARY_FACE_MATERIAL",
+    "INBOARD_ELASTOMER", "INBOARD_HARDWARE_MATERIAL",
+    "OUTBOARD_ROTATING_FACE_MATERIAL", "OUTBOARD_STATIONARY_FACE_MATERIAL",
+    "OUTBOARD_ELASTOMERS", "OUTBOARD_HARDWARE_MATERIAL",
+  ],
+};
+const SEGMENT_FOR_FIELD: Record<string, string> = Object.fromEntries(
+  Object.entries(SEGMENT_FIELDS).flatMap(([seg, fields]) => fields.map((f) => [f, seg])),
+);
+
 export function ConfiguratorPage({ me }: { me: Me }) {
   const [family, setFamily] = useState<string>("FYBROC");
   const [seriesList, setSeriesList] = useState<string[]>([]);
@@ -228,6 +266,27 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     const next = { ...state.selections };
     if (value === "") delete next[field];
     else next[field] = value;
+
+    // Dean custom-spec lifecycle (D-R2c): choosing the Custom option (loaded as
+    // 'C/F') for a field flags the owning numbering segment custom via the
+    // reserved '<SEGMENT>__CUSTOM' key, so the PN shows the placeholder and the
+    // line forces engineering review. In edit mode (line context) we also open
+    // the per-grouping customization pop-up to capture the spec text.
+    const seg = SEGMENT_FOR_FIELD[field];
+    if (seg) {
+      const flagKey = seg + "__CUSTOM";
+      const isCustomPick = String(value).trim().toUpperCase() === "C/F";
+      if (isCustomPick) {
+        next[flagKey] = "1";
+        if (edit) setCustomGroup(seg);
+      } else {
+        // No remaining custom field in this segment -> clear the flag.
+        const anyCustom = (SEGMENT_FIELDS[seg] || []).some(
+          (f) => String((f === field ? value : next[f]) || "").toUpperCase() === "C/F",
+        );
+        if (!anyCustom) delete next[flagKey];
+      }
+    }
     runResolveState(series, next, field);
   }
 
@@ -340,13 +399,23 @@ export function ConfiguratorPage({ me }: { me: Me }) {
                 ))}
               </div>
 
-              {edit && groups[activeGroup] && (
-                <div className="row" style={{ marginBottom: 12 }}>
-                  <button className="btn amber" onClick={() => setCustomGroup(groups[activeGroup].group)}>
-                    Custom — request a customization for {groups[activeGroup].group}
-                  </button>
-                </div>
-              )}
+              {edit && groups[activeGroup] && (() => {
+                // Map this presentation group to the numbering segment of its
+                // first field that belongs to one (so the customization pop-up +
+                // the __CUSTOM flag use the real grouping key).
+                const segField = groups[activeGroup].fields
+                  .map((f) => f.field)
+                  .find((f) => SEGMENT_FOR_FIELD[f]);
+                const seg = segField ? SEGMENT_FOR_FIELD[segField] : null;
+                if (!seg) return null;
+                return (
+                  <div className="row" style={{ marginBottom: 12 }}>
+                    <button className="btn amber" onClick={() => setCustomGroup(seg)}>
+                      Custom — request a customization ({seg.replace(/_/g, " ").toLowerCase()})
+                    </button>
+                  </div>
+                );
+              })()}
 
               {groups[activeGroup]?.fields.map((gf) => {
                 const fc = gf.field;
@@ -473,9 +542,14 @@ export function ConfiguratorPage({ me }: { me: Me }) {
           quoteLineId={edit.quoteLineId}
           grouping={customGroup}
           fields={
-            (groups.find((g) => g.group === customGroup)?.fields || [])
-              .filter((f) => !f.placeholder)
-              .map((f) => f.field)
+            // customGroup is a numbering-segment code; show its member fields
+            // that exist in the current config (fall back to a presentation group
+            // match if a legacy group name was passed).
+            (SEGMENT_FIELDS[customGroup] ||
+              (groups.find((g) => g.group === customGroup)?.fields || [])
+                .filter((f) => !f.placeholder)
+                .map((f) => f.field)
+            ).filter((f) => f in state.selections)
           }
           selections={state.selections}
           onClose={() => setCustomGroup(null)}

@@ -329,6 +329,28 @@ export const api = {
       `/families/${family}/custom-segment-codes` +
         (segmentCode ? `?segment_code=${encodeURIComponent(segmentCode)}` : ""),
     ),
+  // --- Dean revision D-R2b: engineer resolves a grouping's custom spec ---
+  // Mints-or-reuses the governed per-grouping custom code (family-wide reuse by
+  // spec) and stamps the A2 customization row. The returned code occupies the
+  // grouping's PN segment slot at its native width.
+  resolveCustomSpec: (
+    family: string,
+    body: {
+      segment_code: string;
+      spec_text: string;
+      customization_id?: number | null;
+      selections_json?: string | null;
+      app_user_id?: number | null;
+    },
+  ) =>
+    request<{
+      family: string;
+      segment_code: string;
+      spec_key: string;
+      custom_code: string;
+      was_existing: boolean;
+      customization_id: number | null;
+    }>("POST", `/families/${family}/custom-segment-codes/resolve`, body),
 
   // --- A6: confirm order + order document (identical for both parties) ---
   confirmOrder: (reviewCaseId: number) =>
