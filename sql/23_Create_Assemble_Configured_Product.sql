@@ -94,17 +94,18 @@ BEGIN
             @d_test   varchar(20) = JSON_VALUE(@SegmentsJson, '$.testing'),
             @d_doc    varchar(20) = JSON_VALUE(@SegmentsJson, '$.documentation');
 
-        -- Seal segment (@d_seal) is OMITTED from the Dean PN: the seal code is
-        -- authored only in the external "Seal Numbering.accdb" (getSealOptions),
-        -- which is not available, so the workbook itself only ever emits the
-        -- placeholder 00000/TBD__. Rather than embed a placeholder in the PN, the
-        -- Dean PN excludes seal. Seal STATUS is still surfaced in the API
-        -- segment_debug. (D130 decision, 2026-08-26.)
+        -- Seal: previously omitted (external Seal Numbering.accdb unavailable, D130).
+        -- Now sourced from SealNumbering.xlsx via cfg.DeanSealSpec; see @d_seal below.
+        -- SEAL (SealNumbering.xlsx): the seal code now occupies its own slot
+        -- between the power-frame and flush groups. Omitted only when the API
+        -- supplies no seal_code (back-compat with callers that predate seal).
+        DECLARE @d_seal varchar(20) = JSON_VALUE(@SegmentsJson, '$.seal_code');
         SET @PartNumber = CONCAT(
             @d_base,
             '-', @d_wet,
             '-', @d_trim, @d_impopt,
             '-', @d_power,
+            CASE WHEN @d_seal IS NULL OR @d_seal = '' THEN '' ELSE CONCAT('-', @d_seal) END,
             '-', @d_flush, @d_barr, @d_cool,
             '-', @d_frame, @d_basep,
             '-', @d_motor, @d_motopt);

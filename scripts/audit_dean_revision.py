@@ -121,15 +121,27 @@ def main():
         "SELECT COUNT(*) FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND OptionValue='C/F'", dean
     ).fetchone()[0]
     ok("revised sheet re-ingested: C/F options present", cf_rows > 0, f"C/F rows={cf_rows}")
+    # Seal fields are now owned by SealNumbering.xlsx 'Master' (authority for seal
+    # selection options; C/F is a placeholder value there, and Seal Manufacturer's
+    # 'Custom' is a literal Master option) - exclude them from the Pump-Constraints
+    # custom->C/F checks. Seal is covered by scripts/audit_dean_seal.py.
+    import sys as _sys
+    _sys.path.insert(0, "scripts")
+    from load_dean_seal_master import MASTER_HEADER_TO_FIELD as _MH
+    seal_f = tuple(sorted(set(_MH.values())))
+    ph = ",".join("?" * len(seal_f))
     literal_custom = cur.execute(
-        "SELECT COUNT(*) FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND LOWER(OptionValue)='custom'", dean
+        f"SELECT COUNT(*) FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND LOWER(OptionValue)='custom' "
+        f"AND FieldCode NOT IN ({ph})", dean, *seal_f
     ).fetchone()[0]
-    ok("no literal 'Custom' values remain for DEAN", literal_custom == 0, f"literal custom={literal_custom}")
+    ok("no literal 'Custom' values remain for DEAN (non-seal fields)", literal_custom == 0,
+       f"literal custom={literal_custom}")
     n_cf_fields = cur.execute(
-        "SELECT COUNT(DISTINCT FieldCode) FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND OptionValue='C/F'", dean
+        f"SELECT COUNT(DISTINCT FieldCode) FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND OptionValue='C/F' "
+        f"AND FieldCode NOT IN ({ph})", dean, *seal_f
     ).fetchone()[0]
-    ok("custom groupings present as C/F fields",
-       n_cf_fields >= 30, f"{n_cf_fields} fields with C/F (workbook custom groupings={len(custom_groupings)})")
+    ok("non-seal custom groupings present as C/F fields",
+       n_cf_fields >= 25, f"{n_cf_fields} non-seal fields with C/F (workbook custom groupings={len(custom_groupings)}, incl. seal)")
 
     # (b) Seal Reference Table matches the workbook exactly.
     db_seal = {r[0]: r[1] for r in cur.execute(

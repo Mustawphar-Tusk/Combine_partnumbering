@@ -29,7 +29,7 @@ D140 RE-BASE (2026-08-26) onto PumpConfiguration_Logic_0.1.xlsm:
 
 Special (non-table) segments:
   - Impeller Trim  : inch-letter + decimal-letter (Impeller trim sub-table)
-  - Seal           : IF seal not "Included" -> "00000" else "TBD__" (EXCLUDED from PN)
+  - Seal           : sheet-mapped code from cfg.DeanSealSpec ('000' none, 'TBD' pending)
 
 Retained-but-UNBUILT segments (no numbering table in v0.1 - documented gaps
 DEAN_ENGINEERING_QUESTIONS.md §F; the resolver emits a fixed zero-padded
@@ -38,8 +38,8 @@ placeholder so the PN never errors and the slot is preserved):
   - Cooling Plan (F1 empty sheet) -> "00"
   - Testing / Documentation / Additional Options (no sheet in v0.1) -> "00"/"0000"/"00"
 
-The Dean PN (seal segment EXCLUDED - see below):
-  D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(4)>
+The Dean PN:
+  D<A#>-<WetEnd(4)>-<Trim(2)><ImpOpts(2)>-<PowerEnd(4)>-<Seal(3|4)>
     -<Flush(2)><Barrier(1)><Cooling(2)>-<Frame(2)><Baseplate(2)>
     -<Motor(4)>
   Motor is now the 4-char Combined Alphanumeric Code from the new Motor
@@ -48,11 +48,12 @@ The Dean PN (seal segment EXCLUDED - see below):
   Options + Testing/Documentation are NOT PN drivers (2026-08-26); the PN ends at
   the motor group.
 
-Seal is intentionally omitted from the PN: the seal code is authored only in the
-external "Seal Numbering.accdb" (getSealOptions), which is unavailable, so the
-workbook itself only ever emits the placeholder 00000/TBD__ for seal. Seal status
-is still resolved into segment_debug (seal_status / seal_code_placeholder). If the
-seal Access DB becomes available, seal can be re-added to the PN cleanly.
+Seal (SealNumbering.xlsx): the Seal Reference Table (cfg.DeanSealReference) names the
+permutation sheet for the series; cfg.DeanSealSpec maps the seal selections to the
+sheet's code (3 chars on the shaft sheets, 4 on Misc. and a few 3.000" rows), which
+occupies its own PN slot between the power-frame and flush groups (see dean_seal.py).
+Seal not Included -> '000'; Included but not resolvable -> 'TBD' (engineering
+completes it at quote review). Seal price/status is surfaced via segment_debug.seal_spec.
 
 This module is the option-1 resolver: it computes the segment codes in Python
 (the parity oracle) and returns the segments payload for
@@ -631,12 +632,20 @@ def resolve_segments(cursor, series, size, selections):
     # Dean PN - the seal code is authored only in the external Seal Numbering
     # Access DB (unavailable), so the workbook never puts a real code here. Seal
     # status is surfaced in segment_debug; the PN excludes it. (D130, 2026-08-26.)
+    # SEAL (SealNumbering.xlsx): the series' Seal Reference sheet maps the seal
+    # selections to a seal code, which occupies its own PN slot (between the
+    # power-frame and flush groups). Not Included -> '000'; Included but not
+    # resolvable -> 'TBD' (engineering completes it at quote review).
+    from . import dean_seal as _dean_seal
+    seal_spec = _dean_seal.resolve_seal_spec(cursor, series, selections)
+    seal_code = seal_spec["code"]
     payload = {
         "base_identifier": base,
         "wet_end": wet_end,
         "impeller_trim": trim,
         "impeller_options": imp_opts,
         "power_frame_options": power,
+        "seal_code": seal_code,
         "flush_plan": flush,
         "barrier_plan": barrier,
         "cooling_plan": cooling,
@@ -656,7 +665,7 @@ def resolve_segments(cursor, series, size, selections):
     # '-{addl}-{testing}{documentation}' groups are intentionally omitted. The SQL
     # assembler's DEAN branch drops the same two groups so python==SQL parity holds.
     py_pn = (
-        f"{base}-{wet_end}-{trim}{imp_opts}-{power}"
+        f"{base}-{wet_end}-{trim}{imp_opts}-{power}-{seal_code}"
         f"-{flush}{barrier}{cooling}-{frame}{baseplate}"
         f"-{motor}{motor_options}"
     )
@@ -665,7 +674,10 @@ def resolve_segments(cursor, series, size, selections):
     # seal status (out-of-band; not in PN). "included_external_db" => code comes
     # from the external Seal Numbering DB (pending); "none" => no seal.
     seal_status = "included_external_db" if seal == "TBD__" else "none"
-    debug = {**payload, "seal_status": seal_status, "seal_code_placeholder": seal,
+    seal_status = {"none": "none", "resolved": "resolved",
+                   "pending": "pending_engineering"}[seal_spec["status"]]
+    debug = {**payload, "seal_status": seal_status, "seal_spec": seal_spec,
+             "seal_code_placeholder": seal,
              "py_pn": py_pn, "failed_segments": failed}
     return payload, debug
 
@@ -678,6 +690,7 @@ def assemble_pn(payload):
         f"-{payload['wet_end']}"
         f"-{payload['impeller_trim']}{payload['impeller_options']}"
         f"-{payload['power_frame_options']}"
+        + (f"-{payload['seal_code']}" if payload.get("seal_code") else "") +
         f"-{payload['flush_plan']}{payload['barrier_plan']}{payload['cooling_plan']}"
         f"-{payload['frame_size']}{payload['baseplate_options']}"
         f"-{payload['motor']}{payload['motor_options']}"

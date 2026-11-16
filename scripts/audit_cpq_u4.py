@@ -51,7 +51,7 @@ CONFIGURATOR = f"u4-cfg-{RUN}"    # has create_quote but NOT author_quote
 
 # Frozen isolation baseline (from the project watermarks).
 WATERMARKS = {
-    "cfg.FeasibleConstraint": ("SELECT COUNT(*) FROM cfg.FeasibleConstraint", 4743),
+    "cfg.FeasibleConstraint": ("SELECT COUNT(*) FROM cfg.FeasibleConstraint", 4733),  # 4487 non-DEAN + 246 DEAN (Dean revision D-R1)
     "non-Dean cfg.SeriesFieldOption": (
         "SELECT COUNT(*) FROM cfg.SeriesFieldOption sfo "
         "JOIN cfg.PumpFamily pf ON pf.PumpFamilyId=sfo.PumpFamilyId "

@@ -1,4 +1,6 @@
 # Milestone Register
+> **2026-08-26 (DEAN Seal Configuration):** PASS. SealNumbering.xlsx Master replaces DEAN seal options; cfg.DeanSealSpec (315,196 rows) maps seal selections to code+price per Seal Reference sheet; seal code in Dean PN; audit_dean_seal 37/37; Fybroc gate intact. Evidence `docs/evidence/DEAN_SEAL/DEAN_SEAL_EXIT.md`.
+>
 
 **Last Updated:** 2026-08-26
 

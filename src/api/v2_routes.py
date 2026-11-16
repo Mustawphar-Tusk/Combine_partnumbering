@@ -3027,7 +3027,8 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
 
         # Seal pricing
         seal_type = body.selections.get("SEAL_TYPE", "")
-        if seal_type:
+        # Dean seal is priced from cfg.DeanSealSpec in the Dean branch below.
+        if seal_type and family_upper != "DEAN":
             seal_pattern = f"%{seal_type[:10]}%"
             seal_row = cursor.execute("""
                 SELECT TOP 1 pr.Amount, pr.SourceOptionValue
@@ -3180,6 +3181,24 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
             else:
                 # motor not fully specified / not enumerated -> C/F
                 _add_component("Motor", _motor_label_val, None)
+
+            # SEAL price (SealNumbering.xlsx): the series' Seal Reference sheet maps
+            # the seal selections to a code + price (cfg.DeanSealSpec). A numeric
+            # price is charged; 'C.F.'/'TBD'/blank (or a seal that cannot be
+            # resolved yet) is an honest C/F line - engineering determines it when
+            # the quote is submitted for review. No seal (not Included) -> no line.
+            _seal_spec = (segment_debug or {}).get("seal_spec") or {}
+            if _seal_spec.get("status") in ("resolved", "pending"):
+                _seal_lbl = body.selections.get("SEAL_TYPE") or _seal_spec.get("code")
+                if (_seal_spec.get("status") == "resolved"
+                        and _seal_spec.get("price_status") == "PRICED"
+                        and _seal_spec.get("price_amount") is not None):
+                    _s_amt = float(_seal_spec["price_amount"])
+                    pricing.append({"component": "Seal", "amount": _s_amt,
+                                    "detail": _seal_spec["code"]})
+                    _add_component("Seal", _seal_lbl, _s_amt, _seal_spec["code"])
+                else:
+                    _add_component("Seal", _seal_lbl, None)
 
             total = sum(p["amount"] for p in pricing)
             # Skip the Fybroc-specific adder/multi blocks below for Dean.

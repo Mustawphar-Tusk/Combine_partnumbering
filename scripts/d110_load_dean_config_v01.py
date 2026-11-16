@@ -546,6 +546,11 @@ def main():
     enforced_dist = Counter(len(legs) for _, legs in codeps)
     print(f"FeasibleConstraint: {n_fc} DEAN allow tuples (enforced legs: {dict(enforced_dist)})")
 
+    # SEAL OPTIONS: SealNumbering.xlsx 'Master' is the authority for the seal
+    # selection options and replaces the Pump Constraints seal options.
+    from load_dean_seal_master import apply_master_options
+    print("Seal Master options:", apply_master_options(c, dean, pub))
+
     fy2 = {t: c.execute(f"SELECT COUNT(*) FROM cfg.{t} WHERE PumpFamilyId<>?", dean).fetchone()[0]
            for t in ("FeasibleConstraint", "ConstraintFieldMap", "SeriesFieldOption")}
     print("post non-DEAN:", fy2)
