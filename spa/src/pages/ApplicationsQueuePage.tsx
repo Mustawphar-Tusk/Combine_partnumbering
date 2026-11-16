@@ -180,6 +180,7 @@ function CaseDetail({
             <ReviewLineRow
               key={l.ReviewCaseLineId}
               caseId={c.ReviewCaseId}
+              quoteHeaderId={c.QuoteHeaderId}
               brand={c.Brand}
               line={l}
               editable={claimed}
@@ -256,12 +257,14 @@ function CaseDetail({
 
 function ReviewLineRow({
   caseId,
+  quoteHeaderId,
   line,
   brand,
   editable,
   onResolved,
 }: {
   caseId: number;
+  quoteHeaderId: number;
   brand: string;
   line: import("../api/types").ReviewCaseLine;
   editable: boolean;
@@ -273,6 +276,28 @@ function ReviewLineRow({
   const [minting, setMinting] = useState(false);
   const [mintErr, setMintErr] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  // The distributor's custom-spec requests on this line (A2). Picking one
+  // prefills grouping + spec and links the resolution back to that row.
+  const [requests, setRequests] = useState<import("../api/types").Customization[]>([]);
+  const [customizationId, setCustomizationId] = useState<number | null>(null);
+
+  const loadRequests = useCallback(() => {
+    api
+      .listLineCustomizations(brand, quoteHeaderId, line.QuoteLineId)
+      .then((r) => setRequests(r.customizations))
+      .catch(() => setRequests([]));
+  }, [brand, quoteHeaderId, line.QuoteLineId]);
+
+  useEffect(() => {
+    loadRequests();
+  }, [loadRequests]);
+
+  function pickRequest(c: import("../api/types").Customization) {
+    setCustomizationId(c.customization_id);
+    setGrouping(c.grouping);
+    setSpec(c.requested_change);
+    setMintErr(null);
+  }
 
   // D-R2b: resolve the grouping's custom spec -> mint-or-reuse the governed
   // per-grouping custom code (family-wide reuse by spec). The code occupies the
@@ -291,8 +316,10 @@ function ReviewLineRow({
       const r = await api.resolveCustomSpec(brand, {
         segment_code: grouping,
         spec_text: raw,
+        customization_id: customizationId,
       });
       setSpec(`[${r.segment_code}:${r.custom_code}${r.was_existing ? " reused" : ""}] ${raw}`);
+      loadRequests(); // show the stamped code on the request
     } catch (e) {
       const a = e as ApiError;
       setMintErr(typeof a.detail === "string" ? a.detail : a.message);
@@ -337,6 +364,28 @@ function ReviewLineRow({
       <td>
         {editable ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 260 }}>
+            {requests.length > 0 && (
+              <div className="sub" style={{ fontSize: 12 }}>
+                <div>Requested customizations:</div>
+                {requests.map((c) => (
+                  <div key={c.customization_id}>
+                    <button
+                      className={"link" + (customizationId === c.customization_id ? " strong" : "")}
+                      onClick={() => pickRequest(c)}
+                      type="button"
+                    >
+                      {c.grouping.replace(/_/g, " ").toLowerCase()}
+                      {c.field_code ? ` · ${c.field_code}` : ""}: {c.requested_change}
+                    </button>
+                    {c.resolved_custom_code && (
+                      <span className="chip green" style={{ marginLeft: 6 }}>
+                        code {c.resolved_custom_code}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
             <input value={spec} onChange={(e) => setSpec(e.target.value)} placeholder="custom spec" />
             <div className="row" style={{ gap: 4 }}>
               <select value={grouping} onChange={(e) => setGrouping(e.target.value)} style={{ width: "auto" }}>

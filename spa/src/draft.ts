@@ -2,6 +2,16 @@
 // workspace consumes, so a user can add the current configuration to a quote.
 // Persisted in sessionStorage so it survives navigation within the SPA session.
 
+// A custom-spec request captured in the configurator BEFORE the quote line
+// exists. Persisted as quote.QuoteLineCustomization rows once the line is added.
+export interface PendingCustom {
+  grouping: string; // numbering-segment code, e.g. WET_END_OPTIONS
+  field_code: string | null;
+  current_value: string | null;
+  requested_change: string;
+  notes: string | null;
+}
+
 export interface ConfigDraft {
   family: string;
   series: string;
@@ -9,6 +19,7 @@ export interface ConfigDraft {
   part_number: string;
   sku: string;
   total_price: number;
+  customizations?: PendingCustom[];
 }
 
 const KEY = "cpq.configDraft";

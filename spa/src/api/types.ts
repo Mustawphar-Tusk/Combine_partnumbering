@@ -425,6 +425,8 @@ export interface Customization {
   notes: string | null;
   revision_no: number;
   created_at: string;
+  resolved_custom_code?: string | null;
+  resolved_at?: string | null;
 }
 
 export interface CustomizationInput {

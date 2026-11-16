@@ -11,13 +11,16 @@ import type {
 import { money, titleize } from "../format";
 import {
   setDraft,
+  getDraft,
   getEditContext,
   setEditContext,
   getSeedContext,
   setSeedContext,
   type EditContext,
+  type PendingCustom,
 } from "../draft";
 import { CustomRequestModal } from "../components/CustomRequestModal";
+import { PendingCustomModal } from "../components/PendingCustomModal";
 
 const FAMILIES = ["FYBROC", "DEAN"] as const;
 
@@ -81,6 +84,14 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   const [addingToQuote, setAddingToQuote] = useState(false);
   // A2: which grouping's customization modal is open (edit mode only).
   const [customGroup, setCustomGroup] = useState<string | null>(null);
+  // Custom flags ('<SEGMENT>__CUSTOM') live HERE, not in the server selections:
+  // resolve-state drops unknown keys, so they must be re-merged into every
+  // resolve / save call or the PN placeholder + review gate would be lost.
+  const customFlags = useRef<Record<string, string>>({});
+  // Fresh-config (no quote line yet) custom requests, saved when the line is added.
+  const [pending, setPending] = useState<PendingCustom[]>([]);
+  const pendingRef = useRef<PendingCustom[]>([]);
+  const [pendingGroup, setPendingGroup] = useState<string | null>(null);
   const navigate = useNavigate();
   const seq = useRef(0);
   const bootstrapped = useRef(false);
@@ -112,7 +123,17 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     setFamily(edit.family);
     setSeries(edit.series);
     setActiveGroup(0);
-    runResolveState(edit.series, edit.selections, undefined, edit.family);
+    // Restore the custom flags from the line's saved customization requests
+    // (grouping = numbering-segment code) before the first resolve.
+    api
+      .listLineCustomizations(edit.family, edit.quoteHeaderId, edit.quoteLineId)
+      .then((r) => {
+        for (const c of r.customizations) customFlags.current[c.grouping + "__CUSTOM"] = "1";
+      })
+      .catch(() => undefined)
+      .finally(() =>
+        runResolveState(edit.series, edit.selections, undefined, edit.family),
+      );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edit]);
 
@@ -150,7 +171,11 @@ export function ConfiguratorPage({ me }: { me: Me }) {
         if (mine !== seq.current) return;
         setState(st);
         // Resolve PN/SKU/price from the full selection set (include SERIES).
-        runResolve(nextSeries, { SERIES: nextSeries, ...st.selections }, fam);
+        runResolve(
+          nextSeries,
+          { SERIES: nextSeries, ...st.selections, ...customFlags.current },
+          fam,
+        );
       } catch (e) {
         if (mine !== seq.current) return;
         setError(e instanceof ApiError ? String(e.detail || e.message) : String(e));
@@ -175,6 +200,7 @@ export function ConfiguratorPage({ me }: { me: Me }) {
           part_number: r.part_number,
           sku: r.sku,
           total_price: r.total_price,
+          customizations: pendingRef.current,
         });
       } catch {
         // resolve can legitimately fail when the config isn't resolvable yet
@@ -195,7 +221,7 @@ export function ConfiguratorPage({ me }: { me: Me }) {
     try {
       await api.updateQuoteLine(edit.family, edit.quoteHeaderId, edit.quoteLineId, {
         series: edit.series,
-        selections: { SERIES: edit.series, ...state.selections },
+        selections: { SERIES: edit.series, ...state.selections, ...customFlags.current },
         quantity: edit.quantity || 1,
         requested_by: me.user.email || me.user.display_name || "distributor",
       });
@@ -240,12 +266,26 @@ export function ConfiguratorPage({ me }: { me: Me }) {
       } else {
         quoteId = Number(targetQuote);
       }
-      await api.addQuoteLine(family, quoteId, {
+      const line = await api.addQuoteLine(family, quoteId, {
         series,
-        selections: { SERIES: series, ...state.selections },
+        selections: { SERIES: series, ...state.selections, ...customFlags.current },
         quantity: Math.max(1, addQty),
         requested_by: me.user.email || me.user.display_name || "configurator",
       });
+      // Persist the custom-spec requests captured before the line existed; they
+      // force engineering review when the quote is submitted.
+      for (const c of pendingRef.current) {
+        await api.addLineCustomization(family, quoteId, line.quote_line_id, {
+          grouping: c.grouping,
+          field_code: c.field_code,
+          current_value: c.current_value,
+          requested_change: c.requested_change,
+          notes: c.notes,
+        });
+      }
+      pendingRef.current = [];
+      setPending([]);
+      customFlags.current = {};
       setDraft(null); // consumed into the quote
       navigate(`/quotes/${quoteId}`);
     } catch (e) {
@@ -256,6 +296,9 @@ export function ConfiguratorPage({ me }: { me: Me }) {
   }
 
   function onSeriesChange(s: string) {
+    customFlags.current = {};
+    pendingRef.current = [];
+    setPending([]);
     setSeries(s);
     setActiveGroup(0);
     runResolveState(s, {}); // empty -> STD seed
@@ -277,17 +320,33 @@ export function ConfiguratorPage({ me }: { me: Me }) {
       const flagKey = seg + "__CUSTOM";
       const isCustomPick = String(value).trim().toUpperCase() === "C/F";
       if (isCustomPick) {
-        next[flagKey] = "1";
+        customFlags.current[flagKey] = "1";
+        // Open the pop-up: edit mode persists to the line; a fresh config holds
+        // the request until the line is added to a quote.
         if (edit) setCustomGroup(seg);
+        else setPendingGroup(seg);
       } else {
-        // No remaining custom field in this segment -> clear the flag.
+        // No remaining custom field in this segment -> clear the flag (and drop
+        // any not-yet-saved requests for it).
         const anyCustom = (SEGMENT_FIELDS[seg] || []).some(
           (f) => String((f === field ? value : next[f]) || "").toUpperCase() === "C/F",
         );
-        if (!anyCustom) delete next[flagKey];
+        if (!anyCustom) {
+          delete customFlags.current[flagKey];
+          if (!edit) syncPending(pendingRef.current.filter((c) => c.grouping !== seg));
+        }
       }
     }
     runResolveState(series, next, field);
+  }
+
+  // Keep the pending custom requests in state, the ref used by resolve, and the
+  // shared draft (so the quote workspace can persist them) in sync.
+  function syncPending(items: PendingCustom[]) {
+    pendingRef.current = items;
+    setPending(items);
+    const d = getDraft();
+    if (d) setDraft({ ...d, customizations: items });
   }
 
   const groups: FieldGroup[] =
@@ -399,7 +458,7 @@ export function ConfiguratorPage({ me }: { me: Me }) {
                 ))}
               </div>
 
-              {edit && groups[activeGroup] && (() => {
+              {groups[activeGroup] && (() => {
                 // Map this presentation group to the numbering segment of its
                 // first field that belongs to one (so the customization pop-up +
                 // the __CUSTOM flag use the real grouping key).
@@ -410,7 +469,15 @@ export function ConfiguratorPage({ me }: { me: Me }) {
                 if (!seg) return null;
                 return (
                   <div className="row" style={{ marginBottom: 12 }}>
-                    <button className="btn amber" onClick={() => setCustomGroup(seg)}>
+                    <button
+                      className="btn amber"
+                      onClick={() => {
+                        customFlags.current[seg + "__CUSTOM"] = "1";
+                        if (edit) setCustomGroup(seg);
+                        else setPendingGroup(seg);
+                        if (state) runResolveState(series, state.selections);
+                      }}
+                    >
                       Custom — request a customization ({seg.replace(/_/g, " ").toLowerCase()})
                     </button>
                   </div>
@@ -533,6 +600,18 @@ export function ConfiguratorPage({ me }: { me: Me }) {
             </section>
           )}
         </>
+      )}
+
+      {!edit && pendingGroup && state && (
+        <PendingCustomModal
+          grouping={pendingGroup}
+          fields={(SEGMENT_FIELDS[pendingGroup] || []).filter((f) => f in state.selections)}
+          selections={state.selections}
+          items={pending}
+          onAdd={(c) => syncPending([...pendingRef.current, c])}
+          onRemove={(i) => syncPending(pendingRef.current.filter((_, k) => k !== i))}
+          onClose={() => setPendingGroup(null)}
+        />
       )}
 
       {edit && customGroup && state && (

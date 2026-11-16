@@ -4122,6 +4122,9 @@ def _customization_row(row) -> dict:
         "customization_id": row[0], "quote_line_id": row[1], "grouping": row[2],
         "field_code": row[3], "current_value": row[4], "requested_change": row[5],
         "notes": row[6], "revision_no": row[7], "created_at": str(row[8]),
+        # Present only on the list procs (sql/37); Add/Update return 9 columns.
+        "resolved_custom_code": row[9] if len(row) > 9 else None,
+        "resolved_at": str(row[11]) if len(row) > 11 and row[11] is not None else None,
     }
 
 
@@ -4142,7 +4145,9 @@ async def list_quote_customizations(family: str, quote_header_id: int, request: 
         {"customization_id": r["CustomizationId"], "quote_line_id": r["QuoteLineId"],
          "line_number": r["LineNumber"], "grouping": r["Grouping"], "field_code": r["FieldCode"],
          "current_value": r["CurrentValue"], "requested_change": r["RequestedChange"],
-         "notes": r["Notes"], "revision_no": r["RevisionNo"], "created_at": str(r["CreatedAt"])}
+         "notes": r["Notes"], "revision_no": r["RevisionNo"], "created_at": str(r["CreatedAt"]),
+         "resolved_custom_code": r.get("ResolvedCustomCode"),
+         "resolved_at": str(r["ResolvedAt"]) if r.get("ResolvedAt") is not None else None}
         for r in rows]}
 
 

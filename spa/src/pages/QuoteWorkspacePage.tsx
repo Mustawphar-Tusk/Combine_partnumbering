@@ -7,7 +7,7 @@ import { StatusBadge } from "../components/StatusBadge";
 import { QuotePartyCard } from "../components/QuotePartyCard";
 import { downloadOrderPdf } from "../orderPdf";
 import { useMe } from "../useMe";
-import { getDraft, setEditContext, type ConfigDraft } from "../draft";
+import { getDraft, setDraft, setEditContext, type ConfigDraft } from "../draft";
 
 // Line pricing status rendered as a reference-style chip.
 function lineChip(status: string) {
@@ -58,11 +58,25 @@ export function QuoteWorkspacePage() {
     setAdding(true);
     setError(null);
     try {
-      await api.addQuoteLine(draft.family, quoteId, {
+      const line = await api.addQuoteLine(draft.family, quoteId, {
         series: draft.series,
         selections: { SERIES: draft.series, ...draft.selections },
         quantity: qty,
       });
+      // Save custom-spec requests captured in the configurator with the new line.
+      for (const c of draft.customizations ?? []) {
+        await api.addLineCustomization(draft.family, quoteId, line.quote_line_id, {
+          grouping: c.grouping,
+          field_code: c.field_code,
+          current_value: c.current_value,
+          requested_change: c.requested_change,
+          notes: c.notes,
+        });
+      }
+      // Requests are now saved on the line; don't re-save them on a second add.
+      const cleared = { ...draft, customizations: [] };
+      setDraft(cleared);
+      setDraftState(cleared);
       load();
     } catch (err) {
       const e = err as ApiError;
