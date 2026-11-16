@@ -92,6 +92,119 @@ def seal_ref_key(cursor, series) -> str | None:
     return row[0] if row else None
 
 
+# ---------------------------------------------------------------------------
+# Option cascade: the Seal Reference sheet (and then the chosen Seal Type and
+# every other selected seal field) decides which seal options are applicable.
+# ---------------------------------------------------------------------------
+import time as _time
+
+# Seal fields filtered by the cascade. Seal Chamber Config is wet-end owned and is
+# neither filtered nor used as context.
+CASCADE_FIELDS = tuple(f for f in SEAL_KEY_FIELDS if f != "SEAL_CHAMBER_CONFIG")
+_ROW_CACHE: dict = {}
+_CACHE_TTL = 600.0
+
+
+def clear_cache() -> None:
+    _ROW_CACHE.clear()
+
+
+def _fields_for(ref: str) -> tuple:
+    return tuple(f for f in CASCADE_FIELDS
+                 if not (f == "GLAND_GASKET" and ref not in GASKET_SHEETS))
+
+
+def _sheet_rows(cursor, ref: str):
+    """-> (fields, rows, by_type) for a sheet; rows are tuples of normalized values
+    in `fields` order (chamber omitted). Cached per process (TTL; loader reloads
+    are picked up after the TTL or clear_cache())."""
+    hit = _ROW_CACHE.get(ref)
+    if hit and _time.monotonic() - hit[0] < _CACHE_TTL:
+        return hit[1]
+    all_fields = tuple(f for f in SEAL_KEY_FIELDS
+                       if not (f == "GLAND_GASKET" and ref not in GASKET_SHEETS))
+    keep = [i for i, f in enumerate(all_fields) if f != "SEAL_CHAMBER_CONFIG"]
+    fields = tuple(all_fields[i] for i in keep)
+    seen = set()
+    for (k,) in cursor.execute("SELECT ComboKey FROM cfg.DeanSealSpec WHERE SealRefKey = ?", ref):
+        p = k.split("*")
+        seen.add(tuple(p[i] for i in keep))
+    rows = list(seen)
+    ti = fields.index("SEAL_TYPE")
+    by_type: dict = {}
+    for r in rows:
+        by_type.setdefault(r[ti], []).append(r)
+    data = (fields, rows, by_type)
+    _ROW_CACHE[ref] = (_time.monotonic(), data)
+    return data
+
+
+def _context(selections, fields, skip=None):
+    ctx = {}
+    for f in fields:
+        if f == skip:
+            continue
+        v = _n(selections.get(f, ""))
+        if v and v != "c/f":
+            ctx[f] = v
+    return ctx
+
+
+def _candidates(fields, rows, by_type, ctx):
+    pool = by_type.get(ctx["SEAL_TYPE"], []) if "SEAL_TYPE" in ctx else rows
+    items = [(fields.index(f), v) for f, v in ctx.items() if f != "SEAL_TYPE"]
+    if not items:
+        return pool
+    return [r for r in pool if all(r[i] == v for i, v in items)]
+
+
+def filter_options(cursor, series, selections, allowable) -> None:
+    """Narrow `allowable` (field -> option list, mutated in place) for the seal
+    fields: an option stays only if some permutation on the series' Seal Reference
+    sheet carries it together with every OTHER selected seal field (Seal Type
+    included). Series with no sheet (ref 'X'/none) are not narrowed."""
+    targets = [f for f in CASCADE_FIELDS if f in allowable]
+    if not targets:
+        return
+    ref = seal_ref_key(cursor, series)
+    if not ref or ref == "X":
+        return
+    fields, rows, by_type = _sheet_rows(cursor, ref)
+    if not rows:
+        return
+    for t in targets:
+        if t not in fields:
+            allowable[t] = []      # e.g. Gland Gasket on a sheet without that column
+            continue
+        ti = fields.index(t)
+        ctx = _context(selections, fields, skip=t)
+        cand = {r[ti] for r in _candidates(fields, rows, by_type, ctx)}
+        allowable[t] = [o for o in allowable[t] if _n(o) in cand]
+
+
+def prune_seed(cursor, series, selections) -> dict:
+    """STD-seeded seal fields that do not form one permutation on the series'
+    sheet are dropped (the later one of any conflicting pair). Mutates
+    `selections`; returns {field: ''} for each dropped field."""
+    ref = seal_ref_key(cursor, series)
+    if not ref or ref == "X":
+        return {}
+    fields, rows, by_type = _sheet_rows(cursor, ref)
+    dropped, keep = {}, {}
+    for f in ("SEAL_CONFIGURATION", "SEAL_TYPE") + tuple(
+            x for x in fields if x not in ("SEAL_CONFIGURATION", "SEAL_TYPE")):
+        v = _n(selections.get(f, ""))
+        if not v or f not in fields:
+            continue
+        trial = {**keep, f: v}
+        if _candidates(fields, rows, by_type, trial):
+            keep[f] = v
+        else:
+            selections.pop(f, None)
+            dropped[f] = ""
+    return dropped
+
+
 def resolve_seal_spec(cursor, series, selections) -> dict:
     """Resolve the seal slot.
 

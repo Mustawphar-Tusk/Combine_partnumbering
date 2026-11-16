@@ -199,6 +199,70 @@ def main():
     ok(len(parts) >= 5 and parts[4] == "000" and res.get("parity_ok") is True,
        f"not-Included seal -> '-000-' slot in PN ({pn})")
 
+    print("F. Option cascade: Seal Reference sheet + selected Seal Type decide the options")
+    cas = S.CASCADE_FIELDS
+    sheet_tuples = {}
+    for s, rws in sheet_rows.items():
+        fl = [f for f in S.SEAL_KEY_FIELDS if not (f == "GLAND_GASKET" and s not in S.GASKET_SHEETS)]
+        sheet_tuples[s] = [dict(zip(fl, r[2].split("*"))) for r in rws]
+
+    def expected(ref, ctx, f):
+        vals = {d[f] for d in sheet_tuples[ref] if f in d and all(d.get(k) == v for k, v in ctx.items())}
+        return {S._n(o) for o in domains[f] if S._n(o) in vals}
+
+    def opts(series, size, sel):
+        st = post("/configurations/resolve-state", {"series": series, "selections": {"ALT_SIZE": size, **sel}})
+        return st.get("allowable_options") or {}
+
+    for s in sheet_rows:
+        series = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey=?", s).fetchone()[0]
+        size = c.execute("SELECT TOP 1 SizeCode FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND SeriesCode=? "
+                         "AND SizeCode IS NOT NULL ORDER BY SizeCode", dean, series).fetchone()[0]
+        types_master = domains["SEAL_TYPE"]
+        o0 = opts(series, size, {})
+        exp_types = expected(s, {}, "SEAL_TYPE")
+        got_types = {S._n(v) for v in o0.get("SEAL_TYPE", [])}
+        ok(got_types == exp_types,
+           f"{s} ({series}): Seal Type options == sheet types ({len(exp_types)} of {len(types_master)} Master)",
+           f"extra={sorted(got_types - exp_types)[:3]} missing={sorted(exp_types - got_types)[:3]}")
+        bad = []
+        for stype in sorted(exp_types)[:4]:
+            orig = next(o for o in domains["SEAL_TYPE"] if S._n(o) == stype)
+            oo = opts(series, size, {"SEAL_TYPE": orig})
+            for f in cas:
+                if f == "SEAL_TYPE" or f not in oo:
+                    continue
+                g = {S._n(v) for v in oo.get(f, [])}
+                e = expected(s, {"SEAL_TYPE": stype}, f)
+                if g != e:
+                    bad.append((stype[:25], f[:20], sorted(g ^ e)[:3]))
+        ok(not bad, f"{s}: every seal field's options == sheet values for the selected Seal Type (4 types)", str(bad[:3]))
+        # second level: Seal Type + Seal Configuration
+        stype = sorted(exp_types)[0]
+        orig = next(o for o in domains["SEAL_TYPE"] if S._n(o) == stype)
+        cfgs = sorted(expected(s, {"SEAL_TYPE": stype}, "SEAL_CONFIGURATION"))
+        orig_c = next(o for o in domains["SEAL_CONFIGURATION"] if S._n(o) == cfgs[0])
+        oo = opts(series, size, {"SEAL_TYPE": orig, "SEAL_CONFIGURATION": orig_c})
+        bad = [f for f in cas if f in oo and f not in ("SEAL_TYPE", "SEAL_CONFIGURATION")
+               and {S._n(v) for v in oo[f]} != expected(s, {"SEAL_TYPE": stype, "SEAL_CONFIGURATION": cfgs[0]}, f)]
+        ok(not bad, f"{s}: Seal Type + Seal Configuration narrows further to the sheet", str(bad[:3]))
+
+    # seeded (STD) seal fields never form an unbuildable seal
+    badseed = []
+    for ser, ref in c.execute("SELECT SeriesCode, SealRefKey FROM cfg.DeanSealReference WHERE SealRefKey<>'X'").fetchall():
+        size = c.execute("SELECT TOP 1 SizeCode FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND SeriesCode=? "
+                         "AND SizeCode IS NOT NULL ORDER BY SizeCode", dean, ser).fetchone()
+        if not size:
+            continue
+        st = post("/configurations/resolve-state", {"series": ser, "selections": {"ALT_SIZE": size[0]}}) \
+            if False else post("/configurations/resolve-state", {"series": ser, "selections": {}})
+        sel = st.get("selections") or {}
+        ctx = {f: S._n(sel[f]) for f in cas if sel.get(f) and S._n(sel[f]) != "c/f"
+               and not (f == "GLAND_GASKET" and ref not in S.GASKET_SHEETS)}
+        if not any(all(d.get(k) == v for k, v in ctx.items()) for d in sheet_tuples[ref]):
+            badseed.append(ser)
+    ok(not badseed, "STD-seeded seal fields form a real permutation on the series' sheet (all series)", str(badseed[:5]))
+
     print("E. Isolation (Fybroc / non-DEAN unchanged)")
     for t, exp in (("SeriesFieldOption", 3638), ("FeasibleConstraint", 4487), ("ConstraintFieldMap", 28)):
         v = c.execute(f"SELECT COUNT(*) FROM cfg.{t} WHERE PumpFamilyId<>?", dean).fetchone()[0]

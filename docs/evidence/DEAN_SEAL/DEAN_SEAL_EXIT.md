@@ -20,12 +20,32 @@ factory); the seal code is part of the PN.
 | `audit_dean_revision.py`, `audit_cpq_u4.py` | Updated: seal fields exempt from custom→C/F check (Master owns them); U4 FeasibleConstraint watermark corrected 4743→4733 (4487 + 246, stale since D-R1). |
 
 ## Verification (numbers)
-- Master option sets: 3,770 (series,size,field) sets equal the Master block; 0 `C/F` options in replaced fields; `GLAND_GASKET` only on the 13 `Misc.` series (62 sets). `SEAL_CHAMBER_CONFIG` 616 rows and `SEAL_OPTION` 365 rows untouched. DEAN SFO 50,478 → 63,641; seal STD cells 2,244 → 2,100 (a prior STD is kept only if the value exists in Master).
+- Master option sets: 3,770 (series,size,field) sets equal the Master block; 0 `C/F` options in replaced fields; `GLAND_GASKET` only on the 13 `Misc.` series (62 sets). `SEAL_CHAMBER_CONFIG` 616 rows and `SEAL_OPTION` 365 rows untouched. DEAN SFO 50,478 → 63,641; seal STD cells 2,244 → 0 (see Correction below: no seal STD seeds).
 - `DeanSealSpec` per sheet (rows / priced / CF / TBD): 1.000" 21,916/52/9,054/948; 1.375" 21,916/350/14,904/924; 1.750" 21,916/312/14,904/6,132; 2.125" 21,916/119/14,913/6,316; 2.250" 21,916/572/14,669/6,035; 3.000" 22,408/211/17,041/2,440; Misc. 183,208/4/0/0 (all match the workbook).
 - 1,050 random permutations (150/sheet) resolve back to their code; API PNs show the seal slot with python==SQL parity; priced vs C/F components as expected.
 - Isolation: non-DEAN `SeriesFieldOption` 3,638, `FeasibleConstraint` 4,487, `ConstraintFieldMap` 28, `stg.SegmentCombinationImport` 300,608 — unchanged.
 - No enforced DEAN constraint leg touches a replaced seal field (checked before the change), so no dead ends were introduced.
 - Other audits: `audit_dean_revision` 15/15, `audit_dean_config` 28/0, `audit_cpq_a2` 11/11, `audit_cpq_u3` 20/20, `audit_dean_wet_end_resolve` 33/0.
+
+## Correction 2026-08-26 (follow-up audit): options must follow the Seal Reference sheet and Seal Type
+The first delivery offered the full Master list for every series, ignoring the Seal
+Reference Table. Audit showed e.g. DL200 (ref `1.000" Shafts`) was offered 33 Seal
+Types while its sheet carries 21 (20 on Master), `Misc.` series were offered 19 Seal Types not on their sheet, and inboard/outboard elastomers, hardware, gland style etc. also
+exceeded the sheet. Selecting a Seal Type did not narrow anything, and the old
+partial Pump-Constraints STD seeds (sleeve, faces, hardware, bushings…) pre-filled
+fields and, through the permutation cascade, left a single Seal Type.
+Fix:
+- `dean_seal.filter_options` (called from `_apply_constraints`, Dean-only) keeps an
+  option only if some permutation on the series' sheet carries it together with every
+  other selected seal field, Seal Type included. Series with ref `X` are not narrowed.
+- No STD seeds for the Master-replaced seal fields (`load_dean_seal_master.py`);
+  `dean_seal.prune_seed` additionally drops any seeded seal set that is not one
+  permutation of the sheet.
+- `audit_dean_seal.py` section F (22 new checks): per sheet, Seal Type options ==
+  sheet types ∩ Master (20/20/20/20/20/20 for the shaft sheets, 14 for Misc.); with a
+  Seal Type chosen, every seal field's options == the sheet values for that type
+  (4 types per sheet); Type + Configuration narrows further; seeds form a real
+  permutation for all series. Audit now 59/59.
 
 ## Known gaps / disclosures
 1. **Seal slot position** (between power-frame and flush) and widths (3 chars shaft sheets, 4 chars `Misc.` and 492 extra 3.000" rows) were chosen by me; the PN seal slot is therefore variable width. Confirm.

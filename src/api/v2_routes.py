@@ -1085,6 +1085,13 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
     if ctx is None:
         ctx = _load_constraint_context(cursor, pub_id, family_id, series)
 
+    # DEAN seal cascade (SealNumbering.xlsx): the series' Seal Reference sheet and
+    # the selected Seal Type (+ other selected seal fields) decide which seal
+    # options apply. Dean-only: only Dean callers pass std_defaults.
+    if std_defaults is not None:
+        from . import dean_seal as _dean_seal
+        _dean_seal.filter_options(cursor, series, selections, allowable)
+
     label_to_sfo = ctx["label_to_sfo"]
     all_rows = ctx["feasible_rows"]
     motor_scope = ctx["motor_scope"]
@@ -1942,6 +1949,11 @@ async def resolve_configuration_state(
                     cursor, pub_id, family_id, body.series, selections,
                     ctx=constraint_ctx,
                 )
+                # Seal STD seeds that are not one permutation on the series' Seal
+                # Reference sheet are dropped (never seed an unbuildable seal).
+                from . import dean_seal as _dean_seal
+                std_combo_adjusted.update(
+                    _dean_seal.prune_seed(cursor, body.series, selections))
         else:
             selections = dict(incoming)
 

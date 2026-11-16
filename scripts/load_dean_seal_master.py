@@ -8,9 +8,11 @@ Option is not on Master. 'C/F' is a populated placeholder value, not an option, 
 it is dropped from the replaced fields.
 
 Scope: for every DEAN (series, size) that carries a replaced field, that field's
-rows are replaced by the Master options (marker X). A previous STD is kept only if
-that value exists in Master. Gland Gasket (new field) is added only for series whose
-Seal Reference sheet is 'Misc.'. Fybroc rows are never touched.
+rows are replaced by the Master options (marker X, no STD seed). Which of those
+options APPLY to a series is decided at runtime by src/api/dean_seal.py from the
+series' Seal Reference sheet and the selected Seal Type. Gland Gasket (new field) is
+added only for series whose Seal Reference sheet is 'Misc.'. Fybroc rows are never
+touched.
 
 Called by d110_load_dean_config_v01.py after the Pump Constraints load (so a
 re-ingest keeps Master as the authority) and runnable alone:
@@ -94,11 +96,6 @@ def apply_master_options(cur, dean, pub, domains=None):
         f"SELECT DISTINCT SeriesCode, SizeCode FROM cfg.SeriesFieldOption "
         f"WHERE PumpFamilyId=? AND FieldCode IN ({ph}) AND FieldCode<>'GLAND_GASKET'",
         dean, *fields).fetchall()
-    old_std = {}
-    for ser, size, fc, val in cur.execute(
-            f"SELECT SeriesCode, SizeCode, FieldCode, OptionValue FROM cfg.SeriesFieldOption "
-            f"WHERE PumpFamilyId=? AND IsStandard=1 AND FieldCode IN ({ph})", dean, *fields):
-        old_std[(ser, size, fc)] = val
     cur.execute(f"DELETE FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND FieldCode IN ({ph})",
                 dean, *fields)
     sql = ("INSERT INTO cfg.SeriesFieldOption (MetadataPublicationId, PumpFamilyId, "
@@ -111,13 +108,11 @@ def apply_master_options(cur, dean, pub, domains=None):
         for fc, vals in domains.items():
             if fc == "GLAND_GASKET" and ser not in misc_series:
                 continue
-            prev = old_std.get((ser, size, fc))
-            std_val = next((v for v in vals if prev is not None and _n(v) == _n(prev)), None)
+            # No STD seeds: SealNumbering has no standard seal, and the old Pump
+            # Constraints STD values (a partial, old-vocabulary set) would pre-fill
+            # fields and over-narrow Seal Type through the permutation cascade.
             for v in vals:
-                is_std = std_val is not None and v == std_val
-                n_std += is_std
-                batch.append((pub, dean, fc, fc, v, ser, size, SRC.name, "Master",
-                              "STD" if is_std else "X", 1 if is_std else 0))
+                batch.append((pub, dean, fc, fc, v, ser, size, SRC.name, "Master", "X", 0))
     cur.fast_executemany = True
     cur.executemany(sql, batch)
     return {"pairs": len(pairs), "rows": len(batch), "std": n_std,
