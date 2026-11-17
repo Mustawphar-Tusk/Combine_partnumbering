@@ -282,9 +282,10 @@ def main():
         sheet_tuples[s] = [dict(zip(fl, r[2].split("*"))) for r in rws]
 
     def expected(ref, ctx, f, series=None, size=None):
+        ctx = {k: S.canon_value(k, v) for k, v in ctx.items()}
         vals = {d[f] for d in sheet_tuples[ref] if f in d and all(d.get(k) == v for k, v in ctx.items())}
         offer = exp_off.get((series, size, f), set(domains[f])) if series else set(domains[f])
-        return {S._n(o) for o in offer if S._n(o) in vals}
+        return {S._n(o) for o in offer if S.canon_value(f, o) in vals}
     def opts(series, size, sel):
         st = post("/configurations/resolve-state", {"series": series, "selections": {"ALT_SIZE": size, **sel}})
         return st.get("allowable_options") or {}
@@ -353,7 +354,7 @@ def main():
             st2 = post("/configurations/resolve-state", {"series": ser, "selections": {**sel, "SEAL_TYPE": orig},
                                                          "changed_field": "SEAL_TYPE"})
             sel2 = st2.get("selections") or {}
-            ctx = {f: S._n(sel2[f]) for f in cas if sel2.get(f) and f in sheet_tuples[ref][0]}
+            ctx = {f: S.canon_value(f, sel2[f]) for f in cas if sel2.get(f) and f in sheet_tuples[ref][0]}
             seal_conf = [x for x in st2.get("conflicts") or [] if x["field"] in cas]
             if seal_conf or not any(all(d.get(k) == v for k, v in ctx.items()) for d in sheet_tuples[ref]):
                 bad_pick.append((ser, pick[:30], [x["field"] for x in seal_conf][:3]))

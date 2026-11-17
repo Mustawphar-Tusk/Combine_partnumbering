@@ -86,6 +86,17 @@ SHEET_TO_MASTER = {
     "SEAL_TYPE": {
         "type 8bith/8-1t": "jc type 8bith/8-1t",            # 'JC ' prefix missing on sheets
         "fas type vtsms 300 psi": "fas type vtsms (300 psi)",  # parentheses missing on Misc.
+        # owner decisions 2026-08-27:
+        "sib - pusher wedge seal": "balanced pusher wedge seal",
+        "siu - pusher wedge seal": "siu - pusher wedge seal (thin cross section)",
+        "fas type vtsms - double": "fas type vtsms",       # Double/Tandem is carried
+        "fas type vtsms - tandem": "fas type vtsms",       # by Seal Configuration
+        "jc type 5620pr - double": "jc type 5620pr",
+        "jc type 5620pr - tandem": "jc type 5620pr",
+        "jc type s8b1/8-1t": "jc type 8bith/8-1t",         # same seal (Master lists both)
+    },
+    "LANTERN_RING": {
+        "none": "not required",
     },
 }
 
@@ -183,7 +194,7 @@ def _context(selections, fields, skip=None, std=None):
     for f in fields:
         if f == skip or _is_soft(f, selections, std):
             continue
-        v = _n(selections.get(f, ""))
+        v = canon_value(f, selections.get(f, ""))
         if v and v != "c/f":
             ctx[f] = v
     return ctx
@@ -224,7 +235,7 @@ def filter_options(cursor, series, selections, allowable, std=None) -> None:
         ti = fields.index(t)
         ctx = _context(selections, fields, skip=t, std=std)
         cand = {r[ti] for r in _candidates(fields, rows, by_type, ctx)}
-        allowable[t] = [o for o in allowable[t] if _n(o) in cand]
+        allowable[t] = [o for o in allowable[t] if canon_value(t, o) in cand]
 
 
 def prune_seed(cursor, series, selections) -> dict:
@@ -239,7 +250,7 @@ def prune_seed(cursor, series, selections) -> dict:
     fields, rows, by_type = _sheet_rows(cursor, ref)
     dropped, drivers = {}, {}
     for f in DRIVER_FIELDS:
-        v = _n(selections.get(f, ""))
+        v = canon_value(f, selections.get(f, ""))
         if not v:
             continue
         if _candidates(fields, rows, by_type, {**drivers, f: v}):
@@ -250,7 +261,7 @@ def prune_seed(cursor, series, selections) -> dict:
     for f in fields:
         if f in DRIVER_FIELDS:
             continue
-        v = _n(selections.get(f, ""))
+        v = canon_value(f, selections.get(f, ""))
         if v and not _candidates(fields, rows, by_type, {**drivers, f: v}):
             selections.pop(f, None)
             dropped[f] = ""
@@ -272,7 +283,7 @@ def stale_defaults(cursor, series, selections, std) -> list:
             continue
         ti = fields.index(f)
         ctx = _context(selections, fields, skip=f, std=std)
-        if _n(selections.get(f)) not in {r[ti] for r in _candidates(fields, rows, by_type, ctx)}:
+        if canon_value(f, selections.get(f)) not in {r[ti] for r in _candidates(fields, rows, by_type, ctx)}:
             out.append(f)
     return out
 
