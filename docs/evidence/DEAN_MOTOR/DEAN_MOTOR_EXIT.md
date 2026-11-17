@@ -20,6 +20,9 @@
 
 - Fybroc gate `run_all_fybroc_audits.py`: ALL CORRECTIONS INTACT (9/9), run because `src/api/v2_routes.py` is shared.
 
+## Correction 1 (2026-08-27): Motor Frame PN code for HP frames
+Frame Size options are canonicalized to the Motor Numbering spelling (`143HP`), but the Motor Frame table ("Motor Numbering" sheet of PumpConfiguration_Logic_0.1) keeps the `VP` suffix (`143VP`). Every HP frame missed the lookup and its PN slot fell back to `00` while the motor code carried the frame. `dean_identifier.resolve_motor_frame` now also tries the table's VP spelling. Result: 76 of 83 offered frames code (all HP frames, e.g. `145HP` -> `28`; no code shared by two frames); DL200 example PN `D362-1J4S-CA01-1HWL-TBD-01000-2800-X0DG`, parity true. Still uncoded (not in the frame table): `404TS`, `404TSC`, `405TSC`, `444TSC`, `445TSC`, `447TSC`, `C/F`. `audit_dean_motor` 21/21 (new frame check); `audit_dean_motor_numbering` 27/0, `audit_dean_wet_end_resolve` 33/0, revision 15/15, config 28/0, U3 20/20, U4 17/17, A2 11/11, seal 115/115.
+
 ## Known gaps
 - 16 Pump Constraints frame sizes have no motor combination (`364T`, `365T`, `404T`, `405T`, `444T`, `445T`, `447T`, `449T` and TS/TSC/TC variants, plus `C/F` on 33 series). They are not offered for selection; a pump with such a frame cannot carry a motor code.
 - The Pricing block has 5 frame values that no series offers (`143TCZ`, `145TCZ`, `405HP`, `444HP`, `445HP`).

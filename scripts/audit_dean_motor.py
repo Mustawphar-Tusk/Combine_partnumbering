@@ -200,6 +200,21 @@ def main():
             checked += 1
             break
 
+    # Motor Frame PN code: every offered frame that exists in the Motor Frame table
+    # (in either the HP or the workbook VP spelling) must code, never '00'.
+    sys.path.insert(0, ".")
+    from src.api import dean_identifier as DI
+    import re as _re
+    table = {r[0].upper() for r in c.execute("SELECT CombinationKey FROM stg.SegmentCombinationImport "
+                                            "WHERE FamilyCode='DEAN' AND SegmentCode='MOTOR_FRAME'")}
+    offered = sorted({r[0] for r in c.execute("SELECT DISTINCT OptionValue FROM cfg.SeriesFieldOption "
+                                              "WHERE PumpFamilyId=? AND FieldCode='FRAME_SIZE'", dean)})
+    in_table = [f for f in offered if f.upper() in table or _re.sub(r"HP$", "VP", f.upper()) in table]
+    uncoded = [f for f in in_table if DI.resolve_motor_frame(c, {"FRAME_SIZE": f}) == "00"]
+    ok(not uncoded, f"Motor Frame PN code resolves for every offered frame in the frame table "
+       f"({len(in_table)} of {len(offered)}; HP frames match the table's VP spelling)", str(uncoded[:5]))
+    print(f"    offered frames with no Motor Frame code: {sorted(set(offered) - set(in_table))}")
+
     print("E. Isolation")
     for t, exp in (("SeriesFieldOption", 3638), ("FeasibleConstraint", 4487), ("ConstraintFieldMap", 28)):
         v = c.execute(f"SELECT COUNT(*) FROM cfg.{t} WHERE PumpFamilyId<>?", dean).fetchone()[0]

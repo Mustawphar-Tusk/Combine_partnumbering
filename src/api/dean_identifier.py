@@ -507,6 +507,14 @@ def resolve_motor_frame(cursor, selections):
     if frame == "" or frame.upper() in ("NONE", "N/A"):
         return "00"
     code = _seg_lookup(cursor, "MOTOR_FRAME", frame)
+    if not code:
+        # FRAME_SIZE options are canonicalized to the Motor Numbering spelling
+        # (UPPER, 'VP' -> 'HP'), but the Motor Frame table keeps the workbook's
+        # 'VP' suffix (e.g. 145VP). Match on the table's spelling as well.
+        import re as _re
+        alt = _re.sub(r"HP$", "VP", frame.upper())
+        if alt != frame:
+            code = _seg_lookup(cursor, "MOTOR_FRAME", alt)
     return code if code else "00"
 
 
