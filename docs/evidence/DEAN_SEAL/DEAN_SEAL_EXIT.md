@@ -12,7 +12,7 @@ factory); the seal code is part of the PN.
 | Item | What |
 |---|---|
 | `scripts/load_dean_seal_master.py` | Replaces DEAN seal options with each Master column's contiguous block from row 3 (junk cells below the block excluded). Called at the end of `d110_load_dean_config_v01.py` so a re-ingest keeps Master as authority. |
-| `sql/38_Create_Dean_Seal_Spec.sql` + `scripts/load_dean_seal_spec.py` | `cfg.DeanSealSpec`: one row per coded permutation of the 7 sheets (`1.000"…3.000" Shafts`, `Misc.`) keyed by `SealRefKey` (= `cfg.DeanSealReference`) + SHA-256 combo hash → `SealCode`, price, `PriceStatus` (PRICED/CF/TBD/BLANK). 315,196 rows. |
+| `sql/39_Create_Dean_Seal_Sheet_Tables.sql` + `scripts/load_dean_seal_spec.py` | ONE table per permutation sheet (`cfg.DeanSealSpec_S1000/S1375/S1750/S2125/S2250/S3000/Misc`), PRIMARY KEY on the permutation hash and unique `SealCode`; `cfg.DeanSealSheet` maps each Seal Reference key to its table. Permutations that appear more than once on a sheet are quarantined in `cfg.DeanSealSpecCollision` (see Correction 2). The earlier combined `cfg.DeanSealSpec` (sql/38) was dropped. |
 | `src/api/dean_seal.py` | Shared key construction + `resolve_seal_spec` (series → ref sheet → code/price). |
 | `src/api/dean_identifier.py`, `sql/23` | Seal code occupies its own PN slot between power-frame and flush groups: `D<A#>-<WetEnd>-<Trim><ImpOpts>-<Power>-<Seal>-<Flush…>-…`. Not Included → `000`; Included but unresolved → `TBD`. SQL branch is back-compatible (slot omitted if no `seal_code`). |
 | `src/api/v2_routes.py` | Dean Seal price line from `DeanSealSpec` (numeric → charged; CF/TBD/blank/pending → C/F). Legacy Fybroc-style seal block gated off for Dean. |
@@ -47,9 +47,22 @@ Fix:
   (4 types per sheet); Type + Configuration narrows further; seeds form a real
   permutation for all series. Audit now 59/59.
 
+## Correction 2 (2026-08-26): per-sheet tables, permutation collisions, no seal default
+- Each sheet is its own permutation space, so each now has its own table with the permutation hash as PRIMARY KEY. A colliding permutation cannot be stored in a sheet table. All its rows go to `cfg.DeanSealSpecCollision` and the resolver returns seal code `TBD` (status pending, detail lists the colliding codes such as KNZ/KRT, Seal line shows C/F) instead of picking one. Verified through the API (PN `…-1HWL-TBD-01000-…`, parity true).
+- Counts (unique permutations / quarantined rows): 1.000"–2.250" 21,892 / 24 each; 3.000" 21,424 / 984; Misc. 183,208 / 0. Table rows + quarantined rows equal the workbook coded rows on every sheet.
+- Seal configuration has no default: 0 STD rows on any Master-replaced seal field, and a fresh configuration seeds none of them for any series.
+- `audit_dean_seal.py` is now 87/87. `audit_dean_revision` 15/15, `audit_dean_wet_end_resolve` 33/0, `audit_cpq_a2` 11/11, `audit_cpq_u4` 17/17. The Fybroc gate was NOT re-run for this change (no shared/Fybroc code touched since the last passing gate; non-DEAN watermarks re-verified by the audit).
+
+## Correction 3 (2026-08-26): collisions fixed at load (earlier row kept), not quarantined
+Owner rule: when the same permutation (same values across every column) appears more than once on a sheet, the EARLIER row is retained and later rows are discarded; permutation numbers are re-sequenced.
+- `load_dean_seal_spec.py` now keeps the first row of each permutation (with its code and price) and discards later ones, logging them in `cfg.DeanSealSpecDiscarded` (with the retained code). `cfg.DeanSealSpecCollision` and the `TBD` collision branch are gone. Each sheet table also stores `PermutationNo`, re-sequenced 1..N in sheet order; retained rows keep their codes, so codes never move.
+- Result: every shaft sheet = 21,904 unique permutations (1.000"–2.250": 12 discarded each; 3.000": 504 discarded, 480 duplicated permutations of which 12 appeared three times); Misc. 183,208, none discarded. All 564 discarded rows had no price, as did the rows kept, so no price data was lost.
+- Checked in the source: permutation NUMBERS are already unique on every sheet (no number collisions to renumber); the collisions were identical values under different numbers/codes. The 564 discarded codes (e.g. KRT, KN9) are no longer assigned to any permutation.
+- Selecting a previously colliding permutation now resolves to the earlier row's code (`audit_dean_seal` 101/101, incl. a check that every discarded row is later than the retained one and its code is absent from the table).
+
 ## Known gaps / disclosures
 1. **Seal slot position** (between power-frame and flush) and widths (3 chars shaft sheets, 4 chars `Misc.` and 492 extra 3.000" rows) were chosen by me; the PN seal slot is therefore variable width. Confirm.
-2. **Source duplicates:** 12 identical permutations per shaft sheet (480 on 3.000") carry two different codes. The resolver returns the lowest code; engineering should dedupe the sheet.
+2. **Source collisions** (same selections, different codes and permutation numbers): 12 permutations on each of the 1.000"–2.250" sheets and 480 on 3.000" (1,104 rows total, none on `Misc.`). Resolved at load by keeping the earlier row (see Correction 3).
 3. **Seal Chamber Config:** the wet-end values (`Standard Bore Jacketed`, `Large Taper Bore`, …) are matched to the sheet's `Standard Bore`/`Large Bore` by prefix; values with no bore class (e.g. `NONE`) match no permutation → `TBD`. Heuristic, needs engineering confirmation.
 4. **Unreachable sheet rows:** permutation rows using values not on Master (Ni-Resist stationary face, Inconel hardware, `FAS Type VTSMS - Double/Tandem`, `JC Type 5620PR - Double/Tandem`, `SIB/SIU - Pusher Wedge Seal`, `Type 8BITH/8-1T`, Lantern Ring `NONE`) cannot be selected since Master is authoritative. Conversely 9 Master seal types and all 4 Seal Manufacturers never appear in any sheet (selecting them → `TBD`).
 5. **Series with ref `X`** (4 series) and any `Misc.` BLANK-price row resolve to `TBD`/C/F; engineering completes at review. `Misc.` has only 4 priced rows.

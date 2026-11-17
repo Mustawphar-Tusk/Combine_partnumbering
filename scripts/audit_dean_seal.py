@@ -92,53 +92,74 @@ def main():
     junk = {"Hastelloy C", "Tandem Component", "Standard Bore Jacketed"}
     ok(not any(v in junk for vs in got.values() for v in vs), "old-vocabulary / junk values absent from replaced fields")
 
-    print("B. cfg.DeanSealSpec mirrors the workbook")
+    nstd = c.execute("SELECT COUNT(*) FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND IsStandard=1 AND FieldCode IN (%s)" % ",".join("?" * len(domains)), dean, *domains).fetchone()[0]
+    ok(nstd == 0, "seal configuration has NO default: 0 STD rows on any Master-replaced seal field", str(nstd))
+
+    print("B. One spec table per sheet mirrors the workbook; duplicate permutations resolved (earlier row kept)")
     tmp = Path(tempfile.mkdtemp()) / "s.xlsx"
     shutil.copy(L.SRC, tmp)
     wb = load_workbook(tmp, data_only=True, read_only=True)
-    sheet_rows = {}
+    all_rows = {}
     for s in L.SHEETS:
-        sheet_rows[s] = L.read_sheet(wb, s)
-    sheetnames = set(wb.sheetnames)
+        all_rows[s] = L.read_sheet(wb, s)
     wb.close()
-    for s, rws in sheet_rows.items():
-        db = c.execute("SELECT COUNT(*), COUNT(DISTINCT SealCode), SUM(CASE WHEN PriceStatus='PRICED' THEN 1 ELSE 0 END), "
-                       "SUM(CASE WHEN PriceStatus='CF' THEN 1 ELSE 0 END), SUM(CASE WHEN PriceStatus='TBD' THEN 1 ELSE 0 END) "
-                       "FROM cfg.DeanSealSpec WHERE SealRefKey=?", s).fetchone()
-        st = Counter(r[6] for r in rws)
-        exp = (len(rws), len({r[1] for r in rws}), st["PRICED"], st["CF"], st["TBD"])
-        ok(tuple(db) == exp, f"{s}: rows/codes/priced/CF/TBD = {exp}", f"db={tuple(db)}")
+    sheet_rows, coll_rows = {}, {}
+    for s, rws in all_rows.items():
+        sheet_rows[s], coll_rows[s] = L.dedupe(rws)
+    for s in L.SHEETS:
+        tbl = "cfg.DeanSealSpec_" + S.SHEET_TABLE[s]
+        db = c.execute(f"SELECT COUNT(*), COUNT(DISTINCT SealCode), COUNT(DISTINCT ComboHash), "
+                       f"SUM(CASE WHEN PriceStatus='PRICED' THEN 1 ELSE 0 END), "
+                       f"SUM(CASE WHEN PriceStatus='CF' THEN 1 ELSE 0 END), SUM(CASE WHEN PriceStatus='TBD' THEN 1 ELSE 0 END) "
+                       f"FROM {tbl}").fetchone()
+        st = Counter(r[6] for r in sheet_rows[s])
+        n = len(sheet_rows[s])
+        exp = (n, n, n, st["PRICED"], st["CF"], st["TBD"])
+        ok(tuple(db) == exp, f"{tbl}: rows/codes/permutations/priced/CF/TBD = {exp} (permutation unique)", f"db={tuple(db)}")
+        dbd = c.execute("SELECT COUNT(*) FROM cfg.DeanSealSpecDiscarded WHERE SealRefKey=?", s).fetchone()[0]
+        ok(dbd == len(coll_rows[s]), f"{s}: {len(coll_rows[s])} later duplicate rows discarded and logged", f"db={dbd}")
+        ok(n + len(coll_rows[s]) == len(all_rows[s]), f"{s}: kept + discarded == workbook coded rows ({len(all_rows[s])})")
+        pn = [r[0] for r in c.execute(f"SELECT PermutationNo FROM {tbl} ORDER BY SourceRow")]
+        ok(pn == list(range(1, n + 1)), f"{s}: permutation numbers re-sequenced 1..{n} in sheet order")
+        wrong = c.execute(f"SELECT COUNT(*) FROM cfg.DeanSealSpecDiscarded d JOIN {tbl} t ON t.ComboHash=d.ComboHash "
+                          f"WHERE d.SealRefKey=? AND (t.SealCode<>d.KeptSealCode OR t.SourceRow>=d.SourceRow OR t.SealCode=d.SealCode)", s).fetchone()[0]
+        ok(wrong == 0, f"{s}: every discarded row is LATER than the retained row of its permutation and its code is dropped")
+        gone = c.execute(f"SELECT COUNT(*) FROM cfg.DeanSealSpecDiscarded d JOIN {tbl} t ON t.SealCode=d.SealCode WHERE d.SealRefKey=?", s).fetchone()[0]
+        ok(gone == 0, f"{s}: no discarded code survives in the sheet table")
+    m = dict(c.execute("SELECT SealRefKey, SpecTable FROM cfg.DeanSealSheet").fetchall())
+    ok(m == {k: "DeanSealSpec_" + v for k, v in S.SHEET_TABLE.items()}, "cfg.DeanSealSheet maps each Seal Reference key to its own table")
     refs = {r[0] for r in c.execute("SELECT DISTINCT SealRefKey FROM cfg.DeanSealReference WHERE SealRefKey<>'X'")}
-    ok(refs <= set(L.SHEETS), f"every Seal Reference key has a loaded sheet {sorted(refs)}")
-    ok({r[0] for r in c.execute("SELECT DISTINCT SealRefKey FROM cfg.DeanSealSpec")} == set(L.SHEETS),
-       "DeanSealSpec holds exactly the 7 permutation sheets (no Combined Table / Type sheets)")
-    tot = c.execute("SELECT COUNT(*) FROM cfg.DeanSealSpec").fetchone()[0]
-    ok(tot == sum(len(v) for v in sheet_rows.values()), f"total spec rows == workbook coded rows ({tot})")
+    ok(refs <= set(m), f"every Seal Reference key has its own table {sorted(refs)}")
+    ok(c.execute("SELECT OBJECT_ID('cfg.DeanSealSpec','U')").fetchone()[0] is None,
+       "no combined seal table remains (no cross-sheet permutation mixing)")
 
-    print("C. Resolver round-trip")
+    print("C. Resolver round-trip and duplicate-permutation handling")
     random.seed(7)
     for s, rws in sheet_rows.items():
         series = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey=?", s).fetchone()[0]
-        first = {}
-        for r in rws:
-            first.setdefault(r[3], r)            # lowest source row per combo hash (codes ascending in source)
-        low = {}
-        for h, r in first.items():
-            pass
-        by = {}
-        for r in rws:
-            by.setdefault(r[3], []).append(r)
-        sample = random.sample(list(by.values()), 150)
+        sample = random.sample(rws, 150)
         bad = 0
         fields = [f for f in S.SEAL_KEY_FIELDS if not (f == "GLAND_GASKET" and s not in S.GASKET_SHEETS)]
-        for grp in sample:
-            r = grp[0]
+        for r in sample:
             sel = dict(zip(fields, r[2].split("*")))
             sel["SEAL_OPTION"] = "Included"
             res = S.resolve_seal_spec(c, series, sel)
-            if res["status"] != "resolved" or res["code"] != min(g[1] for g in grp):
+            if res["status"] != "resolved" or res["code"] != r[1]:
                 bad += 1
         ok(bad == 0, f"{s}: 150 sampled permutations resolve to their code", f"bad={bad}")
+    for s, crs in coll_rows.items():
+        if not crs:
+            continue
+        series = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey=?", s).fetchone()[0]
+        fields = [f for f in S.SEAL_KEY_FIELDS if not (f == "GLAND_GASKET" and s not in S.GASKET_SHEETS)]
+        bad = 0
+        for r in crs[:60]:
+            sel = dict(zip(fields, r[2].split("*")))
+            sel["SEAL_OPTION"] = "Included"
+            res = S.resolve_seal_spec(c, series, sel)
+            if not (res["status"] == "resolved" and res["code"] == r[8][1] and res["code"] != r[1]):
+                bad += 1
+        ok(bad == 0, f"{s}: a duplicated permutation resolves to the EARLIER row's code (never the discarded one)", f"bad={bad}")
     r1 = S.resolve_seal_spec(c, "RA2096", {"SEAL_OPTION": "Supplied by others, installed by Dean"})
     ok(r1["code"] == "000" and r1["status"] == "none", "seal not Included -> '000'")
     xs = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey='X'").fetchone()[0]
@@ -202,7 +223,7 @@ def main():
     print("F. Option cascade: Seal Reference sheet + selected Seal Type decide the options")
     cas = S.CASCADE_FIELDS
     sheet_tuples = {}
-    for s, rws in sheet_rows.items():
+    for s, rws in all_rows.items():
         fl = [f for f in S.SEAL_KEY_FIELDS if not (f == "GLAND_GASKET" and s not in S.GASKET_SHEETS)]
         sheet_tuples[s] = [dict(zip(fl, r[2].split("*"))) for r in rws]
 
@@ -257,11 +278,14 @@ def main():
         st = post("/configurations/resolve-state", {"series": ser, "selections": {"ALT_SIZE": size[0]}}) \
             if False else post("/configurations/resolve-state", {"series": ser, "selections": {}})
         sel = st.get("selections") or {}
+        seeded = [f for f in S.CASCADE_FIELDS if sel.get(f)]
+        if seeded:
+            badseed.append((ser, seeded[:3]))
         ctx = {f: S._n(sel[f]) for f in cas if sel.get(f) and S._n(sel[f]) != "c/f"
                and not (f == "GLAND_GASKET" and ref not in S.GASKET_SHEETS)}
         if not any(all(d.get(k) == v for k, v in ctx.items()) for d in sheet_tuples[ref]):
             badseed.append(ser)
-    ok(not badseed, "STD-seeded seal fields form a real permutation on the series' sheet (all series)", str(badseed[:5]))
+    ok(not badseed, "fresh configuration seeds NO seal field for any series (seal configuration has no default)", str(badseed[:5]))
 
     print("E. Isolation (Fybroc / non-DEAN unchanged)")
     for t, exp in (("SeriesFieldOption", 3638), ("FeasibleConstraint", 4487), ("ConstraintFieldMap", 28)):

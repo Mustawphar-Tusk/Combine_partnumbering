@@ -51,6 +51,13 @@ SHEET_HEADER_TO_FIELD = {
     "sleeve material": "SHAFT_SLEEVE_MATERIAL",
 }
 
+# Seal Reference key -> per-sheet spec table suffix (cfg.DeanSealSpec_<suffix>, sql/39)
+SHEET_TABLE = {
+    '1.000" Shafts': "S1000", '1.375" Shafts': "S1375", '1.750" Shafts': "S1750",
+    '2.125" Shafts': "S2125", '2.250" Shafts': "S2250", '3.000" Shafts': "S3000",
+    "Misc.": "Misc",
+}
+
 NO_SEAL_CODE = "000"        # seal not supplied by Dean (Seal Option != Included)
 PENDING_SEAL_CODE = "TBD"   # Included, but no coded permutation (engineering)
 
@@ -126,7 +133,8 @@ def _sheet_rows(cursor, ref: str):
     keep = [i for i, f in enumerate(all_fields) if f != "SEAL_CHAMBER_CONFIG"]
     fields = tuple(all_fields[i] for i in keep)
     seen = set()
-    for (k,) in cursor.execute("SELECT ComboKey FROM cfg.DeanSealSpec WHERE SealRefKey = ?", ref):
+    # the sheet's own table (permutation-unique; duplicates were resolved at load)
+    for (k,) in cursor.execute(f"SELECT ComboKey FROM cfg.DeanSealSpec_{SHEET_TABLE[ref]}"):
         p = k.split("*")
         seen.add(tuple(p[i] for i in keep))
     rows = list(seen)
@@ -233,11 +241,13 @@ def resolve_seal_spec(cursor, series, selections) -> dict:
     if missing:
         out["detail"] = "incomplete seal selection: " + ", ".join(missing[:4])
         return out
-    key = combo_key(vals, ref)
+    if ref not in SHEET_TABLE:
+        out["detail"] = "no spec table for Seal Reference " + ref
+        return out
+    h = combo_hash(combo_key(vals, ref))
     row = cursor.execute(
-        "SELECT TOP 1 SealCode, PriceAmount, PriceStatus FROM cfg.DeanSealSpec "
-        "WHERE SealRefKey = ? AND ComboHash = ? ORDER BY SealCode",
-        ref, combo_hash(key)).fetchone()
+        f"SELECT SealCode, PriceAmount, PriceStatus FROM cfg.DeanSealSpec_{SHEET_TABLE[ref]} "
+        f"WHERE ComboHash = ?", h).fetchone()
     if row is None:
         out["detail"] = "seal permutation not enumerated for " + ref
         return out
