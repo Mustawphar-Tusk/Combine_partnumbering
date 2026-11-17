@@ -8,7 +8,7 @@ Expectations are derived from SealNumbering.xlsx and the DB, not hardcoded:
      workbook; every non-'X' DeanSealReference key has spec rows; Combined Table
      and Type sheets were not loaded.
   C. Resolver: a sample of spec rows per sheet resolves back to a code (lowest code
-     on source-duplicate combos) with the right price class; not-Included -> '000';
+     on source-duplicate combos) with the right price class; no seal configuration -> '000'; Seal Option/Manufacturer never affect the code;
      incomplete/C-F selection -> 'TBD'; series with ref 'X' -> 'TBD'.
   D. API: PN carries the seal code between power-frame and flush groups with
      python==SQL parity; Seal component priced / C/F as per price class.
@@ -160,14 +160,29 @@ def main():
             if not (res["status"] == "resolved" and res["code"] == r[8][1] and res["code"] != r[1]):
                 bad += 1
         ok(bad == 0, f"{s}: a duplicated permutation resolves to the EARLIER row's code (never the discarded one)", f"bad={bad}")
-    r1 = S.resolve_seal_spec(c, "RA2096", {"SEAL_OPTION": "Supplied by others, installed by Dean"})
-    ok(r1["code"] == "000" and r1["status"] == "none", "seal not Included -> '000'")
+    ok(S.resolve_seal_spec(c, "RA2096", {})["code"] == "000", "no seal configuration field selected -> '000'")
+    ok(S.resolve_seal_spec(c, "RA2096", {"SEAL_OPTION": "Included", "SEAL_MANUFACTURER": "John Crane", "SEAL_CHAMBER_CONFIG": "Standard Bore"})["code"] == "000",
+       "Seal Option / Seal Manufacturer / Seal Chamber Config alone never create a seal code ('000')")
     xs = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey='X'").fetchone()[0]
-    r2 = S.resolve_seal_spec(c, xs, {"SEAL_OPTION": "Included"})
-    ok(r2["code"] == "TBD" and r2["status"] == "pending", "series with ref 'X' -> 'TBD' (engineering)")
-    r3 = S.resolve_seal_spec(c, "DL200", {"SEAL_OPTION": "Included", "SEAL_TYPE": "C/F"})
-    ok(r3["code"] == "TBD", "incomplete / C-F seal selection -> 'TBD'")
-
+    r2 = S.resolve_seal_spec(c, xs, {"SEAL_TYPE": domains["SEAL_TYPE"][0]})
+    ok(r2["code"] == "TBD" and r2["status"] == "pending", "series with ref 'X' + a seal selection -> 'TBD' (engineering)")
+    r3 = S.resolve_seal_spec(c, "DL200", {"SEAL_TYPE": domains["SEAL_TYPE"][0]})
+    ok(r3["code"] == "TBD", "incomplete seal selection -> 'TBD'")
+    # Seal Option and Seal Manufacturer must not drive or affect the seal code
+    variants = [{}] + [{"SEAL_OPTION": o} for o in ("Included", "Supplied by others, installed by Dean", "Supplied by others, installed by Others")] \
+        + [{"SEAL_MANUFACTURER": m} for m in domains["SEAL_MANUFACTURER"]] \
+        + [{"SEAL_OPTION": "Included", "SEAL_MANUFACTURER": "Custom"}]
+    for s, rws in sheet_rows.items():
+        series = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey=?", s).fetchone()[0]
+        fields = [f for f in S.SEAL_KEY_FIELDS if not (f == "GLAND_GASKET" and s not in S.GASKET_SHEETS)]
+        bad = 0
+        for r in random.sample(rws, 25):
+            for v in variants:
+                sel = {**dict(zip(fields, r[2].split("*"))), **v}
+                res = S.resolve_seal_spec(c, series, sel)
+                if res["code"] != r[1] or res["status"] != "resolved":
+                    bad += 1
+        ok(bad == 0, f"{s}: Seal Option / Seal Manufacturer variants never change the seal code (25 permutations x {len(variants)} variants)", f"bad={bad}")
     print("D. API: PN slot, parity, pricing")
     n = 0
     for s in ['1.000" Shafts', "3.000" + '" Shafts', "Misc."]:
@@ -211,15 +226,36 @@ def main():
             else:
                 ok(False, f"{s} {want}: seal did not resolve via API", f"spec={spec}")
             n += 1
-    sel = dict((post("/configurations/resolve-state", {"series": "DL200", "selections": {}}).get("selections") or {}))
-    sel["SERIES"] = "DL200"
-    sel["SEAL_OPTION"] = "Supplied by others, installed by Dean"
-    res = post("/configured-products/resolve", {"series": "DL200", "selections": sel, "requested_by": "seal-audit"})
-    pn = res.get("part_number") or ""
-    parts = pn.split("-")
+    # PN independence from Seal Option / Seal Manufacturer, end to end (API)
+    series = c.execute("SELECT TOP 1 SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey='1.000\" Shafts'").fetchone()[0]
+    r0 = sheet_rows['1.000" Shafts'][0]
+    base = dict(post("/configurations/resolve-state", {"series": series, "selections": {}}).get("selections") or {})
+    base["SERIES"] = series
+    vals = dict(zip([f for f in S.SEAL_KEY_FIELDS if f != "GLAND_GASKET"], r0[2].split("*")))
+    for f in vals:
+        for mv in domains.get(f, []):
+            if S._n(mv) == vals[f]:
+                vals[f] = mv
+    vals["SEAL_CHAMBER_CONFIG"] = base.get("SEAL_CHAMBER_CONFIG", "Standard Bore")
+    pns, comps = set(), {}
+    for opt in ("Included", "Supplied by others, installed by Dean"):
+        for mfr in ("Dean Choice", "John Crane", "Custom"):
+            sel = {**base, **vals, "SEAL_OPTION": opt, "SEAL_MANUFACTURER": mfr}
+            res = post("/configured-products/resolve", {"series": series, "selections": sel, "requested_by": "seal-audit"})
+            pns.add(res["part_number"])
+            comps[(opt, mfr)] = [x for x in res["component_pricing"] if x["component"] == "Seal"]
+    ok(len(pns) == 1 and f"-{r0[1]}-" in next(iter(pns)),
+       f"API: Seal Option x Seal Manufacturer variants (6) give ONE identical PN carrying the seal code {r0[1]}", str(pns))
+    ok(all(bool(v) for (o, m), v in comps.items() if o == "Included")
+       and not any(v for (o, m), v in comps.items() if o != "Included"),
+       "Seal price line follows Seal Option (pricing only); the PN does not")
+    sel = dict(base)
+    for f in S.CASCADE_FIELDS:
+        sel.pop(f, None)
+    res = post("/configured-products/resolve", {"series": series, "selections": {**sel, "SEAL_OPTION": "Included", "SEAL_MANUFACTURER": "John Crane"}, "requested_by": "seal-audit"})
+    parts = (res.get("part_number") or "").split("-")
     ok(len(parts) >= 5 and parts[4] == "000" and res.get("parity_ok") is True,
-       f"not-Included seal -> '-000-' slot in PN ({pn})")
-
+       f"no seal configuration selected -> '-000-' slot even with Seal Option Included ({res.get('part_number')})")
     print("F. Option cascade: Seal Reference sheet + selected Seal Type decide the options")
     cas = S.CASCADE_FIELDS
     sheet_tuples = {}

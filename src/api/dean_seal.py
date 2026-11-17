@@ -217,16 +217,21 @@ def resolve_seal_spec(cursor, series, selections) -> dict:
     """Resolve the seal slot.
 
     Returns {code, status, ref_key, price_amount, price_status, detail}
-      status: 'none'      Seal Option is not Included          -> code '000'
+      status: 'none'      no seal configuration field selected -> code '000'
               'resolved'  a coded permutation matched          -> sheet code
-              'pending'   Included but not resolvable          -> 'TBD'
+              'pending'   seal configuration started but not resolvable -> 'TBD'
                           (no sheet for the series, incomplete/C-F selection, or
                           permutation not enumerated); engineering review.
+
+    The PN seal slot is driven ONLY by the seal configuration fields (SEAL_KEY_FIELDS)
+    and the series' Seal Reference sheet. SEAL_OPTION and SEAL_MANUFACTURER are not
+    permutation fields and never affect the code. supplied (Seal Option ==
+    Included) is reported for PRICING only.
     """
-    opt = _n(selections.get("SEAL_OPTION", ""))
     out = {"code": NO_SEAL_CODE, "status": "none", "ref_key": None,
-           "price_amount": None, "price_status": None, "detail": ""}
-    if opt != "included":
+           "price_amount": None, "price_status": None, "detail": "",
+           "supplied": _n(selections.get("SEAL_OPTION", "")) == "included"}
+    if not any(_n(selections.get(f, "")) not in ("", "c/f") for f in CASCADE_FIELDS):
         return out
     out["code"], out["status"] = PENDING_SEAL_CODE, "pending"
     ref = seal_ref_key(cursor, series)

@@ -3195,12 +3195,12 @@ async def resolve_configured_product(family: str, body: ResolveRequest, request:
                 _add_component("Motor", _motor_label_val, None)
 
             # SEAL price (SealNumbering.xlsx): the series' Seal Reference sheet maps
-            # the seal selections to a code + price (cfg.DeanSealSpec). A numeric
+            # the seal selections to a code + price (cfg.DeanSealSpec_<sheet>). The seal line is\n            # charged only when Seal Option = Included (pricing only; the PN never uses it). A numeric
             # price is charged; 'C.F.'/'TBD'/blank (or a seal that cannot be
             # resolved yet) is an honest C/F line - engineering determines it when
             # the quote is submitted for review. No seal (not Included) -> no line.
             _seal_spec = (segment_debug or {}).get("seal_spec") or {}
-            if _seal_spec.get("status") in ("resolved", "pending"):
+            if _seal_spec.get("status") in ("resolved", "pending") and _seal_spec.get("supplied"):
                 _seal_lbl = body.selections.get("SEAL_TYPE") or _seal_spec.get("code")
                 if (_seal_spec.get("status") == "resolved"
                         and _seal_spec.get("price_status") == "PRICED"

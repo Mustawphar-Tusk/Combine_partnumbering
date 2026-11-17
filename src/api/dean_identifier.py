@@ -52,8 +52,9 @@ Seal (SealNumbering.xlsx): the Seal Reference Table (cfg.DeanSealReference) name
 permutation sheet for the series; cfg.DeanSealSpec maps the seal selections to the
 sheet's code (3 chars on the shaft sheets, 4 on Misc. and a few 3.000" rows), which
 occupies its own PN slot between the power-frame and flush groups (see dean_seal.py).
-Seal not Included -> '000'; Included but not resolvable -> 'TBD' (engineering
-completes it at quote review). Seal price/status is surfaced via segment_debug.seal_spec.
+Driven only by the seal configuration fields (Seal Option and Seal Manufacturer
+never affect it): none selected -> '000'; started but not resolvable -> 'TBD'
+(engineering completes it at quote review). Seal price/status is surfaced via segment_debug.seal_spec.
 
 This module is the option-1 resolver: it computes the segment codes in Python
 (the parity oracle) and returns the segments payload for
@@ -626,7 +627,6 @@ def resolve_segments(cursor, series, size, selections):
 
     # --- special segments ---
     trim = resolve_trim(selections)
-    seal = resolve_seal(selections)
 
     # NOTE: seal is resolved (00000/TBD__) for reference but is OMITTED from the
     # Dean PN - the seal code is authored only in the external Seal Numbering
@@ -634,7 +634,7 @@ def resolve_segments(cursor, series, size, selections):
     # status is surfaced in segment_debug; the PN excludes it. (D130, 2026-08-26.)
     # SEAL (SealNumbering.xlsx): the series' Seal Reference sheet maps the seal
     # selections to a seal code, which occupies its own PN slot (between the
-    # power-frame and flush groups). Not Included -> '000'; Included but not
+    # power-frame and flush groups). Driven only by the seal fields: none -> '000'; started but not
     # resolvable -> 'TBD' (engineering completes it at quote review).
     from . import dean_seal as _dean_seal
     seal_spec = _dean_seal.resolve_seal_spec(cursor, series, selections)
@@ -671,20 +671,18 @@ def resolve_segments(cursor, series, size, selections):
     )
 
     failed = [k for k, v in payload.items() if "?" in str(v)]
-    # seal status (out-of-band; not in PN). "included_external_db" => code comes
-    # from the external Seal Numbering DB (pending); "none" => no seal.
-    seal_status = "included_external_db" if seal == "TBD__" else "none"
+    # seal status (out-of-band): none | resolved | pending_engineering
     seal_status = {"none": "none", "resolved": "resolved",
                    "pending": "pending_engineering"}[seal_spec["status"]]
     debug = {**payload, "seal_status": seal_status, "seal_spec": seal_spec,
-             "seal_code_placeholder": seal,
+             "seal_code_placeholder": seal_code,
              "py_pn": py_pn, "failed_segments": failed}
     return payload, debug
 
 
 def assemble_pn(payload):
     """Assemble the Dean PN from a segments payload (mirror of the SQL branch).
-    Seal is excluded from the PN (see resolve_segments)."""
+    The seal code slot (seal_code) sits between the power-frame and flush groups."""
     return (
         f"{payload['base_identifier']}"
         f"-{payload['wet_end']}"

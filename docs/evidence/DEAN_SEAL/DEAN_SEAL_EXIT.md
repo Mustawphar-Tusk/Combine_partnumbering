@@ -60,6 +60,9 @@ Owner rule: when the same permutation (same values across every column) appears 
 - Checked in the source: permutation NUMBERS are already unique on every sheet (no number collisions to renumber); the collisions were identical values under different numbers/codes. The 564 discarded codes (e.g. KRT, KN9) are no longer assigned to any permutation.
 - Selecting a previously colliding permutation now resolves to the earlier row's code (`audit_dean_seal` 101/101, incl. a check that every discarded row is later than the retained one and its code is absent from the table).
 
+## Correction 4 (2026-08-26): Seal Option and Seal Manufacturer do not drive the PN
+The seal PN slot is now computed only from the seal configuration fields and the series' Seal Reference sheet. Seal Option and Seal Manufacturer are not permutation fields and no longer affect the code: no seal configuration field selected -> `000`; some selected but unresolved -> `TBD`; resolved -> the sheet code, whatever Seal Option / Seal Manufacturer say. Seal Option still gates the seal PRICE line (charged only when Included); that is pricing, not the PN. `audit_dean_seal.py` now 111/111 (25 permutations x 8 option/manufacturer variants per sheet give identical codes; API: 6 option x manufacturer variants give one identical PN). Other audits unchanged and passing (revision 15/15, config 28/0, wet_end_resolve 33/0, U3 20/20, U4 17/17, A2 11/11). Fybroc gate not re-run (Dean-only code paths).
+
 ## Known gaps / disclosures
 1. **Seal slot position** (between power-frame and flush) and widths (3 chars shaft sheets, 4 chars `Misc.` and 492 extra 3.000" rows) were chosen by me; the PN seal slot is therefore variable width. Confirm.
 2. **Source collisions** (same selections, different codes and permutation numbers): 12 permutations on each of the 1.000"–2.250" sheets and 480 on 3.000" (1,104 rows total, none on `Misc.`). Resolved at load by keeping the earlier row (see Correction 3).
