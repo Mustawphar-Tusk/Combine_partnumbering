@@ -195,6 +195,19 @@ BEGIN
         -- (cfg.ConfiguredProduct.PumpSeriesId is a nullable FK and cfg.PumpSeries
         -- is not fully populated for every Fybroc series; the series is already
         -- captured in the canonical JSON, Part Number, and SKU).
+        -- DEAN only: a product stored under an EARLIER numbering rule can hold this
+        -- signature with a different (now stale) Part Number. The PN is the
+        -- identity, so retire the stale row's signature (its PN, SKU and any quote
+        -- references stay untouched) and let the current PN be created. Without
+        -- this, signature reuse would hand back the stale PN. Fybroc is unaffected.
+        IF UPPER(@FamilyCode) = 'DEAN'
+            UPDATE cfg.ConfiguredProduct
+               SET ConfigurationSignature = CONVERT(char(64), HASHBYTES('SHA2_256',
+                       CONVERT(varbinary(max), CONCAT('RETIRED|', ConfigurationSignature, '|', PartNumber))), 2)
+             WHERE PumpFamilyId = (SELECT PumpFamilyId FROM cfg.PumpFamily WHERE FamilyCode = 'DEAN')
+               AND ConfigurationSignature = @Signature
+               AND PartNumber <> @PartNumber;
+
         DECLARE @res TABLE (
             ConfiguredProductId bigint,
             PartNumber varchar(200),

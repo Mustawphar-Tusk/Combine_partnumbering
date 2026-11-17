@@ -549,7 +549,8 @@ def main():
     # SEAL OPTIONS: SealNumbering.xlsx 'Master' is the authority for the seal
     # selection options and replaces the Pump Constraints seal options.
     from load_dean_seal_master import apply_master_options
-    print("Seal Master options:", apply_master_options(c, dean, pub))
+    print("Seal options (Master vocabulary, Pump Constraints offer/STD):",
+          apply_master_options(c, dean, pub, models=models))
 
     fy2 = {t: c.execute(f"SELECT COUNT(*) FROM cfg.{t} WHERE PumpFamilyId<>?", dean).fetchone()[0]
            for t in ("FeasibleConstraint", "ConstraintFieldMap", "SeriesFieldOption")}

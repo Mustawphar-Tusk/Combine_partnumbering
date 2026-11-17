@@ -147,10 +147,24 @@ def _sheet_rows(cursor, ref: str):
     return data
 
 
-def _context(selections, fields, skip=None):
+# Seal Configuration and Seal Type DRIVE the seal: their value (STD or chosen)
+# always narrows the other seal fields. Every other seal field's STD value is a
+# DEFAULT from Pump Constraints: the defaults are independent per-field markers
+# and together often do not form one permutation (e.g. Outboard Rotating Face
+# 'Carbon' is only valid for double seals), so a field that still holds its STD
+# value never narrows any other field. Once the user changes it, it narrows.
+DRIVER_FIELDS = ("SEAL_CONFIGURATION", "SEAL_TYPE")
+
+
+def _is_soft(f, selections, std):
+    return (f not in DRIVER_FIELDS and std is not None
+            and _n(std.get(f, "")) != "" and _n(selections.get(f, "")) == _n(std.get(f, "")))
+
+
+def _context(selections, fields, skip=None, std=None):
     ctx = {}
     for f in fields:
-        if f == skip:
+        if f == skip or _is_soft(f, selections, std):
             continue
         v = _n(selections.get(f, ""))
         if v and v != "c/f":
@@ -166,11 +180,16 @@ def _candidates(fields, rows, by_type, ctx):
     return [r for r in pool if all(r[i] == v for i, v in items)]
 
 
-def filter_options(cursor, series, selections, allowable) -> None:
+def _upper_std(std):
+    return {str(k).upper(): v for k, v in (std or {}).items()} if std is not None else None
+
+
+def filter_options(cursor, series, selections, allowable, std=None) -> None:
     """Narrow `allowable` (field -> option list, mutated in place) for the seal
     fields: an option stays only if some permutation on the series' Seal Reference
-    sheet carries it together with every OTHER selected seal field (Seal Type
-    included). Series with no sheet (ref 'X'/none) are not narrowed."""
+    sheet carries it together with every OTHER selected seal field that is a driver
+    (Seal Configuration / Seal Type) or has been changed from its STD default.
+    Series with no sheet (ref 'X'/none) are not narrowed."""
     targets = [f for f in CASCADE_FIELDS if f in allowable]
     if not targets:
         return
@@ -180,38 +199,65 @@ def filter_options(cursor, series, selections, allowable) -> None:
     fields, rows, by_type = _sheet_rows(cursor, ref)
     if not rows:
         return
+    std = _upper_std(std)
     for t in targets:
         if t not in fields:
             allowable[t] = []      # e.g. Gland Gasket on a sheet without that column
             continue
         ti = fields.index(t)
-        ctx = _context(selections, fields, skip=t)
+        ctx = _context(selections, fields, skip=t, std=std)
         cand = {r[ti] for r in _candidates(fields, rows, by_type, ctx)}
         allowable[t] = [o for o in allowable[t] if _n(o) in cand]
 
 
 def prune_seed(cursor, series, selections) -> dict:
-    """STD-seeded seal fields that do not form one permutation on the series'
-    sheet are dropped (the later one of any conflicting pair). Mutates
-    `selections`; returns {field: ''} for each dropped field."""
+    """Validate the STD seed against the series' sheet. Drivers (Seal
+    Configuration, then Seal Type) must form a permutation together; every other
+    seeded default is kept if it is valid with the kept drivers (checked one at a
+    time - defaults do not have to agree with each other). Invalid seeds are
+    dropped. Mutates `selections`; returns {field: ''} for each dropped field."""
     ref = seal_ref_key(cursor, series)
     if not ref or ref == "X":
         return {}
     fields, rows, by_type = _sheet_rows(cursor, ref)
-    dropped, keep = {}, {}
-    for f in ("SEAL_CONFIGURATION", "SEAL_TYPE") + tuple(
-            x for x in fields if x not in ("SEAL_CONFIGURATION", "SEAL_TYPE")):
+    dropped, drivers = {}, {}
+    for f in DRIVER_FIELDS:
         v = _n(selections.get(f, ""))
-        if not v or f not in fields:
+        if not v:
             continue
-        trial = {**keep, f: v}
-        if _candidates(fields, rows, by_type, trial):
-            keep[f] = v
+        if _candidates(fields, rows, by_type, {**drivers, f: v}):
+            drivers[f] = v
         else:
+            selections.pop(f, None)
+            dropped[f] = ""
+    for f in fields:
+        if f in DRIVER_FIELDS:
+            continue
+        v = _n(selections.get(f, ""))
+        if v and not _candidates(fields, rows, by_type, {**drivers, f: v}):
             selections.pop(f, None)
             dropped[f] = ""
     return dropped
 
+
+def stale_defaults(cursor, series, selections, std) -> list:
+    """Seal fields still at their STD default whose value no longer fits the
+    current drivers / changed fields (e.g. after the user picks a Seal Type). They
+    are cleared by the caller instead of being reported as user conflicts."""
+    ref = seal_ref_key(cursor, series)
+    if not ref or ref == "X":
+        return []
+    fields, rows, by_type = _sheet_rows(cursor, ref)
+    std = _upper_std(std)
+    out = []
+    for f in fields:
+        if not _is_soft(f, selections, std):
+            continue
+        ti = fields.index(f)
+        ctx = _context(selections, fields, skip=f, std=std)
+        if _n(selections.get(f)) not in {r[ti] for r in _candidates(fields, rows, by_type, ctx)}:
+            out.append(f)
+    return out
 
 def resolve_seal_spec(cursor, series, selections) -> dict:
     """Resolve the seal slot.

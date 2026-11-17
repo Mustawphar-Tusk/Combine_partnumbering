@@ -1090,7 +1090,7 @@ def _apply_constraints(cursor, pub_id, family_id, series, selections, allowable,
     # options apply. Dean-only: only Dean callers pass std_defaults.
     if std_defaults is not None:
         from . import dean_seal as _dean_seal
-        _dean_seal.filter_options(cursor, series, selections, allowable)
+        _dean_seal.filter_options(cursor, series, selections, allowable, std=std_defaults)
 
     label_to_sfo = ctx["label_to_sfo"]
     all_rows = ctx["feasible_rows"]
@@ -2084,6 +2084,17 @@ async def resolve_configuration_state(
             if fc not in applicable:
                 del selections[fc]
                 dropped_fields.add(fc)
+
+        # Dean seal: a seal field still holding its Pump Constraints STD default that
+        # no longer fits the chosen Seal Configuration / Seal Type (or a changed seal
+        # field) is CLEARED and reported in dropped_fields - it was a default, not a
+        # user choice, so it is not surfaced as a conflict.
+        if family_upper == "DEAN":
+            from . import dean_seal as _dean_seal
+            for _sf in _dean_seal.stale_defaults(cursor, body.series, selections,
+                                                 standard_defaults):
+                selections.pop(_sf, None)
+                dropped_fields.add(_sf)
 
         conflicts: list[dict] = []
         for fc in list(selections):

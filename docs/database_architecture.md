@@ -215,9 +215,9 @@ flowchart LR
 
 **PN slot values:** a resolved permutation gives its sheet code; no seal configuration field selected gives `000`; some selected but unresolved gives `TBD`.
 
-**Option cascade.** The same tables drive the seal dropdowns: an option is offered only if some permutation on the series' sheet contains it together with every other selected seal field (Seal Type included). Seal fields have no default (`IsStandard = 0` everywhere).
+**Options and STD.** `cfg.SeriesFieldOption` holds the seal options per (series, size): offered and STD per `Pump Constraints`, spelled as on the SealNumbering `Master` sheet (loaded by `scripts/load_dean_seal_master.py`). Seal Chamber Config and Seal Option keep their Pump Constraints values.
 
-**Options themselves** come from the `Master` sheet of SealNumbering.xlsx and are loaded into `cfg.SeriesFieldOption` (Dean only) by `scripts/load_dean_seal_master.py`. Seal Chamber Config and Seal Option are not on Master and keep their Pump Constraints values.
+**Option cascade.** The sheet tables also drive the seal dropdowns: an option is offered only if some permutation on the series' sheet contains it together with the selected Seal Configuration / Seal Type and any seal field the user changed from its STD. Fields still at their STD are defaults and do not narrow other fields; a default that does not fit a newly chosen Seal Type is cleared.
 
 Loaders: `scripts/load_dean_seal_reference.py` (reference table), `scripts/load_dean_seal_spec.py` (sheet tables + discards, applies `sql/39`), `scripts/load_dean_seal_master.py` (options).
 

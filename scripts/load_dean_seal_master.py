@@ -22,9 +22,11 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 import shutil
 import tempfile
 from pathlib import Path
+from collections import Counter
 
 import pyodbc
 from openpyxl import load_workbook
@@ -84,18 +86,51 @@ def read_master(path=SRC):
     return domains
 
 
-def apply_master_options(cur, dean, pub, domains=None):
-    """Replace DEAN seal options. Returns summary dict. Caller owns the connection."""
+# Pump Constraints spelling -> Master spelling (same option, different label).
+PC_TO_MASTER = {
+    ("OUTBOARD_HARDWARE_MATERIAL", "hastelloy c"): "Hastelloy",
+    ("SHAFT_SLEEVE_MATERIAL", "420 ss"): "420",
+    ("SHAFT_SLEEVE_MATERIAL", "420 ss hardened"): "420 Hardened",
+}
+
+
+def to_master(fc, v, canon):
+    """Master spelling of a Pump Constraints value, or None if Master has no such option."""
+    a = PC_TO_MASTER.get((fc, _n(v)))
+    return a if a is not None else canon[fc].get(_n(v))
+
+
+def read_pc_models():
+    """Pump Constraints models (series, size, cells) via the d110 parser."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import d110_load_dean_config_v01 as D
+    tmp = Path(tempfile.mkdtemp()) / D.WB_PATH.name
+    shutil.copy(D.WB_PATH, tmp)
+    wb = load_workbook(tmp, data_only=True, read_only=True)
+    models, _fd, _un = D.read_pump_constraints(wb)
+    wb.close()
+    return models
+
+
+def apply_master_options(cur, dean, pub, domains=None, models=None):
+    """Rebuild DEAN seal options.
+
+    Vocabulary authority = SealNumbering 'Master'. Which options a (series, size)
+    OFFERS, and which one is STD, come from Pump Constraints (per model): an option
+    is offered iff Pump Constraints offers it for that model AND Master lists it
+    (Pump Constraints spellings are matched to the Master spelling). STD = the Pump
+    Constraints STD value when it is a Master value. Gland Gasket (not in Pump
+    Constraints) gets the Master options for Misc. series only, no STD. Which
+    permutations are actually buildable is decided at runtime by the series' Seal
+    Reference sheet (src/api/dean_seal.py). Caller owns the connection.
+    """
     domains = domains or read_master()
+    models = models if models is not None else read_pc_models()
     fields = tuple(domains)
     ph = ",".join("?" * len(fields))
     misc_series = {r[0] for r in cur.execute(
         "SELECT SeriesCode FROM cfg.DeanSealReference WHERE SealRefKey = 'Misc.'")}
-    # (series,size) pairs that carry any replaced field (excluding the new gasket field)
-    pairs = cur.execute(
-        f"SELECT DISTINCT SeriesCode, SizeCode FROM cfg.SeriesFieldOption "
-        f"WHERE PumpFamilyId=? AND FieldCode IN ({ph}) AND FieldCode<>'GLAND_GASKET'",
-        dean, *fields).fetchall()
+    canon = {f: {_n(v): v for v in vals} for f, vals in domains.items()}
     cur.execute(f"DELETE FROM cfg.SeriesFieldOption WHERE PumpFamilyId=? AND FieldCode IN ({ph})",
                 dean, *fields)
     sql = ("INSERT INTO cfg.SeriesFieldOption (MetadataPublicationId, PumpFamilyId, "
@@ -103,21 +138,43 @@ def apply_master_options(cur, dean, pub, domains=None):
            "WorksheetName, SourceRow, SourceFieldCell, SourceValueCell, SourceSeriesCell, "
            "IsActive, CreatedAt, SelectionMarker, IsStandard) "
            "VALUES (?,?,?,?,?,?,?,?,?,0,'','','',1,SYSUTCDATETIME(),?,?)")
-    batch, n_std = [], 0
-    for ser, size in pairs:
-        for fc, vals in domains.items():
-            if fc == "GLAND_GASKET" and ser not in misc_series:
+    batch = []
+    st = {"models": 0, "std": 0, "pc_values_dropped": Counter(), "std_dropped": Counter(),
+          "models_with_std": 0}
+    for m in models:
+        ser, size = m["series"], m["size"]
+        st["models"] += 1
+        got_std = False
+        for fc in fields:
+            if fc == "GLAND_GASKET":
+                if ser in misc_series:
+                    for v in domains[fc]:
+                        batch.append((pub, dean, fc, fc, v, ser, size, SRC.name, "Master", "X", 0))
                 continue
-            # No STD seeds: SealNumbering has no standard seal, and the old Pump
-            # Constraints STD values (a partial, old-vocabulary set) would pre-fill
-            # fields and over-narrow Seal Type through the permutation cascade.
-            for v in vals:
-                batch.append((pub, dean, fc, fc, v, ser, size, SRC.name, "Master", "X", 0))
+            seen = {}
+            for v, mk in (m["cells"].get(fc) or {}).items():
+                cv = to_master(fc, v, canon)
+                if cv is None:
+                    st["pc_values_dropped"][(fc, v)] += 1
+                    if mk == "STD":
+                        st["std_dropped"][(fc, v)] += 1
+                    continue
+                seen[cv] = "STD" if (mk == "STD" or seen.get(cv) == "STD") else "X"
+            for cv in domains[fc]:          # Master order
+                if cv in seen:
+                    is_std = seen[cv] == "STD"
+                    st["std"] += is_std
+                    got_std |= is_std
+                    batch.append((pub, dean, fc, fc, cv, ser, size, "PumpConfiguration_Logic_0.1.xlsm + "
+                                  + SRC.name, "Pump Constraints", seen[cv], 1 if is_std else 0))
+        st["models_with_std"] += got_std
     cur.fast_executemany = True
     cur.executemany(sql, batch)
-    return {"pairs": len(pairs), "rows": len(batch), "std": n_std,
-            "fields": len(domains), "misc_series": len(misc_series)}
-
+    return {"models": st["models"], "rows": len(batch), "std_cells": st["std"],
+            "models_with_std": st["models_with_std"], "fields": len(domains),
+            "misc_series": len(misc_series),
+            "pc_values_dropped": dict(st["pc_values_dropped"]),
+            "std_dropped": dict(st["std_dropped"])}
 
 def main():
     ap = argparse.ArgumentParser()
@@ -127,6 +184,11 @@ def main():
     for f, v in domains.items():
         print(f"  {f}: {len(v)} {v if len(v) < 10 else v[:5] + ['...']}")
     if a.dry_run:
+        models = read_pc_models()
+        canon = {f: {_n(v): v for v in vals} for f, vals in domains.items()}
+        miss = Counter((f, v) for m in models for f in domains for v in (m["cells"].get(f) or {})
+                       if to_master(f, v, canon) is None)
+        print("Pump Constraints values not on Master (field, value): models", dict(miss))
         return 0
     conn = pyodbc.connect(CS, autocommit=True)
     cur = conn.cursor()
