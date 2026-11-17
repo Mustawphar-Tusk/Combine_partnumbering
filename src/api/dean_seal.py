@@ -78,13 +78,30 @@ def normalize_chamber(v: str) -> str:
     return s
 
 
+# Permutation-sheet spelling -> Master spelling (normalized) for values that are the
+# SAME option written differently. Applied to every value going into a permutation
+# key, so sheet rows and Master-spelled selections meet on one key. Only exact
+# equivalents belong here (verified by scripts/audit_dean_seal_options.py).
+SHEET_TO_MASTER = {
+    "SEAL_TYPE": {
+        "type 8bith/8-1t": "jc type 8bith/8-1t",            # 'JC ' prefix missing on sheets
+        "fas type vtsms 300 psi": "fas type vtsms (300 psi)",  # parentheses missing on Misc.
+    },
+}
+
+
+def canon_value(field: str, v) -> str:
+    s = _n(v)
+    return SHEET_TO_MASTER.get(field, {}).get(s, s)
+
+
 def combo_key(values: dict, sheet: str) -> str:
     parts = []
     for f in SEAL_KEY_FIELDS:
         if f == "GLAND_GASKET" and sheet not in GASKET_SHEETS:
             continue
         v = values.get(f, "")
-        parts.append(normalize_chamber(v) if f == "SEAL_CHAMBER_CONFIG" else _n(v))
+        parts.append(normalize_chamber(v) if f == "SEAL_CHAMBER_CONFIG" else canon_value(f, v))
     return "*".join(parts)
 
 
