@@ -669,6 +669,21 @@ def _numeric_option_key(value: str):
         return (1, str(value).strip().lower())
 
 
+# Fields whose values are a number followed by a unit ("1.5 HP", "1800 RPM").
+# Sorted ascending by the leading number (Dean motor fields; Fybroc has none).
+UNIT_NUMERIC_OPTION_FIELDS = {"RATED_POWER", "RATED_SPEED"}
+_LEADING_NUM = re.compile(r"^\s*(\d+(?:\.\d+)?)")
+
+
+def _unit_numeric_option_key(value: str):
+    """(0, number) for values that start with a number ("7.5 HP" -> 7.5), else
+    (1, lowercased text) so any non-numeric value sorts last, deterministically."""
+    m = _LEADING_NUM.match(str(value))
+    if m:
+        return (0, float(m.group(1)), str(value).strip().lower())
+    return (1, 0.0, str(value).strip().lower())
+
+
 def _dimensional_option_key(value: str):
     """Sort key for compound "NxNxN" sizes by their numeric parts.
 
@@ -693,6 +708,8 @@ def _sort_field_options(field_code: str, options: list[str]) -> list[str]:
     fc = field_code.upper()
     if fc in NUMERIC_OPTION_FIELDS:
         return sorted(options, key=_numeric_option_key)
+    if fc in UNIT_NUMERIC_OPTION_FIELDS:
+        return sorted(options, key=_unit_numeric_option_key)
     if fc in DIMENSIONAL_OPTION_FIELDS:
         return sorted(options, key=_dimensional_option_key)
     return options
