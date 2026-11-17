@@ -548,6 +548,11 @@ def main():
 
     # SEAL OPTIONS: SealNumbering.xlsx 'Master' is the authority for the seal
     # selection options and replaces the Pump Constraints seal options.
+    # MOTOR OPTIONS: Motor Numbering.xlsm 'Pricing' A1:AC72 (the full DEAN SFO
+    # rebuild above would otherwise leave the motor option fields empty).
+    from load_dean_motor_options import apply_motor_options
+    print("Motor options:", apply_motor_options(c, dean, pub))
+
     from load_dean_seal_master import apply_master_options
     print("Seal options (Master vocabulary, Pump Constraints offer/STD):",
           apply_master_options(c, dean, pub, models=models))

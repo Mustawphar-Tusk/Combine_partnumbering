@@ -198,7 +198,7 @@ def main():
     nd_fc = cur.execute("SELECT COUNT(*) FROM cfg.FeasibleConstraint WHERE PumpFamilyId<>?", dean).fetchone()[0]
     ok("watermark non-DEAN SFO == 3638", nd_sfo == 3638, f"got {nd_sfo}")
     ok("watermark non-DEAN seg == 300608", nd_seg == 300608, f"got {nd_seg}")
-    ok("watermark DEAN seg == 140976", d_seg == 140976, f"got {d_seg}")
+    ok("watermark DEAN seg == 140974", d_seg == 140974, f"got {d_seg}")
     ok("watermark non-DEAN FeasibleConstraint == 4487", nd_fc == 4487, f"got {nd_fc}")
 
     passed = sum(1 for p in results if p)

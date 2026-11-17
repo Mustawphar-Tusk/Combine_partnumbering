@@ -6,7 +6,7 @@ additive to the frozen Fybroc data:
 
   1. MOTOR_SPEC segment -> stg.SegmentCombinationImport (APPENDED to the CURRENT
      Loaded DEAN batch; the main identifier loader owns the batch and we do not
-     supersede it). Each of the 34,084 enumerated motor combinations becomes one
+     supersede it). Each of the 34,082 enumerated motor combinations becomes one
      row: SegmentValue = the 4-char Combined Alphanumeric Code (brand letter +
      3-char base), CombinationKey = '*'-joined spec values in MOTOR_SPEC field
      order, SelectionsJson = {field_code: value}. This is the motor allow-list +
@@ -19,11 +19,12 @@ additive to the frozen Fybroc data:
 
   3. Motor price -> price.DeanMotorPrice (new additive table), keyed by the
      unique 4-char code: numeric Amount where the workbook has a number,
-     IsContactFactory=1 where the workbook says 'C.F.' (491 numeric / 33,593 C.F.).
+     IsContactFactory=1 where the workbook says 'C.F.' (491 numeric / 33,591 C.F.).
 
 Source ranges (sheet 'Pricing'):
   - Options block : Q1:AC72    (field headers; values come from the combos)
-  - Combinations  : R95:AG34179 (header row 95; data 96..34179)
+  - Combinations  : R98:AD34179 (header labels on row 95; R=Permutation,
+                    S..AB spec, AC code, AD price or C.F.)
 
 Usage:
   $env:PYTHONPATH="."
@@ -49,12 +50,15 @@ SEGMENT_CODE = "MOTOR_SPEC"
 SEGMENT_NAME = "Motor Spec"
 CODE_WIDTH = 4
 
-# Combos block (sheet 'Pricing', 1-based columns). Header row 95, data 96..34179.
+# Combos block (sheet 'Pricing', 1-based columns R..AD). Header row 95 (labels
+# verified); selectable combinations are rows 98..34179 (owner, 2026-08-27).
+# Rows 96-97 are NOT combinations to load.
 COMBO_HEADER_ROW = 95
-COMBO_FIRST_DATA_ROW = 96
+COMBO_FIRST_DATA_ROW = 98
 COMBO_LAST_DATA_ROW = 34179
 # Spec columns S..AB (19..28) in combos column order == MOTOR_SPEC field order.
 SPEC_COLS = list(range(19, 29))            # S..AB
+COL_PERMUTATION = 18                       # R   workbook Permutation (not unique; info only)
 COL_COMBINED = 29                          # AC  Combined Alphanumeric Code
 COL_PRICE = 30                             # AD  Price
 
@@ -95,6 +99,9 @@ def canon_frame(v):
 
 def _s(v):
     return "" if v is None else str(v).strip()
+
+
+wb_perm: dict = {}   # source_row -> workbook Permutation (R), for traceability only
 
 
 def read_combos(wb):
@@ -144,8 +151,31 @@ def read_combos(wb):
             selections[fld] = val
         combo_key = "*".join(parts)
         price_raw = row[COL_PRICE - 1]
+        wb_perm[r_idx] = row[COL_PERMUTATION - 1]
         source_id += 1
         yield source_id, r_idx, combo_key, code, selections, price_raw
+
+
+def regenerate_permutations(rows):
+    """The workbook Permutation column (R) is NOT a unique key (one value per
+    spec, repeated for every brand). Regenerate our own permutation number:
+    walk the rows in sheet order, keep the EARLIER row when the same spec (all
+    10 values) or the same code repeats, discard later ones, and number the kept
+    rows 1..N increasing. Returns (rows_with_new_ids, n_dup_spec, n_dup_code);
+    each row keeps the shape (perm_no, source_row, combo_key, code, selections, price)."""
+    seen_key, seen_code, out = set(), set(), []
+    n_dup_spec = n_dup_code = 0
+    for _old, srow, ck, code, sel, pr in rows:
+        if ck in seen_key:
+            n_dup_spec += 1
+            continue
+        if code in seen_code:
+            n_dup_code += 1
+            continue
+        seen_key.add(ck)
+        seen_code.add(code)
+        out.append((len(out) + 1, srow, ck, code, sel, pr))
+    return out, n_dup_spec, n_dup_code
 
 
 def _price_num(price_raw):
@@ -219,7 +249,10 @@ def main():
     print(f"Loading {WB_PATH} (read_only) ...", flush=True)
     wb = load_workbook(WB_PATH, read_only=True, data_only=True, keep_vba=False)
 
-    combos = list(read_combos(wb))
+    combos, n_dup_spec, n_dup_code = regenerate_permutations(list(read_combos(wb)))
+    print(f"[motor] permutations regenerated 1..{len(combos)} in sheet order "
+          f"(workbook column R is not unique); duplicate spec rows discarded: {n_dup_spec}, "
+          f"duplicate codes discarded: {n_dup_code}")
     wb.close()
     n = len(combos)
     numeric = sum(1 for *_, pr in combos if _price_num(pr)[1] is False)
@@ -275,7 +308,9 @@ def main():
     loaded = 0
     for source_id, srow, combo_key, code, selections, _pr in combos:
         sel_json = json.dumps(selections, separators=(",", ":"))
-        cells_json = json.dumps({"sheet": "Pricing", "row": srow, "mode": "motor_combos"},
+        cells_json = json.dumps({"sheet": "Pricing", "row": srow, "mode": "motor_combos",
+                                 "permutation_no": source_id,
+                                 "workbook_permutation": wb_perm.get(srow)},
                                 separators=(",", ":"))
         buf.append((batch_id, FAMILY, "configuration_and_quote", WB_PATH.name,
                     "Pricing", SEGMENT_CODE, SEGMENT_NAME, srow, source_id, code,
@@ -328,41 +363,13 @@ def main():
     print(f"[motor] FRAME_SIZE canonicalized (Dean): {frame_canon_updated} kept, "
           f"{frame_canon_deleted} case/VP dupes merged (applicability preserved)")
 
-    # --- 2b) the OTHER 9 motor option fields into cfg.SeriesFieldOption
-    #        (DEAN, series-level). FRAME_SIZE is NOT loaded here (handled above). ---
-    # CRITICAL: scope the delete to PumpFamilyId=DEAN. Fybroc shares this table
-    # and uses some of the SAME field codes (e.g. MOTOR_CONTROL), so a
-    # family-unscoped delete would wipe Fybroc rows (Fybroc is FROZEN). Never
-    # delete without the family filter.
-    cur.execute(
-        "DELETE FROM cfg.SeriesFieldOption WHERE MetadataPublicationId=? "
-        "AND PumpFamilyId=? AND FieldCode IN ({})".format(
-            ",".join("?" * len(MOTOR_OPTION_FIELDS))),
-        pub_id, pid, *MOTOR_OPTION_FIELDS)
+    # --- 2b) the 9 motor option fields: authority is the Pricing options block
+    #         A1:AC72 (load_dean_motor_options.py; Motor STD = 'Included'). ---
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from load_dean_motor_options import apply_motor_options
+    print("[motor] option fields:", apply_motor_options(cur, pid, pub_id))
     conn.commit()
-    sfo_ins = (
-        "INSERT INTO cfg.SeriesFieldOption "
-        "(MetadataPublicationId, PumpFamilyId, SourceFieldCode, FieldCode, OptionValue, "
-        " SeriesCode, WorkbookName, WorksheetName, SourceRow, SourceFieldCell, "
-        " SourceValueCell, SourceSeriesCell, SelectionMarker, IsStandard, IsActive) "
-        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)"
-    )
-    sbuf = []
-    for series in series_list:
-        for f in MOTOR_OPTION_FIELDS:
-            for i, val in enumerate(field_values[f]):
-                sbuf.append((
-                    pub_id, pid, f, f, val, series,
-                    WB_PATH.name, "Pricing", 0, "Q1", "Q2", "B",
-                    "X", 1 if i == 0 else 0,
-                ))
-    cur.fast_executemany = True
-    for i in range(0, len(sbuf), 2000):
-        cur.executemany(sfo_ins, sbuf[i:i + 2000]); conn.commit()
-    print(f"[motor] SeriesFieldOption rows: {len(sbuf):,} "
-          f"({len(MOTOR_OPTION_FIELDS)} motor fields x {len(series_list)} series; "
-          f"FRAME_SIZE preserved per-series)")
-
     # --- 3) price.DeanMotorPrice (create + load) ---
     cur.execute("""
         IF OBJECT_ID('price.DeanMotorPrice','U') IS NULL
@@ -376,14 +383,17 @@ def main():
         );
     """)
     conn.commit()
+    cur.execute("IF COL_LENGTH('price.DeanMotorPrice','PermutationNo') IS NULL "
+                "ALTER TABLE price.DeanMotorPrice ADD PermutationNo int NULL;")
+    conn.commit()
     cur.execute("DELETE FROM price.DeanMotorPrice;")
     conn.commit()
     pins = ("INSERT INTO price.DeanMotorPrice "
-            "(MotorCode, Amount, IsContactFactory, Brand, SourceRow) VALUES (?,?,?,?,?)")
+            "(MotorCode, Amount, IsContactFactory, Brand, SourceRow, PermutationNo) VALUES (?,?,?,?,?,?)")
     pbuf = []
-    for _sid, srow, _ck, code, sel, price_raw in combos:
+    for perm_no, srow, _ck, code, sel, price_raw in combos:
         amt, is_cf = _price_num(price_raw)
-        pbuf.append((code, amt, 1 if is_cf else 0, sel.get("BRAND"), srow))
+        pbuf.append((code, amt, 1 if is_cf else 0, sel.get("BRAND"), srow, perm_no))
     cur.fast_executemany = True
     for i in range(0, len(pbuf), 2000):
         cur.executemany(pins, pbuf[i:i + 2000]); conn.commit()

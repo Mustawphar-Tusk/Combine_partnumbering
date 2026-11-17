@@ -59,7 +59,7 @@ WATERMARKS = {
     "non-DEAN stg.SegmentCombinationImport": (
         "SELECT COUNT(*) FROM stg.SegmentCombinationImport WHERE FamilyCode<>'DEAN'", 300608),
     "DEAN stg.SegmentCombinationImport": (
-        "SELECT COUNT(*) FROM stg.SegmentCombinationImport WHERE FamilyCode='DEAN'", 140976),
+        "SELECT COUNT(*) FROM stg.SegmentCombinationImport WHERE FamilyCode='DEAN'", 140974),
 }
 
 CONTACT = {

@@ -2079,6 +2079,18 @@ async def resolve_configuration_state(
         #      fields it clashes with plus recommended compatible options. The UI
         #      surfaces this so the user can correct it deliberately - instead of
         #      the config silently resetting their upstream choices.
+        # Dean MOTOR: a Pump Configuration that includes a motor always has the
+        # motor included - Motor is auto-selected 'Included' (reported in
+        # reset_fields) whenever the chosen bundle includes MOTOR and Motor is
+        # unset. Bundles without a motor drop the motor fields via applicability.
+        if family_upper == "DEAN":
+            _pc = str(selections.get("PUMP_CONFIGURATION") or "").strip().lower()
+            if ("MOTOR" in DEAN_PUMP_CONFIG_INCLUDES.get(_pc, set())
+                    and not str(selections.get("MOTOR") or "").strip()
+                    and "Included" in (all_options.get("MOTOR") or [])):
+                selections["MOTOR"] = "Included"
+                reset_fields["MOTOR"] = "Included"
+
         applicable = set(_applicable_fields(selections))
         for fc in list(selections):
             if fc not in applicable:

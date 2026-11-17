@@ -5,11 +5,11 @@ workbooks/Dean/Motor Numbering.xlsm (Pricing sheet) against the DB and the live
 resolve flow. Expectations are derived from the DB / workbook, not hardcoded.
 
 Exit gate (all must pass), DEAN-only / Fybroc-frozen:
-  1. MOTOR_SPEC segment: 34,084 combinations loaded in the current DEAN batch;
+  1. MOTOR_SPEC segment: 34,082 combinations loaded in the current DEAN batch;
      every SegmentValue is a 4-char code; codes are unique.
   2. Brand: every code's first char is a valid brand letter (B/L/M/N/S/T/H/W/X).
-  3. price.DeanMotorPrice: 34,084 rows keyed by code; numeric vs C.F. split
-     matches the workbook (491 numeric / 33,593 C.F.).
+  3. price.DeanMotorPrice: 34,082 rows keyed by code; numeric vs C.F. split
+     matches the workbook (491 numeric / 33,591 C.F.).
   4. Motor option fields: the 9 non-frame motor fields are offered for every Dean
      series; FRAME_SIZE is canonical (UPPER + no 'VP' suffix) and preserved.
   5. Live resolve: a config on a frame WITH a motor combo resolves to a real
@@ -36,9 +36,9 @@ CONN = ("DRIVER={ODBC Driver 18 for SQL Server};SERVER=localhost;"
         "TrustServerCertificate=yes;")
 API = "http://127.0.0.1:8080/api/v2"
 BRAND_LETTERS = set("BLMNSTHWX")
-EXPECT_COMBOS = 34084
+EXPECT_COMBOS = 34082  # rows 98..34179 (owner range)
 EXPECT_NUMERIC = 491
-EXPECT_CF = 33593
+EXPECT_CF = 33591
 # Fybroc isolation watermark (recorded post-load).
 FYBROC_SFO_NONDEAN = 2096
 FYBROC_SEG_NONDEAN = 300608
@@ -100,7 +100,8 @@ def main():
             "SELECT DISTINCT SeriesCode FROM cfg.SeriesFieldOption "
             "WHERE MetadataPublicationId=? AND PumpFamilyId=? AND FieldCode=?",
             pub, deanpid, f).fetchall()}
-        ok(dean_series <= series_with,
+        # case-insensitive: Pump Model Reference spells DEANLINE, the option rows Deanline
+        ok({s.upper() for s in dean_series} <= {s.upper() for s in series_with},
            f"{f} offered for all {len(dean_series)} Dean series ({len(series_with)} have it)")
     # FRAME_SIZE canonical: uppercase, no 'VP' suffix, for Dean
     frames = [r[0] for r in c.execute(
